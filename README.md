@@ -1,2 +1,3 @@
-# cu-bytes
-A Carleton-specific AI food tracking app.
+# CU Bytes
+
+A Carleton University-centric Food Tracking App.
