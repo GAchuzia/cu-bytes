@@ -1,3 +1,9 @@
 # CU-Bytes
 
-A Carleton University-centric Food Tracking App.
+SYSC4907 (Engineering Project): A food tracking app for Carleton University.
+
+## Usage
+
+## Installation & Setup
+
+## Contributing & Docs
