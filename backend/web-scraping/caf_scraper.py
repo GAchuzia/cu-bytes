@@ -6,7 +6,11 @@ import os
 date = "10/06/2025"
 
 # URL to access the Caf's menu for the week of "date"
-url = "https://carleton.campusdish.com/api/menu/GetMenus?locationId=24967&storeIds=&mode=Weekly&date=" + date + "&time=&periodId=2084&fulfillmentMethod="
+url = (
+    f"https://carleton.campusdish.com/api/menu/GetMenus?"
+    f"locationId=24967&storeIds=&mode=Weekly&date={date}"
+    f"&time=&periodId=2084&fulfillmentMethod="
+)
 
 # Fetch JSON data
 response = requests.get(url)
@@ -24,6 +28,7 @@ headers = [
     "TreeNuts", "Wheat", "Kosher", "Last Updated"
 ]
 
+
 # Helper to function convert boolean to 'T' / 'F'
 def bool_to_tf(value):
     if value is True:
@@ -31,6 +36,7 @@ def bool_to_tf(value):
     elif value is False:
         return "F"
     return ""
+
 
 # Keep track of marketing names to avoid duplicates
 added_names = set()
