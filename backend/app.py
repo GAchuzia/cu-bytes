@@ -30,7 +30,7 @@ def health_check():
         {
             "status": "healthy",
             "message": "CU-Bytes server is running",
-            "timestamp": "2024-01-15T12:30:00Z",
+            "timestamp": "Todays date and time lol",
         }
     )
 
