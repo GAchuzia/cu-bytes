@@ -2,12 +2,28 @@
 
 ## Table of Contents
 
-- [Prerequisites](#prerequisites)
-- [Backend Setup](#backend-setup)
-- [Frontend Setup](#frontend-setup)
-- [Machine Learning Setup](#machine-learning-setup)
-- [Running the Application](#running-the-application)
-- [Development Workflow](#development-workflow)
+- [CU-Bytes Developer Guide](#cu-bytes-developer-guide)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+  - [Backend Setup](#backend-setup)
+    - [1. Create Virtual Environment](#1-create-virtual-environment)
+    - [2. Activate Virtual Environment](#2-activate-virtual-environment)
+    - [3. Install Dependencies](#3-install-dependencies)
+    - [4. Configure Environment](#4-configure-environment)
+    - [5. Run Backend Server](#5-run-backend-server)
+  - [Frontend Setup](#frontend-setup)
+    - [1. Navigate to Frontend Directory](#1-navigate-to-frontend-directory)
+    - [2. Install Dependencies](#2-install-dependencies)
+    - [3. Configure Environment Variables](#3-configure-environment-variables)
+    - [4. Start Development Server](#4-start-development-server)
+  - [Machine Learning Setup](#machine-learning-setup)
+    - [1. Create Virtual Environment](#1-create-virtual-environment-1)
+    - [2. Activate Virtual Environment](#2-activate-virtual-environment-1)
+    - [3. Install Dependencies](#3-install-dependencies-1)
+  - [Running the Application](#running-the-application)
+    - [1. Start Backend Server](#1-start-backend-server)
+    - [2. Start Frontend Development Server](#2-start-frontend-development-server)
+    - [3. Access Application](#3-access-application)
 
 ## Prerequisites
 
@@ -154,6 +170,3 @@ npm start
 - **Web:** Open browser to Expo development URL
 - **Mobile:** Scan QR code with Expo Go app
 - **API:** `http://localhost:5000/api/health`
-
-
-

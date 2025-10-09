@@ -4,10 +4,12 @@ Quick guide on maintaining and contributing to `cu-bytes`.
 
 ## Table Of Contents
 
-1. [Filing Issues](#filing-issues)
-2. [Making Pull Requests](#making-pull-requests)
-3. [Version Updates](#version-updates)
-4. [Style & Formatting](#style--formatting)
+- [CU-Bytes Contribution Guide](#cu-bytes-contribution-guide)
+  - [Table Of Contents](#table-of-contents)
+    - [Filing Issues](#filing-issues)
+    - [Making Pull Requests](#making-pull-requests)
+    - [Version Updates](#version-updates)
+    - [Style \& Formatting](#style--formatting)
 
 ### Filing Issues
 
