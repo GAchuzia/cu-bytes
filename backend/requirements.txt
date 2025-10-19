@@ -4,3 +4,4 @@ python-dotenv==1.0.0
 requests==2.32.3
 flake8==7.1.1
 sqlalchemy==2.0.44
+pytest==8.4.2

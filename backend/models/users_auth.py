@@ -31,6 +31,14 @@ class UsersAuth(db.Model):
         db.session.commit()
         return user
 
+    @classmethod
+    def get_user_by_name(cls, username):
+        """
+        Retrieve a user object from the database by username.
+        Returns None if not found.
+        """
+        return cls.query.filter_by(username=username).first()
+
     def verify_password(self, password_attempt):
         """Verify password using stored salt"""
         return self.password == self.hash_with_salt(password_attempt, self.salt)

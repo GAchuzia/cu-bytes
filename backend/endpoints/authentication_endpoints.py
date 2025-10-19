@@ -19,6 +19,10 @@ def register():
         "password": "string"    # required
     }
 
+    Restrictions:
+    Usernames must be between 1 and 80 characters, unique, and can only contain letters, numbers, underscores and spaces
+    Passwords must be between 10 and 120 characters, with at least one special character, one number, one uppercase and one lowercase
+
     Responses:
     201 Success - User registered successfully
     400 Bad Request - Missing or invalid data
