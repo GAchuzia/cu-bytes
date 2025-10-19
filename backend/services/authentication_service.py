@@ -6,8 +6,45 @@ from backend.models.users_auth import UsersAuth
 
 def login_user(data):
     """Attempt to login a user"""
-    print("Logged in") # TODO
-    return "OK"
+    username = data.get("username")
+    password = data.get("password")
+
+    # Err on the side of caution for error messages to give no hints to attackers
+    # Check missing fields
+    if not username or not password:
+        return jsonify({
+            "status": "error",
+            "message": "Invalid password or username."
+        }), 400
+    
+    # Ensure no weird inputs that could mess up the query
+    if not re.fullmatch(r'^[a-zA-Z0-9_ ]{1,80}$', username):
+        return jsonify({
+            "status": "error",
+            "message": "Invalid password or username."
+        }), 400
+    
+    asserted_user = UsersAuth.get_user_by_name(username=username)
+
+    # Check for a valid username
+    if asserted_user == None:
+        return jsonify({
+            "status": "error",
+            "message": "Invalid password or username."
+        }), 400
+
+    if not asserted_user.verify_password(password):
+        return jsonify({
+            "status": "error",
+            "message": "Invalid password or username."
+        }), 400
+
+    print(f"AuthenticationService: {username} has succesfully logged in") # TODO
+    
+    return jsonify({
+        "status": "success",
+        "message": "User logged in successfully."
+    }), 201
 
 def create_user(username, password):
     """Create a new user and store it in the database"""
@@ -17,7 +54,6 @@ def create_user(username, password):
     print(f"AuthenticationService: Created new user {username} with password {password}")
     return user
 
-
 def register_user(data):
     """
     Attempt to register a new user.
@@ -25,7 +61,6 @@ def register_user(data):
     Usernames must be between 1 and 80 characters, unique, and can only contain letters, numbers, underscores and spaces
     Passwords must be between 10 and 120 characters, with at least one special character, one number, one uppercase and one lowercase
     """
-    # Only allow letters, numbers, underscores and spaces
     username = data.get("username")
     password = data.get("password")
     print(f"AuthenticationService: Attempting to create user {username} with password {password}")

@@ -1,7 +1,12 @@
 # Project imports
 from backend.models.users_auth import UsersAuth
+from backend.tests.test_helpers import add_test_user
 
 # Arguments like client and app are automatically injected from conftest.py
+
+# ------------------------------------
+# Testing Register
+# ------------------------------------
 def test_register_missing_password(client):
     response = client.post(
         "/auth/register",
@@ -177,3 +182,103 @@ def test_register_many_valid_users(client):
 
     data = response.get_json()
     assert response.status_code == 201
+
+# ------------------------------------
+# Testing Login
+# ------------------------------------
+
+def test_login_missing_username(client, app):
+    add_test_user(app, username="Ellen", password="Password123!")
+
+    response = client.post(
+        "/auth/login",
+        json={"username": "", "password": "Password123!"}
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Invalid password or username." in data["message"]
+
+def test_login_missing_password(client, app):
+    add_test_user(app, username="Ellen", password="Password123!")
+
+    response = client.post(
+        "/auth/login",
+        json={"username": "Ellen", "password": ""}
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Invalid password or username." in data["message"]
+
+def test_login_dangerous_username(client, app):
+    add_test_user(app, username="Ellen", password="Password123!")
+
+    response = client.post(
+        "/auth/login",
+        json={"username": "'; DROP TABLE auth; --", "password": "Hacker@123"}
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Invalid password or username." in data["message"]
+
+def test_login_case_insensitive_username(client, app):
+    add_test_user(app, username="Ellen", password="Password123!")
+
+    response = client.post(
+        "/auth/login",
+        json={"username": "ellen", "password": "Password123!"}
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Invalid password or username." in data["message"]
+
+def test_login_case_insensitive_password(client, app):
+    add_test_user(app, username="Ellen", password="Password123!")
+
+    response = client.post(
+        "/auth/login",
+        json={"username": "Ellen", "password": "password123!"}
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Invalid password or username." in data["message"]
+
+def test_login_success(client, app):
+    add_test_user(app, username="Ellen", password="Password123!")
+
+    response = client.post(
+        "/auth/login",
+        json={"username": "Ellen", "password": "Password123!"}
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 201
+    assert data["status"] == "success"
+    assert "User logged in successfully." in data["message"]
+
+    # Try again
+    response = client.post(
+        "/auth/login",
+        json={"username": "Ellen", "password": "Password123!"}
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 201
+    assert data["status"] == "success"
+    assert "User logged in successfully." in data["message"]
