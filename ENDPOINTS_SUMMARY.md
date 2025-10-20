@@ -1,11 +1,17 @@
-from flask import Blueprint, request
-from backend.services.authentication_service import login_user, register_user
+# CU-Bytes Endpoints Summary
 
-auth_bp = Blueprint("auth", __name__)
+Summary of endpoints.
+
+## Table Of Contents
+
+- [CU-Bytes Endpoints Summary](#cu-bytes-endpoints-summary)
+  - [Table Of Contents](#table-of-contents)
+    - [Login](#login)
+    - [Register](#register)
 
 
-@auth_bp.route("/login", methods=["POST"])
-def login():
+### Login
+
     """
     POST /login
 
@@ -19,12 +25,9 @@ def login():
     201 Success - User logged in successfully
     400 Bad Request - Wrong username or password
     """
-    data = request.json
-    return login_user(data)
 
+### Register
 
-@auth_bp.route("/register", methods=["POST"])
-def register():
     """
     POST /register
 
@@ -45,5 +48,3 @@ def register():
     400 Bad Request - Missing or invalid data
     409 Conflict - Username already exists
     """
-    data = request.json
-    return register_user(data)

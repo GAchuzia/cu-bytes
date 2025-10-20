@@ -11,7 +11,18 @@ if __name__ == "__main__":
         db.create_all(bind_key="profiles")
 
         # Create dummy users
-        UsersProfile.create(username="Alice", has_egg_allergy=True, has_peanut_allergy=True, has_shellfish_allergy=True, has_treenut_allergy=True)
+        UsersProfile.create(
+            username="Alice",
+            has_egg_allergy=True,
+            has_peanut_allergy=True,
+            has_shellfish_allergy=True,
+            has_treenut_allergy=True,
+        )
         UsersProfile.create(username="Bob", is_vegan=True, has_gluten_allergy=True)
-        UsersProfile.create(username="Charlie", show_stats=False, has_dairy_intolerance=True, prefers_kosher=True)
+        UsersProfile.create(
+            username="Charlie",
+            show_stats=False,
+            has_dairy_intolerance=True,
+            prefers_kosher=True,
+        )
         print("Created profiles.db and added dummy users.")

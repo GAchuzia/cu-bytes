@@ -15,8 +15,8 @@ response = requests.get(url)
 raw_text = response.text.strip()
 
 # Retreive JSON
-start = raw_text.find('{')
-end = raw_text.rfind('}') + 1
+start = raw_text.find("{")
+end = raw_text.rfind("}") + 1
 if start == -1 or end == -1:
     raise ValueError("Could not find valid JSON object in response")
 
@@ -50,14 +50,32 @@ csv_file = os.path.join(script_dir, "roostersFoodInfo.csv")
 
 # Headers for the CSV
 headers = [
-    "Food Item", "Dining Location", "Cost", "Calories", "Nuts", "Vegan",
-    "Gluten Free", "Halal", "Vegetarian", "No Dairy", "Comments",
-    "Eggs", "Fish", "Milk", "Peanuts", "Sesame", "Shellfish", "Soy",
-    "TreeNuts", "Wheat", "Kosher", "Last Updated"
+    "Food Item",
+    "Dining Location",
+    "Cost",
+    "Calories",
+    "Nuts",
+    "Vegan",
+    "Gluten Free",
+    "Halal",
+    "Vegetarian",
+    "No Dairy",
+    "Comments",
+    "Eggs",
+    "Fish",
+    "Milk",
+    "Peanuts",
+    "Sesame",
+    "Shellfish",
+    "Soy",
+    "TreeNuts",
+    "Wheat",
+    "Kosher",
+    "Last Updated",
 ]
 
 # Open CSV for writing
-with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+with open(csv_file, mode="w", newline="", encoding="utf-8") as file:
     writer = csv.DictWriter(file, fieldnames=headers)
     writer.writeheader()
 

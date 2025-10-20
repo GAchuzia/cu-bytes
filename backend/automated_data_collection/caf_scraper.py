@@ -7,7 +7,7 @@ date = "10/06/2025"
 
 # URL to access the Caf's menu for the week of "date"
 url = (
-    f"https://carleton.campusdish.com/api/menu/GetMenus?"
+    f"https://carleton.campusdish.com/api/menu/GetMenus?"  # noqa: E231
     f"locationId=24967&storeIds=&mode=Weekly&date={date}"
     f"&time=&periodId=2084&fulfillmentMethod="
 )
@@ -22,10 +22,28 @@ csv_file = os.path.join(script_dir, "cafFoodInfo.csv")
 
 # Headers for the CSV
 headers = [
-    "Food Item", "Dining Location", "Cost", "Calories", "Nuts", "Vegan",
-    "Gluten Free", "Halal", "Vegetarian", "No Dairy", "Comments",
-    "Eggs", "Fish", "Milk", "Peanuts", "Sesame", "Shellfish", "Soy",
-    "TreeNuts", "Wheat", "Kosher", "Last Updated"
+    "Food Item",
+    "Dining Location",
+    "Cost",
+    "Calories",
+    "Nuts",
+    "Vegan",
+    "Gluten Free",
+    "Halal",
+    "Vegetarian",
+    "No Dairy",
+    "Comments",
+    "Eggs",
+    "Fish",
+    "Milk",
+    "Peanuts",
+    "Sesame",
+    "Shellfish",
+    "Soy",
+    "TreeNuts",
+    "Wheat",
+    "Kosher",
+    "Last Updated",
 ]
 
 
@@ -42,7 +60,7 @@ def bool_to_tf(value):
 added_names = set()
 
 # Open CSV for writing
-with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+with open(csv_file, mode="w", newline="", encoding="utf-8") as file:
     writer = csv.DictWriter(file, fieldnames=headers)
     writer.writeheader()
 

@@ -1,13 +1,13 @@
 # Library imports
 import hashlib
-import os
 
 # Project imports
 from backend.extensions import db
 
+
 class UsersAuth(db.Model):
     # Specify the database and the table
-    __bind_key__ = 'auth'
+    __bind_key__ = "auth"
     __tablename__ = "users_auth"
 
     username = db.Column(db.String(80), primary_key=True)

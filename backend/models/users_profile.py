@@ -1,6 +1,7 @@
 # Project imports
 from backend.extensions import db
 
+
 class UsersProfile(db.Model):
     # Specify the database and the table
     __bind_key__ = "profiles"
@@ -33,21 +34,44 @@ class UsersProfile(db.Model):
         return f"<UsersProfile {self.username}>"
 
     @classmethod
-    def create(cls, username, show_stats=False, has_egg_allergy=False, has_dairy_intolerance=False, 
-               has_peanut_allergy=False, has_sesame_allergy=False, has_shellfish_allergy=False,
-               has_soy_allergy=False, has_treenut_allergy=False, has_wheat_allergy=False,
-               has_gluten_allergy=False, is_vegan=False, is_vegetarian=False, prefers_kosher=False,
-               prefers_halal=False):
+    def create(
+        cls,
+        username,
+        show_stats=False,
+        has_egg_allergy=False,
+        has_dairy_intolerance=False,
+        has_peanut_allergy=False,
+        has_sesame_allergy=False,
+        has_shellfish_allergy=False,
+        has_soy_allergy=False,
+        has_treenut_allergy=False,
+        has_wheat_allergy=False,
+        has_gluten_allergy=False,
+        is_vegan=False,
+        is_vegetarian=False,
+        prefers_kosher=False,
+        prefers_halal=False,
+    ):
         """Create a new dietary profile and store it in the database"""
 
-        user = cls(username=username, show_stats=show_stats, has_egg_allergy=has_egg_allergy,
-                   has_dairy_intolerance=has_dairy_intolerance, has_peanut_allergy=has_peanut_allergy,
-                   has_sesame_allergy=has_sesame_allergy, has_shellfish_allergy=has_shellfish_allergy,
-                   has_soy_allergy=has_soy_allergy, has_treenut_allergy=has_treenut_allergy,
-                   has_wheat_allergy=has_wheat_allergy, has_gluten_allergy=has_gluten_allergy,
-                   is_vegan=is_vegan, is_vegetarian=is_vegetarian, prefers_kosher=prefers_kosher,
-                   prefers_halal=prefers_halal)
-        
+        user = cls(
+            username=username,
+            show_stats=show_stats,
+            has_egg_allergy=has_egg_allergy,
+            has_dairy_intolerance=has_dairy_intolerance,
+            has_peanut_allergy=has_peanut_allergy,
+            has_sesame_allergy=has_sesame_allergy,
+            has_shellfish_allergy=has_shellfish_allergy,
+            has_soy_allergy=has_soy_allergy,
+            has_treenut_allergy=has_treenut_allergy,
+            has_wheat_allergy=has_wheat_allergy,
+            has_gluten_allergy=has_gluten_allergy,
+            is_vegan=is_vegan,
+            is_vegetarian=is_vegetarian,
+            prefers_kosher=prefers_kosher,
+            prefers_halal=prefers_halal,
+        )
+
         db.session.add(user)
         db.session.commit()
         print(f"UsersProfile: Created profile for user {username}")
