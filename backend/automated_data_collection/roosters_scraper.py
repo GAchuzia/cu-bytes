@@ -17,6 +17,7 @@ raw_text = response.text.strip()
 # Retreive JSON
 start = raw_text.find("{")
 end = raw_text.rfind("}") + 1
+
 if start == -1 or end == -1:
     raise ValueError("Could not find valid JSON object in response")
 
