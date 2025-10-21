@@ -25,7 +25,7 @@ export default function LoginScreen() {
         <View style={StyleSheet.container}>
             <StatusBar style="auto" />
 
-            <Text style={styles.title}>CU-Bytes</Text>
+            <Text style={styles.title}>Create Account for CU-Bytes</Text>
             <Text style={styles.subtitle}>Create a new CU-Bytes account</Text>
 
             <TextInput
