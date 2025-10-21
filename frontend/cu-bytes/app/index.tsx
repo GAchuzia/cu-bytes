@@ -1,7 +1,12 @@
-import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
+
+import { router } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+
 import { apiService } from '../services/api';
+
+import { styles } from './style';
 
 export default function HomeScreen() {
   const [loading, setLoading] = useState(false);
@@ -45,6 +50,17 @@ export default function HomeScreen() {
         <Text style={styles.buttonText}>
           {loading ? 'Checking...' : 'Health Check'}
         </Text>
+
+      </TouchableOpacity>
+
+      <TouchableOpacity
+          style={[styles.button, loading && styles.buttonDisabled]}
+          onPress={() => router.push("/splash")}
+          disabled={loading}
+      >
+          <Text style={styles.buttonText}>
+            Splash
+          </Text>
       </TouchableOpacity>
 
       <View style={styles.infoSection}>
@@ -57,78 +73,3 @@ export default function HomeScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-    paddingTop: 80,
-    paddingHorizontal: 30,
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 10,
-    color: '#333',
-  },
-  subtitle: {
-    fontSize: 20,
-    textAlign: 'center',
-    marginBottom: 15,
-    color: '#666',
-    fontWeight: '600',
-  },
-  description: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 40,
-    color: '#888',
-    lineHeight: 24,
-    paddingHorizontal: 20,
-  },
-  button: {
-    backgroundColor: '#007AFF',
-    paddingVertical: 18,
-    paddingHorizontal: 40,
-    borderRadius: 12,
-    alignItems: 'center',
-    marginBottom: 40,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  buttonDisabled: {
-    backgroundColor: '#ccc',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  infoSection: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 12,
-    width: '100%',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  infoTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 12,
-  },
-  infoText: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 6,
-  },
-});
