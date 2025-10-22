@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, Pressable } from 'react-native';
 
 import { router } from 'expo-router';
@@ -11,6 +11,11 @@ export default function LoginScreen() {
     const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState('Enter a new username');
     const [password, setPassword] = useState('Enter a new password');
+
+    const [data, setData] = useState({
+        username: "",
+        password: ""
+    });
 
     function saveUsernameInputText(event) {
         setUsername(event.target.value);
@@ -44,7 +49,20 @@ export default function LoginScreen() {
 
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
+
                 // API call to backend register
+                onPress={useEffect(() => {
+                fetch("/register").then(res =>
+                    res.json().then(data => {
+                        // Setting a data from api
+                        setData({
+                            username: username,
+                            password: password
+                        });
+                    })
+                );
+                })}
+
                 disabled={loading}
             >
                 <Text style={styles.buttonText}>

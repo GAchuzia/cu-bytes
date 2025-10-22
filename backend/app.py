@@ -8,7 +8,6 @@ from backend.config import config
 from backend.endpoints.authentication_endpoints import auth_bp
 from backend.extensions import db
 
-
 # App Factory
 def create_app(config_name="development"):
     app = Flask(__name__)
