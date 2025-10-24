@@ -148,10 +148,23 @@ def download_food101_data():
         urllib.request.urlretrieve(url, tar_path)
         print("Download complete!")
 
-    # Extract if not already extracted
+    # Extract if not already extracted properly
     extracted_dir = data_dir / "food-101"
-    if not extracted_dir.exists():
+
+    # Check if we have actual content (not just empty directories)
+    has_content = False
+    if extracted_dir.exists():
+        # Check if images directory has content
+        images_dir = extracted_dir / "images"
+        if images_dir.exists() and any(images_dir.iterdir()):
+            has_content = True
+
+    if not has_content:
         print("Extracting dataset...")
+        # Remove empty directories if they exist
+        if extracted_dir.exists():
+            shutil.rmtree(extracted_dir)
+
         with tarfile.open(tar_path, "r:gz") as tar:
             tar.extractall(data_dir)
         print("Extraction complete!")
