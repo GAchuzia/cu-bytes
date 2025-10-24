@@ -117,15 +117,37 @@ class Trainer:
         if is_best:
             torch.save(checkpoint, config.BEST_MODEL_PATH)
             print(f"New best model saved with validation accuracy: {val_acc:.2f}%")
+    
+    def load_checkpoint(self, checkpoint_path: str):
+        """Load a checkpoint and resume training"""
+        print(f"Loading checkpoint from {checkpoint_path}")
+        
+        checkpoint = torch.load(checkpoint_path, map_location=config.DEVICE)
+        
+        # Load model state
+        self.model.load_state_dict(checkpoint['model_state_dict'])
+        
+        # Load optimizer state
+        self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        
+        # Load training history
+        start_epoch = checkpoint['epoch'] + 1
+        self.best_val_acc = checkpoint['val_acc']
+        
+        print(f"Resuming from epoch {start_epoch}")
+        print(f"Best validation accuracy so far: {self.best_val_acc:.2f}%")
+        
+        return start_epoch
 
-    def train(self, train_loader, val_loader, num_epochs=50):
+    def train(self, train_loader, val_loader, num_epochs=50, start_epoch=0):
         """Main training loop"""
         print(f"Starting training on {config.DEVICE}")
         print(f"Model: {self.model_name}")
         print(f"Training samples: {len(train_loader.dataset)}")
         print(f"Validation samples: {len(val_loader.dataset)}")
+        print(f"Starting from epoch: {start_epoch + 1}")
 
-        for epoch in range(num_epochs):
+        for epoch in range(start_epoch, num_epochs):
             print(f"\nEpoch {epoch+1}/{num_epochs}")
             print("-" * 50)
 
@@ -175,7 +197,7 @@ class Trainer:
         )
 
 
-def main():
+def main(resume_from_checkpoint=None):
     """Main training function"""
     # Print device info
     config.print_device_info()
@@ -191,13 +213,17 @@ def main():
     )
 
     # Create trainer
-    trainer = Trainer(
-        model_name="resnet50"
-    )  # Try 'efficientnet_b0' or 'vit_b_16' for other models
+    trainer = Trainer(model_name="resnet50")
+
+    # Load checkpoint if specified
+    start_epoch = 0
+    if resume_from_checkpoint:
+        start_epoch = trainer.load_checkpoint(resume_from_checkpoint)
 
     # Start training
-    trainer.train(train_loader, val_loader, num_epochs=config.NUM_EPOCHS)
-
+    trainer.train(train_loader, val_loader, num_epochs=config.NUM_EPOCHS, start_epoch=start_epoch)
 
 if __name__ == "__main__":
-    main()
+    import sys
+    checkpoint_path = sys.argv[1] if len(sys.argv) > 1 else None
+    main(resume_from_checkpoint=checkpoint_path)
