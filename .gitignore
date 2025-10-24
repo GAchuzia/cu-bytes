@@ -43,3 +43,5 @@ data/
 machine-learning/data/*
 machine-learning/models/checkpoints/*
 machine-learning/models/runs/*
+machine-learning/models/*.pth
+machine-learning/models/*.pt
