@@ -38,3 +38,6 @@ venv.bak/
 .mlenv/
 mlenv
 data/
+
+# Machine Learning
+machine-learning/data/*
