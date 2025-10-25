@@ -74,7 +74,10 @@ PORT=5000
 ### 5. Run Backend Server
 
 ```bash
-python app.py
+cd ..
+python -m backend.database.init_auth_db
+python -m backend.database.init_user_settings_db
+python -m backend.app
 ```
 
 The server will start on `http://localhost:5000`
@@ -155,7 +158,10 @@ pip install -r requirements.txt
 ```bash
 cd backend
 backenv\Scripts\activate  # Windows
-python app.py
+cd ..
+python -m backend.database.init_auth_db
+python -m backend.database.init_user_settings_db
+python -m backend.app
 ```
 
 ### 2. Start Frontend Development Server
