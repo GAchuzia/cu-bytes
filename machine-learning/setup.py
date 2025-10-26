@@ -23,6 +23,33 @@ def run_command(command, description):
         print(f"Error: {e.stderr}")
         return False
 
+def install_pytorch():
+    """Detect system hardware and install appropriate PyTorch version"""
+    print("Detecting system hardware for PyTorch installation...")
+
+    has_cuda = False
+    try:
+        result = subprocess.run(
+            "nvidia-smi", shell=True, check=True, capture_output=True, text=True)
+        if result.returncode == 0:
+            has_cuda = True
+            print("NVIDIA GPU detected with CUDA support.")
+        else:
+            print("No NVIDIA GPU detected.")
+    except Exception:
+        print("No NVIDIA GPU detected (likely CPU-only environment).")
+
+    if has_cuda:
+        # Manually choose which version of CUDA to install with PyTorch (12.7, 13.0, etc.)
+        cuda_version = "cu127"
+        torch_cmd = f"pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/{cuda_version}"
+        desc = f"Installing PyTorch (CUDA {cuda_version})"
+    else:
+        torch_cmd = "pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu"
+        desc = "Installing PyTorch (CPU version)"
+
+    return run_command(torch_cmd, desc) 
+
 
 def main():
     print("Setting up Food Recognition ML Pipeline")
