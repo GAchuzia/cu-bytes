@@ -35,3 +35,13 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.mlenv/
+mlenv
+data/
+
+# Machine Learning
+machine-learning/data/*
+machine-learning/models/checkpoints/*
+machine-learning/models/runs/*
+machine-learning/models/*.pth
+machine-learning/models/*.pt
