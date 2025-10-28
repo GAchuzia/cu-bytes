@@ -9,15 +9,24 @@ import { styles } from './style';
 
 export default function LoginScreen() {
     const [loading, setLoading] = useState(false);
+    const [data, setData] = useState(
+        {
+            username: '',
+            password: ''
+        }
+    )
+
     const [username, setUsername] = useState('Enter your username');
     const [password, setPassword] = useState('Enter your password');
 
     function saveUsernameInputText(event) {
         setUsername(event.target.value);
+        console.log(username);
     }
 
     function savePasswordInputText(event) {
-        setPassword(event.target.value)
+        setPassword(event.target.value);
+        console.log(username);
     }
 
     return (
@@ -45,7 +54,17 @@ export default function LoginScreen() {
 
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
-                // API call to backend login
+
+                onPress={() => {
+                        fetch("http://127.0.0.1:5000/auth/login", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify( { username: username, password: password } )
+                            }
+                        )
+                    }   
+                }
+
                 disabled={loading}
             >
                 <Text style={styles.buttonText}>

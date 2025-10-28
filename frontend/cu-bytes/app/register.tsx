@@ -8,21 +8,26 @@ import { apiService } from '../services/api';
 import { styles } from './style';
 
 export default function LoginScreen() {
+    
     const [loading, setLoading] = useState(false);
+    const [data, setData] = useState(
+        {
+            username: '',
+            password: ''
+        }
+    );
+
     const [username, setUsername] = useState('Enter a new username');
     const [password, setPassword] = useState('Enter a new password');
 
-    const [data, setData] = useState({
-        username: "",
-        password: ""
-    });
-
     function saveUsernameInputText(event) {
         setUsername(event.target.value);
+        console.log(username);
     }
 
     function savePasswordInputText(event) {
-        setPassword(event.target.value)
+        setPassword(event.target.value);
+        console.log(password);
     }
 
     return (
@@ -48,20 +53,18 @@ export default function LoginScreen() {
             </TextInput>
 
             <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
+                style={[styles.button, data && styles.buttonDisabled]}
 
-                // API call to backend register
-                onPress={useEffect(() => {
-                fetch("/register").then(res =>
-                    res.json().then(data => {
-                        // Setting a data from api
-                        setData({
-                            username: username,
-                            password: password
-                        });
-                    })
-                );
-                })}
+                onPress={() => {
+                        fetch("http://127.0.0.1:5000/auth/register", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify( { username: username, password: password } )
+                            
+                            }
+                        ) 
+                    }
+                }
 
                 disabled={loading}
             >
