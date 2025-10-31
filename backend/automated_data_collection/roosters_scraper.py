@@ -4,10 +4,19 @@ import os
 import json
 from datetime import datetime
 
+"""
+If the URL does not work:
+1. Visit https://order2.silverwarepos.com/app/roosters#!/menu#%2Fmenu
+2. Open developer tools (F12)
+3. Go to the Network tab (wifi symbol)
+4. Reload the page
+5. The new URL is the call that ends in =getMenu
+"""
+
 # URL to access Roosters' menu
 url = (
     "https://cdn.silverwarepos.com/api/JSON/order2/menu/"
-    "B2731591FDB570084EC506EAFB222FEEFBEE373A.json?callback=getMenu"
+    "FD59F9C32F5432F282FEFA745F52B3D194B8185A.json?callback=getMenu"
 )
 
 # Fetch response
@@ -104,7 +113,7 @@ with open(csv_file, mode="w", newline="", encoding="utf-8") as file:
         # Prepare CSV row
         row = {
             "Food Item": description,
-            "Dining Location": "Roosters",
+            "Dining Location": "Rooster's",
             "Cost": amount,
             "Calories": "",
             "Nuts": "",

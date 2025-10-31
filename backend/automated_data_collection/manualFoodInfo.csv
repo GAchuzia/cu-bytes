@@ -1,0 +1,459 @@
+Food Item,Dining Location,Cost,Calories,Nuts,Vegan,Gluten Free,Halal,Vegetarian,No Dairy,Comments,Eggs,Fish,Milk,Peanuts,Sesame,Soy,TreeNuts,Wheat,Kosher,Last Updated
+Maple Pecan Square,Bridgehead,4.95,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+Pistachio Danish,Bridgehead,5.95,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+Raspberry Scone,Bridgehead,4.95,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+Lemon Square,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Chocolate Chip Cookie,Bridgehead,3.65,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Ginger Cookie,Bridgehead,3.55,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Granola Cookie,Bridgehead,3.75,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Peanut Butter Cookie,Bridgehead,3.75,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+Plain Croissant,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Cheddar Croissant,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Chocolatine Croissant,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Banana Chocolate Muffin,Bridgehead,3.95,,N,Y,Y,,,,,,,,,,,,,,09/24/2025
+Triple Berry Muffin,Bridgehead,3.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Apple Cranberry Muffin,Bridgehead,3.95,,N,Y,Y,,,,,,,,,,,,,,09/24/2025
+Carrot Cake,Bridgehead,5.75,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+Cherry Lemon Loaf,Bridgehead,3.95,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+Chocolate Quinoa Loaf,Bridgehead,3.95,,N,N,Y,,,,,,,,,,,,,,09/24/2025
+Peanut Butter Bite,Bridgehead,2.35,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+Energy Bite,Bridgehead,2.35,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+Coconut Date Bite,Bridgehead,2.35,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+Pumpkin Muffin,Bridgehead,3.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Pumpkin Loaf,Bridgehead,3.95,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+Chipotle Quinoa Wrap,Bridgehead,12.45,,Y,Y,N,,,,,,,,,,,,,,09/24/2025
+Quinoa Salad,Bridgehead,11.95,,Y,N,Y,,,,,,,,,,,,,,09/24/2025
+Yogurt Parfait,Bridgehead,6.75,,Y,N,Y,,,,,,,,,,,,,,09/24/2025
+Banana Parfait,Bridgehead,6.45,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Butter Oats,Bridgehead,6.45,,Y,N,Y,,,,,,,,,,,,,,09/24/2025
+Egg & Cheese Bagel,Bridgehead,6.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
+"Bacon, Egg & Cheese Bagel",Bridgehead,7.75,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Smoked Meat Bagel,Bridgehead,12.99,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Smoked Salmon Bagel,Bridgehead,12.99,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Kale Caesar Salad,Bridgehead,11.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Bacon & Egg Wrap,Bridgehead,6.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Breakfast Wrap,Bridgehead,6.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Egg & Cheese Wrap,Bridgehead,6.45,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Chicken Burrito,Bridgehead,12.45,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Veggie Burrito,Bridgehead,10.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Chicken Salad Wrap,Bridgehead,12.45,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+Coconut Curry,Bridgehead,12.45,,N,N,N,,,,,,,,,,,,,,09/24/2025
+Chicken Wrap,Bridgehead,12.45,,Y,N,N,,,,,,,,,,,,,,09/24/2025
+"Egg, Pesto, & Mozzarella Sandwich",Starbucks,5.75,370,,,,,N,,,,,,,,,,,,09/25/2025
+"Bacon, Gouda, & Egg Sandwich",Starbucks,5.05,360,,,,,N,,,,,,,,,,,,09/25/2025
+"Double-Smoked Bacon, Cheddar & Egg Sandwich",Starbucks,5.95,500,,,,,N,,,,,,,,,,,,09/25/2025
+"Bacon-Style Turkey, Cheddar & Egg Sandwich",Starbucks,5.65,230,,,,,N,,,,,,,,,,,,09/25/2025
+"Sausage, Cheddar & Egg Sandwich",Starbucks,5.25,480,,,,,N,,,,,,,,,,,,09/25/2025
+"Spinich, Feta & Egg White Wrap",Starbucks,5.65,290,,,,,N,,,,,,,,,,,,09/25/2025
+Everything Croissant & Roasted Ham Sandwich,Starbucks,5.95,470,,,,,N,,,,,,,,,,,,09/25/2025
+Bacon & Gruyère Egg Bites,Starbucks,320,320,,,,,N,,,,,,,,,,,,09/25/2025
+"Bacon, Sausage & Egg Wrap",Starbucks,640,640,,,,,N,,,,,,,,,,,,09/25/2025
+Egg White & Roasted Red Pepper Egg Bites,Starbucks,170,170,,,,,N,,,,,,,,,,,,09/25/2025
+"Potato, Cheddar & Chive Bakes",Starbucks,6.25,210,,,,,N,,,,,,,,,,,,09/25/2025
+Ham & Swiss Croissant,Starbucks,4.65,290,,,,,N,,,,,,,,,,,,09/25/2025
+Pumpkin Cream Cheese Muffin,Starbucks,3.95,350,,,,,Y,,,,,,,,,,,,09/25/2025
+Fox Cookie,Starbucks,3.95,320,,,,,Y,,,,,,,,,,,,09/25/2025
+Baked Apple Croissant,Starbucks,4.45,250,,,,,Y,,,,,,,,,,,,09/25/2025
+Pumpkin & Pepita Loaf,Starbucks,4.45,380,,,,,Y,,,,,,,,,,,,09/25/2025
+Chocalate Cake Pop,Starbucks,3.45,160,,,,,Y,,,,,,,,,,,,09/25/2025
+Strawberry Cake Pop,Starbucks,3.45,160,,,,,Y,,,,,,,,,,,,09/25/2025
+Cookies & Cream Cake Pop,Starbucks,3.45,160,,,,,Y,,,,,,,,,,,,09/25/2025
+Birthday Cake Pop,Starbucks,3.45,170,,,,,Y,,,,,,,,,,,,09/25/2025
+Double Chocolate Brownie,Starbucks,3.95,480,,,,,Y,,,,,,,,,,,,09/25/2025
+Ginger Molasses Cookie,Starbucks,3.65,350,,,,,Y,,,,,,,,,,,,09/25/2025
+Chocolate Chunk Cookie,Starbucks,3.65,320,,,,,Y,,,,,,,,,,,,09/25/2025
+Rolled & Steel-Cut Oatmeal,Starbucks,3.95,250,,,,,Y,,,,,,,,,,,,09/25/2025
+Oat Bar,Starbucks,3.45,310,,,,,Y,,,,,,,,,,,,09/25/2025
+Blueberry Muffin,Starbucks,3.65,350,,,,,Y,,,,,,,,,,,,09/25/2025
+Cheese Danish,Starbucks,3.65,310,,,,,Y,,,,,,,,,,,,09/25/2025
+Chocolate Croissant,Starbucks,4.45,340,,,,,Y,,,,,,,,,,,,09/25/2025
+Butter Croissant,Starbucks,3.95,260,,,,,Y,,,,,,,,,,,,09/25/2025
+Mini Everything Bagels,Starbucks,4.25,300,,,,,Y,,,,,,,,,,,,09/25/2025
+Belgian Liège Waffle,Starbucks,3.35,220,,,,,Y,,,,,,,,,,,,09/25/2025
+4 Maple Mini Pancakes,Starbucks,2.75,120,,,,,Y,,,,,,,,,,,,09/25/2025
+Cinnamon Coffee Cake,Starbucks,3.95,330,,,,,Y,,,,,,,,,,,,09/25/2025
+Banana Loaf,Starbucks,4.45,360,,,,,Y,,,,,,,,,,,,09/25/2025
+Iced Lemon Loaf,Starbucks,4.45,430,,,,,Y,,,,,,,,,,,,09/25/2025
+Jalepeño Chicken Pocket,Starbucks,5.25,200,,,,,N,,,,,,,,,,,,09/25/2025
+Spicy Falafel Pocket,Starbucks,5.25,230,,,,,N,,,,,,,,,,,,09/25/2025
+Three Cheese & Egg Sandwich,Starbucks,4.75,330,,,,,N,,,,,,,,,,,,09/25/2025
+Bagelwich,Rooster's,6.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Breakfast Pita,Rooster's,6.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Western Sandwich,Rooster's,7.39,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Fried Egg Sandwich,Rooster's,5.59,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Omelette,Rooster's,8.39,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+BLT,Rooster's,7.99,,,,,N,N,,,,,,,,,,,,09/25/2025
+Rooster's Grilled Cheese,Rooster's,5.69,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Classic Grilled Cheese,Rooster's,4.29,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Sour Dough Grilled Cheese,Rooster's,9.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Toasted Veggie Sandwich,Rooster's,5.19,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Toasted Bagel,Rooster's,3.19,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Bagel with Cream Cheese,Rooster's,4.88,,,,,N,Y,,,,,,,,,,,,09/25/2025
+Toast,Rooster's,1.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Toast with Jam,Rooster's,2.99,,,,,N,Y,,,,,,,,,,,,09/25/2025
+HashBrown,Rooster's,1.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Chicken Souvlaki Pita,Rooster's,11.99,,,,,N,N,,,,,,,,,,,,09/25/2025
+Chicken Shawarma Pita,Rooster's,11.99,,,,,Y,N,,,,,,,,,,,,09/25/2025
+Chicken Club Pita,Rooster's,13.19,,,,,N,N,,,,,,,,,,,,09/25/2025
+Steak Fajita Pita,Rooster's,12.99,,,,,N,N,,,,,,,,,,,,09/25/2025
+Halal Chicken Pita,Rooster's,11.99,,,,,N,N,,,,,,,,,,,,09/25/2025
+Turkey Pita,Rooster's,10.69,,,,,N,N,,,,,,,,,,,,09/25/2025
+Bloack Forest Hame Pita,Rooster's,10.69,,,,,N,N,,,,,,,,,,,,09/25/2025
+Chicken Pita,Rooster's,10.69,,,,,N,N,,,,,,,,,,,,09/25/2025
+Club Pita,Rooster's,12.99,,,,,N,N,,,,,,,,,,,,09/25/2025
+Tuna Pita,Rooster's,10.89,,,,,N,N,,,,,,,,,,,,09/25/2025
+Bacon Pita,Rooster's,11.99,,,,,N,N,,,,,,,,,,,,09/25/2025
+Gyro Pita,Rooster's,10.89,,,,,N,N,,,,,,,,,,,,09/25/2025
+Roasted Eggplant Pita,Rooster's,10.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Tofu Pita,Rooster's,9.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Veggie Patty Pita,Rooster's,10.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Falafel Pita,Rooster's,9.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Garden Veggie Pita,Rooster's,8.69,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Pita Dippers,Rooster's,6.09,,,,,Y,Y,,,,,,,,,,,,09/25/2025
+Chilli,Rooster's,7.99,,,,,N,N,,,,,,,,,,,,09/25/2025
+Chilli with Bread,Rooster's,8.99,,,,,N,N,,,,,,,,,,,,09/25/2025
+Medium Soup,Rooster's,6.79,,,,,N,N,,,,,,,,,,,,09/25/2025
+Large Soup,Rooster's,7.69,,,,,N,N,,,,,,,,,,,,09/25/2025
+Fries,Ollies,5.5,,N,Y,N,N,N,,,,,,,,,,,,10/12/2025
+Pogos,Ollies,6.5,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
+Perogies,Ollies,7,,N,N,N,N,Y,,,,,,,,,,,,10/12/2025
+Onion Rings,Ollies,7.5,,N,Y,N,N,N,,,,,,,,,,,,10/12/2025
+Sweet Potato Fries,Ollies,7.5,,N,Y,N,N,N,,,,,,,,,,,,10/12/2025
+Kimchi Fries,Ollies,8,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
+Mozza Sticks,Ollies,8.5,,N,N,N,N,Y,,,,,,,,,,,,10/12/2025
+Jalapeno Poppers,Ollies,8.5,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
+Garden Salad,Ollies,7.5,,N,N,Y,N,Y,,,,,,,,,,,,10/12/2025
+Taco Salad,Ollies,9.5,,N,N,Y,N,Y,,,,,,,,,,,,10/12/2025
+Churros,Ollies,8,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
+The Royale,Ollies,14,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
+The Royale With Cheese,Ollies,15,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
+The Goblet of Fire,Ollies,16,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
+The Room,Ollies,16,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
+The Ring,Ollies,16,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
+New Baconings,Ollies,16,,N,N,N,N,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
+Fried Chicken Sandwich,Ollies,16,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
+Poutine,Ollies,8.5,,N,N,N,Y,Y,,,,,,,,,,,,10/12/2025
+Cauliflower Bites,Ollies,9.5,,N,N,N,N,Y,,,,,,,,,,,,10/12/2025
+Burrito Bowl,Ollies,14,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
+Tenders And Fries,Ollies,14,,N,N,N,Y,N,,,,,,,,,,,,10/12/2025
+Wings - 1Lb,Ollies,14,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
+Loaded Nachos,Ollies,18,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
+Muffin,Leo's Lounge,1.5,,,,,,,,,,,,,,,,,,9/26/2025
+Chips,Leo's Lounge,2.5,,,,,,,,,,,,,,,,,,9/26/2025
+Air Heads,Leo's Lounge,0.5,,,,,,,,,,,,,,,,,,9/26/2025
+Microwave Popcorn,Leo's Lounge,1,,,,,,,,,,,,,,,,,,9/26/2025
+Candy Bar,Leo's Lounge,2,,,,,,,,,,,,,,,,,,9/26/2025
+Pop Tart,Leo's Lounge,1.5,,,,,,,,,,,,,,,,,,9/26/2025
+Ice Cream,Leo's Lounge,1,,,,,,,,,,,,,,,,,,9/26/2025
+Oatmeal,Leo's Lounge,0.5,,,,,,,,,,,,,,,,,,9/26/2025
+Sammich,Leo's Lounge,9,,,,,,,,,,,,,,,,,,9/26/2025
+Curry,Leo's Lounge,5,240,,,,,,,,,,,,,,,,,9/26/2025
+Samosa,Leo's Lounge,5,,,,,,,,,,,,,,,,,,9/26/2025
+Naan,Leo's Lounge,4.25,270,,,,,,,,,,,,,,,,,9/26/2025
+Ramen,Leo's Lounge,2,,,,,,,,,,,,,,,,,,9/26/2025
+Pizza Pops,Leo's Lounge,2.25,,,,,,,,,,,,,,,,,,9/26/2025
+Jamaican Patty,Leo's Lounge,1.5,,,,,,,,,,,,,,,,,,9/26/2025
+Breakfast Sammy,Leo's Lounge,2.5,,,,,,,,,,,,,,,,,,9/26/2025
+Build Your Own Sandwich,Urban Deli,9.2,,,,,,,,,,,,,,,,,,9/26/2025
+Ham & Swiss Sandwich,Urban Deli,9.9,530,,N,N,,N,,,,,,,,,,,,9/26/2025
+Caprese Sandwich,Urban Deli,9.2,570,,N,N,,N,,,,,,,,,,,,9/26/2025
+Grilled Cheese with Tomato Soup,Urban Deli,6.75,,,,,,,,Could Check back and look for appropriate tags,,,,,,,,,,9/26/2025
+Beef Brie Sandwich,Urban Deli,9.9,490,,N,N,,N,,,,,,,,,,,,9/26/2025
+Grilled Vegetables & Hummus on Multipgrain Ciabatta Sandwich,Urban Deli,9.2,430,,Y,N,,Y,,,,,,,,,,,,9/26/2025
+Baked Falafel,Urban Deli,8.9,,,,,,,,Could Check back and look for appropriate tags,,,,,,,,,,9/26/2025
+Potato Caesar Salad,Urban Deli,4.8,420,,N,N,,N,,,,,,,,,,,,9/26/2025
+Classic Beef Burrito,La Cocina,10.35,740,,,,,,,,,,,,,,,,,9/26/2025
+Grilled Chicken Rice Bowl,La Cocina,10.35,690,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Tinga Burrito,La Cocina,10.35,700,,,,,,,,,,,,,,,,,9/26/2025
+Big Bean Quesadilla,La Cocina,9.8,800,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Tinga Burrito,La Cocina,10.6,800,,,,,,,,,,,,,,,,,9/26/2025
+3 Sisters Burrito,La Cocina,10.15,,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Quesadilla,La Cocina,7.5,,,,,,,,,,,,,,,,,,9/26/2025
+Lightlife Burger,Burger 101,9.2,,,,,,,,,,,,,,,,,,9/26/2025
+Hamburger,Burger 101,8,470,,,,,,,,,,,,,,,,,9/26/2025
+Poutine,Burger 101,9.6,1400,,,,,,,,,,,,,,,,,9/26/2025
+Vegetarian Poutine,Burger 101,9.6,,,,,,,,,,,,,,,,,,9/26/2025
+Butter Chicken Poutine,Burger 101,11.9,,,,,,,,,,,,,,,,,,9/26/2025
+Classic French Fry,Burger 101,4.9,1130,,,,,,,,,,,,,,,,,9/26/2025
+Chipotle Pulled Pork Poutine,Burger 101,11.9,,,,,,,,,,,,,,,,,,9/26/2025
+Spicy Spiral Fries,Burger 101,4.8,,,,,,,,,,,,,,,,,,9/26/2025
+Value Pick - Sliders,Burger 101,6.95,,,,,,,,,,,,,,,,,,9/26/2025
+Crispy Chicken Sandwich,Colonel by Chicken,9.7,620,,,,,,,,,,,,,,,,,9/26/2025
+5 Piece Chicken Wings,Colonel by Chicken,7.3,,,,,,,,,,,,,,,,,,9/26/2025
+"Combo - Wedges, Fry Sauce & a Fountain Beverage",Colonel by Chicken,5.9,,,,,,,,,,,,,,,,,,9/26/2025
+Potato Wedges with Fry Sauce,Colonel by Chicken,4.2,760,,,,,,,,,,,,,,,,,9/26/2025
+Nashville Hot Chicken Sandwich,Colonel by Chicken,9.7,680,,,,,,,,,,,,,,,,,9/26/2025
+Backed Mac & Cheese,Colonel by Chicken,4.5,,,,,,,,,,,,,,,,,,9/26/2025
+3 Piece Chicken Strips,Colonel by Chicken,7.75,,,,,,,,,,,,,,,,,,9/26/2025
+Snack Wraps,Colonel by Chicken,6.5,,,,,,,,,,,,,,,,,,9/26/2025
+Pepperoni Pizza Slice,The Market Pizzeria,5.2,570,,,,,,,,,,,,,,,,,9/26/2025
+Whole Cheese Pizza,The Market Pizzeria,25,2720,,,,,,,,,,,,,,,,,9/26/2025
+Whole Pepperoni Pizza,The Market Pizzeria,25,3440,,,,,,,,,,,,,,,,,9/26/2025
+Cheese Pizza Slice,The Market Pizzeria,5.2,450,,,,,,,,,,,,,,,,,9/26/2025
+Meat Lasagna,The Market Pizzeria,10.5,,,,,,N,,,,,,,,,,,,9/26/2025
+Lasagna,The Market Pizzeria,10.5,,,,,,Y,,,,,,,,,,,,9/26/2025
+Salmon Sushi Combo,Bento Boxes,17,,,,,,,,,,,,,,,,,,9/26/2025
+California Roll,Bento Boxes,9,,,,,,,,,,,,,,,,,,9/26/2025
+Vegetarian California Roll,Bento Boxes,9,,,,,,,,,,,,,,,,,,9/26/2025
+Dynamite Crunch Roll,Bento Boxes,12,389,,,,,,,,,,,,,,,,,9/26/2025
+Dynamite Roll,Bento Boxes,11,390,,,,,,,,,,,,,,,,,9/26/2025
+Spicy California Roll,Bento Boxes,10,,,,,,,,,,,,,,,,,,9/26/2025
+Spicy California Crunch Roll,Bento Boxes,10,,,,,,,,,,,,,,,,,,9/26/2025
+California Nigiri Combo,Bento Boxes,15,,,,,,,,,,,,,,,,,,9/26/2025
+Salmon Avocado Roll,Bento Boxes,12,,,,,,,,,,,,,,,,,,9/26/2025
+Spicy Salmon Roll,Bento Boxes,12,,,,,,,,,,,,,,,,,,9/26/2025
+Tuna Poke Bowl,Bento Boxes,15,660,,,,,,,,,,,,,,,,,9/26/2025
+Salmon Poke Bowl,Bento Boxes,15,710,,,,,,,,,,,,,,,,,9/26/2025
+Spicy California Poke Bowl,Bento Boxes,15,740,,,,,,,,,,,,,,,,,9/26/2025
+Tofu Poke Bowl,Bento Boxes,15,660,,,,,,,,,,,,,,,,,9/26/2025
+Tempura Shrimp Poke Bowl,Bento Boxes,15,,,,,,,,,,,,,,,,,,9/26/2025
+Donburi Beef,Bento Boxes,12,579,,,,,,,,,,,,,,,,,9/26/2025
+Donburi Chicken,Bento Boxes,12,599,,,,,,,,,,,,,,,,,9/26/2025
+Donburi Inari Tofu,Bento Boxes,12,580,,,,,,,,,,,,,,,,,9/26/2025
+Donburi Shrimp Tempura,Bento Boxes,12,,,,,,,,,,,,,,,,,,9/26/2025
+Seaweed Salad,Bento Boxes,6,90,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Shawarma Plate,Shawarma Palace,20,,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Shawarma Combo,Shawarma Palace,14,,,,,,,,,,,,,,,,,,9/26/2025
+Mixed Shawarma Sandwich,Shawarma Palace,10.5,,,,,,,,,,,,,,,,,,9/26/2025
+Falafel Sandwich,Shawarma Palace,9.5,,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Salad Wrap,Shawarma Palace,15,,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Shawarma Sandwich,Shawarma Palace,9.5,,,,,,,,,,,,,,,,,,9/26/2025
+Beef Shawarma Plate,Shawarma Palace,20,,,,,,,,,,,,,,,,,,9/26/2025
+Beef Shawarma Combo,Shawarma Palace,14,,,,,,,,,,,,,,,,,,9/26/2025
+Mixed Shawarma Plate,Shawarma Palace,21,,,,,,,,,,,,,,,,,,9/26/2025
+Mixed Shawarma Combo,Shawarma Palace,15,,,,,,,,,,,,,,,,,,9/26/2025
+Falafel Plate,Shawarma Palace,18,,,,,,,,,,,,,,,,,,9/26/2025
+Falafel Combo,Shawarma Palace,14,,,,,,,,,,,,,,,,,,9/26/2025
+Beef Shawarma Sandwich,Shawarma Palace,9.5,,,,,,,,,,,,,,,,,,9/26/2025
+Tabouli,Shawarma Palace,7,,,,,,,,,,,,,,,,,,9/26/2025
+Greek Salad,Shawarma Palace,7,,,,,,,,,,,,,,,,,,9/26/2025
+Garlic Potatoes,Shawarma Palace,7,,,,,,,,,,,,,,,,,,9/26/2025
+Rocky Road Brownie,CT-Pastry,3.45,260,,,,,,,,,,,,,,,,,9/26/2025
+Macaroon Square,CT-Pastry,3.45,430,,,,,,,,,,,,,,,,,9/26/2025
+Chocolate Chunk Cookie,CT-Pastry,3,390,,,,,,,,,,,,,,,,,9/26/2025
+Date Square,CT-Pastry,3.45,340,,,,,,,,,,,,,,,,,9/26/2025
+Gluten Free Brownie,CT-Pastry,3.45,430,,,Y,,,,,,,,,,,,,,9/26/2025
+Carrot Cake,CT-Pastry,5.9,450,,,,,,,,,,,,,,,,,9/26/2025
+Key Lime Cheesecake,CT-Pastry,5.9,450,,,,,,,,,,,,,,,,,9/26/2025
+Chocolate Chip Cookie,Tunnel Junction,3.1,390,,N,N,,Y,,Uses Carleton labelling - Can rule out the empties as no,,,,,,,,,,9/26/2025
+Coconut Muffin,Tunnel Junction,3.3,330,,N,N,,Y,,,,,,,,,,,,9/26/2025
+"Carrot, Pineapple & Pumpkin Seed Muffin",Tunnel Junction,3.3,330,,N,N,,Y,,,,,,,,,,,,9/26/2025
+Apple Bran Muffin,Tunnel Junction,3.3,290,,N,N,,Y,,,,,,,,,,,,9/26/2025
+Blueberry Crumble Muffin,Tunnel Junction,3.3,310,,N,N,,Y,,,,,,,,,,,,9/26/2025
+Double Chocolate Muffin,Tunnel Junction,3.3,330,,N,N,,Y,,,,,,,,,,,,9/26/2025
+Yogurt & Berries Parfait,Tunnel Junction,5.7,310,,N,N,,Y,,,,,,,,,,,,9/26/2025
+Chicken Caesar Wrap,Tunnel Junction,8.2,570,,N,N,,N,,,,,,,,,,,,9/26/2025
+Buffalo Chicken Wrap,Tunnel Junction,8.2,460,,N,N,Y,,,,,,,,,,,,,9/26/2025
+Greek Falafel Wrap,Tunnel Junction,7.6,580,,Y,N,,Y,,,,,,,,,,,,9/26/2025
+Vegetable Market Wrap,Tunnel Junction,7.6,460,,N,N,,Y,,,,,,,,,,,,9/26/2025
+Egg Salad Sandwich,Tunnel Junction,6.7,270,,Y,N,,Y,,,,,,,,,,,,9/26/2025
+Tuna Salad Sandwich,Tunnel Junction,6.7,370,,N,N,,N,,,,,,,,,,,,9/26/2025
+Ham & Swiss Sandwich,Tunnel Junction,6.7,310,,N,N,,N,,,,,,,,,,,,9/26/2025
+Egg Salad Sandwich,Tunnel Junction,6.7,270,,N,N,,Y,,,,,,,,,,,,9/26/2025
+Greek Pasta Salad,Tunnel Junction,5.7,790,,N,N,,N,,,,,,,,,,,,9/26/2025
+Chicken Caesar Salad,Tunnel Junction,9,500,,N,N,,N,,,,,,,,,,,,9/26/2025
+Breakfast Pastries & Fruit,Riverbank Social,9.99,,,,,,,,,,,,,,,,,,10/12/2025
+Ham & Cheese Croissant,Riverbank Social,8.5,,,,,,,,,,,,,,,,,,10/12/2025
+Smoked Salmon Bagel,Riverbank Social,13.99,,,,,,,,,,,,,,,,,,10/12/2025
+Greek Yogurt & Chia Bowl,Riverbank Social,10.99,,,,Y,,Y,,,,,,,,,,,,10/12/2025
+Breakfast Express,Riverbank Social,9.99,,,,,,,,,,,,,,,,,,10/12/2025
+Breakfast Extress Deluxe,Riverbank Social,12.75,,,,,,,,,,,,,,,,,,10/12/2025
+Breakfast Bowl,Riverbank Social,14.99,,,,,,,,,,,,,,,,,,10/12/2025
+French Toast,Riverbank Social,9.99,,,,,,,,,,,,,,,,,,10/12/2025
+Toast,Riverbank Social,3.75,,,,,,,,,,,,,,,,,,10/12/2025
+Buttered Croissant,Riverbank Social,3.99,,,,,,,,,,,,,,,,,,10/12/2025
+Kettleman's Bagel,Riverbank Social,2.99,,,,,,,,,,,,,,,,,,10/12/2025
+Turkey Sausage,Riverbank Social,3.99,,,,,Y,,,,,,,,,,,,,10/12/2025
+Home Fries,Riverbank Social,4.25,,,,,,,,,,,,,,,,,,10/12/2025
+Cream Cheese,Riverbank Social,2,,,,,,,,,,,,,,,,,,10/12/2025
+Free Range Egg,Riverbank Social,2,,,,,,,,,,,,,,,,,,10/12/2025
+Bacon,Riverbank Social,2.99,,,,,,,,,,,,,,,,,,10/12/2025
+Smoked Ham,Riverbank Social,2.99,,,,Y,,,Y,,,,,,,,,,,10/12/2025
+Side of Fresh Fruit,Riverbank Social,4.99,,,,Y,,,Y,,,,,,,,,,,10/12/2025
+Leafy Greens Salad,Riverbank Social,10,,,,Y,,,Y,,,,,,,,,,,10/12/2025
+Caesar Salad,Riverbank Social,10,,,,,,,,,,,,,,,,,,10/12/2025
+Beets & Frisée,Riverbank Social,12,,,,Y,,,Y,,,,,,,,,,,10/12/2025
+House-Made Focaccia,Riverbank Social,6,,,,,,,,,,,,,,,,,,10/12/2025
+Chef's Inspiration Soup,Riverbank Social,8,,,,,,,,,,,,,,,,,,10/12/2025
+Daily Pizza,Riverbank Social,15,,,,,,,,,,,,,,,,,,10/12/2025
+Chef's Feature Piadina,Riverbank Social,14,,,,,,,,,,,,,,,,,,10/12/2025
+Cone of Freshly Cut Fries,Riverbank Social,6,,,,,,,,,,,,,,,,,,10/12/2025
+Sweet Potato Fries with Roasted Garlic,Riverbank Social,8,,,,,,,,,,,,,,,,,,10/12/2025
+Grilled Grain-Fed Chicken,Riverbank Social,10,,,,Y,Y,,Y,,,,,,,,,,,10/12/2025
+Pan-Seared ASC Salmon Filet,Riverbank Social,10,,,,Y,,,Y,,,,,,,,,,,10/12/2025
+Tiger Prawns,Riverbank Social,9,,,,Y,,,Y,,,,,,,,,,,10/12/2025
+Cheesesticks,Mike's Place,7.99,,,,,,Y,,,,,,,,,,,,10/1/2025
+Vegetable Samosa,Mike's Place,4.49,,,,,,Y,,,,,,,,,,,,10/1/2025
+Chicken Samosa,Mike's Place,4.99,,,,,Y,,,,,,,,,,,,,10/1/2025
+Nacho Chips & Salsa,Mike's Place,4.29,,,,,,Y,,,,,,,,,,,,10/1/2025
+Popcorn Shrimp,Mike's Place,7.49,,,,,,Y,,,,,,,,,,,,10/1/2025
+Vegetable Spring Rolls,Mike's Place,5.99,,,,,,Y,,,,,,,,,,,,10/1/2025
+Pretzel,Mike's Place,5.99,,,,,,Y,,,,,,,,,,,,10/1/2025
+French Fries,Mike's Place,4.49,,,,,,Y,,,,,,,,,,,,10/1/2025
+Garlic Cheese Bread,Mike's Place,7.99,,,,,,Y,,,,,,,,,,,,10/1/2025
+Poutine,Mike's Place,8.99,,,,,,Y,,,,,,,,,,,,10/1/2025
+4 Cheese Spinach Dip,Mike's Place,9.99,,,,,,Y,,,,,,,,,,,,10/1/2025
+Starter Salad,Mike's Place,4.99,,,,,,Y,,,,,,,,,,,,10/1/2025
+Entrée Salad,Mike's Place,7.99,,,,,,Y,,,,,,,,,,,,10/1/2025
+Mandarin Chicken Salad,Mike's Place,9.99,,,,,,,,,,,,,,,,,,10/1/2025
+Chicken Tenders with Dip,Mike's Place,17.99,,,,,Y,,,,,,,,,,,,,10/1/2025
+Vegetable Nachos,Mike's Place,19.99,,,,Y,,Y,,,,,,,,,,,,10/1/2025
+Chicken Nachos,Mike's Place,19.99,,,,Y,Y,,,,,,,,,,,,,10/1/2025
+Blackbean Nachos,Mike's Place,8.99,,,,Y,,Y,,,,,,,,,,,,10/1/2025
+Tandoori Chicken Stuffed Naan,Mike's Place,8.99,,,,,Y,,,,,,,,,,,,,10/1/2025
+Sundried Tomato Stuffed Naan,Mike's Place,9.99,,,,,,Y,,,,,,,,,,,,10/1/2025
+Chicken Quesadillia,Mike's Place,9.99,,,,,Y,,,,,,,,,,,,,10/1/2025
+Black Bean Quesadillia,Mike's Place,9.99,,,,,,Y,,,,,,,,,,,,10/1/2025
+BBQ Chicken Pizza,Mike's Place,9.99,,,,,Y,,,,,,,,,,,,,10/1/2025
+Chicken Burger,Mike's Place,8.99,,,,,Y,,,,,,,,,,,,,10/1/2025
+Chickpea Curry,Mike's Place,8.99,,,,,,Y,,,,,,,,,,,,10/1/2025
+Butter Chicken,Mike's Place,9.79,,,,,Y,,,,,,,,,,,,,10/1/2025
+Chicken Curry,Mike's Place,9.49,,,,,Y,,,,,,,,,,,,,10/1/2025
+Hand Batter MSC Certified Fish & Chips,Oasis,15,990,,,,,,,Uses Carleton labelling - Can rule out the empties as no,,,,,,,,,,10/12/2025
+Hand Breaded Eggplant Parmesan Sandwich,Oasis,11.5,450,,,,,Y,,,,,,,,,,,,10/12/2025
+Smoky Italian Sausage,Oasis,11,680,,,,,,,,,,,,,,,,,10/12/2025
+Colonel By Chicken Sandwich,Oasis,9.1,460,,,,Y,,,,,,,,,,,,,10/12/2025
+Chicken Fingers,Oasis,11.5,980,,,,,,,,,,,,,,,,,10/12/2025
+Hamburger,Oasis,7.5,470,,,,Y,,,Can upgrade burger to Lightlife patty for Vegan,,,,,,,,,,10/12/2025
+Cheeseburger,Oasis,8.9,530,,,,Y,,,Can upgrade burger to Lightlife patty for Vegan,,,,,,,,,,10/12/2025
+Bacon Cheeseburger,Oasis,10.8,570,,,,,,,Can upgrade burger to Lightlife patty for Vegan,,,,,,,,,,10/12/2025
+Margherita Pizza,Oasis,14,1520,,,,,Y,,,,,,,,,,,,10/12/2025
+Five Cheese Pizza,Oasis,14,1320,,,,,Y,,,,,,,,,,,,10/12/2025
+Create Your Own Pizza,Oasis,16.2,1030,,,,,,,,,,,,,,,,,10/12/2025
+Fresh Cut Fries,Oasis,4.4,770,,Y,,,,,,,,,,,,,,,10/12/2025
+Poutine,Oasis,8.9,1040,,,,,,,,,,,,,,,,,10/12/2025
+Poutine with Chicken,Oasis,11.65,1220,,,,,,,,,,,,,,,,,10/12/2025
+Poutine with Bacon,Oasis,11.65,1220,,,,,,,,,,,,,,,,,10/12/2025
+Poutine with Beef,Oasis,11.65,1220,,,,,,,,,,,,,,,,,10/12/2025
+Nachos,Oasis,13,470,,,,,Y,,,,,,,,,,,,10/12/2025
+Nachos with Chicken,Oasis,15.75,650,,,,Y,,,,,,,,,,,,,10/12/2025
+Nachos with Beef,Oasis,15.75,650,,,,Y,,,,,,,,,,,,,10/12/2025
+Freshly Cut French Fries,Rodney's Kitchen,4.9,1130,,,,,,,Cross Contamination may occur during preparation,,,,,,,,,,10/12/2025
+Classic Poutine,Rodney's Kitchen,9.6,1500,,,,,,,,,,,,,,,,,10/12/2025
+Hamburger,Rodney's Kitchen,8,500,,,,,,,,,,,,,,,,,10/12/2025
+Bacon Cheeseburger,Rodney's Kitchen,11.5,650,,,,,,,,,,,,,,,,,10/12/2025
+Lightlife Burger,Rodney's Kitchen,9.2,520,,Y,,,,,,,,,,,,,,,10/12/2025
+Italian Sausage of Portuguese Bun,Rodney's Kitchen,9,600,,,,,,,,,,,,,,,,,10/12/2025
+Colonel By Chicken Sandwich,Rodney's Kitchen,9.7,620,,,,Y,,,,,,,,,,,,,10/12/2025
+5 Piece Chicken Wings,Rodney's Kitchen,7.3,510,,,,,,,,,,,,,,,,,10/12/2025
+5 Piece Chicken Wings Meal,Rodney's Kitchen,13.2,1400,,,,,,,,,,,,,,,,,10/12/2025
+Burger Patty,Rodney's Kitchen,3.5,230,,,Y,,,,,,,,,,,,,,10/12/2025
+Lightlife Patty,Rodney's Kitchen,4.2,270,,Y,,,,,,,,,,,,,,,10/12/2025
+Cheese Slice,Rodney's Kitchen,1.75,60,,,,,,,,,,,,,,,,,10/12/2025
+Bacon,Rodney's Kitchen,2.5,70,,,Y,,,,,,,,,,,,,,10/12/2025
+Gravy,Rodney's Kitchen,2.25,50,,,Y,,,,,,,,,,,,,,10/12/2025
+Gluten Free Bun,Rodney's Kitchen,1.6,220,,,Y,,,,,,,,,,,,,,10/12/2025
+Pad Thai,Thai Kitchen,16,,,,,,,,,,,,,,,,,,10/12/2025
+Thai Basic Pork Stir-Fry with Jasmine Rice,Thai Kitchen,16,,,,,,,,,,,,,,,,,,10/12/2025
+Thai Fried Rice,Thai Kitchen,16,,,,,,,,,,,,,,,,,,10/12/2025
+Pad See-Ew,Thai Kitchen,16,,,,,,,,,,,,,,,,,,10/12/2025
+Khao Soi Noodle Soup,Thai Kitchen,18,,,,,,,,,,,,,,,,,,10/12/2025
+Green Chicken Curry with Jasmine Rice,Thai Kitchen,16,,,,,,,,,,,,,,,,,,10/12/2025
+Mango Sticky Rice,Thai Kitchen,15,,,,,,,,,,,,,,,,,,10/12/2025
+Honey Mustard Ham Snackwich,Subway,4,320,,,,,,,,,,,,,,,,,10/01/2025
+Turkey Ranch Snackwich,Subway,4,350,,,,,,,,,,,,,,,,,10/01/2025
+B.L.T Snackwich,Subway,4,400,,,,,,,,,,,,,,,,,10/01/2025
+Three Cheese Snackwich,Subway,4,350,,,,,,,,,,,,,,,,,10/01/2025
+Piri-Piri Chicken Bowl,Subway,13.66,610,,,,,,,,,,,,,,,,,10/01/2025
+Southwest Steak & Avocado Bowl,Subway,13.66,630,,,,,,,,,,,,,,,,,10/01/2025
+Rotisserie-Style Chicken Bowl,Subway,13.66,580,,,,,,,,,,,,,,,,,10/01/2025
+Sweet Onion Chicekn Teriyaki,Subway,13.66,510,,,,,,,,,,,,,,,,,10/01/2025
+Steak Bowl,Subway,13.66,560,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Chicken Rancher Sub",Subway,9.59,560,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Chicken Rancher Sub",Subway,15.09,1120,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Nashville-Style Hot Chicken Sub",Subway,9.59,590,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Nashville-Style Hot Chicken Sub",Subway,14.99,1180,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Teriyaki Crunch Sub",Subway,9.19,540,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Teriyaki Crunch Sub",Subway,13.19,1080,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Piri-piri Chicken Sub",Subway,8.99,510,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Piri-Piri Chicken Sub",Subway,13.29,1020,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Steak and Bacon Sub",Subway,11.39,600,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Steak and Bacon Sub",Subway,18.19,1200,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Bourbon Brisket Sub",Subway,9.99,690,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Bourbon Brisket Sub",Subway,16.59,1380,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Bourbon BBQ Steak & Cheddar Sub",Subway,8.59,520,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Bourbon BBQ Stead & Cheddar Sub",Subway,13.89,1040,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Smashed Avocado & Turkey Sub",Subway,7.69,550,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Smashed Avocado & Turkey Sub",Subway,11.89,1100,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Great Canadian Club Sub",Subway,9.79,480,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Great Canadian Club Sub",Subway,15.69,960,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Big Veggie Sub",Subway,8.89,540,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Big Veggie Sub",Subway,13.89,1080,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Italian B.M.T Sub",Subway,7.79,410,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Italian B.M.T Sub",Subway,12.39,820,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Cold Cut Combo Sub",Subway,5.79,400,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Cold Cut Combo Sub",Subway,8.99,800,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Black Forest Ham Sub",Subway,6.69,290,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Black Forest Ham Sub",Subway,10.99,580,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Turkey Breast Sub",Subway,7.79,290,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Turkey Breast Sub",Subway,12.39,580,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Tuna Sub",Subway,7.69,450,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Tuna Sub",Subway,12.29,900,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Rotisserie-Style Chicken Sub",Subway,8.89,320,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Rotisserie-Style Chicken Sub",Subway,13.69,640,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Steak & Cheese Sub",Subway,9.89,360,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Steak & Cheese Sub",Subway,15.29,720,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Meatball Marinara Sub",Subway,7.19,460,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Meatball Marinara Sub",Subway,11.49,920,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Veggie Delite Sub",Subway,6.09,220,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Veggie Delite Sub",Subway,9.48,440,,,,,,,,,,,,,,,,,10/01/2025
+Spiced Vanilla Filled Ring Donut,Tim Hortons,1.99,320,,,,,,,,,,,,,,,,,09/25/2025
+Maple Brown Butter Scrambled Egg Loaded Box,Tim Hortons,5.99,480,,,,,,,,,,,,,,,,,09/25/2025
+Maple Brown Butter Scrambled Egg Loaded Wraps,Tim Hortons,5.99,510,,,,,,,,,,,,,,,,,09/25/2025
+Maple Brown Butter Scrambled Egg Loaded Croissant,Tim Hortons,5.99,610,,,,,,,,,,,,,,,,,09/25/2025
+Scrambled Egg Loaded Croissant,Tim Hortons,5.49,590,,,,,,,,,,,,,,,,,09/25/2025
+Scrambled Egg Loaded Box,Tim Hortons,5.49,600,,,,,Y,,,,,,,,,,,,09/25/2025
+Blueberry Cheesecake Filled Timbit,Tim Hortons,0.49,50,,,,,,,,,,,,,,,,,09/25/2025
+Scrambled Egg Loaded Wrap,Tim Hortons,5.49,530,,,,,,,,,,,,,,,,,09/25/2025
+Hashbrown,Tim Hortons,2.19,120,,,,,,,,,,,,,,,,,09/25/2025
+Sausage Breakfast Sandwich,Tim Hortons,4.49,530,,,,,,,,,,,,,,,,,09/25/2025
+Bacon Breakfast Sandwich,Tim Hortons,4.49,330,,,,,,,,,,,,,,,,,09/25/2025
+Egg & Cheese Breakfast Sandwich,Tim Hortons,3.99,270,,,,,Y,,,,,,,,,,,,09/25/2025
+Double Standard Breakfast Sandwich,Tim Hortons,5.49,580,,,,,,,,,,,,,,,,,09/25/2025
+Simply Sausage Breakfast Sandwich,Tim Hortons,2.99,450,,,,,,,,,,,,,,,,,09/25/2025
+Farmer's Breakfast Sandwich,Tim Hortons,5.49,560,,,,,,,,,,,,,,,,,09/25/2025
+Bagel BELT,Tim Hortons,5.49,490,,,,,,,,,,,,,,,,,09/25/2025
+Farmer's Breakfast Wrap,Tim Hortons,5.49,640,,,,,,,,,,,,,,,,,09/25/2025
+Plain Bagel,Tim Hortons,2.29,290,,,,,,,,,,,,,,,,,09/25/2025
+Everything Bagel,Tim Hortons,2.29,290,,,,,,,,,,,,,,,,,09/25/2025
+Cinnamon Raisin Bagel,Tim Hortons,2.29,290,,,,,,,,,,,,,,,,,09/25/2025
+Four Cheese Bagel,Tim Hortons,2.99,330,,,,,,,,,,,,,,,,,09/25/2025
+Jalapeno Asiago Mozzarella Bagel,Tim Hortons,2.99,320,,,,,,,,,,,,,,,,,09/25/2025
+Sesame Seed Bagel,Tim Hortons,2.29,310,,,,,,,,,,,,,,,,,09/25/2025
+12 Grain Bagel,Tim Hortons,2.29,320,,,,,,,,,,,,,,,,,09/25/2025
+Omelette Bites,Tim Hortons,3.99,250,,,,,,,,,,,,,,,,,09/25/2025
+Reese's Minis Dream Cookies,Tim Hortons,2.29,380,,,,,,,,,,,,,,,,,09/25/2025
+Oreo Chunk Cookie,Tim Hortons,1.69,310,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Chunk Brookie,Tim Hortons,2.99,410,,,,,,,,,,,,,,,,,09/25/2025
+Lemon Poppyseed Cheesecake Muffin,Tim Hortons,2.59,370,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Chunk Cookie,Tim Hortons,1.69,310,,,,,,,,,,,,,,,,,09/25/2025
+Double Chocolate Brownie,Tim Hortons,2.99,410,,,,,,,,,,,,,,,,,09/25/2025
+Herb & Garlic Savoury Pastry,Tim Hortons,2.99,240,,,,,,,,,,,,,,,,,09/25/2025
+Raisin Tea Biscuit,Tim Hortons,2.29,250,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Chip Muffin,Tim Hortons,2.29,420,,,,,,,,,,,,,,,,,09/25/2025
+Fruit Explosion Muffin,Tim Hortons,2.59,360,,,,,,,,,,,,,,,,,09/25/2025
+Wild Blueberry Muffin,Tim Hortons,2.29,380,,,,,,,,,,,,,,,,,09/25/2025
+Carrot Cake with Walnut Muffin,Tim Hortons,2.59,360,,,,,,,,,,,,,,,,,09/25/2025
+Plain Croissant,Tim Hortons,2.29,260,,,,,,,,,,,,,,,,,09/25/2025
+Cheese Croissant,Tim Hortons,2.59,290,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Croissant,Tim Hortons,2.59,350,,,,,,,,,,,,,,,,,09/25/2025
+Apple Fritter Donut,Tim Hortons,1.69,330,,,,,,,,,,,,,,,,,09/25/2025
+Boston Cream Donut,Tim Hortons,1.69,240,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Dip Donut,Tim Hortons,1.69,220,,,,,,,,,,,,,,,,,09/25/2025
+Double Chocolate Donut,Tim Hortons,1.69,310,,,,,,,,,,,,,,,,,09/25/2025
+Old Fashioned Plain Donut,Tim Hortons,1.69,280,,,,,,,,,,,,,,,,,09/25/2025
+Honey Cruller Donut,Tim Hortons,1.69,320,,,,,,,,,,,,,,,,,09/25/2025
+Vanilla Dip Donut,Tim Hortons,1.69,250,,,,,,,,,,,,,,,,,09/25/2025
+Canadian Maple Donut,Tim Hortons,1.69,250,,,,,,,,,,,,,,,,,09/25/2025
+Maple Dip Donut,Tim Hortons,1.69,220,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Glazed Timbit,Tim Hortons,0.39,80,,,,,,,,,,,,,,,,,09/25/2025
+Honey Dip Timbit,Tim Hortons,0.39,50,,,,,,,,,,,,,,,,,09/25/2025
+Birthday Cake Timbit,Tim Hortons,0.39,80,,,,,,,,,,,,,,,,,09/25/2025
+Double Stacked Farmer's Wrap,Tim Hortons,6.49,700,,,,,,,,,,,,,,,,,09/25/2025
+Sausage Farmer's Wrap,Tim Hortons,5.49,640,,,,,,,,,,,,,,,,,09/25/2025
+Bacon Farmer's Wrap,Tim Hortons,5.49,520,,,,,,,,,,,,,,,,,09/25/2025
+Bacon Scrambled Egg Loaded,Tim Hortons,5.29,530,,,,,,,,,,,,,,,,,09/25/2025
+Sausage Classic Bagel,Tim Hortons,5.29,615,,,,,,,,,,,,,,,,,09/25/2025
+Bacon Classic Bagel,Tim Hortons,5.29,495,,,,,,,,,,,,,,,,,09/25/2025
+Bacon & Cheese Omelette Bites,Tim Hortons,3.99,210,,,,,,,,,,,,,,,,,09/25/2025
+Spinach & Egg White Omellete Bites,Tim Hortons,3.99,130,,,,,,,,,,,,,,,,,09/25/2025
