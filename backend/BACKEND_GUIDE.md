@@ -74,22 +74,23 @@ python -m backend.database.init_food_db
 
 Database schema:
 sqlite> PRAGMA table_info('food_items');
-0|food_name|VARCHAR(80)|1||1
-1|dining_location|VARCHAR(80)|1||2
-2|cost|DOUBLE|0||0
-3|calories|INTEGER|0||0
-4|comments|VARCHAR(200)|0||0
-5|last_updated|VARCHAR(20)|0||0
-6|is_vegan|BOOLEAN|0||0
-7|is_gluten_free|BOOLEAN|0||0
-8|is_halal|BOOLEAN|0||0
-9|is_kosher|BOOLEAN|0||0
-10|is_dairy_free|BOOLEAN|0||0
-11|has_eggs|BOOLEAN|0||0
-12|has_fish|BOOLEAN|0||0
-13|has_milk|BOOLEAN|0||0
-14|has_peanuts|BOOLEAN|0||0
-15|has_sesame|BOOLEAN|0||0
-16|has_soy|BOOLEAN|0||0
-17|has_treenuts|BOOLEAN|0||0
-18|has_wheat|BOOLEAN|0||0
+0|id|INTEGER|1||1
+1|food_name|VARCHAR(80)|1||0
+2|dining_location|VARCHAR(80)|1||0
+3|cost|DOUBLE|0||0
+4|calories|INTEGER|0||0
+5|comments|VARCHAR(200)|0||0
+6|last_updated|VARCHAR(20)|0||0
+7|is_vegan|BOOLEAN|0||0
+8|is_gluten_free|BOOLEAN|0||0
+9|is_halal|BOOLEAN|0||0
+10|is_kosher|BOOLEAN|0||0
+11|is_dairy_free|BOOLEAN|0||0
+12|has_eggs|BOOLEAN|0||0
+13|has_fish|BOOLEAN|0||0
+14|has_milk|BOOLEAN|0||0
+15|has_peanuts|BOOLEAN|0||0
+16|has_sesame|BOOLEAN|0||0
+17|has_soy|BOOLEAN|0||0
+18|has_treenuts|BOOLEAN|0||0
+19|has_wheat|BOOLEAN|0||0

@@ -6,7 +6,9 @@ from flask_cors import CORS
 # Project imports
 from backend.config import config
 from backend.endpoints.authentication_endpoints import auth_bp
+from backend.endpoints.browsing_endpoints import browse_bp
 from backend.extensions import db
+
 
 # App Factory
 def create_app(config_name="development"):
@@ -17,6 +19,7 @@ def create_app(config_name="development"):
 
     # Register Blueprints (equivalent to importing endpoint functions)
     app.register_blueprint(auth_bp, url_prefix="/auth")
+    app.register_blueprint(browse_bp, url_prefix="/browse")
 
     # Configure CORS (Which domains are permitted to access this app)
     CORS(
@@ -55,8 +58,6 @@ if __name__ == "__main__":
     app = create_app()
     port = int(os.environ.get("PORT", 5000))
     debug = os.environ.get("FLASK_ENV") == "development"
-    #print(f"Starting server on http://0.0.0.0:{port}")  # noqa: E231
-    print(f"Starting server on http://127.0.0.1:{port}") # noqa: E231
+    print(f"Starting server on http://127.0.0.1:{port}")  # noqa: E231
     print(f"Debug Mode is {debug}")
-    #app.run(host="0.0.0.0", port=port, debug=debug)
     app.run(host="127.0.0.1", port=port, debug=debug)

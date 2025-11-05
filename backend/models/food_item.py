@@ -6,11 +6,13 @@ class FoodItem(db.Model):
     # Specify the database, the table and primary key
     __bind_key__ = "food_data"
     __tablename__ = "food_items"
-    __table_args__ = (db.PrimaryKeyConstraint("food_name", "dining_location"),)
 
-    # Primary key attributes
-    food_name = db.Column(db.String(80))
-    dining_location = db.Column(db.String(80))
+    # Primary key
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    # Main attributes
+    food_name = db.Column(db.String(80), nullable=False)
+    dining_location = db.Column(db.String(80), nullable=False)
 
     # General attributes
     # Distinctive defaults to make it easy to spot errors
@@ -88,6 +90,5 @@ class FoodItem(db.Model):
 
         db.session.add(food_item)
         db.session.commit()
-        print("Halal:", repr(is_halal), "Kosher:", repr(is_kosher))
         print(f"FoodItem: Created food item called {food_name} from {dining_location}")
         return food_item
