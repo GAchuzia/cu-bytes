@@ -4,92 +4,153 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(255, 180, 180, 1)',
-    paddingTop: 80,
-    paddingHorizontal: 30,
+    paddingTop: '0.5%' as any,
+    paddingHorizontal: '0.5%' as any,
     alignItems: 'center',
+    overflowY: 'scroll'
   },
   title: {
-    fontSize: 36,
-    fontWeight: 'bold',
+    fontFamily: 'sans-serif',
+    fontSize: '280%' as any,
+    fontWeight: '800',
+
     textAlign: 'center',
-    marginBottom: 10,
+    margin: '0.5%' as any,
+
     color: 'red',
+    backgroundColor: '#FFFFFFFF',
+    padding: '1.8%' as any,
+    borderRadius: 40
   },
   subtitle: {
-    fontSize: 20,
-    textAlign: 'center',
-    marginBottom: 15,
-    color: '#606060ff',
+    fontFamily: 'sans-serif',
+    fontSize: '150%' as any,
     fontWeight: '600',
+
+    textAlign: 'center',
+    margin: '0.5%' as any,
+
+    color: '#000000FF',
+    backgroundColor: 'rgba(255, 210, 210, 1)',
+    padding: '1.2%' as any,
+    borderRadius: 40
+  },
+  subsubtitle: {
+    fontFamily: 'sans-serif',
+    fontSize: '150%' as any,
+    fontWeight: '400',
+
+    textAlign: 'center',
+    margin: '0.5%' as any,
+
+    color: '#000000FF',
+    backgroundColor: 'rgba(255, 210, 210, 1)',
+    padding: '1.2%' as any,
+    borderRadius: 40
   },
   description: {
-    fontSize: 16,
+    fontFamily: 'sans-serif',
+    fontSize: '100%' as any,
+    fontWeight: '600',
+
     textAlign: 'center',
-    marginBottom: 40,
-    color: '#606060ff',
-    lineHeight: 24,
-    paddingHorizontal: 20,
+    marginBottom: '0.5%' as any,
+
+    color: '#000000FF',
+    backgroundColor: 'rgba(255, 210, 210, 1)',
+    padding: '1.2%' as any,
+    borderRadius: 40
   },
   button: {
-    backgroundColor: '#007AFF',
-    paddingVertical: 18,
-    paddingHorizontal: 40,
-    borderRadius: 12,
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 40,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
+
+    marginTop: '1.2%' as any,
     elevation: 8,
+
+    backgroundColor: '#007AFF',
+    padding: '0.5%' as any,
+
+    borderRadius: 30,
+    borderWidth: 3,
+    borderBlockColor: '#000000FF',
+    
+    shadowColor: '#000000FF',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    
+    width: '50%'
   },
   buttonDisabled: {
-    backgroundColor: '#ccc',
+    backgroundColor: '#cccccccc',
   },
   buttonText: {
+    fontFamily: 'sans-serif',
+    fontSize: '200%' as any,
+    fontWeight: '800',
+
     color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
   },
   pressableText: {
-    color: 'dark-blue',
-    fontSize: 32,
     alignItems: 'center',
+
+    marginTop: '0.5%' as any,
+
+    fontFamily: 'sans-serif',
+    fontSize: '200%' as any,
+    fontWeight: 800,
+
+    color: '#000000FF',
+    backgroundColor: 'rgba(230, 250, 250, 1)',
+    padding: '1.2%' as any,
+    borderRadius: 30
   },
   infoSection: {
     backgroundColor: 'white',
-    padding: 20,
+    padding: '1.2%' as any,
     borderRadius: 12,
     width: '100%',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 3,
   },
   infoTitle: {
-    fontSize: 18,
+    fontSize: '100%' as any,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 12,
+    marginBottom: '1%' as any,
   },
   infoText: {
-    fontSize: 14,
+    fontSize: '100%' as any,
     color: '#666',
-    marginBottom: 6,
+    marginBottom: '1%' as any,
   },
   textInput: {
-    backgroundColor: '#FFFFFF',
-    paddingVertical: 18,
-    paddingHorizontal: 40,
-    borderRadius: 12,
+    fontSize: '150%' as any,
+    fontFamily: 'Sans-Serif',
+
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 40,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
+
+    marginTop: '1%' as any,
     elevation: 8,
-    fontSize: 24,
+
+    backgroundColor: '#FFFFFF',
+    paddingVertical: '1%' as any,
+    paddingHorizontal: '1%' as any,
+
+    borderRadius: 10,
+    borderWidth: 2,
+    borderBottomColor: '#000000FF',
+
+    shadowColor: '#000000FF',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    
+    width: '60%'
   }
 });

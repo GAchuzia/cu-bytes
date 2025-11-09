@@ -36,7 +36,7 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <StatusBar style="auto" />
 
-      <Text style={styles.title}>CU Bytes</Text>
+      <Text style={styles.title}>CU-Bytes</Text>
       <Text style={styles.subtitle}>Server Health Check</Text>
       <Text style={styles.description}>
         Click the button below to check if the server is running and healthy.
