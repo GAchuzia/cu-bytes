@@ -92,3 +92,35 @@ class FoodItem(db.Model):
         db.session.commit()
         print(f"FoodItem: Created food item called {food_name} from {dining_location}")
         return food_item
+
+    @classmethod
+    def get_by_id(cls, food_id):
+        """
+        Retrieve a FoodItem by id
+        """
+        return db.session.get(cls, food_id)
+
+    def to_json(self):
+        """Return a JSON-serializable dict representing this food item."""
+        return {
+            "id": self.id,
+            "name": self.food_name,
+            "dining_location": self.dining_location,
+            "cost": self.cost,
+            "calories": self.calories,
+            "comments": self.comments,
+            "last_updated": self.last_updated,
+            "is_vegan": self.is_vegan,
+            "is_gluten_free": self.is_gluten_free,
+            "is_halal": self.is_halal,
+            "is_kosher": self.is_kosher,
+            "is_dairy_free": self.is_dairy_free,
+            "has_eggs": self.has_eggs,
+            "has_fish": self.has_fish,
+            "has_milk": self.has_milk,
+            "has_peanuts": self.has_peanuts,
+            "has_sesame": self.has_sesame,
+            "has_soy": self.has_soy,
+            "has_treenuts": self.has_treenuts,
+            "has_wheat": self.has_wheat,
+        }

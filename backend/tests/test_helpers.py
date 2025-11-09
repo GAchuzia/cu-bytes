@@ -1,6 +1,10 @@
+# Library imports
+import pytest
+
 # Project imports
 from backend.services.authentication_service import create_user
 from backend.models.food_item import FoodItem
+from backend.app import db
 
 
 def add_test_user(app, username="Ellen", password="Password123!"):
@@ -15,7 +19,7 @@ def add_test_food_item(
     dining_location="Default Dining Location",
     cost=12.99,
     calories=350,
-    comments="Default Commont",
+    comments="Default Comment",
     last_updated="Default Date",
     is_vegan=False,
     is_gluten_free=False,
@@ -54,3 +58,18 @@ def add_test_food_item(
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,
         )
+
+
+@pytest.fixture
+def seeded_food_data(app):
+    """Setup a small food_data DB for each test in this file."""
+    add_test_food_item(app, "Caesar Salad")
+    add_test_food_item(app, "Hamburger")
+    add_test_food_item(app, "Banana Bread")
+
+    yield  # test runs here
+
+    # Clean up after test
+    with app.app_context():
+        db.session.query(FoodItem).delete()
+        db.session.commit()
