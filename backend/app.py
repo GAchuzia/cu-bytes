@@ -11,9 +11,13 @@ from backend.extensions import db
 
 
 # App Factory
-def create_app(config_name="development"):
+# Use config_overide to pass in test configuration
+def create_app(config_override=None):
     app = Flask(__name__)
-    app.config.from_object(config[config_name])
+    app.config.from_object(config[os.getenv("FLASK_ENV") or "default"])
+
+    if config_override:
+        app.config.update(config_override)
 
     db.init_app(app)
 
