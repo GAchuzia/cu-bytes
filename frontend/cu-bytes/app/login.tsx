@@ -10,9 +10,6 @@ export default function LoginScreen() {
 
     const [loading, setLoading] = useState(false);
 
-    // The validity of the username and password entered by the user
-    const [validCredentials, setValidCredentials] = useState(false);
-
     // The username and password variables
     // These values are passed to a JSON object that is sent to the login endpoint
     const [username, setUsername] = useState('');
@@ -49,7 +46,7 @@ export default function LoginScreen() {
         })
         .then(data => {
             setResponseData(data);
-            setValidCredentials(true);
+            (responseData && router.push("/home"));
         })
         .catch(error => {
             console.log(error);
