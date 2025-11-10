@@ -20,6 +20,7 @@ class DevelopmentConfig(Config):
         "auth": f"sqlite:///{os.path.join(BASE_DIR, 'database/auth.db')}", # noqa
         "profiles": f"sqlite:///{os.path.join(BASE_DIR, 'database/profiles.db')}", # noqa
         "food_data": f"sqlite:///{os.path.join(BASE_DIR, 'database/food_data.db')}", # noqa
+        "logging": f"sqlite:///{os.path.join(BASE_DIR, 'database/logging.db')}", # noqa
     }
     # fmt: on
     DEBUG = True
@@ -33,6 +34,7 @@ class ProductionConfig(Config):
         "auth": f"sqlite:///{os.path.join(BASE_DIR, 'database/auth.db')}", # noqa
         "profiles": f"sqlite:///{os.path.join(BASE_DIR, 'database/profiles.db')}", # noqa
         "food_data": f"sqlite:///{os.path.join(BASE_DIR, 'database/food_data.db')}", # noqa
+        "logging": f"sqlite:///{os.path.join(BASE_DIR, 'database/logging.db')}", # noqa
     }
     # fmt: on
     DEBUG = False

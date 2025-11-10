@@ -19,13 +19,12 @@ Last Updated
 
 app = create_app()
 
-"""
-Creates a single CSV files from various FoodInfo csvs
-Duplicate entries are combined to provide maximum information
-"""
-
 
 def create_single_csv():
+    """
+    Creates a single CSV files from various FoodInfo csvs
+    Duplicate entries are combined to provide maximum information
+    """
     # Paths to CSV files
     f1 = "backend/automated_data_collection/cafFoodInfo.csv"
     f2 = "backend/automated_data_collection/roostersFoodInfo.csv"
@@ -58,13 +57,11 @@ def create_single_csv():
     )
 
 
-"""
-Helper function that combines rows with the same primary key
-Non-empty values take precedence over empty values
-"""
-
-
 def combine_non_empty(series):
+    """
+    Helper function that combines rows with the same primary key
+    Non-empty values take precedence over empty values
+    """
     # Drop NaNs and join the remaining unique values
     unique_vals = series.dropna().unique()
     if len(unique_vals) == 0:
@@ -76,20 +73,13 @@ def combine_non_empty(series):
         return unique_vals[0]
 
 
-"""
-Clear existing data in food_data.db
-"""
-
-
 def clear_existing_data():
+    """
+    Clear existing data in food_data.db
+    """
     with app.app_context():
         db.drop_all(bind_key="food_data")
         db.create_all(bind_key="food_data")
-
-
-"""
-Clear existing data in food_data.db
-"""
 
 
 def create_food_table():
@@ -129,12 +119,10 @@ def create_food_table():
     csvfile.close()
 
 
-"""
-Helper function to convert Y/N/'' into Boolean
-"""
-
-
 def parse_bool(value):
+    """
+    Helper function to convert Y/N/'' into Boolean
+    """
     if value in ("T", "Y", "1"):
         return True
     if value in ("F", "N", "0"):
