@@ -1,3 +1,6 @@
+# Project imports
+from backend.tests.test_helpers import seeded_food_data
+
 # Arguments like client and app are automatically injected from conftest.py
 # seeded_food_data is automatically injected from test_helpers.py
 # To get the per-test food_data setup and teardown inject seeded_food_data
