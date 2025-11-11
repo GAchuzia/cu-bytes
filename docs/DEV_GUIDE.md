@@ -77,6 +77,7 @@ PORT=5000
 cd ..
 python -m backend.database.init_auth_db
 python -m backend.database.init_user_settings_db
+python -m backend.database.init_food_db
 python -m backend.app
 ```
 
@@ -161,6 +162,7 @@ backenv\Scripts\activate  # Windows
 cd ..
 python -m backend.database.init_auth_db
 python -m backend.database.init_user_settings_db
+python -m backend.database.init_food_db
 python -m backend.app
 ```
 
