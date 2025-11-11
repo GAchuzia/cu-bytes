@@ -1,0 +1,654 @@
+Food Item,Dining Location,Cost,Calories,Nuts,Vegan,Gluten Free,Halal,Vegetarian,No Dairy,Comments,Eggs,Fish,Milk,Peanuts,Sesame,Shellfish,Soy,TreeNuts,Wheat,Kosher,Last Updated
+12 Grain Bagel,Tim Hortons,2.29,320.0,,,,,,,,,,,,,,,,,,09/25/2025
+"12"" Big Veggie Sub",Subway,13.89,1080.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Black Forest Ham Sub",Subway,10.99,580.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Bourbon BBQ Stead & Cheddar Sub",Subway,13.89,1040.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Bourbon Brisket Sub",Subway,16.59,1380.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Chicken Rancher Sub",Subway,15.09,1120.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Cold Cut Combo Sub",Subway,8.99,800.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Great Canadian Club Sub",Subway,15.69,960.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Italian B.M.T Sub",Subway,12.39,820.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Meatball Marinara Sub",Subway,11.49,920.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Nashville-Style Hot Chicken Sub",Subway,14.99,1180.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Piri-Piri Chicken Sub",Subway,13.29,1020.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Rotisserie-Style Chicken Sub",Subway,13.69,640.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Smashed Avocado & Turkey Sub",Subway,11.89,1100.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Steak & Cheese Sub",Subway,15.29,720.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Steak and Bacon Sub",Subway,18.19,1200.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Teriyaki Crunch Sub",Subway,13.19,1080.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Tuna Sub",Subway,12.29,900.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Turkey Breast Sub",Subway,12.39,580.0,,,,,,,,,,,,,,,,,,10/01/2025
+"12"" Veggie Delite Sub",Subway,9.48,440.0,,,,,,,,,,,,,,,,,,10/01/2025
+3 Piece Chicken Strips,Colonel by Chicken,7.75,,,,,,,,,,,,,,,,,,,9/26/2025
+3 Sisters Burrito,La Cocina,10.15,,,,,,,,,,,,,,,,,,,9/26/2025
+4 Cheese Spinach Dip,Mike's Place,9.99,,,,,,Y,,,,,,,,,,,,,10/1/2025
+4 Maple Mini Pancakes,Starbucks,2.75,120.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+5 Piece Chicken Wings,Colonel by Chicken,7.3,,,,,,,,,,,,,,,,,,,9/26/2025
+5 Piece Chicken Wings,Rodney's Kitchen,7.3,510.0,,,,,,,,,,,,,,,,,,10/12/2025
+5 Piece Chicken Wings Meal,Rodney's Kitchen,13.2,1400.0,,,,,,,,,,,,,,,,,,10/12/2025
+"6"" Big Veggie Sub",Subway,8.89,540.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Black Forest Ham Sub",Subway,6.69,290.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Bourbon BBQ Steak & Cheddar Sub",Subway,8.59,520.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Bourbon Brisket Sub",Subway,9.99,690.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Chicken Rancher Sub",Subway,9.59,560.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Cold Cut Combo Sub",Subway,5.79,400.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Great Canadian Club Sub",Subway,9.79,480.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Italian B.M.T Sub",Subway,7.79,410.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Meatball Marinara Sub",Subway,7.19,460.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Nashville-Style Hot Chicken Sub",Subway,9.59,590.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Piri-piri Chicken Sub",Subway,8.99,510.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Rotisserie-Style Chicken Sub",Subway,8.89,320.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Smashed Avocado & Turkey Sub",Subway,7.69,550.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Steak & Cheese Sub",Subway,9.89,360.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Steak and Bacon Sub",Subway,11.39,600.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Teriyaki Crunch Sub",Subway,9.19,540.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Tuna Sub",Subway,7.69,450.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Turkey Breast Sub",Subway,7.79,290.0,,,,,,,,,,,,,,,,,,10/01/2025
+"6"" Veggie Delite Sub",Subway,6.09,220.0,,,,,,,,,,,,,,,,,,10/01/2025
+Air Heads,Leo's Lounge,0.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Alfredo Sauce (3000  millilitre),Teraanga Commons Dining Hall,,,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Apple Bran Muffin,Tunnel Junction,3.3,290.0,,N,N,,Y,,,,,,,,,,,,,9/26/2025
+Apple Cabbage Slaw,Teraanga Commons Dining Hall,,60.0,,F,T,F,T,,,,,,,,,,,,F,10/06/2025
+Apple Cranberry Muffin,Bridgehead,3.95,,N,Y,Y,,,,,,,,,,,,,,,09/24/2025
+Apple Fritter Donut,Tim Hortons,1.69,330.0,,,,,,,,,,,,,,,,,,09/25/2025
+Aromatic Basmati Rice,Teraanga Commons Dining Hall,,120.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Asian Noodle Salad (1000  gram),Teraanga Commons Dining Hall,,,,F,F,F,T,,"rice noodles, snow peas, broccoli, cucumber, carrot, onion, sesame seeds, spicy asian vinaigrette",,,,,,,,,,F,10/06/2025
+Asian Tofu (59  millilitre),Teraanga Commons Dining Hall,,45.0,,T,F,F,T,,,,,,,,,,,,F,10/06/2025
+B.L.T Snackwich,Subway,4.0,400.0,,,,,,,,,,,,,,,,,,10/01/2025
+B.L.T.,Rooster's,7.99,,,,,,,,"Classic bacon, lettuce and tomato served on your choice of toasted bread or bagel.",,,,,,,,,,,10/30/2025
+BBQ Chicken Pizza,Mike's Place,9.99,,,,,Y,,,,,,,,,,,,,,10/1/2025
+BBQ Tofu Pizza,Teraanga Commons Dining Hall,,190.0,,F,F,F,T,,"tofu, red onion, cilantro, BBQ tomato base, mozzarella",,,,,,,,,,F,10/06/2025
+BLT,Rooster's,7.99,,,,,N,N,,,,,,,,,,,,,09/25/2025
+Baby Kale,Teraanga Commons Dining Hall,,5.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Backed Mac & Cheese,Colonel by Chicken,4.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Bacon,Riverbank Social,2.99,,,,,,,,,,,,,,,,,,,10/12/2025
+Bacon,Rodney's Kitchen,2.5,70.0,,,Y,,,,,,,,,,,,,,,10/12/2025
+Bacon & Cheese Omelette Bites,Tim Hortons,3.99,210.0,,,,,,,,,,,,,,,,,,09/25/2025
+Bacon & Egg Wrap,Bridgehead,6.95,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Bacon & Gruyère Egg Bites,Starbucks,320.0,320.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Bacon Breakfast Sandwich,Tim Hortons,4.49,330.0,,,,,,,,,,,,,,,,,,09/25/2025
+Bacon Cheeseburger,Oasis,10.8,570.0,,,,,,,Can upgrade burger to Lightlife patty for Vegan,,,,,,,,,,,10/12/2025
+Bacon Cheeseburger,Rodney's Kitchen,11.5,650.0,,,,,,,,,,,,,,,,,,10/12/2025
+Bacon Cheeseburger Pizza,Teraanga Commons Dining Hall,,210.0,,F,F,F,F,,"ground beef, bacon, red onion, mozzarella, 3 cheese blend",,,,,,,,,,F,10/06/2025
+Bacon Classic Bagel,Tim Hortons,5.29,495.0,,,,,,,,,,,,,,,,,,09/25/2025
+Bacon Farmer's Wrap,Tim Hortons,5.49,520.0,,,,,,,,,,,,,,,,,,09/25/2025
+Bacon Pita,Rooster's,11.99,,,,,N,N,,A generous porion of bacon in a pita with your choice of toppings.,,,,,,,,,,,10/30/2025
+Bacon Scrambled Egg Loaded,Tim Hortons,5.29,530.0,,,,,,,,,,,,,,,,,,09/25/2025
+"Bacon, Egg & Cheese Bagel",Bridgehead,7.75,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+"Bacon, Gouda, & Egg Sandwich",Starbucks,5.05,360.0,,,,,N,,,,,,,,,,,,,09/25/2025
+"Bacon, Sausage & Egg Wrap",Starbucks,640.0,640.0,,,,,N,,,,,,,,,,,,,09/25/2025
+"Bacon-Style Turkey, Cheddar & Egg Sandwich",Starbucks,5.65,230.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Bagel,Rooster's,3.19,,,,,,,,Your choice of toasted bagel.,,,,,,,,,,,10/30/2025
+Bagel BELT,Tim Hortons,5.49,490.0,,,,,,,,,,,,,,,,,,09/25/2025
+Bagel with Cream Cheese,Rooster's,4.88,,,,,N,Y,,,,,,,,,,,,,09/25/2025
+Bagelwich,Rooster's,6.99,,,,,Y,Y,,"Toasted Bagel with egg, cheese and your choice of two toppings.",,,,,,,,,,,10/30/2025
+Baked Apple Croissant,Starbucks,4.45,250.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Baked Chicken Thighs,Teraanga Commons Dining Hall,,,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Baked Falafel,Urban Deli,8.9,,,,,,,,Could Check back and look for appropriate tags,,,,,,,,,,,9/26/2025
+Balsamic Glaze,Teraanga Commons Dining Hall,,35.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Banana Chocolate Muffin,Bridgehead,3.95,,N,Y,Y,,,,,,,,,,,,,,,09/24/2025
+Banana Loaf,Starbucks,4.45,360.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Banana Parfait,Bridgehead,6.45,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Bean Ragout,Teraanga Commons Dining Hall,,130.0,,T,T,F,T,,"kidney beans, chickpeas, onion, green pepper, carrot, tomato",,,,,,,,,,F,10/06/2025
+Beef Brie Sandwich,Urban Deli,9.9,490.0,,N,N,,N,,,,,,,,,,,,,9/26/2025
+Beef Quesadilla,Teraanga Commons Dining Hall,,280.0,,F,F,F,F,,"taco-spiced ground beef, cheddar cheese, tortilla",,,,,,,,,,F,10/06/2025
+Beef Shawarma Combo,Shawarma Palace,14.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Beef Shawarma Plate,Shawarma Palace,20.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Beef Shawarma Sandwich,Shawarma Palace,9.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Beets & Frisée,Riverbank Social,12.0,,,,Y,,,Y,,,,,,,,,,,,10/12/2025
+Belgian Liège Waffle,Starbucks,3.35,220.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Big Bean Quesadilla,La Cocina,9.8,800.0,,,,,,,,,,,,,,,,,,9/26/2025
+Birthday Cake Pop,Starbucks,3.45,170.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Birthday Cake Timbit,Tim Hortons,0.39,80.0,,,,,,,,,,,,,,,,,,09/25/2025
+Black Bean Quesadillia,Mike's Place,9.99,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Black Forest Cake,Teraanga Commons Dining Hall,,190.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Black Olives,Teraanga Commons Dining Hall,,25.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Blackbean Nachos,Mike's Place,8.99,,,,Y,,Y,,,,,,,,,,,,,10/1/2025
+Bloack Forest Hame Pita,Rooster's,10.69,,,,,N,N,,,,,,,,,,,,,09/25/2025
+Blondie,Teraanga Commons Dining Hall,,310.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Blueberry Cheesecake Filled Timbit,Tim Hortons,0.49,50.0,,,,,,,,,,,,,,,,,,09/25/2025
+Blueberry Crumble Muffin,Tunnel Junction,3.3,310.0,,N,N,,Y,,,,,,,,,,,,,9/26/2025
+Blueberry Muffin,Starbucks,3.65,350.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Blueberry Tart,Teraanga Commons Dining Hall,,120.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Bok Choy,Teraanga Commons Dining Hall,,0.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Boston Cream Donut,Tim Hortons,1.69,240.0,,,,,,,,,,,,,,,,,,09/25/2025
+Braised Beef Ragu (3000  millilitre),Teraanga Commons Dining Hall,,160.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Breakfast Bowl,Riverbank Social,14.99,,,,,,,,,,,,,,,,,,,10/12/2025
+Breakfast Express,Riverbank Social,9.99,,,,,,,,,,,,,,,,,,,10/12/2025
+Breakfast Extress Deluxe,Riverbank Social,12.75,,,,,,,,,,,,,,,,,,,10/12/2025
+Breakfast Pastries & Fruit,Riverbank Social,9.99,,,,,,,,,,,,,,,,,,,10/12/2025
+Breakfast Pita,Rooster's,6.99,,,,,Y,Y,,A double serving of egg with cheese and your choice of two toppings all wrapped up in a pita.,,,,,,,,,,,10/30/2025
+Breakfast Sammy,Leo's Lounge,2.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Breakfast Wrap,Bridgehead,6.95,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Broccoli,Teraanga Commons Dining Hall,,70.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Buffalo Chicken Pizza,Teraanga Commons Dining Hall,,180.0,,F,F,F,F,,"spicy buffalo chicken, red onion, buffalo sauce, mozzarella, blue cheese",,,,,,,,,,F,10/06/2025
+Buffalo Chicken Wrap,Tunnel Junction,8.2,460.0,,N,N,Y,,,,,,,,,,,,,,9/26/2025
+Buffalo Ranch Potato Salad (1000  gram),Teraanga Commons Dining Hall,,140.0,,F,T,F,F,,"red potatoes, red pepper, celery, green onion, buffalo ranch dressing",,,,,,,,,,F,10/06/2025
+Build Your Own Sandwich,Urban Deli,9.2,,,,,,,,,,,,,,,,,,,9/26/2025
+Burger Patty,Rodney's Kitchen,3.5,230.0,,,Y,,,,,,,,,,,,,,,10/12/2025
+Burrito Bowl,Ollies,14.0,,N,N,N,N,N,,,,,,,,,,,,,10/12/2025
+Butter Chicken,Mike's Place,9.79,,,,,Y,,,,,,,,,,,,,,10/1/2025
+Butter Chicken Poutine,Burger 101,11.9,,,,,,,,,,,,,,,,,,,9/26/2025
+Butter Croissant,Starbucks,3.95,260.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Butter Oats,Bridgehead,6.45,,Y,N,Y,,,,,,,,,,,,,,,09/24/2025
+Buttered Croissant,Riverbank Social,3.99,,,,,,,,,,,,,,,,,,,10/12/2025
+Caesar Salad,Riverbank Social,10.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Cajun Chicken Thigh,Teraanga Commons Dining Hall,,210.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Cajun-Style Dirty Rice,Teraanga Commons Dining Hall,,160.0,,T,T,F,T,,"black beans, onion, red pepper, celery, peas, spices, brown rice",,,,,,,,,,F,10/06/2025
+California Nigiri Combo,Bento Boxes,15.0,,,,,,,,,,,,,,,,,,,9/26/2025
+California Roll,Bento Boxes,9.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Canadian Maple Donut,Tim Hortons,1.69,250.0,,,,,,,,,,,,,,,,,,09/25/2025
+Canadian Pizza,Teraanga Commons Dining Hall,,190.0,,F,F,F,F,,"pepperoni, bacon, mushroom, mozzarella",,,,,,,,,,F,10/06/2025
+Candy Bar,Leo's Lounge,2.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Caprese Sandwich,Urban Deli,9.2,570.0,,N,N,,N,,,,,,,,,,,,,9/26/2025
+Caramel Coffee Cake,Teraanga Commons Dining Hall,,300.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Carrot (1000  gram),Teraanga Commons Dining Hall,,,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Carrot Cake,Bridgehead,5.75,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Carrot Cake,CT-Pastry,5.9,450.0,,,,,,,,,,,,,,,,,,9/26/2025
+Carrot Cake with Walnut Muffin,Tim Hortons,2.59,360.0,,,,,,,,,,,,,,,,,,09/25/2025
+"Carrot, Pineapple & Pumpkin Seed Muffin",Tunnel Junction,3.3,330.0,,N,N,,Y,,,,,,,,,,,,,9/26/2025
+Cauliflower Bites,Ollies,9.5,,N,N,N,N,Y,,,,,,,,,,,,,10/12/2025
+Cauliflower Bulgur Curry,Teraanga Commons Dining Hall,,160.0,,T,F,F,T,,"lentil, bulgur, cauliflower, red pepper, onion, coconut milk",,,,,,,,,,F,10/06/2025
+Cauliflower Lentil Wrap,Teraanga Commons Dining Hall,,260.0,,T,F,F,T,,"cauliflower & red lentil curry, basmati rice, tortilla",,,,,,,,,,F,10/06/2025
+Ch. Souvlaki Pita,Rooster's,11.99,,,,,,,,Diced thigh meat seasoned with a lemon and herb season grilled with your choice of toppings.,,,,,,,,,,,10/30/2025
+Chasu Pork Loin (1  slice),Teraanga Commons Dining Hall,,70.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Cheddar Croissant,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Cheese Croissant,Tim Hortons,2.59,290.0,,,,,,,,,,,,,,,,,,09/25/2025
+Cheese Danish,Starbucks,3.65,310.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Cheese Pizza,Teraanga Commons Dining Hall,,150.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Cheese Pizza Slice,The Market Pizzeria,5.2,450.0,,,,,,,,,,,,,,,,,,9/26/2025
+Cheese Slice,Rodney's Kitchen,1.75,60.0,,,,,,,,,,,,,,,,,,10/12/2025
+Cheeseburger,Oasis,8.9,530.0,,,,Y,,,Can upgrade burger to Lightlife patty for Vegan,,,,,,,,,,,10/12/2025
+Cheesesticks,Mike's Place,7.99,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Chef's Feature Piadina,Riverbank Social,14.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Chef's Inspiration Soup,Riverbank Social,8.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Cherry Lemon Loaf,Bridgehead,3.95,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Chicken & Corn Chowder,Teraanga Commons Dining Hall,,,,F,F,F,F,,"A creamy chowder loaded with chicken breast pieces, corn and potatoes.",,,,,,,,,,F,10/06/2025
+Chicken Bruschetta Penne Alfredo,Teraanga Commons Dining Hall,,230.0,,F,F,F,F,,"chicken breast, tomato, basil, parmesan, alfredo sauce, penne",,,,,,,,,,F,10/06/2025
+Chicken Burger,Mike's Place,8.99,,,,,Y,,,,,,,,,,,,,,10/1/2025
+Chicken Burrito,Bridgehead,12.45,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Chicken Caesar Salad,Tunnel Junction,9.0,500.0,,N,N,,N,,,,,,,,,,,,,9/26/2025
+Chicken Caesar Wrap,Tunnel Junction,8.2,570.0,,N,N,,N,,,,,,,,,,,,,9/26/2025
+Chicken Club Pita,Rooster's,13.19,,,,,N,N,,Our grilled chicken pita with bacon added.,,,,,,,,,,,10/30/2025
+Chicken Curry,Mike's Place,9.49,,,,,Y,,,,,,,,,,,,,,10/1/2025
+Chicken Fingers,Oasis,11.5,980.0,,,,,,,,,,,,,,,,,,10/12/2025
+Chicken Nachos,Mike's Place,19.99,,,,Y,Y,,,,,,,,,,,,,,10/1/2025
+Chicken Pho,Teraanga Commons Dining Hall,,410.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Chicken Pita,Rooster's,10.69,,,,,N,N,,Diced chicken breast grilled to perfection with you choice of toppings.,,,,,,,,,,,10/30/2025
+Chicken Quesadilla,La Cocina,7.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Quesadillia,Mike's Place,9.99,,,,,Y,,,,,,,,,,,,,,10/1/2025
+Chicken Salad Wrap,Bridgehead,12.45,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Chicken Salad Wrap,Shawarma Palace,15.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Samosa,Mike's Place,4.99,,,,,Y,,,,,,,,,,,,,,10/1/2025
+Chicken Shawarma Combo,Shawarma Palace,14.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Shawarma Pita,Rooster's,11.99,,,,,Y,N,,,,,,,,,,,,,09/25/2025
+Chicken Shawarma Plate,Shawarma Palace,20.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Shawarma Sandwich,Shawarma Palace,9.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Souvlaki Pita,Rooster's,11.99,,,,,N,N,,,,,,,,,,,,,09/25/2025
+Chicken Tenders with Dip,Mike's Place,17.99,,,,,Y,,,,,,,,,,,,,,10/1/2025
+Chicken Tinga Burrito,La Cocina,10.35,700.0,,,,,,,,,,,,,,,,,,9/26/2025
+Chicken Tinga Taco,Teraanga Commons Dining Hall,,240.0,,F,F,F,F,,"chicken tinga, lettuce, tomato, sour cream, cheddar cheese, tortilla",,,,,,,,,,F,10/06/2025
+Chicken Wrap,Bridgehead,12.45,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Chickpea & Root Vegetable Soup (8000  millilitre),Teraanga Commons Dining Hall,,50.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Chickpea Curry,Mike's Place,8.99,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Chickpea Curry,Teraanga Commons Dining Hall,,150.0,,F,T,F,T,,,,,,,,,,,,F,10/06/2025
+Chickpea Panzanella Ricotta Salad,Teraanga Commons Dining Hall,,340.0,,F,F,F,F,,"crispy pesto chickpeas, ricotta, kalamata olives, cucumber, tomato, celery, red pepper, capers, balsamic glaze",,,,,,,,,,F,10/06/2025
+Chickpea Shawarma Wrap,Teraanga Commons Dining Hall,,240.0,,T,F,F,T,,"smashed lemon tahini chickpeas, pickled red cabbage, cucumber, carrots, lettuce, garlic sauce, tortilla",,,,,,,,,,F,10/06/2025
+Chickpeas,Teraanga Commons Dining Hall,,70.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Chili Garlic Veggie Stir Fry,Teraanga Commons Dining Hall,,90.0,,T,F,F,T,,"cabbage, carrot, celery, onion, spices, sweet chili sauce, soy sauce",,,,,,,,,,F,10/06/2025
+Chilli,Rooster's,7.99,,,,,N,N,,,,,,,,,,,,,09/25/2025
+Chilli with Bread,Rooster's,8.99,,,,,N,N,,,,,,,,,,,,,09/25/2025
+Chipotle Pulled Pork Poutine,Burger 101,11.9,,,,,,,,,,,,,,,,,,,9/26/2025
+Chipotle Quinoa Wrap,Bridgehead,12.45,,Y,Y,N,,,,,,,,,,,,,,,09/24/2025
+Chips,Leo's Lounge,2.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Chocalate Cake Pop,Starbucks,3.45,160.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Chocolate Chip Cookie,Bridgehead,3.65,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Chocolate Chip Cookie,Teraanga Commons Dining Hall,,130.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Chocolate Chip Cookie,Tunnel Junction,3.1,390.0,,N,N,,Y,,Uses Carleton labelling - Can rule out the empties as no,,,,,,,,,,,9/26/2025
+Chocolate Chip Muffin,Tim Hortons,2.29,420.0,,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Chip Rice Krispie Square,Teraanga Commons Dining Hall,,100.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Chocolate Chunk Brookie,Tim Hortons,2.99,410.0,,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Chunk Cookie,CT-Pastry,3.0,390.0,,,,,,,,,,,,,,,,,,9/26/2025
+Chocolate Chunk Cookie,Starbucks,3.65,320.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Chocolate Chunk Cookie,Tim Hortons,1.69,310.0,,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Croissant,Starbucks,4.45,340.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Chocolate Croissant,Tim Hortons,2.59,350.0,,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Dip Donut,Tim Hortons,1.69,220.0,,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Glazed Timbit,Tim Hortons,0.39,80.0,,,,,,,,,,,,,,,,,,09/25/2025
+Chocolate Quinoa Loaf,Bridgehead,3.95,,N,N,Y,,,,,,,,,,,,,,,09/24/2025
+Chocolatine Croissant,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Churros,Ollies,8.0,,N,N,N,N,N,,,,,,,,,,,,,10/12/2025
+Cinnamon Coffee Cake,Starbucks,3.95,330.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Cinnamon Raisin Bagel,Tim Hortons,2.29,290.0,,,,,,,,,,,,,,,,,,09/25/2025
+Classic Beef Burrito,La Cocina,10.35,740.0,,,,,,,,,,,,,,,,,,9/26/2025
+Classic French Fry,Burger 101,4.9,1130.0,,,,,,,,,,,,,,,,,,9/26/2025
+Classic Grilled Cheese,Rooster's,4.29,,,,,Y,Y,,"White, whole wheat or gluten free bread grilled with old school cheese slices.",,,,,,,,,,,10/30/2025
+Classic Poutine,Rodney's Kitchen,9.6,1500.0,,,,,,,,,,,,,,,,,,10/12/2025
+Club Pita,Rooster's,12.99,,,,,N,N,,"Turkey, Black Forest Ham and bacon wrapped with your choice of toppings.",,,,,,,,,,,10/30/2025
+Club Sandwich,Teraanga Commons Dining Hall,,250.0,,F,F,F,F,,"bacon, ham, turkey, lettuce, tomato, cheddar cheese, mayo, whole wheat bread",,,,,,,,,,F,10/06/2025
+Coconut Curry,Bridgehead,12.45,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Coconut Curry Chickpea Soup (474  millilitre),Teraanga Commons Dining Hall,,480.0,,T,T,F,T,,"Chickpeas, lentils and sweet potatoes simmered in coconut, ginger, turmeric and cinnamon flavours.",,,,,,,,,,F,10/06/2025
+Coconut Date Bite,Bridgehead,2.35,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Coconut Jasmine Rice,Teraanga Commons Dining Hall,,190.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Coconut Muffin,Tunnel Junction,3.3,330.0,,N,N,,Y,,,,,,,,,,,,,9/26/2025
+Colonel By Chicken Sandwich,Oasis,9.1,460.0,,,,Y,,,,,,,,,,,,,,10/12/2025
+Colonel By Chicken Sandwich,Rodney's Kitchen,9.7,620.0,,,,Y,,,,,,,,,,,,,,10/12/2025
+"Combo - Wedges, Fry Sauce & a Fountain Beverage",Colonel by Chicken,5.9,,,,,,,,,,,,,,,,,,,9/26/2025
+Cone of Freshly Cut Fries,Riverbank Social,6.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Confetti Rice Krispie Square,Teraanga Commons Dining Hall,,90.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Cookies & Cream Cake Pop,Starbucks,3.45,160.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Corn,Teraanga Commons Dining Hall,,50.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Corn Lentil Soup (8000  millilitre),Teraanga Commons Dining Hall,,,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Cream Cheese,Riverbank Social,2.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Cream of spinach soup,Teraanga Commons Dining Hall,,,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Creamy Chickpea Salad (1000  gram),Teraanga Commons Dining Hall,,,,T,T,F,T,,"chickpeas, celery, green onion, red pepper, italian parsley, tahini lemon garlic vinaigrette",,,,,,,,,,F,10/06/2025
+Creamy Scrambled Egg,Teraanga Commons Dining Hall,,170.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Create Your Own Pizza,Oasis,16.2,1030.0,,,,,,,,,,,,,,,,,,10/12/2025
+Crispy Chicken Sandwich,Colonel by Chicken,9.7,620.0,,,,,,,,,,,,,,,,,,9/26/2025
+Cucumber,Teraanga Commons Dining Hall,,0.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Curried Carrots,Teraanga Commons Dining Hall,,80.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Curry,Leo's Lounge,5.0,240.0,,,,,,,,,,,,,,,,,,9/26/2025
+Daily Pizza,Riverbank Social,15.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Date Square,CT-Pastry,3.45,340.0,,,,,,,,,,,,,,,,,,9/26/2025
+Deli Roast Beef,Teraanga Commons Dining Hall,,140.0,,F,F,F,F,,Roast Beef,,,,,,,,,,F,10/06/2025
+Dill Pickles,Teraanga Commons Dining Hall,,0.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Donburi Beef,Bento Boxes,12.0,579.0,,,,,,,,,,,,,,,,,,9/26/2025
+Donburi Chicken,Bento Boxes,12.0,599.0,,,,,,,,,,,,,,,,,,9/26/2025
+Donburi Inari Tofu,Bento Boxes,12.0,580.0,,,,,,,,,,,,,,,,,,9/26/2025
+Donburi Shrimp Tempura,Bento Boxes,12.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Double Chocolate Brownie,Starbucks,3.95,480.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Double Chocolate Brownie,Tim Hortons,2.99,410.0,,,,,,,,,,,,,,,,,,09/25/2025
+Double Chocolate Cookie,Teraanga Commons Dining Hall,,160.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Double Chocolate Donut,Tim Hortons,1.69,310.0,,,,,,,,,,,,,,,,,,09/25/2025
+Double Chocolate Muffin,Tunnel Junction,3.3,330.0,,N,N,,Y,,,,,,,,,,,,,9/26/2025
+Double Stacked Farmer's Wrap,Tim Hortons,6.49,700.0,,,,,,,,,,,,,,,,,,09/25/2025
+Double Standard Breakfast Sandwich,Tim Hortons,5.49,580.0,,,,,,,,,,,,,,,,,,09/25/2025
+"Double-Smoked Bacon, Cheddar & Egg Sandwich",Starbucks,5.95,500.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Dried Cranberries,Teraanga Commons Dining Hall,,25.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Dynamite Crunch Roll,Bento Boxes,12.0,389.0,,,,,,,,,,,,,,,,,,9/26/2025
+Dynamite Roll,Bento Boxes,11.0,390.0,,,,,,,,,,,,,,,,,,9/26/2025
+Edamame,Teraanga Commons Dining Hall,,60.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Egg & Cheese Bagel,Bridgehead,6.95,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Egg & Cheese Breakfast Sandwich,Tim Hortons,3.99,270.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Egg & Cheese Wrap,Bridgehead,6.45,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Egg (118  millilitre),Teraanga Commons Dining Hall,,180.0,,F,T,F,T,,,,,,,,,,,,F,10/06/2025
+Egg Salad Baguette,Teraanga Commons Dining Hall,,200.0,,F,F,F,T,,"egg salad, lettuce, baguette",,,,,,,,,,F,10/06/2025
+Egg Salad Sandwich,Tunnel Junction,6.7,270.0,,Y,N,,Y,,,,,,,,,,,,,9/26/2025
+Egg White & Roasted Red Pepper Egg Bites,Starbucks,170.0,170.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Egg White (118  millilitre),Teraanga Commons Dining Hall,,60.0,,F,T,F,T,,,,,,,,,,,,F,10/06/2025
+"Egg, Pesto, & Mozzarella Sandwich",Starbucks,5.75,370.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Energy Bite,Bridgehead,2.35,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Entrée Salad,Mike's Place,7.99,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Everything Bagel,Tim Hortons,2.29,290.0,,,,,,,,,,,,,,,,,,09/25/2025
+Everything Croissant & Roasted Ham Sandwich,Starbucks,5.95,470.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Falafel,Teraanga Commons Dining Hall,,210.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Falafel Combo,Shawarma Palace,14.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Falafel Pita,Rooster's,9.99,,,,,Y,Y,,A deliciously spiced falafel  and served with your choice of toppings.,,,,,,,,,,,10/30/2025
+Falafel Plate,Shawarma Palace,18.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Falafel Sandwich,Shawarma Palace,9.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Farfalle,Teraanga Commons Dining Hall,,200.0,,T,F,F,T,,,,,,,,,,,,F,10/06/2025
+Farmer's Breakfast Sandwich,Tim Hortons,5.49,560.0,,,,,,,,,,,,,,,,,,09/25/2025
+Farmer's Breakfast Wrap,Tim Hortons,5.49,640.0,,,,,,,,,,,,,,,,,,09/25/2025
+Fattoush Salad,Teraanga Commons Dining Hall,,60.0,,F,F,F,F,,"pita croutons, lettuce, cucumber, tomato, green pepper, red onion, lemon vinaigrette",,,,,,,,,,F,10/06/2025
+Five Cheese Pizza,Oasis,14.0,1320.0,,,,,Y,,,,,,,,,,,,,10/12/2025
+Five Spice Chicken (90  millilitre),Teraanga Commons Dining Hall,,180.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Four Cheese Bagel,Tim Hortons,2.99,330.0,,,,,,,,,,,,,,,,,,09/25/2025
+Fox Cookie,Starbucks,3.95,320.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Free Range Egg,Riverbank Social,2.0,,,,,,,,,,,,,,,,,,,10/12/2025
+French Fries,Mike's Place,4.49,,,,,,Y,,,,,,,,,,,,,10/1/2025
+French Toast,Riverbank Social,9.99,,,,,,,,,,,,,,,,,,,10/12/2025
+French Toast,Teraanga Commons Dining Hall,,120.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Fresh Cut Fries,Oasis,4.4,770.0,,Y,,,,,,,,,,,,,,,,10/12/2025
+Freshly Cut French Fries,Rodney's Kitchen,4.9,1130.0,,,,,,,Cross Contamination may occur during preparation,,,,,,,,,,,10/12/2025
+Fried Chicken Sandwich,Ollies,16.0,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,,10/12/2025
+Fried Egg Sandwich,Rooster's,5.59,,,,,Y,Y,,"Toasted white, whole wheat or gluten free bread with egg, cheese and your choice of two toppings.",,,,,,,,,,,10/30/2025
+Fries,Ollies,5.5,,N,Y,N,N,N,,,,,,,,,,,,,10/12/2025
+Fruit Explosion Muffin,Tim Hortons,2.59,360.0,,,,,,,,,,,,,,,,,,09/25/2025
+GF Broccoli Cheddar Soup,Teraanga Commons Dining Hall,,,,F,F,F,F,,A thick and delicious cheese soup with onions and broccoli florets.,,,,,,,,,,F,10/06/2025
+Garden Salad,Ollies,7.5,,N,N,Y,N,Y,,,,,,,,,,,,,10/12/2025
+Garden Veggie Pita,Rooster's,8.69,,,,,Y,Y,,,,,,,,,,,,,09/25/2025
+Garlic,Teraanga Commons Dining Hall,,0.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Garlic Bread,Teraanga Commons Dining Hall,,170.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Garlic Cheese Bread,Mike's Place,7.99,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Garlic Croutons,Teraanga Commons Dining Hall,,60.0,,T,F,F,T,,,,,,,,,,,,F,10/06/2025
+Garlic Potatoes,Shawarma Palace,7.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Ginger Cookie,Bridgehead,3.55,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Ginger Molasses Cookie,Starbucks,3.65,350.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Ginger Roasted Cauliflower & Carrots,Teraanga Commons Dining Hall,,100.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Gluten Free Brownie,CT-Pastry,3.45,430.0,,,Y,,,,,,,,,,,,,,,9/26/2025
+Gluten Free Bun,Rodney's Kitchen,1.6,220.0,,,Y,,,,,,,,,,,,,,,10/12/2025
+Goat Cheese & Vegetable Baguette,Teraanga Commons Dining Hall,,250.0,,F,F,F,F,,"mushroom, caramelized onion, spinach, zucchini, sundried tomato goat cheese",,,,,,,,,,F,10/06/2025
+Grainy Dijon Potato Salad (1000  gram),Teraanga Commons Dining Hall,,,,T,T,F,T,,"mini red potatoes, mustard vinaigrette ",,,,,,,,,,F,10/06/2025
+Granola Cookie,Bridgehead,3.75,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Gravy,Rodney's Kitchen,2.25,50.0,,,Y,,,,,,,,,,,,,,,10/12/2025
+Greek Falafel Wrap,Tunnel Junction,7.6,580.0,,Y,N,,Y,,,,,,,,,,,,,9/26/2025
+Greek Pasta Salad,Tunnel Junction,5.7,790.0,,N,N,,N,,,,,,,,,,,,,9/26/2025
+Greek Salad,Shawarma Palace,7.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Greek Yogurt & Chia Bowl,Riverbank Social,10.99,,,,Y,,Y,,,,,,,,,,,,,10/12/2025
+Green Beans,Teraanga Commons Dining Hall,,35.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Green Chicken Curry with Jasmine Rice,Thai Kitchen,16.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Green Onion,Teraanga Commons Dining Hall,,0.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Green Peas,Teraanga Commons Dining Hall,,50.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Green Pepper,Teraanga Commons Dining Hall,,0.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Grilled Cheese,Rooster's,5.59,,,,,,,,"White, whole wheat or gluten free bread grilled with a blend of cheddar and Monteray jack cheese.",,,,,,,,,,,10/30/2025
+Grilled Cheese with Tomato Soup,Urban Deli,6.75,,,,,,,,Could Check back and look for appropriate tags,,,,,,,,,,,9/26/2025
+Grilled Chicken Rice Bowl,La Cocina,10.35,690.0,,,,,,,,,,,,,,,,,,9/26/2025
+Grilled Eggplant Pizza,Teraanga Commons Dining Hall,,180.0,,F,F,F,T,,"grilled eggplant, black olives, basil, chili pepper flakes, mozzarella",,,,,,,,,,F,10/06/2025
+Grilled Grain-Fed Chicken,Riverbank Social,10.0,,,,Y,Y,,Y,,,,,,,,,,,,10/12/2025
+Grilled Ham,Teraanga Commons Dining Hall,,30.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Grilled Vegetable Wrap,Teraanga Commons Dining Hall,,200.0,,F,F,F,F,,"grilled zucchini, roasted red pepper, spinach, sundried tomato pesto, tortilla",,,,,,,,,,F,10/06/2025
+Grilled Vegetables & Hummus on Multipgrain Ciabatta Sandwich,Urban Deli,9.2,430.0,,Y,N,,Y,,,,,,,,,,,,,9/26/2025
+Ground Beef (1  kilogram),Teraanga Commons Dining Hall,,,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Gyro Pita,Rooster's,10.89,,,,,N,N,,Greek style seasoned lamb and beef served with your choice of toppings.,,,,,,,,,,,10/30/2025
+Halal Chicken Pita,Rooster's,11.99,,,,,N,N,,,,,,,,,,,,,09/25/2025
+Ham & Cheese Croissant,Riverbank Social,8.5,,,,,,,,,,,,,,,,,,,10/12/2025
+Ham & Swiss Croissant,Starbucks,4.65,290.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Ham & Swiss Sandwich,Tunnel Junction,6.7,310.0,,N,N,,N,,,,,,,,,,,,,9/26/2025
+Ham & Swiss Sandwich,Urban Deli,9.9,530.0,,N,N,,N,,,,,,,,,,,,,9/26/2025
+Ham (3  slice),Teraanga Commons Dining Hall,,60.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Ham (59  millilitre),Teraanga Commons Dining Hall,,30.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Ham Pita,Rooster's,10.69,,,,,,,,Thin sliced deli fresh black forest ham served hot or cold with your choice of toppings.,,,,,,,,,,,10/30/2025
+Hamburger,Burger 101,8.0,470.0,,,,,,,,,,,,,,,,,,9/26/2025
+Hamburger,Oasis,7.5,470.0,,,,Y,,,Can upgrade burger to Lightlife patty for Vegan,,,,,,,,,,,10/12/2025
+Hamburger,Rodney's Kitchen,8.0,500.0,,,,,,,,,,,,,,,,,,10/12/2025
+Hand Batter MSC Certified Fish & Chips,Oasis,15.0,990.0,,,,,,,Uses Carleton labelling - Can rule out the empties as no,,,,,,,,,,,10/12/2025
+Hand Breaded Eggplant Parmesan Sandwich,Oasis,11.5,450.0,,,,,Y,,,,,,,,,,,,,10/12/2025
+Hard Cooked Egg (1  piece),Teraanga Commons Dining Hall,,60.0,,F,T,F,T,,,,,,,,,,,,F,10/06/2025
+Hash Brown,Teraanga Commons Dining Hall,,60.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+HashBrown,Rooster's,1.99,,,,,Y,Y,,,,,,,,,,,,,09/25/2025
+Hashbrown,Tim Hortons,2.19,120.0,,,,,,,,,,,,,,,,,,09/25/2025
+Hawaiian Pizza,Teraanga Commons Dining Hall,,170.0,,F,F,F,F,,"ham, pineapple, mozzarella",,,,,,,,,,F,10/06/2025
+Herb & Garlic Savoury Pastry,Tim Hortons,2.99,240.0,,,,,,,,,,,,,,,,,,09/25/2025
+Herb Roasted Chicken,Teraanga Commons Dining Hall,,170.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Hoisin Chow Mein Salad (59  millilitre),Teraanga Commons Dining Hall,,40.0,,F,F,F,T,,"chow mein noodles, napa cabbage, cucumber, carrot, daikon radish, red peppers, green onion, sesame seeds, hoisin ginger vinaigrette",,,,,,,,,,F,10/06/2025
+Home Fried Potatoes,Teraanga Commons Dining Hall,,180.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Home Fries,Riverbank Social,4.25,,,,,,,,,,,,,,,,,,,10/12/2025
+Home Style Potatoes,Teraanga Commons Dining Hall,,90.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Honey Cruller Donut,Tim Hortons,1.69,320.0,,,,,,,,,,,,,,,,,,09/25/2025
+Honey Dip Timbit,Tim Hortons,0.39,50.0,,,,,,,,,,,,,,,,,,09/25/2025
+Honey Mustard Ham Snackwich,Subway,4.0,320.0,,,,,,,,,,,,,,,,,,10/01/2025
+Hot Beef Sandwich,Teraanga Commons Dining Hall,,400.0,,F,F,F,F,,"roast beef, onion, mushroom,  gravy, bun",,,,,,,,,,F,10/06/2025
+House-Made Focaccia,Riverbank Social,6.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Hummus,Teraanga Commons Dining Hall,,50.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Ice Cream,Leo's Lounge,1.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Iced Lemon Loaf,Starbucks,4.45,430.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Italian Sausage of Portuguese Bun,Rodney's Kitchen,9.0,600.0,,,,,,,,,,,,,,,,,,10/12/2025
+Jalapeno Asiago Mozzarella Bagel,Tim Hortons,2.99,320.0,,,,,,,,,,,,,,,,,,09/25/2025
+Jalapeno Coleslaw (1000  gram),Teraanga Commons Dining Hall,,,,F,T,F,T,,"cabbage, carrot, jalapenos, creamy dressing",,,,,,,,,,F,10/06/2025
+Jalapeno Popper Pizza,Teraanga Commons Dining Hall,,190.0,,F,F,F,F,,"cream cheese, jalapeno peppers, red onions, monterey jack, bacon",,,,,,,,,,F,10/06/2025
+Jalapeno Poppers,Ollies,8.5,,N,N,N,N,N,,,,,,,,,,,,,10/12/2025
+Jalepeño Chicken Pocket,Starbucks,5.25,200.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Jamaican Patty,Leo's Lounge,1.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Kale Apple Chickpea Salad (1000  gram),Teraanga Commons Dining Hall,,,,T,T,F,T,,"chickpeas, cauliflower, carrot, kale, red onion, apple, fresh parsley, maple dijon vinaigrette",,,,,,,,,,F,10/06/2025
+Kale Caesar Salad,Bridgehead,11.95,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Kale Squash Gnocchi,Teraanga Commons Dining Hall,,320.0,,T,F,F,T,,"butternut squash, kale, sage, gnocchi",,,,,,,,,,F,10/06/2025
+Kettleman's Bagel,Riverbank Social,2.99,,,,,,,,,,,,,,,,,,,10/12/2025
+Key Lime Cheesecake,CT-Pastry,5.9,450.0,,,,,,,,,,,,,,,,,,9/26/2025
+Khao Soi Noodle Soup,Thai Kitchen,18.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Kimchi Fries,Ollies,8.0,,N,N,N,N,N,,,,,,,,,,,,,10/12/2025
+Korean BBQ Tempeh Wrap,Teraanga Commons Dining Hall,,280.0,,T,F,F,T,,"korean BBQ tempeh, red pepper, green onion, guacamole, lettuce, sesame seeds, tortilla",,,,,,,,,,F,10/06/2025
+Korean Lentils,Teraanga Commons Dining Hall,,,,T,F,F,T,,,,,,,,,,,,F,10/06/2025
+Kung Pao Tofu,Teraanga Commons Dining Hall,,150.0,,T,F,F,T,,,,,,,,,,,,F,10/06/2025
+Large Soup,Rooster's,7.69,,,,,N,N,,,,,,,,,,,,,09/25/2025
+Lasagna,The Market Pizzeria,10.5,,,,,,Y,,,,,,,,,,,,,9/26/2025
+Leafy Greens Salad,Riverbank Social,10.0,,,,Y,,,Y,,,,,,,,,,,,10/12/2025
+Lemon Buttermilk Cake,Teraanga Commons Dining Hall,,140.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Lemon Cookie,Teraanga Commons Dining Hall,,70.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Lemon Garlic Vinaigrette,Teraanga Commons Dining Hall,,100.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Lemon Poppyseed Cheesecake Muffin,Tim Hortons,2.59,370.0,,,,,,,,,,,,,,,,,,09/25/2025
+Lemon Square,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Lentil Shepherd's Pie,Teraanga Commons Dining Hall,,150.0,,T,F,F,T,,"lentils, carrot, celery, gravy, spices, mashed potato",,,,,,,,,,F,10/06/2025
+Lightlife Burger,Burger 101,9.2,,,,,,,,,,,,,,,,,,,9/26/2025
+Lightlife Burger,Rodney's Kitchen,9.2,520.0,,Y,,,,,,,,,,,,,,,,10/12/2025
+Lightlife Patty,Rodney's Kitchen,4.2,270.0,,Y,,,,,,,,,,,,,,,,10/12/2025
+Loaded Nachos,Ollies,18.0,,N,N,N,N,N,,,,,,,,,,,,,10/12/2025
+M. Tofu Pita,Rooster's,9.99,,,,,,,,Firm tofu grilled on our vegitarian grill with your choice of toppings. ,,,,,,,,,,,10/30/2025
+MTO PTN SUNFLOWER SEEDS (30 ML),Teraanga Commons Dining Hall,,110.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Macaroon Square,CT-Pastry,3.45,430.0,,,,,,,,,,,,,,,,,,9/26/2025
+Mandarin Chicken Salad,Mike's Place,9.99,,,,,,,,,,,,,,,,,,,10/1/2025
+Mango Sticky Rice,Thai Kitchen,15.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Maple Brown Butter Scrambled Egg Loaded Box,Tim Hortons,5.99,480.0,,,,,,,,,,,,,,,,,,09/25/2025
+Maple Brown Butter Scrambled Egg Loaded Croissant,Tim Hortons,5.99,610.0,,,,,,,,,,,,,,,,,,09/25/2025
+Maple Brown Butter Scrambled Egg Loaded Wraps,Tim Hortons,5.99,510.0,,,,,,,,,,,,,,,,,,09/25/2025
+Maple Butter Tart,Teraanga Commons Dining Hall,,130.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Maple Dip Donut,Tim Hortons,1.69,220.0,,,,,,,,,,,,,,,,,,09/25/2025
+Maple Pecan Square,Bridgehead,4.95,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Margherita Pizza,Oasis,14.0,1520.0,,,,,Y,,,,,,,,,,,,,10/12/2025
+Margherita Pizza,Teraanga Commons Dining Hall,,170.0,,F,F,F,T,,"tomato, fresh basil, mozzarella, ricotta",,,,,,,,,,F,10/06/2025
+Marinara Sauce (3000  millilitre),Teraanga Commons Dining Hall,,,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Market Mixed Greens,Teraanga Commons Dining Hall,,5.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Marrakesh Vegetable Stew,Teraanga Commons Dining Hall,,120.0,,T,T,F,T,,"chickpeas, potato, zucchini, tomato, carrots",,,,,,,,,,F,10/06/2025
+Meat Lasagna,The Market Pizzeria,10.5,,,,,,N,,,,,,,,,,,,,9/26/2025
+Meatball Sub,Teraanga Commons Dining Hall,,230.0,,F,F,F,F,,"meatballs, mozzarella, tomato basil sauce, pesto mayo",,,,,,,,,,F,10/06/2025
+Mediterranean Kale Minestrone Soup (8000  millilitre),Teraanga Commons Dining Hall,,,,T,T,F,T,,"A twist on a classic Italian vegetable broth soup containing brown rice, white beans and kale.",,,,,,,,,,F,10/06/2025
+Medium Soup,Rooster's,6.79,,,,,N,N,,,,,,,,,,,,,09/25/2025
+Microwave Popcorn,Leo's Lounge,1.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Mini Everything Bagels,Starbucks,4.25,300.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Mint Fudge,Teraanga Commons Dining Hall,,220.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Miso Broth (356  millilitre),Teraanga Commons Dining Hall,,80.0,,T,F,F,T,,,,,,,,,,,,F,10/06/2025
+Mixed Berry Oat Bar,Teraanga Commons Dining Hall,,190.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Mixed Shawarma Combo,Shawarma Palace,15.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Mixed Shawarma Plate,Shawarma Palace,21.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Mixed Shawarma Sandwich,Shawarma Palace,10.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Moroccan Chickpea Soup (237  millilitre),Teraanga Commons Dining Hall,,120.0,,T,T,F,T,,"A flavourful tomato-based broth soup loaded with chickpeas, potatoes, carrots, spinach and warm spices.",,,,,,,,,,F,10/06/2025
+Mozza Sticks,Ollies,8.5,,N,N,N,N,Y,,,,,,,,,,,,,10/12/2025
+Muffin,Leo's Lounge,1.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Mushroom,Teraanga Commons Dining Hall,,0.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Mushroom & Caramelized Onion Pizza,Teraanga Commons Dining Hall,,200.0,,F,F,F,F,,"mushroom, caramelized onion, parsley, alfredo base, mozzarella, parmesan",,,,,,,,,,F,10/06/2025
+Naan,Leo's Lounge,4.25,270.0,,,,,,,,,,,,,,,,,,9/26/2025
+Nacho Chips & Salsa,Mike's Place,4.29,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Nachos,Oasis,13.0,470.0,,,,,Y,,,,,,,,,,,,,10/12/2025
+Nachos with Beef,Oasis,15.75,650.0,,,,Y,,,,,,,,,,,,,,10/12/2025
+Nachos with Chicken,Oasis,15.75,650.0,,,,Y,,,,,,,,,,,,,,10/12/2025
+Nashville Hot Chicken Sandwich,Colonel by Chicken,9.7,680.0,,,,,,,,,,,,,,,,,,9/26/2025
+New Baconings,Ollies,16.0,,N,N,N,N,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,,10/12/2025
+No Gluten Fusilli,Teraanga Commons Dining Hall,,210.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+No Gluten Penne,Teraanga Commons Dining Hall,,160.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+No Gluten Turkey Noodle Soup (8  litre),Teraanga Commons Dining Hall,,,,F,T,F,F,,Home-style soup with pieces of turkey breast and no gluten fettuccine noodles.,,,,,,,,,,F,10/06/2025
+Nori Seaweed,Teraanga Commons Dining Hall,,10.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Oat Bar,Starbucks,3.45,310.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Oatmeal,Leo's Lounge,0.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Oatmeal Raisin Cookie,Teraanga Commons Dining Hall,,120.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Old Fashioned Plain Donut,Tim Hortons,1.69,280.0,,,,,,,,,,,,,,,,,,09/25/2025
+Omelette,Rooster's,8.39,,,,,Y,Y,,"A two-egg omelette served with bread, bagel or hashbrown.",,,,,,,,,,,10/30/2025
+Omelette Bites,Tim Hortons,3.99,250.0,,,,,,,,,,,,,,,,,,09/25/2025
+Onion,Teraanga Commons Dining Hall,,5.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Onion Rings,Ollies,7.5,,N,Y,N,N,N,,,,,,,,,,,,,10/12/2025
+Onion Rings,Teraanga Commons Dining Hall,,180.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Orange Cremcicle Cake,Teraanga Commons Dining Hall,,310.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Oreo Chunk Cookie,Tim Hortons,1.69,310.0,,,,,,,,,,,,,,,,,,09/25/2025
+Pad See-Ew,Thai Kitchen,16.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Pad Thai,Thai Kitchen,16.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Pan-Seared ASC Salmon Filet,Riverbank Social,10.0,,,,Y,,,Y,,,,,,,,,,,,10/12/2025
+Parmesan Cheese,Teraanga Commons Dining Hall,,10.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Parsley Potatoes,Teraanga Commons Dining Hall,,100.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Peameal Bacon,Teraanga Commons Dining Hall,,45.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Peanut Butter Bite,Bridgehead,2.35,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Peanut Butter Cookie,Bridgehead,3.75,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Pepperoni Pizza,Teraanga Commons Dining Hall,,190.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Pepperoni Pizza Slice,The Market Pizzeria,5.2,570.0,,,,,,,,,,,,,,,,,,9/26/2025
+Perogies,Ollies,7.0,,N,N,N,N,Y,,,,,,,,,,,,,10/12/2025
+Pesto Sauce,Teraanga Commons Dining Hall,,420.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Piri-Piri Chicken Bowl,Subway,13.66,610.0,,,,,,,,,,,,,,,,,,10/01/2025
+Pistachio Danish,Bridgehead,5.95,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Pita Chips,Teraanga Commons Dining Hall,,25.0,,T,F,F,T,,,,,,,,,,,,F,10/06/2025
+Pita Chips (1  kilogram),Teraanga Commons Dining Hall,,,,T,F,F,T,,,,,,,,,,,,F,10/06/2025
+Pita Dippers,Rooster's,6.09,,,,,Y,Y,,"A generous helping of pita pieces, with two dipping sauces and two veggies of your choice.",,,,,,,,,,,10/30/2025
+Pizza Pops,Leo's Lounge,2.25,,,,,,,,,,,,,,,,,,,9/26/2025
+Plain Bagel,Tim Hortons,2.29,290.0,,,,,,,,,,,,,,,,,,09/25/2025
+Plain Croissant,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Plain Croissant,Tim Hortons,2.29,260.0,,,,,,,,,,,,,,,,,,09/25/2025
+Plain Pancake,Teraanga Commons Dining Hall,,150.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Pogos,Ollies,6.5,,N,N,N,N,N,,,,,,,,,,,,,10/12/2025
+Pop Tart,Leo's Lounge,1.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Popcorn Shrimp,Mike's Place,7.49,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Pork Souvlaki,Teraanga Commons Dining Hall,,190.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Potato Caesar Salad,Urban Deli,4.8,420.0,,N,N,,N,,,,,,,,,,,,,9/26/2025
+Potato Wedges,Teraanga Commons Dining Hall,,110.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Potato Wedges with Fry Sauce,Colonel by Chicken,4.2,760.0,,,,,,,,,,,,,,,,,,9/26/2025
+"Potato, Cheddar & Chive Bakes",Starbucks,6.25,210.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Poutine,Burger 101,9.6,1400.0,,,,,,,,,,,,,,,,,,9/26/2025
+Poutine,Mike's Place,8.99,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Poutine,Oasis,8.9,1040.0,,,,,,,,,,,,,,,,,,10/12/2025
+Poutine,Ollies,8.5,,N,N,N,Y,Y,,,,,,,,,,,,,10/12/2025
+Poutine,Teraanga Commons Dining Hall,,370.0,,F,F,F,F,,"cheddar cheese curds, french fries, gravy",,,,,,,,,,F,10/06/2025
+Poutine with Bacon,Oasis,11.65,1220.0,,,,,,,,,,,,,,,,,,10/12/2025
+Poutine with Beef,Oasis,11.65,1220.0,,,,,,,,,,,,,,,,,,10/12/2025
+Poutine with Chicken,Oasis,11.65,1220.0,,,,,,,,,,,,,,,,,,10/12/2025
+Pretzel,Mike's Place,5.99,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Pumpkin & Pepita Loaf,Starbucks,4.45,380.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Pumpkin Cream Cheese Muffin,Starbucks,3.95,350.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Pumpkin Loaf,Bridgehead,3.95,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Pumpkin Muffin,Bridgehead,3.95,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Pumpkin Seeds,Teraanga Commons Dining Hall,,80.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Quinoa,Teraanga Commons Dining Hall,,45.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Quinoa Salad,Bridgehead,11.95,,Y,N,Y,,,,,,,,,,,,,,,09/24/2025
+Raisin Tea Biscuit,Tim Hortons,2.29,250.0,,,,,,,,,,,,,,,,,,09/25/2025
+Ramen,Leo's Lounge,2.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Ramen Noodles,Teraanga Commons Dining Hall,,70.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Raspberry Scone,Bridgehead,4.95,,Y,N,N,,,,,,,,,,,,,,,09/24/2025
+Red Onion,Teraanga Commons Dining Hall,,5.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Red Potatoes,Teraanga Commons Dining Hall,,120.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Red Potatoes & Onions,Teraanga Commons Dining Hall,,160.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Reese's Minis Dream Cookies,Tim Hortons,2.29,380.0,,,,,,,,,,,,,,,,,,09/25/2025
+Rice Krispie Square,Teraanga Commons Dining Hall,,80.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Rice Noodles,Teraanga Commons Dining Hall,,70.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Roasted Beets & Basil,Teraanga Commons Dining Hall,,100.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Roasted Corn & Green Pepper,Teraanga Commons Dining Hall,,120.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Roasted Eggplant,Teraanga Commons Dining Hall,,70.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Roasted Eggplant Pita,Rooster's,10.99,,,,,Y,Y,,,,,,,,,,,,,09/25/2025
+Roasted Potatoes,Teraanga Commons Dining Hall,,130.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Rocky Road Brownie,CT-Pastry,3.45,260.0,,,,,,,,,,,,,,,,,,9/26/2025
+Rolled & Steel-Cut Oatmeal,Starbucks,3.95,250.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Rooster's Grilled Cheese,Rooster's,5.69,,,,,Y,Y,,,,,,,,,,,,,09/25/2025
+Rotini,Teraanga Commons Dining Hall,,200.0,,T,F,F,T,,,,,,,,,,,,F,10/06/2025
+Rotisserie-Style Chicken Bowl,Subway,13.66,580.0,,,,,,,,,,,,,,,,,,10/01/2025
+S'mores Brownie,Teraanga Commons Dining Hall,,200.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+S.D. Grilled Cheese,Rooster's,9.99,,,,,,,,,,,,,,,,,,,10/30/2025
+"STEW, GOULASH, BEEF, POTATO, VEGETABLES RES",Teraanga Commons Dining Hall,,100.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Sadza Chicken Stew,Teraanga Commons Dining Hall,,160.0,,F,F,F,F,,"chicken, onion, tomato, green onion",,,,,,,,,,F,10/06/2025
+Salmon Avocado Roll,Bento Boxes,12.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Salmon Poke Bowl,Bento Boxes,15.0,710.0,,,,,,,,,,,,,,,,,,9/26/2025
+Salmon Sushi Combo,Bento Boxes,17.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Salsa (3  litre),Teraanga Commons Dining Hall,,,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Salted Caramel Brownie,Teraanga Commons Dining Hall,,230.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Sammich,Leo's Lounge,9.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Samosa,Leo's Lounge,5.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Sausage Breakfast Sandwich,Tim Hortons,4.49,530.0,,,,,,,,,,,,,,,,,,09/25/2025
+Sausage Classic Bagel,Tim Hortons,5.29,615.0,,,,,,,,,,,,,,,,,,09/25/2025
+Sausage Farmer's Wrap,Tim Hortons,5.49,640.0,,,,,,,,,,,,,,,,,,09/25/2025
+Sausage Round,Teraanga Commons Dining Hall,,160.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+"Sausage, Cheddar & Egg Sandwich",Starbucks,5.25,480.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Sauteed Zucchini,Teraanga Commons Dining Hall,,40.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Scrambled Egg Loaded Box,Tim Hortons,5.49,600.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Scrambled Egg Loaded Croissant,Tim Hortons,5.49,590.0,,,,,,,,,,,,,,,,,,09/25/2025
+Scrambled Egg Loaded Wrap,Tim Hortons,5.49,530.0,,,,,,,,,,,,,,,,,,09/25/2025
+Seasoned Ground Beef,Teraanga Commons Dining Hall,,150.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Seaweed Salad,Bento Boxes,6.0,90.0,,,,,,,,,,,,,,,,,,9/26/2025
+Sesame Seed Bagel,Tim Hortons,2.29,310.0,,,,,,,,,,,,,,,,,,09/25/2025
+Shoyu Pork Broth (26520  millilitre),Teraanga Commons Dining Hall,,120.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Side of Fresh Fruit,Riverbank Social,4.99,,,,Y,,,Y,,,,,,,,,,,,10/12/2025
+Simply Sausage Breakfast Sandwich,Tim Hortons,2.99,450.0,,,,,,,,,,,,,,,,,,09/25/2025
+Smoked Ham,Riverbank Social,2.99,,,,Y,,,Y,,,,,,,,,,,,10/12/2025
+Smoked Meat Bagel,Bridgehead,12.99,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Smoked Meat Sandwich,Teraanga Commons Dining Hall,,390.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Smoked Salmon Bagel,Bridgehead,12.99,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Smoked Salmon Bagel,Riverbank Social,13.99,,,,,,,,,,,,,,,,,,,10/12/2025
+Smoked Turkey Sandwich,Teraanga Commons Dining Hall,,620.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Smoky Italian Sausage,Oasis,11.0,680.0,,,,,,,,,,,,,,,,,,10/12/2025
+Snack Wraps,Colonel by Chicken,6.5,,,,,,,,,,,,,,,,,,,9/26/2025
+Sour Cream,Teraanga Commons Dining Hall,,15.0,,F,T,F,T,,,,,,,,,,,,F,10/06/2025
+Sour Dough Grilled Cheese,Rooster's,9.99,,,,,Y,Y,,,,,,,,,,,,,09/25/2025
+Southwest Steak & Avocado Bowl,Subway,13.66,630.0,,,,,,,,,,,,,,,,,,10/01/2025
+Spiced Vanilla Filled Ring Donut,Tim Hortons,1.99,320.0,,,,,,,,,,,,,,,,,,09/25/2025
+Spicy California Crunch Roll,Bento Boxes,10.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Spicy California Poke Bowl,Bento Boxes,15.0,740.0,,,,,,,,,,,,,,,,,,9/26/2025
+Spicy California Roll,Bento Boxes,10.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Spicy Chicken Noodle Bowl,Teraanga Commons Dining Hall,,160.0,,F,F,F,F,,"gochujang chicken, spicy cucumber, green onion, sesame seeds, kimchi, udon noodles",,,,,,,,,,F,10/06/2025
+Spicy Falafel Pocket,Starbucks,5.25,230.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Spicy Salmon Roll,Bento Boxes,12.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Spicy Spiral Fries,Burger 101,4.8,,,,,,,,,,,,,,,,,,,9/26/2025
+Spinach & Egg White Omellete Bites,Tim Hortons,3.99,130.0,,,,,,,,,,,,,,,,,,09/25/2025
+"Spinich, Feta & Egg White Wrap",Starbucks,5.65,290.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Spring Mix,Teraanga Commons Dining Hall,,0.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Starter Salad,Mike's Place,4.99,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Steak Bowl,Subway,13.66,560.0,,,,,,,,,,,,,,,,,,10/01/2025
+Steak Fajita Pita,Rooster's,12.99,,,,,N,N,,,,,,,,,,,,,09/25/2025
+Steak Pita,Rooster's,12.99,,,,,,,,Fajita style steak strips grilled with your choice of toppings.,,,,,,,,,,,10/30/2025
+Strawberry Brownie,Teraanga Commons Dining Hall,,290.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Strawberry Cake Pop,Starbucks,3.45,160.0,,,,,Y,,,,,,,,,,,,,09/25/2025
+Sugar Cookie,Teraanga Commons Dining Hall,,110.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Sundried Tomato Stuffed Naan,Mike's Place,9.99,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Superfood Salad (1000  gram),Teraanga Commons Dining Hall,,,,F,F,F,T,,"chickpeas, couscous, tomato, cucumber, red onion, kale, feta cheese, greek vinaigrette",,,,,,,,,,F,10/06/2025
+Sweet Onion Chicekn Teriyaki,Subway,13.66,510.0,,,,,,,,,,,,,,,,,,10/01/2025
+Sweet Potato Fries,Ollies,7.5,,N,Y,N,N,N,,,,,,,,,,,,,10/12/2025
+Sweet Potato Fries with Roasted Garlic,Riverbank Social,8.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Sweet Potato and Caramelized Onion Pizza,Teraanga Commons Dining Hall,,560.0,,F,F,F,T,,,,,,,,,,,,F,10/06/2025
+Tabouli,Shawarma Palace,7.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Taco Salad,Ollies,9.5,,N,N,Y,N,Y,,,,,,,,,,,,,10/12/2025
+Tandoori Chicken Stuffed Naan,Mike's Place,8.99,,,,,Y,,,,,,,,,,,,,,10/1/2025
+Tempura Shrimp Poke Bowl,Bento Boxes,15.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Tenders And Fries,Ollies,14.0,,N,N,N,Y,N,,,,,,,,,,,,,10/12/2025
+Thai Basic Pork Stir-Fry with Jasmine Rice,Thai Kitchen,16.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Thai Fried Rice,Thai Kitchen,16.0,,,,,,,,,,,,,,,,,,,10/12/2025
+Thai Tofu Stir Fry,Teraanga Commons Dining Hall,,170.0,,T,T,F,T,,"tofu, onion, carrot, snow peas, green pepper, cabbage, sweet and spicy sauce, soy sauce, green onion",,,,,,,,,,F,10/06/2025
+The Goblet of Fire,Ollies,16.0,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,,10/12/2025
+The Ring,Ollies,16.0,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,,10/12/2025
+The Room,Ollies,16.0,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,,10/12/2025
+The Royale,Ollies,14.0,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,,10/12/2025
+The Royale With Cheese,Ollies,15.0,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,,10/12/2025
+Three Cheese & Egg Sandwich,Starbucks,4.75,330.0,,,,,N,,,,,,,,,,,,,09/25/2025
+Three Cheese Snackwich,Subway,4.0,350.0,,,,,,,,,,,,,,,,,,10/01/2025
+Tiger Prawns,Riverbank Social,9.0,,,,Y,,,Y,,,,,,,,,,,,10/12/2025
+Toast,Riverbank Social,3.75,,,,,,,,,,,,,,,,,,,10/12/2025
+Toast,Rooster's,1.99,,,,,Y,Y,,,,,,,,,,,,,09/25/2025
+Toast w/ Butter,Rooster's,1.99,,,,,,,,Two slices of toast served either with butter or dry.,,,,,,,,,,,10/30/2025
+Toast w/ Jam,Rooster's,2.99,,,,,,,,Two slices of toast served with your choice of peanut butter and jam.,,,,,,,,,,,10/30/2025
+Toast with Jam,Rooster's,2.99,,,,,N,Y,,,,,,,,,,,,,09/25/2025
+Toasted Bagel,Rooster's,3.19,,,,,Y,Y,,,,,,,,,,,,,09/25/2025
+Toasted Veggie Sandwich,Rooster's,5.19,,,,,Y,Y,,,,,,,,,,,,,09/25/2025
+Tofu,Teraanga Commons Dining Hall,,45.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Tofu Pita,Rooster's,9.99,,,,,Y,Y,,,,,,,,,,,,,09/25/2025
+Tofu Poke Bowl,Bento Boxes,15.0,660.0,,,,,,,,,,,,,,,,,,9/26/2025
+Tomato,Teraanga Commons Dining Hall,,10.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Tomato Mozzarella Penne (1000  gram),Teraanga Commons Dining Hall,,,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Triple Berry Muffin,Bridgehead,3.95,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Tuna Pita,Rooster's,10.89,,,,,N,N,,Light flaked tuna wrapped with your choice of toppings.,,,,,,,,,,,10/30/2025
+Tuna Poke Bowl,Bento Boxes,15.0,660.0,,,,,,,,,,,,,,,,,,9/26/2025
+Tuna Salad (59  millilitre),Teraanga Commons Dining Hall,,90.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Tuna Salad (80  millilitre),Teraanga Commons Dining Hall,,100.0,,F,T,F,F,,,,,,,,,,,,F,10/06/2025
+Tuna Salad Sandwich,Tunnel Junction,6.7,370.0,,N,N,,N,,,,,,,,,,,,,9/26/2025
+Turkey Breakfast Sausage,Teraanga Commons Dining Hall,,30.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Turkey Pita,Rooster's,10.69,,,,,N,N,,Deli style turkey breast served hot or cold with your choice of toppings.,,,,,,,,,,,10/30/2025
+Turkey Ranch Snackwich,Subway,4.0,350.0,,,,,,,,,,,,,,,,,,10/01/2025
+Turkey Sausage,Riverbank Social,3.99,,,,,Y,,,,,,,,,,,,,,10/12/2025
+Value Pick - Sliders,Burger 101,6.95,,,,,,,,,,,,,,,,,,,9/26/2025
+Vanilla Cupcake,Teraanga Commons Dining Hall,,310.0,,F,F,F,F,,,,,,,,,,,,F,10/06/2025
+Vanilla Dip Donut,Tim Hortons,1.69,250.0,,,,,,,,,,,,,,,,,,09/25/2025
+Vegan Marble Cake,Teraanga Commons Dining Hall,,210.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Vegan No Gluten Chocolate Cake,Teraanga Commons Dining Hall,,150.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Vegetable Market Wrap,Tunnel Junction,7.6,460.0,,N,N,,Y,,,,,,,,,,,,,9/26/2025
+Vegetable Medley,Teraanga Commons Dining Hall,,60.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Vegetable Nachos,Mike's Place,19.99,,,,Y,,Y,,,,,,,,,,,,,10/1/2025
+Vegetable Provolone Wrap,Teraanga Commons Dining Hall,,260.0,,F,F,F,F,,"carrot, red onion, zucchini, bell pepper, lettuce, tomato, provolone cheese, basil  pesto mayo, tortilla",,,,,,,,,,F,10/06/2025
+Vegetable Samosa,Mike's Place,4.49,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Vegetable Spring Rolls,Mike's Place,5.99,,,,,,Y,,,,,,,,,,,,,10/1/2025
+Vegetarian California Roll,Bento Boxes,9.0,,,,,,,,,,,,,,,,,,,9/26/2025
+Vegetarian Poutine,Burger 101,9.6,,,,,,,,,,,,,,,,,,,9/26/2025
+Veggie Burrito,Bridgehead,10.95,,N,N,N,,,,,,,,,,,,,,,09/24/2025
+Veggie Patty,Rooster's,10.99,,,,,,,,"Half a soy based vegitarian patty, wonderfully seasoned with your choice of toppings.",,,,,,,,,,,10/30/2025
+Veggie Patty Pita,Rooster's,10.99,,,,,Y,Y,,,,,,,,,,,,,09/25/2025
+Veggie Pho (200  gram),Teraanga Commons Dining Hall,,130.0,,T,T,F,T,,"tofu, onion, mushroom, pho vegetable broth, rice noodles, cilantro, green onion",,,,,,,,,,F,10/06/2025
+Veggie Pita,Rooster's,8.69,,,,,,,,Your choice of our wide selection of fresh veggies.,,,,,,,,,,,10/30/2025
+Veggie Sandwich,Rooster's,5.19,,,,,,,,Your choice of three veggies severed on toasted bread or bagel.,,,,,,,,,,,10/30/2025
+WOW Butter Chocolate Fudge,Teraanga Commons Dining Hall,,300.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Western,Rooster's,7.39,,,,,,,,"A serving of egg with green peppers and onions fried into it served on toasted bread or bagel, cheese and your choice of two toppings.",,,,,,,,,,,10/30/2025
+Western Sandwich,Rooster's,7.39,,,,,Y,Y,,,,,,,,,,,,,09/25/2025
+White Rice,Teraanga Commons Dining Hall,,130.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025
+Whole Cheese Pizza,The Market Pizzeria,25.0,2720.0,,,,,,,,,,,,,,,,,,9/26/2025
+Whole Pepperoni Pizza,The Market Pizzeria,25.0,3440.0,,,,,,,,,,,,,,,,,,9/26/2025
+Wild Blueberry Muffin,Tim Hortons,2.29,380.0,,,,,,,,,,,,,,,,,,09/25/2025
+Wings - 1Lb,Ollies,14.0,,N,N,N,N,N,,,,,,,,,,,,,10/12/2025
+Yogurt & Berries Parfait,Tunnel Junction,5.7,310.0,,N,N,,Y,,,,,,,,,,,,,9/26/2025
+Yogurt Parfait,Bridgehead,6.75,,Y,N,Y,,,,,,,,,,,,,,,09/24/2025
+Zucchini,Teraanga Commons Dining Hall,,0.0,,T,T,F,T,,,,,,,,,,,,F,10/06/2025

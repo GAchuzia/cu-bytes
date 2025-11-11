@@ -57,7 +57,7 @@ def create_user(username, password):
     user = UsersAuth.create(username=username, password=hashed, salt=salt)
     print(
         f"AuthenticationService: Created new user {username} with password "
-        "{password}"
+        f"{password}"
     )
     return user
 
@@ -76,11 +76,12 @@ def register_user(data):
     password = data.get("password")
     print(
         f"AuthenticationService: Attempting to create user {username} with "
-        "password {password}"
+        f"password {password}"
     )
 
     # Check missing fields
     if len(username) == 0 or len(password) == 0:
+        print("AuthenticationService: Username and password are required")
         return (
             jsonify(
                 {"status": "error", "message": "Username and password are required."}
@@ -90,6 +91,7 @@ def register_user(data):
 
     # Validate username
     if len(username) > 80:
+        print("AuthenticationService: Invalid username format (length).")
         return (
             jsonify(
                 {
@@ -104,6 +106,7 @@ def register_user(data):
         )
 
     if not re.fullmatch(r"^[a-zA-Z0-9_ ]{1,80}$", username):
+        print("AuthenticationService: Invalid username format (bad char).")
         return (
             jsonify(
                 {
@@ -119,6 +122,7 @@ def register_user(data):
 
     # Validate password
     if not len(password) >= 10 and len(password) <= 120:
+        print("AuthenticationService: Invalid password format (length).")
         return (
             jsonify(
                 {
@@ -133,6 +137,7 @@ def register_user(data):
         )
 
     if not re.search(r'[!@#$%^&*()_\-+=\[\]{}\\|:;"\'<>,.?/]', password):
+        print("AuthenticationService: Invalid password format (missing char).")
         return (
             jsonify(
                 {
@@ -147,6 +152,7 @@ def register_user(data):
         )
 
     if not re.search(r"[0-9]", password):
+        print("AuthenticationService: Invalid password format (missing num).")
         return (
             jsonify(
                 {
@@ -161,6 +167,7 @@ def register_user(data):
         )
 
     if not re.search(r"[A-Z]", password):
+        print("AuthenticationService: Invalid password format (missing cap).")
         return (
             jsonify(
                 {
@@ -175,6 +182,7 @@ def register_user(data):
         )
 
     if not re.search(r"[a-z]", password):
+        print("AuthenticationService: Invalid password format (missing low).")
         return (
             jsonify(
                 {
@@ -189,12 +197,14 @@ def register_user(data):
         )
 
     if UsersAuth.get_user_by_name(username=username) is not None:
+        print("AuthenticationService: This username is already in use.")
         return (
             jsonify({"status": "error", "message": "This username is already in use."}),
             409,
         )
 
     create_user(username=username, password=password)
+    print("AuthenticationService: User registered successfully.")
 
     return (
         jsonify({"status": "success", "message": "User registered successfully."}),
