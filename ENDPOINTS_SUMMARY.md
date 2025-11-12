@@ -15,7 +15,7 @@ Summary of endpoints.
 ### Login
 
     """
-    POST auth/login
+    POST /auth/login
 
     Request Body (JSON):
     {
@@ -31,7 +31,7 @@ Summary of endpoints.
 ### Register
 
     """
-    POST auth/register
+    POST /auth/register
 
     Request Body (JSON):
     {
@@ -54,7 +54,7 @@ Summary of endpoints.
 ### Browse
 
     """
-    GET browse/food-items
+    GET /browse/food-items
 
     Description:
     Retrieves all available food items from the database.
@@ -83,7 +83,7 @@ Summary of endpoints.
     """
 
     """
-    GET browse/food-item/{id}
+    GET /browse/food-item/{id}
 
     Description:
     Retrieve information about the food item with id {id}
@@ -123,7 +123,7 @@ Summary of endpoints.
 
 ### Logging
     """
-    POST logging/log
+    POST /logging/log
 
     Description:
     Records the intake of a food item by a user.

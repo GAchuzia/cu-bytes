@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from backend.services.authentication_service import login_user, register_user
+from backend.services.authentication_service import login_user_json, register_user_json
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -7,7 +7,7 @@ auth_bp = Blueprint("auth", __name__)
 @auth_bp.route("/login", methods=["POST"])
 def login():
     """
-    POST auth/login
+    POST /auth/login
 
     Request Body (JSON):
     {
@@ -20,13 +20,13 @@ def login():
     400 Bad Request - Wrong username or password
     """
     data = request.json
-    return login_user(data)
+    return login_user_json(data)
 
 
 @auth_bp.route("/register", methods=["POST"])
 def register():
     """
-    POST auth/register
+    POST /auth/register
 
     Request Body (JSON):
     {
@@ -46,4 +46,4 @@ def register():
     409 Conflict - Username already exists
     """
     data = request.json
-    return register_user(data)
+    return register_user_json(data)

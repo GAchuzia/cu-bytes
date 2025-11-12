@@ -4,6 +4,11 @@ from flask import jsonify
 # Project imports
 from backend.models.food_item import FoodItem
 
+"""
+Methods directly connected to endpoints
+These methods return a JSON object and should end in _json
+"""
+
 
 def get_all_food_items_json():
     try:

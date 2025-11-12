@@ -10,7 +10,7 @@ logging_bp = Blueprint("logging", __name__)
 @logging_bp.route("/log", methods=["POST"])
 def log_food_item():
     """
-    POST /log
+    POST /logging/log
 
     Description:
     Records the intake of a food item by a user.
