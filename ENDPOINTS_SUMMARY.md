@@ -9,12 +9,13 @@ Summary of endpoints.
     - [Login](#login)
     - [Register](#register)
     - [Browse](#browse)
+    - [Logging] (#logging)
 
 
 ### Login
 
     """
-    POST /login
+    POST auth/login
 
     Request Body (JSON):
     {
@@ -23,14 +24,14 @@ Summary of endpoints.
     }
 
     Responses:
-    201 Success - User logged in successfully
+    200 OK - User logged in successfully
     400 Bad Request - Wrong username or password
     """
 
 ### Register
 
     """
-    POST /register
+    POST auth/register
 
     Request Body (JSON):
     {
@@ -45,7 +46,7 @@ Summary of endpoints.
     one special character, one number, one uppercase and one lowercase
 
     Responses:
-    201 Success - User registered successfully
+    201 Creation Success - User registered successfully
     400 Bad Request - Missing or invalid data
     409 Conflict - Username already exists
     """
@@ -53,7 +54,7 @@ Summary of endpoints.
 ### Browse
 
     """
-    GET /food-items
+    GET browse/food-items
 
     Description:
     Retrieves all available food items from the database.
@@ -82,7 +83,7 @@ Summary of endpoints.
     """
 
     """
-    GET /food-item/{id}
+    GET browse/food-item/{id}
 
     Description:
     Retrieve information about the food item with id {id}
@@ -116,6 +117,26 @@ Summary of endpoints.
             "name": "Yogurt & Berries Parfait"
         }
 
-    404 Bad Request - Item not found
+    400 Bad Request - Item not found
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
+
+### Logging
+    """
+    POST logging/log
+
+    Description:
+    Records the intake of a food item by a user.
+
+    Request Body (JSON):
+    {
+        "username": "string",       # required
+        "food_id": 123,             # required, int
+        "calories": 450             # required, int
+    }
+
+    Responses:
+    200 OK - Successfully recorded the transaction
+    400 Bad Request - Invalid argument
+    500 Internal Server Error - Error adding transaction to database
     """

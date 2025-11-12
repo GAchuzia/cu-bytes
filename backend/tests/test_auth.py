@@ -262,7 +262,7 @@ def test_login_success(client, app):
 
     data = response.get_json()
 
-    assert response.status_code == 201
+    assert response.status_code == 200
     assert data["status"] == "success"
     assert "User logged in successfully." in data["message"]
 
@@ -273,6 +273,6 @@ def test_login_success(client, app):
 
     data = response.get_json()
 
-    assert response.status_code == 201
+    assert response.status_code == 200
     assert data["status"] == "success"
     assert "User logged in successfully." in data["message"]

@@ -72,4 +72,4 @@ def test_get_last_food_item(client, seeded_food_data):
 
 def test_get_nonexistant_food_item(client, seeded_food_data):
     response = client.get("/browse/food-item/30")
-    assert response.status_code == 404
+    assert response.status_code == 400

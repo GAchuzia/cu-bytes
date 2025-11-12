@@ -7,7 +7,7 @@ auth_bp = Blueprint("auth", __name__)
 @auth_bp.route("/login", methods=["POST"])
 def login():
     """
-    POST /login
+    POST auth/login
 
     Request Body (JSON):
     {
@@ -16,7 +16,7 @@ def login():
     }
 
     Responses:
-    201 Success - User logged in successfully
+    200 OK - User logged in successfully
     400 Bad Request - Wrong username or password
     """
     data = request.json
@@ -26,7 +26,7 @@ def login():
 @auth_bp.route("/register", methods=["POST"])
 def register():
     """
-    POST /register
+    POST auth/register
 
     Request Body (JSON):
     {

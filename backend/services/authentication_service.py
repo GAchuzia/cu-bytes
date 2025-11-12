@@ -48,7 +48,7 @@ def login_user(data):
 
     return (
         jsonify({"status": "success", "message": "User logged in successfully."}),
-        201,
+        200,
     )
 
 

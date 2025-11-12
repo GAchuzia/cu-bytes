@@ -25,7 +25,7 @@ def get_food_item_by_id_json(food_id):
         if item:
             return item.to_json(), 200
         else:
-            return {"error": f"Food item with id {food_id} not found"}, 404
+            return {"error": f"Food item with id {food_id} not found"}, 400
 
     except Exception as e:
         print(f"BrowsingService: Error retrieving food item information: {e}")
