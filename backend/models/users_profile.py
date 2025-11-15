@@ -9,8 +9,11 @@ class UsersProfile(db.Model):
 
     username = db.Column(db.String(80), primary_key=True)
 
+    # Whether or not the user has configured their dietary preferences
+    has_configured_settings = db.Column(db.Boolean, default=False)
+
     # Whether or not the user is comfortable sharing stats
-    show_stats = db.Column(db.Boolean, default=True)
+    show_stats = db.Column(db.Boolean, default=False)
 
     # Allergies and intolerances
     has_egg_allergy = db.Column(db.Boolean, default=False)
@@ -37,6 +40,7 @@ class UsersProfile(db.Model):
     def create(
         cls,
         username,
+        has_configured_settings=False,
         show_stats=False,
         has_egg_allergy=False,
         has_dairy_intolerance=False,
@@ -56,6 +60,7 @@ class UsersProfile(db.Model):
 
         user = cls(
             username=username,
+            has_configured_settings=has_configured_settings,
             show_stats=show_stats,
             has_egg_allergy=has_egg_allergy,
             has_dairy_intolerance=has_dairy_intolerance,

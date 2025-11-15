@@ -5,6 +5,7 @@ from flask import jsonify
 
 # Project imports
 from backend.models.users_auth import UsersAuth
+from backend.models.users_profile import UsersProfile
 
 """
 Methods directly connected to endpoints
@@ -217,6 +218,10 @@ def create_user(username, password):
     salt = os.urandom(16).hex()
     hashed = UsersAuth.hash_with_salt(password, salt)
     user = UsersAuth.create(username=username, password=hashed, salt=salt)
+
+    # Create an empty dietary profile for the user
+    UsersProfile.create(username=username, has_configured_settings=False)
+
     print(
         f"AuthenticationService: Created new user {username} with password "
         f"{password}"
