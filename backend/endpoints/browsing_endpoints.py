@@ -10,7 +10,7 @@ browse_bp = Blueprint("browse", __name__)
 @browse_bp.route("/food-items", methods=["GET"])
 def get_all_food_items():
     """
-    GET /food-items
+    GET /browse/food-items
 
     Description:
     Retrieves all available food items from the database.
@@ -43,7 +43,7 @@ def get_all_food_items():
 @browse_bp.route("/food-item/<int:id>", methods=["GET"])
 def get_food_item_by_id(id):
     """
-    GET /food-item/{id}
+    GET /browse/food-item/{id}
 
     Description:
     Retrieve information about the food item with id {id}
@@ -77,7 +77,7 @@ def get_food_item_by_id(id):
             "name": "Yogurt & Berries Parfait"
         }
 
-    404 Bad Request - Item not found
+    400 Bad Request - Item not found
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
     return get_food_item_by_id_json(food_id=id)

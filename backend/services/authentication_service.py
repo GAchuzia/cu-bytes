@@ -1,11 +1,18 @@
+# Library imports
 import os
 import re
 from flask import jsonify
 
+# Project imports
 from backend.models.users_auth import UsersAuth
 
+"""
+Methods directly connected to endpoints
+These methods return a JSON object and should end in _json
+"""
 
-def login_user(data):
+
+def login_user_json(data):
     """Attempt to login a user"""
     username = data.get("username")
     password = data.get("password")
@@ -46,23 +53,11 @@ def login_user(data):
 
     return (
         jsonify({"status": "success", "message": "User logged in successfully."}),
-        201,
+        200,
     )
 
 
-def create_user(username, password):
-    """Create a new user and store it in the database"""
-    salt = os.urandom(16).hex()
-    hashed = UsersAuth.hash_with_salt(password, salt)
-    user = UsersAuth.create(username=username, password=hashed, salt=salt)
-    print(
-        f"AuthenticationService: Created new user {username} with password "
-        f"{password}"
-    )
-    return user
-
-
-def register_user(data):
+def register_user_json(data):
     """
     Attempt to register a new user.
 
@@ -210,3 +205,20 @@ def register_user(data):
         jsonify({"status": "success", "message": "User registered successfully."}),
         201,
     )
+
+
+"""
+Helper methods
+"""
+
+
+def create_user(username, password):
+    """Create a new user and store it in the database"""
+    salt = os.urandom(16).hex()
+    hashed = UsersAuth.hash_with_salt(password, salt)
+    user = UsersAuth.create(username=username, password=hashed, salt=salt)
+    print(
+        f"AuthenticationService: Created new user {username} with password "
+        f"{password}"
+    )
+    return user

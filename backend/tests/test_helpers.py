@@ -4,6 +4,7 @@ import pytest
 # Project imports
 from backend.services.authentication_service import create_user
 from backend.models.food_item import FoodItem
+from backend.models.users_auth import UsersAuth
 from backend.app import db
 
 
@@ -11,6 +12,21 @@ def add_test_user(app, username="Ellen", password="Password123!"):
     """Insert a user directly into the database."""
     with app.app_context():
         create_user(username=username, password=password)
+
+
+@pytest.fixture
+def seeded_users(app):
+    """Setup a small user DB for each test."""
+    add_test_user(app, "Alice", "Password123!")
+    add_test_user(app, "Bob", "!321drowssaP")
+    add_test_user(app, "Charlie", "P@ssw0rd123")
+
+    yield  # test runs here
+
+    # Clean up after test
+    with app.app_context():
+        db.session.query(UsersAuth).delete()
+        db.session.commit()
 
 
 def add_test_food_item(

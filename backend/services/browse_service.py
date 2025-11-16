@@ -1,6 +1,13 @@
+# Library imports
 from flask import jsonify
 
+# Project imports
 from backend.models.food_item import FoodItem
+
+"""
+Methods directly connected to endpoints
+These methods return a JSON object and should end in _json
+"""
 
 
 def get_all_food_items_json():
@@ -23,7 +30,7 @@ def get_food_item_by_id_json(food_id):
         if item:
             return item.to_json(), 200
         else:
-            return {"error": f"Food item with id {food_id} not found"}, 404
+            return {"error": f"Food item with id {food_id} not found"}, 400
 
     except Exception as e:
         print(f"BrowsingService: Error retrieving food item information: {e}")

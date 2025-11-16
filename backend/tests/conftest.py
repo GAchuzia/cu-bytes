@@ -14,14 +14,17 @@ def temp_dbs():
     tmp_auth = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
     tmp_profiles = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
     tmp_food = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+    tmp_logging = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
     tmp_auth.close()
     tmp_profiles.close()
     tmp_food.close()
+    tmp_logging.close()
 
     yield {
         "auth": tmp_auth.name,
         "profiles": tmp_profiles.name,
         "food_data": tmp_food.name,
+        "logging": tmp_logging.name,
     }
 
     # Lines after yield occur on teardown
@@ -43,6 +46,7 @@ def app(temp_dbs):
             "auth": f"sqlite:///{temp_dbs['auth']}",  # noqa
             "profiles": f"sqlite:///{temp_dbs['profiles']}",  # noqa
             "food_data": f"sqlite:///{temp_dbs['food_data']}",  # noqa
+            "logging": f"sqlite:///{temp_dbs['logging']}",  # noqa
         },
     }
 
