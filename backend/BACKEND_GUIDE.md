@@ -65,7 +65,7 @@ sqlite> PRAGMA table_info('users_profile');
 14|prefers_kosher|BOOLEAN|0||0
 15|prefers_halal|BOOLEAN|0||0
 
-#### profiles.db
+#### food_data.db
 This database contains a list of the food items available at Carleton University.
 
 Steps to create:
@@ -94,3 +94,17 @@ sqlite> PRAGMA table_info('food_items');
 17|has_soy|BOOLEAN|0||0
 18|has_treenuts|BOOLEAN|0||0
 19|has_wheat|BOOLEAN|0||0
+
+#### logging.db
+This database contains a transactions that record which food item was consumed by which user.
+
+Steps to create:
+cd cu-bytes
+python -m backend.database.init_logging_db
+
+Database schema:
+sqlite> PRAGMA table_info('food_logging');
+0|username|VARCHAR(80)|1||1
+1|transaction_time|DATETIME|1||2
+2|food_id|INTEGER|1||0
+3|calories|INTEGER|0||0

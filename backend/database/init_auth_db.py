@@ -11,7 +11,7 @@ if __name__ == "__main__":
         db.create_all(bind_key="auth")
 
         # Create dummy users
-        create_user("Alice", "pass123")
-        create_user("Bob", "secret456")
-        create_user("Charlie", "admin789")
+        create_user("Alice", "Password123!")
+        create_user("Bob", "Secret456!")
+        create_user("Charlie", "IamAdmin789!")
         print("Created auth.db and added dummy users.")
