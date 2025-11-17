@@ -6,6 +6,20 @@ from backend.models.users_profile import UsersProfile
 from backend.extensions import db
 
 
+def retreive_profile_json(username):
+    """Attempt to retreive the profile of a user"""
+    # Ensure valid username
+    profile = UsersProfile.get_profile_by_name(username)
+    if profile is None:
+        print(f"ProfileService: No matching username for {username}")
+        return (
+            jsonify({"status": "error", "message": "No matching username found"}),
+            400,
+        )
+
+    return profile.to_json(), 200
+
+
 def edit_profile_json(data):
     """Attempt to edit a user profile"""
     username = data.get("username")

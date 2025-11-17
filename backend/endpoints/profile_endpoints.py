@@ -1,13 +1,52 @@
 from flask import Blueprint, request
-from backend.services.profile_service import edit_profile_json
+from backend.services.profile_service import edit_profile_json, retreive_profile_json
 
 profile_bp = Blueprint("profile", __name__)
+
+
+@profile_bp.route("/retreive/<string:username>", methods=["GET"])
+def retreive_profile(username):
+    """
+    GET /profile/retreive/{username}
+
+    Description:
+    Retreive the profile of a particular user.
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved the specified user profile
+        Response Body (JSON):
+        {
+            "has_configured_settings": true,
+            "has_dairy_intolerance": false,
+            "has_egg_allergy": false,
+            "has_gluten_allergy": false,
+            "has_peanut_allergy": false,
+            "has_sesame_allergy": false,
+            "has_shellfish_allergy": false,
+            "has_soy_allergy": false,
+            "has_treenut_allergy": false,
+            "has_wheat_allergy": false,
+            "is_vegan": true,
+            "is_vegetarian": false,
+            "prefers_halal": true,
+            "prefers_kosher": false,
+            "username": "Alice"
+        }
+    400 Bad Request - Invalid username
+    """
+    return retreive_profile_json(username=username)
 
 
 @profile_bp.route("/edit", methods=["POST"])
 def edit_profile():
     """
     POST /profile/edit
+
+    Description:
+    Edit the profile for a particular user.
 
     Request Body (JSON):
     {

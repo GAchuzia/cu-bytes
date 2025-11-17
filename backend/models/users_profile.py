@@ -89,3 +89,23 @@ class UsersProfile(db.Model):
         Returns None if not found.
         """
         return cls.query.filter_by(username=username).first()
+
+    def to_json(self):
+        """Return a JSON-serializable dict representing this user profile."""
+        return {
+            "username": self.username,
+            "has_configured_settings": self.has_configured_settings,
+            "has_egg_allergy": self.has_egg_allergy,
+            "has_dairy_intolerance": self.has_dairy_intolerance,
+            "has_peanut_allergy": self.has_peanut_allergy,
+            "has_sesame_allergy": self.has_sesame_allergy,
+            "has_shellfish_allergy": self.has_shellfish_allergy,
+            "has_soy_allergy": self.has_soy_allergy,
+            "has_treenut_allergy": self.has_treenut_allergy,
+            "has_wheat_allergy": self.has_wheat_allergy,
+            "has_gluten_allergy": self.has_gluten_allergy,
+            "is_vegan": self.is_vegan,
+            "is_vegetarian": self.is_vegetarian,
+            "prefers_kosher": self.prefers_kosher,
+            "prefers_halal": self.prefers_halal,
+        }
