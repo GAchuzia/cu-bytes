@@ -6,11 +6,15 @@ Guide for backend infrastructure and available endpoints.
 
 - [CU-Bytes Backend Guide](#cu-bytes-backend-guide)
   - [Table Of Contents](#table-of-contents)
+    - [Configuration Tips](#configuration-tips)
     - [Architecture](#architecture)
     - [Databases](#databases)
         - [auth.db]
         - [profiles.db]
         - [food_data.db]
+
+### Configuration Tips
+If you are having issues running the backend, it might help to delete the .db files and rerun the database initialization scripts. A commit could have been pushed that modifies the database format.
 
 ### Architecture
 The Backend Architecture follows the Service-Based Architecture described in section 10.0 of our proposal.

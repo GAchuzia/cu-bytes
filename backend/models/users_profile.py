@@ -81,3 +81,11 @@ class UsersProfile(db.Model):
         db.session.commit()
         print(f"UsersProfile: Created profile for user {username}")
         return user
+
+    @classmethod
+    def get_profile_by_name(cls, username):
+        """
+        Retrieve a user object from the database by username.
+        Returns None if not found.
+        """
+        return cls.query.filter_by(username=username).first()
