@@ -4,7 +4,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './style';
+import { styles } from './style-register';
 
 export default function LoginScreen() {
 
@@ -14,9 +14,6 @@ export default function LoginScreen() {
     // These values are passed to a JSON object that is sent to the register endpoint
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
-    // The status and message returned by the server as a JSON object
-    const [responseData, setResponseData] = useState({ status: '', message: '' });
 
     // Sets the value of the username based on the value of the username text input 
     function saveUsernameInputText(event) {
@@ -45,11 +42,22 @@ export default function LoginScreen() {
             return response.json();
         })
         .then(data => {
-            setResponseData(data);
-            (responseData && router.push("/login"));
+            router.push("/login");
         })
         .catch(error => {
             console.log(error);
+
+            const usernameInput = document.getElementById("usernameInput") as HTMLInputElement;
+            const passwordInput = document.getElementById("passwordInput") as HTMLInputElement;
+
+            if (usernameInput != null) {
+                usernameInput.style.color = 'red';
+                usernameInput.placeholder = 'Error!';
+            }
+            if (passwordInput != null) {
+                passwordInput.style.color = 'red';
+                passwordInput.placeholder = "Error!"
+            }
         });
     }
 
@@ -63,15 +71,30 @@ export default function LoginScreen() {
             <Text style={styles.subtitle}>Create a new CU-Bytes account</Text>
 
             <Text style={styles.subsubtitle}>
-                Usernames must be between 1 and 80 characters, unique, and contain only letters, numbers, underscores, and spaces
+                Username Requirements:
+            </Text>
+
+            <Text style={styles.description}>
+                - Username is unique to each user
+                <br></br>
+                - Between 1 and 80 characters in length
+                <br></br>
+                - Contains only letters, numbers, underscores, and spaces
             </Text>
 
             <Text style={styles.subsubtitle}>
-                Passwords must be between 10 and 120 characters, and have at least one lowercase letter, uppercase letter, number and special character
+                Password Requirements:
+            </Text>
+
+            <Text style={styles.description}>
+                - Between 10 and 120 characters in length
+                <br></br>
+                - At least one lowercase letter, uppercase letter, number and special character 
+
             </Text>
 
             {/*Enter the username that will identify the new account*/}
-            <TextInput
+            <TextInput id="usernameInput"
                 style={styles.textInput}
                 onChange={saveUsernameInputText}
                 placeholder={"Enter a new username"}
@@ -80,11 +103,12 @@ export default function LoginScreen() {
             </TextInput>
 
             {/*Enter the password that will secure the new account*/}
-            <TextInput
+            <TextInput id="passwordInput"
                 style={styles.textInput}
                 onChange={savePasswordInputText}
                 placeholder={"Enter a new password"}
                 value={password}
+                secureTextEntry={true}
             >
             </TextInput>
 

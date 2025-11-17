@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './style';
+import { styles } from './style-splash';
 
 export default function SplashScreen() {
     const [loading, setLoading] = useState(false);

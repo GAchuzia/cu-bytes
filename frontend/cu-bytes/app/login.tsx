@@ -4,7 +4,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './style';
+import { styles } from './style-login';
 
 export default function LoginScreen() {
 
@@ -14,9 +14,6 @@ export default function LoginScreen() {
     // These values are passed to a JSON object that is sent to the login endpoint
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
-    // The status and message returned by the server as a JSON object
-    const [responseData, setResponseData] = useState({ status: '', message: '' });
 
     // Sets the value of the username based on the value of the username text input
     function saveUsernameInputText(event) {
@@ -45,11 +42,22 @@ export default function LoginScreen() {
             return response.json();
         })
         .then(data => {
-            setResponseData(data);
-            (responseData && router.push("/home"));
+            router.push("/home");
         })
         .catch(error => {
             console.log(error);
+            
+            const usernameInput = document.getElementById("usernameInput") as HTMLInputElement;
+            const passwordInput = document.getElementById("passwordInput") as HTMLInputElement;
+
+            if (usernameInput != null) { 
+                usernameInput.style.color = 'red';
+                usernameInput.placeholder = 'Error!';
+            }
+            if (passwordInput != null) { 
+                passwordInput.style.color = 'red'; 
+                passwordInput.placeholder = 'Error!';
+            }
         });
     }
 
@@ -60,11 +68,10 @@ export default function LoginScreen() {
             <StatusBar style="auto" />
 
             <Text style={styles.title}>Login</Text>
-            <Text style={styles.subtitle}>Login in to your CU-Bytes account</Text>
-            <Text style={styles.subtitle}>Or create a new CU-Bytes account</Text>
+            <Text style={styles.subtitle}>Login in to your CU-Bytes account or create a new CU-Bytes account</Text>
 
             {/*Enter the username that will identify the existing account*/}
-            <TextInput
+            <TextInput id="usernameInput"
                 style={styles.textInput}
                 onChange={saveUsernameInputText}
                 placeholder={"Enter your username"}
@@ -73,11 +80,12 @@ export default function LoginScreen() {
             </TextInput>
 
             {/*Enter the password that will access the existing account*/}
-            <TextInput
+            <TextInput id="passwordInput"
                 style={styles.textInput}
                 onChange={savePasswordInputText}
                 placeholder={"Enter your password"}
                 value={password}
+                secureTextEntry={true}
             >
             </TextInput>
 
@@ -99,12 +107,6 @@ export default function LoginScreen() {
                 <Text style={styles.buttonText}>Create Account</Text>
 
             </TouchableOpacity>
-
-            {responseData && (
-                <Text style={styles.subtitle}>
-                    {responseData.message}
-                </Text>
-            )}
 
         </View>
 

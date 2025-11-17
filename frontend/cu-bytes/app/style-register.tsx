@@ -41,31 +41,35 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
 
     textAlign: 'center',
-    margin: '0.5%' as any,
+    textDecorationLine: 'underline',
 
     color: '#000000FF',
     backgroundColor: 'rgba(255, 210, 210, 1)',
-    padding: '1.2%' as any,
-    borderRadius: 40
+    padding: '0.8%' as any,
+    borderRadius: 0,
+
+    width: '30%'
   },
   description: {
     fontFamily: 'sans-serif',
-    fontSize: '100%' as any,
-    fontWeight: '600',
+    fontSize: '125%' as any,
+    fontWeight: '400',
 
     textAlign: 'center',
     marginBottom: '0.5%' as any,
 
     color: '#000000FF',
     backgroundColor: 'rgba(255, 210, 210, 1)',
-    padding: '1.2%' as any,
-    borderRadius: 40
+    padding: '0.8%' as any,
+    borderRadius: 0,
+
+    width: '30%'
   },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
 
-    marginTop: '1.2%' as any,
+    marginTop: '1.5%' as any,
     elevation: 8,
 
     backgroundColor: '#007AFF',
@@ -95,16 +99,17 @@ export const styles = StyleSheet.create({
   pressableText: {
     alignItems: 'center',
 
-    marginTop: '0.5%' as any,
+    marginTop: '0%' as any,
 
     fontFamily: 'sans-serif',
-    fontSize: '200%' as any,
-    fontWeight: 800,
+    fontSize: '150%' as any,
+    fontWeight: 600,
 
     color: '#000000FF',
     backgroundColor: 'rgba(230, 250, 250, 1)',
-    padding: '1.2%' as any,
-    borderRadius: 30
+    padding: '1.6%' as any,
+    paddingHorizontal: '2.4%' as any,
+    borderRadius: 0
   },
   infoSection: {
     backgroundColor: 'white',

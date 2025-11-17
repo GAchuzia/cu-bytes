@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { apiService } from '../services/api';
 
-import { styles } from './style';
+import { styles } from './style-index';
 
 export default function HomeScreen() {
   const [loading, setLoading] = useState(false);
