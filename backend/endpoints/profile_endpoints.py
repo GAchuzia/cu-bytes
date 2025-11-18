@@ -33,6 +33,7 @@ def retreive_profile(username):
             "is_vegetarian": false,
             "prefers_halal": true,
             "prefers_kosher": false,
+            "show_stats": true,
             "username": "Alice"
         }
     400 Bad Request - Invalid username
@@ -47,6 +48,9 @@ def edit_profile():
 
     Description:
     Edit the profile for a particular user.
+    You only need to pass arguments that need changing.
+    Sending an edit request with no optional arguments will
+    still count as the user having configured their profile.
 
     Request Body (JSON):
     {
