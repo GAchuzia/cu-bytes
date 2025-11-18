@@ -57,8 +57,7 @@ def test_register_username_invalid(client):
     assert response.status_code == 400
     assert data["status"] == "error"
     assert (
-        "Username can only contain letters, numbers, underscores and spaces."
-        in data["message"]
+        "Username can only contain letters, numbers and underscores." in data["message"]
     )
 
 
@@ -169,7 +168,7 @@ def test_register_many_valid_users(client):
     assert response.status_code == 201
 
     response = client.post(
-        "/auth/register", json={"username": "Ellen O_o", "password": "aaaaaBBBBB1@"}
+        "/auth/register", json={"username": "Ellen_O_o", "password": "aaaaaBBBBB1@"}
     )
     assert response.status_code == 201
 

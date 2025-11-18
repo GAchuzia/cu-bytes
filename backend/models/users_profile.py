@@ -95,6 +95,7 @@ class UsersProfile(db.Model):
         return {
             "username": self.username,
             "has_configured_settings": self.has_configured_settings,
+            "show_stats": self.show_stats,
             "has_egg_allergy": self.has_egg_allergy,
             "has_dairy_intolerance": self.has_dairy_intolerance,
             "has_peanut_allergy": self.has_peanut_allergy,

@@ -63,7 +63,7 @@ def register_user_json(data):
     Attempt to register a new user.
 
     Usernames must be between 1 and 80 characters, unique, and can only
-    contain letters, numbers, underscores and spaces
+    contain letters, numbers and underscores
 
     Passwords must be between 10 and 120 characters, with at least one
     special character, one number, one uppercase and one lowercase
@@ -101,7 +101,7 @@ def register_user_json(data):
             400,
         )
 
-    if not re.fullmatch(r"^[a-zA-Z0-9_ ]{1,80}$", username):
+    if not re.fullmatch(r"^[a-zA-Z0-9_]{1,80}$", username):
         print("AuthenticationService: Invalid username format (bad char).")
         return (
             jsonify(
@@ -109,7 +109,7 @@ def register_user_json(data):
                     "status": "error",
                     "message": (
                         "Invalid username format. Username can only contain "
-                        "letters, numbers, underscores and spaces."
+                        "letters, numbers and underscores."
                     ),
                 }
             ),
