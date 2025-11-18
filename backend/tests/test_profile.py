@@ -91,6 +91,17 @@ def test_retreive_invalid_user_profile(client):
 
 
 # ------------------------------------
+# Testing Retreive User Profile
+# ------------------------------------
+def test_default_configuration_flag(client, seeded_users):
+    response = client.get("/profile/configured/Alice")
+    data = response.get_json()
+
+    assert response.status_code == 200
+    assert data["has_configured_settings"] is False
+
+
+# ------------------------------------
 # Testing Edit User Profile
 # ------------------------------------
 def test_edit_partial_user_profile(client, seeded_users):
@@ -234,7 +245,7 @@ def test_edit_user_profile_no_optional_args(client, seeded_users):
     assert "Profile updated successfully" in data["message"]
 
     # Check settings flag in underlying user profile
-    response = client.get("/profile/retreive/Alice")
+    response = client.get("/profile/configured/Alice")
     data = response.get_json()
 
     assert response.status_code == 200

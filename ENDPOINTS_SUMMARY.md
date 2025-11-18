@@ -177,6 +177,24 @@ Summary of endpoints.
     """
 
     """
+    GET /profile/configured/{username}
+
+    Description:
+    Retreive whether or not the user has configured their profile.
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved the specified user profile
+        Response Body (JSON):
+        {
+            "has_configured_settings": true,
+        }
+    400 Bad Request - Invalid username
+    """
+
+    """
     POST /profile/edit
 
     Description:

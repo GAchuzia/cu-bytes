@@ -1,5 +1,9 @@
 from flask import Blueprint, request
-from backend.services.profile_service import edit_profile_json, retreive_profile_json
+from backend.services.profile_service import (
+    edit_profile_json,
+    retreive_profile_json,
+    configured_json,
+)
 
 profile_bp = Blueprint("profile", __name__)
 
@@ -39,6 +43,28 @@ def retreive_profile(username):
     400 Bad Request - Invalid username
     """
     return retreive_profile_json(username=username)
+
+
+@profile_bp.route("/configured/<string:username>", methods=["GET"])
+def configured(username):
+    """
+    GET /profile/configured/{username}
+
+    Description:
+    Retreive whether or not the user has configured their profile.
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved the specified user profile
+        Response Body (JSON):
+        {
+            "has_configured_settings": true,
+        }
+    400 Bad Request - Invalid username
+    """
+    return configured_json(username=username)
 
 
 @profile_bp.route("/edit", methods=["POST"])
