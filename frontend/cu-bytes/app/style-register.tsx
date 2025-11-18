@@ -56,7 +56,6 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
 
     textAlign: 'center',
-    marginBottom: '0.5%' as any,
 
     color: '#000000FF',
     backgroundColor: 'rgba(255, 210, 210, 1)',

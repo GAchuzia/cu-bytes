@@ -9,6 +9,7 @@ import { styles } from './style-enter'
 export default function EnterScreen() {
 
     const [loading, setLoading] = useState(false);
+    const [visible, setVisible] = useState(false);
 
     // The food item id variable
     const [foodItemId, setFoodItemId] = useState(1);    
@@ -87,7 +88,7 @@ export default function EnterScreen() {
             return response.json();
         })
         .then(data => {
-            saveFoodItem(data)
+            saveFoodItem(data);
             console.log(foodItem);
         })
     }
@@ -113,15 +114,19 @@ export default function EnterScreen() {
             {/*Send a request to the server to see food items in the database that match the entered food item*/}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
-                onPress={handlePressGetFoodItems}
+                onPress={() => {
+                    setVisible(false);
+                    handlePressGetFoodItems();
+                }}
                 disabled={loading}
             >
                 <Text style={styles.buttonText}>Confirm</Text>
 
             </TouchableOpacity>
 
-            {filteredFoodItemArray && (
+            {filteredFoodItemArray && !visible && (
                 <View>
+                    
                     {filteredFoodItemArray.map((foodItem) => (
                         <Text 
                             style={styles.pressableText}
@@ -129,12 +134,27 @@ export default function EnterScreen() {
                             onPress={() => {
                                 saveFoodItemId(foodItem["id"]); 
                                 handlePressGetFoodItem();
-                                router.push("/item")
+                                setVisible(true);
                             }}
                         >
                             {foodItem["name"]} (ID {foodItem["id"]})
+                            <br></br>
+                            <line>--------------------------------------------------</line>
                         </Text>
                     ))}
+                </View>
+            )}
+
+            {visible && (
+                <View>
+                    <Text style={styles.subsubtitle}>Food Item Name: {foodItem["name"]}</Text>
+                    <br></br>
+                    <Text style={styles.subsubtitle}>Calories: {foodItem["calories"]}</Text>
+                    <br></br>
+                    <Text style={styles.subsubtitle}>Dining Location: {foodItem["dining_location"]}</Text>
+                    <br></br>
+                    <Text style={styles.subsubtitle}>Cost: ${foodItem["cost"]}</Text>
+                    <br></br>
                 </View>
             )}
 

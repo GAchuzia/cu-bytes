@@ -6,23 +6,64 @@ import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './style-register';
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
 
-    const [loading, setLoading] = useState(false);
+    // The text elements are stored as constants and will be modified if errors are detected in the username
+    const usernameReq = document.getElementById("usernameReq") as HTMLElement;
+    const usernameUniqueReq = document.getElementById("usernameUniqueReq") as HTMLElement;
+    const usernameLengthReq = document.getElementById("usernameLengthReq") as HTMLElement;
+    const usernameCharReq = document.getElementById("usernameCharReq") as HTMLElement;
+
+    // The text elements are stored as constants and will be modified if errors are detected in the password
+    const passwordReq = document.getElementById("passwordReq") as HTMLElement;
+    const passwordLengthReq = document.getElementById("passwordLengthReq") as HTMLElement;
+    const passwordCharReq = document.getElementById("passwordCharReq") as HTMLElement;
+
+    // Check if the value of a string variable contains any lowercase letters
+    function containsLowerCaseLetters(str) {
+        const lowerCaseLetters = /[abcdefghijklmnopqrstuvwxyz]/;
+        return lowerCaseLetters.test(str);
+    }
+    // Check if the value of a string variable contains any uppercase letters
+    function containsUpperCaseLetters(str) {
+        const upperCaseLetters = /[ABCDEFGHIJKLMNOPQRSTUVWXYZ]/;
+        return upperCaseLetters.test(str);
+    }
+    // Check if the value of a string variable contains any numbers
+    function containsNumbers(str) {
+        const numbers = /[1234567890]/;
+        return numbers.test(str);
+    }
+    // Check if the value of a string variable contains any special characters
+    function containsSpecialChars(str) {
+        const specialChars = /[`!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/;
+        return specialChars.test(str);
+    }
+
+    const [loading, setLoading] = useState('');
 
     // The username and password variables
     // These values are passed to a JSON object that is sent to the register endpoint
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    // Sets the value of the username based on the value of the username text input 
+    // Sets the value of the username based on the value of the username text input
     function saveUsernameInputText(event) {
+        usernameReq.style.color = 'black';
+        usernameUniqueReq.style.color = 'black';
+        usernameLengthReq.style.color = 'black';
+        usernameCharReq.style.color = 'black';
+
         setUsername(event.target.value);
         console.log(username);
     }
 
     // Sets the value of the password based on the value of the password text input
     function savePasswordInputText(event) {
+        passwordReq.style.color = 'black';
+        passwordLengthReq.style.color = 'black';
+        passwordCharReq.style.color = 'black';
+
         setPassword(event.target.value);
         console.log(password);
     }
@@ -47,16 +88,27 @@ export default function LoginScreen() {
         .catch(error => {
             console.log(error);
 
-            const usernameInput = document.getElementById("usernameInput") as HTMLInputElement;
-            const passwordInput = document.getElementById("passwordInput") as HTMLInputElement;
-
-            if (usernameInput != null) {
-                usernameInput.style.color = 'red';
-                usernameInput.placeholder = 'Error!';
+            // Notify the user if the submitted username is less than 1 character or greater than 80 characters
+            if (username.length < 0 || username.length > 80 || username == '') {
+                usernameReq.style.color = 'red';
+                usernameLengthReq.style.color = 'red';
             }
-            if (passwordInput != null) {
-                passwordInput.style.color = 'red';
-                passwordInput.placeholder = "Error!"
+            // Notify the user if the submitted username contains unauthorised characters
+            if (containsSpecialChars(username)) {
+                usernameReq.style.color = 'red';
+                usernameCharReq.style.color = 'red';
+            }
+            // Notify the user if the submitted password contains less than 10 characters or greater than 120 characters
+            if (password.length < 10 || password.length > 120) {
+                passwordReq.style.color = 'red';
+                passwordLengthReq.style.color = 'red';
+            }
+            // Notify the user if the submitted password does not contain one or more of the required types of characters
+            if (!containsLowerCaseLetters(password) || containsUpperCaseLetters(password) ||
+                !containsNumbers(password) || containsSpecialChars(password)
+            ) {
+                passwordReq.style.color = 'red';
+                passwordCharReq.style.color = 'red';
             }
         });
     }
@@ -70,27 +122,30 @@ export default function LoginScreen() {
             <Text style={styles.title}>Create Account for CU-Bytes</Text>
             <Text style={styles.subtitle}>Create a new CU-Bytes account</Text>
 
-            <Text style={styles.subsubtitle}>
+            <Text style={styles.subsubtitle} id="usernameReq">
                 Username Requirements:
             </Text>
 
-            <Text style={styles.description}>
+            <Text style={styles.description} id="usernameUniqueReq">
                 - Username is unique to each user
-                <br></br>
+            </Text>
+            <Text style={styles.description} id="usernameLengthReq">
                 - Between 1 and 80 characters in length
-                <br></br>
+            </Text>
+            <Text style={styles.description} id="usernameCharReq">
                 - Contains only letters, numbers, underscores, and spaces
             </Text>
 
-            <Text style={styles.subsubtitle}>
+            <Text style={styles.subsubtitle} id="passwordReq">
                 Password Requirements:
             </Text>
 
-            <Text style={styles.description}>
+            <Text style={styles.description} id="passwordLengthReq">
                 - Between 10 and 120 characters in length
-                <br></br>
-                - At least one lowercase letter, uppercase letter, number and special character 
+            </Text>
 
+            <Text style={styles.description} id="passwordCharReq">
+                - At least one lowercase letter, uppercase letter, number and special character 
             </Text>
 
             {/*Enter the username that will identify the new account*/}
@@ -125,7 +180,5 @@ export default function LoginScreen() {
             </TouchableOpacity>
 
         </View>
-
     )
-
 }

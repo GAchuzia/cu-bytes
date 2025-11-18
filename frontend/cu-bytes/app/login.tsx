@@ -8,7 +8,11 @@ import { styles } from './style-login';
 
 export default function LoginScreen() {
 
-    const [loading, setLoading] = useState(false);
+    const usernameInput = document.getElementById("usernameInput") as HTMLInputElement;
+    const passwordInput = document.getElementById("passwordInput") as HTMLInputElement;
+
+    const [loading, setLoading] = useState('');
+    const [visible, setVisible] = useState(false);
 
     // The username and password variables
     // These values are passed to a JSON object that is sent to the login endpoint
@@ -17,14 +21,22 @@ export default function LoginScreen() {
 
     // Sets the value of the username based on the value of the username text input
     function saveUsernameInputText(event) {
+        setVisible(false);
+        usernameInput.style.color = 'black';
+        usernameInput.placeholder = 'Enter your username';
+
         setUsername(event.target.value);
         console.log(username);
     }
 
     // Sets the value of the password based on the value of the password text input
     function savePasswordInputText(event) {
+        setVisible(false);
+        passwordInput.style.color = 'black';
+        passwordInput.placeholder = 'Enter your password';
+
         setPassword(event.target.value);
-        console.log(username);
+        console.log(password);
     }
 
     // Sends a login request to the server containing the username and password
@@ -46,9 +58,8 @@ export default function LoginScreen() {
         })
         .catch(error => {
             console.log(error);
-            
-            const usernameInput = document.getElementById("usernameInput") as HTMLInputElement;
-            const passwordInput = document.getElementById("passwordInput") as HTMLInputElement;
+
+            setVisible(true);
 
             if (usernameInput != null) { 
                 usernameInput.style.color = 'red';
@@ -107,6 +118,14 @@ export default function LoginScreen() {
                 <Text style={styles.buttonText}>Create Account</Text>
 
             </TouchableOpacity>
+
+            {visible && (
+                <Text id="errorMessage"
+                    style={styles.subsubtitleError}
+                >
+                    Error! Incorrect username, incorrect password, or unregistered account!
+                </Text>
+            )}
 
         </View>
 

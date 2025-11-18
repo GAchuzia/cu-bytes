@@ -8,7 +8,8 @@ import { apiService } from '../services/api';
 
 import { styles } from './style-index';
 
-export default function HomeScreen() {
+export default function IndexScreen() {
+
   const [loading, setLoading] = useState(false);
 
   const healthCheck = async () => {
