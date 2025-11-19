@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, FlatList } from 'react-native';
 
 import { router } from 'expo-router';
@@ -8,52 +8,64 @@ import { styles } from './styles/style-enter'
 
 export default function EnterScreen() {
 
+    ////////////////////////////////////////////////// FoodItem, Loading, and Visible Variables and Setters //////////////////////////////////////////////////
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
 
-    // The food item id variable
-    const [foodItemId, setFoodItemId] = useState(1);    
-    // The food item name variable
+    // The food item variables
+    const [foodItemId, setFoodItemId] = useState(1); // initial value of 1 to prevent errors
     const [foodItemName, setFoodItemName] = useState('');
-    // The food item
     const [foodItem, setFoodItem] = useState({});
 
-    // The unfiltered food item array variable
+    // The food item array variables
     const [foodItemArray, setFoodItemArray] = useState([]);
-    // The food item array that is filtered based on the food item name
     const [filteredFoodItemArray, setFilteredFoodItemArray] = useState([]);
 
-    // Sets the value of the food item id based on the selected food item
-    function saveFoodItemId(id) {
+    /*
+    Set the value of the food item id variable
+    id: The number representing the value of the food item id variable
+    */
+    function saveFoodItemId(id: SetStateAction<number>) {
         setFoodItemId(id);
-        console.log(foodItemId);
     }
 
-    // Sets the value of the food item name based on the value of the food item name text input
-    function saveFoodItemName(event) {
+    /*
+    Set the value of the food item name variable to the value entered in the food item name text input element
+    event: The event is the current string value in the food item name text input element
+    */
+    function saveFoodItemName(event: { target: { value: SetStateAction<string>; }; }) {
         setFoodItemName(event.target.value);
-        console.log(foodItemName);
     }
 
-    // Sets the value of the food item based
-    function saveFoodItem(item) {
+    /*
+    Set the value of the food item variable
+    item: The JSON item representing the value of the food item variable
+    */
+    function saveFoodItem(item: SetStateAction<{}>) {
         setFoodItem(item);
-        console.log(foodItem);
     }
 
-    // Sets the value of the food item array
+    /*
+    Set the value of the food item array variable
+    The food item array is retrieved from the backend
+    foodItemArray: The array representing the value of the food item array variable
+    */
     function saveFoodItemArray(foodItemArray) {
         setFoodItemArray(foodItemArray);
-        console.log(foodItemArray);
     }
 
-    // Sets the value of the filtered food item array
+    /*
+    Set the value of the filtered food item array variable
+    The food item array is retrieved from the backend and then filtered by the entered food item name
+    foodItemArray: The array representing the value of the food item variable
+    */
     function saveFilteredFoodItemArray(foodItemArray) {
         const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"] as string).includes(foodItemName));
         setFilteredFoodItemArray(filteredFoodItemArray);
-        console.log(filteredFoodItemArray);
     }
+    ////////////////////////////////////////////////// FoodItem, Loading, and Visible Variables and Setters //////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
     // Sends a get all food items request to the server
     const handlePressGetFoodItems = () => {
         fetch("http://127.0.0.1:5000/browse/food-items", {
@@ -71,7 +83,9 @@ export default function EnterScreen() {
             saveFilteredFoodItemArray(data);
         })
     }
+    ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
 
+    ////////////////////////////////////////////////// Send food item request ////////////////////////////////////////////////// 
     // Sends a get food item by id request to the server
     const handlePressGetFoodItem = () => {
 
@@ -92,6 +106,7 @@ export default function EnterScreen() {
             console.log(foodItem);
         })
     }
+    ////////////////////////////////////////////////// Send food item request ////////////////////////////////////////////////// 
 
     // The page that the user sees in the app/browser
     return (

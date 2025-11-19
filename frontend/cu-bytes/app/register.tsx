@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
@@ -8,38 +8,85 @@ import { styles } from './styles/style-register';
 
 export default function RegisterScreen() {
 
-    // The text elements are stored as constants and will be modified if errors are detected in the username
+    ////////////////////////////////////////////////// Set color of username and password elements //////////////////////////////////////////////////
+    // Create constants for elements that will be modified based on the submitted username
     const usernameReq = document.getElementById("usernameReq") as HTMLElement;
     const usernameUniqueReq = document.getElementById("usernameUniqueReq") as HTMLElement;
     const usernameLengthReq = document.getElementById("usernameLengthReq") as HTMLElement;
     const usernameCharReq = document.getElementById("usernameCharReq") as HTMLElement;
 
-    // The text elements are stored as constants and will be modified if errors are detected in the password
+    // Create constants for elements that will be modified based on the submitted password
     const passwordReq = document.getElementById("passwordReq") as HTMLElement;
     const passwordLengthReq = document.getElementById("passwordLengthReq") as HTMLElement;
     const passwordCharReq = document.getElementById("passwordCharReq") as HTMLElement;
 
-    // Check if the value of a string variable contains any lowercase letters
-    function containsLowerCaseLetters(str) {
+    /*
+    Reset the color of every username-related element
+    */
+    function resetUsernameElements() {
+        if (usernameReq != null && usernameUniqueReq != null && usernameLengthReq != null && usernameCharReq != null) {
+            usernameReq.style.color = 'black';
+            usernameUniqueReq.style.color = 'black';
+            usernameLengthReq.style.color = 'black';
+            usernameCharReq.style.color = 'black';            
+        }
+    }
+
+    /*
+    Reset the color of every password-related element
+    */
+    function resetPasswordElements() {
+        if (passwordReq != null && passwordLengthReq != null && passwordCharReq != null) {
+            passwordReq.style.color = 'black';
+            passwordLengthReq.style.color = 'black';
+            passwordCharReq.style.color = 'black';
+        }
+    }
+    ////////////////////////////////////////////////// Set color of username and password elements //////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////// Testing username and password submissions //////////////////////////////////////////////////
+    /* 
+    Check if a string variable contains any lowercase letters
+    str: The string variable to be tested
+    returns: true if the string variable contains any lowercase letters
+    */
+    function containsLowerCaseLetters(str: string) {
         const lowerCaseLetters = /[abcdefghijklmnopqrstuvwxyz]/;
         return lowerCaseLetters.test(str);
     }
-    // Check if the value of a string variable contains any uppercase letters
-    function containsUpperCaseLetters(str) {
+
+    /*
+    Check if a string variable contains any uppercase letters
+    str: The string variable to be tested
+    returns: true if the string variable contains any uppercase letters
+    */
+    function containsUpperCaseLetters(str: string) {
         const upperCaseLetters = /[ABCDEFGHIJKLMNOPQRSTUVWXYZ]/;
         return upperCaseLetters.test(str);
     }
-    // Check if the value of a string variable contains any numbers
-    function containsNumbers(str) {
+
+    /*
+    Check if a string variable contains any numbers
+    str: The string variable to be created
+    returns: true if the string variable contains any numbers
+    */
+    function containsNumbers(str: string) {
         const numbers = /[1234567890]/;
         return numbers.test(str);
     }
-    // Check if the value of a string variable contains any special characters
-    function containsSpecialChars(str) {
-        const specialChars = /[`!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+    /*
+    Check if a string variable contains any special characters
+    str: The string variable to be created
+    returns: true if the string variable contains any special characters
+    */
+    function containsSpecialChars(str: string) {
+        const specialChars = /[`!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~ ]/;
         return specialChars.test(str);
     }
+    ////////////////////////////////////////////////// Testing username and password submissions //////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////// Username, Password, and Loading Variables and Setters //////////////////////////////////////////////////
     const [loading, setLoading] = useState('');
 
     // The username and password variables
@@ -47,35 +94,26 @@ export default function RegisterScreen() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    // Sets the value of the username based on the value of the username text input
-    function saveUsernameInputText(event) {
-
-        // Ensure that the first element in the group has loaded before attempting to alter the element styles
-        if (usernameReq != null) {
-            usernameReq.style.color = 'black';
-            usernameUniqueReq.style.color = 'black';
-            usernameLengthReq.style.color = 'black';
-            usernameCharReq.style.color = 'black';            
-        }
-
+    /*
+    Set the value of the username variable to the value entered in the username text input element
+    event: The event is the current string value in the username text input element
+    */
+    function saveUsernameInputText(event: { target: { value: SetStateAction<string>; }; }) {
+        resetUsernameElements();
         setUsername(event.target.value);
-        console.log(username);
     }
 
-    // Sets the value of the password based on the value of the password text input
-    function savePasswordInputText(event) {
-
-        // Ensure that the first element in the group has loaded before attempting to alter the element styles
-        if (passwordReq != null) {
-            passwordReq.style.color = 'black';
-            passwordLengthReq.style.color = 'black';
-            passwordCharReq.style.color = 'black';
-        }
-
+    /*
+    Set the value of the password variable to the value entered in the password text input element
+    event: The event is the current string value in the password text input element
+    */
+    function savePasswordInputText(event: { target: { value: SetStateAction<string>; }; }) {
+        resetPasswordElements();
         setPassword(event.target.value);
-        console.log(password);
     }
+    ////////////////////////////////////////////////// Username, Password, and Loading Variables and Setters //////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////// Send register request //////////////////////////////////////////////////
     // Sends a register request to the server containing the username and password 
     const handlePress = () => {
         fetch("http://127.0.0.1:5000/auth/register", {
@@ -94,32 +132,31 @@ export default function RegisterScreen() {
             router.push("/login");
         })
         .catch(error => {
-            console.log(error);
 
-            // Notify the user if the submitted username is less than 1 character or greater than 80 characters
+            // Modify the username elements if the submitted username is less than 1 character or greater than 80 characters
             if (username.length < 0 || username.length > 80 || username == '') {
                 usernameReq.style.color = 'red';
                 usernameLengthReq.style.color = 'red';
             }
-            // Notify the user if the submitted username contains unauthorised characters
+            // Modify the username elements if the submitted username contains unauthorised characters
             if (containsSpecialChars(username)) {
                 usernameReq.style.color = 'red';
                 usernameCharReq.style.color = 'red';
             }
-            // Notify the user if the submitted password contains less than 10 characters or greater than 120 characters
+            // Modify the password elements if the submitted password contains less than 10 characters or greater than 120 characters
             if (password.length < 10 || password.length > 120) {
                 passwordReq.style.color = 'red';
                 passwordLengthReq.style.color = 'red';
             }
-            // Notify the user if the submitted password does not contain one or more of the required types of characters
-            if (!containsLowerCaseLetters(password) || containsUpperCaseLetters(password) ||
-                !containsNumbers(password) || containsSpecialChars(password)
+            // Modify the password elements if the submitted password does not contain one or more of the required types of characters
+            if (!containsLowerCaseLetters(password) || containsUpperCaseLetters(password) || !containsNumbers(password) || containsSpecialChars(password)
             ) {
                 passwordReq.style.color = 'red';
                 passwordCharReq.style.color = 'red';
             }
         });
     }
+    ////////////////////////////////////////////////// Send register request //////////////////////////////////////////////////
 
     // The page that the user sees in the app/browser
     return (
@@ -141,7 +178,7 @@ export default function RegisterScreen() {
                 - Between 1 and 80 characters in length
             </Text>
             <Text style={styles.description} id="usernameCharReq">
-                - Contains only letters, numbers, underscores, and spaces
+                - Contains only letters, numbers, and underscores
             </Text>
 
             <Text style={styles.subsubtitle} id="passwordReq">

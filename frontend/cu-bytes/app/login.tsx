@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
@@ -8,8 +8,35 @@ import { styles } from './styles/style-login';
 
 export default function LoginScreen() {
 
+    ////////////////////////////////////////////////// Set color and placeholder text of username and password elements //////////////////////////////////////////////////
+    // Create constants for elements that will be modified based on the submitted username or password
     const usernameInput = document.getElementById("usernameInput") as HTMLInputElement;
     const passwordInput = document.getElementById("passwordInput") as HTMLInputElement;
+
+    /*
+    Reset the username-related element
+    */
+    function resetUsernameElement() {
+        if (usernameInput != null) {
+            setVisible(false);
+            usernameInput.style.color = 'black';
+            usernameInput.placeholder = 'Enter your username';
+        }
+    }
+
+    /*
+    Reset the password-related element
+    */
+    function resetPasswordElement() {
+        if (passwordInput != null) {
+            setVisible(false);
+            passwordInput.style.color = 'black';
+            passwordInput.placeholder = 'Enter your password';            
+        }        
+    }
+    ////////////////////////////////////////////////// Set color and placeholder text of username and password elements //////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////// Username, Password, Loading, and Visibile Variables and Setters //////////////////////////////////////////////////
 
     const [loading, setLoading] = useState('');
     const [visible, setVisible] = useState(false);
@@ -20,33 +47,19 @@ export default function LoginScreen() {
     const [password, setPassword] = useState('');
 
     // Sets the value of the username based on the value of the username text input
-    function saveUsernameInputText(event) {
-
-        // Ensure that the element has loaded before attempting to alter the element style
-        if (usernameInput != null) {
-            setVisible(false);
-            usernameInput.style.color = 'black';
-            usernameInput.placeholder = 'Enter your username';
-        }
-
+    function saveUsernameInputText(event: { target: { value: SetStateAction<string>; }; }) {
+        resetUsernameElement();
         setUsername(event.target.value);
-        console.log(username);
     }
 
     // Sets the value of the password based on the value of the password text input
-    function savePasswordInputText(event) {
-
-        // Ensure that the element has loaded before attempting to alter the element style
-        if (passwordInput != null) {
-            setVisible(false);
-            passwordInput.style.color = 'black';
-            passwordInput.placeholder = 'Enter your password';            
-        }
-
+    function savePasswordInputText(event: { target: { value: SetStateAction<string>; }; }) {
+        resetPasswordElement();
         setPassword(event.target.value);
-        console.log(password);
     }
+    ////////////////////////////////////////////////// Username, Password, Loading, and Visibile Variables and Setters //////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////// Send login request //////////////////////////////////////////////////
     // Sends a login request to the server containing the username and password
     const handlePress = () => {
         fetch("http://127.0.0.1:5000/auth/login", {
@@ -69,16 +82,19 @@ export default function LoginScreen() {
 
             setVisible(true);
 
+            // Modify the username element if there is an error with the login request
             if (usernameInput != null) { 
                 usernameInput.style.color = 'red';
                 usernameInput.placeholder = 'Error!';
             }
+            // Modify the password element if there is an error with the login request
             if (passwordInput != null) { 
                 passwordInput.style.color = 'red'; 
                 passwordInput.placeholder = 'Error!';
             }
         });
     }
+    ////////////////////////////////////////////////// Send login request //////////////////////////////////////////////////
 
     // The page that the user sees in the app/browser
     return (
