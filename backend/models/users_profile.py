@@ -9,8 +9,11 @@ class UsersProfile(db.Model):
 
     username = db.Column(db.String(80), primary_key=True)
 
+    # Whether or not the user has configured their dietary preferences
+    has_configured_settings = db.Column(db.Boolean, default=False)
+
     # Whether or not the user is comfortable sharing stats
-    show_stats = db.Column(db.Boolean, default=True)
+    show_stats = db.Column(db.Boolean, default=False)
 
     # Allergies and intolerances
     has_egg_allergy = db.Column(db.Boolean, default=False)
@@ -37,6 +40,7 @@ class UsersProfile(db.Model):
     def create(
         cls,
         username,
+        has_configured_settings=False,
         show_stats=False,
         has_egg_allergy=False,
         has_dairy_intolerance=False,
@@ -56,6 +60,7 @@ class UsersProfile(db.Model):
 
         user = cls(
             username=username,
+            has_configured_settings=has_configured_settings,
             show_stats=show_stats,
             has_egg_allergy=has_egg_allergy,
             has_dairy_intolerance=has_dairy_intolerance,
@@ -76,3 +81,32 @@ class UsersProfile(db.Model):
         db.session.commit()
         print(f"UsersProfile: Created profile for user {username}")
         return user
+
+    @classmethod
+    def get_profile_by_name(cls, username):
+        """
+        Retrieve a user object from the database by username.
+        Returns None if not found.
+        """
+        return cls.query.filter_by(username=username).first()
+
+    def to_json(self):
+        """Return a JSON-serializable dict representing this user profile."""
+        return {
+            "username": self.username,
+            "has_configured_settings": self.has_configured_settings,
+            "show_stats": self.show_stats,
+            "has_egg_allergy": self.has_egg_allergy,
+            "has_dairy_intolerance": self.has_dairy_intolerance,
+            "has_peanut_allergy": self.has_peanut_allergy,
+            "has_sesame_allergy": self.has_sesame_allergy,
+            "has_shellfish_allergy": self.has_shellfish_allergy,
+            "has_soy_allergy": self.has_soy_allergy,
+            "has_treenut_allergy": self.has_treenut_allergy,
+            "has_wheat_allergy": self.has_wheat_allergy,
+            "has_gluten_allergy": self.has_gluten_allergy,
+            "is_vegan": self.is_vegan,
+            "is_vegetarian": self.is_vegetarian,
+            "prefers_kosher": self.prefers_kosher,
+            "prefers_halal": self.prefers_halal,
+        }

@@ -5,6 +5,7 @@ from flask import jsonify
 
 # Project imports
 from backend.models.users_auth import UsersAuth
+from backend.models.users_profile import UsersProfile
 
 """
 Methods directly connected to endpoints
@@ -62,7 +63,7 @@ def register_user_json(data):
     Attempt to register a new user.
 
     Usernames must be between 1 and 80 characters, unique, and can only
-    contain letters, numbers, underscores and spaces
+    contain letters, numbers and underscores
 
     Passwords must be between 10 and 120 characters, with at least one
     special character, one number, one uppercase and one lowercase
@@ -100,7 +101,7 @@ def register_user_json(data):
             400,
         )
 
-    if not re.fullmatch(r"^[a-zA-Z0-9_ ]{1,80}$", username):
+    if not re.fullmatch(r"^[a-zA-Z0-9_]{1,80}$", username):
         print("AuthenticationService: Invalid username format (bad char).")
         return (
             jsonify(
@@ -108,7 +109,7 @@ def register_user_json(data):
                     "status": "error",
                     "message": (
                         "Invalid username format. Username can only contain "
-                        "letters, numbers, underscores and spaces."
+                        "letters, numbers and underscores."
                     ),
                 }
             ),
@@ -217,6 +218,10 @@ def create_user(username, password):
     salt = os.urandom(16).hex()
     hashed = UsersAuth.hash_with_salt(password, salt)
     user = UsersAuth.create(username=username, password=hashed, salt=salt)
+
+    # Create an empty dietary profile for the user
+    UsersProfile.create(username=username, has_configured_settings=False)
+
     print(
         f"AuthenticationService: Created new user {username} with password "
         f"{password}"
