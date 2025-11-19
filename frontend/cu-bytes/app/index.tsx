@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { apiService } from '../services/api';
 
-import { styles } from './style-index';
+import { styles } from './styles/style-index';
 
 export default function IndexScreen() {
 

@@ -4,7 +4,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './style-register';
+import { styles } from './styles/style-register';
 
 export default function RegisterScreen() {
 
