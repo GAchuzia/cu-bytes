@@ -36,7 +36,7 @@ def register():
 
     Restrictions:
     Usernames must be between 1 and 80 characters, unique, and can
-    only contain letters, numbers, underscores and spaces
+    only contain letters, numbers, and underscores
     Passwords must be between 10 and 120 characters, with at least
     one special character, one number, one uppercase and one lowercase
 

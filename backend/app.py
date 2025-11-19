@@ -8,6 +8,7 @@ from backend.config import config
 from backend.endpoints.authentication_endpoints import auth_bp
 from backend.endpoints.browsing_endpoints import browse_bp
 from backend.endpoints.food_entry_endpoints import logging_bp
+from backend.endpoints.profile_endpoints import profile_bp
 from backend.extensions import db
 
 
@@ -26,6 +27,7 @@ def create_app(config_override=None):
     app.register_blueprint(auth_bp, url_prefix="/auth")
     app.register_blueprint(browse_bp, url_prefix="/browse")
     app.register_blueprint(logging_bp, url_prefix="/logging")
+    app.register_blueprint(profile_bp, url_prefix="/profile")
 
     # Configure CORS (Which domains are permitted to access this app)
     CORS(

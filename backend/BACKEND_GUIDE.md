@@ -6,11 +6,15 @@ Guide for backend infrastructure and available endpoints.
 
 - [CU-Bytes Backend Guide](#cu-bytes-backend-guide)
   - [Table Of Contents](#table-of-contents)
+    - [Configuration Tips](#configuration-tips)
     - [Architecture](#architecture)
     - [Databases](#databases)
         - [auth.db]
         - [profiles.db]
         - [food_data.db]
+
+### Configuration Tips
+If you are having issues running the backend, it might help to delete the .db files and rerun the database initialization scripts. A commit could have been pushed that modifies the database format.
 
 ### Architecture
 The Backend Architecture follows the Service-Based Architecture described in section 10.0 of our proposal.
@@ -49,21 +53,22 @@ python -m backend.database.init_user_settings_db
 Database schema:
 sqlite> PRAGMA table_info('users_profile');
 0|username|VARCHAR(80)|1||1
-1|show_stats|BOOLEAN|0||0
-2|has_egg_allergy|BOOLEAN|0||0
-3|has_fish_allergy|BOOLEAN|0||0
-4|has_dairy_intolerance|BOOLEAN|0||0
-5|has_peanut_allergy|BOOLEAN|0||0
-6|has_sesame_allergy|BOOLEAN|0||0
-7|has_shellfish_allergy|BOOLEAN|0||0
-8|has_soy_allergy|BOOLEAN|0||0
-9|has_treenut_allergy|BOOLEAN|0||0
-10|has_wheat_allergy|BOOLEAN|0||0
-11|has_gluten_allergy|BOOLEAN|0||0
-12|is_vegan|BOOLEAN|0||0
-13|is_vegetarian|BOOLEAN|0||0
-14|prefers_kosher|BOOLEAN|0||0
-15|prefers_halal|BOOLEAN|0||0
+1|has_configured_settings|BOOLEAN|0||0
+2|show_stats|BOOLEAN|0||0
+3|has_egg_allergy|BOOLEAN|0||0
+4|has_fish_allergy|BOOLEAN|0||0
+5|has_dairy_intolerance|BOOLEAN|0||0
+6|has_peanut_allergy|BOOLEAN|0||0
+7|has_sesame_allergy|BOOLEAN|0||0
+8|has_shellfish_allergy|BOOLEAN|0||0
+9|has_soy_allergy|BOOLEAN|0||0
+10|has_treenut_allergy|BOOLEAN|0||0
+11|has_wheat_allergy|BOOLEAN|0||0
+12|has_gluten_allergy|BOOLEAN|0||0
+13|is_vegan|BOOLEAN|0||0
+14|is_vegetarian|BOOLEAN|0||0
+15|prefers_kosher|BOOLEAN|0||0
+16|prefers_halal|BOOLEAN|0||0
 
 #### food_data.db
 This database contains a list of the food items available at Carleton University.

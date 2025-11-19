@@ -52,7 +52,7 @@ def get_food_item_by_id(id):
     None
 
     Responses:
-    200 OK - Successfully retrieved all food items
+    200 OK - Successfully retrieved the specified food item
         Response Body (JSON):
         {
             "calories": 310,
