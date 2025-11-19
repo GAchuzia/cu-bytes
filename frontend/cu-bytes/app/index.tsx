@@ -6,9 +6,10 @@ import { StatusBar } from 'expo-status-bar';
 
 import { apiService } from '../services/api';
 
-import { styles } from './style';
+import { styles } from './styles/style-index';
 
-export default function HomeScreen() {
+export default function IndexScreen() {
+
   const [loading, setLoading] = useState(false);
 
   const healthCheck = async () => {
@@ -36,7 +37,7 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <StatusBar style="auto" />
 
-      <Text style={styles.title}>CU Bytes</Text>
+      <Text style={styles.title}>CU-Bytes</Text>
       <Text style={styles.subtitle}>Server Health Check</Text>
       <Text style={styles.description}>
         Click the button below to check if the server is running and healthy.
