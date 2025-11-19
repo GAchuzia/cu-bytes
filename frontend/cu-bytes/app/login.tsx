@@ -21,9 +21,13 @@ export default function LoginScreen() {
 
     // Sets the value of the username based on the value of the username text input
     function saveUsernameInputText(event) {
-        setVisible(false);
-        usernameInput.style.color = 'black';
-        usernameInput.placeholder = 'Enter your username';
+
+        // Ensure that the element has loaded before attempting to alter the element style
+        if (usernameInput != null) {
+            setVisible(false);
+            usernameInput.style.color = 'black';
+            usernameInput.placeholder = 'Enter your username';
+        }
 
         setUsername(event.target.value);
         console.log(username);
@@ -31,9 +35,13 @@ export default function LoginScreen() {
 
     // Sets the value of the password based on the value of the password text input
     function savePasswordInputText(event) {
-        setVisible(false);
-        passwordInput.style.color = 'black';
-        passwordInput.placeholder = 'Enter your password';
+
+        // Ensure that the element has loaded before attempting to alter the element style
+        if (passwordInput != null) {
+            setVisible(false);
+            passwordInput.style.color = 'black';
+            passwordInput.placeholder = 'Enter your password';            
+        }
 
         setPassword(event.target.value);
         console.log(password);

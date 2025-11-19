@@ -49,10 +49,14 @@ export default function RegisterScreen() {
 
     // Sets the value of the username based on the value of the username text input
     function saveUsernameInputText(event) {
-        usernameReq.style.color = 'black';
-        usernameUniqueReq.style.color = 'black';
-        usernameLengthReq.style.color = 'black';
-        usernameCharReq.style.color = 'black';
+
+        // Ensure that the first element in the group has loaded before attempting to alter the element styles
+        if (usernameReq != null) {
+            usernameReq.style.color = 'black';
+            usernameUniqueReq.style.color = 'black';
+            usernameLengthReq.style.color = 'black';
+            usernameCharReq.style.color = 'black';            
+        }
 
         setUsername(event.target.value);
         console.log(username);
@@ -60,9 +64,13 @@ export default function RegisterScreen() {
 
     // Sets the value of the password based on the value of the password text input
     function savePasswordInputText(event) {
-        passwordReq.style.color = 'black';
-        passwordLengthReq.style.color = 'black';
-        passwordCharReq.style.color = 'black';
+
+        // Ensure that the first element in the group has loaded before attempting to alter the element styles
+        if (passwordReq != null) {
+            passwordReq.style.color = 'black';
+            passwordLengthReq.style.color = 'black';
+            passwordCharReq.style.color = 'black';
+        }
 
         setPassword(event.target.value);
         console.log(password);
