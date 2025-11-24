@@ -20,6 +20,8 @@
     - [1. Create Virtual Environment](#1-create-virtual-environment-1)
     - [2. Activate Virtual Environment](#2-activate-virtual-environment-1)
     - [3. Install Dependencies](#3-install-dependencies-1)
+    - [4. Setup Environment](#4-setup-environment)
+    - [5. Configure Datasets](#5-configure-datasets)
   - [Running the Application](#running-the-application)
     - [1. Start Backend Server](#1-start-backend-server)
     - [2. Start Frontend Development Server](#2-start-frontend-development-server)
@@ -151,6 +153,52 @@ source mlenv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
+### 4. Setup Environment
+
+```python
+python ml_pipeline_setup.py --setup
+```
+
+This installs packages, creates directories, downloads Food-101, and tests GPU.
+
+**Other commands:**
+
+```python
+python ml_pipeline_setup.py --test-gpu
+```
+
+**Test GPU only**
+
+```python
+python ml_pipeline_setup.py --install-pytorch
+```
+
+### 5. Configure Datasets
+
+Create `datasets_config.json`:
+
+```json
+[
+  {
+    "name": "food101",
+    "path": "data/food-101",
+    "selected_classes": ["pizza", "hamburger"],
+    "train_split": null,
+    "val_split": null
+  }
+]
+```
+
+- `name`: Dataset identifier ("food101" for Food-101)
+- `path`: Path to dataset directory
+- `selected_classes`: List of classes to include (null = all)
+- `train_split`/`val_split`: Optional split file paths
+
+**Dataset structure:**
+
+- Food-101: Standard structure with `meta/` and `images/`
+- Generic: `dataset_path/class_name/*.jpg`
 
 ## Running the Application
 
