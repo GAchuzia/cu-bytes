@@ -90,3 +90,79 @@ class FoodClassifier(nn.Module):
         """Unfreeze all parameters"""
         for param in self.backbone.parameters():
             param.requires_grad = True
+
+def create_model(
+    model_name: str = "resnet50",
+    num_classes: Optional[int] = None,
+    pretrained: bool = True,
+    freeze_backbone: bool = False,
+    device: torch.device = None,
+    config: Optional[Config] = None,
+):
+    """Create and return a food classification model"""
+    
+    # Get num_classes from config if not provided
+    if num_classes is None:
+        if config and config.NUM_CLASSES:
+            num_classes = config.NUM_CLASSES
+        else:
+            raise ValueError("num_classes must be provided or config.NUM_CLASSES must be set")
+
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    model = FoodClassifier(
+        num_classes=num_classes,
+        model_name=model_name,
+        pretrained=pretrained,
+        freeze_backbone=freeze_backbone,
+    )
+
+    model = model.to(device)
+
+    return model
+
+
+def load_model(
+    model_path: str,
+    model_name: str = "resnet50",
+    num_classes: Optional[int] = None,
+    device: torch.device = None,
+):
+    """Load a trained model from checkpoint"""
+
+    # Set device first
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    # Load checkpoint
+    checkpoint = torch.load(model_path, map_location=device)
+    
+    # Get num_classes from checkpoint if not provided
+    if num_classes is None:
+        if "num_classes" in checkpoint:
+            num_classes = checkpoint["num_classes"]
+        elif "config" in checkpoint and "num_classes" in checkpoint["config"]:
+            num_classes = checkpoint["config"]["num_classes"]
+        else:
+            raise ValueError(
+                f"num_classes not found in checkpoint. "
+                f"Please provide num_classes parameter or retrain model."
+            )
+    
+    # Create model with correct number of classes
+    model = create_model(
+        model_name=model_name, 
+        num_classes=num_classes, 
+        pretrained=False, 
+        device=device
+    )
+
+    # Load model weights
+    if "model_state_dict" in checkpoint:
+        model.load_state_dict(checkpoint["model_state_dict"])
+    else:
+        model.load_state_dict(checkpoint)
+
+    model.eval()
+    return model
