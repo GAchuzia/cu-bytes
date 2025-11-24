@@ -7,6 +7,7 @@ import numpy as np
 from backend.app import create_app
 from backend.extensions import db
 from backend.models.food_item import FoodItem
+from backend.models.food_item import DiningLocation
 
 """
 CSV files are expected to contain the following columns
@@ -119,6 +120,31 @@ def create_food_table():
     csvfile.close()
 
 
+# NEW
+def create_dining_location_table():
+    # Open csv
+    csvfile = open(
+        "backend/automated_data_collection/FoodInfo.csv", newline="", encoding="utf-8"
+    )
+    reader = csv.DictReader(csvfile)
+
+    dining_location_names = list()
+
+    with app.app_context():
+        # Add each row to the database as a DiningLocation
+        for row in reader:
+
+            if row.get("Dining Location") not in dining_location_names:
+
+                DiningLocation.create(
+                    dining_location_name=row.get("Dining Location")
+                )
+
+                dining_location_names.append(row.get("Dining Location"))
+
+    csvfile.close()
+
+
 def parse_bool(value):
     """
     Helper function to convert Y/N/'' into Boolean
@@ -133,5 +159,11 @@ def parse_bool(value):
 if __name__ == "__main__":
     create_single_csv()
     clear_existing_data()
+    
     create_food_table()
     print("Created food_data.db and added food items.")
+
+    # NEW
+    create_dining_location_table()
+    print("Created dining_location_data.db and added dining locations")
+    
