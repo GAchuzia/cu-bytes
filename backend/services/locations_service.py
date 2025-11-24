@@ -3,6 +3,7 @@ from flask import jsonify
 
 # Project imports
 from backend.models.food_item import DiningLocation
+from backend.models.food_item import FoodItem
 
 """
 Methods directly connected to endpoints
@@ -24,14 +25,15 @@ def get_all_dining_locations_json():
         return jsonify({"error": "Failed to retrieve dining locations"}), 500
 
 
-def get_dining_location_by_id_json(location_id):
+def get_dining_location_by_id_json(dining_location_id):
     try:
-        location = DiningLocation.get_by_id(location_id)
-        if location:
-            return location.to_json(), 200
-        else:
-            return {"error": f"Dining location with id {location_id} not found"}, 400
+        # Transform all food items into JSON-friendly dictionaries
+        food_items = FoodItem.query.filter(FoodItem.dining_location == dining_location_id).all()
+        result = [{"id": item.id, "name": item.food_name} for item in food_items]
+
+        # Return as a JSON response
+        return jsonify(result), 200
 
     except Exception as e:
-        print(f"LocationService: Error retrieving dining location information: {e}")
-        return jsonify({"error": "Failed to retrieve dining location information"}), 500
+        print(f"LocationService: Error retrieving dining location food items information: {e}")
+        return jsonify({"error": "Failed to retrieve dining location food items information"}), 500

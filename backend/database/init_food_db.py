@@ -91,11 +91,13 @@ def create_food_table():
     reader = csv.DictReader(csvfile)
 
     with app.app_context():
+
         # Add each row to the database as a FoodItem
         for row in reader:
+
             FoodItem.create(
                 food_name=row.get("Food Item"),
-                dining_location=row.get("Dining Location"),
+                dining_location=get_dining_location_id(row.get("Dining Location")),
                 cost=-1.0 if row.get("Cost") == "" else row.get("Cost"),
                 calories=-1 if row.get("Calories") == "" else row.get("Calories"),
                 comments=row.get("Comments"),
@@ -119,6 +121,54 @@ def create_food_table():
 
     csvfile.close()
 
+def get_dining_location_id(dining_location_name):
+
+    if dining_location_name == "Tim Hortons":
+        return 1
+    elif dining_location_name == "Subway":
+        return 2
+    elif dining_location_name == "Colonel by Chicken":
+        return 3
+    elif dining_location_name == "La Cocina":
+        return 4
+    elif dining_location_name == "Mike's Place":
+        return 5
+    elif dining_location_name == "Starbucks":
+        return 6
+    elif dining_location_name == "Rodney's Kitchen":
+        return 7
+    elif dining_location_name == "Leo's Lounge":
+        return 8
+    elif dining_location_name == "Teraanga Commons Dining Hall":
+        return 9
+    elif dining_location_name == "Tunnel Junction":
+        return 10
+    elif dining_location_name == "Bridgehead":
+        return 11
+    elif dining_location_name == "Rooster's":
+        return 12
+    elif dining_location_name == "Riverbank Social":
+        return 13
+    elif dining_location_name == "Oasis":
+        return 14
+    elif dining_location_name == "Urban Deli":
+        return 15
+    elif dining_location_name == "Shawarma Palace":
+        return 16
+    elif dining_location_name == "Ollies":
+        return 17
+    elif dining_location_name == "Burger 101":
+        return 18
+    elif dining_location_name == "Bento Boxes":
+        return 19
+    elif dining_location_name == "CT-Pastry":
+        return 20
+    elif dining_location_name == "The Market Pizzeria":
+        return 21
+    elif dining_location_name == "Thai Kitchen":
+        return 22
+    else:
+        return 0
 
 # NEW
 def create_dining_location_table():
@@ -166,4 +216,4 @@ if __name__ == "__main__":
     # NEW
     create_dining_location_table()
     print("Created dining_location_data.db and added dining locations")
-    
+

@@ -12,7 +12,9 @@ class FoodItem(db.Model):
 
     # Main attributes
     food_name = db.Column(db.String(80), nullable=False)
-    dining_location = db.Column(db.String(80), nullable=False)
+    
+    # Switched from db.String(80) to db.Integer
+    dining_location = db.Column(db.Integer, nullable=False)
 
     # General attributes
     # Distinctive defaults to make it easy to spot errors
@@ -102,10 +104,11 @@ class FoodItem(db.Model):
 
     def to_json(self):
         """Return a JSON-serializable dict representing this food item."""
+
         return {
             "id": self.id,
             "name": self.food_name,
-            "dining_location": self.dining_location,
+            "dining_location": get_dining_location_name(self.dining_location),
             "cost": self.cost,
             "calories": self.calories,
             "comments": self.comments,
@@ -124,6 +127,56 @@ class FoodItem(db.Model):
             "has_treenuts": self.has_treenuts,
             "has_wheat": self.has_wheat,
         }
+
+
+def get_dining_location_name(dining_location_id):
+
+    if dining_location_id == 1:
+        return "Tim Hortons"
+    elif dining_location_id == 2:
+        return "Subway"
+    elif dining_location_id == 3:
+        return "Colonel by Chicken"
+    elif dining_location_id == 4:
+        return "La Cocina"
+    elif dining_location_id == 5:
+        return "Mike's Place"
+    elif dining_location_id == 6:
+        return "Starbucks"
+    elif dining_location_id == 7:
+        return "Rodney's Kitchen"
+    elif dining_location_id == 8:
+        return "Leo's Lounge"
+    elif dining_location_id == 9:
+        return "Teraanga Commons Dining Hall"
+    elif dining_location_id == 10:
+        return "Tunnel Junction"
+    elif dining_location_id == 11:
+        return "Bridgehead"
+    elif dining_location_id == 12:
+        return "Rooster's"
+    elif dining_location_id == 13:
+        return "Riverbank Social"
+    elif dining_location_id == 14:
+        return "Oasis"
+    elif dining_location_id == 15:
+        return "Urban Deli"
+    elif dining_location_id == 16:
+        return "Shawarma Palace"
+    elif dining_location_id == 17:
+        return "Ollies"
+    elif dining_location_id == 18:
+        return "Burger 101"
+    elif dining_location_id == 19:
+        return "Bento Boxes"
+    elif dining_location_id == 20:
+        return "CT-Pastry"
+    elif dining_location_id == 21:
+        return "The Market Pizzeria"
+    elif dining_location_id == 22:
+        return "Thai Kitchen"
+    else:
+        return ""
 
 
 class DiningLocation(db.Model):
@@ -155,15 +208,15 @@ class DiningLocation(db.Model):
         print(f"DiningLocation: Created dining location called {dining_location_name}")
 
     @classmethod
-    def get_by_id(cls, dining_service_id):
+    def get_by_name(cls, dining_location_name):
         """
-        Retrieve a DiningLocation by id
+        Retrieve a DiningLocation by name
         """
-        return db.session.get(cls, dining_service_id)
+        return db.session.get(cls, dining_location_name)
 
     def to_json(self):
-        """Return a JSON-serializable dict representing this dining location."""
+        """Return a JSON-serializable dict representing the food items at this dining location."""
         return {
-            "id": self.id,
-            "dining_location": self.dining_location
+            "id": self.dining_service_id,
+            "dining_location": self.dining_location_name
         }
