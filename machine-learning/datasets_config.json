@@ -1,0 +1,60 @@
+{
+  "datasets": [
+    {
+      "name": "food101",
+      "display_name": "Food-101",
+      "url": "http://data.vision.ee.ethz.ch/cvl/food-101.tar.gz",
+      "filename": "food-101.tar.gz",
+      "extract_to": "food-101",
+      "structure_type": "food101",
+      "description": "Food-101 dataset with 101 food categories",
+      "num_classes": 101,
+      "expected_path_after_extract": "food-101",
+      "classes_file": "meta/classes.txt",
+      "train_split_file": "meta/train.txt",
+      "test_split_file": "meta/test.txt",
+      "image_dir": "images",
+      "enabled": true
+    },
+    {
+      "name": "uec_food100",
+      "display_name": "UEC Food-100",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/rkuo2000/uecfood100",
+      "filename": "uec_food100.zip",
+      "extract_to": "UECFOOD100",
+      "structure_type": "class_folders",
+      "description": "UEC Food-100 dataset with 100 food categories",
+      "num_classes": 100,
+      "expected_path_after_extract": "UECFOOD100",
+      "train_split_ratio": 0.8,
+      "enabled": true
+    },
+    {
+      "name": "uec_food256",
+      "display_name": "UEC Food-256",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/rkuo2000/uecfood256",
+      "filename": "uec_food256.zip",
+      "extract_to": "UECFOOD256",
+      "structure_type": "class_folders",
+      "description": "UEC Food-256 dataset with 256 food categories",
+      "num_classes": 256,
+      "expected_path_after_extract": "UECFOOD256",
+      "train_split_ratio": 0.8,
+      "enabled": true
+    },
+    {
+      "name": "unimib2016",
+      "display_name": "UNIMIB 2016",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/tommyngx/unimib2016",
+      "filename": "unimib2016.zip",
+      "extract_to": "original",
+      "structure_type": "class_folders",
+      "description": "UNIMIB 2016 food dataset",
+      "num_classes": 73,
+      "expected_path_after_extract": "original",
+      "train_split_ratio": 0.8,
+      "enabled": false,
+      "note": "UNIMIB 2016 has non-standard structure - images are in data/original/ without class folders. Disable for now or restructure manually."
+    }
+  ]
+}

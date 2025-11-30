@@ -1,49 +1,52 @@
 import torch
-import os
 from pathlib import Path
+from typing import List, Optional, Dict, Any
+import json
 
 
 class Config:
-    DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    GPU_AVAILABLE = torch.cuda.is_available()
+    """Configuration class for the ML pipeline"""
 
-    BASE_DIR = Path(__file__).resolve().parent
-    DATA_DIR = BASE_DIR / "data"
-    MODELS_DIR = BASE_DIR / "models"
-    NOTEBOOKS_DIR = BASE_DIR / "notebooks"
+    def __init__(
+        self,
+        base_dir: Optional[Path] = None,
+        batch_size: int = 32,
+        image_size: int = 224,
+        learning_rate: float = 1e-4,
+        num_epochs: int = 50,
+        train_split: float = 0.7,
+        val_split: float = 0.15,
+        test_split: float = 0.15,
+        model_name: str = "food_classifier",
+        datasets_config: Optional[List[Dict]] = None,
+    ):
+        self.DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.GPU_AVAILABLE = torch.cuda.is_available()
 
-    # Food-101 Dataset
-    FOOD101_DIR = DATA_DIR / "food-101"
-    FOOD101_IMAGES_DIR = FOOD101_DIR / "images"
-    FOOD101_META_DIR = FOOD101_DIR / "meta"
+        self.BASE_DIR = base_dir if base_dir else Path(__file__).resolve().parent
+        self.DATA_DIR = self.BASE_DIR / "data"
+        self.MODELS_DIR = self.BASE_DIR / "models"
+        self.CHECKPOINT_DIR = self.MODELS_DIR / "checkpoints"
+        self.BEST_MODEL_PATH = self.MODELS_DIR / "best_model.pth"
 
-    # Model configuration
-    NUM_CLASSES = 101  # Food-101 has 101 classes
-    IMAGE_SIZE = 224
-    BATCH_SIZE = 32
-    LEARNING_RATE = 1e-4
-    NUM_EPOCHS = 50
+        self.IMAGE_SIZE = image_size
+        self.BATCH_SIZE = batch_size
+        self.LEARNING_RATE = learning_rate
+        self.NUM_EPOCHS = num_epochs
+        self.TRAIN_SPLIT = train_split
+        self.VAL_SPLIT = val_split
+        self.TEST_SPLIT = test_split
+        self.MODEL_NAME = model_name
 
-    # Training configuration
-    TRAIN_SPLIT = 0.8
-    VAL_SPLIT = 0.1
-    TEST_SPLIT = 0.1
+        self.DATASETS_CONFIG = datasets_config or []
+        self.DATASETS_METADATA = {}
+        self.NUM_CLASSES = None
+        self.ALL_CLASS_NAMES = []
 
-    # Model saving
-    MODEL_NAME = "food_classifier"
-    CHECKPOINT_DIR = MODELS_DIR / "checkpoints"
-    BEST_MODEL_PATH = MODELS_DIR / "best_model.pth"
-
-    # API configuration
-    API_HOST = "localhost"
-    API_PORT = 5001
-
-    @classmethod
-    def print_device_info(cls):
-        """Prints user-friendly device information"""
-
-        print(f"Device: {cls.DEVICE}")
-        if cls.GPU_AVAILABLE:
+    def print_device_info(self):
+        """Print device information"""
+        print(f"Device: {self.DEVICE}")
+        if self.GPU_AVAILABLE:
             print(f"GPU: {torch.cuda.get_device_name(0)}")
             print(
                 f"GPU Memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB"
@@ -51,23 +54,63 @@ class Config:
         else:
             print("Using CPU")
 
-    @classmethod
-    def create_directories(cls):
-        """Create necessary directories for machine learning project"""
-        directories = [
-            cls.DATA_DIR,
-            cls.MODELS_DIR,
-            cls.NOTEBOOKS_DIR,
-            cls.FOOD101_DIR,
-            cls.FOOD101_IMAGES_DIR,
-            cls.FOOD101_META_DIR,
-            cls.CHECKPOINT_DIR,
-        ]
-
-        for directory in directories:
+    def create_directories(self):
+        """Create necessary directories"""
+        for directory in [self.DATA_DIR, self.MODELS_DIR, self.CHECKPOINT_DIR]:
             directory.mkdir(parents=True, exist_ok=True)
-            print(f"Created directory: {directory}")
 
+    @classmethod
+    def from_config_file(
+        cls,
+        config_file_path: Optional[Path] = None,
+        base_dir: Optional[Path] = None,
+        **override_kwargs,
+    ) -> "Config":
+        """Create Config instance from datasets_config.json file"""
+        if config_file_path is None:
+            config_file_path = Path(__file__).resolve().parent / "datasets_config.json"
 
-# Initialize config
-config = Config()
+        if not config_file_path.exists():
+            raise FileNotFoundError(
+                f"Datasets config file not found: {config_file_path}"
+            )
+
+        with open(config_file_path, "r") as f:
+            datasets_metadata = json.load(f)
+
+        datasets_config = []
+        for dataset_info in datasets_metadata.get("datasets", []):
+            if not dataset_info.get("enabled", True):
+                continue
+
+            dataset_config_entry = {
+                "name": dataset_info["name"],
+                "path": None,
+                "metadata": dataset_info,
+            }
+
+            if base_dir:
+                dataset_config_entry["path"] = str(
+                    base_dir
+                    / "data"
+                    / dataset_info.get("extract_to", dataset_info["name"])
+                )
+            else:
+                script_dir = Path(__file__).resolve().parent
+                dataset_config_entry["path"] = str(
+                    script_dir
+                    / "data"
+                    / dataset_info.get("extract_to", dataset_info["name"])
+                )
+
+            datasets_config.append(dataset_config_entry)
+
+        config_kwargs = {
+            "base_dir": base_dir,
+            "datasets_config": datasets_config,
+            **override_kwargs,
+        }
+
+        config = cls(**config_kwargs)
+        config.DATASETS_METADATA = datasets_metadata
+        return config

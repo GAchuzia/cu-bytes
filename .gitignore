@@ -45,3 +45,4 @@ machine-learning/models/checkpoints/*
 machine-learning/models/runs/*
 machine-learning/models/*.pth
 machine-learning/models/*.pt
+machine-learning/models/class_names.json
