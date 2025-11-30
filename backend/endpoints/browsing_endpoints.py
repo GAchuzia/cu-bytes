@@ -1,7 +1,7 @@
 from flask import Blueprint
 from backend.services.browse_service import (
     get_all_food_items_json,
-    get_food_item_by_id_json,
+    get_food_item_by_id_json
 )
 
 browse_bp = Blueprint("browse", __name__)

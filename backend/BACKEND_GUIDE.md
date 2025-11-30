@@ -72,6 +72,7 @@ sqlite> PRAGMA table_info('users_profile');
 
 #### food_data.db
 This database contains a list of the food items available at Carleton University.
+This database also contains a list of the dining locations on the Carleton University Campus.
 
 Steps to create:
 cd cu-bytes
@@ -99,6 +100,11 @@ sqlite> PRAGMA table_info('food_items');
 17|has_soy|BOOLEAN|0||0
 18|has_treenuts|BOOLEAN|0||0
 19|has_wheat|BOOLEAN|0||0
+
+Database schema:
+sqlite> PRAGMA table_info('dining_locations')'
+0|dining_service_id|INTEGER|1|1
+1|dining_location_name|VARCHAR(80)|1||0
 
 #### logging.db
 This database contains a transactions that record which food item was consumed by which user.

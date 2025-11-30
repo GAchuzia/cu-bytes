@@ -4,6 +4,7 @@ import pytest
 # Project imports
 from backend.services.authentication_service import create_user
 from backend.models.food_item import FoodItem
+from backend.models.food_item import DiningLocation
 from backend.models.users_auth import UsersAuth
 from backend.app import db
 
@@ -32,7 +33,7 @@ def seeded_users(app):
 def add_test_food_item(
     app,
     food_name,
-    dining_location="Default Dining Location",
+    dining_location=1,
     cost=12.99,
     calories=350,
     comments="Default Comment",
@@ -88,4 +89,26 @@ def seeded_food_data(app):
     # Clean up after test
     with app.app_context():
         db.session.query(FoodItem).delete()
+        db.session.commit()
+
+def add_test_dining_location(app, dining_location_name):
+     """Insert a dining location directly into the database."""
+     with app.app_context():
+        DiningLocation.create(dining_location_name=dining_location_name)
+
+@pytest.fixture
+def seeded_dining_location_data(app):
+    """Setup a small food_data DB for each test in this file."""
+    add_test_food_item(app, "Caesar Salad")
+    add_test_food_item(app, "Hamburger")
+    add_test_food_item(app, "Banana Bread")
+    
+    add_test_dining_location(app, "Tim Hortons")
+
+    yield  # test runs here
+
+    # Clean up after test
+    with app.app_context():
+        db.session.query(FoodItem).delete()
+        db.session.query(DiningLocation).delete()
         db.session.commit()
