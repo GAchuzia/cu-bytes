@@ -64,8 +64,9 @@ def test_get_food_items_at_nonexistant_dining_location(client, seeded_dining_loc
     response = client.get("/locations/dining-location/3")
     data = response.get_json()
 
-    assert response.status_code == 200
+    assert response.status_code == 400
 
     # Check this function returns an exhaustive list of food items at the specific dining location
-    assert isinstance(data, list)
-    assert len(data) == 0
+    assert isinstance(data, dict)
+
+    

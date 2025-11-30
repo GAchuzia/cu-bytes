@@ -31,8 +31,10 @@ def get_dining_location_by_id_json(dining_location_id):
         food_items = FoodItem.query.filter(FoodItem.dining_location == dining_location_id).all()
         result = [{"id": item.id, "name": item.food_name} for item in food_items]
 
-        # Return as a JSON response
-        return jsonify(result), 200
+        if result == []:
+            return {"error": f"Dining location with id {dining_location_id} not found"}, 400 
+        else:
+            return jsonify(result), 200
 
     except Exception as e:
         print(f"LocationService: Error retrieving dining location food items information: {e}")
