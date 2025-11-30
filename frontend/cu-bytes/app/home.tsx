@@ -17,7 +17,7 @@ export default function HomeScreen() {
             <StatusBar style="auto" />
 
             <Text style={styles.title}>Home</Text>
-            
+
             {/*Route the user to the scan page*/}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
@@ -65,7 +65,7 @@ export default function HomeScreen() {
             {/*Route the user to the settings page*/}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
-                //onPress={() => router.push("/settings")}
+                onPress={() => router.push("/settings")}
                 disabled={loading}
             >
                 <Text style={styles.buttonText}>
