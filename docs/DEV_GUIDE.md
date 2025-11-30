@@ -2,30 +2,45 @@
 
 ## Table of Contents
 
-- [CU-Bytes Developer Guide](#cu-bytes-developer-guide)
-  - [Table of Contents](#table-of-contents)
-  - [Prerequisites](#prerequisites)
-  - [Backend Setup](#backend-setup)
-    - [1. Create Virtual Environment](#1-create-virtual-environment)
-    - [2. Activate Virtual Environment](#2-activate-virtual-environment)
-    - [3. Install Dependencies](#3-install-dependencies)
-    - [4. Configure Environment](#4-configure-environment)
-    - [5. Run Backend Server](#5-run-backend-server)
-  - [Frontend Setup](#frontend-setup)
-    - [1. Navigate to Frontend Directory](#1-navigate-to-frontend-directory)
-    - [2. Install Dependencies](#2-install-dependencies)
-    - [3. Configure Environment Variables](#3-configure-environment-variables)
-    - [4. Start Development Server](#4-start-development-server)
-  - [Machine Learning Setup](#machine-learning-setup)
-    - [1. Create Virtual Environment](#1-create-virtual-environment-1)
-    - [2. Activate Virtual Environment](#2-activate-virtual-environment-1)
-    - [3. Install Dependencies](#3-install-dependencies-1)
-    - [4. Setup Environment](#4-setup-environment)
-    - [5. Configure Datasets](#5-configure-datasets)
-  - [Running the Application](#running-the-application)
-    - [1. Start Backend Server](#1-start-backend-server)
-    - [2. Start Frontend Development Server](#2-start-frontend-development-server)
-    - [3. Access Application](#3-access-application)
+- [Prerequisites](#prerequisites)
+- [Backend Setup](#backend-setup)
+  - [1. Create Virtual Environment](#1-create-virtual-environment)
+  - [2. Activate Virtual Environment](#2-activate-virtual-environment)
+  - [3. Install Dependencies](#3-install-dependencies)
+  - [4. Configure Environment](#4-configure-environment)
+  - [5. Run Backend Server](#5-run-backend-server)
+- [Frontend Setup](#frontend-setup)
+  - [1. Navigate to Frontend Directory](#1-navigate-to-frontend-directory)
+  - [2. Install Dependencies](#2-install-dependencies)
+  - [3. Configure Environment Variables](#3-configure-environment-variables)
+  - [4. Start Development Server](#4-start-development-server)
+- [Machine Learning Setup](#machine-learning-setup)
+  - [Quick Start](#quick-start)
+  - [File Structure](#file-structure)
+  - [File Descriptions](#file-descriptions)
+    - [`config.py` - Configuration Management](#configpy---configuration-management)
+    - [`datasets.py` - Dataset Loading](#datasetspy---dataset-loading)
+    - [`download.py` - Dataset Downloads](#downloadpy---dataset-downloads)
+    - [`setup.py` - Environment Setup](#setuppy---environment-setup)
+    - [`train.py` - Model Training](#trainpy---model-training)
+  - [Configuration](#configuration)
+    - [`datasets_config.json`](#datasets_configjson)
+  - [Usage](#usage)
+    - [Complete Workflow](#complete-workflow)
+    - [Monitoring Training](#monitoring-training)
+  - [Troubleshooting](#troubleshooting)
+    - ["No module named 'torch'"](#no-module-named-torch)
+    - ["CUDA out of memory"](#cuda-out-of-memory)
+    - ["Dataset path does not exist"](#dataset-path-does-not-exist)
+    - ["No datasets were successfully loaded"](#no-datasets-were-successfully-loaded)
+  - [Common Workflows](#common-workflows)
+    - [Quick Test](#quick-test)
+    - [Full Training](#full-training)
+    - [Resume Training](#resume-training)
+- [Running the Application](#running-the-application)
+  - [1. Start Backend Server](#1-start-backend-server)
+  - [2. Start Frontend Development Server](#2-start-frontend-development-server)
+  - [3. Access Application](#3-access-application)
 
 ## Prerequisites
 
@@ -127,78 +142,345 @@ npm start
 
 ## Machine Learning Setup
 
-### 1. Create Virtual Environment
+### Quick Start
+
+**First Time Setup:**
 
 ```bash
 cd machine-learning
+
+# 1. Create virtual environment (recommended)
 python -m venv mlenv
+mlenv\Scripts\activate  # Windows
+# source mlenv/bin/activate  # Linux/Mac
+
+# 2. Run complete setup (installs packages, downloads datasets, tests GPU)
+python setup.py --setup
 ```
 
-### 2. Activate Virtual Environment
-
-**Windows:**
+**Training:**
 
 ```bash
-mlenv\Scripts\activate
+# Basic training with default settings
+python train.py
+
+# Custom settings
+python train.py --batch-size 32 --epochs 50 --lr 0.0001
 ```
 
-**macOS/Linux:**
+### File Structure
+
+```text
+machine-learning/
+├── config.py              # Configuration management
+├── datasets.py            # Dataset classes and data loaders
+├── download.py            # Dataset download functions
+├── setup.py               # Environment setup and GPU testing
+├── train.py               # Model training script
+├── datasets_config.json   # Dataset configuration
+└── requirements.txt       # Python dependencies
+```
+
+### File Descriptions
+
+#### `config.py` - Configuration Management
+
+**Purpose**: Manages all configuration settings for the ML pipeline.
+
+**Key Components**:
+
+- **`Config` class**: Main configuration container
+  - Device detection (CPU/GPU)
+  - Directory paths (data, models, checkpoints)
+  - Training hyperparameters (batch size, learning rate, epochs, etc.)
+  - Dataset configuration
+
+**Key Methods**:
+
+- `print_device_info()`: Prints GPU/CPU information
+- `create_directories()`: Creates necessary directories
+- `from_config_file()`: Loads configuration from `datasets_config.json`
+
+**Usage**:
+
+```python
+from config import Config
+
+# Load from config file
+config = Config.from_config_file()
+
+# Or create manually
+config = Config(batch_size=32, image_size=224, learning_rate=1e-4)
+```
+
+#### `datasets.py` - Dataset Loading
+
+**Purpose**: Handles dataset loading, transformations, and creating PyTorch data loaders.
+
+**Key Components**:
+
+##### `GenericDataset` Class
+
+**What it does**: Unified dataset loader that works with any dataset organized as class folders.
+
+**How it works**:
+
+1. Expects data organized as: `dataset_root/class1/image1.jpg`, `dataset_root/class2/image2.jpg`, etc.
+2. Takes a dictionary mapping class names to numeric labels
+3. Supports three splitting methods:
+   - **Split file**: Text file listing which images belong to train/val
+   - **Ratio-based**: Randomly splits data using a ratio (e.g., 80% train, 20% val)
+   - **No split**: Uses all data
+4. Automatically finds images with extensions: `.jpg`, `.jpeg`, `.png`
+5. Handles corrupted images gracefully (returns black image)
+
+**Features**:
+
+- Automatically handles case variations (Pizza, PIZZA, pizza)
+- Supports nested directory structures
+- Error handling for missing/corrupted images
+
+##### `CombinedDataset` Class
+
+**What it does**: Combines multiple datasets into a single dataset.
+
+**Why it's needed**: When using multiple datasets, PyTorch's `DataLoader` needs a single dataset object. `CombinedDataset` seamlessly merges them with transparent indexing.
+
+##### `create_data_loaders()` Function
+
+**What it does**: Main function that creates PyTorch `DataLoader` objects ready for training.
+
+**How it works**:
+
+1. Reads dataset configurations from `Config.DATASETS_CONFIG`
+2. Detects structure (Food-101 with meta/ folder, or standard class folders)
+3. Loads all classes and creates datasets
+4. Combines datasets using `CombinedDataset`
+5. Creates PyTorch `DataLoader` objects
+
+**Usage**:
+
+```python
+from config import Config
+from datasets import create_data_loaders
+
+config = Config.from_config_file()
+train_loader, val_loader, class_names = create_data_loaders(config)
+```
+
+##### `get_data_transforms()` Function
+
+**What it does**: Returns image transformations for training and validation.
+
+**Training transforms** (with augmentation):
+
+- Resize, random horizontal flip, rotation, color jitter, random crop, normalization
+
+**Validation transforms** (no augmentation):
+
+- Resize and normalization only
+
+#### `download.py` - Dataset Downloads
+
+**Purpose**: Handles downloading and extracting datasets from URLs.
+
+**Key Functions**:
+
+##### `download_dataset()`
+
+Downloads and extracts any dataset from a URL. Supports `.tar.gz`, `.tar`, and `.zip` formats.
+
+##### `download_all_datasets()`
+
+Downloads all enabled datasets from `datasets_config.json`.
+
+**Usage**:
+
+```python
+from download import download_all_datasets
+from pathlib import Path
+
+paths = download_all_datasets(Path("data"))
+```
+
+#### `setup.py` - Environment Setup
+
+**Purpose**: Sets up the ML environment, tests GPU, and installs PyTorch.
+
+**Key Functions**:
+
+- `test_gpu_setup()`: Tests GPU availability and performance
+- `install_pytorch()`: Automatically detects hardware and installs appropriate PyTorch version
+- `setup_environment()`: Complete environment setup (packages, directories, datasets, GPU test)
+
+**Usage**:
 
 ```bash
-source mlenv/bin/activate
+# Test GPU
+python setup.py --test-gpu
+
+# Install PyTorch
+python setup.py --install-pytorch
+
+# Complete setup
+python setup.py --setup
 ```
 
-### 3. Install Dependencies
+#### `train.py` - Model Training
+
+**Purpose**: Main script for training food classification models.
+
+**Features**:
+
+- Multiple model architectures (ResNet50, EfficientNet, MobileNet)
+- Checkpoint saving/loading
+- TensorBoard logging
+- Mixed precision training (GPU)
+- Early stopping
+
+**Training Options**:
+
+| Argument            | Description                   | Default    |
+| ------------------- | ----------------------------- | ---------- |
+| `--model`           | Model architecture            | `resnet50` |
+| `--batch-size`      | Batch size                    | `32`       |
+| `--epochs`          | Number of epochs              | `50`       |
+| `--lr`              | Learning rate                 | `0.0001`   |
+| `--image-size`      | Input image size              | `224`      |
+| `--resume`          | Resume from checkpoint        | `None`     |
+| `--freeze-backbone` | Freeze backbone (fine-tuning) | `False`    |
+| `--test-gpu`        | Test GPU before training      | `False`    |
+
+**Usage**:
 
 ```bash
-pip install -r requirements.txt
+# Basic training
+python train.py
+
+# With custom settings
+python train.py --batch-size 16 --epochs 20 --lr 0.00001
+
+# Resume from checkpoint
+python train.py --resume models/checkpoints/checkpoint_epoch_10.pth
 ```
 
-### 4. Setup Environment
+### Configuration
 
-```python
-python ml_pipeline_setup.py --setup
-```
+#### `datasets_config.json`
 
-This installs packages, creates directories, downloads Food-101, and tests GPU.
+Configuration file for all datasets. Each dataset entry contains:
 
-**Other commands:**
+- `name`: Internal identifier
+- `display_name`: Human-readable name
+- `url`: Download URL (empty if manual download required)
+- `filename`: Archive filename
+- `extract_to`: Directory name after extraction
+- `structure_type`: "food101" (has meta/) or "class_folders"
+- `num_classes`: Number of classes (informational)
+- `train_split_ratio`: Ratio for train/val split if no split files
+- `enabled`: Whether to download/use this dataset
 
-```python
-python ml_pipeline_setup.py --test-gpu
-```
-
-**Test GPU only**
-
-```python
-python ml_pipeline_setup.py --install-pytorch
-```
-
-### 5. Configure Datasets
-
-Create `datasets_config.json`:
+**Example**: Disable a dataset
 
 ```json
-[
-  {
-    "name": "food101",
-    "path": "data/food-101",
-    "selected_classes": ["pizza", "hamburger"],
-    "train_split": null,
-    "val_split": null
-  }
-]
+{
+  "name": "uec_food256",
+  "enabled": false,
+  ...
+}
 ```
 
-- `name`: Dataset identifier ("food101" for Food-101)
-- `path`: Path to dataset directory
-- `selected_classes`: List of classes to include (null = all)
-- `train_split`/`val_split`: Optional split file paths
+### Usage
 
-**Dataset structure:**
+#### Complete Workflow
 
-- Food-101: Standard structure with `meta/` and `images/`
-- Generic: `dataset_path/class_name/*.jpg`
+```python
+from config import Config
+from datasets import create_data_loaders
+from train import Trainer
+
+# Load configuration
+config = Config.from_config_file()
+
+# Create data loaders
+train_loader, val_loader, class_names = create_data_loaders(config)
+
+# Train model
+trainer = Trainer(config, model_name="resnet50")
+trainer.train(train_loader, val_loader, num_epochs=50)
+```
+
+#### Monitoring Training
+
+**TensorBoard**:
+
+```bash
+tensorboard --logdir models/runs
+```
+
+Open <http://localhost:6006> in your browser.
+
+**Checkpoints**:
+
+- Best model: `models/best_model.pth`
+- Epoch checkpoints: `models/checkpoints/checkpoint_epoch_X.pth`
+- Class names: `models/class_names.json`
+
+### Troubleshooting
+
+#### "No module named 'torch'"
+
+```bash
+python setup.py --install-pytorch
+```
+
+#### "CUDA out of memory"
+
+Reduce batch size:
+
+```bash
+python train.py --batch-size 16
+```
+
+Or reduce image size:
+
+```bash
+python train.py --image-size 128 --batch-size 32
+```
+
+#### "Dataset path does not exist"
+
+1. Download datasets: `python setup.py --setup`
+2. Check `datasets_config.json` - ensure paths are correct
+3. For datasets without URLs, download manually and place in `data/` directory
+
+#### "No datasets were successfully loaded"
+
+- Ensure at least one dataset has `"enabled": true` in `datasets_config.json`
+- Verify dataset paths exist in `data/` directory
+- Check that datasets have expected folder structure
+
+### Common Workflows
+
+#### Quick Test
+
+```bash
+python setup.py --setup
+python train.py --epochs 5 --batch-size 16
+```
+
+#### Full Training
+
+```bash
+python setup.py --setup
+python train.py --batch-size 32 --epochs 50
+```
+
+#### Resume Training
+
+```bash
+python train.py --resume models/checkpoints/checkpoint_epoch_10.pth
+```
 
 ## Running the Application
 
