@@ -65,6 +65,26 @@ export default function EnterScreen() {
     }
     ////////////////////////////////////////////////// FoodItem, Loading, and Visible Variables and Setters //////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////// foodItem["calories"] //////////////////////////////////////////////////
+
+    /*
+    Calculate how to display the calories of a food item
+    If the calories variable of the selected food item has a value of -1, then the calorie amount is unknown and convey this to the user
+    Otherwise, convey the calorie amount to the user
+    calories: The integer representing the number of calories of the food item
+    */
+    function processFoodItemCalories(calories: number) {
+
+        if (calories == -1) { 
+            return "Unknown" 
+        }
+        else { 
+            return calories 
+        }
+    }
+
+    ////////////////////////////////////////////////// foodItem["calories"] //////////////////////////////////////////////////
+
     ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
     // Sends a get all food items request to the server
     const handlePressGetFoodItems = () => {
@@ -164,7 +184,7 @@ export default function EnterScreen() {
                 <View>
                     <Text style={styles.subsubtitle}>Food Item Name: {foodItem["name"]}</Text>
                     <br></br>
-                    <Text style={styles.subsubtitle}>Calories: {foodItem["calories"]}</Text>
+                    <Text style={styles.subsubtitle}>Calories: {processFoodItemCalories(foodItem["calories"])}</Text>
                     <br></br>
                     <Text style={styles.subsubtitle}>Dining Location: {foodItem["dining_location"]}</Text>
                     <br></br>
