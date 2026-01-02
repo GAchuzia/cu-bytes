@@ -159,6 +159,16 @@ export default function EnterScreen() {
 
             </TouchableOpacity>
 
+            {/* If the entered string value does not return any food items, display the following message */}
+            {filteredFoodItemArray.length == 0 && !visible && (
+                <View>
+                    <Text style={styles.pressableText}>
+                        There are no food items on campus that match this search
+                    </Text>
+                </View>
+            )}
+
+            {/* If the entered string value returns any food items, display the name and id of each food item */}
             {filteredFoodItemArray && !visible && (
                 <View>
                     
@@ -174,9 +184,10 @@ export default function EnterScreen() {
                         >
                             {foodItem["name"]} (ID {foodItem["id"]})
                             <br></br>
-                            <line>--------------------------------------------------</line>
+                            <line>---</line>
                         </Text>
                     ))}
+
                 </View>
             )}
 
