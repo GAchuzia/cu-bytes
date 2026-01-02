@@ -60,7 +60,7 @@ export default function EnterScreen() {
     foodItemArray: The array representing the value of the food item variable
     */
     function saveFilteredFoodItemArray(foodItemArray) {
-        const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"] as string).includes(foodItemName));
+        const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"].toLowerCase() as string).includes(foodItemName.toLowerCase()));
         setFilteredFoodItemArray(filteredFoodItemArray);
     }
     ////////////////////////////////////////////////// FoodItem, Loading, and Visible Variables and Setters //////////////////////////////////////////////////
