@@ -101,6 +101,13 @@ export default function EnterScreen() {
         .then(data => {
             saveFoodItemArray(data);
             saveFilteredFoodItemArray(data);
+            /*
+            const updatedData = data.map(foodItem => ({
+                ...foodItem,
+                name: foodItem.name.toLowerCase()
+            }))
+            saveFilteredFoodItemArray(updatedData)
+            */
         })
     }
     ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
@@ -126,7 +133,10 @@ export default function EnterScreen() {
             console.log(foodItem);
         })
     }
-    ////////////////////////////////////////////////// Send food item request ////////////////////////////////////////////////// 
+    ////////////////////////////////////////////////// Send food item request //////////////////////////////////////////////////
+
+    // Get every food item
+    handlePressGetFoodItems()
 
     // The page that the user sees in the app/browser
     return (
@@ -137,7 +147,7 @@ export default function EnterScreen() {
             <Text style={styles.title}>Enter</Text>
             <Text style={styles.subtitle}>Enter the food item manually</Text>
 
-            {/*Enter the food item to get detailed information on*/}
+            {/* Enter the food item to get detailed information on*/}
             <TextInput
                 style={styles.textInput}
                 onChange={saveFoodItemName}
@@ -146,12 +156,11 @@ export default function EnterScreen() {
             >
             </TextInput>
 
-            {/*Send a request to the server to see food items in the database that match the entered food item*/}
+            {/* Send a request to the server to see food items in the database that match the entered food item*/}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => {
                     setVisible(false);
-                    handlePressGetFoodItems();
                 }}
                 disabled={loading}
             >
