@@ -1,8 +1,10 @@
 # Library imports
-import hashlib
+from argon2 import PasswordHasher
 
 # Project imports
 from backend.extensions import db
+
+ph = PasswordHasher()
 
 
 class UsersAuth(db.Model):
@@ -11,21 +13,16 @@ class UsersAuth(db.Model):
     __tablename__ = "users_auth"
 
     username = db.Column(db.String(80), primary_key=True)
-    password = db.Column(db.String(64), nullable=False)
-    salt = db.Column(db.String(32), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
 
     def __repr__(self):
         return f"<UsersAuth {self.username}>"
 
-    @staticmethod
-    def hash_with_salt(password, salt):
-        """Returns SHA256 hash of password + salt"""
-        return hashlib.sha256((password + salt).encode()).hexdigest()
-
     @classmethod
-    def create(cls, username, password, salt):
+    def create(cls, username, password):
         """Create a new user and store it in the database"""
-        user = cls(username=username, password=password, salt=salt)
+        hashed_password = ph.hash(password)
+        user = cls(username=username, password=hashed_password)
 
         db.session.add(user)
         db.session.commit()
@@ -41,4 +38,10 @@ class UsersAuth(db.Model):
 
     def verify_password(self, password_attempt):
         """Verify password using stored salt"""
-        return self.password == self.hash_with_salt(password_attempt, self.salt)
+        try:
+            # Verify the password attempt against the stored hash
+            if ph.verify(self.password, password_attempt):
+                return True
+        except Exception:
+            # Includes VerifyMismatchError which triggers on wrong password
+            return False
