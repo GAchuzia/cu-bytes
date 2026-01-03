@@ -31,7 +31,7 @@ Databases: The databases/ directory holds the SQLite databases and contains scri
 Databases can be created by running the corresponding init_XXXXX_db.py script in /backend/database/. When running these scripts, make sure you are in the project root directory, ie. cu-bytes, NOT backend/.
 
 #### auth.db
-This database contains usernames and passwords. Passwords are hashed with salts for security reasons.
+This database contains usernames and passwords. Passwords are hashed with argon2id (which includes salt) for security reasons.
 
 Steps to create:
 cd cu-bytes
@@ -40,8 +40,7 @@ python -m backend.database.init_auth_db
 Database schema:
 sqlite> PRAGMA table_info('users_auth');
 0|username|VARCHAR(80)|1||1
-1|password|VARCHAR(64)|1||0
-2|salt|VARCHAR(32)|1||0
+1|password|VARCHAR(255)|1||0
 
 #### profiles.db
 This database contains usernames along with dietary restrictions information.
