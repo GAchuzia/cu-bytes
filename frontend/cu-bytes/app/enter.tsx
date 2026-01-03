@@ -137,6 +137,9 @@ export default function EnterScreen() {
 
     // Get every food item
     handlePressGetFoodItems()
+    // The food item selected by default will be null or empty
+    // This resolves an error where the first food item in the backend database and the frontend arrays is used by default
+    handlePressGetFoodItem()
 
     // The page that the user sees in the app/browser
     return (
