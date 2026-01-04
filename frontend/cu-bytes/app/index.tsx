@@ -8,9 +8,12 @@ import { apiService } from '../services/api';
 
 import { styles } from './styles/style-index';
 
+import { useUser } from './context';
+
 export default function IndexScreen() {
 
   const [loading, setLoading] = useState(false);
+  const { user } = useUser();
 
   const healthCheck = async () => {
     setLoading(true);

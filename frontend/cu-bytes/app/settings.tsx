@@ -4,11 +4,14 @@ import { View, Text, TouchableOpacity, Switch, ActivityIndicator } from 'react-n
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-settings'
+import { styles } from './styles/style-settings';
+
+import { useUser } from './context';
 
 export default function SettingsScreen() {
 
     const [loading, setLoading] = useState(true);
+    const { user } = useUser();
 
     // Variables for each of the configurable settings
     const [hasDairyIntolerance, setHasDairyIntolerance] = useState(false);
@@ -26,8 +29,7 @@ export default function SettingsScreen() {
     const [prefersKosher, setPrefersKosher] = useState(false);
     const [isShowStatsEnabled, setIsShowStatsEnabled] = useState(false);
 
-    // TODO: Once the global user object is created, make the username dynamic
-    const username = "Alice";
+    const username = user;
 
     ////////////////////////////////////////////////// Get Initial Profile //////////////////////////////////////////////////
 

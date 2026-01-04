@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useState, useContext } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
@@ -6,7 +6,11 @@ import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-register';
 
+import { useUser } from './context';
+
 export default function RegisterScreen() {
+
+    const { setUser } = useUser();
 
     ////////////////////////////////////////////////// Set color of username and password elements //////////////////////////////////////////////////
     // Create constants for elements that will be modified based on the submitted username
@@ -126,6 +130,8 @@ export default function RegisterScreen() {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+            // Set the global username value to the local username value
+            setUser(username);
             return response.json();
         })
         .then(data => {

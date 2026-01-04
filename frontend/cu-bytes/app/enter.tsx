@@ -4,9 +4,13 @@ import { View, Text, TouchableOpacity, TextInput, FlatList } from 'react-native'
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-enter'
+import { styles } from './styles/style-enter';
+
+import { useUser } from './context';
 
 export default function EnterScreen() {
+
+    const { user } = useUser();
 
     ////////////////////////////////////////////////// FoodItem, Loading, and Visible Variables and Setters //////////////////////////////////////////////////
     const [loading, setLoading] = useState(false);
