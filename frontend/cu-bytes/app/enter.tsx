@@ -60,10 +60,30 @@ export default function EnterScreen() {
     foodItemArray: The array representing the value of the food item variable
     */
     function saveFilteredFoodItemArray(foodItemArray) {
-        const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"] as string).includes(foodItemName));
+        const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"].toLowerCase() as string).includes(foodItemName.toLowerCase()));
         setFilteredFoodItemArray(filteredFoodItemArray);
     }
     ////////////////////////////////////////////////// FoodItem, Loading, and Visible Variables and Setters //////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////// foodItem["calories"] //////////////////////////////////////////////////
+
+    /*
+    Calculate how to display the calories of a food item
+    If the calories variable of the selected food item has a value of -1, then the calorie amount is unknown and convey this to the user
+    Otherwise, convey the calorie amount to the user
+    calories: The integer representing the number of calories of the food item
+    */
+    function processFoodItemCalories(calories: number) {
+
+        if (calories == -1) { 
+            return "Unknown" 
+        }
+        else { 
+            return calories 
+        }
+    }
+
+    ////////////////////////////////////////////////// foodItem["calories"] //////////////////////////////////////////////////
 
     ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
     // Sends a get all food items request to the server
@@ -81,6 +101,13 @@ export default function EnterScreen() {
         .then(data => {
             saveFoodItemArray(data);
             saveFilteredFoodItemArray(data);
+            /*
+            const updatedData = data.map(foodItem => ({
+                ...foodItem,
+                name: foodItem.name.toLowerCase()
+            }))
+            saveFilteredFoodItemArray(updatedData)
+            */
         })
     }
     ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
@@ -106,7 +133,13 @@ export default function EnterScreen() {
             console.log(foodItem);
         })
     }
-    ////////////////////////////////////////////////// Send food item request ////////////////////////////////////////////////// 
+    ////////////////////////////////////////////////// Send food item request //////////////////////////////////////////////////
+
+    // Get every food item
+    handlePressGetFoodItems()
+    // The food item selected by default will be null or empty
+    // This resolves an error where the first food item in the backend database and the frontend arrays is used by default
+    handlePressGetFoodItem()
 
     // The page that the user sees in the app/browser
     return (
@@ -117,7 +150,7 @@ export default function EnterScreen() {
             <Text style={styles.title}>Enter</Text>
             <Text style={styles.subtitle}>Enter the food item manually</Text>
 
-            {/*Enter the food item to get detailed information on*/}
+            {/* Enter the food item to get detailed information on*/}
             <TextInput
                 style={styles.textInput}
                 onChange={saveFoodItemName}
@@ -126,12 +159,11 @@ export default function EnterScreen() {
             >
             </TextInput>
 
-            {/*Send a request to the server to see food items in the database that match the entered food item*/}
+            {/* Send a request to the server to see food items in the database that match the entered food item*/}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => {
                     setVisible(false);
-                    handlePressGetFoodItems();
                 }}
                 disabled={loading}
             >
@@ -139,6 +171,16 @@ export default function EnterScreen() {
 
             </TouchableOpacity>
 
+            {/* If the entered string value does not return any food items, display the following message */}
+            {filteredFoodItemArray.length == 0 && !visible && (
+                <View>
+                    <Text style={styles.pressableText}>
+                        There are no food items on campus that match this search
+                    </Text>
+                </View>
+            )}
+
+            {/* If the entered string value returns any food items, display the name and id of each food item */}
             {filteredFoodItemArray && !visible && (
                 <View>
                     
@@ -154,9 +196,10 @@ export default function EnterScreen() {
                         >
                             {foodItem["name"]} (ID {foodItem["id"]})
                             <br></br>
-                            <line>--------------------------------------------------</line>
+                            <line>---</line>
                         </Text>
                     ))}
+
                 </View>
             )}
 
@@ -164,7 +207,7 @@ export default function EnterScreen() {
                 <View>
                     <Text style={styles.subsubtitle}>Food Item Name: {foodItem["name"]}</Text>
                     <br></br>
-                    <Text style={styles.subsubtitle}>Calories: {foodItem["calories"]}</Text>
+                    <Text style={styles.subsubtitle}>Calories: {processFoodItemCalories(foodItem["calories"])}</Text>
                     <br></br>
                     <Text style={styles.subsubtitle}>Dining Location: {foodItem["dining_location"]}</Text>
                     <br></br>

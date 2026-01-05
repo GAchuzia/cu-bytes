@@ -1,5 +1,4 @@
 # Library imports
-import os
 import re
 from flask import jsonify
 
@@ -215,11 +214,10 @@ Helper methods
 
 def create_user(username, password):
     """Create a new user and store it in the database"""
-    salt = os.urandom(16).hex()
-    hashed = UsersAuth.hash_with_salt(password, salt)
-    user = UsersAuth.create(username=username, password=hashed, salt=salt)
+    # Create a username password pair
+    user = UsersAuth.create(username=username, password=password)
 
-    # Create an empty dietary profile for the user
+    # Create an empty dietary profile
     UsersProfile.create(username=username, has_configured_settings=False)
 
     print(
