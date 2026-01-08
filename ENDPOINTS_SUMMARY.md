@@ -123,17 +123,18 @@ Summary of endpoints.
     """
 
 ### Logging
+The following endpoint should be used when the food_id is known (manual entry):
     """
-    POST /logging/log
+    POST /logging/log-by-id
 
     Description:
     Records the intake of a food item by a user.
+    Nutrition data will be derived based on the food_id.
 
     Request Body (JSON):
     {
         "username": "string",       # required
         "food_id": 123,             # required, int
-        "calories": 450             # required, int
     }
 
     Responses:
@@ -141,6 +142,8 @@ Summary of endpoints.
     400 Bad Request - Invalid argument
     500 Internal Server Error - Error adding transaction to database
     """
+
+The following endpoint should be used when food_name is determined through machine learning:
 
 ### Profiles
     """

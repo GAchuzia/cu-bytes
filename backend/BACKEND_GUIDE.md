@@ -12,6 +12,7 @@ Guide for backend infrastructure and available endpoints.
         - [auth.db]
         - [profiles.db]
         - [food_data.db]
+        - [logging.db]
 
 ### Configuration Tips
 If you are having issues running the backend, it might help to delete the .db files and rerun the database initialization scripts. A commit could have been pushed that modifies the database format.
@@ -116,5 +117,9 @@ Database schema:
 sqlite> PRAGMA table_info('food_logging');
 0|username|VARCHAR(80)|1||1
 1|transaction_time|DATETIME|1||2
-2|food_id|INTEGER|1||0
+2|food_name|VARCHAR(80)|1||0
 3|calories|INTEGER|0||0
+4|percent_fruit_veg|INTEGER|0||0
+5|percent_grain|INTEGER|0||0
+6|percent_dairy|INTEGER|0||0
+7|percent_protein|INTEGER|0||0
