@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, TextInput, FlatList } from 'react-native';
 
 import { router } from 'expo-router';
@@ -22,14 +22,6 @@ export default function EnterScreen() {
     const [filteredFoodItemArray, setFilteredFoodItemArray] = useState([]);
 
     /*
-    Set the value of the food item id variable
-    id: The number representing the value of the food item id variable
-    */
-    function saveFoodItemId(id: SetStateAction<number>) {
-        setFoodItemId(id);
-    }
-
-    /*
     Set the value of the food item name variable to the value entered in the food item name text input element
     event: The event is the current string value in the food item name text input element
     */
@@ -37,60 +29,59 @@ export default function EnterScreen() {
         setFoodItemName(event.target.value);
     }
 
-    /*
-    Set the value of the food item variable
-    item: The JSON item representing the value of the food item variable
-    */
-    function saveFoodItem(item: SetStateAction<{}>) {
-        setFoodItem(item);
-    }
-
-    /*
-    Set the value of the food item array variable
-    The food item array is retrieved from the backend
-    foodItemArray: The array representing the value of the food item array variable
-    */
-    function saveFoodItemArray(foodItemArray) {
-        setFoodItemArray(foodItemArray);
-    }
-
-    /*
-    Set the value of the filtered food item array variable
-    The food item array is retrieved from the backend and then filtered by the entered food item name
-    foodItemArray: The array representing the value of the food item variable
-    */
-    function saveFilteredFoodItemArray(foodItemArray) {
-        const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"] as string).includes(foodItemName));
-        setFilteredFoodItemArray(filteredFoodItemArray);
-    }
     ////////////////////////////////////////////////// FoodItem, Loading, and Visible Variables and Setters //////////////////////////////////////////////////
 
-    ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
-    // Sends a get all food items request to the server
-    const handlePressGetFoodItems = () => {
-        fetch("http://127.0.0.1:5000/browse/food-items", {
-                method: "GET"
-            }
-        )
-        .then(response => {
-            if (!response.ok) {
-                throw new Error (`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            saveFoodItemArray(data);
-            saveFilteredFoodItemArray(data);
-        })
+    ////////////////////////////////////////////////// foodItem["calories"] //////////////////////////////////////////////////
+
+    /*
+    Calculate how to display the calories of a food item
+    If the calories variable of the selected food item has a value of -1, then the calorie amount is unknown and convey this to the user
+    Otherwise, convey the calorie amount to the user
+    calories: The integer representing the number of calories of the food item
+    */
+    function processFoodItemCalories(calories: number) {
+
+        if (calories == -1) { 
+            return "Unknown" 
+        }
+        else { 
+            return calories 
+        }
     }
+
+    ////////////////////////////////////////////////// foodItem["calories"] //////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
+    
+    // Sends a get all food items request to the server exactly once
+    useEffect(() => {
+        const handlePressGetFoodItems = () => {
+            fetch("http://127.0.0.1:5000/browse/food-items", {
+                    method: "GET"
+                }
+            )
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error (`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                setFoodItemArray(data);
+                //const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"].toLowerCase() as string).includes(foodItemName.toLowerCase()));
+                //setFilteredFoodItemArray(filteredFoodItemArray);
+            })
+        };
+        handlePressGetFoodItems();
+    }, []);
+
     ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
 
     ////////////////////////////////////////////////// Send food item request ////////////////////////////////////////////////// 
+    
     // Sends a get food item by id request to the server
     const handlePressGetFoodItem = () => {
-
         const foodItemRequest = `http://127.0.0.1:5000/browse//food-item/${foodItemId}`;
-
         fetch(foodItemRequest, {
                 method: "GET"
             }
@@ -102,11 +93,20 @@ export default function EnterScreen() {
             return response.json();
         })
         .then(data => {
-            saveFoodItem(data);
-            console.log(foodItem);
+            setFoodItem(data);
+            console.log(data);
         })
     }
-    ////////////////////////////////////////////////// Send food item request ////////////////////////////////////////////////// 
+
+    ////////////////////////////////////////////////// Send food item request //////////////////////////////////////////////////
+
+    // Filter the array of food items (retrieved from the backend database)
+    // The food item name, entered in the text input, is used to filter the array
+    // The food items whose names partially or wholly match the entered value are stored in a filtered array
+    const filterFoodItemArray = () => {
+        const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"].toLowerCase() as string).includes(foodItemName.toLowerCase()));
+        setFilteredFoodItemArray(filteredFoodItemArray);
+    }
 
     // The page that the user sees in the app/browser
     return (
@@ -117,7 +117,7 @@ export default function EnterScreen() {
             <Text style={styles.title}>Enter</Text>
             <Text style={styles.subtitle}>Enter the food item manually</Text>
 
-            {/*Enter the food item to get detailed information on*/}
+            {/* Enter the food item to get detailed information on*/}
             <TextInput
                 style={styles.textInput}
                 onChange={saveFoodItemName}
@@ -126,12 +126,12 @@ export default function EnterScreen() {
             >
             </TextInput>
 
-            {/*Send a request to the server to see food items in the database that match the entered food item*/}
+            {/* Filter the food items in the frontend array by the food item name and store in another array */}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => {
                     setVisible(false);
-                    handlePressGetFoodItems();
+                    filterFoodItemArray();
                 }}
                 disabled={loading}
             >
@@ -139,6 +139,16 @@ export default function EnterScreen() {
 
             </TouchableOpacity>
 
+            {/* If the entered string value does not return any food items, display the following message */}
+            {filteredFoodItemArray.length == 0 && !visible && (
+                <View>
+                    <Text style={styles.pressableText}>
+                        There are no food items on campus that match this search
+                    </Text>
+                </View>
+            )}
+
+            {/* If the entered string value returns any food items, display the name and id of each food item */}
             {filteredFoodItemArray && !visible && (
                 <View>
                     
@@ -147,16 +157,17 @@ export default function EnterScreen() {
                             style={styles.pressableText}
                             key={foodItem["id"]}
                             onPress={() => {
-                                saveFoodItemId(foodItem["id"]); 
+                                setFoodItemId(foodItem["id"]);
                                 handlePressGetFoodItem();
                                 setVisible(true);
                             }}
                         >
                             {foodItem["name"]} (ID {foodItem["id"]})
                             <br></br>
-                            <line>--------------------------------------------------</line>
+                            <line>---</line>
                         </Text>
                     ))}
+
                 </View>
             )}
 
@@ -164,7 +175,7 @@ export default function EnterScreen() {
                 <View>
                     <Text style={styles.subsubtitle}>Food Item Name: {foodItem["name"]}</Text>
                     <br></br>
-                    <Text style={styles.subsubtitle}>Calories: {foodItem["calories"]}</Text>
+                    <Text style={styles.subsubtitle}>Calories: {processFoodItemCalories(foodItem["calories"])}</Text>
                     <br></br>
                     <Text style={styles.subsubtitle}>Dining Location: {foodItem["dining_location"]}</Text>
                     <br></br>
