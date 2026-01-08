@@ -4,11 +4,14 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-scan'
+import { styles } from './styles/style-scan';
+
+import { useUser } from './context';
 
 export default function ScanScreen() {
 
     const [loading, setLoading] = useState(false);
+    const { user } = useUser();
 
     // The page that the user sees in the app/browser
     return (
