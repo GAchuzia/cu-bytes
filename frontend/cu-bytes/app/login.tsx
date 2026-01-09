@@ -6,7 +6,11 @@ import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-login';
 
+import { useUser } from './context';
+
 export default function LoginScreen() {
+
+    const { setUser } = useUser();
 
     ////////////////////////////////////////////////// Set color and placeholder text of username and password elements //////////////////////////////////////////////////
     // Create constants for elements that will be modified based on the submitted username or password
@@ -72,6 +76,8 @@ export default function LoginScreen() {
             if (!response.ok) {
                 throw new Error (`HTTP error! status: ${response.status}`);
             }
+            // Set the global username value to the local username value
+            setUser(username);
             return response.json();
         })
         .then(data => {
