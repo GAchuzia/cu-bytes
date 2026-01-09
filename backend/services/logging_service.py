@@ -133,7 +133,7 @@ def log_food_item_by_name_json(data):
     t = create_transaction(
         username=username,
         food_name=food_name,
-        calories=150,
+        calories=350,
         percent_fruit_veg=40,
         percent_grain=30,
         percent_dairy=20,
@@ -151,6 +151,40 @@ def log_food_item_by_name_json(data):
         jsonify({"status": "error", "message": "Error creating transaction"}),
         500,
     )
+
+
+def get_logging_history_json(username):
+    # Ensure valid username
+    if UsersAuth.get_user_by_name(username) is None:
+        print(f"LoggingService: No matching username for {username}")
+        return (
+            jsonify({"status": "error", "message": "No matching username found"}),
+            400,
+        )
+
+    try:
+        # Get all rows belonging to the current user with most recent at the top
+        logs = (
+            FoodLogging.query.filter_by(username=username)
+            .order_by(FoodLogging.transaction_time.desc())
+            .all()
+        )
+
+        # Specify desired attributes
+        result = [
+            {
+                col: getattr(log, col)
+                for col in ("transaction_time", "food_name", "calories")
+            }
+            for log in logs
+        ]
+
+        # Return as a JSON response
+        return jsonify(result), 200
+
+    except Exception as e:
+        print(f"LoggingService: Error retrieving logging history: {e}")
+        return jsonify({"error": "Failed to retrieve logging history"}), 500
 
 
 """

@@ -175,3 +175,60 @@ def test_transaction_nonexistent_user_by_name(client, seeded_food_data, seeded_u
 
 #     assert response.status_code == 400
 #     assert "No matching food_name found" in data["message"]
+
+
+def test_retreival(client, seeded_food_data, seeded_users):
+    # Retreive an empty list (no transactions yet)
+    response = client.get("/logging/history/Alice")
+    data = response.get_json()
+
+    assert response.status_code == 200
+    assert isinstance(data, list)
+    assert len(data) == 0
+
+    # Check retreival of a single item
+    client.post(
+        "/logging/log-by-id",
+        json={"username": "Alice", "food_id": 1},
+    )
+    response = client.get("/logging/history/Alice")
+    data = response.get_json()
+
+    assert response.status_code == 200
+    assert len(data) == 1
+
+    first_log_entry = data[0]
+    assert first_log_entry["calories"] == 350
+    assert first_log_entry["food_name"] == "Caesar Salad"
+    assert first_log_entry["transaction_time"]
+
+    # Add a second item via the other transaction endpoint
+    client.post(
+        "/logging/log-by-name",
+        json={"username": "Alice", "food_name": "Banana Bread"},
+    )
+
+    response = client.get("/logging/history/Alice")
+    data = response.get_json()
+
+    print(data)
+
+    assert response.status_code == 200
+    assert len(data) == 2
+
+    # The order should be reversed -- most recent at position 0
+    first_log_entry = data[1]
+    assert first_log_entry["calories"] == 350
+    assert first_log_entry["food_name"] == "Caesar Salad"
+    assert first_log_entry["transaction_time"]
+
+    second_log_entry = data[0]
+    assert second_log_entry["calories"] == 350
+    assert second_log_entry["food_name"] == "Banana Bread"
+    assert second_log_entry["transaction_time"]
+
+
+def test_retreival_invalid_username(client, seeded_food_data, seeded_users):
+    # Retreive an empty list (no transactions yet)
+    response = client.get("/logging/history/Alison")
+    assert response.status_code == 400
