@@ -144,6 +144,25 @@ The following endpoint should be used when the food_id is known (manual entry):
     """
 
 The following endpoint should be used when food_name is determined through machine learning:
+    """
+    POST /logging/log-by-name
+
+    Description:
+    Records the intake of a food item by a user.
+    Nutrition data will be derived based on the name.
+    The name must match a generic food category.
+
+    Request Body (JSON):
+    {
+        "username": "string",       # required
+        "food_name": "string",      # required
+    }
+
+    Responses:
+    200 OK - Successfully recorded the transaction
+    400 Bad Request - Invalid argument
+    500 Internal Server Error - Error adding transaction to database
+    """
 
 ### Profiles
     """
