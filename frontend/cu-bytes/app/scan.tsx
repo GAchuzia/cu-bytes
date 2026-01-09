@@ -5,7 +5,9 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { apiService } from '../services/api';
 
-import { styles } from './styles/style-scan'
+import { styles } from './styles/style-scan';
+
+import { useUser } from './context';
 
 interface PredictionResult {
     food_name: string;
@@ -17,6 +19,7 @@ export default function ScanScreen() {
     const [loading, setLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [prediction, setPrediction] = useState<PredictionResult | null>(null);
+    const { user } = useUser();
 
     const pickImage = async () => {
         try {

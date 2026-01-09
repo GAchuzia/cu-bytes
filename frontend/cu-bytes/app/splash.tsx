@@ -6,8 +6,12 @@ import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-splash';
 
+import { useUser } from './context';
+
 export default function SplashScreen() {
+    
     const [loading, setLoading] = useState(false);
+    const { user } = useUser();
     
     // The page that the user sees in the app/browser
     return (
