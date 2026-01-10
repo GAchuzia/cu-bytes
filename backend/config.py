@@ -9,8 +9,8 @@ load_dotenv()
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY") or "dev-secret-key-change-in-production"
     FLASK_ENV = os.environ.get("FLASK_ENV") or "development"
-    PORT = int(os.environ.get("PORT")) or 5000
-
+    PORT = int(os.environ.get("PORT") or 5000)
+    
 
 class DevelopmentConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = False

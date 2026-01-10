@@ -11,13 +11,13 @@ const API_CONFIG = {
 const getAPIBaseURL = () => {
   if (__DEV__) {
     if (Platform.OS === 'web') {
-      return `http://localhost:${API_CONFIG.PORT}/api`;
+      return `http://localhost:${API_CONFIG.PORT}`;
     } else {
       // For mobile devices, use your computer's IP
-      return `http://${API_CONFIG.LOCAL_IP}:${API_CONFIG.PORT}/api`;
+      return `http://${API_CONFIG.LOCAL_IP}:${API_CONFIG.PORT}`;
     }
   }
-  return 'https://your-production-url.com/api';
+  return 'https://your-production-url.com';
 };
 
 const API_BASE_URL = getAPIBaseURL();
@@ -62,11 +62,43 @@ api.interceptors.response.use(
   }
 );
 
-// API functions - Only health check
+// API functions
 export const apiService = {
   // Health check
   async healthCheck() {
-    const response = await api.get('/health');
+    const response = await api.get('/api/health');
+    return response.data;
+  },
+
+  // ML Prediction
+  async predictFood(imageUri: string) {
+    // Convert image URI to FormData for upload
+    const formData = new FormData();
+    
+    // For web, we need to fetch the image and convert to blob
+    if (Platform.OS === 'web') {
+      const response = await fetch(imageUri);
+      const blob = await response.blob();
+      const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+      formData.append('image', file);
+    } else {
+      // For mobile (React Native)
+      const filename = imageUri.split('/').pop() || 'image.jpg';
+      const match = /\.(\w+)$/.exec(filename);
+      const type = match ? `image/${match[1]}` : 'image/jpeg';
+      
+      formData.append('image', {
+        uri: imageUri,
+        name: filename,
+        type: type,
+      } as any);
+    }
+
+    const response = await api.post('/ml/predict', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return response.data;
   },
 };
