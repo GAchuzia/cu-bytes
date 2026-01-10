@@ -33,11 +33,34 @@ export default function EnterScreen() {
     // Variable and setter for controlling the visibility of components on the page
     const [visible, setVisible] = useState(false);
 
-    // Variables and setters for food item ids, food item names, and food item JSON objects
-    const [foodItem, setFoodItem] = useState({});
-    const [foodItemId, setFoodItemId] = useState(1); // initial value of 1 to prevent errors
-    const [foodItemName, setFoodItemName] = useState('');
-    
+    // Variables and setters for food item elements
+    const [foodItem, setFoodItem] = useState(
+        {
+            "calories": -1,
+            "comments": "",
+            "cost": 1.0,
+            "dining_location": 0,
+            "has_eggs": null,
+            "has_fish": null,
+            "has_milk": null,
+            "has_peanuts": null,
+            "has_sesame": null,
+            "has_soy": null,
+            "has_treenuts": null,
+            "has_wheat": null,
+            "id": 1, // initial value of 1 to prevent errors
+            "is_dairy_free": null,
+            "is_gluten_free": null,
+            "is_halal": null,
+            "is_kosher": null,
+            "is_vegan": null,
+            "last_updated": "Unknown",
+            "name": ""
+        }
+    );
+    const [foodItemId, setFoodItemId] = useState(foodItem["id"]); 
+    const [foodItemName, setFoodItemName] = useState(foodItem["name"]);
+
     // Variables and setters for storing food item JSON objects
     const [foodItemArray, setFoodItemArray] = useState([]);
     const [filteredFoodItemArray, setFilteredFoodItemArray] = useState([]);
@@ -52,7 +75,7 @@ export default function EnterScreen() {
 
     /*
     Calculate how to display the calories of a food item
-    If the calories variable of the selected food item has a value of -1, then the calorie amount is unknown and convey this to the user
+    If the calories variable of the selected food item has a value of -1, then the calorie amount is "Unknown" and convey this to the user
     Otherwise, convey the calorie amount to the user
     calories: The integer representing the number of calories of the food item
     */
@@ -65,6 +88,22 @@ export default function EnterScreen() {
             return calories 
         }
     }
+
+    /*
+    Calculate how to display the cost of a food item
+    If the cost variable of the selected food item has a value of -1, then the cost amount is "Unknown" and display this to the user
+    Otherwise, display the cost amount to the user
+    cost: The float representing the cost of the food item
+    */
+   function processFoodItemCost(cost: number) {
+
+        if (cost == -1) {
+            return "Unknown"
+        }
+        else {
+            return cost
+        }
+   }
     
     // Sends a get all food items request to the server exactly once
     useEffect(() => {
@@ -186,8 +225,49 @@ export default function EnterScreen() {
                     <br></br>
                     <Text style={styles.subsubtitle}>Dining Location: {foodItem["dining_location"]}</Text>
                     <br></br>
-                    <Text style={styles.subsubtitle}>Cost: ${foodItem["cost"]}</Text>
+                    <Text style={styles.subsubtitle}>Cost: $ {processFoodItemCost(foodItem["cost"])}</Text>
                     <br></br>
+
+                    {foodItem["has_eggs"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["has_eggs"] === true && hasEggAllergyGlobal === true ? true : "Contains eggs, which you are allergic to" }</Text>
+                    )}
+                    {foodItem["has_fish"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["has_fish"] === true ? true : "Contains fish" }</Text>
+                    )}
+                    {foodItem["has_milk"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["has_milk"] === true && hasDairyIntoleranceGlobal === true ? true: "Contains milk, which you have an intolerance to (if the milk is dairy)" }</Text>
+                    )}
+                    {!foodItem["is_dairy_free"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["is_dairy_free"] === false && hasDairyIntoleranceGlobal === true ? true: "Contains dairy, which you have an intolerance to" }</Text>
+                    )}
+                    {foodItem["has_peanuts"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["has_peanuts"] === true && hasPeanutAllergyGlobal === true ? true: "Contains peanuts, which you are allergic to" }</Text>
+                    )}
+                    {foodItem["has_sesame"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["has_sesame"] === true && hasSesameAllergyGlobal === true ? true: "Contains sesame, which you are allergic to" }</Text>
+                    )}
+                    {foodItem["has_soy"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["has_soy"] === true && hasSoyAllergyGlobal === true ? true: "Contains soy, which you are allergic to" }</Text>
+                    )}
+                    {foodItem["has_treenuts"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["has_treenuts"] === true && hasTreenutAllergyGlobal === true ? true: "Contains treentus, which you are allergic to" }</Text>
+                    )}
+                    {foodItem["has_wheat"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["has_wheat"] === true && hasWheatAllergyGlobal === true ? true: "Contains wheat, which you are allergic to" }</Text>
+                    )}
+                    {!foodItem["is_gluten_free"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["is_gluten_free"] === false && hasGlutenAllergyGlobal === true ? true: "Contains gluten, which you are allergic to" }</Text>
+                    )}
+                    {!foodItem["is_vegan"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["is_vegan"] === false && isVeganGlobal === true ? true : "This food item is not vegan, but you are a vegan" }</Text>
+                    )}
+                    {!foodItem["is_kosher"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["is_kosher"] === false && prefersKosherGlobal === true ? true : "This food item is not kosher, but you prefer kosher food items" }</Text>
+                    )}
+                    {!foodItem["is_halal"] && (
+                        <Text style={styles.subsubtitle}>{foodItem["is_halal"] === false && prefersHalalGlobal === true ? true : "This food item is not halal, but you prefer halal food items" }</Text>
+                    )}
+                                        
                 </View>
             )}
 
