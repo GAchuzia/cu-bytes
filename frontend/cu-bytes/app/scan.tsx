@@ -6,7 +6,6 @@ import { StatusBar } from 'expo-status-bar';
 import { apiService } from '../services/api';
 
 import { styles } from './styles/style-scan';
-
 import { useUser } from './context';
 
 interface PredictionResult {
@@ -16,10 +15,31 @@ interface PredictionResult {
 }
 
 export default function ScanScreen() {
+
+    // Get the variables or setters used to access or modify a copy of the user profile elements
+    const
+        {
+            usernameGlobal,
+            showStatsGlobal,
+            hasEggAllergyGlobal,
+            hasDairyIntoleranceGlobal,
+            hasPeanutAllergyGlobal,
+            hasSesameAllergyGlobal,
+            hasShellfishAllergyGlobal,
+            hasSoyAllergyGlobal,
+            hasTreenutAllergyGlobal,
+            hasWheatAllergyGlobal,
+            hasGlutenAllergyGlobal,
+            isVeganGlobal,
+            isVegetarianGlobal,
+            prefersKosherGlobal,
+            prefersHalalGlobal
+
+        } = useUser();
+
     const [loading, setLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [prediction, setPrediction] = useState<PredictionResult | null>(null);
-    const { user } = useUser();
 
     const pickImage = async () => {
         try {
@@ -70,7 +90,7 @@ export default function ScanScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
 
-            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
+            <Text style={styles.subtitle}> Logged in as {usernameGlobal}</Text>
             
             <Text style={styles.title}>Scan</Text>
             <Text style={styles.subtitle}>Upload a photo of the food item that you would like to have analyzed</Text>

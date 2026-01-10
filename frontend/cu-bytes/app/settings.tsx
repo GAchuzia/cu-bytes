@@ -56,7 +56,7 @@ export default function SettingsScreen() {
     useEffect(() => {
         const loadSettings = async () => {
             try {
-                const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${username}`);
+                const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${usernameGlobal}`);
                 const data = await res.json();
 
                 // Trigger updates for the switches
