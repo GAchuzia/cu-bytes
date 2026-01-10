@@ -108,15 +108,12 @@ export const styles = StyleSheet.create({
     borderRadius: 0
   },
   infoSection: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255, 210, 210, 1)',
     padding: '1.2%' as any,
-    borderRadius: 12,
-    width: '100%',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
+    borderRadius: 40,
+    width: '80%',
+    alignItems: 'center',
+    marginVertical: '1%' as any,
   },
   infoTitle: {
     fontSize: '100%' as any,
