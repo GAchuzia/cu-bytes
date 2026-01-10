@@ -9,8 +9,9 @@ Summary of endpoints.
     - [Login](#login)
     - [Register](#register)
     - [Browse](#browse)
-    - [Logging] (#logging)
-    - [Profiles] (#profiles)
+    - [Logging](#logging)
+    - [Profiles](#profiles)
+    - [Dining Locations](#dining-locations)
 
 
 ### Login
@@ -282,4 +283,63 @@ The following endpoint should be used when food_name is determined through machi
     200 OK - Successfully recorded the transaction
     400 Bad Request - Invalid argument
     500 Internal Server Error - Error adding transaction to database
+    """
+
+### Dining Locations
+    """
+    GET /locations/dining-locations
+
+    Description:
+    Retrieves all available dining locations from the database.
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved all dining locations
+        Response Body (JSON):
+        {
+            [
+                {
+                    "id": 1,
+                    "name": "Tim Hortons"
+                },
+                {
+                    "id": 2,
+                    "name": "Subway"
+                }
+                ...
+            ]
+        }
+
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
+
+    """
+    GET /locations/dining-locations/{id}
+
+    Description:
+    Retrieves all available food items from the dining location with id {id}
+
+    Request Body:
+    None
+
+    Response:
+    200 OK - Successfully retrieved all food items at the specified dining location
+        Response Body (JSON):
+        {
+            [
+                {
+                    "id": 1,
+                    "name": "12 Grain Bagel"
+                },
+                {
+                    "id": 52,
+                    "name": "Apple Fritter Donut"
+                }
+                ...
+            ]
+        }
+
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """

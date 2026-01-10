@@ -4,7 +4,7 @@ import pytest
 # Project imports
 from backend.services.authentication_service import create_user
 from backend.models.food_item import FoodItem
-from backend.models.food_item import DiningLocation
+from backend.models.locations import DiningLocation
 from backend.models.users_auth import UsersAuth
 from backend.app import db
 

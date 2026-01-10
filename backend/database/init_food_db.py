@@ -7,7 +7,7 @@ import numpy as np
 from backend.app import create_app
 from backend.extensions import db
 from backend.models.food_item import FoodItem
-from backend.models.food_item import DiningLocation
+from backend.models.locations import DiningLocation
 
 """
 CSV files are expected to contain the following columns
