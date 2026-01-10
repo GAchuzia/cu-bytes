@@ -91,10 +91,8 @@ def create_food_table():
     reader = csv.DictReader(csvfile)
 
     with app.app_context():
-
         # Add each row to the database as a FoodItem
         for row in reader:
-
             FoodItem.create(
                 food_name=row.get("Food Item"),
                 dining_location=get_dining_location_id(row.get("Dining Location")),
@@ -117,12 +115,13 @@ def create_food_table():
                 has_soy=parse_bool(row.get("Soy")),
                 has_treenuts=parse_bool(row.get("Treenuts")),
                 has_wheat=parse_bool(row.get("Wheat")),
+                food_category=row.get("Food Category"),
             )
 
     csvfile.close()
 
-def get_dining_location_id(dining_location_name):
 
+def get_dining_location_id(dining_location_name):
     if dining_location_name == "Tim Hortons":
         return 1
     elif dining_location_name == "Subway":
@@ -170,6 +169,7 @@ def get_dining_location_id(dining_location_name):
     else:
         return 0
 
+
 # NEW
 def create_dining_location_table():
     # Open csv
@@ -183,12 +183,8 @@ def create_dining_location_table():
     with app.app_context():
         # Add each row to the database as a DiningLocation
         for row in reader:
-
             if row.get("Dining Location") not in dining_location_names:
-
-                DiningLocation.create(
-                    dining_location_name=row.get("Dining Location")
-                )
+                DiningLocation.create(dining_location_name=row.get("Dining Location"))
 
                 dining_location_names.append(row.get("Dining Location"))
 
@@ -209,11 +205,10 @@ def parse_bool(value):
 if __name__ == "__main__":
     create_single_csv()
     clear_existing_data()
-    
+
     create_food_table()
     print("Created food_data.db and added food items.")
 
     # NEW
     create_dining_location_table()
     print("Created dining_location_data.db and added dining locations")
-

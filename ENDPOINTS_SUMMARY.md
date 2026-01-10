@@ -100,6 +100,7 @@ Summary of endpoints.
             "comments": "",
             "cost": 5.7,
             "dining_location": "Tunnel Junction",
+            "food_category": "Parfait",
             "has_eggs": null,
             "has_fish": null,
             "has_milk": null,

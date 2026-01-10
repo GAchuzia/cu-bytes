@@ -44,6 +44,7 @@ headers = [
     "Wheat",
     "Kosher",
     "Last Updated",
+    "Food Category",
 ]
 
 
@@ -108,8 +109,12 @@ with open(csv_file, mode="w", newline="", encoding="utf-8") as file:
             "Wheat": bool_to_tf(filters.get("Wheat")),
             "Kosher": bool_to_tf(filters.get("IsKosher")),
             "Last Updated": date,
+            "Food Category": "",
         }
 
         writer.writerow(row)
 
-print(f"Data exported successfully to {csv_file}.")
+print(
+    f"Data exported successfully to {csv_file}. "
+    "Please fill in the food category column yourself."
+)

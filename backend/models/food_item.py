@@ -12,7 +12,7 @@ class FoodItem(db.Model):
 
     # Main attributes
     food_name = db.Column(db.String(80), nullable=False)
-    
+
     # Switched from db.String(80) to db.Integer
     dining_location = db.Column(db.Integer, nullable=False)
 
@@ -40,6 +40,9 @@ class FoodItem(db.Model):
     has_treenuts = db.Column(db.Boolean, default=None, nullable=True)
     has_wheat = db.Column(db.Boolean, default=None, nullable=True)
 
+    # Foreign key to the associated FoodCategory
+    food_category = db.Column(db.String(80), nullable=False)
+
     def __repr__(self):
         return f"<FoodItem {self.food_name} from {self.dining_location}>"
 
@@ -65,6 +68,7 @@ class FoodItem(db.Model):
         has_soy,
         has_treenuts,
         has_wheat,
+        food_category,
     ):
         """Create a new food item and store it in the database"""
 
@@ -88,6 +92,7 @@ class FoodItem(db.Model):
             has_soy=has_soy,
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,
+            food_category=food_category,
         )
 
         db.session.add(food_item)
@@ -126,11 +131,11 @@ class FoodItem(db.Model):
             "has_soy": self.has_soy,
             "has_treenuts": self.has_treenuts,
             "has_wheat": self.has_wheat,
+            "food_category": self.food_category,
         }
 
 
 def get_dining_location_name(dining_location_id):
-
     if dining_location_id == 1:
         return "Tim Hortons"
     elif dining_location_id == 2:
@@ -199,9 +204,7 @@ class DiningLocation(db.Model):
         Create a new dining location and store it in the database
         """
 
-        dining_location = cls(
-            dining_location_name=dining_location_name
-        )
+        dining_location = cls(dining_location_name=dining_location_name)
 
         db.session.add(dining_location)
         db.session.commit()
@@ -215,8 +218,11 @@ class DiningLocation(db.Model):
         return db.session.get(cls, dining_location_name)
 
     def to_json(self):
-        """Return a JSON-serializable dict representing the food items at this dining location."""
+        """
+        Return a JSON-serializable dict representing the food items at
+        this dining location.
+        """
         return {
             "id": self.dining_service_id,
-            "dining_location": self.dining_location_name
+            "dining_location": self.dining_location_name,
         }

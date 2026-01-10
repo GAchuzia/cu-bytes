@@ -82,7 +82,7 @@ Database schema:
 sqlite> PRAGMA table_info('food_items');
 0|id|INTEGER|1||1
 1|food_name|VARCHAR(80)|1||0
-2|dining_location|VARCHAR(80)|1||0
+2|dining_location|INTEGER|1||0
 3|cost|DOUBLE|0||0
 4|calories|INTEGER|0||0
 5|comments|VARCHAR(200)|0||0
@@ -100,6 +100,7 @@ sqlite> PRAGMA table_info('food_items');
 17|has_soy|BOOLEAN|0||0
 18|has_treenuts|BOOLEAN|0||0
 19|has_wheat|BOOLEAN|0||0
+20|food_category|VARCHAR(80)|1||0
 
 Database schema:
 sqlite> PRAGMA table_info('dining_locations')'

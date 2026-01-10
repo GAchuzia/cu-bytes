@@ -5,6 +5,7 @@ from backend.tests.test_helpers import seeded_food_data
 # seeded_food_data is automatically injected from test_helpers.py
 # To get the per-test food_data setup and teardown inject seeded_food_data
 
+
 # ------------------------------------
 # Testing Get All Food Items
 # ------------------------------------
@@ -56,6 +57,7 @@ def test_get_first_food_item(client, seeded_food_data):
     assert data["has_soy"] is False
     assert data["has_treenuts"] is False
     assert data["has_wheat"] is False
+    assert data["food_category"] == "Green Salad"
 
 
 def test_get_last_food_item(client, seeded_food_data):

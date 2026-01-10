@@ -33,6 +33,7 @@ def seeded_users(app):
 def add_test_food_item(
     app,
     food_name,
+    food_category,
     dining_location=1,
     cost=12.99,
     calories=350,
@@ -74,15 +75,16 @@ def add_test_food_item(
             has_soy=has_soy,
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,
+            food_category=food_category,
         )
 
 
 @pytest.fixture
 def seeded_food_data(app):
     """Setup a small food_data DB for each test in this file."""
-    add_test_food_item(app, "Caesar Salad")
-    add_test_food_item(app, "Hamburger")
-    add_test_food_item(app, "Banana Bread")
+    add_test_food_item(app, "Caesar Salad", "Green Salad")
+    add_test_food_item(app, "Hamburger", "Burger")
+    add_test_food_item(app, "Banana Bread", "Loaf")
 
     yield  # test runs here
 
@@ -91,18 +93,20 @@ def seeded_food_data(app):
         db.session.query(FoodItem).delete()
         db.session.commit()
 
+
 def add_test_dining_location(app, dining_location_name):
-     """Insert a dining location directly into the database."""
-     with app.app_context():
+    """Insert a dining location directly into the database."""
+    with app.app_context():
         DiningLocation.create(dining_location_name=dining_location_name)
+
 
 @pytest.fixture
 def seeded_dining_location_data(app):
     """Setup a small food_data DB for each test in this file."""
-    add_test_food_item(app, "Caesar Salad")
-    add_test_food_item(app, "Hamburger")
-    add_test_food_item(app, "Banana Bread")
-    
+    add_test_food_item(app, "Caesar Salad", "Green Salad")
+    add_test_food_item(app, "Hamburger", "Burger")
+    add_test_food_item(app, "Banana Bread", "Loaf")
+
     add_test_dining_location(app, "Tim Hortons")
 
     yield  # test runs here
