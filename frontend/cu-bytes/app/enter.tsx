@@ -5,23 +5,40 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-enter';
-
 import { useUser } from './context';
 
 export default function EnterScreen() {
 
-    const { user } = useUser();
+    // Get the variables and setters used to access and modify a copy of the user profile elements
+    const 
+        {
+            usernameGlobal,
+            showStatsGlobal,
+            hasEggAllergyGlobal,
+            hasDairyIntoleranceGlobal,
+            hasPeanutAllergyGlobal,
+            hasSesameAllergyGlobal,
+            hasShellfishAllergyGlobal,
+            hasSoyAllergyGlobal,
+            hasTreenutAllergyGlobal,
+            hasWheatAllergyGlobal,
+            hasGlutenAllergyGlobal,
+            isVeganGlobal,
+            isVegetarianGlobal,
+            prefersKosherGlobal,
+            prefersHalalGlobal
 
-    ////////////////////////////////////////////////// FoodItem, Loading, and Visible Variables and Setters //////////////////////////////////////////////////
-    const [loading, setLoading] = useState(false);
+        } = useUser();
+
+    // Variable and setter for controlling the visibility of components on the page
     const [visible, setVisible] = useState(false);
 
-    // The food item variables
+    // Variables and setters for food item ids, food item names, and food item JSON objects
+    const [foodItem, setFoodItem] = useState({});
     const [foodItemId, setFoodItemId] = useState(1); // initial value of 1 to prevent errors
     const [foodItemName, setFoodItemName] = useState('');
-    const [foodItem, setFoodItem] = useState({});
-
-    // The food item array variables
+    
+    // Variables and setters for storing food item JSON objects
     const [foodItemArray, setFoodItemArray] = useState([]);
     const [filteredFoodItemArray, setFilteredFoodItemArray] = useState([]);
 
@@ -32,10 +49,6 @@ export default function EnterScreen() {
     function saveFoodItemName(event: { target: { value: SetStateAction<string>; }; }) {
         setFoodItemName(event.target.value);
     }
-
-    ////////////////////////////////////////////////// FoodItem, Loading, and Visible Variables and Setters //////////////////////////////////////////////////
-
-    ////////////////////////////////////////////////// foodItem["calories"] //////////////////////////////////////////////////
 
     /*
     Calculate how to display the calories of a food item
@@ -52,10 +65,6 @@ export default function EnterScreen() {
             return calories 
         }
     }
-
-    ////////////////////////////////////////////////// foodItem["calories"] //////////////////////////////////////////////////
-
-    ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
     
     // Sends a get all food items request to the server exactly once
     useEffect(() => {
@@ -72,17 +81,11 @@ export default function EnterScreen() {
             })
             .then(data => {
                 setFoodItemArray(data);
-                //const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"].toLowerCase() as string).includes(foodItemName.toLowerCase()));
-                //setFilteredFoodItemArray(filteredFoodItemArray);
             })
         };
         handlePressGetFoodItems();
     }, []);
 
-    ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
-
-    ////////////////////////////////////////////////// Send food item request ////////////////////////////////////////////////// 
-    
     // Sends a get food item by id request to the server
     const handlePressGetFoodItem = () => {
         const foodItemRequest = `http://127.0.0.1:5000/browse//food-item/${foodItemId}`;
@@ -102,8 +105,6 @@ export default function EnterScreen() {
         })
     }
 
-    ////////////////////////////////////////////////// Send food item request //////////////////////////////////////////////////
-
     // Filter the array of food items (retrieved from the backend database)
     // The food item name, entered in the text input, is used to filter the array
     // The food items whose names partially or wholly match the entered value are stored in a filtered array
@@ -118,7 +119,10 @@ export default function EnterScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
 
+            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
+
             <Text style={styles.title}>Enter</Text>
+
             <Text style={styles.subtitle}>Enter the food item manually</Text>
 
             {/* Enter the food item to get detailed information on*/}
@@ -132,12 +136,11 @@ export default function EnterScreen() {
 
             {/* Filter the food items in the frontend array by the food item name and store in another array */}
             <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
+                style={[styles.button]}
                 onPress={() => {
                     setVisible(false);
                     filterFoodItemArray();
                 }}
-                disabled={loading}
             >
                 <Text style={styles.buttonText}>Confirm</Text>
 
@@ -177,7 +180,7 @@ export default function EnterScreen() {
 
             {visible && (
                 <View>
-                    <Text style={styles.subsubtitle}>Food Item Name: {foodItem["name"]}</Text>
+                    <Text style={styles.subsubtitle}>{foodItem["name"]}</Text>
                     <br></br>
                     <Text style={styles.subsubtitle}>Calories: {processFoodItemCalories(foodItem["calories"])}</Text>
                     <br></br>

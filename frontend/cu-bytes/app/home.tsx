@@ -5,13 +5,33 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-home';
-
 import { useUser } from './context';
+import { HeaderShownContext } from '@react-navigation/elements';
 
 export default function HomeScreen() {
 
+    // Get the variables and setters used to access and modify a copy of the user profile elements
+    const
+        {
+            usernameGlobal,
+            showStatsGlobal,
+            hasEggAllergyGlobal,
+            hasDairyIntoleranceGlobal,
+            hasPeanutAllergyGlobal,
+            hasSesameAllergyGlobal,
+            hasShellfishAllergyGlobal,
+            hasSoyAllergyGlobal,
+            hasTreenutAllergyGlobal,
+            hasWheatAllergyGlobal,
+            hasGlutenAllergyGlobal,
+            isVeganGlobal,
+            isVegetarianGlobal,
+            prefersKosherGlobal,
+            prefersHalalGlobal
+
+        } = useUser();
+
     const [loading, setLoading] = useState(false);
-    const { user } = useUser();
 
     // The page that the user sees in the app/browser
     return (
@@ -19,7 +39,7 @@ export default function HomeScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
 
-            <Text style={styles.subtitle}>Logged in as {user}</Text>
+            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
 
             <Text style={styles.title}>Home</Text>
 

@@ -10,14 +10,36 @@ import { useUser } from './context';
 
 export default function ScanScreen() {
 
+    // Get the variables and setters used to access and modify a copy of the user profile elements
+    const
+        {
+            usernameGlobal,
+            showStatsGlobal,
+            hasEggAllergyGlobal,
+            hasDairyIntoleranceGlobal,
+            hasPeanutAllergyGlobal,
+            hasSesameAllergyGlobal,
+            hasShellfishAllergyGlobal,
+            hasSoyAllergyGlobal,
+            hasTreenutAllergyGlobal,
+            hasWheatAllergyGlobal,
+            hasGlutenAllergyGlobal,
+            isVeganGlobal,
+            isVegetarianGlobal,
+            prefersKosherGlobal,
+            prefersHalalGlobal
+
+        } = useUser();
+
     const [loading, setLoading] = useState(false);
-    const { user } = useUser();
 
     // The page that the user sees in the app/browser
     return (
 
         <View style={styles.container}>
             <StatusBar style="auto" />
+
+            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
             
             <Text style={styles.title}>Scan</Text>
             <Text style={styles.subtitle}>Upload a photo of the food item that you would like to have analyzed</Text>
