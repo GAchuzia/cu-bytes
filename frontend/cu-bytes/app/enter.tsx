@@ -1,27 +1,69 @@
 import { SetStateAction, useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, TextInput, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-enter';
-
 import { useUser } from './context';
 
 export default function EnterScreen() {
 
-    const { user } = useUser();
+    // Get the variables and setters used to access and modify a copy of the user profile elements
+    const 
+        {
+            usernameGlobal,
+            showStatsGlobal,
+            hasEggAllergyGlobal,
+            hasDairyIntoleranceGlobal,
+            hasPeanutAllergyGlobal,
+            hasSesameAllergyGlobal,
+            hasShellfishAllergyGlobal,
+            hasSoyAllergyGlobal,
+            hasTreenutAllergyGlobal,
+            hasWheatAllergyGlobal,
+            hasGlutenAllergyGlobal,
+            isVeganGlobal,
+            isVegetarianGlobal,
+            prefersKosherGlobal,
+            prefersHalalGlobal
 
-    ////////////////////////////////////////////////// FoodItem, Loading, and Visible Variables and Setters //////////////////////////////////////////////////
-    const [loading, setLoading] = useState(false);
+        } = useUser();
+
+    const [loading, setLoading] = useState(true);
+
+    // Variable and setter for controlling the visibility of components on the page
     const [visible, setVisible] = useState(false);
 
-    // The food item variables
-    const [foodItemId, setFoodItemId] = useState(1); // initial value of 1 to prevent errors
-    const [foodItemName, setFoodItemName] = useState('');
-    const [foodItem, setFoodItem] = useState({});
+    // Variables and setters for food item elements
+    const [foodItem, setFoodItem] = useState(
+        {
+            "calories": -1,
+            "comments": "",
+            "cost": 1.0,
+            "dining_location": 0,
+            "has_eggs": null,
+            "has_fish": null,
+            "has_milk": null,
+            "has_peanuts": null,
+            "has_sesame": null,
+            "has_soy": null,
+            "has_treenuts": null,
+            "has_wheat": null,
+            "id": 1, // initial value of 1 to prevent errors
+            "is_dairy_free": null,
+            "is_gluten_free": null,
+            "is_halal": null,
+            "is_kosher": null,
+            "is_vegan": null,
+            "last_updated": "Unknown",
+            "name": ""
+        }
+    );
+    const [foodItemId, setFoodItemId] = useState(foodItem["id"]); 
+    const [foodItemName, setFoodItemName] = useState(foodItem["name"]);
 
-    // The food item array variables
+    // Variables and setters for storing food item JSON objects
     const [foodItemArray, setFoodItemArray] = useState([]);
     const [filteredFoodItemArray, setFilteredFoodItemArray] = useState([]);
 
@@ -33,13 +75,9 @@ export default function EnterScreen() {
         setFoodItemName(event.target.value);
     }
 
-    ////////////////////////////////////////////////// FoodItem, Loading, and Visible Variables and Setters //////////////////////////////////////////////////
-
-    ////////////////////////////////////////////////// foodItem["calories"] //////////////////////////////////////////////////
-
     /*
     Calculate how to display the calories of a food item
-    If the calories variable of the selected food item has a value of -1, then the calorie amount is unknown and convey this to the user
+    If the calories variable of the selected food item has a value of -1, then the calorie amount is "Unknown" and convey this to the user
     Otherwise, convey the calorie amount to the user
     calories: The integer representing the number of calories of the food item
     */
@@ -53,9 +91,21 @@ export default function EnterScreen() {
         }
     }
 
-    ////////////////////////////////////////////////// foodItem["calories"] //////////////////////////////////////////////////
+    /*
+    Calculate how to display the cost of a food item
+    If the cost variable of the selected food item has a value of -1, then the cost amount is "Unknown" and display this to the user
+    Otherwise, display the cost amount to the user
+    cost: The float representing the cost of the food item
+    */
+   function processFoodItemCost(cost: number) {
 
-    ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
+        if (cost == -1) {
+            return "Unknown"
+        }
+        else {
+            return cost
+        }
+   }
     
     // Sends a get all food items request to the server exactly once
     useEffect(() => {
@@ -72,19 +122,14 @@ export default function EnterScreen() {
             })
             .then(data => {
                 setFoodItemArray(data);
-                //const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"].toLowerCase() as string).includes(foodItemName.toLowerCase()));
-                //setFilteredFoodItemArray(filteredFoodItemArray);
+                setLoading(false);
             })
         };
         handlePressGetFoodItems();
     }, []);
 
-    ////////////////////////////////////////////////// Send food items request ////////////////////////////////////////////////// 
-
-    ////////////////////////////////////////////////// Send food item request ////////////////////////////////////////////////// 
-    
     // Sends a get food item by id request to the server
-    const handlePressGetFoodItem = () => {
+    function handlePressGetFoodItem(foodItemId: number) {
         const foodItemRequest = `http://127.0.0.1:5000/browse//food-item/${foodItemId}`;
         fetch(foodItemRequest, {
                 method: "GET"
@@ -98,12 +143,20 @@ export default function EnterScreen() {
         })
         .then(data => {
             setFoodItem(data);
+            setFoodItemId(foodItem["id"]);
             console.log(data);
         })
     }
 
-    ////////////////////////////////////////////////// Send food item request //////////////////////////////////////////////////
-
+    // Display loading symbol while the profiles are being fetched
+    if (loading) {
+        return (
+            <View>
+                <ActivityIndicator size="large" />
+            </View>
+        );
+    }
+    
     // Filter the array of food items (retrieved from the backend database)
     // The food item name, entered in the text input, is used to filter the array
     // The food items whose names partially or wholly match the entered value are stored in a filtered array
@@ -118,7 +171,10 @@ export default function EnterScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
 
+            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
+
             <Text style={styles.title}>Enter</Text>
+
             <Text style={styles.subtitle}>Enter the food item manually</Text>
 
             {/* Enter the food item to get detailed information on*/}
@@ -139,8 +195,7 @@ export default function EnterScreen() {
                 }}
                 disabled={loading}
             >
-                <Text style={styles.buttonText}>Confirm</Text>
-
+            <Text style={styles.buttonText}>Confirm</Text>
             </TouchableOpacity>
 
             {/* If the entered string value does not return any food items, display the following message */}
@@ -155,14 +210,12 @@ export default function EnterScreen() {
             {/* If the entered string value returns any food items, display the name and id of each food item */}
             {filteredFoodItemArray && !visible && (
                 <View>
-                    
                     {filteredFoodItemArray.map((foodItem) => (
                         <Text 
                             style={styles.pressableText}
                             key={foodItem["id"]}
                             onPress={() => {
-                                setFoodItemId(foodItem["id"]);
-                                handlePressGetFoodItem();
+                                handlePressGetFoodItem(foodItem["id"]);
                                 setVisible(true);
                             }}
                         >
@@ -171,20 +224,60 @@ export default function EnterScreen() {
                             <line>---</line>
                         </Text>
                     ))}
-
                 </View>
             )}
 
             {visible && (
                 <View>
-                    <Text style={styles.subsubtitle}>Food Item Name: {foodItem["name"]}</Text>
+                    <Text style={styles.subsubtitle}>{foodItem["name"]}</Text>
                     <br></br>
                     <Text style={styles.subsubtitle}>Calories: {processFoodItemCalories(foodItem["calories"])}</Text>
                     <br></br>
                     <Text style={styles.subsubtitle}>Dining Location: {foodItem["dining_location"]}</Text>
                     <br></br>
-                    <Text style={styles.subsubtitle}>Cost: ${foodItem["cost"]}</Text>
+                    <Text style={styles.subsubtitle}>Cost: $ {processFoodItemCost(foodItem["cost"])}</Text>
                     <br></br>
+
+                    {/* If the selected food item contains */}
+                    {foodItem["has_eggs"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_eggs === true && hasEggAllergyGlobal ? "Contains eggs, but you are allergic" : null}</Text>
+                    )}
+                    {foodItem["has_fish"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_fish === true ? "Contains fish" : null}</Text>
+                    )}
+                    {foodItem["has_milk"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_milk === true && hasDairyIntoleranceGlobal ? "Contains milk, but you are intolerant (if the milk is dairy)" : null}</Text>
+                    )}
+                    {foodItem["is_dairy_free"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Contains dairy, but you are intolerant" : null}</Text>
+                    )}
+                    {foodItem["has_peanuts"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_peanuts === true && hasPeanutAllergyGlobal ? "Contains peanuts, but you are allergic" : null}</Text>
+                    )}
+                    {foodItem["has_sesame"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_sesame === true && hasSesameAllergyGlobal ? "Contains sesame, but you are allergic" : null}</Text>
+                    )}
+                    {foodItem["has_soy"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_soy === true && hasSoyAllergyGlobal ? "Contains soy, but you are allergic" : null}</Text>
+                    )}
+                    {foodItem["has_treenuts"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_treenuts === true && hasTreenutAllergyGlobal ? "Contains treenuts, but you are allergic" : null}</Text>
+                    )}
+                    {foodItem["has_wheat"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_wheat === true && hasWheatAllergyGlobal ? "Contains wheat, but you are allergic" : null}</Text>
+                    )}
+                    {foodItem["is_gluten_free"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_gluten_free === false && hasGlutenAllergyGlobal ? "Contains gluten, but you are allergic" : null}</Text>
+                    )}
+                    {foodItem["is_vegan"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_vegan === false && isVeganGlobal ?  "Not vegan, but you are vegan" : null}</Text>
+                    )}
+                    {foodItem["is_kosher"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_kosher === false && prefersKosherGlobal ? "Not kosher, but you prefer kosher" : null}</Text>
+                    )}
+                    {foodItem["is_halal"] != null && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_halal === false && prefersHalalGlobal ? "Not halal, but you prefer halal" : null}</Text>
+                    )}                
                 </View>
             )}
 

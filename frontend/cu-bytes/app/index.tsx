@@ -7,13 +7,14 @@ import { StatusBar } from 'expo-status-bar';
 import { apiService } from '../services/api';
 
 import { styles } from './styles/style-index';
-
 import { useUser } from './context';
 
 export default function IndexScreen() {
 
+  // Get the variables and setters used to access and modify a copy of the user profile elements
+  const { usernameGlobal } = useUser();
+
   const [loading, setLoading] = useState(false);
-  const { user } = useUser();
 
   const healthCheck = async () => {
     setLoading(true);

@@ -5,15 +5,37 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-settings';
-
 import { useUser } from './context';
 
 export default function SettingsScreen() {
 
-    const [loading, setLoading] = useState(true);
-    const { user } = useUser();
+    // Get the variables or setters used to access or modify a copy of the user profile elements
+    const
+        {
+            usernameGlobal,
 
-    // Variables for each of the configurable settings
+            setShowStatsGlobal,
+            setHasEggAllergyGlobal,
+            setHasDairyIntoleranceGlobal,
+            setHasPeanutAllergyGlobal,
+            setHasSesameAllergyGlobal,
+            setHasShellfishAllergyGlobal,
+            setHasSoyAllergyGlobal,
+            setHasTreenutAllergyGlobal,
+            setHasWheatAllergyGlobal,
+            setHasGlutenAllergyGlobal,
+            setIsVeganGlobal,
+            setIsVegetarianGlobal,
+            setPrefersKosherGlobal,
+            setPrefersHalalGlobal
+
+        } = useUser();
+
+    const [loading, setLoading] = useState(true);
+    
+    // Variables and setters for each of the configurable settings
+    // The variable values will be sent to a backend endpoint to attempt to edit the user profile
+    const [isShowStatsEnabled, setIsShowStatsEnabled] = useState(false);
     const [hasDairyIntolerance, setHasDairyIntolerance] = useState(false);
     const [hasEggAllergy, setHasEggAllergy] = useState(false);
     const [hasGlutenAllergy, setHasGlutenAllergy] = useState(false);
@@ -27,9 +49,6 @@ export default function SettingsScreen() {
     const [isVegetarian, setIsVegetarian] = useState(false);
     const [prefersHalal, setPrefersHalal] = useState(false);
     const [prefersKosher, setPrefersKosher] = useState(false);
-    const [isShowStatsEnabled, setIsShowStatsEnabled] = useState(false);
-
-    const username = user;
 
     ////////////////////////////////////////////////// Get Initial Profile //////////////////////////////////////////////////
 
@@ -37,7 +56,7 @@ export default function SettingsScreen() {
     useEffect(() => {
         const loadSettings = async () => {
             try {
-                const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${username}`);
+                const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${usernameGlobal}`);
                 const data = await res.json();
 
                 // Trigger updates for the switches
@@ -54,6 +73,7 @@ export default function SettingsScreen() {
                 setPrefersHalal(data.prefers_halal);
                 setPrefersKosher(data.prefers_kosher);
                 setIsShowStatsEnabled(data.show_stats);
+                
             } catch (err) {
                 console.error(err);
             } finally {
@@ -66,14 +86,14 @@ export default function SettingsScreen() {
 
     ////////////////////////////////////////////////// Send Profile Update //////////////////////////////////////////////////
 
-    // Send the user profile update to the backend
+    // Send the user profile update to the backend endpoint
     const handlePressConfirmSettings = () => {
         fetch("http://127.0.0.1:5000/profile/edit", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(
                     {
-                        username: username,
+                        username: usernameGlobal,
                         show_stats: isShowStatsEnabled,
                         has_egg_allergy: hasEggAllergy,
                         has_dairy_intolerance: hasDairyIntolerance,
@@ -99,6 +119,25 @@ export default function SettingsScreen() {
             return response.json();
         })
         .then(data => {
+            // Set the user profile global elements
+            // This ensures that the updated user profile elements can be accessed across different fronted pages
+            // (Without requiring sending retrieval requests to the backend endpoint)
+            setShowStatsGlobal(isShowStatsEnabled);
+            setHasEggAllergyGlobal(hasEggAllergy);
+            setHasDairyIntoleranceGlobal(hasDairyIntolerance);
+            setHasPeanutAllergyGlobal(hasPeanutAllergy);
+            setHasSesameAllergyGlobal(hasSeasameAllergy);
+            setHasShellfishAllergyGlobal(hasShellfishAllergy);
+            setHasSoyAllergyGlobal(hasSoyAllergy);
+            setHasTreenutAllergyGlobal(hasTreenutAllergy);
+            setHasWheatAllergyGlobal(hasWheatAllergy);
+            setHasGlutenAllergyGlobal(hasGlutenAllergy);
+            setIsVeganGlobal(isVegan);
+            setIsVegetarianGlobal(isVegetarian);
+            setPrefersKosherGlobal(prefersKosher);
+            setPrefersHalalGlobal(prefersHalal);
+
+            // Route to the home page
             router.push("/home");
         })
         .catch(error => {
@@ -119,6 +158,8 @@ export default function SettingsScreen() {
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
+
+            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
 
             <Text style={styles.title}>Settings</Text>
 

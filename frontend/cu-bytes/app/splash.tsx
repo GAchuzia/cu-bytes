@@ -5,19 +5,40 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-splash';
-
 import { useUser } from './context';
 
 export default function SplashScreen() {
+
+    // Get the variables and setters used to access and modify a copy of the user profile elements
+    const
+        {
+            usernameGlobal,
+            showStatsGlobal,
+            hasEggAllergyGlobal,
+            hasDairyIntoleranceGlobal,
+            hasPeanutAllergyGlobal,
+            hasSesameAllergyGlobal,
+            hasShellfishAllergyGlobal,
+            hasSoyAllergyGlobal,
+            hasTreenutAllergyGlobal,
+            hasWheatAllergyGlobal,
+            hasGlutenAllergyGlobal,
+            isVeganGlobal,
+            isVegetarianGlobal,
+            prefersKosherGlobal,
+            prefersHalalGlobal
+
+        } = useUser();
     
     const [loading, setLoading] = useState(false);
-    const { user } = useUser();
     
     // The page that the user sees in the app/browser
     return (
 
         <View style={styles.container}>
             <StatusBar style="auto" />
+
+            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
 
             <Text style={styles.title}>CU-Bytes</Text>
             <Text style={styles.subtitle}>Welcome to CU-Bytes!</Text>
