@@ -26,7 +26,9 @@ def retreive_profile(username):
             "has_configured_settings": true,
             "has_dairy_intolerance": false,
             "has_egg_allergy": false,
+            "has_fish_allergy": false, # Added 01/11/2026
             "has_gluten_allergy": false,
+            "has_milk_allergy": false, # Added 01/11/2026
             "has_peanut_allergy": false,
             "has_sesame_allergy": false,
             "has_shellfish_allergy": false,
@@ -83,7 +85,9 @@ def edit_profile():
         "username": "string",               # required
         "show_stats": "boolean",            # optional
         "has_egg_allergy: "boolean",        # optional
+        "has_fish_allergy: "boolean",       # optional # Added 01/11/2026
         "has_dairy_intolerance: "boolean",  # optional
+        "has_milk_allergy": "boolean",      # optional # Added 01/11/2026
         "has_peanut_allergy: "boolean",     # optional
         "has_sesame_allergy: "boolean",     # optional
         "has_shellfish_allergy: "boolean",  # optional

@@ -15,7 +15,9 @@ export default function EnterScreen() {
             usernameGlobal,
             showStatsGlobal,
             hasEggAllergyGlobal,
+            hasFishAllergyGlobal,
             hasDairyIntoleranceGlobal,
+            hasMilkAllergyGlobal,
             hasPeanutAllergyGlobal,
             hasSesameAllergyGlobal,
             hasShellfishAllergyGlobal,
@@ -243,7 +245,7 @@ export default function EnterScreen() {
                         <Text style={styles.subsubtitle}>{foodItem.has_eggs === true && hasEggAllergyGlobal ? "Contains eggs, but you are allergic" : null}</Text>
                     )}
                     {foodItem["has_fish"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.has_fish === true ? "Contains fish" : null}</Text>
+                        <Text style={styles.subsubtitle}>{foodItem.has_fish === true && hasFishAllergyGlobal ? "Contains fish, but you are allergic" : null}</Text>
                     )}
                     {foodItem["has_milk"] != null && (
                         <Text style={styles.subsubtitle}>{foodItem.has_milk === true && hasDairyIntoleranceGlobal ? "Contains milk, but you are intolerant (if the milk is dairy)" : null}</Text>
