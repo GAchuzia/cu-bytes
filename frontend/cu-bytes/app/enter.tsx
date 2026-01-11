@@ -1,5 +1,5 @@
 import { SetStateAction, useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, TextInput, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -29,6 +29,8 @@ export default function EnterScreen() {
             prefersHalalGlobal
 
         } = useUser();
+
+    const [loading, setLoading] = useState(true);
 
     // Variable and setter for controlling the visibility of components on the page
     const [visible, setVisible] = useState(false);
@@ -120,13 +122,14 @@ export default function EnterScreen() {
             })
             .then(data => {
                 setFoodItemArray(data);
+                setLoading(false);
             })
         };
         handlePressGetFoodItems();
     }, []);
 
     // Sends a get food item by id request to the server
-    const handlePressGetFoodItem = () => {
+    function handlePressGetFoodItem(foodItemId: number) {
         const foodItemRequest = `http://127.0.0.1:5000/browse//food-item/${foodItemId}`;
         fetch(foodItemRequest, {
                 method: "GET"
@@ -140,10 +143,20 @@ export default function EnterScreen() {
         })
         .then(data => {
             setFoodItem(data);
+            setFoodItemId(foodItem["id"]);
             console.log(data);
         })
     }
 
+    // Display loading symbol while the profiles are being fetched
+    if (loading) {
+        return (
+            <View>
+                <ActivityIndicator size="large" />
+            </View>
+        );
+    }
+    
     // Filter the array of food items (retrieved from the backend database)
     // The food item name, entered in the text input, is used to filter the array
     // The food items whose names partially or wholly match the entered value are stored in a filtered array
@@ -175,14 +188,14 @@ export default function EnterScreen() {
 
             {/* Filter the food items in the frontend array by the food item name and store in another array */}
             <TouchableOpacity
-                style={[styles.button]}
+                style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => {
                     setVisible(false);
                     filterFoodItemArray();
                 }}
+                disabled={loading}
             >
-                <Text style={styles.buttonText}>Confirm</Text>
-
+            <Text style={styles.buttonText}>Confirm</Text>
             </TouchableOpacity>
 
             {/* If the entered string value does not return any food items, display the following message */}
@@ -197,14 +210,12 @@ export default function EnterScreen() {
             {/* If the entered string value returns any food items, display the name and id of each food item */}
             {filteredFoodItemArray && !visible && (
                 <View>
-                    
                     {filteredFoodItemArray.map((foodItem) => (
                         <Text 
                             style={styles.pressableText}
                             key={foodItem["id"]}
                             onPress={() => {
-                                setFoodItemId(foodItem["id"]);
-                                handlePressGetFoodItem();
+                                handlePressGetFoodItem(foodItem["id"]);
                                 setVisible(true);
                             }}
                         >
@@ -213,7 +224,6 @@ export default function EnterScreen() {
                             <line>---</line>
                         </Text>
                     ))}
-
                 </View>
             )}
 
