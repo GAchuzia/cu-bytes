@@ -14,7 +14,7 @@ def test_retreive_default_user_profile(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 16
+    assert len(data) == 18
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is False
@@ -127,7 +127,7 @@ def test_edit_partial_user_profile(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 16
+    assert len(data) == 18
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is True
@@ -185,7 +185,7 @@ def test_edit_whole_user_profile(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 16
+    assert len(data) == 18
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is True
@@ -224,7 +224,7 @@ def test_edit_user_profile_invalid_type(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 16
+    assert len(data) == 18
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is False
