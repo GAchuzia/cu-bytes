@@ -64,6 +64,7 @@ def get_food_item_by_id(id):
             "has_milk": null,
             "has_peanuts": null,
             "has_sesame": null,
+            "has_shellfish": null, # Added 01/11/2026
             "has_soy": null,
             "has_treenuts": null,
             "has_wheat": null,
@@ -73,6 +74,7 @@ def get_food_item_by_id(id):
             "is_halal": null,
             "is_kosher": null,
             "is_vegan": false,
+            "is_vegetarian": null, # Added 01/11/2026
             "last_updated": "9/26/2025",
             "name": "Yogurt & Berries Parfait"
         }

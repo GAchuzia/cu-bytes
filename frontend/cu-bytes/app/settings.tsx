@@ -5,18 +5,44 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-settings';
-
 import { useUser } from './context';
 
 export default function SettingsScreen() {
 
-    const [loading, setLoading] = useState(true);
-    const { user } = useUser();
+    // Get the variables or setters used to access or modify a copy of the user profile elements
+    const
+        {
+            usernameGlobal,
 
-    // Variables for each of the configurable settings
+            setShowStatsGlobal,
+            setHasEggAllergyGlobal,
+            setHasFishAllergyGlobal, // Added 01/11/2026
+            setHasDairyIntoleranceGlobal,
+            setHasMilkAllergyGlobal, // Added 01/11/2026
+            setHasPeanutAllergyGlobal,
+            setHasSesameAllergyGlobal,
+            setHasShellfishAllergyGlobal,
+            setHasSoyAllergyGlobal,
+            setHasTreenutAllergyGlobal,
+            setHasWheatAllergyGlobal,
+            setHasGlutenAllergyGlobal,
+            setIsVeganGlobal,
+            setIsVegetarianGlobal,
+            setPrefersKosherGlobal,
+            setPrefersHalalGlobal
+
+        } = useUser();
+
+    const [loading, setLoading] = useState(true);
+    
+    // Variables and setters for each of the configurable settings
+    // The variable values will be sent to a backend endpoint to attempt to edit the user profile
+    const [isShowStatsEnabled, setIsShowStatsEnabled] = useState(false);
     const [hasDairyIntolerance, setHasDairyIntolerance] = useState(false);
     const [hasEggAllergy, setHasEggAllergy] = useState(false);
+    const [hasFishAllergy, setHasFishAllergy] = useState(false); // Added 01/11/2026
     const [hasGlutenAllergy, setHasGlutenAllergy] = useState(false);
+    const [hasMilkAllergy, setHasMilkAllergy] = useState(false); // Added 01/11/2026
     const [hasPeanutAllergy, setHasPeanutAllergy] = useState(false);
     const [hasSeasameAllergy, setHasSesameAllergy] = useState(false);
     const [hasShellfishAllergy, setHasShellfishAllergy] = useState(false);
@@ -27,9 +53,6 @@ export default function SettingsScreen() {
     const [isVegetarian, setIsVegetarian] = useState(false);
     const [prefersHalal, setPrefersHalal] = useState(false);
     const [prefersKosher, setPrefersKosher] = useState(false);
-    const [isShowStatsEnabled, setIsShowStatsEnabled] = useState(false);
-
-    const username = user;
 
     ////////////////////////////////////////////////// Get Initial Profile //////////////////////////////////////////////////
 
@@ -37,13 +60,15 @@ export default function SettingsScreen() {
     useEffect(() => {
         const loadSettings = async () => {
             try {
-                const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${username}`);
+                const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${usernameGlobal}`);
                 const data = await res.json();
 
                 // Trigger updates for the switches
                 setHasDairyIntolerance(data.has_dairy_intolerance);
                 setHasEggAllergy(data.has_egg_allergy);
+                setHasFishAllergy(data.has_fish_allergy); // Added 01/11/2026
                 setHasGlutenAllergy(data.has_gluten_allergy);
+                setHasMilkAllergy(data.has_milk_allergy); // Added 01/11/2026
                 setHasPeanutAllergy(data.has_peanut_allergy);
                 setHasShellfishAllergy(data.has_shellfish_allergy);
                 setHasSoyAllergy(data.has_soy_allergy);
@@ -54,6 +79,7 @@ export default function SettingsScreen() {
                 setPrefersHalal(data.prefers_halal);
                 setPrefersKosher(data.prefers_kosher);
                 setIsShowStatsEnabled(data.show_stats);
+                
             } catch (err) {
                 console.error(err);
             } finally {
@@ -66,17 +92,19 @@ export default function SettingsScreen() {
 
     ////////////////////////////////////////////////// Send Profile Update //////////////////////////////////////////////////
 
-    // Send the user profile update to the backend
+    // Send the user profile update to the backend endpoint
     const handlePressConfirmSettings = () => {
         fetch("http://127.0.0.1:5000/profile/edit", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(
                     {
-                        username: username,
+                        username: usernameGlobal,
                         show_stats: isShowStatsEnabled,
                         has_egg_allergy: hasEggAllergy,
+                        has_fish_allergy: hasFishAllergy, // Added 01/11/2026
                         has_dairy_intolerance: hasDairyIntolerance,
+                        has_milk_allergy: hasMilkAllergy, // Added 01/11/2026
                         has_peanut_allergy: hasPeanutAllergy,
                         has_sesame_allergy: hasSeasameAllergy,
                         has_shellfish_allergy: hasShellfishAllergy,
@@ -99,6 +127,27 @@ export default function SettingsScreen() {
             return response.json();
         })
         .then(data => {
+            // Set the user profile global elements
+            // This ensures that the updated user profile elements can be accessed across different fronted pages
+            // (Without requiring sending retrieval requests to the backend endpoint)
+            setShowStatsGlobal(isShowStatsEnabled);
+            setHasEggAllergyGlobal(hasEggAllergy);
+            setHasFishAllergyGlobal(hasFishAllergy); // Added 01/11/2026
+            setHasDairyIntoleranceGlobal(hasDairyIntolerance);
+            setHasMilkAllergyGlobal(hasMilkAllergy); // Added 01/11/2026
+            setHasPeanutAllergyGlobal(hasPeanutAllergy);
+            setHasSesameAllergyGlobal(hasSeasameAllergy);
+            setHasShellfishAllergyGlobal(hasShellfishAllergy);
+            setHasSoyAllergyGlobal(hasSoyAllergy);
+            setHasTreenutAllergyGlobal(hasTreenutAllergy);
+            setHasWheatAllergyGlobal(hasWheatAllergy);
+            setHasGlutenAllergyGlobal(hasGlutenAllergy);
+            setIsVeganGlobal(isVegan);
+            setIsVegetarianGlobal(isVegetarian);
+            setPrefersKosherGlobal(prefersKosher);
+            setPrefersHalalGlobal(prefersHalal);
+
+            // Route to the home page
             router.push("/home");
         })
         .catch(error => {
@@ -119,6 +168,8 @@ export default function SettingsScreen() {
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
+
+            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
 
             <Text style={styles.title}>Settings</Text>
 
@@ -148,6 +199,20 @@ export default function SettingsScreen() {
                 </View>
             </View>
 
+            {/* Added 01/11/2026 */}
+            <View style={styles.row}>
+                <Text style={styles.label}>
+                    Do you have an allergy or intolerance to <b>fish</b>?
+                </Text>
+                <View style={styles.switchContainer}>
+                    <Switch
+                        style={styles.switch}
+                        value={hasFishAllergy}
+                        onValueChange={setHasFishAllergy}
+                    />
+                </View>
+            </View>
+
             <View style={styles.row}>
                 <Text style={styles.label}>
                     Do you have an allergy or intolerance to <b>gluten</b>?
@@ -157,6 +222,20 @@ export default function SettingsScreen() {
                         style={styles.switch}
                         value={hasGlutenAllergy}
                         onValueChange={setHasGlutenAllergy}
+                    />
+                </View>
+            </View>
+
+            {/* Added 01/11/2026 */}
+            <View style={styles.row}>
+                <Text style={styles.label}>
+                    Do you have an allergy or intolerance to <b>milk</b>?
+                </Text>
+                <View style={styles.switchContainer}>
+                    <Switch
+                        style={styles.switch}
+                        value={hasMilkAllergy}
+                        onValueChange={setHasMilkAllergy}
                     />
                 </View>
             </View>

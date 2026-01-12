@@ -5,14 +5,16 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-login';
-
 import { useUser } from './context';
 
 export default function LoginScreen() {
 
-    const { setUser } = useUser();
+    // Get the variables or setters used to access or modify a copy of the user profile elements
+    const { usernameGlobal, setUsernameGlobal } = useUser();
 
-    ////////////////////////////////////////////////// Set color and placeholder text of username and password elements //////////////////////////////////////////////////
+    const [loading, setLoading] = useState('');
+    const [visible, setVisible] = useState(false);
+
     // Create constants for elements that will be modified based on the submitted username or password
     const usernameInput = document.getElementById("usernameInput") as HTMLInputElement;
     const passwordInput = document.getElementById("passwordInput") as HTMLInputElement;
@@ -38,12 +40,7 @@ export default function LoginScreen() {
             passwordInput.placeholder = 'Enter your password';            
         }        
     }
-    ////////////////////////////////////////////////// Set color and placeholder text of username and password elements //////////////////////////////////////////////////
-
     ////////////////////////////////////////////////// Username, Password, Loading, and Visibile Variables and Setters //////////////////////////////////////////////////
-
-    const [loading, setLoading] = useState('');
-    const [visible, setVisible] = useState(false);
 
     // The username and password variables
     // These values are passed to a JSON object that is sent to the login endpoint
@@ -77,7 +74,7 @@ export default function LoginScreen() {
                 throw new Error (`HTTP error! status: ${response.status}`);
             }
             // Set the global username value to the local username value
-            setUser(username);
+            setUsernameGlobal(username);
             return response.json();
         })
         .then(data => {
@@ -107,6 +104,8 @@ export default function LoginScreen() {
 
         <View style={styles.container}>
             <StatusBar style="auto" />
+
+            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
 
             <Text style={styles.title}>Login</Text>
             <Text style={styles.subtitle}>Login in to your CU-Bytes account or create a new CU-Bytes account</Text>
