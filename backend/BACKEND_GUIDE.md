@@ -89,18 +89,20 @@ sqlite> PRAGMA table_info('food_items');
 5|comments|VARCHAR(200)|0||0
 6|last_updated|VARCHAR(20)|0||0
 7|is_vegan|BOOLEAN|0||0
-8|is_gluten_free|BOOLEAN|0||0
-9|is_halal|BOOLEAN|0||0
-10|is_kosher|BOOLEAN|0||0
-11|is_dairy_free|BOOLEAN|0||0
-12|has_eggs|BOOLEAN|0||0
-13|has_fish|BOOLEAN|0||0
-14|has_milk|BOOLEAN|0||0
-15|has_peanuts|BOOLEAN|0||0
-16|has_sesame|BOOLEAN|0||0
-17|has_soy|BOOLEAN|0||0
-18|has_treenuts|BOOLEAN|0||0
-19|has_wheat|BOOLEAN|0||0
+8|is_vegetarian|BOOLEAN|0||0
+9|is_gluten_free|BOOLEAN|0||0
+10|is_halal|BOOLEAN|0||0
+11|is_kosher|BOOLEAN|0||0
+12|is_dairy_free|BOOLEAN|0||0
+13|has_eggs|BOOLEAN|0||0
+14|has_fish|BOOLEAN|0||0
+15|has_milk|BOOLEAN|0||0
+16|has_peanuts|BOOLEAN|0||0
+17|has_sesame|BOOLEAN|0||0
+18|has_shellfish|BOOLEAN|0||0
+19|has_soy|BOOLEAN|0||0
+20|has_treenuts|BOOLEAN|0||0
+21|has_wheat|BOOLEAN|0||0
 
 Database schema:
 sqlite> PRAGMA table_info('dining_locations')'
