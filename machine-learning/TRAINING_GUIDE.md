@@ -62,6 +62,7 @@ cd machine-learning
 ```
 
 This will:
+
 - Create a Python virtual environment
 - Install all dependencies (including PyTorch with GPU/CPU detection)
 - Download configured datasets
@@ -90,6 +91,7 @@ Both `train.sh` (Linux/Mac) and `train.ps1` (Windows) support the same options f
 ### Basic Options
 
 **Linux/Mac:**
+
 ```bash
 # Custom batch size and epochs
 ./train.sh --batch-size 16 --epochs 30
@@ -102,6 +104,7 @@ Both `train.sh` (Linux/Mac) and `train.ps1` (Windows) support the same options f
 ```
 
 **Windows:**
+
 ```powershell
 # Custom batch size and epochs
 .\train.ps1 -BatchSize 16 -Epochs 30
@@ -116,6 +119,7 @@ Both `train.sh` (Linux/Mac) and `train.ps1` (Windows) support the same options f
 ### Advanced Options
 
 **Linux/Mac:**
+
 ```bash
 # Resume training from a checkpoint
 ./train.sh --resume models/checkpoints/checkpoint_epoch_10.pth
@@ -137,6 +141,7 @@ Both `train.sh` (Linux/Mac) and `train.ps1` (Windows) support the same options f
 ```
 
 **Windows:**
+
 ```powershell
 # Resume training from a checkpoint
 .\train.ps1 -Resume models\checkpoints\checkpoint_epoch_10.pth
@@ -159,21 +164,21 @@ Both `train.sh` (Linux/Mac) and `train.ps1` (Windows) support the same options f
 
 ### All Options
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--model` | Model architecture (resnet50, efficientnet_b0, mobilenet_v3_small) | resnet50 |
-| `--batch-size` | Batch size for training | 32 |
-| `--epochs` | Number of training epochs | 50 |
-| `--lr` | Learning rate | 0.0001 |
-| `--image-size` | Image size for training | 224 |
-| `--resume` | Resume from checkpoint path | - |
-| `--freeze-backbone` | Freeze backbone layers | false |
-| `--test-gpu` | Test GPU setup before training | false |
-| `--config` | Path to datasets config file | datasets_config.json |
-| `--venv-name` | Virtual environment name | mlenv |
-| `--skip-setup` | Skip environment setup | false |
-| `--skip-download` | Skip dataset download | false |
-| `-h, --help` | Show help message | - |
+| Option              | Description                                                        | Default              |
+| ------------------- | ------------------------------------------------------------------ | -------------------- |
+| `--model`           | Model architecture (resnet50, efficientnet_b0, mobilenet_v3_small) | resnet50             |
+| `--batch-size`      | Batch size for training                                            | 32                   |
+| `--epochs`          | Number of training epochs                                          | 50                   |
+| `--lr`              | Learning rate                                                      | 0.0001               |
+| `--image-size`      | Image size for training                                            | 224                  |
+| `--resume`          | Resume from checkpoint path                                        | -                    |
+| `--freeze-backbone` | Freeze backbone layers                                             | false                |
+| `--test-gpu`        | Test GPU setup before training                                     | false                |
+| `--config`          | Path to datasets config file                                       | datasets_config.json |
+| `--venv-name`       | Virtual environment name                                           | mlenv                |
+| `--skip-setup`      | Skip environment setup                                             | false                |
+| `--skip-download`   | Skip dataset download                                              | false                |
+| `-h, --help`        | Show help message                                                  | -                    |
 
 ## Examples
 
@@ -182,11 +187,13 @@ Both `train.sh` (Linux/Mac) and `train.ps1` (Windows) support the same options f
 Train for a few epochs to test the setup:
 
 **Linux/Mac:**
+
 ```bash
 ./train.sh --epochs 5 --batch-size 16
 ```
 
 **Windows:**
+
 ```powershell
 .\train.ps1 -Epochs 5 -BatchSize 16
 ```
@@ -196,11 +203,13 @@ Train for a few epochs to test the setup:
 Train EfficientNet model on GPU with optimized settings:
 
 **Linux/Mac:**
+
 ```bash
 ./train.sh --model efficientnet_b0 --batch-size 32 --epochs 50 --test-gpu
 ```
 
 **Windows:**
+
 ```powershell
 .\train.ps1 -Model efficientnet_b0 -BatchSize 32 -Epochs 50 -TestGPU
 ```
@@ -210,11 +219,13 @@ Train EfficientNet model on GPU with optimized settings:
 Continue training from a checkpoint:
 
 **Linux/Mac:**
+
 ```bash
 ./train.sh --resume models/checkpoints/checkpoint_epoch_20.pth --epochs 50
 ```
 
 **Windows:**
+
 ```powershell
 .\train.ps1 -Resume models\checkpoints\checkpoint_epoch_20.pth -Epochs 50
 ```
@@ -224,11 +235,13 @@ Continue training from a checkpoint:
 If you have limited GPU memory:
 
 **Linux/Mac:**
+
 ```bash
 ./train.sh --batch-size 8 --image-size 128 --freeze-backbone
 ```
 
 **Windows:**
+
 ```powershell
 .\train.ps1 -BatchSize 8 -ImageSize 128 -FreezeBackbone
 ```
@@ -238,11 +251,13 @@ If you have limited GPU memory:
 Train on CPU (much slower):
 
 **Linux/Mac:**
+
 ```bash
 ./train.sh --batch-size 4 --epochs 10
 ```
 
 **Windows:**
+
 ```powershell
 .\train.ps1 -BatchSize 4 -Epochs 10
 ```
@@ -266,14 +281,17 @@ To customize datasets:
 After training completes, you'll find:
 
 - **Checkpoints**: `models/checkpoints/checkpoint_epoch_*.pth`
+
   - Saved after each epoch
   - Contains model weights, optimizer state, and training metrics
 
 - **Best Model**: `models/best_model.pth`
+
   - Model with highest validation accuracy
   - Use this for inference/deployment
 
 - **Class Names**: `models/class_names.json`
+
   - List of all food categories the model can recognize
 
 - **TensorBoard Logs**: `models/runs/`
