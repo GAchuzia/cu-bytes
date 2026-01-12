@@ -23,6 +23,7 @@ class FoodItem(db.Model):
 
     # Dietary attributes
     is_vegan = db.Column(db.Boolean, default=None, nullable=True)
+    is_vegetarian = db.Column(db.Boolean, default=None, nullable=True)
     is_gluten_free = db.Column(db.Boolean, default=None, nullable=True)
     is_halal = db.Column(db.Boolean, default=None, nullable=True)
     is_kosher = db.Column(db.Boolean, default=None, nullable=True)
@@ -34,6 +35,7 @@ class FoodItem(db.Model):
     has_milk = db.Column(db.Boolean, default=None, nullable=True)
     has_peanuts = db.Column(db.Boolean, default=None, nullable=True)
     has_sesame = db.Column(db.Boolean, default=None, nullable=True)
+    has_shellfish = db.Column(db.Boolean, default=None, nullable=True)
     has_soy = db.Column(db.Boolean, default=None, nullable=True)
     has_treenuts = db.Column(db.Boolean, default=None, nullable=True)
     has_wheat = db.Column(db.Boolean, default=None, nullable=True)
@@ -54,6 +56,7 @@ class FoodItem(db.Model):
         comments,
         last_updated,
         is_vegan,
+        is_vegetarian,  # Added 01/11/2026
         is_gluten_free,
         is_halal,
         is_kosher,
@@ -63,6 +66,7 @@ class FoodItem(db.Model):
         has_milk,
         has_peanuts,
         has_sesame,
+        has_shellfish,  # Added 01/11/2026
         has_soy,
         has_treenuts,
         has_wheat,
@@ -78,6 +82,7 @@ class FoodItem(db.Model):
             comments=comments,
             last_updated=last_updated,
             is_vegan=is_vegan,
+            is_vegetarian=is_vegetarian,  # Added 01/11/2026
             is_gluten_free=is_gluten_free,
             is_halal=is_halal,
             is_kosher=is_kosher,
@@ -87,6 +92,7 @@ class FoodItem(db.Model):
             has_milk=has_milk,
             has_peanuts=has_peanuts,
             has_sesame=has_sesame,
+            has_shellfish=has_shellfish,  # Added 01/11/2026
             has_soy=has_soy,
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,
@@ -117,6 +123,7 @@ class FoodItem(db.Model):
             "comments": self.comments,
             "last_updated": self.last_updated,
             "is_vegan": self.is_vegan,
+            "is_vegetarian": self.is_vegetarian,  # Added 01/11/2026
             "is_gluten_free": self.is_gluten_free,
             "is_halal": self.is_halal,
             "is_kosher": self.is_kosher,
@@ -126,6 +133,7 @@ class FoodItem(db.Model):
             "has_milk": self.has_milk,
             "has_peanuts": self.has_peanuts,
             "has_sesame": self.has_sesame,
+            "has_shellfish": self.has_shellfish,  # Added 01/11/2026
             "has_soy": self.has_soy,
             "has_treenuts": self.has_treenuts,
             "has_wheat": self.has_wheat,

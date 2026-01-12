@@ -22,6 +22,19 @@ export const styles = StyleSheet.create({
     padding: '1.8%' as any,
     borderRadius: 40
   },
+  subtitle: {
+    fontFamily: 'sans-serif',
+    fontSize: '150%' as any,
+    fontWeight: '600',
+
+    textAlign: 'center',
+    margin: '0.5%' as any,
+
+    color: '#000000FF',
+    backgroundColor: 'rgba(255, 210, 210, 1)',
+    padding: '1.2%' as any,
+    borderRadius: 40
+  },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
