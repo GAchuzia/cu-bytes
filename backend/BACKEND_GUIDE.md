@@ -79,7 +79,7 @@ Steps to create:
 cd cu-bytes
 python -m backend.database.init_food_db
 
-Database schema:
+Database schema for food items:
 sqlite> PRAGMA table_info('food_items');
 0|id|INTEGER|1||1
 1|food_name|VARCHAR(80)|1||0
@@ -104,10 +104,34 @@ sqlite> PRAGMA table_info('food_items');
 20|has_treenuts|BOOLEAN|0||0
 21|has_wheat|BOOLEAN|0||0
 
-Database schema:
-sqlite> PRAGMA table_info('dining_locations')'
+Database schema for dining locations:
+sqlite> PRAGMA table_info('dining_locations');
 0|dining_service_id|INTEGER|1|1
 1|dining_location_name|VARCHAR(80)|1||0
+
+Database schema for generic food categories:
+sqlite> PRAGMA table_info('food_categories');
+0|category_name|VARCHAR(80)|1||1
+1|calories|INTEGER|1||0
+2|percent_fruit_veg|INTEGER|1||0
+3|percent_grain|INTEGER|1||0
+4|percent_dairy|INTEGER|1||0
+5|percent_protein|INTEGER|1||0
+6|is_vegan|BOOLEAN|0||0
+7|is_gluten_free|BOOLEAN|0||0
+8|is_halal|BOOLEAN|0||0
+9|is_kosher|BOOLEAN|0||0
+10|is_vegetarian|BOOLEAN|0||0
+11|is_dairy_free|BOOLEAN|0||0
+12|has_eggs|BOOLEAN|0||0
+13|has_fish|BOOLEAN|0||0
+14|has_milk|BOOLEAN|0||0
+15|has_peanuts|BOOLEAN|0||0
+16|has_sesame|BOOLEAN|0||0
+17|has_shellfish|BOOLEAN|0||0
+18|has_soy|BOOLEAN|0||0
+19|has_treenuts|BOOLEAN|0||0
+20|has_wheat|BOOLEAN|0||0
 
 #### logging.db
 This database contains a transactions that record which food item was consumed by which user.

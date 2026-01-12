@@ -6,6 +6,7 @@ import numpy as np
 # Project imports
 from backend.app import create_app
 from backend.extensions import db
+from backend.models.food_category import FoodCategory
 from backend.models.food_item import FoodItem
 from backend.models.locations import DiningLocation
 
@@ -13,8 +14,8 @@ from backend.models.locations import DiningLocation
 CSV files are expected to contain the following columns
 Food Item | Dining Location | Cost | Calories | Nuts | Vegan
 Gluten Free | Halal | Vegetarian | No Dairy |Comments | Eggs
-Fish | Milk | Peanuts | Sesame | Soy | TreeNuts | Wheat | Kosher
-Last Updated
+Fish | Milk | Peanuts | Sesame | Shellfish | Soy | TreeNuts
+Wheat | Kosher | Last Updated | Food Category
 """
 
 
@@ -172,7 +173,6 @@ def get_dining_location_id(dining_location_name):
         return 0
 
 
-# NEW
 def create_dining_location_table():
     # Open csv
     csvfile = open(
@@ -193,6 +193,45 @@ def create_dining_location_table():
     csvfile.close()
 
 
+def create_category_table():
+    # Open csv
+    csvfile = open(
+        "backend/automated_data_collection/genericCategories.csv",
+        newline="",
+        encoding="utf-8",
+    )
+    reader = csv.DictReader(csvfile)
+
+    with app.app_context():
+        # Add each row to the database as a FoodItem
+        for row in reader:
+            FoodCategory.create(
+                category_name=row.get("Food Category"),
+                calories=row.get("Calories"),
+                percent_fruit_veg=row.get("Percent Fruits and Vegetables"),
+                percent_dairy=row.get("Percent Dairy"),
+                percent_grain=row.get("Percent Grain"),
+                percent_protein=row.get("Percent Protein"),
+                is_vegan=parse_bool(row.get("Vegan")),
+                is_gluten_free=parse_bool(row.get("Gluten Free")),
+                is_halal=parse_bool(row.get("Halal")),
+                is_vegetarian=parse_bool(row.get("Vegetarian")),
+                is_kosher=parse_bool(row.get("Kosher")),
+                is_dairy_free=parse_bool(row.get("No Dairy")),
+                has_eggs=parse_bool(row.get("Eggs")),
+                has_fish=parse_bool(row.get("Fish")),
+                has_milk=parse_bool(row.get("Milk")),
+                has_peanuts=parse_bool(row.get("Peanuts")),
+                has_sesame=parse_bool(row.get("Sesame")),
+                has_shellfish=parse_bool(row.get("Shellfish")),
+                has_soy=parse_bool(row.get("Soy")),
+                has_treenuts=parse_bool(row.get("Treenuts")),
+                has_wheat=parse_bool(row.get("Wheat")),
+            )
+
+    csvfile.close()
+
+
 def parse_bool(value):
     """
     Helper function to convert Y/N/'' into Boolean
@@ -209,8 +248,10 @@ if __name__ == "__main__":
     clear_existing_data()
 
     create_food_table()
-    print("Created food_data.db and added food items.")
+    print("Created food_items table in food_data.db and added food items.")
 
-    # NEW
     create_dining_location_table()
-    print("Created dining_location_data.db and added dining locations")
+    print("Created dining_locations in food_data.db and added locations.")
+
+    create_category_table()
+    print("Created food_categories in food_data.db and added categories.")
