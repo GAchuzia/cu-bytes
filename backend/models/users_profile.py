@@ -19,6 +19,11 @@ class UsersProfile(db.Model):
     has_egg_allergy = db.Column(db.Boolean, default=False)
     has_fish_allergy = db.Column(db.Boolean, default=False)
     has_dairy_intolerance = db.Column(db.Boolean, default=False)
+
+    # UPDATE 01/11/2026
+    # Added new allergy to support direct 1:1 mapping between user profiles and food items databases
+    has_milk_allergy = db.Column(db.Boolean, default=False)
+    
     has_peanut_allergy = db.Column(db.Boolean, default=False)
     has_sesame_allergy = db.Column(db.Boolean, default=False)
     has_shellfish_allergy = db.Column(db.Boolean, default=False)
@@ -43,7 +48,9 @@ class UsersProfile(db.Model):
         has_configured_settings=False,
         show_stats=False,
         has_egg_allergy=False,
+        has_fish_allergy=False, # Added 01/11/2026
         has_dairy_intolerance=False,
+        has_milk_allergy=False, # Added 01/11/2026
         has_peanut_allergy=False,
         has_sesame_allergy=False,
         has_shellfish_allergy=False,
@@ -63,7 +70,9 @@ class UsersProfile(db.Model):
             has_configured_settings=has_configured_settings,
             show_stats=show_stats,
             has_egg_allergy=has_egg_allergy,
+            has_fish_allergy=has_fish_allergy, # Added 01/11/2026
             has_dairy_intolerance=has_dairy_intolerance,
+            has_milk_allergy=has_milk_allergy, # Added 01/11/2026
             has_peanut_allergy=has_peanut_allergy,
             has_sesame_allergy=has_sesame_allergy,
             has_shellfish_allergy=has_shellfish_allergy,
@@ -97,7 +106,9 @@ class UsersProfile(db.Model):
             "has_configured_settings": self.has_configured_settings,
             "show_stats": self.show_stats,
             "has_egg_allergy": self.has_egg_allergy,
+            "has_fish_allergy": self.has_fish_allergy, # Added 01/11/2026
             "has_dairy_intolerance": self.has_dairy_intolerance,
+            "has_milk_allergy": self.has_milk_allergy, # Added 01/11/2026
             "has_peanut_allergy": self.has_peanut_allergy,
             "has_sesame_allergy": self.has_sesame_allergy,
             "has_shellfish_allergy": self.has_shellfish_allergy,

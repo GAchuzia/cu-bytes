@@ -16,7 +16,9 @@ export default function SettingsScreen() {
 
             setShowStatsGlobal,
             setHasEggAllergyGlobal,
+            setHasFishAllergyGlobal, // Added 01/11/2026
             setHasDairyIntoleranceGlobal,
+            setHasMilkAllergyGlobal, // Added 01/11/2026
             setHasPeanutAllergyGlobal,
             setHasSesameAllergyGlobal,
             setHasShellfishAllergyGlobal,
@@ -38,7 +40,9 @@ export default function SettingsScreen() {
     const [isShowStatsEnabled, setIsShowStatsEnabled] = useState(false);
     const [hasDairyIntolerance, setHasDairyIntolerance] = useState(false);
     const [hasEggAllergy, setHasEggAllergy] = useState(false);
+    const [hasFishAllergy, setHasFishAllergy] = useState(false); // Added 01/11/2026
     const [hasGlutenAllergy, setHasGlutenAllergy] = useState(false);
+    const [hasMilkAllergy, setHasMilkAllergy] = useState(false); // Added 01/11/2026
     const [hasPeanutAllergy, setHasPeanutAllergy] = useState(false);
     const [hasSeasameAllergy, setHasSesameAllergy] = useState(false);
     const [hasShellfishAllergy, setHasShellfishAllergy] = useState(false);
@@ -62,7 +66,9 @@ export default function SettingsScreen() {
                 // Trigger updates for the switches
                 setHasDairyIntolerance(data.has_dairy_intolerance);
                 setHasEggAllergy(data.has_egg_allergy);
+                setHasFishAllergy(data.has_fish_allergy); // Added 01/11/2026
                 setHasGlutenAllergy(data.has_gluten_allergy);
+                setHasMilkAllergy(data.has_milk_allergy); // Added 01/11/2026
                 setHasPeanutAllergy(data.has_peanut_allergy);
                 setHasShellfishAllergy(data.has_shellfish_allergy);
                 setHasSoyAllergy(data.has_soy_allergy);
@@ -96,7 +102,9 @@ export default function SettingsScreen() {
                         username: usernameGlobal,
                         show_stats: isShowStatsEnabled,
                         has_egg_allergy: hasEggAllergy,
+                        has_fish_allergy: hasFishAllergy, // Added 01/11/2026
                         has_dairy_intolerance: hasDairyIntolerance,
+                        has_milk_allergy: hasMilkAllergy, // Added 01/11/2026
                         has_peanut_allergy: hasPeanutAllergy,
                         has_sesame_allergy: hasSeasameAllergy,
                         has_shellfish_allergy: hasShellfishAllergy,
@@ -124,7 +132,9 @@ export default function SettingsScreen() {
             // (Without requiring sending retrieval requests to the backend endpoint)
             setShowStatsGlobal(isShowStatsEnabled);
             setHasEggAllergyGlobal(hasEggAllergy);
+            setHasFishAllergyGlobal(hasFishAllergy); // Added 01/11/2026
             setHasDairyIntoleranceGlobal(hasDairyIntolerance);
+            setHasMilkAllergyGlobal(hasMilkAllergy); // Added 01/11/2026
             setHasPeanutAllergyGlobal(hasPeanutAllergy);
             setHasSesameAllergyGlobal(hasSeasameAllergy);
             setHasShellfishAllergyGlobal(hasShellfishAllergy);
@@ -189,6 +199,20 @@ export default function SettingsScreen() {
                 </View>
             </View>
 
+            {/* Added 01/11/2026 */}
+            <View style={styles.row}>
+                <Text style={styles.label}>
+                    Do you have an allergy or intolerance to <b>fish</b>?
+                </Text>
+                <View style={styles.switchContainer}>
+                    <Switch
+                        style={styles.switch}
+                        value={hasFishAllergy}
+                        onValueChange={setHasFishAllergy}
+                    />
+                </View>
+            </View>
+
             <View style={styles.row}>
                 <Text style={styles.label}>
                     Do you have an allergy or intolerance to <b>gluten</b>?
@@ -198,6 +222,20 @@ export default function SettingsScreen() {
                         style={styles.switch}
                         value={hasGlutenAllergy}
                         onValueChange={setHasGlutenAllergy}
+                    />
+                </View>
+            </View>
+
+            {/* Added 01/11/2026 */}
+            <View style={styles.row}>
+                <Text style={styles.label}>
+                    Do you have an allergy or intolerance to <b>milk</b>?
+                </Text>
+                <View style={styles.switchContainer}>
+                    <Switch
+                        style={styles.switch}
+                        value={hasMilkAllergy}
+                        onValueChange={setHasMilkAllergy}
                     />
                 </View>
             </View>

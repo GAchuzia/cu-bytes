@@ -12,8 +12,18 @@ type UserContextType = {
     setShowStatsGlobal: (showStatsGlobal: boolean) => void;
     hasEggAllergyGlobal: boolean;
     setHasEggAllergyGlobal: (hasEggAllergyGlobal: boolean) => void;
+    
+    // Added 01/11/2026
+    hasFishAllergyGlobal: boolean; 
+    setHasFishAllergyGlobal: (hasFishAllergyGlobal: boolean) => void;
+
     hasDairyIntoleranceGlobal: boolean;
     setHasDairyIntoleranceGlobal: (hasDairyIntoleranceGlobal: boolean) => void;
+
+    // Added 01/11/2026
+    hasMilkAllergyGlobal: boolean;
+    setHasMilkAllergyGlobal: (hasMilkAllergyGlobal: boolean) => void;
+
     hasPeanutAllergyGlobal: boolean;
     setHasPeanutAllergyGlobal: (hasPeanutAllergyGlobal: boolean) => void;
     hasSesameAllergyGlobal: boolean;
@@ -47,10 +57,12 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     const [usernameGlobal, setUsernameGlobal] = useState('');
-    const [hasConfiguredSettingsGlobal, setHasConfiguredSettingsGlobal] = useState(false);
+    const [hasConfiguredSettingsGlobal, setHasConfiguredSettingsGlobal] = useState(false); 
     const [showStatsGlobal, setShowStatsGlobal] = useState(false);
     const [hasEggAllergyGlobal, setHasEggAllergyGlobal] = useState(false);
+    const [hasFishAllergyGlobal, setHasFishAllergyGlobal] = useState(false); // Added 01/11/2026
     const [hasDairyIntoleranceGlobal, setHasDairyIntoleranceGlobal] = useState(false);
+    const [hasMilkAllergyGlobal, setHasMilkAllergyGlobal] = useState(false); // Added 01/11/2026
     const [hasPeanutAllergyGlobal, setHasPeanutAllergyGlobal] = useState(false);
     const [hasSesameAllergyGlobal, setHasSesameAllergyGlobal] = useState(false);
     const [hasShellfishAllergyGlobal, setHasShellfishAllergyGlobal] = useState(false);
@@ -75,8 +87,12 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
                     setShowStatsGlobal,
                     hasEggAllergyGlobal,
                     setHasEggAllergyGlobal,
+                    hasFishAllergyGlobal, // Added 01/11/2026
+                    setHasFishAllergyGlobal, // Added 01/11/2026
                     hasDairyIntoleranceGlobal,
                     setHasDairyIntoleranceGlobal,
+                    hasMilkAllergyGlobal, // Added 01/11/2026
+                    setHasMilkAllergyGlobal, // Added 01/11/2026
                     hasPeanutAllergyGlobal,
                     setHasPeanutAllergyGlobal,
                     hasSesameAllergyGlobal,

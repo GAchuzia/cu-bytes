@@ -15,7 +15,9 @@ export default function EnterScreen() {
             usernameGlobal,
             showStatsGlobal,
             hasEggAllergyGlobal,
+            hasFishAllergyGlobal,
             hasDairyIntoleranceGlobal,
+            hasMilkAllergyGlobal,
             hasPeanutAllergyGlobal,
             hasSesameAllergyGlobal,
             hasShellfishAllergyGlobal,
@@ -47,6 +49,7 @@ export default function EnterScreen() {
             "has_milk": null,
             "has_peanuts": null,
             "has_sesame": null,
+            "has_shellfish": null,
             "has_soy": null,
             "has_treenuts": null,
             "has_wheat": null,
@@ -56,6 +59,7 @@ export default function EnterScreen() {
             "is_halal": null,
             "is_kosher": null,
             "is_vegan": null,
+            "is_vegetarian": null,
             "last_updated": "Unknown",
             "name": ""
         }
@@ -229,55 +233,121 @@ export default function EnterScreen() {
 
             {visible && (
                 <View>
-                    <Text style={styles.subsubtitle}>{foodItem["name"]}</Text>
+                    <Text style={styles.subsubtitle}>{foodItem.name}</Text>
                     <br></br>
-                    <Text style={styles.subsubtitle}>Calories: {processFoodItemCalories(foodItem["calories"])}</Text>
+                    <Text style={styles.subsubtitle}>Calories: {processFoodItemCalories(foodItem.calories)}</Text>
                     <br></br>
-                    <Text style={styles.subsubtitle}>Dining Location: {foodItem["dining_location"]}</Text>
+                    <Text style={styles.subsubtitle}>Dining Location: {foodItem.dining_location}</Text>
                     <br></br>
-                    <Text style={styles.subsubtitle}>Cost: $ {processFoodItemCost(foodItem["cost"])}</Text>
+                    <Text style={styles.subsubtitle}>Cost: $ {processFoodItemCost(foodItem.cost)}</Text>
                     <br></br>
 
-                    {/* If the selected food item contains */}
-                    {foodItem["has_eggs"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.has_eggs === true && hasEggAllergyGlobal ? "Contains eggs, but you are allergic" : null}</Text>
+                    {/* Display warnings to the logged-in user based on the food item properties and the user's own profile settings */}
+                    
+                    {foodItem.has_eggs == true && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs" : null}</Text>
                     )}
-                    {foodItem["has_fish"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.has_fish === true ? "Contains fish" : null}</Text>
+                    {foodItem.has_eggs == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs" : null}</Text>
                     )}
-                    {foodItem["has_milk"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.has_milk === true && hasDairyIntoleranceGlobal ? "Contains milk, but you are intolerant (if the milk is dairy)" : null}</Text>
+
+                    {foodItem.has_fish == true && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_fish === true && hasFishAllergyGlobal ? "Warning - this item contains fish" : null}</Text>
                     )}
-                    {foodItem["is_dairy_free"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Contains dairy, but you are intolerant" : null}</Text>
+                    {foodItem.has_fish == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_fish === null && hasFishAllergyGlobal ? "Warning - this item may contain fish" : null}</Text>
                     )}
-                    {foodItem["has_peanuts"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.has_peanuts === true && hasPeanutAllergyGlobal ? "Contains peanuts, but you are allergic" : null}</Text>
+
+                    {foodItem.is_dairy_free == true && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Warning - this item contains dairy" : null}</Text>
                     )}
-                    {foodItem["has_sesame"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.has_sesame === true && hasSesameAllergyGlobal ? "Contains sesame, but you are allergic" : null}</Text>
+                     {foodItem.is_dairy_free == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_dairy_free === null && hasDairyIntoleranceGlobal ? "Warning - this item may contain dairy" : null}</Text>
                     )}
-                    {foodItem["has_soy"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.has_soy === true && hasSoyAllergyGlobal ? "Contains soy, but you are allergic" : null}</Text>
+
+                    {foodItem.has_milk == true && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_milk === true && hasMilkAllergyGlobal ? "Warning - this item contains milk" : null}</Text>
                     )}
-                    {foodItem["has_treenuts"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.has_treenuts === true && hasTreenutAllergyGlobal ? "Contains treenuts, but you are allergic" : null}</Text>
+                    {foodItem.has_milk == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_milk === null && hasMilkAllergyGlobal ? "Warning - this item may contain milk" : null}</Text>
                     )}
-                    {foodItem["has_wheat"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.has_wheat === true && hasWheatAllergyGlobal ? "Contains wheat, but you are allergic" : null}</Text>
+
+                    {foodItem.has_peanuts == true && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_peanuts === true && hasPeanutAllergyGlobal ? "Warning - this item contains peanuts" : null}</Text>
                     )}
-                    {foodItem["is_gluten_free"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.is_gluten_free === false && hasGlutenAllergyGlobal ? "Contains gluten, but you are allergic" : null}</Text>
+                    {foodItem.has_peanuts == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_peanuts === null && hasPeanutAllergyGlobal ? "Warning - this item may contain peanuts" : null}</Text>
                     )}
-                    {foodItem["is_vegan"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.is_vegan === false && isVeganGlobal ?  "Not vegan, but you are vegan" : null}</Text>
+
+                    {foodItem.has_sesame == true && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_sesame === true && hasSesameAllergyGlobal ? "Warning - this item contains sesame" : null}</Text>
                     )}
-                    {foodItem["is_kosher"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.is_kosher === false && prefersKosherGlobal ? "Not kosher, but you prefer kosher" : null}</Text>
+                    {foodItem.has_sesame == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_sesame === null && hasSesameAllergyGlobal ? "Warning - this item may contain sesame" : null}</Text>
                     )}
-                    {foodItem["is_halal"] != null && (
-                        <Text style={styles.subsubtitle}>{foodItem.is_halal === false && prefersHalalGlobal ? "Not halal, but you prefer halal" : null}</Text>
-                    )}                
+
+                    {foodItem.has_shellfish == true && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_shellfish === true && hasShellfishAllergyGlobal ? "Warning - this item contains shellfish" : null}</Text>
+                    )}    
+                    {foodItem.has_shellfish == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_shellfish === null && hasShellfishAllergyGlobal ? "Warning - this item may contain shellfish" : null}</Text>
+                    )}
+
+                    {foodItem.has_soy == true && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_soy === true && hasSoyAllergyGlobal ? "Warning - this item contains soy" : null}</Text>
+                    )}
+                    {foodItem.has_soy == null && (                    
+                        <Text style={styles.subsubtitle}>{foodItem.has_soy === null && hasSoyAllergyGlobal ? "Warning - this item may contain soy" : null}</Text>
+                    )}
+                    
+                    {foodItem.has_treenuts == true && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_treenuts === true && hasTreenutAllergyGlobal ? "Warning - this item contains treenuts" : null}</Text>
+                    )}                    
+                    {foodItem.has_treenuts == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_treenuts === null && hasTreenutAllergyGlobal ? "Warning - this item may contain treenuts" : null}</Text>
+                    )}
+
+                    {foodItem.has_wheat == true && (                    
+                        <Text style={styles.subsubtitle}>{foodItem.has_wheat === true && hasWheatAllergyGlobal ? "Warning - this item contains wheat" : null}</Text>
+                    )}
+                    {foodItem.has_wheat == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.has_wheat === null && hasWheatAllergyGlobal ? "Warning - this item may contain wheat" : null}</Text>
+                    )}
+
+                    {foodItem.is_gluten_free == false && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_gluten_free === false && hasGlutenAllergyGlobal ? "Warning - this item contains gluten" : null}</Text>
+                    )}
+                    {foodItem.is_gluten_free == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_gluten_free === null && hasGlutenAllergyGlobal ? "Warning - this item may contain gluten" : null}</Text>
+                    )}
+
+                    {foodItem.is_vegan == false && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_vegan === false && isVeganGlobal ?  "Warning - this item is not vegan" : null}</Text>
+                    )}
+                    {foodItem.is_vegan == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_vegan === null && isVeganGlobal ?  "Warning - this item may not be vegan" : null}</Text>
+                    )}
+
+                    {foodItem.is_vegetarian == false && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian" : null}</Text>
+                    )}
+                    {foodItem.is_vegetarian == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian" : null}</Text>
+                    )}
+
+                    {foodItem.is_kosher == false && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_kosher === false && prefersKosherGlobal ? "Warning - this item is not kosher" : null}</Text>
+                    )}
+                    {foodItem.is_kosher == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_kosher === null && prefersKosherGlobal ? "Warning - this item may not be kosher" : null}</Text>
+                    )}    
+                        
+                    {foodItem.is_halal == false && (                        
+                        <Text style={styles.subsubtitle}>{foodItem.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal" : null}</Text>
+                    )}
+                    {foodItem.is_halal == null && (
+                        <Text style={styles.subsubtitle}>{foodItem.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal" : null}</Text>
+                    )}
                 </View>
             )}
 
