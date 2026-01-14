@@ -14,6 +14,55 @@ Write-Host ""
 $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $projectRoot
 
+function Wait-ForHttp {
+    param(
+        [Parameter(Mandatory=$true)][string]$Url,
+        [int]$TimeoutSeconds = 60,
+        [int]$DelayMs = 500
+    )
+
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+    while ((Get-Date) -lt $deadline) {
+        try {
+            $resp = Invoke-WebRequest -Uri $Url -UseBasicParsing -TimeoutSec 3
+            if ($resp.StatusCode -ge 200 -and $resp.StatusCode -lt 500) {
+                return $true
+            }
+        } catch {
+            # ignore until ready
+        }
+        Start-Sleep -Milliseconds $DelayMs
+    }
+    return $false
+}
+
+function Wait-ForTcpPort {
+    param(
+        [Parameter(Mandatory=$true)][string]$HostName,
+        [Parameter(Mandatory=$true)][int]$Port,
+        [int]$TimeoutSeconds = 60,
+        [int]$DelayMs = 500
+    )
+
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+    while ((Get-Date) -lt $deadline) {
+        try {
+            $client = New-Object System.Net.Sockets.TcpClient
+            $iar = $client.BeginConnect($HostName, $Port, $null, $null)
+            $connected = $iar.AsyncWaitHandle.WaitOne(3000, $false)
+            if ($connected -and $client.Connected) {
+                $client.Close()
+                return $true
+            }
+            $client.Close()
+        } catch {
+            # ignore until ready
+        }
+        Start-Sleep -Milliseconds $DelayMs
+    }
+    return $false
+}
+
 # Step 1: Setup Python Virtual Environment
 Write-Host "[1/6] Setting up Python virtual environment..." -ForegroundColor Yellow
 $venvPath = Join-Path $projectRoot "backend\backenv"
@@ -171,24 +220,34 @@ pause
 $expoScript | Out-File -FilePath "$env:TEMP\start_expo.ps1" -Encoding UTF8
 Start-Process powershell -ArgumentList "-NoExit", "-File", "$env:TEMP\start_expo.ps1"
 
-# Step 6: Open Browser
+# Step 6: Open Browser (only after servers are ready)
 Write-Host ""
-Write-Host "[6/6] Opening browser..." -ForegroundColor Yellow
-Start-Sleep -Seconds 2
+Write-Host "[6/6] Waiting for servers to be ready..." -ForegroundColor Yellow
 
-# Open Flask API health check
-Start-Process "http://127.0.0.1:5000/api/health"
+# 1) Wait for Flask
+# Prefer a dedicated health endpoint if you have one (recommended).
+# Example: http://127.0.0.1:5000/health
+$flaskReady = Wait-ForHttp -Url "http://127.0.0.1:5000/" -TimeoutSeconds 60
+
+if ($flaskReady) {
+    Write-Host "Flask is responding." -ForegroundColor Green
+} else {
+    Write-Host "Warning: Flask did not become ready within 60s. Opening browser anyway." -ForegroundColor Yellow
+}
+
+# 2) Wait for Expo/Metro
+# Common ports: 8081 (Metro), 19000/19001 (older Expo), 19006 (web).
+# If your splash page is served by the frontend, wait for that URL directly.
+$expoReady = Wait-ForTcpPort -HostName "127.0.0.1" -Port 8081 -TimeoutSeconds 90
+
+if ($expoReady) {
+    Write-Host "Expo/Metro port is open." -ForegroundColor Green
+} else {
+    Write-Host "Warning: Expo/Metro did not become ready within 90s." -ForegroundColor Yellow
+}
 
 Write-Host ""
-Write-Host "======================================" -ForegroundColor Cyan
-Write-Host "Setup Complete!" -ForegroundColor Green
-Write-Host "======================================" -ForegroundColor Cyan
-Write-Host ""
-Write-Host "Backend API: http://127.0.0.1:5000" -ForegroundColor Cyan
-Write-Host "API Health: http://127.0.0.1:5000/api/health" -ForegroundColor Cyan
-Write-Host ""
-Write-Host "Expo development server should open automatically." -ForegroundColor Cyan
-Write-Host "Check the PowerShell windows for Flask and Expo logs." -ForegroundColor Cyan
-Write-Host ""
-Write-Host "Press any key to exit this script (servers will continue running)..." -ForegroundColor Gray
-$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+Write-Host "Opening browser..." -ForegroundColor Yellow
+
+# If this page is served by Expo/React Native web, waiting for Expo is the key.
+Start-Process "http://localhost:8081/splash"
