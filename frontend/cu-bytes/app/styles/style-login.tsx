@@ -66,16 +66,17 @@ export const styles = StyleSheet.create({
   },
   description: {
     fontFamily: 'sans-serif',
-    fontSize: '100%' as any,
-    fontWeight: '600',
+    fontSize: '125%' as any,
+    fontWeight: '400',
 
     textAlign: 'center',
-    marginBottom: '0.5%' as any,
 
     color: '#000000FF',
     backgroundColor: 'rgba(255, 210, 210, 1)',
-    padding: '1.2%' as any,
-    borderRadius: 40
+    padding: '0.8%' as any,
+    borderRadius: 0,
+
+    width: '30%'
   },
   button: {
     justifyContent: 'center',

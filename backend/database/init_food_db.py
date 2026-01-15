@@ -105,7 +105,7 @@ def create_food_table():
                 if row.get("Last Updated") == ""
                 else row.get("Last Updated"),
                 is_vegan=parse_bool(row.get("Vegan")),
-                is_vegetarian=parse_bool(row.get("Vegetarian")), # Added 01/11/2026
+                is_vegetarian=parse_bool(row.get("Vegetarian")),
                 is_gluten_free=parse_bool(row.get("Gluten Free")),
                 is_halal=parse_bool(row.get("Halal")),
                 is_kosher=parse_bool(row.get("Kosher")),
@@ -115,7 +115,7 @@ def create_food_table():
                 has_milk=parse_bool(row.get("Milk")),
                 has_peanuts=parse_bool(row.get("Peanuts")),
                 has_sesame=parse_bool(row.get("Sesame")),
-                has_shellfish=parse_bool(row.get("Vegetarian")), # Added 01/11/2026
+                has_shellfish=parse_bool(row.get("Vegetarian")),
                 has_soy=parse_bool(row.get("Soy")),
                 has_treenuts=parse_bool(row.get("Treenuts")),
                 has_wheat=parse_bool(row.get("Wheat")),
