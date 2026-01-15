@@ -1,5 +1,5 @@
 import { SetStateAction, useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -8,6 +8,9 @@ import { styles } from './styles/style-enter';
 import { useUser } from './context';
 
 export default function EnterScreen() {
+
+    const [loading, setLoading] = useState(true);
+    const [visible, setVisible] = useState(false);    
 
     // Get the variables and setters used to access and modify a copy of the user profile elements
     const 
@@ -31,11 +34,6 @@ export default function EnterScreen() {
             prefersHalalGlobal
 
         } = useUser();
-
-    const [loading, setLoading] = useState(true);
-
-    // Variable and setter for controlling the visibility of components on the page
-    const [visible, setVisible] = useState(false);
 
     // Variables and setters for food item elements
     const [foodItem, setFoodItem] = useState(
@@ -135,6 +133,7 @@ export default function EnterScreen() {
     // Sends a get food item by id request to the server
     function handlePressGetFoodItem(foodItemId: number) {
         const foodItemRequest = `http://127.0.0.1:5000/browse//food-item/${foodItemId}`;
+        
         fetch(foodItemRequest, {
                 method: "GET"
             }
@@ -151,15 +150,6 @@ export default function EnterScreen() {
             console.log(data);
         })
     }
-
-    // Display loading symbol while the profiles are being fetched
-    if (loading) {
-        return (
-            <View>
-                <ActivityIndicator size="large" />
-            </View>
-        );
-    }
     
     // Filter the array of food items (retrieved from the backend database)
     // The food item name, entered in the text input, is used to filter the array
@@ -167,6 +157,15 @@ export default function EnterScreen() {
     const filterFoodItemArray = () => {
         const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"].toLowerCase() as string).includes(foodItemName.toLowerCase()));
         setFilteredFoodItemArray(filteredFoodItemArray);
+    }
+
+    // Display loading symbol while the food items are being fetched
+    if (loading) {
+        return (
+            <View>
+                <ActivityIndicator size="large" />
+            </View>
+        );
     }
 
     // The page that the user sees in the app/browser
@@ -199,7 +198,7 @@ export default function EnterScreen() {
                 }}
                 disabled={loading}
             >
-            <Text style={styles.buttonText}>Confirm</Text>
+                <Text style={styles.buttonText}>Confirm</Text>
             </TouchableOpacity>
 
             {/* If the entered string value does not return any food items, display the following message */}

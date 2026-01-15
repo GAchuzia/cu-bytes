@@ -9,95 +9,74 @@ import { useUser } from './context';
 
 export default function LoginScreen() {
 
+    const [loading, setLoading] = useState(false);
+    const [visible, setVisible] = useState(false);
+
     // Get the variables or setters used to access or modify a copy of the user profile elements
     const { usernameGlobal, setUsernameGlobal } = useUser();
 
-    const [loading, setLoading] = useState('');
-    const [visible, setVisible] = useState(false);
-
-    // Create constants for elements that will be modified based on the submitted username or password
-    const usernameInput = document.getElementById("usernameInput") as HTMLInputElement;
-    const passwordInput = document.getElementById("passwordInput") as HTMLInputElement;
-
-    /*
-    Reset the username-related element
-    */
-    function resetUsernameElement() {
-        if (usernameInput != null) {
-            setVisible(false);
-            usernameInput.style.color = 'black';
-            usernameInput.placeholder = 'Enter your username';
-        }
-    }
-
-    /*
-    Reset the password-related element
-    */
-    function resetPasswordElement() {
-        if (passwordInput != null) {
-            setVisible(false);
-            passwordInput.style.color = 'black';
-            passwordInput.placeholder = 'Enter your password';            
-        }        
-    }
-    ////////////////////////////////////////////////// Username, Password, Loading, and Visibile Variables and Setters //////////////////////////////////////////////////
-
-    // The username and password variables
-    // These values are passed to a JSON object that is sent to the login endpoint
+    // Variables and setters for the username and password entered by the user
+    // The variable values will be sent to a backend endpoint to attempt to login to an existing user account
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    // Sets the value of the username based on the value of the username text input
+    // Variable and setter for the error returned by the backend endpoint
+    const [error, setError] = useState({message: '', status: ''});
+
+    /*
+    Set the value of the username variable to the value entered in the username text input element
+    event: The event is the current string value in the username text input element
+    */
     function saveUsernameInputText(event: { target: { value: SetStateAction<string>; }; }) {
-        resetUsernameElement();
+        setError({ message: '', status: '' });
         setUsername(event.target.value);
+        setVisible(false);
     }
 
-    // Sets the value of the password based on the value of the password text input
+    /*
+    Set the value of the password variable to the value entered in the password text input element
+    event: The event is the current string value in the password text input element
+    */
     function savePasswordInputText(event: { target: { value: SetStateAction<string>; }; }) {
-        resetPasswordElement();
+        setError({ message: '', status: '' });
         setPassword(event.target.value);
+        setVisible(false);
     }
-    ////////////////////////////////////////////////// Username, Password, Loading, and Visibile Variables and Setters //////////////////////////////////////////////////
 
-    ////////////////////////////////////////////////// Send login request //////////////////////////////////////////////////
     // Sends a login request to the server containing the username and password
-    const handlePress = () => {
+    function handlePressLogin() {
+        
+        setLoading(true);
+        setError({ message: '', status: '' });
+
         fetch("http://127.0.0.1:5000/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify( { username: username, password: password } )
             }
         )
-        .then(response => {
-            if (!response.ok) {
-                throw new Error (`HTTP error! status: ${response.status}`);
+        .then((response) => response.json())
+
+        .then((data) => {
+
+            setLoading(false);
+
+            // If the backend endpoint returns an error message, store the error message
+            if (data.status === 'error') {
+                setError(data);
+                console.log(error);
             }
-            // Set the global username value to the local username value
-            setUsernameGlobal(username);
-            return response.json();
+            else {
+                setUsernameGlobal(username);
+                router.push("/home");
+            }
         })
-        .then(data => {
-            router.push("/home");
-        })
-        .catch(error => {
+
+        .catch((error) => {
+            setError(error);
             console.log(error);
-
-            setVisible(true);
-
-            // Modify the username element if there is an error with the login request
-            if (usernameInput != null) { 
-                usernameInput.style.color = 'red';
-                usernameInput.placeholder = 'Error!';
-            }
-            // Modify the password element if there is an error with the login request
-            if (passwordInput != null) { 
-                passwordInput.style.color = 'red'; 
-                passwordInput.placeholder = 'Error!';
-            }
         });
     }
-    ////////////////////////////////////////////////// Send login request //////////////////////////////////////////////////
 
     // The page that the user sees in the app/browser
     return (
@@ -109,6 +88,10 @@ export default function LoginScreen() {
 
             <Text style={styles.title}>Login</Text>
             <Text style={styles.subtitle}>Login in to your CU-Bytes account or create a new CU-Bytes account</Text>
+
+            {visible && (
+                <Text style={styles.description} id="loginErrorMessage">{error.message}</Text>
+            )}
 
             {/*Enter the username that will identify the existing account*/}
             <TextInput id="usernameInput"
@@ -132,7 +115,10 @@ export default function LoginScreen() {
             {/*Send a request to the server to access an existing account with the entered username and password */}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
-                onPress={handlePress}
+                onPress={() => {
+                    handlePressLogin();
+                    setVisible(true);
+                }}
                 disabled={loading}
             >
                 <Text style={styles.buttonText}>Login</Text>
@@ -147,14 +133,6 @@ export default function LoginScreen() {
                 <Text style={styles.buttonText}>Create Account</Text>
 
             </TouchableOpacity>
-
-            {visible && (
-                <Text id="errorMessage"
-                    style={styles.subsubtitleError}
-                >
-                    Error! Incorrect username, incorrect password, or unregistered account!
-                </Text>
-            )}
 
         </View>
 
