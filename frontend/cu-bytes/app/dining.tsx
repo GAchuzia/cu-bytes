@@ -252,6 +252,7 @@ export default function DiningScreen() {
                 onPress={() => {
                     setDiningLocationsVisible(true);
                     setFoodItemsVisible(false);
+                    foodItem.name = "";
 
                     filterDiningLocationArray();
                     console.log(diningLocationsVisible);
@@ -311,7 +312,7 @@ export default function DiningScreen() {
                 </View>
             )}
 
-            {foodItem && (
+            {foodItem.name != "" && (
 
                 <View>
                     <Text style={styles.subsubtitle}>{foodItem.name}</Text>
