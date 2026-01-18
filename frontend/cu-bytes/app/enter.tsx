@@ -232,6 +232,7 @@ export default function EnterScreen() {
 
             {visible && (
                 <View>
+
                     <Text style={styles.subsubtitle}>{foodItem.name}</Text>
                     <br></br>
                     <Text style={styles.subsubtitle}>Calories: {processFoodItemCalories(foodItem.calories)}</Text>
@@ -347,6 +348,17 @@ export default function EnterScreen() {
                     {foodItem.is_halal == null && (
                         <Text style={styles.subsubtitle}>{foodItem.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal" : null}</Text>
                     )}
+
+                    <TouchableOpacity
+                        style={[styles.button, loading && styles.buttonDisabled]}
+                        onPress={() => {
+                            
+                        }}
+                        disabled={loading}
+                    >
+                        <Text style={styles.buttonText}>Add Food Item</Text>
+                    </TouchableOpacity>
+
                 </View>
             )}
 
