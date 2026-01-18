@@ -25,11 +25,13 @@ def get_all_food_items():
             "food_items": [
                 {
                     "id": 651,
-                    "name": "Yogurt & Berries Parfait"
+                    "name": "Yogurt & Berries Parfait",
+                    "location": 10
                 },
                 {
                     "id": 652,
-                    "name": "Yogurt Parfait"
+                    "name": "Yogurt Parfait",
+                    "location": 11
                 }
                 ...
             ]

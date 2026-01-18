@@ -68,7 +68,7 @@ export default function HomeScreen() {
             {/*Route the user to the dining options page*/}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
-                //onPress={() => router.push("/dining")}
+                onPress={() => router.push("/dining")}
                 disabled={loading}
             >
                 <Text style={styles.buttonText}>
