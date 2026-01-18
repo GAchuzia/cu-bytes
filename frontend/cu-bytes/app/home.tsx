@@ -54,18 +54,7 @@ export default function HomeScreen() {
                 </Text>
             </TouchableOpacity>
 
-            {/*Route the user to the weekly progress page*/}
-            <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
-                //onPress={() => router.push("/progress")}
-                disabled={loading}
-            >
-                <Text style={styles.buttonText}>
-                    Weekly Progress
-                </Text>
-            </TouchableOpacity>
-
-            {/*Route the user to the dining options page*/}
+            {/*Route the user to the dining locations page*/}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => router.push("/dining")}
@@ -73,6 +62,17 @@ export default function HomeScreen() {
             >
                 <Text style={styles.buttonText}>
                     Dining Options
+                </Text>
+            </TouchableOpacity>
+
+            {/*Route the user to the food entries page*/}
+            <TouchableOpacity
+                style={[styles.button, loading && styles.buttonDisabled]}
+                onPress={() => router.push("/entries")}
+                disabled={loading}
+            >
+                <Text style={styles.buttonText}>
+                    Food Entries
                 </Text>
             </TouchableOpacity>
 

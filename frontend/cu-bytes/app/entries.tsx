@@ -1,5 +1,5 @@
 import { SetStateAction, useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -83,15 +83,19 @@ export default function EntriesScreen() {
 
             {/* If the entered string value returns any food items, display the name and id of each food item */}
             {foodItemArray && !visible && (
-                <View>
+                <ScrollView>
                     {foodItemArray.map((foodItem) => (
-                        <Text style={styles.pressableText}>
-                            {foodItem["food_name"]} (Calories {foodItem["calories"]}) (Transaction Time {foodItem["transaction_time"]})
+                        <Text style={styles.subsubtitle}>
+                            {foodItem["food_name"]}
+                            <br></br>
+                            Calories: {foodItem["calories"]}
+                            <br></br>
+                            {foodItem["transaction_time"]}
                             <br></br>
                             <line>---</line>
                         </Text>
                     ))}
-                </View>
+                </ScrollView>
             )}
 
         </View>

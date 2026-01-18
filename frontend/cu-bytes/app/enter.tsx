@@ -154,7 +154,7 @@ export default function EnterScreen() {
     /*
     Sends a log food item by id request to the server
     */
-    function handlePressAddFoodItem(foodItemId: number) {
+    function handlePressLogFoodItemById(foodItemId: number) {
         const foodItemEntryRequest = `http://127.0.0.1:5000/logging/log-by-id`;
 
         fetch(foodItemEntryRequest, {
@@ -173,7 +173,7 @@ export default function EnterScreen() {
             
             // If the backend endpoint returns an error message, store the error message
             if (data.status === 'error') {
-                
+                throw new Error (`HTTP error! status: ${data.status}`);
             }
         })
 
@@ -384,7 +384,7 @@ export default function EnterScreen() {
                     <TouchableOpacity
                         style={[styles.button, loading && styles.buttonDisabled]}
                         onPress={() => {
-                            
+                            handlePressLogFoodItemById(foodItem.id);
                         }}
                         disabled={loading}
                     >
