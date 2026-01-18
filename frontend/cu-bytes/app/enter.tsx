@@ -150,6 +150,38 @@ export default function EnterScreen() {
             console.log(data);
         })
     }
+
+    /*
+    Sends a log food item by id request to the server
+    */
+    function handlePressAddFoodItem(foodItemId: number) {
+        const foodItemEntryRequest = `http://127.0.0.1:5000/logging/log-by-id`;
+
+        fetch(foodItemEntryRequest, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify( { username: usernameGlobal, food_id: foodItemId } )
+            }
+        )
+        .then((response) => response.json())
+
+        .then((data) => {
+
+            setLoading(false);
+
+            console.log(data);
+            
+            // If the backend endpoint returns an error message, store the error message
+            if (data.status === 'error') {
+                
+            }
+        })
+
+        .catch((error) => {
+
+        });
+    }
+
     
     // Filter the array of food items (retrieved from the backend database)
     // The food item name, entered in the text input, is used to filter the array
