@@ -1,67 +1,77 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+
   container: {
     flex: 1,
-    backgroundColor: 'rgba(255, 180, 180, 1)',
-    paddingTop: '0.5%' as any,
-    paddingHorizontal: '0.5%' as any,
+
+    backgroundColor: '#FFFFFF',
+    padding: '0.5%' as any,
+
     alignItems: 'center',
+
     overflowY: 'scroll'
   },
+  
   title: {
-    fontFamily: 'sans-serif',
-    fontSize: '280%' as any,
-    fontWeight: '800',
-
-    textAlign: 'center',
-    margin: '0.5%' as any,
-
-    color: 'red',
+    color: '#0a7ea4',
     backgroundColor: '#FFFFFFFF',
-    padding: '1.8%' as any,
-    borderRadius: 40
-  },
-  subtitle: {
+    padding: '1.5%' as any,
+
+    textAlign: 'center',
+    margin: '0.5%' as any,  
+    
     fontFamily: 'sans-serif',
-    fontSize: '150%' as any,
-    fontWeight: '600',
+    fontSize: '300%' as any,
+    fontWeight: 'bold',    
+  },
+
+  subtitle: {
+    color: '#0a7ea4',
+    backgroundColor: '#FFFFFF',
+    padding: '0.5%' as any,
 
     textAlign: 'center',
     margin: '0.5%' as any,
 
-    color: '#000000FF',
-    backgroundColor: 'rgba(255, 210, 210, 1)',
-    padding: '1.2%' as any,
-    borderRadius: 40
-  },
-  subsubtitle: {
     fontFamily: 'sans-serif',
-    fontSize: '150%' as any,
-    fontWeight: '400',
+    fontSize: '175%' as any,
+    fontWeight: 'bold'
+  },
 
+  subsubtitle: {
+    flex: 1,
+
+    color: 'black',
+    backgroundColor: '#0a7ea4',
+    padding: '0.5%' as any,
+    
     textAlign: 'center',
+    margin: '0.5%' as any,
+    lineHeight: 40,
 
-    color: '#000000FF',
-    backgroundColor: 'rgba(255, 210, 210, 1)',
-    padding: '2.4%' as any,
-    borderRadius: 0,
+    fontFamily: 'sans-serif',
+    fontSize: '175%' as any,
+    fontWeight: 'bold',
 
     width: '100%'
   },
+
   description: {
+    color: '#0000FF',
+    backgroundColor: 'rgba(255, 210, 210, 1)',
+    padding: '1.2%' as any,
+
+    textAlign: 'center',
+    marginBottom: '0.5%' as any,    
+
     fontFamily: 'sans-serif',
     fontSize: '100%' as any,
     fontWeight: '600',
 
-    textAlign: 'center',
-    marginBottom: '0.5%' as any,
-
-    color: '#000000FF',
-    backgroundColor: 'rgba(255, 210, 210, 1)',
-    padding: '1.2%' as any,
     borderRadius: 40
   },
+  
   button: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -70,7 +80,7 @@ export const styles = StyleSheet.create({
     marginBottom: '1.2%' as any,
     elevation: 8,
 
-    backgroundColor: '#007AFF',
+    backgroundColor: '#FF6B6B',
     padding: '0.5%' as any,
 
     borderRadius: 30,
