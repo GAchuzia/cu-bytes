@@ -8,7 +8,11 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     padding: '0.5%' as any,
 
+
     alignItems: 'center',
+    textAlign: 'center',
+
+    width: '100%',
 
     overflowY: 'scroll'
   },
@@ -40,133 +44,96 @@ export const styles = StyleSheet.create({
   },
 
   subsubtitle: {
-    flex: 1,
-
     color: 'black',
-    backgroundColor: '#0a7ea4',
+    backgroundColor: '#a1e7ff',
     padding: '0.5%' as any,
     
     textAlign: 'center',
     margin: '0.5%' as any,
-    lineHeight: 40,
+    lineHeight: 50,
 
     fontFamily: 'sans-serif',
     fontSize: '175%' as any,
     fontWeight: 'bold',
 
-    width: '100%'
-  },
-
-  description: {
-    color: '#0000FF',
-    backgroundColor: 'rgba(255, 210, 210, 1)',
-    padding: '1.2%' as any,
-
-    textAlign: 'center',
-    marginBottom: '0.5%' as any,    
-
-    fontFamily: 'sans-serif',
-    fontSize: '100%' as any,
-    fontWeight: '600',
-
-    borderRadius: 40
+    width: '100%' as any
   },
   
   button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    marginTop: '1.2%' as any,
-    marginBottom: '1.2%' as any,
-    elevation: 8,
-
-    backgroundColor: '#FF6B6B',
+    color: 'black',
+    backgroundColor: '#0a7ea4',
     padding: '0.5%' as any,
 
-    borderRadius: 30,
-    borderWidth: 3,
-    borderBlockColor: '#000000FF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '1.2%' as any,
+
+    borderRadius: 25,
+    borderWidth: 4,
+    borderBlockColor: 'black',
     
-    shadowColor: '#000000FF',
-    shadowOffset: { width: 0, height: 1 },
+    shadowColor: 'black',
+    shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 8,
     
-    width: '50%'
+    width: '80%' as any,
+    height: '12.5%' as any
   },
+
   buttonDisabled: {
-    backgroundColor: '#cccccccc',
+    backgroundColor: '#CCCCCC',
   },
+
   buttonText: {
+    color: 'white',
+
     fontFamily: 'sans-serif',
     fontSize: '200%' as any,
     fontWeight: '800',
-
-    color: 'white',
   },
+
   pressableText: {
+    color: 'black',
+    backgroundColor: '#a1e7ff',
+    padding: '1.5%' as any,
+
     justifyContent: 'center',
     alignItems: 'center',
-
     textAlign: 'center',
+    lineHeight: 50,
 
     fontFamily: 'sans-serif',
-    fontSize: '150%' as any,
-    fontWeight: 600,
+    fontSize: '175%' as any,
+    fontWeight: '600',
 
-    color: '#000000FF',
-    backgroundColor: 'rgba(230, 250, 250, 1)',
-    padding: '1.6%' as any,
-    paddingHorizontal: '2.4%' as any,
     borderRadius: 0,
 
-    width: '100%'
+    width: '100%' as any
   },
-  infoSection: {
-    backgroundColor: 'white',
-    padding: '1.2%' as any,
-    borderRadius: 12,
-    width: '100%',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  infoTitle: {
-    fontSize: '100%' as any,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: '1%' as any,
-  },
-  infoText: {
-    fontSize: '100%' as any,
-    color: '#666',
-    marginBottom: '1%' as any,
-  },
+  
   textInput: {
-    fontSize: '150%' as any,
-    fontFamily: 'Sans-Serif',
+    backgroundColor: '#FFFFFF',
+    padding: '0.5%' as any,
 
     justifyContent: 'center',
     alignItems: 'center',
+    margin: '1.2%' as any,
 
-    marginTop: '1%' as any,
-    elevation: 8,
+    fontSize: '150%' as any,
+    fontFamily: 'Sans-Serif',   
+    
+    borderRadius: 0,
+    borderWidth: 2.5,
+    borderBlockColor: 'black',
 
-    backgroundColor: '#FFFFFF',
-    paddingVertical: '1%' as any,
-    paddingHorizontal: '1%' as any,
-
-    borderRadius: 10,
-    borderWidth: 2,
-    borderBottomColor: '#000000FF',
-
-    shadowColor: '#000000FF',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.4,
+    shadowColor: 'black',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.2,
     shadowRadius: 8,
     
-    width: '60%'
-  }
+    width: '80%' as any,
+    height: '10%' as any
+  },
+
 });
