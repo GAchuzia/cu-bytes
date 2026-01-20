@@ -121,7 +121,7 @@ export default function ScanScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
 
-            <Text style={styles.subtitle}> Logged in as {usernameGlobal}</Text>
+            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
             
             <Text style={styles.title}>Scan</Text>
             <Text style={styles.subtitle}>Upload a photo of the food item that you would like to have analyzed</Text>
@@ -139,7 +139,7 @@ export default function ScanScreen() {
                 <Text style={styles.subtitle}>Your Photo Here</Text>
             )}
 
-            {prediction && (
+            {prediction && usernameGlobal != "" && (
                 <View style={styles.infoSection}>
                     <Text style={styles.subtitle}>Food: {prediction.food_name}</Text>
                     <Text style={styles.subtitle}>Calories: {prediction.calories}</Text>
