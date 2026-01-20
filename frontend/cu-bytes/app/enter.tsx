@@ -222,9 +222,11 @@ export default function EnterScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
 
-            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
+            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
 
             <Text style={styles.title}>Browse Food Items</Text>
+
+            <Text style={styles.subtitle}>Enter the food item name to see related food items</Text>
 
             {/* Enter the name of a food item */}
             <TextInput
@@ -277,7 +279,6 @@ export default function EnterScreen() {
 
             {visible && (
                 <Text style={styles.subsubtitle}>
-
                     {foodItem.name}
                     {'\n'}
                     Calories: {processFoodItemCalories(foodItem.calories)}
