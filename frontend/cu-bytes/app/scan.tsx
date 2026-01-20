@@ -86,11 +86,42 @@ export default function ScanScreen() {
         }
     };
 
+    /*
+    Sends a log food item by id request to the server
+    */
+    function handlePressLogFoodItemByName(foodItemName: string) {
+        const foodItemEntryRequest = `http://127.0.0.1:5000/logging/log-by-name`;
+
+        fetch(foodItemEntryRequest, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify( { username: usernameGlobal, food_name: foodItemName } )
+            }
+        )
+        .then((response) => response.json())
+
+        .then((data) => {
+
+            setLoading(false);
+
+            console.log(data);
+            
+            // If the backend endpoint returns an error message, store the error message
+            if (data.status === 'error') {
+                throw new Error (`HTTP error! status: ${data.status}`);
+            }
+        })
+
+        .catch((error) => {
+
+        });
+    }
+
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
 
-            <Text style={styles.subtitle}> Logged in as {usernameGlobal}</Text>
+            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
             
             <Text style={styles.title}>Scan</Text>
             <Text style={styles.subtitle}>Upload a photo of the food item that you would like to have analyzed</Text>
@@ -108,11 +139,22 @@ export default function ScanScreen() {
                 <Text style={styles.subtitle}>Your Photo Here</Text>
             )}
 
-            {prediction && (
+            {prediction && usernameGlobal != "" && (
                 <View style={styles.infoSection}>
                     <Text style={styles.subtitle}>Food: {prediction.food_name}</Text>
                     <Text style={styles.subtitle}>Calories: {prediction.calories}</Text>
                     <Text style={styles.subtitle}>Confidence: {prediction.confidence}%</Text>
+
+                    <TouchableOpacity
+                        style={[styles.button, loading && styles.buttonDisabled]}
+                        onPress={() => {
+                            handlePressLogFoodItemByName(prediction.food_name);
+                        }}
+                        disabled={loading}
+                    >
+                        <Text style={styles.buttonText}>Add Food Item</Text>
+                    </TouchableOpacity>
+
                 </View>
             )}
 
