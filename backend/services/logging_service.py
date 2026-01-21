@@ -3,6 +3,7 @@ from datetime import datetime
 from flask import jsonify
 
 # Project imports
+from backend.models.food_category import FoodCategory
 from backend.models.food_logging import FoodLogging
 from backend.models.food_item import FoodItem
 from backend.models.users_auth import UsersAuth
@@ -58,22 +59,56 @@ def log_food_item_by_id_json(data):
             400,
         )
 
-    # Fiona TODO: Look for nutrition breakdown based on generic label
-    # Will also need to add backup calorie lookup logic here
-    t = create_transaction(
-        username=username,
-        food_name=food_item.food_name,
-        calories=food_item.calories,
-        percent_fruit_veg=40,
-        percent_grain=30,
-        percent_dairy=20,
-        percent_protein=10,
-        fat_g=9.7,
-        carbs_g=2.7,
-        proteins_g=3.7,
-        fiber_g=1.7,
-        sugar_g=4.7,
-    )
+    food_category = FoodCategory.get_by_name(food_item.food_category)
+
+    if food_item.calories is None or food_item.calories <= 0:
+        # Log information based entirely on the generic category
+        t = create_transaction(
+            username=username,
+            food_name=food_item.food_name,
+            calories=food_category.calories,
+            percent_fruit_veg=food_category.percent_fruit_veg,
+            percent_grain=food_category.percent_grain,
+            percent_dairy=food_category.percent_dairy,
+            percent_protein=food_category.percent_protein,
+            fat_g=food_category.fat_g,
+            carbs_g=food_category.carbs_g,
+            proteins_g=food_category.proteins_g,
+            fiber_g=food_category.fiber_g,
+            sugar_g=food_category.sugar_g,
+        )
+    else:
+        # Sanity check to prevent division by zero
+        if food_category.calories == 0:
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "message": (
+                            f"Failed to create transaction: FoodCategory "
+                            f"'{food_category.category_name}' has calories set to 0."
+                        ),
+                    }
+                ),
+                500,
+            )
+
+        # Log information based on proportion of known calories
+        proportion = food_item.calories / food_category.calories
+        t = create_transaction(
+            username=username,
+            food_name=food_item.food_name,
+            calories=food_item.calories,
+            percent_fruit_veg=food_category.percent_fruit_veg,
+            percent_grain=food_category.percent_grain,
+            percent_dairy=food_category.percent_dairy,
+            percent_protein=food_category.percent_protein,
+            fat_g=round(proportion * food_category.fat_g, 3),
+            carbs_g=round(proportion * food_category.carbs_g, 3),
+            proteins_g=round(proportion * food_category.proteins_g, 3),
+            fiber_g=round(proportion * food_category.fiber_g, 3),
+            sugar_g=round(proportion * food_category.sugar_g, 3),
+        )
 
     if t is not None:
         return (
@@ -125,30 +160,46 @@ def log_food_item_by_name_json(data):
             400,
         )
 
-    # Fiona TODO: Check for name in Generic Label database
-    # food_item = GenericFoodItem.get_by_id(food_name)
-    # if food_item is None:
-    #     print("LoggingService: No matching food category for {food_name}")
-    #     return (
-    #         jsonify({"status": "error", "message": "No matching food_name found"}),
-    #         400,
-    #     )
+    # Check for name in GenericCategory database
+    food_category = FoodCategory.get_by_name(food_name)
+    t = None
 
-    # Fiona TODO: Look for nutrition breakdown based on generic label
-    t = create_transaction(
-        username=username,
-        food_name=food_name,
-        calories=350,
-        percent_fruit_veg=40,
-        percent_grain=30,
-        percent_dairy=20,
-        percent_protein=10,
-        fat_g=9.7,
-        carbs_g=9.7,
-        proteins_g=9.7,
-        fiber_g=9.7,
-        sugar_g=9.7,
-    )
+    if food_category is None:
+        print(
+            "LoggingService: Warning! No matching for "
+            f"{food_name}, creating basic transaction"
+        )
+        # Create transaction with largely unknowns
+        t = create_transaction(
+            username=username,
+            food_name=food_name,
+            calories=-1,
+            percent_fruit_veg=0,
+            percent_grain=0,
+            percent_dairy=0,
+            percent_protein=0,
+            fat_g=-1,
+            carbs_g=-1,
+            proteins_g=-1,
+            fiber_g=-1,
+            sugar_g=-1,
+        )
+    else:
+        # Create nutrition breakdown based on the generic category
+        t = create_transaction(
+            username=username,
+            food_name=food_name,
+            calories=food_category.calories,
+            percent_fruit_veg=food_category.percent_fruit_veg,
+            percent_grain=food_category.percent_grain,
+            percent_dairy=food_category.percent_dairy,
+            percent_protein=food_category.percent_protein,
+            fat_g=food_category.fat_g,
+            carbs_g=food_category.carbs_g,
+            proteins_g=food_category.proteins_g,
+            fiber_g=food_category.fiber_g,
+            sugar_g=food_category.sugar_g,
+        )
 
     if t is not None:
         return (
@@ -226,14 +277,6 @@ def create_transaction(
     sugar_g,
 ):
     """Create a new transaction and store it in the database"""
-
-    if percent_fruit_veg + percent_grain + percent_dairy + percent_protein != 100:
-        print(
-            f"LoggingService: Unable to log {food_name} for user {username}. "
-            "Nutrition stats do not add up to 100."
-        )
-        return None
-
     transaction = FoodLogging.create(
         username=username,
         transaction_time=datetime.now(),
