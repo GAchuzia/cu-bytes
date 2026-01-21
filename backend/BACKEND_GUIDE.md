@@ -56,20 +56,18 @@ sqlite> PRAGMA table_info('users_profile');
 1|has_configured_settings|BOOLEAN|0||0
 2|show_stats|BOOLEAN|0||0
 3|has_egg_allergy|BOOLEAN|0||0
-4|has_fish_allergy|BOOLEAN|0||0
+4|has_fish_or_shellfish_allergy|BOOLEAN|0||0
 5|has_dairy_intolerance|BOOLEAN|0||0
 6|has_milk_allergy|BOOLEAN|0||0
 7|has_peanut_allergy|BOOLEAN|0||0
 8|has_sesame_allergy|BOOLEAN|0||0
-9|has_shellfish_allergy|BOOLEAN|0||0
-10|has_soy_allergy|BOOLEAN|0||0
-11|has_treenut_allergy|BOOLEAN|0||0
-12|has_wheat_allergy|BOOLEAN|0||0
-13|has_gluten_allergy|BOOLEAN|0||0
-14|is_vegan|BOOLEAN|0||0
-15|is_vegetarian|BOOLEAN|0||0
-16|prefers_kosher|BOOLEAN|0||0
-17|prefers_halal|BOOLEAN|0||0
+9|has_soy_allergy|BOOLEAN|0||0
+10|has_treenut_allergy|BOOLEAN|0||0
+11|has_wheat_allergy|BOOLEAN|0||0
+12|has_gluten_allergy|BOOLEAN|0||0
+13|is_vegan|BOOLEAN|0||0
+14|is_vegetarian|BOOLEAN|0||0
+15|prefers_halal|BOOLEAN|0||0
 
 #### food_data.db
 This database contains a list of the food items available at Carleton University.
@@ -79,11 +77,11 @@ Steps to create:
 cd cu-bytes
 python -m backend.database.init_food_db
 
-Database schema:
+Database schema for food items:
 sqlite> PRAGMA table_info('food_items');
 0|id|INTEGER|1||1
 1|food_name|VARCHAR(80)|1||0
-2|dining_location|VARCHAR(80)|1||0
+2|dining_location|INTEGER|1||0
 3|cost|DOUBLE|0||0
 4|calories|INTEGER|0||0
 5|comments|VARCHAR(200)|0||0
@@ -92,22 +90,48 @@ sqlite> PRAGMA table_info('food_items');
 8|is_vegetarian|BOOLEAN|0||0
 9|is_gluten_free|BOOLEAN|0||0
 10|is_halal|BOOLEAN|0||0
-11|is_kosher|BOOLEAN|0||0
-12|is_dairy_free|BOOLEAN|0||0
-13|has_eggs|BOOLEAN|0||0
-14|has_fish|BOOLEAN|0||0
-15|has_milk|BOOLEAN|0||0
-16|has_peanuts|BOOLEAN|0||0
-17|has_sesame|BOOLEAN|0||0
-18|has_shellfish|BOOLEAN|0||0
-19|has_soy|BOOLEAN|0||0
-20|has_treenuts|BOOLEAN|0||0
-21|has_wheat|BOOLEAN|0||0
+11|is_dairy_free|BOOLEAN|0||0
+12|has_eggs|BOOLEAN|0||0
+13|has_fish_or_shellfish|BOOLEAN|0||0
+14|has_milk|BOOLEAN|0||0
+15|has_peanuts|BOOLEAN|0||0
+16|has_sesame|BOOLEAN|0||0
+17|has_soy|BOOLEAN|0||0
+18|has_treenuts|BOOLEAN|0||0
+19|has_wheat|BOOLEAN|0||0
+20|food_category|VARCHAR(80)|1||0
 
-Database schema:
-sqlite> PRAGMA table_info('dining_locations')'
+Database schema for dining locations:
+sqlite> PRAGMA table_info('dining_locations');
 0|dining_service_id|INTEGER|1|1
 1|dining_location_name|VARCHAR(80)|1||0
+
+Database schema for generic food categories:
+sqlite> PRAGMA table_info('food_categories');
+0|category_name|VARCHAR(80)|1||1
+1|calories|INTEGER|1||0
+2|percent_fruit_veg|INTEGER|1||0
+3|percent_grain|INTEGER|1||0
+4|percent_dairy|INTEGER|1||0
+5|percent_protein|INTEGER|1||0
+6|fat_g|FLOAT|1||0
+7|carbs_g|FLOAT|1||0
+8|proteins_g|FLOAT|1||0
+9|fiber_g|FLOAT|1||0
+10|sugar_g|FLOAT|1||0
+11|is_vegan|BOOLEAN|0||0
+12|is_gluten_free|BOOLEAN|0||0
+13|is_halal|BOOLEAN|0||0
+14|is_vegetarian|BOOLEAN|0||0
+15|is_dairy_free|BOOLEAN|0||0
+16|has_eggs|BOOLEAN|0||0
+17|has_fish_or_shellfish|BOOLEAN|0||0
+18|has_milk|BOOLEAN|0||0
+19|has_peanuts|BOOLEAN|0||0
+20|has_sesame|BOOLEAN|0||0
+21|has_soy|BOOLEAN|0||0
+22|has_treenuts|BOOLEAN|0||0
+23|has_wheat|BOOLEAN|0||0
 
 #### logging.db
 This database contains a transactions that record which food item was consumed by which user.
@@ -126,3 +150,8 @@ sqlite> PRAGMA table_info('food_logging');
 5|percent_grain|INTEGER|0||0
 6|percent_dairy|INTEGER|0||0
 7|percent_protein|INTEGER|0||0
+8|fat_g|FLOAT|1||0
+9|carbs_g|FLOAT|1||0
+10|proteins_g|FLOAT|1||0
+11|fiber_g|FLOAT|1||0
+12|sugar_g|FLOAT|1||0

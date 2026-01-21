@@ -67,19 +67,17 @@ def edit_profile_json(data):
     optional_args = [
         "show_stats",
         "has_egg_allergy",
-        "has_fish_allergy",
+        "has_fish_or_shellfish_allergy",
         "has_dairy_intolerance",
         "has_milk_allergy",
         "has_peanut_allergy",
         "has_sesame_allergy",
-        "has_shellfish_allergy",
         "has_soy_allergy",
         "has_treenut_allergy",
         "has_wheat_allergy",
         "has_gluten_allergy",
         "is_vegan",
         "is_vegetarian",
-        "prefers_kosher",
         "prefers_halal",
     ]
 

@@ -9,8 +9,10 @@ Summary of endpoints.
     - [Login](#login)
     - [Register](#register)
     - [Browse](#browse)
-    - [Logging] (#logging)
-    - [Profiles] (#profiles)
+    - [Logging](#logging)
+    - [Profiles](#profiles)
+    - [Dining Locations](#dining-locations)
+    - [ML Prediction](#ml-prediction)
 
 
 ### Login
@@ -93,30 +95,36 @@ Summary of endpoints.
     None
 
     Responses:
-    200 OK - Successfully retrieved all food items
+    200 OK - Successfully retrieved the specified food item
         Response Body (JSON):
         {
-            "calories": 310,
+            "calories": 389,
+            "carbs_g": 79.8,
             "comments": "",
-            "cost": 5.7,
-            "dining_location": "Tunnel Junction",
-            "has_eggs": null,
-            "has_fish": null,
-            "has_milk": null,
-            "has_peanuts": null,
+            "cost": 9.5,
+            "dining_location": "Shawarma Palace",
+            "fat_g": 3.56,
+            "fiber_g": 1.96,
+            "food_category": "Shawarma",
+            "has_eggs": false,
+            "has_fish_or_shellfish": false,
+            "has_milk": false,
+            "has_peanuts": false,
             "has_sesame": null,
-            "has_soy": null,
+            "has_soy": false,
             "has_treenuts": null,
-            "has_wheat": null,
-            "id": 651,
-            "is_dairy_free": null,
+            "has_wheat": true,
+            "id": 100,
+            "is_dairy_free": true,
             "is_gluten_free": false,
             "is_halal": null,
-            "is_kosher": null,
             "is_vegan": false,
+            "is_vegetarian": false,
             "last_updated": "9/26/2025",
-            "name": "Yogurt & Berries Parfait"
-        }
+            "name": "Beef Shawarma Sandwich",
+            "proteins_g": 9.43,
+            "sugar_g": 0.287
+            }
 
     400 Bad Request - Item not found
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
@@ -179,20 +187,38 @@ The following endpoint should be used when food_name is determined through machi
     Responses:
     200 OK - Successfully retrieved food history
         Response Body (JSON):
-        {
-            [
-                {
-                    "calories": 150,
-                    "food_name": "Jello",
-                    "transaction_time": "Thu, 08 Jan 2026 19:38:17 GMT"
-                },
-                {
-                    "calories": 180,
-                    "food_name": "Buffalo Chicken Pizza",
-                    "transaction_time": "Thu, 08 Jan 2026 19:36:53 GMT"
-                }
-            ]
-        }
+        [
+            {
+                "calories": 250,
+                "carbs_g": 42.0,
+                "fat_g": 4.2,
+                "fiber_g": 6.8,
+                "food_name": "Oatmeal",
+                "proteins_g": 9.5,
+                "sugar_g": 7.1,
+                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
+            },
+            {
+                "calories": 420,
+                "carbs_g": 18.7,
+                "fat_g": 14.3,
+                "fiber_g": 6.1,
+                "food_name": "Chicken Salad",
+                "proteins_g": 32.5,
+                "sugar_g": 4.2,
+                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
+            },
+            {
+                "calories": 320,
+                "carbs_g": 45.2,
+                "fat_g": 6.5,
+                "fiber_g": 5.4,
+                "food_name": "Yogurt Parfait",
+                "proteins_g": 12.8,
+                "sugar_g": 22.0,
+                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
+            }
+        ]
     400 Bad Request - Invalid username
     500 Internal Server Error - Error retreiving food history
     """
@@ -217,14 +243,13 @@ The following endpoint should be used when food_name is determined through machi
             "has_gluten_allergy": false,
             "has_peanut_allergy": false,
             "has_sesame_allergy": false,
-            "has_shellfish_allergy": false,
+            "has_fish_or_shellfish_allergy": false,
             "has_soy_allergy": false,
             "has_treenut_allergy": false,
             "has_wheat_allergy": false,
             "is_vegan": true,
             "is_vegetarian": false,
             "prefers_halal": true,
-            "prefers_kosher": false,
             "show_stats": true,
             "username": "Alice"
         }
@@ -260,25 +285,126 @@ The following endpoint should be used when food_name is determined through machi
 
     Request Body (JSON):
     {
-        "username": "string",               # required
-        "show_stats": "boolean",            # optional
-        "has_egg_allergy: "boolean",        # optional
-        "has_dairy_intolerance: "boolean",  # optional
-        "has_peanut_allergy: "boolean",     # optional
-        "has_sesame_allergy: "boolean",     # optional
-        "has_shellfish_allergy: "boolean",  # optional
-        "has_soy_allergy: "boolean",        # optional
-        "has_treenut_allergy: "boolean",    # optional
-        "has_wheat_allergy: "boolean",      # optional
-        "has_gluten_allergy: "boolean",     # optional
-        "is_vegan: "boolean",               # optional
-        "is_vegetarian: "boolean",          # optional
-        "prefers_kosher: "boolean",         # optional
-        "prefers_halal: "boolean",          # optional
+        "username": "string",                       # required
+        "show_stats": "boolean",                    # optional
+        "has_egg_allergy: "boolean",                # optional
+        "has_fish_or_shellfish_allergy: "boolean",  # optional
+        "has_dairy_intolerance: "boolean",          # optional
+        "has_milk_allergy": "boolean",              # optional
+        "has_peanut_allergy: "boolean",             # optional
+        "has_sesame_allergy: "boolean",             # optional
+        "has_soy_allergy: "boolean",                # optional
+        "has_treenut_allergy: "boolean",            # optional
+        "has_wheat_allergy: "boolean",              # optional
+        "has_gluten_allergy: "boolean",             # optional
+        "is_vegan: "boolean",                       # optional
+        "is_vegetarian: "boolean",                  # optional
+        "prefers_halal: "boolean",                  # optional
     }
 
     Responses:
     200 OK - Successfully recorded the transaction
     400 Bad Request - Invalid argument
     500 Internal Server Error - Error adding transaction to database
+    """
+
+### Dining Locations
+    """
+    GET /locations/dining-locations
+
+    Description:
+    Retrieves all available dining locations from the database.
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved all dining locations
+        Response Body (JSON):
+        {
+            [
+                {
+                    "id": 1,
+                    "name": "Tim Hortons"
+                },
+                {
+                    "id": 2,
+                    "name": "Subway"
+                }
+                ...
+            ]
+        }
+
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
+
+    """
+    GET /locations/dining-locations/{id}
+
+    Description:
+    Retrieves all available food items from the dining location with id {id}
+
+    Request Body:
+    None
+
+    Response:
+    200 OK - Successfully retrieved all food items at the specified dining location
+        Response Body (JSON):
+        {
+            [
+                {
+                    "id": 1,
+                    "name": "12 Grain Bagel"
+                },
+                {
+                    "id": 52,
+                    "name": "Apple Fritter Donut"
+                }
+                ...
+            ]
+        }
+
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
+
+### ML Prediction
+    """
+    POST /ml/predict
+
+    Description:
+    Upload an image and get food prediction with calories
+
+    Request:
+    - Content-Type: multipart/form-data
+    - Body: image file (form field name: 'image')
+
+    Responses:
+    200 OK - Successfully predicted food
+        Response Body (JSON):
+        {
+            "food_name": string,
+            "confidence": float,
+            "calories": int
+            "fat_g": float,
+            "carbs_g": float,
+            "proteins_g": float,
+            "fiber_g": float,
+            "sugar_g": float,
+            "is_vegan": bool,
+            "is_gluten_free": bool,
+            "is_halal": bool,
+            "is_vegetarian": bool,
+            "is_dairy_free": bool,
+            "has_eggs": bool,
+            "has_fish_or_shellfish": bool,
+            "has_milk": bool,
+            "has_peanuts": bool,
+            "has_sesame": bool,
+            "has_soy": bool,
+            "has_treenuts": bool,
+            "has_wheat": bool,
+        }
+
+    400 Bad Request - No file provided or invalid file
+    500 Internal Server Error - Prediction failed
     """

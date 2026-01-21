@@ -12,8 +12,6 @@ class FoodItem(db.Model):
 
     # Main attributes
     food_name = db.Column(db.String(80), nullable=False)
-    
-    # Switched from db.String(80) to db.Integer
     dining_location = db.Column(db.Integer, nullable=False)
 
     # General attributes
@@ -28,19 +26,20 @@ class FoodItem(db.Model):
     is_vegetarian = db.Column(db.Boolean, default=None, nullable=True)
     is_gluten_free = db.Column(db.Boolean, default=None, nullable=True)
     is_halal = db.Column(db.Boolean, default=None, nullable=True)
-    is_kosher = db.Column(db.Boolean, default=None, nullable=True)
     is_dairy_free = db.Column(db.Boolean, default=None, nullable=True)
 
     # Allergens
     has_eggs = db.Column(db.Boolean, default=None, nullable=True)
-    has_fish = db.Column(db.Boolean, default=None, nullable=True)
+    has_fish_or_shellfish = db.Column(db.Boolean, default=None, nullable=True)
     has_milk = db.Column(db.Boolean, default=None, nullable=True)
     has_peanuts = db.Column(db.Boolean, default=None, nullable=True)
     has_sesame = db.Column(db.Boolean, default=None, nullable=True)
-    has_shellfish = db.Column(db.Boolean, default=None, nullable=True)
     has_soy = db.Column(db.Boolean, default=None, nullable=True)
     has_treenuts = db.Column(db.Boolean, default=None, nullable=True)
     has_wheat = db.Column(db.Boolean, default=None, nullable=True)
+
+    # Foreign key to the associated FoodCategory
+    food_category = db.Column(db.String(80), nullable=False)
 
     def __repr__(self):
         return f"<FoodItem {self.food_name} from {self.dining_location}>"
@@ -58,17 +57,16 @@ class FoodItem(db.Model):
         is_vegetarian,
         is_gluten_free,
         is_halal,
-        is_kosher,
         is_dairy_free,
         has_eggs,
-        has_fish,
+        has_fish_or_shellfish,
         has_milk,
         has_peanuts,
         has_sesame,
-        has_shellfish,
         has_soy,
         has_treenuts,
         has_wheat,
+        food_category,
     ):
         """Create a new food item and store it in the database"""
 
@@ -83,17 +81,16 @@ class FoodItem(db.Model):
             is_vegetarian=is_vegetarian,
             is_gluten_free=is_gluten_free,
             is_halal=is_halal,
-            is_kosher=is_kosher,
             is_dairy_free=is_dairy_free,
             has_eggs=has_eggs,
-            has_fish=has_fish,
+            has_fish_or_shellfish=has_fish_or_shellfish,
             has_milk=has_milk,
             has_peanuts=has_peanuts,
             has_sesame=has_sesame,
-            has_shellfish=has_shellfish,
             has_soy=has_soy,
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,
+            food_category=food_category,
         )
 
         db.session.add(food_item)
@@ -123,22 +120,20 @@ class FoodItem(db.Model):
             "is_vegetarian": self.is_vegetarian,
             "is_gluten_free": self.is_gluten_free,
             "is_halal": self.is_halal,
-            "is_kosher": self.is_kosher,
             "is_dairy_free": self.is_dairy_free,
             "has_eggs": self.has_eggs,
-            "has_fish": self.has_fish,
+            "has_fish_or_shellfish": self.has_fish_or_shellfish,
             "has_milk": self.has_milk,
             "has_peanuts": self.has_peanuts,
             "has_sesame": self.has_sesame,
-            "has_shellfish": self.has_shellfish,
             "has_soy": self.has_soy,
             "has_treenuts": self.has_treenuts,
             "has_wheat": self.has_wheat,
+            "food_category": self.food_category,
         }
 
 
 def get_dining_location_name(dining_location_id):
-
     if dining_location_id == 1:
         return "Tim Hortons"
     elif dining_location_id == 2:
@@ -185,46 +180,3 @@ def get_dining_location_name(dining_location_id):
         return "Thai Kitchen"
     else:
         return ""
-
-
-class DiningLocation(db.Model):
-    # Specify the database, the table and primary key
-    __bind_key__ = "food_data"
-    __tablename__ = "dining_locations"
-
-    # Primary key
-    dining_service_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-
-    # Main attribute
-    dining_location_name = db.Column(db.String(80), nullable=False)
-
-    def __repr__(self):
-        return f"<DiningLocation {self.dining_location_name}>"
-
-    @classmethod
-    def create(cls, dining_location_name):
-        """
-        Create a new dining location and store it in the database
-        """
-
-        dining_location = cls(
-            dining_location_name=dining_location_name
-        )
-
-        db.session.add(dining_location)
-        db.session.commit()
-        print(f"DiningLocation: Created dining location called {dining_location_name}")
-
-    @classmethod
-    def get_by_name(cls, dining_location_name):
-        """
-        Retrieve a DiningLocation by name
-        """
-        return db.session.get(cls, dining_location_name)
-
-    def to_json(self):
-        """Return a JSON-serializable dict representing the food items at this dining location."""
-        return {
-            "id": self.dining_service_id,
-            "dining_location": self.dining_location_name
-        }

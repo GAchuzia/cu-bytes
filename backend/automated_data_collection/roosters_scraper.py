@@ -76,12 +76,11 @@ headers = [
     "Milk",
     "Peanuts",
     "Sesame",
-    "Shellfish",
     "Soy",
     "TreeNuts",
     "Wheat",
-    "Kosher",
     "Last Updated",
+    "Food Category",
 ]
 
 # Open CSV for writing
@@ -128,14 +127,16 @@ with open(csv_file, mode="w", newline="", encoding="utf-8") as file:
             "Milk": "",
             "Peanuts": "",
             "Sesame": "",
-            "Shellfish": "",
             "Soy": "",
             "TreeNuts": "",
             "Wheat": "",
-            "Kosher": "",
             "Last Updated": last_updated,
+            "Food Category": "",
         }
 
         writer.writerow(row)
 
-print(f"Data exported successfully to {csv_file}.")
+print(
+    f"Data exported successfully to {csv_file}. "
+    "Please fill in the food category column yourself."
+)
