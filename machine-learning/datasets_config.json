@@ -17,19 +17,6 @@
       "enabled": true
     },
     {
-      "name": "uec_food100",
-      "display_name": "UEC Food-100",
-      "url": "https://www.kaggle.com/api/v1/datasets/download/rkuo2000/uecfood100",
-      "filename": "uec_food100.zip",
-      "extract_to": "UECFOOD100",
-      "structure_type": "class_folders",
-      "description": "UEC Food-100 dataset with 100 food categories",
-      "num_classes": 100,
-      "expected_path_after_extract": "UECFOOD100",
-      "train_split_ratio": 0.8,
-      "enabled": true
-    },
-    {
       "name": "uec_food256",
       "display_name": "UEC Food-256",
       "url": "https://www.kaggle.com/api/v1/datasets/download/rkuo2000/uecfood256",
