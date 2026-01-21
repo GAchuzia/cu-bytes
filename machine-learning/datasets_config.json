@@ -28,32 +28,6 @@
       "expected_path_after_extract": "UECFOOD256",
       "train_split_ratio": 0.8,
       "enabled": true
-    },
-    {
-      "name": "foodx-251",
-      "display_name": "FoodX-251",
-      "url": "https://www.kaggle.com/competitions/ifood-2019-fgvc6/data",
-      "filename": "foodx-251.zip",
-      "extract_to": "foodx-251",
-      "structure_type": "class_folders",
-      "description": "FoodX-251 dataset with 251 food categories",
-      "num_classes": 251,
-      "expected_path_after_extract": "foodx-251",
-      "train_split_ratio": 0.8,
-      "enabled": true
-    },
-    {
-      "name": "isia_food-500",
-      "display_name": "ISIA Food-500",
-      "url": "http://123.57.42.89/Dataset_ict/ISIA_Food500_Dir/",
-      "filename": "isia_food-500.zip",
-      "extract_to": "isia_food-500",
-      "structure_type": "class_folders",
-      "description": "ISIA Food-500 dataset with 500 food categories",
-      "num_classes": 500,
-      "expected_path_after_extract": "isia_food-500",
-      "train_split_ratio": 0.8,
-      "enabled": true
     }
   ]
 }
