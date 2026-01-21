@@ -17,21 +17,26 @@ class FoodCategory(db.Model):
     percent_dairy = db.Column(db.Integer, nullable=False)
     percent_protein = db.Column(db.Integer, nullable=False)
 
+    # Nutrients
+    fat_g = db.Column(db.Float, nullable=False)
+    carbs_g = db.Column(db.Float, nullable=False)
+    proteins_g = db.Column(db.Float, nullable=False)
+    fiber_g = db.Column(db.Float, nullable=False)
+    sugar_g = db.Column(db.Float, nullable=False)
+
     # Dietary attributes
     is_vegan = db.Column(db.Boolean, default=None, nullable=True)
     is_gluten_free = db.Column(db.Boolean, default=None, nullable=True)
     is_halal = db.Column(db.Boolean, default=None, nullable=True)
-    is_kosher = db.Column(db.Boolean, default=None, nullable=True)
     is_vegetarian = db.Column(db.Boolean, default=None, nullable=True)
     is_dairy_free = db.Column(db.Boolean, default=None, nullable=True)
 
     # Allergens
     has_eggs = db.Column(db.Boolean, default=None, nullable=True)
-    has_fish = db.Column(db.Boolean, default=None, nullable=True)
+    has_fish_or_shellfish = db.Column(db.Boolean, default=None, nullable=True)
     has_milk = db.Column(db.Boolean, default=None, nullable=True)
     has_peanuts = db.Column(db.Boolean, default=None, nullable=True)
     has_sesame = db.Column(db.Boolean, default=None, nullable=True)
-    has_shellfish = db.Column(db.Boolean, default=None, nullable=True)
     has_soy = db.Column(db.Boolean, default=None, nullable=True)
     has_treenuts = db.Column(db.Boolean, default=None, nullable=True)
     has_wheat = db.Column(db.Boolean, default=None, nullable=True)
@@ -48,18 +53,21 @@ class FoodCategory(db.Model):
         percent_grain,
         percent_dairy,
         percent_protein,
+        fat_g,
+        carbs_g,
+        proteins_g,
+        fiber_g,
+        sugar_g,
         is_vegan,
         is_gluten_free,
         is_halal,
-        is_kosher,
         is_vegetarian,
         is_dairy_free,
         has_eggs,
-        has_fish,
+        has_fish_or_shellfish,
         has_milk,
         has_peanuts,
         has_sesame,
-        has_shellfish,
         has_soy,
         has_treenuts,
         has_wheat,
@@ -73,18 +81,21 @@ class FoodCategory(db.Model):
             percent_grain=percent_grain,
             percent_dairy=percent_dairy,
             percent_protein=percent_protein,
+            fat_g=fat_g,
+            carbs_g=carbs_g,
+            proteins_g=proteins_g,
+            fiber_g=fiber_g,
+            sugar_g=sugar_g,
             is_vegan=is_vegan,
             is_gluten_free=is_gluten_free,
             is_halal=is_halal,
-            is_kosher=is_kosher,
             is_vegetarian=is_vegetarian,
             is_dairy_free=is_dairy_free,
             has_eggs=has_eggs,
-            has_fish=has_fish,
+            has_fish_or_shellfish=has_fish_or_shellfish,
             has_milk=has_milk,
             has_peanuts=has_peanuts,
             has_sesame=has_sesame,
-            has_shellfish=has_shellfish,
             has_soy=has_soy,
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,

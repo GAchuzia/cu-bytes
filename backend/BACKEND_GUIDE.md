@@ -117,21 +117,24 @@ sqlite> PRAGMA table_info('food_categories');
 3|percent_grain|INTEGER|1||0
 4|percent_dairy|INTEGER|1||0
 5|percent_protein|INTEGER|1||0
-6|is_vegan|BOOLEAN|0||0
-7|is_gluten_free|BOOLEAN|0||0
-8|is_halal|BOOLEAN|0||0
-9|is_kosher|BOOLEAN|0||0
-10|is_vegetarian|BOOLEAN|0||0
-11|is_dairy_free|BOOLEAN|0||0
-12|has_eggs|BOOLEAN|0||0
-13|has_fish|BOOLEAN|0||0
-14|has_milk|BOOLEAN|0||0
-15|has_peanuts|BOOLEAN|0||0
-16|has_sesame|BOOLEAN|0||0
-17|has_shellfish|BOOLEAN|0||0
-18|has_soy|BOOLEAN|0||0
-19|has_treenuts|BOOLEAN|0||0
-20|has_wheat|BOOLEAN|0||0
+6|fat_g|FLOAT|1||0
+7|carbs_g|FLOAT|1||0
+8|proteins_g|FLOAT|1||0
+9|fiber_g|FLOAT|1||0
+10|sugar_g|FLOAT|1||0
+11|is_vegan|BOOLEAN|0||0
+12|is_gluten_free|BOOLEAN|0||0
+13|is_halal|BOOLEAN|0||0
+14|is_vegetarian|BOOLEAN|0||0
+15|is_dairy_free|BOOLEAN|0||0
+16|has_eggs|BOOLEAN|0||0
+17|has_fish_or_shellfish|BOOLEAN|0||0
+18|has_milk|BOOLEAN|0||0
+19|has_peanuts|BOOLEAN|0||0
+20|has_sesame|BOOLEAN|0||0
+21|has_soy|BOOLEAN|0||0
+22|has_treenuts|BOOLEAN|0||0
+23|has_wheat|BOOLEAN|0||0
 
 #### logging.db
 This database contains a transactions that record which food item was consumed by which user.

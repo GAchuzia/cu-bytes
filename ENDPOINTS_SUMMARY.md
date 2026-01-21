@@ -12,6 +12,7 @@ Summary of endpoints.
     - [Logging](#logging)
     - [Profiles](#profiles)
     - [Dining Locations](#dining-locations)
+    - [ML Prediction](#ml-prediction)
 
 
 ### Login
@@ -342,4 +343,46 @@ The following endpoint should be used when food_name is determined through machi
         }
 
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
+
+### ML Prediction
+    """
+    POST /ml/predict
+
+    Description:
+    Upload an image and get food prediction with calories
+
+    Request:
+    - Content-Type: multipart/form-data
+    - Body: image file (form field name: 'image')
+
+    Responses:
+    200 OK - Successfully predicted food
+        Response Body (JSON):
+        {
+            "food_name": string,
+            "confidence": float,
+            "calories": int
+            "fat_g": float,
+            "carbs_g": float,
+            "proteins_g": float,
+            "fiber_g": float,
+            "sugar_g": float,
+            "is_vegan": bool,
+            "is_gluten_free": bool,
+            "is_halal": bool,
+            "is_vegetarian": bool,
+            "is_dairy_free": bool,
+            "has_eggs": bool,
+            "has_fish_or_shellfish": bool,
+            "has_milk": bool,
+            "has_peanuts": bool,
+            "has_sesame": bool,
+            "has_soy": bool,
+            "has_treenuts": bool,
+            "has_wheat": bool,
+        }
+
+    400 Bad Request - No file provided or invalid file
+    500 Internal Server Error - Prediction failed
     """

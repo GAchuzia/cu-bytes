@@ -1,6 +1,5 @@
 import torch
 import torchvision.transforms as transforms
-from train import load_model
 from PIL import Image
 import json
 from pathlib import Path
@@ -9,6 +8,8 @@ import sys
 # Add machine-learning directory to path
 ml_dir = Path(__file__).resolve().parent.parent.parent / "machine-learning"
 sys.path.insert(0, str(ml_dir))
+
+from train import load_model  # noqa: E402
 
 # Global variables to cache the model
 _model = None
@@ -104,16 +105,21 @@ def predict_food(image_file):
                 "food_name": food_name,
                 "confidence": round(confidence_score * 100, 2),
                 "calories": -1,
+                "fat_g": None,
+                "carbs_g": None,
+                "proteins_g": None,
+                "fiber_g": None,
+                "sugar_g": None,
                 "is_vegan": None,
                 "is_gluten_free": None,
                 "is_halal": None,
                 "is_vegetarian": None,
                 "is_dairy_free": None,
-                "has_fish": None,
+                "has_eggs": None,
+                "has_fish_or_shellfish": None,
                 "has_milk": None,
                 "has_peanuts": None,
                 "has_sesame": None,
-                "has_shellfish": None,
                 "has_soy": None,
                 "has_treenuts": None,
                 "has_wheat": None,
@@ -126,16 +132,21 @@ def predict_food(image_file):
             "food_name": food_name,
             "confidence": round(confidence_score * 100, 2),
             "calories": food_category.calories,
+            "fat_g": food_category.fat_g,
+            "carbs_g": food_category.carbs_g,
+            "proteins_g": food_category.proteins_g,
+            "fiber_g": food_category.fiber_g,
+            "sugar_g": food_category.sugar_g,
             "is_vegan": food_category.is_vegan,
             "is_gluten_free": food_category.is_gluten_free,
             "is_halal": food_category.is_halal,
             "is_vegetarian": food_category.is_vegetarian,
             "is_dairy_free": food_category.is_dairy_free,
-            "has_fish": food_category.has_fish,
+            "has_eggs": food_category.has_eggs,
+            "has_fish_or_shellfish": food_category.has_fish_or_shellfish,
             "has_milk": food_category.has_milk,
             "has_peanuts": food_category.has_peanuts,
             "has_sesame": food_category.has_sesame,
-            "has_shellfish": food_category.has_shellfish,
             "has_soy": food_category.has_soy,
             "has_treenuts": food_category.has_treenuts,
             "has_wheat": food_category.has_wheat,
