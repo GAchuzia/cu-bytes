@@ -212,7 +212,7 @@ def create_transaction(
 
     transaction = FoodLogging.create(
         username=username,
-        transaction_time=datetime.now(),
+        transaction_time=datetime.now(),  # Fiona TODO: Fix initial transactions
         food_name=food_name,
         calories=calories,
         percent_fruit_veg=percent_fruit_veg,
