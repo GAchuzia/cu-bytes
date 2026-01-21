@@ -77,6 +77,7 @@ export default function ScanScreen() {
         setLoading(true);
         try {
             const result = await apiService.predictFood(selectedImage);
+            console.log('Prediction result received:', result);
             setPrediction(result);
         } catch (error: any) {
             console.error('Prediction error:', error);
@@ -139,21 +140,27 @@ export default function ScanScreen() {
                 <Text style={styles.subtitle}>Your Photo Here</Text>
             )}
 
-            {prediction && usernameGlobal != "" && (
+            {prediction && (
                 <View style={styles.infoSection}>
                     <Text style={styles.subtitle}>Food: {prediction.food_name}</Text>
                     <Text style={styles.subtitle}>Calories: {prediction.calories}</Text>
                     <Text style={styles.subtitle}>Confidence: {prediction.confidence}%</Text>
 
-                    <TouchableOpacity
-                        style={[styles.button, loading && styles.buttonDisabled]}
-                        onPress={() => {
-                            handlePressLogFoodItemByName(prediction.food_name);
-                        }}
-                        disabled={loading}
-                    >
-                        <Text style={styles.buttonText}>Add Food Item</Text>
-                    </TouchableOpacity>
+                    {usernameGlobal != "" && (
+                        <TouchableOpacity
+                            style={[styles.button, loading && styles.buttonDisabled]}
+                            onPress={() => {
+                                handlePressLogFoodItemByName(prediction.food_name);
+                            }}
+                            disabled={loading}
+                        >
+                            <Text style={styles.buttonText}>Add Food Item</Text>
+                        </TouchableOpacity>
+                    )}
+
+                    {usernameGlobal == "" && (
+                        <Text style={styles.subtitle}>Please log in to add this food item</Text>
+                    )}
 
                 </View>
             )}
