@@ -1,6 +1,9 @@
 """
 Script to update folder names in UECFOOD256 to match category.txt names,
 and then map them to food_categories.json names
+
+To run:
+    python scripts/update_uecfood256_folders.py --data-dir "data/UECFOOD256"
 """
 from pathlib import Path
 import shutil
