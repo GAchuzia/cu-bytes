@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Alert, Modal, ActivityIndicator } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -40,6 +40,8 @@ export default function ScanScreen() {
     const [loading, setLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [prediction, setPrediction] = useState<PredictionResult | null>(null);
+
+    const [modalVisible, setModalVisible] = useState(false);
 
     const pickImage = async () => {
         try {
@@ -149,6 +151,7 @@ export default function ScanScreen() {
                         style={[styles.button, loading && styles.buttonDisabled]}
                         onPress={() => {
                             handlePressLogFoodItemByName(prediction.food_name);
+                            setModalVisible(true);
                         }}
                         disabled={loading}
                     >
@@ -157,6 +160,30 @@ export default function ScanScreen() {
 
                 </View>
             )}
+
+            {modalVisible && usernameGlobal != "" && (
+                <Modal
+                    animationType="fade"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                        Alert.alert('Modal has been closed.');
+                        setModalVisible(false);
+                    }}
+                >
+                    <View>
+                        <View>
+                            <Text style={styles.subsubtitle}>Food Item Logged!</Text>
+                            <TouchableOpacity
+                                style={[styles.buttonPopup]}
+                                onPress={() => setModalVisible(false)}
+                            >
+                                <Text style={styles.buttonText}>Continue Browsing</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
+            )}  
 
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}

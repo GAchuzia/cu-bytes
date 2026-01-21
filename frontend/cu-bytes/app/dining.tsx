@@ -1,5 +1,5 @@
-import { SetStateAction, useState, useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { useState, useEffect } from "react";
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -13,6 +13,7 @@ export default function DiningScreen() {
     const [loading, setLoading] = useState(true);
     const [diningLocationsVisible, setDiningLocationsVisible] = useState(true);
     const [foodItemsVisible, setFoodItemsVisible] = useState(true);
+    const [modalVisible, setModalVisible] = useState(false);
 
     /*
         Variables used to store a copy of the logged-in user's username and profile settings 
@@ -428,11 +429,36 @@ export default function DiningScreen() {
                     onPress={() => {
                         logFoodItemById(foodItem.id);
                         setFoodItemsVisible(true);
+                        setModalVisible(true);
                     }}
                     disabled={loading}
                 >
                     <Text style={styles.buttonText}>Log Food Item</Text>
                 </TouchableOpacity>   
+            )}
+
+            {modalVisible && usernameGlobal != "" && (
+                <Modal
+                    animationType="fade"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                        Alert.alert('Modal has been closed.');
+                        setModalVisible(false);
+                    }}
+                >
+                    <View>
+                        <View>
+                            <Text style={styles.subsubtitle}>Food Item Logged!</Text>
+                            <TouchableOpacity
+                                style={[styles.buttonPopup]}
+                                onPress={() => setModalVisible(false)}
+                            >
+                                <Text style={styles.buttonText}>Continue Browsing</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
             )}
 
         </View>
