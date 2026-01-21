@@ -182,20 +182,38 @@ The following endpoint should be used when food_name is determined through machi
     Responses:
     200 OK - Successfully retrieved food history
         Response Body (JSON):
-        {
-            [
-                {
-                    "calories": 150,
-                    "food_name": "Jello",
-                    "transaction_time": "Thu, 08 Jan 2026 19:38:17 GMT"
-                },
-                {
-                    "calories": 180,
-                    "food_name": "Buffalo Chicken Pizza",
-                    "transaction_time": "Thu, 08 Jan 2026 19:36:53 GMT"
-                }
-            ]
-        }
+        [
+            {
+                "calories": 250,
+                "carbs_g": 42.0,
+                "fat_g": 4.2,
+                "fiber_g": 6.8,
+                "food_name": "Oatmeal",
+                "proteins_g": 9.5,
+                "sugar_g": 7.1,
+                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
+            },
+            {
+                "calories": 420,
+                "carbs_g": 18.7,
+                "fat_g": 14.3,
+                "fiber_g": 6.1,
+                "food_name": "Chicken Salad",
+                "proteins_g": 32.5,
+                "sugar_g": 4.2,
+                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
+            },
+            {
+                "calories": 320,
+                "carbs_g": 45.2,
+                "fat_g": 6.5,
+                "fiber_g": 5.4,
+                "food_name": "Yogurt Parfait",
+                "proteins_g": 12.8,
+                "sugar_g": 22.0,
+                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
+            }
+        ]
     400 Bad Request - Invalid username
     500 Internal Server Error - Error retreiving food history
     """

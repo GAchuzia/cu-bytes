@@ -68,6 +68,11 @@ def log_food_item_by_id_json(data):
         percent_grain=30,
         percent_dairy=20,
         percent_protein=10,
+        fat_g=9.7,
+        carbs_g=2.7,
+        proteins_g=3.7,
+        fiber_g=1.7,
+        sugar_g=4.7,
     )
 
     if t is not None:
@@ -138,6 +143,11 @@ def log_food_item_by_name_json(data):
         percent_grain=30,
         percent_dairy=20,
         percent_protein=10,
+        fat_g=9.7,
+        carbs_g=9.7,
+        proteins_g=9.7,
+        fiber_g=9.7,
+        sugar_g=9.7,
     )
 
     if t is not None:
@@ -174,7 +184,16 @@ def get_logging_history_json(username):
         result = [
             {
                 col: getattr(log, col)
-                for col in ("transaction_time", "food_name", "calories")
+                for col in (
+                    "transaction_time",
+                    "food_name",
+                    "calories",
+                    "fat_g",
+                    "carbs_g",
+                    "proteins_g",
+                    "fiber_g",
+                    "sugar_g",
+                )
             }
             for log in logs
         ]
@@ -200,6 +219,11 @@ def create_transaction(
     percent_grain,
     percent_dairy,
     percent_protein,
+    fat_g,
+    carbs_g,
+    proteins_g,
+    fiber_g,
+    sugar_g,
 ):
     """Create a new transaction and store it in the database"""
 
@@ -212,13 +236,18 @@ def create_transaction(
 
     transaction = FoodLogging.create(
         username=username,
-        transaction_time=datetime.now(),  # Fiona TODO: Fix initial transactions
+        transaction_time=datetime.now(),
         food_name=food_name,
         calories=calories,
         percent_fruit_veg=percent_fruit_veg,
         percent_grain=percent_grain,
         percent_dairy=percent_dairy,
         percent_protein=percent_protein,
+        fat_g=fat_g,
+        carbs_g=carbs_g,
+        proteins_g=proteins_g,
+        fiber_g=fiber_g,
+        sugar_g=sugar_g,
     )
     print(f"LoggingService: Logged {food_name} for user {username}")
     return transaction

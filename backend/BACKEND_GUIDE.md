@@ -153,3 +153,8 @@ sqlite> PRAGMA table_info('food_logging');
 5|percent_grain|INTEGER|0||0
 6|percent_dairy|INTEGER|0||0
 7|percent_protein|INTEGER|0||0
+8|fat_g|FLOAT|1||0
+9|carbs_g|FLOAT|1||0
+10|proteins_g|FLOAT|1||0
+11|fiber_g|FLOAT|1||0
+12|sugar_g|FLOAT|1||0
