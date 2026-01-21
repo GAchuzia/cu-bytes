@@ -45,6 +45,7 @@ def test_get_first_food_item(client, seeded_food_data):
     assert data["comments"] == "Default Comment"
     assert data["last_updated"] == "Default Date"
     assert data["is_vegan"] is False
+    assert data["is_vegetarian"] is False
     assert data["is_gluten_free"] is False
     assert data["is_halal"] is False
     assert data["is_kosher"] is False
@@ -54,6 +55,7 @@ def test_get_first_food_item(client, seeded_food_data):
     assert data["has_milk"] is False
     assert data["has_peanuts"] is False
     assert data["has_sesame"] is False
+    assert data["has_shellfish"] is False
     assert data["has_soy"] is False
     assert data["has_treenuts"] is False
     assert data["has_wheat"] is False

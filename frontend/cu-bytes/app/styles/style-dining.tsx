@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
 
     width: '100%' as any
   },
-  
+
   button: {
     color: 'black',
     backgroundColor: '#0a7ea4',
@@ -135,5 +135,4 @@ export const styles = StyleSheet.create({
     width: '80%' as any,
     height: '10%' as any
   },
-
 });

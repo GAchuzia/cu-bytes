@@ -14,7 +14,7 @@ def get_all_food_items_json():
     try:
         # Transform all food items into JSON-friendly dictionaries
         food_items = FoodItem.query.all()
-        result = [{"id": item.id, "name": item.food_name} for item in food_items]
+        result = [{"id": item.id, "name": item.food_name, "location": item.dining_location} for item in food_items]
 
         # Return as a JSON response
         return jsonify(result), 200

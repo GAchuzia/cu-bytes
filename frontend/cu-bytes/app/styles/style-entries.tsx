@@ -41,48 +41,33 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
 
     textAlign: 'center',
-    margin: '0.5%' as any,
+
+    color: '#000000FF',
+    backgroundColor: 'rgba(255, 210, 210, 1)',
+    padding: '2.4%' as any,
+    borderRadius: 0,
+
+    width: '100%'
+  },
+  description: {
+    fontFamily: 'sans-serif',
+    fontSize: '100%' as any,
+    fontWeight: '600',
+
+    textAlign: 'center',
+    marginBottom: '0.5%' as any,
 
     color: '#000000FF',
     backgroundColor: 'rgba(255, 210, 210, 1)',
     padding: '1.2%' as any,
     borderRadius: 40
   },
-    subsubtitleError: {
-    fontFamily: 'sans-serif',
-    fontSize: '150%' as any,
-    fontWeight: '400',
-
-    textAlign: 'center',
-    margin: '1.2%' as any,
-    textDecorationLine: 'underline',
-
-    color: 'red',
-    backgroundColor: 'rgba(255, 210, 210, 1)',
-    padding: '1.6%' as any,
-    borderRadius: 0,
-
-    width: '50%'
-  },
-  description: {
-    fontFamily: 'sans-serif',
-    fontSize: '125%' as any,
-    fontWeight: '400',
-
-    textAlign: 'center',
-
-    color: '#000000FF',
-    backgroundColor: 'rgba(255, 210, 210, 1)',
-    padding: '0.8%' as any,
-    borderRadius: 0,
-
-    width: '30%'
-  },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
 
-    marginTop: '1.5%' as any,
+    marginTop: '1.2%' as any,
+    marginBottom: '1.2%' as any,
     elevation: 8,
 
     backgroundColor: '#007AFF',
@@ -110,9 +95,10 @@ export const styles = StyleSheet.create({
     color: 'white',
   },
   pressableText: {
+    justifyContent: 'center',
     alignItems: 'center',
 
-    marginTop: '0%' as any,
+    textAlign: 'center',
 
     fontFamily: 'sans-serif',
     fontSize: '150%' as any,
@@ -122,7 +108,9 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(230, 250, 250, 1)',
     padding: '1.6%' as any,
     paddingHorizontal: '2.4%' as any,
-    borderRadius: 0
+    borderRadius: 0,
+
+    width: '100%'
   },
   infoSection: {
     backgroundColor: 'white',
