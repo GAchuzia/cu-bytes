@@ -47,6 +47,35 @@ def download_dataset(
             print(f"Download failed: {e}")
             raise
 
+    # Verify the downloaded file is actually the expected archive format
+    if filename.endswith(".zip"):
+        try:
+            # Check if it's actually a zip file by trying to open it
+            with zipfile.ZipFile(archive_path, "r") as test_zip:
+                # Just test that it opens, don't extract yet
+                test_zip.testzip()
+        except zipfile.BadZipFile:
+            # File is not a valid zip file - might be HTML error page
+            print(f"Warning: Downloaded file is not a valid zip file!")
+            print(f"  File path: {archive_path}")
+            print(f"  File size: {archive_path.stat().st_size} bytes")
+            
+            # Check if it's HTML content
+            with open(archive_path, "rb") as f:
+                first_bytes = f.read(512)
+                if first_bytes.startswith(b"<html") or first_bytes.startswith(b"<!DOCTYPE"):
+                    print(f"  Error: URL appears to return HTML content (directory listing?), not a zip file.")
+                    print(f"  URL: {url}")
+                    print(f"  Please download the dataset manually or provide a direct download link.")
+                    archive_path.unlink()  # Delete the invalid file
+                    raise ValueError(
+                        f"Downloaded file is not a zip file. The URL may be a directory listing. "
+                        f"Please provide a direct download link to the zip file, or download manually."
+                    )
+            
+            # If it's not HTML, it might be corrupted
+            raise ValueError(f"Downloaded file is not a valid zip file and may be corrupted.")
+    
     # Check if already extracted (with different possible names)
     has_content = False
     possible_names = [
