@@ -57,28 +57,33 @@ def get_food_item_by_id(id):
     200 OK - Successfully retrieved the specified food item
         Response Body (JSON):
         {
-            "calories": 310,
+            "calories": 389,
+            "carbs_g": 79.8,
             "comments": "",
-            "cost": 5.7,
-            "dining_location": "Tunnel Junction",
-            "food_category": "Parfait",
-            "has_eggs": null,
-            "has_fish_or_shellfish": null,
-            "has_milk": null,
-            "has_peanuts": null,
+            "cost": 9.5,
+            "dining_location": "Shawarma Palace",
+            "fat_g": 3.56,
+            "fiber_g": 1.96,
+            "food_category": "Shawarma",
+            "has_eggs": false,
+            "has_fish_or_shellfish": false,
+            "has_milk": false,
+            "has_peanuts": false,
             "has_sesame": null,
-            "has_soy": null,
+            "has_soy": false,
             "has_treenuts": null,
-            "has_wheat": null,
-            "id": 651,
-            "is_dairy_free": null,
+            "has_wheat": true,
+            "id": 100,
+            "is_dairy_free": true,
             "is_gluten_free": false,
             "is_halal": null,
             "is_vegan": false,
-            "is_vegetarian": null,
+            "is_vegetarian": false,
             "last_updated": "9/26/2025",
-            "name": "Yogurt & Berries Parfait"
-        }
+            "name": "Beef Shawarma Sandwich",
+            "proteins_g": 9.43,
+            "sugar_g": 0.287
+            }
 
     400 Bad Request - Item not found
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
