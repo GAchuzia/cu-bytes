@@ -26,16 +26,14 @@ class FoodItem(db.Model):
     is_vegetarian = db.Column(db.Boolean, default=None, nullable=True)
     is_gluten_free = db.Column(db.Boolean, default=None, nullable=True)
     is_halal = db.Column(db.Boolean, default=None, nullable=True)
-    is_kosher = db.Column(db.Boolean, default=None, nullable=True)
     is_dairy_free = db.Column(db.Boolean, default=None, nullable=True)
 
     # Allergens
     has_eggs = db.Column(db.Boolean, default=None, nullable=True)
-    has_fish = db.Column(db.Boolean, default=None, nullable=True)
+    has_fish_or_shellfish = db.Column(db.Boolean, default=None, nullable=True)
     has_milk = db.Column(db.Boolean, default=None, nullable=True)
     has_peanuts = db.Column(db.Boolean, default=None, nullable=True)
     has_sesame = db.Column(db.Boolean, default=None, nullable=True)
-    has_shellfish = db.Column(db.Boolean, default=None, nullable=True)
     has_soy = db.Column(db.Boolean, default=None, nullable=True)
     has_treenuts = db.Column(db.Boolean, default=None, nullable=True)
     has_wheat = db.Column(db.Boolean, default=None, nullable=True)
@@ -59,14 +57,12 @@ class FoodItem(db.Model):
         is_vegetarian,
         is_gluten_free,
         is_halal,
-        is_kosher,
         is_dairy_free,
         has_eggs,
-        has_fish,
+        has_fish_or_shellfish,
         has_milk,
         has_peanuts,
         has_sesame,
-        has_shellfish,
         has_soy,
         has_treenuts,
         has_wheat,
@@ -85,14 +81,12 @@ class FoodItem(db.Model):
             is_vegetarian=is_vegetarian,
             is_gluten_free=is_gluten_free,
             is_halal=is_halal,
-            is_kosher=is_kosher,
             is_dairy_free=is_dairy_free,
             has_eggs=has_eggs,
-            has_fish=has_fish,
+            has_fish_or_shellfish=has_fish_or_shellfish,
             has_milk=has_milk,
             has_peanuts=has_peanuts,
             has_sesame=has_sesame,
-            has_shellfish=has_shellfish,
             has_soy=has_soy,
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,
@@ -126,14 +120,12 @@ class FoodItem(db.Model):
             "is_vegetarian": self.is_vegetarian,
             "is_gluten_free": self.is_gluten_free,
             "is_halal": self.is_halal,
-            "is_kosher": self.is_kosher,
             "is_dairy_free": self.is_dairy_free,
             "has_eggs": self.has_eggs,
-            "has_fish": self.has_fish,
+            "has_fish_or_shellfish": self.has_fish_or_shellfish,
             "has_milk": self.has_milk,
             "has_peanuts": self.has_peanuts,
             "has_sesame": self.has_sesame,
-            "has_shellfish": self.has_shellfish,
             "has_soy": self.has_soy,
             "has_treenuts": self.has_treenuts,
             "has_wheat": self.has_wheat,

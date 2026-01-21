@@ -14,8 +14,8 @@ from backend.models.locations import DiningLocation
 CSV files are expected to contain the following columns
 Food Item | Dining Location | Cost | Calories | Nuts | Vegan
 Gluten Free | Halal | Vegetarian | No Dairy |Comments | Eggs
-Fish | Milk | Peanuts | Sesame | Shellfish | Soy | TreeNuts
-Wheat | Kosher | Last Updated | Food Category
+Fish | Milk | Peanuts | Sesame | Soy | TreeNuts
+Wheat | Last Updated | Food Category
 """
 
 
@@ -107,14 +107,12 @@ def create_food_table():
                 is_vegetarian=parse_bool(row.get("Vegetarian")),
                 is_gluten_free=parse_bool(row.get("Gluten Free")),
                 is_halal=parse_bool(row.get("Halal")),
-                is_kosher=parse_bool(row.get("Kosher")),
                 is_dairy_free=parse_bool(row.get("No Dairy")),
                 has_eggs=parse_bool(row.get("Eggs")),
-                has_fish=parse_bool(row.get("Fish")),
+                has_fish_or_shellfish=parse_bool(row.get("Fish")),
                 has_milk=parse_bool(row.get("Milk")),
                 has_peanuts=parse_bool(row.get("Peanuts")),
                 has_sesame=parse_bool(row.get("Sesame")),
-                has_shellfish=parse_bool(row.get("Vegetarian")),
                 has_soy=parse_bool(row.get("Soy")),
                 has_treenuts=parse_bool(row.get("Treenuts")),
                 has_wheat=parse_bool(row.get("Wheat")),

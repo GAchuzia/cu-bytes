@@ -76,11 +76,9 @@ headers = [
     "Milk",
     "Peanuts",
     "Sesame",
-    "Shellfish",
     "Soy",
     "TreeNuts",
     "Wheat",
-    "Kosher",
     "Last Updated",
     "Food Category",
 ]
@@ -129,11 +127,9 @@ with open(csv_file, mode="w", newline="", encoding="utf-8") as file:
             "Milk": "",
             "Peanuts": "",
             "Sesame": "",
-            "Shellfish": "",
             "Soy": "",
             "TreeNuts": "",
             "Wheat": "",
-            "Kosher": "",
             "Last Updated": last_updated,
             "Food Category": "",
         }

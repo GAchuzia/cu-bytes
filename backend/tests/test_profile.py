@@ -14,25 +14,23 @@ def test_retreive_default_user_profile(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 18
+    assert len(data) == 16
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is False
     assert data["show_stats"] is False
     assert data["has_egg_allergy"] is False
-    assert data["has_fish_allergy"] is False
+    assert data["has_fish_or_shellfish_allergy"] is False
     assert data["has_dairy_intolerance"] is False
     assert data["has_milk_allergy"] is False
     assert data["has_peanut_allergy"] is False
     assert data["has_sesame_allergy"] is False
-    assert data["has_shellfish_allergy"] is False
     assert data["has_soy_allergy"] is False
     assert data["has_treenut_allergy"] is False
     assert data["has_wheat_allergy"] is False
     assert data["has_gluten_allergy"] is False
     assert data["is_vegan"] is False
     assert data["is_vegetarian"] is False
-    assert data["prefers_kosher"] is False
     assert data["prefers_halal"] is False
 
 
@@ -127,25 +125,23 @@ def test_edit_partial_user_profile(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 18
+    assert len(data) == 16
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is True
     assert data["show_stats"] is False
     assert data["has_egg_allergy"] is False
-    assert data["has_fish_allergy"] is False
+    assert data["has_fish_or_shellfish_allergy"] is False
     assert data["has_dairy_intolerance"] is False
     assert data["has_milk_allergy"] is False
     assert data["has_peanut_allergy"] is False
     assert data["has_sesame_allergy"] is False
-    assert data["has_shellfish_allergy"] is False
     assert data["has_soy_allergy"] is False
     assert data["has_treenut_allergy"] is True
     assert data["has_wheat_allergy"] is False
     assert data["has_gluten_allergy"] is False
     assert data["is_vegan"] is True
     assert data["is_vegetarian"] is False
-    assert data["prefers_kosher"] is False
     assert data["prefers_halal"] is False
 
 
@@ -157,19 +153,17 @@ def test_edit_whole_user_profile(client, seeded_users):
             "has_configured_settings": True,
             "has_dairy_intolerance": False,
             "has_egg_allergy": False,
-            "has_fish_allergy": False,
+            "has_fish_or_shellfish_allergy": False,
             "has_gluten_allergy": True,
             "has_milk_allergy": False,
             "has_peanut_allergy": True,
             "has_sesame_allergy": True,
-            "has_shellfish_allergy": True,
             "has_soy_allergy": True,
             "has_treenut_allergy": True,
             "has_wheat_allergy": True,
             "is_vegan": True,
             "is_vegetarian": True,
             "prefers_halal": True,
-            "prefers_kosher": False,
             "show_stats": True,
             "username": "Alice",
             "carleton_student_id": 10234521,  # Nonexsitant fields should be ignored
@@ -185,25 +179,23 @@ def test_edit_whole_user_profile(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 18
+    assert len(data) == 16
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is True
     assert data["show_stats"] is True
     assert data["has_egg_allergy"] is False
-    assert data["has_fish_allergy"] is False
+    assert data["has_fish_or_shellfish_allergy"] is False
     assert data["has_dairy_intolerance"] is False
     assert data["has_milk_allergy"] is False
     assert data["has_peanut_allergy"] is True
     assert data["has_sesame_allergy"] is True
-    assert data["has_shellfish_allergy"] is True
     assert data["has_soy_allergy"] is True
     assert data["has_treenut_allergy"] is True
     assert data["has_wheat_allergy"] is True
     assert data["has_gluten_allergy"] is True
     assert data["is_vegan"] is True
     assert data["is_vegetarian"] is True
-    assert data["prefers_kosher"] is False
     assert data["prefers_halal"] is True
 
 
@@ -224,25 +216,23 @@ def test_edit_user_profile_invalid_type(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 18
+    assert len(data) == 16
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is False
     assert data["show_stats"] is False
     assert data["has_egg_allergy"] is False
-    assert data["has_fish_allergy"] is False
+    assert data["has_fish_or_shellfish_allergy"] is False
     assert data["has_dairy_intolerance"] is False
     assert data["has_milk_allergy"] is False
     assert data["has_peanut_allergy"] is False
     assert data["has_sesame_allergy"] is False
-    assert data["has_shellfish_allergy"] is False
     assert data["has_soy_allergy"] is False
     assert data["has_treenut_allergy"] is False
     assert data["has_wheat_allergy"] is False
     assert data["has_gluten_allergy"] is False
     assert data["is_vegan"] is False
     assert data["is_vegetarian"] is False
-    assert data["prefers_kosher"] is False
     assert data["prefers_halal"] is False
 
 

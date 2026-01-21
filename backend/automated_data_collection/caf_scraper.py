@@ -38,11 +38,9 @@ headers = [
     "Milk",
     "Peanuts",
     "Sesame",
-    "Shellfish",
     "Soy",
     "TreeNuts",
     "Wheat",
-    "Kosher",
     "Last Updated",
     "Food Category",
 ]
@@ -103,11 +101,9 @@ with open(csv_file, mode="w", newline="", encoding="utf-8") as file:
             "Milk": bool_to_tf(filters.get("Milk")),
             "Peanuts": bool_to_tf(filters.get("Peanuts")),
             "Sesame": bool_to_tf(filters.get("Sesame")),
-            "Shellfish": bool_to_tf(filters.get("Shellfish")),
             "Soy": bool_to_tf(filters.get("Soy")),
             "TreeNuts": bool_to_tf(filters.get("TreeNuts")),
             "Wheat": bool_to_tf(filters.get("Wheat")),
-            "Kosher": bool_to_tf(filters.get("IsKosher")),
             "Last Updated": date,
             "Food Category": "",
         }

@@ -104,7 +104,7 @@ Summary of endpoints.
             "dining_location": "Tunnel Junction",
             "food_category": "Parfait",
             "has_eggs": null,
-            "has_fish": null,
+            "has_fish_or_shellfish": null,
             "has_milk": null,
             "has_peanuts": null,
             "has_sesame": null,
@@ -115,7 +115,6 @@ Summary of endpoints.
             "is_dairy_free": null,
             "is_gluten_free": false,
             "is_halal": null,
-            "is_kosher": null,
             "is_vegan": false,
             "last_updated": "9/26/2025",
             "name": "Yogurt & Berries Parfait"
@@ -238,14 +237,13 @@ The following endpoint should be used when food_name is determined through machi
             "has_gluten_allergy": false,
             "has_peanut_allergy": false,
             "has_sesame_allergy": false,
-            "has_shellfish_allergy": false,
+            "has_fish_or_shellfish_allergy": false,
             "has_soy_allergy": false,
             "has_treenut_allergy": false,
             "has_wheat_allergy": false,
             "is_vegan": true,
             "is_vegetarian": false,
             "prefers_halal": true,
-            "prefers_kosher": false,
             "show_stats": true,
             "username": "Alice"
         }
@@ -281,21 +279,21 @@ The following endpoint should be used when food_name is determined through machi
 
     Request Body (JSON):
     {
-        "username": "string",               # required
-        "show_stats": "boolean",            # optional
-        "has_egg_allergy: "boolean",        # optional
-        "has_dairy_intolerance: "boolean",  # optional
-        "has_peanut_allergy: "boolean",     # optional
-        "has_sesame_allergy: "boolean",     # optional
-        "has_shellfish_allergy: "boolean",  # optional
-        "has_soy_allergy: "boolean",        # optional
-        "has_treenut_allergy: "boolean",    # optional
-        "has_wheat_allergy: "boolean",      # optional
-        "has_gluten_allergy: "boolean",     # optional
-        "is_vegan: "boolean",               # optional
-        "is_vegetarian: "boolean",          # optional
-        "prefers_kosher: "boolean",         # optional
-        "prefers_halal: "boolean",          # optional
+        "username": "string",                       # required
+        "show_stats": "boolean",                    # optional
+        "has_egg_allergy: "boolean",                # optional
+        "has_fish_or_shellfish_allergy: "boolean",  # optional
+        "has_dairy_intolerance: "boolean",          # optional
+        "has_milk_allergy": "boolean",              # optional
+        "has_peanut_allergy: "boolean",             # optional
+        "has_sesame_allergy: "boolean",             # optional
+        "has_soy_allergy: "boolean",                # optional
+        "has_treenut_allergy: "boolean",            # optional
+        "has_wheat_allergy: "boolean",              # optional
+        "has_gluten_allergy: "boolean",             # optional
+        "is_vegan: "boolean",                       # optional
+        "is_vegetarian: "boolean",                  # optional
+        "prefers_halal: "boolean",                  # optional
     }
 
     Responses:
