@@ -30,18 +30,30 @@
       "enabled": true
     },
     {
-      "name": "unimib2016",
-      "display_name": "UNIMIB 2016",
-      "url": "https://www.kaggle.com/api/v1/datasets/download/tommyngx/unimib2016",
-      "filename": "unimib2016.zip",
-      "extract_to": "original",
+      "name": "foodx-251",
+      "display_name": "FoodX-251",
+      "url": "https://www.kaggle.com/competitions/ifood-2019-fgvc6/data",
+      "filename": "foodx-251.zip",
+      "extract_to": "foodx-251",
       "structure_type": "class_folders",
-      "description": "UNIMIB 2016 food dataset",
-      "num_classes": 73,
-      "expected_path_after_extract": "original",
+      "description": "FoodX-251 dataset with 251 food categories",
+      "num_classes": 251,
+      "expected_path_after_extract": "foodx-251",
       "train_split_ratio": 0.8,
-      "enabled": false,
-      "note": "UNIMIB 2016 has non-standard structure - images are in data/original/ without class folders. Disable for now or restructure manually."
+      "enabled": true
+    },
+    {
+      "name": "isia_food-500",
+      "display_name": "ISIA Food-500",
+      "url": "http://123.57.42.89/Dataset_ict/ISIA_Food500_Dir/",
+      "filename": "isia_food-500.zip",
+      "extract_to": "isia_food-500",
+      "structure_type": "class_folders",
+      "description": "ISIA Food-500 dataset with 500 food categories",
+      "num_classes": 500,
+      "expected_path_after_extract": "isia_food-500",
+      "train_split_ratio": 0.8,
+      "enabled": true
     }
   ]
 }
