@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal } from 'react-native';
+
+import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-enter';
@@ -453,7 +455,9 @@ export default function EnterScreen() {
                         setModalVisible(true);
                         setTimeout(() => {
                         setModalVisible(false);
-                        }, 800);
+                        }, 2000);
+
+                        router.push("/home");
                     }}
                     disabled={loading}
                 >

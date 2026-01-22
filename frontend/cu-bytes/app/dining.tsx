@@ -4,7 +4,6 @@ import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Moda
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-
 import { useUser } from './context';
 import { styles } from "./styles/style-dining";
 
@@ -440,9 +439,8 @@ export default function DiningScreen() {
                                 setDiningLocationsVisible(false);
                             }}
                         >
-                            {diningLocation["name"]}{"\n"}(ID {diningLocation["id"]})
-                            <br></br>
-                            <line>---</line>
+                            {diningLocation["name"]} (ID {diningLocation["id"]})
+                            {"\n"}
                         </Text>
                     ))}
                 </View>
@@ -459,9 +457,8 @@ export default function DiningScreen() {
                                 setFoodItemsVisible(false);
                             }}
                         >
-                            {foodItem["name"]}{"\n"}(ID {foodItem["id"]})
-                            <br></br>
-                            <line>---</line>
+                            {foodItem["name"]} (ID {foodItem["id"]})
+                            {"\n"}
                         </Text>
                     ))}
                 </View>
@@ -540,7 +537,9 @@ export default function DiningScreen() {
                         setModalVisible(true);
                         setTimeout(() => {
                         setModalVisible(false);
-                        }, 800);
+                        }, 2000);
+
+                        router.push("/home");
                     }}
                     disabled={loading}
                 >

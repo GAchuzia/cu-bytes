@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, Alert, Modal, ActivityIndicator } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { apiService } from '../services/api';
@@ -352,7 +353,9 @@ export default function ScanScreen() {
                             setModalVisible(true);
                             setTimeout(() => {
                             setModalVisible(false);
-                            }, 800);
+                            }, 2000);
+
+                            router.push('/home');
                         }}
                         disabled={loading}
                     >
@@ -366,10 +369,6 @@ export default function ScanScreen() {
                     animationType="fade"
                     transparent={true}
                     visible={modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert('Modal has been closed.');
-                        setModalVisible(false);
-                    }}
                 >
                     <View>
                         <View>
