@@ -109,8 +109,8 @@ export default function RegisterScreen() {
                 setIsVegetarianGlobal(false),
                 setPrefersHalalGlobal(false),
                 
-                // Route to the login page
-                router.push("/login");
+                // Route to the home page
+                router.push("/home");
             }
         })
 
