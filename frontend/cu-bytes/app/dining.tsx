@@ -377,6 +377,16 @@ export default function DiningScreen() {
                     {'\n'}
                     Cost: $ {processFoodItemCost(foodItem.cost)}
                     {'\n'}
+                    Carbs: {foodItem.carbs_g} grams
+                    {'\n'}
+                    Fat: {foodItem.fat_g} grams
+                    {'\n'}
+                    Fiber: {foodItem.fiber_g} grams
+                    {'\n'}
+                    Proteins: {foodItem.proteins_g} grams
+                    {'\n'}
+                    Sugar: {foodItem.sugar_g} grams
+                    {'\n'}
 
                     {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs" : null}
                     {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs" : null}

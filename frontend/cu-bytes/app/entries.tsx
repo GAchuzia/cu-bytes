@@ -20,7 +20,12 @@ export default function EntriesScreen() {
     const [foodItem, setFoodItem] = useState(
         {
             "calories": -1,
+            "carbs_g": 0.00,
+            "fat_g": 0.00,
+            "fiber_g": 0.00,
             "food_name": "",
+            "proteins_g": 0.00,
+            "sugar_g": 0.00,
             "transaction_time": ""
         }
     );
@@ -89,6 +94,16 @@ export default function EntriesScreen() {
                             {foodItem["food_name"]}
                             <br></br>
                             Calories: {foodItem["calories"]}
+                            <br></br>
+                            Carbs: {foodItem["carbs_g"]} grams
+                            <br></br>
+                            Fat: {foodItem["fat_g"]} grams
+                            <br></br>
+                            Fiber: {foodItem["fiber_g"]} grams
+                            <br></br>
+                            Proteins: {foodItem["proteins_g"]} grams
+                            <br></br>
+                            Sugar: {foodItem["sugar_g"]} grams
                             <br></br>
                             {foodItem["transaction_time"]}
                             <br></br>

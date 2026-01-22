@@ -12,6 +12,24 @@ interface PredictionResult {
     food_name: string;
     confidence: number;
     calories: number;
+    fat_g: number;
+    carbs_g: number;
+    proteins_g: number;
+    fiber_g: number;
+    sugar_g: number;
+    is_vegan: boolean;
+    is_gluten_free: boolean;
+    is_halal: boolean;
+    is_vegetarian: boolean;
+    is_dairy_free: boolean;
+    has_eggs: boolean;
+    has_fish_or_shellfish: boolean;
+    has_milk: boolean;
+    has_peanuts: boolean;
+    has_sesame: boolean;
+    has_soy: boolean;
+    has_treenuts: boolean;
+    has_wheat: boolean;
 }
 
 export default function ScanScreen() {
@@ -142,10 +160,68 @@ export default function ScanScreen() {
 
             {prediction && usernameGlobal != "" && (
                 <View style={styles.infoSection}>
-                    <Text style={styles.subtitle}>Food: {prediction.food_name}</Text>
-                    <Text style={styles.subtitle}>Calories: {prediction.calories}</Text>
-                    <Text style={styles.subtitle}>Confidence: {prediction.confidence}%</Text>
+                    <Text style={styles.subtitle}>
+                        Food: {prediction.food_name}
+                        {'\n'}
+                        Calories: {prediction.calories}
+                        {'\n'}
+                        Confidence: {prediction.confidence}%
+                        {'\n'}
+                        Carbs: {prediction.carbs_g} grams
+                        {'\n'}
+                        Fat: {prediction.fat_g} grams
+                        {'\n'}
+                        Fiber: {prediction.fiber_g} grams
+                        {'\n'}
+                        Proteins: {prediction.proteins_g} grams
+                        {'\n'}
+                        Sugar: {prediction.sugar_g} grams
+                        {'\n'}
 
+                        {prediction.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
+                        {prediction.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs \n" : null}
+
+                        {prediction.has_fish_or_shellfish === true && hasFishOrShellfishAllergyGlobal ? "Warning - this item contains fish or shellfish \n" : null}
+                        {prediction.has_fish_or_shellfish === null && hasFishOrShellfishAllergyGlobal ? "Warning - this item may contain fish or shellfish \n" : null}
+
+                        {prediction.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Warning - this item contains dairy \n" : null}
+                        {prediction.is_dairy_free === null && hasDairyIntoleranceGlobal ? "Warning - this item may contain dairy \n" : null}
+
+                        {prediction.has_milk === true && hasMilkAllergyGlobal ? "Warning - this item contains milk \n" : null}
+                        {prediction.has_milk === null && hasMilkAllergyGlobal ? "Warning - this item may contain milk \n" : null}
+
+                        {prediction.has_peanuts === true && hasPeanutAllergyGlobal ? "Warning - this item contains peanuts \n" : null}
+                        {prediction.has_peanuts === null && hasPeanutAllergyGlobal ? "Warning - this item may contain peanuts \n" : null}
+
+                        {prediction.has_sesame === true && hasSesameAllergyGlobal ? "Warning - this item contains sesame \n" : null}
+                        {prediction.has_sesame === null && hasSesameAllergyGlobal ? "Warning - this item may contain sesame \n" : null}
+
+                        {prediction.has_soy === true && hasSoyAllergyGlobal ? "Warning - this item contains soy \n" : null}
+                        {prediction.has_soy === null && hasSoyAllergyGlobal ? "Warning - this item may contain soy \n" : null}
+
+                        {prediction.has_treenuts === true && hasTreenutAllergyGlobal ? "Warning - this item contains treenuts \n" : null}
+                        {prediction.has_treenuts === null && hasTreenutAllergyGlobal ? "Warning - this item may contain treenuts \n" : null}
+
+                        {prediction.has_wheat === true && hasWheatAllergyGlobal ? "Warning - this item contains wheat \n" : null}
+                        {prediction.has_wheat === null && hasWheatAllergyGlobal ? "Warning - this item may contain wheat \n" : null}
+                    
+                        {prediction.is_gluten_free === false && hasGlutenAllergyGlobal ? "Warning - this item contains gluten \n" : null}
+                        {prediction.is_gluten_free === null && hasGlutenAllergyGlobal ? "Warning - this item may contain gluten \n" : null}
+                        
+                        {prediction.is_vegan === false && isVeganGlobal ?  "Warning - this item is not vegan \n" : null}
+                        {prediction.is_vegan === null && isVeganGlobal ?  "Warning - this item may not be vegan \n" : null}
+                        
+                        {prediction.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian \n" : null}
+                        {prediction.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian \n" : null}                        
+                        
+                        {prediction.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal \n" : null}                                                
+                        {prediction.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal \n" : null}
+                    </Text>
+                </View>
+            )}
+
+            {prediction && usernameGlobal != "" && (
+                <View style={styles.infoSection}>
                     <TouchableOpacity
                         style={[styles.button, loading && styles.buttonDisabled]}
                         onPress={() => {
@@ -156,7 +232,6 @@ export default function ScanScreen() {
                     >
                         <Text style={styles.buttonText}>Add Food Item</Text>
                     </TouchableOpacity>
-
                 </View>
             )}
 
