@@ -128,6 +128,106 @@ export default function EnterScreen() {
    }
 
     /*
+        Calculate how to display the amount of carbs for the selected food item
+        If the value of the carbs_g key is -1, then there is an "Unknown" amount of carbs for the food item
+        If the value of the carbs_g key is not -1, then the displayed amount of carbs is equal to that of the carbs_g key value
+
+        param(s):
+            carbs - number : The amount of carbs in grams for the selected food item, as per the carbs_g key value
+
+        returns : The amount of carbs for the selected food item
+    */
+   function processFoodItemCarbs(carbs: number) {
+
+        if (carbs == -1) {
+            return "Unknown"
+        }
+        else {
+            return carbs
+        }
+   }
+
+    /*
+        Calculate how to display the amount of fat for the selected food item
+        If the value of the fat_g key is -1, then there is an "Unknown" amount of fat for the food item
+        If the value of the fat_g key is not -1, then the displayed amount of fat is equal to that of the fat_g key value
+
+        param(s):
+            fat - number : The amount of fat in grams for the selected food item, as per the fat key value
+
+        returns : The amount of fat for the selected food item
+    */
+   function processFoodItemFat(fat: number) {
+
+        if (fat == -1) {
+            return "Unknown"
+        }
+        else {
+            return fat
+        }
+   }
+
+    /*
+        Calculate how to display the amount of fiber for the selected food item
+        If the value of the fiber_g key is -1, then there is an "Unknown" amount of fiber for the food item
+        If the value of the fiber_g key is not -1, then the displayed amount of fiber is equal to that of the fiber_g key value
+
+        param(s):
+            fiber - number : The amount of fiber in grams for the selected food item, as per the fiber key value
+
+        returns : The amount of fiber for the selected food item
+    */
+   function processFoodItemFiber(fiber: number) {
+
+        if (fiber == -1) {
+            return "Unknown"
+        }
+        else {
+            return fiber
+        }
+   }
+
+    /*
+        Calculate how to display the amount of proteins for the selected food item
+        If the value of the proteins_g key is -1, then there is an "Unknown" amount of proteins for the food item
+        If the value of the proteins_g key is not -1, then the displayed amount of proteins is equal to that of the proteins_g key value
+
+        param(s):
+            proteins - number : The amount of proteins in grams for the selected food item, as per the proteins key value
+
+        returns : The amount of proteins for the selected food item
+    */
+   function processFoodItemProteins(proteins: number) {
+
+        if (proteins == -1) {
+            return "Unknown"
+        }
+        else {
+            return proteins
+        }
+   }
+
+    /*
+        Calculate how to display the amount of sugar for the selected food item
+        If the value of the sugar_g key is -1, then there is an "Unknown" amount of sugar for the food item
+        If the value of the sugar_g key is not -1, then the displayed amount of sugar is equal to that of the sugar_g key value
+
+        param(s):
+            sugar - number : The amount of sugar in grams for the selected food item, as per the sugar key value
+
+        returns : The amount of sugar for the selected food item
+    */
+   function processFoodItemSugar(sugar: number) {
+
+        if (sugar == -1) {
+            return "Unknown"
+        }
+        else {
+            return sugar
+        }
+   }
+
+    /*
         Send a request to the backend endpoint to get all food items from the database
     */
     useEffect(() => {
@@ -291,15 +391,15 @@ export default function EnterScreen() {
                     {'\n'}
                     Cost: $ {processFoodItemCost(foodItem.cost)}
                     {'\n'}
-                    Carbs: {foodItem.carbs_g} grams
+                    Carbs: {processFoodItemCarbs(foodItem.carbs_g)} grams
                     {'\n'}
-                    Fat: {foodItem.fat_g} grams
+                    Fat: {processFoodItemFat(foodItem.fat_g)} grams
                     {'\n'}
-                    Fiber: {foodItem.fiber_g} grams
+                    Fiber: {processFoodItemFiber(foodItem.fiber_g)} grams
                     {'\n'}
-                    Proteins: {foodItem.proteins_g} grams
+                    Proteins: {processFoodItemProteins(foodItem.proteins_g)} grams
                     {'\n'}
-                    Sugar: {foodItem.sugar_g} grams
+                    Sugar: {processFoodItemSugar(foodItem.sugar_g)} grams
                     {'\n'}
  
                     {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
@@ -349,7 +449,11 @@ export default function EnterScreen() {
                     onPress={() => {
                         logFoodItemById(foodItem.id);
                         setVisible(false);
+                        
                         setModalVisible(true);
+                        setTimeout(() => {
+                        setModalVisible(false);
+                        }, 800);
                     }}
                     disabled={loading}
                 >
@@ -362,20 +466,10 @@ export default function EnterScreen() {
                     animationType="fade"
                     transparent={true}
                     visible={modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert('Modal has been closed.');
-                        setModalVisible(false);
-                    }}
                 >
                     <View>
                         <View>
                             <Text style={styles.subsubtitle}>Food Item Logged!</Text>
-                            <TouchableOpacity
-                                style={[styles.buttonPopup]}
-                                onPress={() => setModalVisible(false)}
-                            >
-                                <Text style={styles.buttonText}>Continue Browsing</Text>
-                            </TouchableOpacity>
                         </View>
                     </View>
                 </Modal>
