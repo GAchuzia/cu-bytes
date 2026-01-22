@@ -96,6 +96,7 @@ export default function ScanScreen() {
         setLoading(true);
         try {
             const result = await apiService.predictFood(selectedImage);
+            console.log('Prediction result received:', result);
             setPrediction(result);
 
         } catch (error: any) {
@@ -179,7 +180,7 @@ export default function ScanScreen() {
                 <Text style={styles.subtitle}>Your Photo Here</Text>
             )}
 
-            {prediction && usernameGlobal != "" && (
+            {prediction && (
                 <View style={styles.infoSection}>
                     <Text style={styles.subtitle}>
                         Food: {prediction.food_name}

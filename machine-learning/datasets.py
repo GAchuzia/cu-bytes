@@ -4,6 +4,7 @@ from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from PIL import Image
 from config import Config
+from scripts.food_category_matcher import load_food_categories, create_class_mapping
 
 
 class GenericDataset(Dataset):
@@ -170,16 +171,30 @@ def get_data_transforms(image_size: int = 224, augment: bool = True):
 
 
 def create_data_loaders(config: Config, num_workers: Optional[int] = None):
-    """Create data loaders from multiple datasets"""
+    """
+    Create data loaders from multiple datasets.
+    All datasets are mapped to food_categories.json as the base food categories.
+    """
     if num_workers is None:
         num_workers = 4 if config.GPU_AVAILABLE else 2
 
     train_transform, val_transform = get_data_transforms(config.IMAGE_SIZE)
 
+    # Load food_categories.json as the base categories
+    food_categories_file = Path(__file__).parent / "food_categories.json"
+    food_categories = load_food_categories(food_categories_file)
+    print(f"Loaded {len(food_categories)} base food categories from food_categories.json")
+    
+    # Create mapping from food category name to index
+    # This will grow as we add new categories from datasets
+    category_to_idx = {category: idx for idx, category in enumerate(food_categories)}
+    next_category_idx = len(food_categories)
+
     train_datasets = []
     val_datasets = []
-    all_class_names = []
-    current_class_idx = 0
+    
+    # Track which categories are actually used across all datasets
+    used_categories = set()
 
     for dataset_config in config.DATASETS_CONFIG:
         dataset_name = dataset_config.get("name", "unknown")
@@ -225,13 +240,54 @@ def create_data_loaders(config: Config, num_workers: Optional[int] = None):
                 print(f"Warning: No class directories found in {dataset_path}")
                 continue
 
-            classes_to_use = sorted(available_classes)
-
+            print(f"\nProcessing dataset: {dataset_name}")
+            print(f"  Found {len(available_classes)} classes in dataset")
+            
+            # Map dataset classes to food_categories.json (existing + newly added)
+            dataset_class_mapping = create_class_mapping(
+                available_classes, food_categories, threshold=0.6
+            )
+            
+            # Create class_mapping: dataset_folder_name -> food_category_index
+            # Add new categories if they don't match well enough
             class_mapping = {}
-            for class_name in classes_to_use:
-                class_mapping[class_name] = current_class_idx
-                all_class_names.append(f"{dataset_name}:{class_name}")
-                current_class_idx += 1
+            matched_count = 0
+            added_count = 0
+            
+            for dataset_class in available_classes:
+                # Get the mapped category name (or None if no match found)
+                mapped_category = dataset_class_mapping.get(dataset_class)
+                
+                if mapped_category and mapped_category in category_to_idx:
+                    # Use existing matched category
+                    class_mapping[dataset_class] = category_to_idx[mapped_category]
+                    used_categories.add(mapped_category)
+                    matched_count += 1
+                else:
+                    # No good match found - add as new category
+                    # Use the dataset class name as the new category
+                    new_category = dataset_class
+                    
+                    # Normalize the name a bit (capitalize first letter of each word)
+                    new_category = ' '.join(word.capitalize() for word in new_category.split())
+                    
+                    if new_category not in category_to_idx:
+                        # Add to categories and mapping
+                        category_to_idx[new_category] = next_category_idx
+                        food_categories.append(new_category)
+                        next_category_idx += 1
+                        print(f"  Added new category: '{new_category}' (from '{dataset_class}')")
+                    
+                    class_mapping[dataset_class] = category_to_idx[new_category]
+                    used_categories.add(new_category)
+                    added_count += 1
+            
+            print(f"  Mapped {matched_count}/{len(available_classes)} to existing categories")
+            print(f"  Added {added_count} new categories")
+            
+            if not class_mapping:
+                print(f"  Warning: No classes could be processed for {dataset_name}, skipping dataset")
+                continue
 
             # Handle Food-101 train/test split files
             train_split = None
@@ -285,6 +341,8 @@ def create_data_loaders(config: Config, num_workers: Optional[int] = None):
             val_datasets.append(generic_val)
         except Exception as e:
             print(f"Failed to load dataset {dataset_name}: {e}")
+            import traceback
+            traceback.print_exc()
             continue
 
     if not train_datasets:
@@ -299,8 +357,19 @@ def create_data_loaders(config: Config, num_workers: Optional[int] = None):
         CombinedDataset(val_datasets) if len(val_datasets) > 1 else val_datasets[0]
     )
 
-    config.NUM_CLASSES = len(all_class_names)
+    # Set config to use food_categories.json as the base + any newly added categories
+    all_class_names = food_categories
+    config.NUM_CLASSES = len(food_categories)
     config.ALL_CLASS_NAMES = all_class_names
+    
+    base_count = len(load_food_categories(food_categories_file))
+    added_count = len(food_categories) - base_count
+    
+    print(f"\nUsing {len(food_categories)} total food categories:")
+    print(f"  Base categories from food_categories.json: {base_count}")
+    if added_count > 0:
+        print(f"  New categories added from datasets: {added_count}")
+    print(f"  Categories used across all datasets: {len(used_categories)}")
 
     train_loader = DataLoader(
         combined_train,
