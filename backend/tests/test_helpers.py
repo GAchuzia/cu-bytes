@@ -2,9 +2,10 @@
 import pytest
 
 # Project imports
+from backend.models.food_category import FoodCategory
 from backend.services.authentication_service import create_user
 from backend.models.food_item import FoodItem
-from backend.models.food_item import DiningLocation
+from backend.models.locations import DiningLocation
 from backend.models.users_auth import UsersAuth
 from backend.app import db
 
@@ -33,6 +34,7 @@ def seeded_users(app):
 def add_test_food_item(
     app,
     food_name,
+    food_category,
     dining_location=1,
     cost=12.99,
     calories=350,
@@ -42,14 +44,12 @@ def add_test_food_item(
     is_vegetarian=False,
     is_gluten_free=False,
     is_halal=False,
-    is_kosher=False,
     is_dairy_free=False,
     has_eggs=False,
-    has_fish=False,
+    has_fish_or_shellfish=False,
     has_milk=False,
     has_peanuts=False,
     has_sesame=False,
-    has_shellfish=False,
     has_soy=False,
     has_treenuts=False,
     has_wheat=False,
@@ -67,26 +67,25 @@ def add_test_food_item(
             is_vegetarian=is_vegetarian,
             is_gluten_free=is_gluten_free,
             is_halal=is_halal,
-            is_kosher=is_kosher,
             is_dairy_free=is_dairy_free,
             has_eggs=has_eggs,
-            has_fish=has_fish,
+            has_fish_or_shellfish=has_fish_or_shellfish,
             has_milk=has_milk,
             has_peanuts=has_peanuts,
             has_sesame=has_sesame,
-            has_shellfish=has_shellfish,
             has_soy=has_soy,
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,
+            food_category=food_category,
         )
 
 
 @pytest.fixture
 def seeded_food_data(app):
     """Setup a small food_data DB for each test in this file."""
-    add_test_food_item(app, "Caesar Salad")
-    add_test_food_item(app, "Hamburger")
-    add_test_food_item(app, "Banana Bread")
+    add_test_food_item(app, "Caesar Salad", "Green Salad")
+    add_test_food_item(app, "Hamburger", "Burger")
+    add_test_food_item(app, "Banana Bread", "Loaf")
 
     yield  # test runs here
 
@@ -95,18 +94,92 @@ def seeded_food_data(app):
         db.session.query(FoodItem).delete()
         db.session.commit()
 
+
+def add_test_food_category(
+    app,
+    category_name,
+    calories=500,
+    percent_fruit_veg=0,
+    percent_grain=0,
+    percent_dairy=0,
+    percent_protein=0,
+    fat_g=0.0,
+    carbs_g=0.0,
+    proteins_g=0.0,
+    fiber_g=0.0,
+    sugar_g=0.0,
+    is_vegan=False,
+    is_gluten_free=False,
+    is_halal=False,
+    is_vegetarian=False,
+    is_dairy_free=False,
+    has_eggs=False,
+    has_fish_or_shellfish=False,
+    has_milk=False,
+    has_peanuts=False,
+    has_sesame=False,
+    has_soy=False,
+    has_treenuts=False,
+    has_wheat=False,
+):
+    """Insert a food category directly into the database."""
+    with app.app_context():
+        return FoodCategory.create(
+            category_name=category_name,
+            calories=calories,
+            percent_fruit_veg=percent_fruit_veg,
+            percent_grain=percent_grain,
+            percent_dairy=percent_dairy,
+            percent_protein=percent_protein,
+            fat_g=fat_g,
+            carbs_g=carbs_g,
+            proteins_g=proteins_g,
+            fiber_g=fiber_g,
+            sugar_g=sugar_g,
+            is_vegan=is_vegan,
+            is_gluten_free=is_gluten_free,
+            is_halal=is_halal,
+            is_vegetarian=is_vegetarian,
+            is_dairy_free=is_dairy_free,
+            has_eggs=has_eggs,
+            has_fish_or_shellfish=has_fish_or_shellfish,
+            has_milk=has_milk,
+            has_peanuts=has_peanuts,
+            has_sesame=has_sesame,
+            has_soy=has_soy,
+            has_treenuts=has_treenuts,
+            has_wheat=has_wheat,
+        )
+
+
+@pytest.fixture
+def seeded_food_categories(app):
+    """Setup a small set of generic categories for each test in this file."""
+    add_test_food_category(app, "Green Salad")
+    add_test_food_category(app, "Burger")
+    add_test_food_category(app, "Loaf")
+
+    yield  # test runs here
+
+    # Clean up after test
+    with app.app_context():
+        db.session.query(FoodItem).delete()
+        db.session.commit()
+
+
 def add_test_dining_location(app, dining_location_name):
-     """Insert a dining location directly into the database."""
-     with app.app_context():
+    """Insert a dining location directly into the database."""
+    with app.app_context():
         DiningLocation.create(dining_location_name=dining_location_name)
+
 
 @pytest.fixture
 def seeded_dining_location_data(app):
     """Setup a small food_data DB for each test in this file."""
-    add_test_food_item(app, "Caesar Salad")
-    add_test_food_item(app, "Hamburger")
-    add_test_food_item(app, "Banana Bread")
-    
+    add_test_food_item(app, "Caesar Salad", "Green Salad")
+    add_test_food_item(app, "Hamburger", "Burger")
+    add_test_food_item(app, "Banana Bread", "Loaf")
+
     add_test_dining_location(app, "Tim Hortons")
 
     yield  # test runs here

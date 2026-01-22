@@ -26,19 +26,16 @@ def retreive_profile(username):
             "has_configured_settings": true,
             "has_dairy_intolerance": false,
             "has_egg_allergy": false,
-            "has_fish_allergy": false,
             "has_gluten_allergy": false,
-            "has_milk_allergy": false,
             "has_peanut_allergy": false,
             "has_sesame_allergy": false,
-            "has_shellfish_allergy": false,
+            "has_fish_or_shellfish_allergy": false,
             "has_soy_allergy": false,
             "has_treenut_allergy": false,
             "has_wheat_allergy": false,
             "is_vegan": true,
             "is_vegetarian": false,
             "prefers_halal": true,
-            "prefers_kosher": false,
             "show_stats": true,
             "username": "Alice"
         }
@@ -82,23 +79,21 @@ def edit_profile():
 
     Request Body (JSON):
     {
-        "username": "string",               # required
-        "show_stats": "boolean",            # optional
-        "has_egg_allergy: "boolean",        # optional
-        "has_fish_allergy: "boolean",       # optional
-        "has_dairy_intolerance: "boolean",  # optional
-        "has_milk_allergy": "boolean",      # optional
-        "has_peanut_allergy: "boolean",     # optional
-        "has_sesame_allergy: "boolean",     # optional
-        "has_shellfish_allergy: "boolean",  # optional
-        "has_soy_allergy: "boolean",        # optional
-        "has_treenut_allergy: "boolean",    # optional
-        "has_wheat_allergy: "boolean",      # optional
-        "has_gluten_allergy: "boolean",     # optional
-        "is_vegan: "boolean",               # optional
-        "is_vegetarian: "boolean",          # optional
-        "prefers_kosher: "boolean",         # optional
-        "prefers_halal: "boolean",          # optional
+        "username": "string",                       # required
+        "show_stats": "boolean",                    # optional
+        "has_egg_allergy: "boolean",                # optional
+        "has_fish_or_shellfish_allergy: "boolean",  # optional
+        "has_dairy_intolerance: "boolean",          # optional
+        "has_milk_allergy": "boolean",              # optional
+        "has_peanut_allergy: "boolean",             # optional
+        "has_sesame_allergy: "boolean",             # optional
+        "has_soy_allergy: "boolean",                # optional
+        "has_treenut_allergy: "boolean",            # optional
+        "has_wheat_allergy: "boolean",              # optional
+        "has_gluten_allergy: "boolean",             # optional
+        "is_vegan: "boolean",                       # optional
+        "is_vegetarian: "boolean",                  # optional
+        "prefers_halal: "boolean",                  # optional
     }
 
     Responses:

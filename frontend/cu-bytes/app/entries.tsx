@@ -20,7 +20,12 @@ export default function EntriesScreen() {
     const [foodItem, setFoodItem] = useState(
         {
             "calories": -1,
+            "carbs_g": 0.00,
+            "fat_g": 0.00,
+            "fiber_g": 0.00,
             "food_name": "",
+            "proteins_g": 0.00,
+            "sugar_g": 0.00,
             "transaction_time": ""
         }
     );
@@ -50,6 +55,26 @@ export default function EntriesScreen() {
         };
         handlePressGetFoodItems();
     }, []);
+
+    /*
+        Calculate how to display the calories of the selected food item
+        If the value of the calories key is -1, then there is an "Unknown" number of calories
+        If the value of the calories key is not -1, then the displayed calorie amount is equal to that of the calories key value
+
+        param(s):
+            calories - number : The number of calories of the selected food item, as per the calorie key value
+        
+        returns : The calories value of the selected food item
+    */
+    function processFoodItemCalories(calories: number) {
+
+        if (calories == -1) {
+            return "Unknown" 
+        }
+        else { 
+            return calories;
+        }
+    }
 
     // Display loading symbol while the food items are being fetched
     if (loading) {
@@ -88,7 +113,17 @@ export default function EntriesScreen() {
                         <Text style={styles.subsubtitle}>
                             {foodItem["food_name"]}
                             <br></br>
-                            Calories: {foodItem["calories"]}
+                            Calories: {processFoodItemCalories(foodItem["calories"])}
+                            <br></br>
+                            Carbs: {foodItem["carbs_g"]} grams
+                            <br></br>
+                            Fat: {foodItem["fat_g"]} grams
+                            <br></br>
+                            Fiber: {foodItem["fiber_g"]} grams
+                            <br></br>
+                            Proteins: {foodItem["proteins_g"]} grams
+                            <br></br>
+                            Sugar: {foodItem["sugar_g"]} grams
                             <br></br>
                             {foodItem["transaction_time"]}
                             <br></br>

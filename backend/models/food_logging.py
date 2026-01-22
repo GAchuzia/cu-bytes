@@ -22,6 +22,13 @@ class FoodLogging(db.Model):
     percent_dairy = db.Column(db.Integer, default=0)
     percent_protein = db.Column(db.Integer, default=0)
 
+    # Nutrients
+    fat_g = db.Column(db.Float, nullable=False)
+    carbs_g = db.Column(db.Float, nullable=False)
+    proteins_g = db.Column(db.Float, nullable=False)
+    fiber_g = db.Column(db.Float, nullable=False)
+    sugar_g = db.Column(db.Float, nullable=False)
+
     def __repr__(self):
         return (
             f"<FoodLogging {self.username} logged {self.food_id} "
@@ -39,6 +46,11 @@ class FoodLogging(db.Model):
         percent_grain,
         percent_dairy,
         percent_protein,
+        fat_g,
+        carbs_g,
+        proteins_g,
+        fiber_g,
+        sugar_g,
     ):
         """Create a new food logging entry and store it in the database"""
 
@@ -51,6 +63,11 @@ class FoodLogging(db.Model):
             percent_grain=percent_grain,
             percent_dairy=percent_dairy,
             percent_protein=percent_protein,
+            fat_g=fat_g,
+            carbs_g=carbs_g,
+            proteins_g=proteins_g,
+            fiber_g=fiber_g,
+            sugar_g=sugar_g,
         )
 
         db.session.add(transaction)
