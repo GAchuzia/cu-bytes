@@ -1,29 +1,29 @@
-Food Item,Dining Location,Cost,Calories,Nuts,Vegan,Gluten Free,Halal,Vegetarian,No Dairy,Comments,Eggs,Fish,Milk,Peanuts,Sesame,Shellfish,Soy,TreeNuts,Wheat,Kosher,Last Updated
-Bagelwich,Rooster's,6.99,,,,,,,,"Toasted Bagel with egg, cheese and your choice of two toppings.",,,,,,,,,,,10/30/2025
-Fried Egg Sandwich,Rooster's,5.59,,,,,,,,"Toasted white, whole wheat or gluten free bread with egg, cheese and your choice of two toppings.",,,,,,,,,,,10/30/2025
-Western,Rooster's,7.39,,,,,,,,"A serving of egg with green peppers and onions fried into it served on toasted bread or bagel, cheese and your choice of two toppings.",,,,,,,,,,,10/30/2025
-Breakfast Pita,Rooster's,6.99,,,,,,,,A double serving of egg with cheese and your choice of two toppings all wrapped up in a pita.,,,,,,,,,,,10/30/2025
-Grilled Cheese,Rooster's,5.59,,,,,,,,"White, whole wheat or gluten free bread grilled with a blend of cheddar and Monteray jack cheese.",,,,,,,,,,,10/30/2025
-Veggie Sandwich,Rooster's,5.19,,,,,,,,Your choice of three veggies severed on toasted bread or bagel.,,,,,,,,,,,10/30/2025
-B.L.T.,Rooster's,7.99,,,,,,,,"Classic bacon, lettuce and tomato served on your choice of toasted bread or bagel.",,,,,,,,,,,10/30/2025
-Omelette,Rooster's,8.39,,,,,,,,"A two-egg omelette served with bread, bagel or hashbrown.",,,,,,,,,,,10/30/2025
-Toast w/ Butter,Rooster's,1.99,,,,,,,,Two slices of toast served either with butter or dry.,,,,,,,,,,,10/30/2025
-Bagel,Rooster's,3.19,,,,,,,,Your choice of toasted bagel.,,,,,,,,,,,10/30/2025
-Toast w/ Jam,Rooster's,2.99,,,,,,,,Two slices of toast served with your choice of peanut butter and jam.,,,,,,,,,,,10/30/2025
-S.D. Grilled Cheese,Rooster's,9.99,,,,,,,,,,,,,,,,,,,10/30/2025
-Classic Grilled Cheese,Rooster's,4.29,,,,,,,,"White, whole wheat or gluten free bread grilled with old school cheese slices.",,,,,,,,,,,10/30/2025
-Chicken Pita,Rooster's,10.69,,,,,,,,Diced chicken breast grilled to perfection with you choice of toppings.,,,,,,,,,,,10/30/2025
-Chicken Club Pita,Rooster's,13.19,,,,,,,,Our grilled chicken pita with bacon added.,,,,,,,,,,,10/30/2025
-Ch. Souvlaki Pita,Rooster's,11.99,,,,,,,,Diced thigh meat seasoned with a lemon and herb season grilled with your choice of toppings.,,,,,,,,,,,10/30/2025
-Steak Pita,Rooster's,12.99,,,,,,,,Fajita style steak strips grilled with your choice of toppings.,,,,,,,,,,,10/30/2025
-Club Pita,Rooster's,12.99,,,,,,,,"Turkey, Black Forest Ham and bacon wrapped with your choice of toppings.",,,,,,,,,,,10/30/2025
-Turkey Pita,Rooster's,10.69,,,,,,,,Deli style turkey breast served hot or cold with your choice of toppings.,,,,,,,,,,,10/30/2025
-Tuna Pita,Rooster's,10.89,,,,,,,,Light flaked tuna wrapped with your choice of toppings.,,,,,,,,,,,10/30/2025
-Veggie Pita,Rooster's,8.69,,,,,,,,Your choice of our wide selection of fresh veggies.,,,,,,,,,,,10/30/2025
-Bacon Pita,Rooster's,11.99,,,,,,,,A generous porion of bacon in a pita with your choice of toppings.,,,,,,,,,,,10/30/2025
-M. Tofu Pita,Rooster's,9.99,,,,,,,,Firm tofu grilled on our vegitarian grill with your choice of toppings. ,,,,,,,,,,,10/30/2025
-Falafel Pita,Rooster's,9.99,,,,,,,,A deliciously spiced falafel  and served with your choice of toppings.,,,,,,,,,,,10/30/2025
-Gyro Pita,Rooster's,10.89,,,,,,,,Greek style seasoned lamb and beef served with your choice of toppings.,,,,,,,,,,,10/30/2025
-Veggie Patty,Rooster's,10.99,,,,,,,,"Half a soy based vegitarian patty, wonderfully seasoned with your choice of toppings.",,,,,,,,,,,10/30/2025
-Ham Pita,Rooster's,10.69,,,,,,,,Thin sliced deli fresh black forest ham served hot or cold with your choice of toppings.,,,,,,,,,,,10/30/2025
-Pita Dippers,Rooster's,6.09,,,,,,,,"A generous helping of pita pieces, with two dipping sauces and two veggies of your choice.",,,,,,,,,,,10/30/2025
+Food Item,Dining Location,Cost,Calories,Nuts,Vegan,Gluten Free,Halal,Vegetarian,No Dairy,Comments,Eggs,Fish,Milk,Peanuts,Sesame,Soy,TreeNuts,Wheat,Last Updated,Food Category
+Bagelwich,Rooster's,6.99,,,,,,,,"Toasted Bagel with egg, cheese and your choice of two toppings.",,,,,,,,,10/30/2025,Sandwich
+Fried Egg Sandwich,Rooster's,5.59,,,,,,,,"Toasted white, whole wheat or gluten free bread with egg, cheese and your choice of two toppings.",,,,,,,,,10/30/2025,Sandwich
+Western,Rooster's,7.39,,,,,,,,"A serving of egg with green peppers and onions fried into it served on toasted bread or bagel, cheese and your choice of two toppings.",,,,,,,,,10/30/2025,Sandwich
+Breakfast Pita,Rooster's,6.99,,,,,,,,A double serving of egg with cheese and your choice of two toppings all wrapped up in a pita.,,,,,,,,,10/30/2025,Pita with protein
+Grilled Cheese,Rooster's,5.59,,,,,,,,"White, whole wheat or gluten free bread grilled with a blend of cheddar and Monteray jack cheese.",,,,,,,,,10/30/2025,Sandwich (No protein)
+Veggie Sandwich,Rooster's,5.19,,,,,,,,Your choice of three veggies severed on toasted bread or bagel.,,,,,,,,,10/30/2025,Sandwich (No protein)
+B.L.T.,Rooster's,7.99,,,,,,,,"Classic bacon, lettuce and tomato served on your choice of toasted bread or bagel.",,,,,,,,,10/30/2025,Sandwich
+Omelette,Rooster's,8.39,,,,,,,,"A two-egg omelette served with bread, bagel or hashbrown.",,,,,,,,,10/30/2025,Omelette
+Toast w/ Butter,Rooster's,1.99,,,,,,,,Two slices of toast served either with butter or dry.,,,,,,,,,10/30/2025,Toast
+Bagel,Rooster's,3.19,,,,,,,,Your choice of toasted bagel.,,,,,,,,,10/30/2025,Bagel
+Toast w/ Jam,Rooster's,2.99,,,,,,,,Two slices of toast served with your choice of peanut butter and jam.,,,,,,,,,10/30/2025,Toast
+S.D. Grilled Cheese,Rooster's,9.99,,,,,,,,,,,,,,,,,10/30/2025,Sandwich (No protein)
+Classic Grilled Cheese,Rooster's,4.29,,,,,,,,"White, whole wheat or gluten free bread grilled with old school cheese slices.",,,,,,,,,10/30/2025,Sandwich (No protein)
+Chicken Pita,Rooster's,10.69,,,,,,,,Diced chicken breast grilled to perfection with you choice of toppings.,,,,,,,,,10/30/2025,Pita with protein
+Chicken Club Pita,Rooster's,13.19,,,,,,,,Our grilled chicken pita with bacon added.,,,,,,,,,10/30/2025,Pita with protein
+Ch. Souvlaki Pita,Rooster's,11.99,,,,,,,,Diced thigh meat seasoned with a lemon and herb season grilled with your choice of toppings.,,,,,,,,,10/30/2025,Pita with protein
+Steak Pita,Rooster's,12.99,,,,,,,,Fajita style steak strips grilled with your choice of toppings.,,,,,,,,,10/30/2025,Pita with protein
+Club Pita,Rooster's,12.99,,,,,,,,"Turkey, Black Forest Ham and bacon wrapped with your choice of toppings.",,,,,,,,,10/30/2025,Pita with protein
+Turkey Pita,Rooster's,10.69,,,,,,,,Deli style turkey breast served hot or cold with your choice of toppings.,,,,,,,,,10/30/2025,Pita with protein
+Tuna Pita,Rooster's,10.89,,,,,,,,Light flaked tuna wrapped with your choice of toppings.,,,,,,,,,10/30/2025,Pita with protein
+Veggie Pita,Rooster's,8.69,,,,,,,,Your choice of our wide selection of fresh veggies.,,,,,,,,,10/30/2025,Veggie pita
+Bacon Pita,Rooster's,11.99,,,,,,,,A generous porion of bacon in a pita with your choice of toppings.,,,,,,,,,10/30/2025,Pita with protein
+M. Tofu Pita,Rooster's,9.99,,,,,,,,Firm tofu grilled on our vegitarian grill with your choice of toppings. ,,,,,,,,,10/30/2025,Pita with protein
+Falafel Pita,Rooster's,9.99,,,,,,,,A deliciously spiced falafel  and served with your choice of toppings.,,,,,,,,,10/30/2025,Pita with protein
+Gyro Pita,Rooster's,10.89,,,,,,,,Greek style seasoned lamb and beef served with your choice of toppings.,,,,,,,,,10/30/2025,Pita with protein
+Veggie Patty,Rooster's,10.99,,,,,,,,"Half a soy based vegitarian patty, wonderfully seasoned with your choice of toppings.",,,,,,,,,10/30/2025,Burger
+Ham Pita,Rooster's,10.69,,,,,,,,Thin sliced deli fresh black forest ham served hot or cold with your choice of toppings.,,,,,,,,,10/30/2025,Pita with protein
+Pita Dippers,Rooster's,6.09,,,,,,,,"A generous helping of pita pieces, with two dipping sauces and two veggies of your choice.",,,,,,,,,10/30/2025,Chips

@@ -1,9 +1,10 @@
 # Project imports
-from backend.tests.test_helpers import seeded_food_data
+from backend.tests.test_helpers import seeded_food_data, seeded_food_categories
 
 # Arguments like client and app are automatically injected from conftest.py
 # seeded_food_data is automatically injected from test_helpers.py
 # To get the per-test food_data setup and teardown inject seeded_food_data
+
 
 # ------------------------------------
 # Testing Get All Food Items
@@ -29,7 +30,7 @@ def test_get_all_food_items(client, seeded_food_data):
 # ------------------------------------
 # Testing Getting Specific Food Items
 # ------------------------------------
-def test_get_first_food_item(client, seeded_food_data):
+def test_get_first_food_item(client, seeded_food_data, seeded_food_categories):
     response = client.get("/browse/food-item/1")
     data = response.get_json()
 
@@ -47,20 +48,19 @@ def test_get_first_food_item(client, seeded_food_data):
     assert data["is_vegetarian"] is False
     assert data["is_gluten_free"] is False
     assert data["is_halal"] is False
-    assert data["is_kosher"] is False
     assert data["is_dairy_free"] is False
     assert data["has_eggs"] is False
-    assert data["has_fish"] is False
+    assert data["has_fish_or_shellfish"] is False
     assert data["has_milk"] is False
     assert data["has_peanuts"] is False
     assert data["has_sesame"] is False
-    assert data["has_shellfish"] is False
     assert data["has_soy"] is False
     assert data["has_treenuts"] is False
     assert data["has_wheat"] is False
+    assert data["food_category"] == "Green Salad"
 
 
-def test_get_last_food_item(client, seeded_food_data):
+def test_get_last_food_item(client, seeded_food_data, seeded_food_categories):
     response = client.get("/browse/food-item/3")
     data = response.get_json()
 

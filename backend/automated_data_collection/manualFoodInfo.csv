@@ -1,459 +1,661 @@
-Food Item,Dining Location,Cost,Calories,Nuts,Vegan,Gluten Free,Halal,Vegetarian,No Dairy,Comments,Eggs,Fish,Milk,Peanuts,Sesame,Soy,TreeNuts,Wheat,Kosher,Last Updated
-Maple Pecan Square,Bridgehead,4.95,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-Pistachio Danish,Bridgehead,5.95,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-Raspberry Scone,Bridgehead,4.95,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-Lemon Square,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Chocolate Chip Cookie,Bridgehead,3.65,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Ginger Cookie,Bridgehead,3.55,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Granola Cookie,Bridgehead,3.75,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Peanut Butter Cookie,Bridgehead,3.75,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-Plain Croissant,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Cheddar Croissant,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Chocolatine Croissant,Bridgehead,4.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Banana Chocolate Muffin,Bridgehead,3.95,,N,Y,Y,,,,,,,,,,,,,,09/24/2025
-Triple Berry Muffin,Bridgehead,3.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Apple Cranberry Muffin,Bridgehead,3.95,,N,Y,Y,,,,,,,,,,,,,,09/24/2025
-Carrot Cake,Bridgehead,5.75,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-Cherry Lemon Loaf,Bridgehead,3.95,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-Chocolate Quinoa Loaf,Bridgehead,3.95,,N,N,Y,,,,,,,,,,,,,,09/24/2025
-Peanut Butter Bite,Bridgehead,2.35,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-Energy Bite,Bridgehead,2.35,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-Coconut Date Bite,Bridgehead,2.35,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-Pumpkin Muffin,Bridgehead,3.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Pumpkin Loaf,Bridgehead,3.95,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-Chipotle Quinoa Wrap,Bridgehead,12.45,,Y,Y,N,,,,,,,,,,,,,,09/24/2025
-Quinoa Salad,Bridgehead,11.95,,Y,N,Y,,,,,,,,,,,,,,09/24/2025
-Yogurt Parfait,Bridgehead,6.75,,Y,N,Y,,,,,,,,,,,,,,09/24/2025
-Banana Parfait,Bridgehead,6.45,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Butter Oats,Bridgehead,6.45,,Y,N,Y,,,,,,,,,,,,,,09/24/2025
-Egg & Cheese Bagel,Bridgehead,6.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
-"Bacon, Egg & Cheese Bagel",Bridgehead,7.75,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Smoked Meat Bagel,Bridgehead,12.99,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Smoked Salmon Bagel,Bridgehead,12.99,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Kale Caesar Salad,Bridgehead,11.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Bacon & Egg Wrap,Bridgehead,6.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Breakfast Wrap,Bridgehead,6.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Egg & Cheese Wrap,Bridgehead,6.45,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Chicken Burrito,Bridgehead,12.45,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Veggie Burrito,Bridgehead,10.95,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Chicken Salad Wrap,Bridgehead,12.45,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-Coconut Curry,Bridgehead,12.45,,N,N,N,,,,,,,,,,,,,,09/24/2025
-Chicken Wrap,Bridgehead,12.45,,Y,N,N,,,,,,,,,,,,,,09/24/2025
-"Egg, Pesto, & Mozzarella Sandwich",Starbucks,5.75,370,,,,,N,,,,,,,,,,,,09/25/2025
-"Bacon, Gouda, & Egg Sandwich",Starbucks,5.05,360,,,,,N,,,,,,,,,,,,09/25/2025
-"Double-Smoked Bacon, Cheddar & Egg Sandwich",Starbucks,5.95,500,,,,,N,,,,,,,,,,,,09/25/2025
-"Bacon-Style Turkey, Cheddar & Egg Sandwich",Starbucks,5.65,230,,,,,N,,,,,,,,,,,,09/25/2025
-"Sausage, Cheddar & Egg Sandwich",Starbucks,5.25,480,,,,,N,,,,,,,,,,,,09/25/2025
-"Spinich, Feta & Egg White Wrap",Starbucks,5.65,290,,,,,N,,,,,,,,,,,,09/25/2025
-Everything Croissant & Roasted Ham Sandwich,Starbucks,5.95,470,,,,,N,,,,,,,,,,,,09/25/2025
-Bacon & Gruyère Egg Bites,Starbucks,320,320,,,,,N,,,,,,,,,,,,09/25/2025
-"Bacon, Sausage & Egg Wrap",Starbucks,640,640,,,,,N,,,,,,,,,,,,09/25/2025
-Egg White & Roasted Red Pepper Egg Bites,Starbucks,170,170,,,,,N,,,,,,,,,,,,09/25/2025
-"Potato, Cheddar & Chive Bakes",Starbucks,6.25,210,,,,,N,,,,,,,,,,,,09/25/2025
-Ham & Swiss Croissant,Starbucks,4.65,290,,,,,N,,,,,,,,,,,,09/25/2025
-Pumpkin Cream Cheese Muffin,Starbucks,3.95,350,,,,,Y,,,,,,,,,,,,09/25/2025
-Fox Cookie,Starbucks,3.95,320,,,,,Y,,,,,,,,,,,,09/25/2025
-Baked Apple Croissant,Starbucks,4.45,250,,,,,Y,,,,,,,,,,,,09/25/2025
-Pumpkin & Pepita Loaf,Starbucks,4.45,380,,,,,Y,,,,,,,,,,,,09/25/2025
-Chocalate Cake Pop,Starbucks,3.45,160,,,,,Y,,,,,,,,,,,,09/25/2025
-Strawberry Cake Pop,Starbucks,3.45,160,,,,,Y,,,,,,,,,,,,09/25/2025
-Cookies & Cream Cake Pop,Starbucks,3.45,160,,,,,Y,,,,,,,,,,,,09/25/2025
-Birthday Cake Pop,Starbucks,3.45,170,,,,,Y,,,,,,,,,,,,09/25/2025
-Double Chocolate Brownie,Starbucks,3.95,480,,,,,Y,,,,,,,,,,,,09/25/2025
-Ginger Molasses Cookie,Starbucks,3.65,350,,,,,Y,,,,,,,,,,,,09/25/2025
-Chocolate Chunk Cookie,Starbucks,3.65,320,,,,,Y,,,,,,,,,,,,09/25/2025
-Rolled & Steel-Cut Oatmeal,Starbucks,3.95,250,,,,,Y,,,,,,,,,,,,09/25/2025
-Oat Bar,Starbucks,3.45,310,,,,,Y,,,,,,,,,,,,09/25/2025
-Blueberry Muffin,Starbucks,3.65,350,,,,,Y,,,,,,,,,,,,09/25/2025
-Cheese Danish,Starbucks,3.65,310,,,,,Y,,,,,,,,,,,,09/25/2025
-Chocolate Croissant,Starbucks,4.45,340,,,,,Y,,,,,,,,,,,,09/25/2025
-Butter Croissant,Starbucks,3.95,260,,,,,Y,,,,,,,,,,,,09/25/2025
-Mini Everything Bagels,Starbucks,4.25,300,,,,,Y,,,,,,,,,,,,09/25/2025
-Belgian Liège Waffle,Starbucks,3.35,220,,,,,Y,,,,,,,,,,,,09/25/2025
-4 Maple Mini Pancakes,Starbucks,2.75,120,,,,,Y,,,,,,,,,,,,09/25/2025
-Cinnamon Coffee Cake,Starbucks,3.95,330,,,,,Y,,,,,,,,,,,,09/25/2025
-Banana Loaf,Starbucks,4.45,360,,,,,Y,,,,,,,,,,,,09/25/2025
-Iced Lemon Loaf,Starbucks,4.45,430,,,,,Y,,,,,,,,,,,,09/25/2025
-Jalepeño Chicken Pocket,Starbucks,5.25,200,,,,,N,,,,,,,,,,,,09/25/2025
-Spicy Falafel Pocket,Starbucks,5.25,230,,,,,N,,,,,,,,,,,,09/25/2025
-Three Cheese & Egg Sandwich,Starbucks,4.75,330,,,,,N,,,,,,,,,,,,09/25/2025
-Bagelwich,Rooster's,6.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Breakfast Pita,Rooster's,6.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Western Sandwich,Rooster's,7.39,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Fried Egg Sandwich,Rooster's,5.59,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Omelette,Rooster's,8.39,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-BLT,Rooster's,7.99,,,,,N,N,,,,,,,,,,,,09/25/2025
-Rooster's Grilled Cheese,Rooster's,5.69,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Classic Grilled Cheese,Rooster's,4.29,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Sour Dough Grilled Cheese,Rooster's,9.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Toasted Veggie Sandwich,Rooster's,5.19,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Toasted Bagel,Rooster's,3.19,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Bagel with Cream Cheese,Rooster's,4.88,,,,,N,Y,,,,,,,,,,,,09/25/2025
-Toast,Rooster's,1.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Toast with Jam,Rooster's,2.99,,,,,N,Y,,,,,,,,,,,,09/25/2025
-HashBrown,Rooster's,1.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Chicken Souvlaki Pita,Rooster's,11.99,,,,,N,N,,,,,,,,,,,,09/25/2025
-Chicken Shawarma Pita,Rooster's,11.99,,,,,Y,N,,,,,,,,,,,,09/25/2025
-Chicken Club Pita,Rooster's,13.19,,,,,N,N,,,,,,,,,,,,09/25/2025
-Steak Fajita Pita,Rooster's,12.99,,,,,N,N,,,,,,,,,,,,09/25/2025
-Halal Chicken Pita,Rooster's,11.99,,,,,N,N,,,,,,,,,,,,09/25/2025
-Turkey Pita,Rooster's,10.69,,,,,N,N,,,,,,,,,,,,09/25/2025
-Bloack Forest Hame Pita,Rooster's,10.69,,,,,N,N,,,,,,,,,,,,09/25/2025
-Chicken Pita,Rooster's,10.69,,,,,N,N,,,,,,,,,,,,09/25/2025
-Club Pita,Rooster's,12.99,,,,,N,N,,,,,,,,,,,,09/25/2025
-Tuna Pita,Rooster's,10.89,,,,,N,N,,,,,,,,,,,,09/25/2025
-Bacon Pita,Rooster's,11.99,,,,,N,N,,,,,,,,,,,,09/25/2025
-Gyro Pita,Rooster's,10.89,,,,,N,N,,,,,,,,,,,,09/25/2025
-Roasted Eggplant Pita,Rooster's,10.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Tofu Pita,Rooster's,9.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Veggie Patty Pita,Rooster's,10.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Falafel Pita,Rooster's,9.99,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Garden Veggie Pita,Rooster's,8.69,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Pita Dippers,Rooster's,6.09,,,,,Y,Y,,,,,,,,,,,,09/25/2025
-Chilli,Rooster's,7.99,,,,,N,N,,,,,,,,,,,,09/25/2025
-Chilli with Bread,Rooster's,8.99,,,,,N,N,,,,,,,,,,,,09/25/2025
-Medium Soup,Rooster's,6.79,,,,,N,N,,,,,,,,,,,,09/25/2025
-Large Soup,Rooster's,7.69,,,,,N,N,,,,,,,,,,,,09/25/2025
-Fries,Ollies,5.5,,N,Y,N,N,N,,,,,,,,,,,,10/12/2025
-Pogos,Ollies,6.5,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
-Perogies,Ollies,7,,N,N,N,N,Y,,,,,,,,,,,,10/12/2025
-Onion Rings,Ollies,7.5,,N,Y,N,N,N,,,,,,,,,,,,10/12/2025
-Sweet Potato Fries,Ollies,7.5,,N,Y,N,N,N,,,,,,,,,,,,10/12/2025
-Kimchi Fries,Ollies,8,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
-Mozza Sticks,Ollies,8.5,,N,N,N,N,Y,,,,,,,,,,,,10/12/2025
-Jalapeno Poppers,Ollies,8.5,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
-Garden Salad,Ollies,7.5,,N,N,Y,N,Y,,,,,,,,,,,,10/12/2025
-Taco Salad,Ollies,9.5,,N,N,Y,N,Y,,,,,,,,,,,,10/12/2025
-Churros,Ollies,8,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
-The Royale,Ollies,14,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
-The Royale With Cheese,Ollies,15,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
-The Goblet of Fire,Ollies,16,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
-The Room,Ollies,16,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
-The Ring,Ollies,16,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
-New Baconings,Ollies,16,,N,N,N,N,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
-Fried Chicken Sandwich,Ollies,16,,N,N,N,Y,N,,You can exchange for black been patty in which case GF and Vegetarian,,,,,,,,,,10/12/2025
-Poutine,Ollies,8.5,,N,N,N,Y,Y,,,,,,,,,,,,10/12/2025
-Cauliflower Bites,Ollies,9.5,,N,N,N,N,Y,,,,,,,,,,,,10/12/2025
-Burrito Bowl,Ollies,14,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
-Tenders And Fries,Ollies,14,,N,N,N,Y,N,,,,,,,,,,,,10/12/2025
-Wings - 1Lb,Ollies,14,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
-Loaded Nachos,Ollies,18,,N,N,N,N,N,,,,,,,,,,,,10/12/2025
-Muffin,Leo's Lounge,1.5,,,,,,,,,,,,,,,,,,9/26/2025
-Chips,Leo's Lounge,2.5,,,,,,,,,,,,,,,,,,9/26/2025
-Air Heads,Leo's Lounge,0.5,,,,,,,,,,,,,,,,,,9/26/2025
-Microwave Popcorn,Leo's Lounge,1,,,,,,,,,,,,,,,,,,9/26/2025
-Candy Bar,Leo's Lounge,2,,,,,,,,,,,,,,,,,,9/26/2025
-Pop Tart,Leo's Lounge,1.5,,,,,,,,,,,,,,,,,,9/26/2025
-Ice Cream,Leo's Lounge,1,,,,,,,,,,,,,,,,,,9/26/2025
-Oatmeal,Leo's Lounge,0.5,,,,,,,,,,,,,,,,,,9/26/2025
-Sammich,Leo's Lounge,9,,,,,,,,,,,,,,,,,,9/26/2025
-Curry,Leo's Lounge,5,240,,,,,,,,,,,,,,,,,9/26/2025
-Samosa,Leo's Lounge,5,,,,,,,,,,,,,,,,,,9/26/2025
-Naan,Leo's Lounge,4.25,270,,,,,,,,,,,,,,,,,9/26/2025
-Ramen,Leo's Lounge,2,,,,,,,,,,,,,,,,,,9/26/2025
-Pizza Pops,Leo's Lounge,2.25,,,,,,,,,,,,,,,,,,9/26/2025
-Jamaican Patty,Leo's Lounge,1.5,,,,,,,,,,,,,,,,,,9/26/2025
-Breakfast Sammy,Leo's Lounge,2.5,,,,,,,,,,,,,,,,,,9/26/2025
-Build Your Own Sandwich,Urban Deli,9.2,,,,,,,,,,,,,,,,,,9/26/2025
-Ham & Swiss Sandwich,Urban Deli,9.9,530,,N,N,,N,,,,,,,,,,,,9/26/2025
-Caprese Sandwich,Urban Deli,9.2,570,,N,N,,N,,,,,,,,,,,,9/26/2025
-Grilled Cheese with Tomato Soup,Urban Deli,6.75,,,,,,,,Could Check back and look for appropriate tags,,,,,,,,,,9/26/2025
-Beef Brie Sandwich,Urban Deli,9.9,490,,N,N,,N,,,,,,,,,,,,9/26/2025
-Grilled Vegetables & Hummus on Multipgrain Ciabatta Sandwich,Urban Deli,9.2,430,,Y,N,,Y,,,,,,,,,,,,9/26/2025
-Baked Falafel,Urban Deli,8.9,,,,,,,,Could Check back and look for appropriate tags,,,,,,,,,,9/26/2025
-Potato Caesar Salad,Urban Deli,4.8,420,,N,N,,N,,,,,,,,,,,,9/26/2025
-Classic Beef Burrito,La Cocina,10.35,740,,,,,,,,,,,,,,,,,9/26/2025
-Grilled Chicken Rice Bowl,La Cocina,10.35,690,,,,,,,,,,,,,,,,,9/26/2025
-Chicken Tinga Burrito,La Cocina,10.35,700,,,,,,,,,,,,,,,,,9/26/2025
-Big Bean Quesadilla,La Cocina,9.8,800,,,,,,,,,,,,,,,,,9/26/2025
-Chicken Tinga Burrito,La Cocina,10.6,800,,,,,,,,,,,,,,,,,9/26/2025
-3 Sisters Burrito,La Cocina,10.15,,,,,,,,,,,,,,,,,,9/26/2025
-Chicken Quesadilla,La Cocina,7.5,,,,,,,,,,,,,,,,,,9/26/2025
-Lightlife Burger,Burger 101,9.2,,,,,,,,,,,,,,,,,,9/26/2025
-Hamburger,Burger 101,8,470,,,,,,,,,,,,,,,,,9/26/2025
-Poutine,Burger 101,9.6,1400,,,,,,,,,,,,,,,,,9/26/2025
-Vegetarian Poutine,Burger 101,9.6,,,,,,,,,,,,,,,,,,9/26/2025
-Butter Chicken Poutine,Burger 101,11.9,,,,,,,,,,,,,,,,,,9/26/2025
-Classic French Fry,Burger 101,4.9,1130,,,,,,,,,,,,,,,,,9/26/2025
-Chipotle Pulled Pork Poutine,Burger 101,11.9,,,,,,,,,,,,,,,,,,9/26/2025
-Spicy Spiral Fries,Burger 101,4.8,,,,,,,,,,,,,,,,,,9/26/2025
-Value Pick - Sliders,Burger 101,6.95,,,,,,,,,,,,,,,,,,9/26/2025
-Crispy Chicken Sandwich,Colonel by Chicken,9.7,620,,,,,,,,,,,,,,,,,9/26/2025
-5 Piece Chicken Wings,Colonel by Chicken,7.3,,,,,,,,,,,,,,,,,,9/26/2025
-"Combo - Wedges, Fry Sauce & a Fountain Beverage",Colonel by Chicken,5.9,,,,,,,,,,,,,,,,,,9/26/2025
-Potato Wedges with Fry Sauce,Colonel by Chicken,4.2,760,,,,,,,,,,,,,,,,,9/26/2025
-Nashville Hot Chicken Sandwich,Colonel by Chicken,9.7,680,,,,,,,,,,,,,,,,,9/26/2025
-Backed Mac & Cheese,Colonel by Chicken,4.5,,,,,,,,,,,,,,,,,,9/26/2025
-3 Piece Chicken Strips,Colonel by Chicken,7.75,,,,,,,,,,,,,,,,,,9/26/2025
-Snack Wraps,Colonel by Chicken,6.5,,,,,,,,,,,,,,,,,,9/26/2025
-Pepperoni Pizza Slice,The Market Pizzeria,5.2,570,,,,,,,,,,,,,,,,,9/26/2025
-Whole Cheese Pizza,The Market Pizzeria,25,2720,,,,,,,,,,,,,,,,,9/26/2025
-Whole Pepperoni Pizza,The Market Pizzeria,25,3440,,,,,,,,,,,,,,,,,9/26/2025
-Cheese Pizza Slice,The Market Pizzeria,5.2,450,,,,,,,,,,,,,,,,,9/26/2025
-Meat Lasagna,The Market Pizzeria,10.5,,,,,,N,,,,,,,,,,,,9/26/2025
-Lasagna,The Market Pizzeria,10.5,,,,,,Y,,,,,,,,,,,,9/26/2025
-Salmon Sushi Combo,Bento Boxes,17,,,,,,,,,,,,,,,,,,9/26/2025
-California Roll,Bento Boxes,9,,,,,,,,,,,,,,,,,,9/26/2025
-Vegetarian California Roll,Bento Boxes,9,,,,,,,,,,,,,,,,,,9/26/2025
-Dynamite Crunch Roll,Bento Boxes,12,389,,,,,,,,,,,,,,,,,9/26/2025
-Dynamite Roll,Bento Boxes,11,390,,,,,,,,,,,,,,,,,9/26/2025
-Spicy California Roll,Bento Boxes,10,,,,,,,,,,,,,,,,,,9/26/2025
-Spicy California Crunch Roll,Bento Boxes,10,,,,,,,,,,,,,,,,,,9/26/2025
-California Nigiri Combo,Bento Boxes,15,,,,,,,,,,,,,,,,,,9/26/2025
-Salmon Avocado Roll,Bento Boxes,12,,,,,,,,,,,,,,,,,,9/26/2025
-Spicy Salmon Roll,Bento Boxes,12,,,,,,,,,,,,,,,,,,9/26/2025
-Tuna Poke Bowl,Bento Boxes,15,660,,,,,,,,,,,,,,,,,9/26/2025
-Salmon Poke Bowl,Bento Boxes,15,710,,,,,,,,,,,,,,,,,9/26/2025
-Spicy California Poke Bowl,Bento Boxes,15,740,,,,,,,,,,,,,,,,,9/26/2025
-Tofu Poke Bowl,Bento Boxes,15,660,,,,,,,,,,,,,,,,,9/26/2025
-Tempura Shrimp Poke Bowl,Bento Boxes,15,,,,,,,,,,,,,,,,,,9/26/2025
-Donburi Beef,Bento Boxes,12,579,,,,,,,,,,,,,,,,,9/26/2025
-Donburi Chicken,Bento Boxes,12,599,,,,,,,,,,,,,,,,,9/26/2025
-Donburi Inari Tofu,Bento Boxes,12,580,,,,,,,,,,,,,,,,,9/26/2025
-Donburi Shrimp Tempura,Bento Boxes,12,,,,,,,,,,,,,,,,,,9/26/2025
-Seaweed Salad,Bento Boxes,6,90,,,,,,,,,,,,,,,,,9/26/2025
-Chicken Shawarma Plate,Shawarma Palace,20,,,,,,,,,,,,,,,,,,9/26/2025
-Chicken Shawarma Combo,Shawarma Palace,14,,,,,,,,,,,,,,,,,,9/26/2025
-Mixed Shawarma Sandwich,Shawarma Palace,10.5,,,,,,,,,,,,,,,,,,9/26/2025
-Falafel Sandwich,Shawarma Palace,9.5,,,,,,,,,,,,,,,,,,9/26/2025
-Chicken Salad Wrap,Shawarma Palace,15,,,,,,,,,,,,,,,,,,9/26/2025
-Chicken Shawarma Sandwich,Shawarma Palace,9.5,,,,,,,,,,,,,,,,,,9/26/2025
-Beef Shawarma Plate,Shawarma Palace,20,,,,,,,,,,,,,,,,,,9/26/2025
-Beef Shawarma Combo,Shawarma Palace,14,,,,,,,,,,,,,,,,,,9/26/2025
-Mixed Shawarma Plate,Shawarma Palace,21,,,,,,,,,,,,,,,,,,9/26/2025
-Mixed Shawarma Combo,Shawarma Palace,15,,,,,,,,,,,,,,,,,,9/26/2025
-Falafel Plate,Shawarma Palace,18,,,,,,,,,,,,,,,,,,9/26/2025
-Falafel Combo,Shawarma Palace,14,,,,,,,,,,,,,,,,,,9/26/2025
-Beef Shawarma Sandwich,Shawarma Palace,9.5,,,,,,,,,,,,,,,,,,9/26/2025
-Tabouli,Shawarma Palace,7,,,,,,,,,,,,,,,,,,9/26/2025
-Greek Salad,Shawarma Palace,7,,,,,,,,,,,,,,,,,,9/26/2025
-Garlic Potatoes,Shawarma Palace,7,,,,,,,,,,,,,,,,,,9/26/2025
-Rocky Road Brownie,CT-Pastry,3.45,260,,,,,,,,,,,,,,,,,9/26/2025
-Macaroon Square,CT-Pastry,3.45,430,,,,,,,,,,,,,,,,,9/26/2025
-Chocolate Chunk Cookie,CT-Pastry,3,390,,,,,,,,,,,,,,,,,9/26/2025
-Date Square,CT-Pastry,3.45,340,,,,,,,,,,,,,,,,,9/26/2025
-Gluten Free Brownie,CT-Pastry,3.45,430,,,Y,,,,,,,,,,,,,,9/26/2025
-Carrot Cake,CT-Pastry,5.9,450,,,,,,,,,,,,,,,,,9/26/2025
-Key Lime Cheesecake,CT-Pastry,5.9,450,,,,,,,,,,,,,,,,,9/26/2025
-Chocolate Chip Cookie,Tunnel Junction,3.1,390,,N,N,,Y,,Uses Carleton labelling - Can rule out the empties as no,,,,,,,,,,9/26/2025
-Coconut Muffin,Tunnel Junction,3.3,330,,N,N,,Y,,,,,,,,,,,,9/26/2025
-"Carrot, Pineapple & Pumpkin Seed Muffin",Tunnel Junction,3.3,330,,N,N,,Y,,,,,,,,,,,,9/26/2025
-Apple Bran Muffin,Tunnel Junction,3.3,290,,N,N,,Y,,,,,,,,,,,,9/26/2025
-Blueberry Crumble Muffin,Tunnel Junction,3.3,310,,N,N,,Y,,,,,,,,,,,,9/26/2025
-Double Chocolate Muffin,Tunnel Junction,3.3,330,,N,N,,Y,,,,,,,,,,,,9/26/2025
-Yogurt & Berries Parfait,Tunnel Junction,5.7,310,,N,N,,Y,,,,,,,,,,,,9/26/2025
-Chicken Caesar Wrap,Tunnel Junction,8.2,570,,N,N,,N,,,,,,,,,,,,9/26/2025
-Buffalo Chicken Wrap,Tunnel Junction,8.2,460,,N,N,Y,,,,,,,,,,,,,9/26/2025
-Greek Falafel Wrap,Tunnel Junction,7.6,580,,Y,N,,Y,,,,,,,,,,,,9/26/2025
-Vegetable Market Wrap,Tunnel Junction,7.6,460,,N,N,,Y,,,,,,,,,,,,9/26/2025
-Egg Salad Sandwich,Tunnel Junction,6.7,270,,Y,N,,Y,,,,,,,,,,,,9/26/2025
-Tuna Salad Sandwich,Tunnel Junction,6.7,370,,N,N,,N,,,,,,,,,,,,9/26/2025
-Ham & Swiss Sandwich,Tunnel Junction,6.7,310,,N,N,,N,,,,,,,,,,,,9/26/2025
-Egg Salad Sandwich,Tunnel Junction,6.7,270,,N,N,,Y,,,,,,,,,,,,9/26/2025
-Greek Pasta Salad,Tunnel Junction,5.7,790,,N,N,,N,,,,,,,,,,,,9/26/2025
-Chicken Caesar Salad,Tunnel Junction,9,500,,N,N,,N,,,,,,,,,,,,9/26/2025
-Breakfast Pastries & Fruit,Riverbank Social,9.99,,,,,,,,,,,,,,,,,,10/12/2025
-Ham & Cheese Croissant,Riverbank Social,8.5,,,,,,,,,,,,,,,,,,10/12/2025
-Smoked Salmon Bagel,Riverbank Social,13.99,,,,,,,,,,,,,,,,,,10/12/2025
-Greek Yogurt & Chia Bowl,Riverbank Social,10.99,,,,Y,,Y,,,,,,,,,,,,10/12/2025
-Breakfast Express,Riverbank Social,9.99,,,,,,,,,,,,,,,,,,10/12/2025
-Breakfast Extress Deluxe,Riverbank Social,12.75,,,,,,,,,,,,,,,,,,10/12/2025
-Breakfast Bowl,Riverbank Social,14.99,,,,,,,,,,,,,,,,,,10/12/2025
-French Toast,Riverbank Social,9.99,,,,,,,,,,,,,,,,,,10/12/2025
-Toast,Riverbank Social,3.75,,,,,,,,,,,,,,,,,,10/12/2025
-Buttered Croissant,Riverbank Social,3.99,,,,,,,,,,,,,,,,,,10/12/2025
-Kettleman's Bagel,Riverbank Social,2.99,,,,,,,,,,,,,,,,,,10/12/2025
-Turkey Sausage,Riverbank Social,3.99,,,,,Y,,,,,,,,,,,,,10/12/2025
-Home Fries,Riverbank Social,4.25,,,,,,,,,,,,,,,,,,10/12/2025
-Cream Cheese,Riverbank Social,2,,,,,,,,,,,,,,,,,,10/12/2025
-Free Range Egg,Riverbank Social,2,,,,,,,,,,,,,,,,,,10/12/2025
-Bacon,Riverbank Social,2.99,,,,,,,,,,,,,,,,,,10/12/2025
-Smoked Ham,Riverbank Social,2.99,,,,Y,,,Y,,,,,,,,,,,10/12/2025
-Side of Fresh Fruit,Riverbank Social,4.99,,,,Y,,,Y,,,,,,,,,,,10/12/2025
-Leafy Greens Salad,Riverbank Social,10,,,,Y,,,Y,,,,,,,,,,,10/12/2025
-Caesar Salad,Riverbank Social,10,,,,,,,,,,,,,,,,,,10/12/2025
-Beets & Frisée,Riverbank Social,12,,,,Y,,,Y,,,,,,,,,,,10/12/2025
-House-Made Focaccia,Riverbank Social,6,,,,,,,,,,,,,,,,,,10/12/2025
-Chef's Inspiration Soup,Riverbank Social,8,,,,,,,,,,,,,,,,,,10/12/2025
-Daily Pizza,Riverbank Social,15,,,,,,,,,,,,,,,,,,10/12/2025
-Chef's Feature Piadina,Riverbank Social,14,,,,,,,,,,,,,,,,,,10/12/2025
-Cone of Freshly Cut Fries,Riverbank Social,6,,,,,,,,,,,,,,,,,,10/12/2025
-Sweet Potato Fries with Roasted Garlic,Riverbank Social,8,,,,,,,,,,,,,,,,,,10/12/2025
-Grilled Grain-Fed Chicken,Riverbank Social,10,,,,Y,Y,,Y,,,,,,,,,,,10/12/2025
-Pan-Seared ASC Salmon Filet,Riverbank Social,10,,,,Y,,,Y,,,,,,,,,,,10/12/2025
-Tiger Prawns,Riverbank Social,9,,,,Y,,,Y,,,,,,,,,,,10/12/2025
-Cheesesticks,Mike's Place,7.99,,,,,,Y,,,,,,,,,,,,10/1/2025
-Vegetable Samosa,Mike's Place,4.49,,,,,,Y,,,,,,,,,,,,10/1/2025
-Chicken Samosa,Mike's Place,4.99,,,,,Y,,,,,,,,,,,,,10/1/2025
-Nacho Chips & Salsa,Mike's Place,4.29,,,,,,Y,,,,,,,,,,,,10/1/2025
-Popcorn Shrimp,Mike's Place,7.49,,,,,,Y,,,,,,,,,,,,10/1/2025
-Vegetable Spring Rolls,Mike's Place,5.99,,,,,,Y,,,,,,,,,,,,10/1/2025
-Pretzel,Mike's Place,5.99,,,,,,Y,,,,,,,,,,,,10/1/2025
-French Fries,Mike's Place,4.49,,,,,,Y,,,,,,,,,,,,10/1/2025
-Garlic Cheese Bread,Mike's Place,7.99,,,,,,Y,,,,,,,,,,,,10/1/2025
-Poutine,Mike's Place,8.99,,,,,,Y,,,,,,,,,,,,10/1/2025
-4 Cheese Spinach Dip,Mike's Place,9.99,,,,,,Y,,,,,,,,,,,,10/1/2025
-Starter Salad,Mike's Place,4.99,,,,,,Y,,,,,,,,,,,,10/1/2025
-Entrée Salad,Mike's Place,7.99,,,,,,Y,,,,,,,,,,,,10/1/2025
-Mandarin Chicken Salad,Mike's Place,9.99,,,,,,,,,,,,,,,,,,10/1/2025
-Chicken Tenders with Dip,Mike's Place,17.99,,,,,Y,,,,,,,,,,,,,10/1/2025
-Vegetable Nachos,Mike's Place,19.99,,,,Y,,Y,,,,,,,,,,,,10/1/2025
-Chicken Nachos,Mike's Place,19.99,,,,Y,Y,,,,,,,,,,,,,10/1/2025
-Blackbean Nachos,Mike's Place,8.99,,,,Y,,Y,,,,,,,,,,,,10/1/2025
-Tandoori Chicken Stuffed Naan,Mike's Place,8.99,,,,,Y,,,,,,,,,,,,,10/1/2025
-Sundried Tomato Stuffed Naan,Mike's Place,9.99,,,,,,Y,,,,,,,,,,,,10/1/2025
-Chicken Quesadillia,Mike's Place,9.99,,,,,Y,,,,,,,,,,,,,10/1/2025
-Black Bean Quesadillia,Mike's Place,9.99,,,,,,Y,,,,,,,,,,,,10/1/2025
-BBQ Chicken Pizza,Mike's Place,9.99,,,,,Y,,,,,,,,,,,,,10/1/2025
-Chicken Burger,Mike's Place,8.99,,,,,Y,,,,,,,,,,,,,10/1/2025
-Chickpea Curry,Mike's Place,8.99,,,,,,Y,,,,,,,,,,,,10/1/2025
-Butter Chicken,Mike's Place,9.79,,,,,Y,,,,,,,,,,,,,10/1/2025
-Chicken Curry,Mike's Place,9.49,,,,,Y,,,,,,,,,,,,,10/1/2025
-Hand Batter MSC Certified Fish & Chips,Oasis,15,990,,,,,,,Uses Carleton labelling - Can rule out the empties as no,,,,,,,,,,10/12/2025
-Hand Breaded Eggplant Parmesan Sandwich,Oasis,11.5,450,,,,,Y,,,,,,,,,,,,10/12/2025
-Smoky Italian Sausage,Oasis,11,680,,,,,,,,,,,,,,,,,10/12/2025
-Colonel By Chicken Sandwich,Oasis,9.1,460,,,,Y,,,,,,,,,,,,,10/12/2025
-Chicken Fingers,Oasis,11.5,980,,,,,,,,,,,,,,,,,10/12/2025
-Hamburger,Oasis,7.5,470,,,,Y,,,Can upgrade burger to Lightlife patty for Vegan,,,,,,,,,,10/12/2025
-Cheeseburger,Oasis,8.9,530,,,,Y,,,Can upgrade burger to Lightlife patty for Vegan,,,,,,,,,,10/12/2025
-Bacon Cheeseburger,Oasis,10.8,570,,,,,,,Can upgrade burger to Lightlife patty for Vegan,,,,,,,,,,10/12/2025
-Margherita Pizza,Oasis,14,1520,,,,,Y,,,,,,,,,,,,10/12/2025
-Five Cheese Pizza,Oasis,14,1320,,,,,Y,,,,,,,,,,,,10/12/2025
-Create Your Own Pizza,Oasis,16.2,1030,,,,,,,,,,,,,,,,,10/12/2025
-Fresh Cut Fries,Oasis,4.4,770,,Y,,,,,,,,,,,,,,,10/12/2025
-Poutine,Oasis,8.9,1040,,,,,,,,,,,,,,,,,10/12/2025
-Poutine with Chicken,Oasis,11.65,1220,,,,,,,,,,,,,,,,,10/12/2025
-Poutine with Bacon,Oasis,11.65,1220,,,,,,,,,,,,,,,,,10/12/2025
-Poutine with Beef,Oasis,11.65,1220,,,,,,,,,,,,,,,,,10/12/2025
-Nachos,Oasis,13,470,,,,,Y,,,,,,,,,,,,10/12/2025
-Nachos with Chicken,Oasis,15.75,650,,,,Y,,,,,,,,,,,,,10/12/2025
-Nachos with Beef,Oasis,15.75,650,,,,Y,,,,,,,,,,,,,10/12/2025
-Freshly Cut French Fries,Rodney's Kitchen,4.9,1130,,,,,,,Cross Contamination may occur during preparation,,,,,,,,,,10/12/2025
-Classic Poutine,Rodney's Kitchen,9.6,1500,,,,,,,,,,,,,,,,,10/12/2025
-Hamburger,Rodney's Kitchen,8,500,,,,,,,,,,,,,,,,,10/12/2025
-Bacon Cheeseburger,Rodney's Kitchen,11.5,650,,,,,,,,,,,,,,,,,10/12/2025
-Lightlife Burger,Rodney's Kitchen,9.2,520,,Y,,,,,,,,,,,,,,,10/12/2025
-Italian Sausage of Portuguese Bun,Rodney's Kitchen,9,600,,,,,,,,,,,,,,,,,10/12/2025
-Colonel By Chicken Sandwich,Rodney's Kitchen,9.7,620,,,,Y,,,,,,,,,,,,,10/12/2025
-5 Piece Chicken Wings,Rodney's Kitchen,7.3,510,,,,,,,,,,,,,,,,,10/12/2025
-5 Piece Chicken Wings Meal,Rodney's Kitchen,13.2,1400,,,,,,,,,,,,,,,,,10/12/2025
-Burger Patty,Rodney's Kitchen,3.5,230,,,Y,,,,,,,,,,,,,,10/12/2025
-Lightlife Patty,Rodney's Kitchen,4.2,270,,Y,,,,,,,,,,,,,,,10/12/2025
-Cheese Slice,Rodney's Kitchen,1.75,60,,,,,,,,,,,,,,,,,10/12/2025
-Bacon,Rodney's Kitchen,2.5,70,,,Y,,,,,,,,,,,,,,10/12/2025
-Gravy,Rodney's Kitchen,2.25,50,,,Y,,,,,,,,,,,,,,10/12/2025
-Gluten Free Bun,Rodney's Kitchen,1.6,220,,,Y,,,,,,,,,,,,,,10/12/2025
-Pad Thai,Thai Kitchen,16,,,,,,,,,,,,,,,,,,10/12/2025
-Thai Basic Pork Stir-Fry with Jasmine Rice,Thai Kitchen,16,,,,,,,,,,,,,,,,,,10/12/2025
-Thai Fried Rice,Thai Kitchen,16,,,,,,,,,,,,,,,,,,10/12/2025
-Pad See-Ew,Thai Kitchen,16,,,,,,,,,,,,,,,,,,10/12/2025
-Khao Soi Noodle Soup,Thai Kitchen,18,,,,,,,,,,,,,,,,,,10/12/2025
-Green Chicken Curry with Jasmine Rice,Thai Kitchen,16,,,,,,,,,,,,,,,,,,10/12/2025
-Mango Sticky Rice,Thai Kitchen,15,,,,,,,,,,,,,,,,,,10/12/2025
-Honey Mustard Ham Snackwich,Subway,4,320,,,,,,,,,,,,,,,,,10/01/2025
-Turkey Ranch Snackwich,Subway,4,350,,,,,,,,,,,,,,,,,10/01/2025
-B.L.T Snackwich,Subway,4,400,,,,,,,,,,,,,,,,,10/01/2025
-Three Cheese Snackwich,Subway,4,350,,,,,,,,,,,,,,,,,10/01/2025
-Piri-Piri Chicken Bowl,Subway,13.66,610,,,,,,,,,,,,,,,,,10/01/2025
-Southwest Steak & Avocado Bowl,Subway,13.66,630,,,,,,,,,,,,,,,,,10/01/2025
-Rotisserie-Style Chicken Bowl,Subway,13.66,580,,,,,,,,,,,,,,,,,10/01/2025
-Sweet Onion Chicekn Teriyaki,Subway,13.66,510,,,,,,,,,,,,,,,,,10/01/2025
-Steak Bowl,Subway,13.66,560,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Chicken Rancher Sub",Subway,9.59,560,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Chicken Rancher Sub",Subway,15.09,1120,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Nashville-Style Hot Chicken Sub",Subway,9.59,590,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Nashville-Style Hot Chicken Sub",Subway,14.99,1180,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Teriyaki Crunch Sub",Subway,9.19,540,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Teriyaki Crunch Sub",Subway,13.19,1080,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Piri-piri Chicken Sub",Subway,8.99,510,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Piri-Piri Chicken Sub",Subway,13.29,1020,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Steak and Bacon Sub",Subway,11.39,600,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Steak and Bacon Sub",Subway,18.19,1200,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Bourbon Brisket Sub",Subway,9.99,690,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Bourbon Brisket Sub",Subway,16.59,1380,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Bourbon BBQ Steak & Cheddar Sub",Subway,8.59,520,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Bourbon BBQ Stead & Cheddar Sub",Subway,13.89,1040,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Smashed Avocado & Turkey Sub",Subway,7.69,550,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Smashed Avocado & Turkey Sub",Subway,11.89,1100,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Great Canadian Club Sub",Subway,9.79,480,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Great Canadian Club Sub",Subway,15.69,960,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Big Veggie Sub",Subway,8.89,540,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Big Veggie Sub",Subway,13.89,1080,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Italian B.M.T Sub",Subway,7.79,410,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Italian B.M.T Sub",Subway,12.39,820,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Cold Cut Combo Sub",Subway,5.79,400,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Cold Cut Combo Sub",Subway,8.99,800,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Black Forest Ham Sub",Subway,6.69,290,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Black Forest Ham Sub",Subway,10.99,580,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Turkey Breast Sub",Subway,7.79,290,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Turkey Breast Sub",Subway,12.39,580,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Tuna Sub",Subway,7.69,450,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Tuna Sub",Subway,12.29,900,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Rotisserie-Style Chicken Sub",Subway,8.89,320,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Rotisserie-Style Chicken Sub",Subway,13.69,640,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Steak & Cheese Sub",Subway,9.89,360,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Steak & Cheese Sub",Subway,15.29,720,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Meatball Marinara Sub",Subway,7.19,460,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Meatball Marinara Sub",Subway,11.49,920,,,,,,,,,,,,,,,,,10/01/2025
-"6"" Veggie Delite Sub",Subway,6.09,220,,,,,,,,,,,,,,,,,10/01/2025
-"12"" Veggie Delite Sub",Subway,9.48,440,,,,,,,,,,,,,,,,,10/01/2025
-Spiced Vanilla Filled Ring Donut,Tim Hortons,1.99,320,,,,,,,,,,,,,,,,,09/25/2025
-Maple Brown Butter Scrambled Egg Loaded Box,Tim Hortons,5.99,480,,,,,,,,,,,,,,,,,09/25/2025
-Maple Brown Butter Scrambled Egg Loaded Wraps,Tim Hortons,5.99,510,,,,,,,,,,,,,,,,,09/25/2025
-Maple Brown Butter Scrambled Egg Loaded Croissant,Tim Hortons,5.99,610,,,,,,,,,,,,,,,,,09/25/2025
-Scrambled Egg Loaded Croissant,Tim Hortons,5.49,590,,,,,,,,,,,,,,,,,09/25/2025
-Scrambled Egg Loaded Box,Tim Hortons,5.49,600,,,,,Y,,,,,,,,,,,,09/25/2025
-Blueberry Cheesecake Filled Timbit,Tim Hortons,0.49,50,,,,,,,,,,,,,,,,,09/25/2025
-Scrambled Egg Loaded Wrap,Tim Hortons,5.49,530,,,,,,,,,,,,,,,,,09/25/2025
-Hashbrown,Tim Hortons,2.19,120,,,,,,,,,,,,,,,,,09/25/2025
-Sausage Breakfast Sandwich,Tim Hortons,4.49,530,,,,,,,,,,,,,,,,,09/25/2025
-Bacon Breakfast Sandwich,Tim Hortons,4.49,330,,,,,,,,,,,,,,,,,09/25/2025
-Egg & Cheese Breakfast Sandwich,Tim Hortons,3.99,270,,,,,Y,,,,,,,,,,,,09/25/2025
-Double Standard Breakfast Sandwich,Tim Hortons,5.49,580,,,,,,,,,,,,,,,,,09/25/2025
-Simply Sausage Breakfast Sandwich,Tim Hortons,2.99,450,,,,,,,,,,,,,,,,,09/25/2025
-Farmer's Breakfast Sandwich,Tim Hortons,5.49,560,,,,,,,,,,,,,,,,,09/25/2025
-Bagel BELT,Tim Hortons,5.49,490,,,,,,,,,,,,,,,,,09/25/2025
-Farmer's Breakfast Wrap,Tim Hortons,5.49,640,,,,,,,,,,,,,,,,,09/25/2025
-Plain Bagel,Tim Hortons,2.29,290,,,,,,,,,,,,,,,,,09/25/2025
-Everything Bagel,Tim Hortons,2.29,290,,,,,,,,,,,,,,,,,09/25/2025
-Cinnamon Raisin Bagel,Tim Hortons,2.29,290,,,,,,,,,,,,,,,,,09/25/2025
-Four Cheese Bagel,Tim Hortons,2.99,330,,,,,,,,,,,,,,,,,09/25/2025
-Jalapeno Asiago Mozzarella Bagel,Tim Hortons,2.99,320,,,,,,,,,,,,,,,,,09/25/2025
-Sesame Seed Bagel,Tim Hortons,2.29,310,,,,,,,,,,,,,,,,,09/25/2025
-12 Grain Bagel,Tim Hortons,2.29,320,,,,,,,,,,,,,,,,,09/25/2025
-Omelette Bites,Tim Hortons,3.99,250,,,,,,,,,,,,,,,,,09/25/2025
-Reese's Minis Dream Cookies,Tim Hortons,2.29,380,,,,,,,,,,,,,,,,,09/25/2025
-Oreo Chunk Cookie,Tim Hortons,1.69,310,,,,,,,,,,,,,,,,,09/25/2025
-Chocolate Chunk Brookie,Tim Hortons,2.99,410,,,,,,,,,,,,,,,,,09/25/2025
-Lemon Poppyseed Cheesecake Muffin,Tim Hortons,2.59,370,,,,,,,,,,,,,,,,,09/25/2025
-Chocolate Chunk Cookie,Tim Hortons,1.69,310,,,,,,,,,,,,,,,,,09/25/2025
-Double Chocolate Brownie,Tim Hortons,2.99,410,,,,,,,,,,,,,,,,,09/25/2025
-Herb & Garlic Savoury Pastry,Tim Hortons,2.99,240,,,,,,,,,,,,,,,,,09/25/2025
-Raisin Tea Biscuit,Tim Hortons,2.29,250,,,,,,,,,,,,,,,,,09/25/2025
-Chocolate Chip Muffin,Tim Hortons,2.29,420,,,,,,,,,,,,,,,,,09/25/2025
-Fruit Explosion Muffin,Tim Hortons,2.59,360,,,,,,,,,,,,,,,,,09/25/2025
-Wild Blueberry Muffin,Tim Hortons,2.29,380,,,,,,,,,,,,,,,,,09/25/2025
-Carrot Cake with Walnut Muffin,Tim Hortons,2.59,360,,,,,,,,,,,,,,,,,09/25/2025
-Plain Croissant,Tim Hortons,2.29,260,,,,,,,,,,,,,,,,,09/25/2025
-Cheese Croissant,Tim Hortons,2.59,290,,,,,,,,,,,,,,,,,09/25/2025
-Chocolate Croissant,Tim Hortons,2.59,350,,,,,,,,,,,,,,,,,09/25/2025
-Apple Fritter Donut,Tim Hortons,1.69,330,,,,,,,,,,,,,,,,,09/25/2025
-Boston Cream Donut,Tim Hortons,1.69,240,,,,,,,,,,,,,,,,,09/25/2025
-Chocolate Dip Donut,Tim Hortons,1.69,220,,,,,,,,,,,,,,,,,09/25/2025
-Double Chocolate Donut,Tim Hortons,1.69,310,,,,,,,,,,,,,,,,,09/25/2025
-Old Fashioned Plain Donut,Tim Hortons,1.69,280,,,,,,,,,,,,,,,,,09/25/2025
-Honey Cruller Donut,Tim Hortons,1.69,320,,,,,,,,,,,,,,,,,09/25/2025
-Vanilla Dip Donut,Tim Hortons,1.69,250,,,,,,,,,,,,,,,,,09/25/2025
-Canadian Maple Donut,Tim Hortons,1.69,250,,,,,,,,,,,,,,,,,09/25/2025
-Maple Dip Donut,Tim Hortons,1.69,220,,,,,,,,,,,,,,,,,09/25/2025
-Chocolate Glazed Timbit,Tim Hortons,0.39,80,,,,,,,,,,,,,,,,,09/25/2025
-Honey Dip Timbit,Tim Hortons,0.39,50,,,,,,,,,,,,,,,,,09/25/2025
-Birthday Cake Timbit,Tim Hortons,0.39,80,,,,,,,,,,,,,,,,,09/25/2025
-Double Stacked Farmer's Wrap,Tim Hortons,6.49,700,,,,,,,,,,,,,,,,,09/25/2025
-Sausage Farmer's Wrap,Tim Hortons,5.49,640,,,,,,,,,,,,,,,,,09/25/2025
-Bacon Farmer's Wrap,Tim Hortons,5.49,520,,,,,,,,,,,,,,,,,09/25/2025
-Bacon Scrambled Egg Loaded,Tim Hortons,5.29,530,,,,,,,,,,,,,,,,,09/25/2025
-Sausage Classic Bagel,Tim Hortons,5.29,615,,,,,,,,,,,,,,,,,09/25/2025
-Bacon Classic Bagel,Tim Hortons,5.29,495,,,,,,,,,,,,,,,,,09/25/2025
-Bacon & Cheese Omelette Bites,Tim Hortons,3.99,210,,,,,,,,,,,,,,,,,09/25/2025
-Spinach & Egg White Omellete Bites,Tim Hortons,3.99,130,,,,,,,,,,,,,,,,,09/25/2025
+Food Item,Dining Location,Cost,Calories,Nuts,Vegan,Gluten Free,Halal,Vegetarian,No Dairy,Comments,Eggs,Fish,Milk,Peanuts,Sesame,Soy,TreeNuts,Wheat,Last Updated,Food Category
+Peameal Bacon,Teraanga Commons Dining Hall,,45,,F,T,F,F,Y,,N,N,N,N,N,,N,N,10/6/2025,Bacon
+Bacon,Rodney's Kitchen,2.5,70,N,N,Y,N,N,Y,,N,N,N,N,N,N,N,N,1/13/2026,Bacon
+Bacon,Riverbank Social,2.99,,N,N,Y,N,N,Y,2 slices,N,N,N,N,N,N,N,N,1/13/2026,Bacon
+Cinnamon Raisin Bagel,Tim Hortons,2.29,290,N,Y,N,Y,Y,Y,"Enriched wheat flour (wheat flour, niacin, reduced iron, ascorbic acid added as a dough conditioner, thiamine mononitrate, riboflavin, enzyme, folic acid), Water, Raisins, Sugar, Yeast, Salt, Cornmeal, Soybean and/or canola oil, Natural flavour, Cinnamon, Malted barley flour.",N,N,N,N,N,Y,N,Y,9/25/2025,Bagel
+Everything Bagel,Tim Hortons,2.29,290,Y,Y,N,Y,Y,Y,"Enriched wheat flour (wheat flour, niacin, reduced iron, ascorbic acid added as a dough conditioner, thiamine mononitrate, riboflavin, enzyme, folic acid), Water, Sugar, Sesame seeds, Onion, Poppy seeds, Yeast, Salt, Soybean and/or canola oil, Cornmeal, Garlic, Gum arabic, Malted barley flour.",N,N,N,N,Y,Y,N,Y,9/25/2025,Bagel
+Plain Bagel,Tim Hortons,2.29,290,N,Y,N,Y,Y,Y,"Enriched flour (wheat flour, niacin, reduced iron, ascorbic acid added as a dough conditioner, thiamine mononitrate, riboflavin, enzyme, folic acid), Water, Sugar, Soybean and/or canola oil, Yeast, Cornmeal, Salt, Guar gum, Malted barley flour, Enzymes.",N,N,N,,N,Y,,Y,9/25/2025,Bagel
+Mini Everything Bagels,Starbucks,4.25,300,N,N,N,Y,Y,N,,N,N,Y,N,Y,N,N,Y,1/15/2026,Bagel
+Sesame Seed Bagel,Tim Hortons,2.29,310,N,Y,N,Y,Y,Y,"Enriched flour (wheat flour, niacin, reduced iron, ascorbic acid added as a dough conditioner, thiamine mononitrate, riboflavin, enzyme, folic acid), Water, Sesame seeds, Sugar, Soybean and/or canola oil, Yeast, Corn meal, Salt, Guar gum, Gum arabic, Malted barley flour, Enzymes.",N,N,N,N,Y,Y,N,Y,9/25/2025,Bagel
+12 Grain Bagel,Tim Hortons,2.29,320,N,Y,N,Y,Y,Y,"a Tim Hortons 12 Grain Bagel contains gluten, sesame, soy and wheat. a Tim Hortons 12 Grain Bagel does not contain egg, fish, glutamates, milk, mustard, peanuts, shellfish, sulfites or tree nuts.*",N,N,N,N,Y,Y,N,Y,9/25/2025,Bagel
+Jalapeno Asiago Mozzarella Bagel,Tim Hortons,2.99,320,N,N,N,Y,Y,N,"Contains: Milk, Wheat & Gluten May Contain: Sulphites, Egg, Sesame",,N,Y,N,,N,N,Y,9/25/2025,Bagel
+Four Cheese Bagel,Tim Hortons,2.99,330,N,N,N,Y,Y,N,"Contains: Milk, Wheat & Gluten May Contain: Sulphites, Egg, Sesame",,N,Y,N,,N,,Y,9/25/2025,Bagel
+Bacon Classic Bagel,Tim Hortons,5.29,495,N,N,N,,N,N,"Plain Bagel: Enriched Wheat Flour (Wheat Flour, Niacin, Reduced Iron, Thiamin Mononitrate, Riboflavin, Folic Acid) | Water | Sugar | Rye Flour | Salt | Vegetable Oil (Canola Oil or Soybean Oil) | Yeast | Cornmeal | Calcium Propionate (preservative) | Malted Barley Flour | L-Cysteine Egg: Grade A Large Egg Cooking Spray: Canola Oil | Capric/Caprylic Triglycerides | Phosphated Mono- and Diglycerides | Silicon Dioxide | Calcium Stearate | Natural Flavors | Beta Carotene | Propellant Processed American Cheese: Milk | Cream | Water | Sodium Citrate | Salt | Contains 2% or less of: Cheese Culture | Citric Acid | Color Added | Enzymes | Milk Fat | Sorbic Acid (preservative) | Soy Lecithin Bacon: Pork | Water | Salt | Sugar | Smoke Flavoring | Sodium Phosphates | Sodium Erythorbate | Sodium Nitrite",Y,N,Y,N,N,Y,N,Y,9/25/2025,Bagel
+Smoked Meat Bagel,Bridgehead,12.99,,N,N,N,,N,,,N,N,,,N,N,,Y,9/24/2025,Bagel
+Kettleman's Bagel,Riverbank Social,2.99,,N,N,N,Y,Y,,,N,N,N,N,,N,N,Y,1/13/2026,Bagel
+Bagel,Rooster's,3.19,,N,Y,N,Y,Y,Y,Your choice of toasted bagel.,N,N,N,N,,N,N,Y,1/13/2026,Bagel
+Bagel with Cream Cheese,Rooster's,4.88,,N,N,N,N,Y,N,,N,N,Y,N,,N,N,Y,1/13/2026,Bagel
+Toasted Bagel,Rooster's,3.19,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Bagel
+Bagel BELT,Tim Hortons,5.49,490,N,N,N,,N,N,"Choice of Bagel. Butter: Cream (milk), Salt. May contain annatto. Egg: Canada Grade A large egg. Cooking Spray: Canola oil, Coconut oil, Modified palm oil, Soy lecithin, Natural flavour, Dimethyl silicone, Propellants (isobutane, propane). Processed Cheese: Cheese (milk, modified milk ingredients, cream, bacterial culture, salt, microbial enzyme, calcium chloride, annatto, lipase), Modified milk ingredients, Water, Sugars (glucose), Sodium citrate and/or sodium phosphate, Skim milk powder, Salt, Acetic acid, Cultured skim milk powder, Soy lecithin, Soybean oil (for slice separation), Annatto and paprika oleoresin (paprika extract, sunflower oil), Nisin, Carboxymethylcellulose, Citric acid. Bacon: Pork, Water, Salt, Sugar, Smoke flavouring, Sodium phosphates, Sodium erythorbate, Sodium nitrite.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Bagel with Protein
+Sausage Classic Bagel,Tim Hortons,5.29,615,N,N,N,,N,N,"Contains: Wheat, Egg, Milk, Soy Contains gluten (rye, barley)",Y,N,Y,N,N,Y,N,Y,9/25/2025,Bagel with Protein
+"Bacon, Egg & Cheese Bagel",Bridgehead,7.75,,N,N,N,,N,,,Y,N,,,N,N,,Y,9/24/2025,Bagel with Protein
+Egg & Cheese Bagel,Bridgehead,6.95,,N,N,N,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Bagel with Protein
+Smoked Salmon Bagel,Bridgehead,12.99,,N,N,N,,N,,,N,Y,,,N,N,,Y,9/24/2025,Bagel with Protein
+Smoked Salmon Bagel,Riverbank Social,13.99,,N,N,N,N,N,N,Kettleman's sesame bagel with atlantlatic smoked salmon and cream cheese,N,Y,Y,N,Y,N,N,N,1/13/2026,Bagel with Protein
+Green Beans,Teraanga Commons Dining Hall,,35,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Beans
+Edamame,Teraanga Commons Dining Hall,,60,,T,T,T,T,Y,,N,N,N,N,N,N,N,,10/6/2025,Beans
+Deli Roast Beef,Teraanga Commons Dining Hall,,140,,F,F,F,F,Y,Roast Beef,N,N,N,N,N,,N,N,10/6/2025,Beef
+Seasoned Ground Beef,Teraanga Commons Dining Hall,,150,,F,T,F,F,Y,,N,N,,N,,,N,,10/6/2025,Beef
+Donburi Beef,Bento Boxes,12,579,N,N,N,N,N,Y,"Sukiyaki beef with cabbage, carrots and onions over white rice topped with Teriyaki sauce and sesame seeds",N,N,N,N,Y,Y,N,N,1/14/2025,Beef
+Ground Beef (1 kilogram),Teraanga Commons Dining Hall,,,,F,T,F,F,Y,,N,N,N,N,N,N,N,N,10/6/2025,Beef
+Roasted Beets & Basil,Teraanga Commons Dining Hall,,100,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Beets
+Garlic Croutons,Teraanga Commons Dining Hall,,60,,T,F,T,T,N,,N,N,,N,,,N,Y,10/6/2025,Bread
+Garlic Bread,Teraanga Commons Dining Hall,,170,,F,F,T,T,N,,N,N,Y,N,,,N,Y,10/6/2025,Bread
+Gluten Free Bun,Rodney's Kitchen,1.6,220,N,Y,Y,Y,Y,Y,,N,N,N,N,,N,N,Y,1/13/2026,Bread
+Garlic Cheese Bread,Mike's Place,7.99,,,N,N,Y,Y,N,,N,N,Y,N,N,N,,Y,10/1/2025,Bread
+House-Made Focaccia,Riverbank Social,6,,N,N,N,Y,Y,N,,N,N,N,N,N,N,N,Y,1/13/2026,Bread
+Broccoli,Teraanga Commons Dining Hall,,70,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Broccoli
+S'mores Brownie,Teraanga Commons Dining Hall,,200,,F,F,F,F,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Brownie
+Salted Caramel Brownie,Teraanga Commons Dining Hall,,230,,F,F,T,T,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Brownie
+Rocky Road Brownie,CT-Pastry,3.45,260,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,9/26/2025,Brownie
+Strawberry Brownie,Teraanga Commons Dining Hall,,290,,F,F,F,F,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Brownie
+WOW Butter Chocolate Fudge,Teraanga Commons Dining Hall,,300,,T,T,T,T,Y,,N,N,,N,,,N,N,10/6/2025,Brownie
+Blondie,Teraanga Commons Dining Hall,,310,,F,F,T,T,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Brownie
+Chocolate Chunk Brookie,Tim Hortons,2.99,410,N,N,N,Y,Y,N,"Enriched wheat flour, Sugars (sugar, brown sugar), Butter (milk), Semi-sweet chocolate pieces (unsweetened chocolate, sugar, cocoa butter, soy lecithin, natural flavour), Semi-sweet chocolate chunks (sugar, unsweetened chocolate, dextrose, cocoa butter, soy lecithin, natural flavour), Palm oil margarine, Liquid whole eggs, Water, Modified corn starch, Baking powder, Salt, Sodium bicarbonate, Natural flavour. Double Chocolate Brownie: Sugar, Enriched wheat flour (wheat, niacin, reduced iron, thiamine mononitrate, riboflavin, folic acid), Eggs, Margarine (palm oil, soybean oil, water, salt, nonfat dry milk, soy lecithin, distilled monoglycerides, extra virgin olive oil, natural flavour, vitamin D3, vitamin A palmitate, beta-carotene [coluor]), Semi-sweet chocolate (chocolate liquor, sugar, cocoa butter, milkfat, soy lecithin, salt, vanilla), Chocolate chunks (sugar, unsweetened chocolate, dextrose, cocoa butter, soy lecithin, vanilla), Soybean oil, Cocoa processed with alkali, Invert sugar, Water, Natural vanilla flavour, Baking powder (sodium acid pyrophosphate, corn starch, baking soda, mono calcium phosphate), Salt, Soy lecithin.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Brownie
+Double Chocolate Brownie,Tim Hortons,2.99,410,N,N,N,Y,Y,N,"Sugar, Enriched wheat flour (wheat, niacin, reduced iron, thiamine mononitrate, riboflavin, folic acid), Eggs, Margarine (palm oil, soybean oil, water, salt, nonfat dry milk, soy lecithin, distilled monoglycerides, extra virgin olive oil, natural flavour, vitamin D3, vitamin A palmitate, beta-carotene [coluor]), Semi-sweet chocolate (chocolate liquor, sugar, cocoa butter, milkfat, soy lecithin, salt, vanilla), Chocolate chunks (sugar, unsweetened chocolate, dextrose, cocoa butter, soy lecithin, vanilla), Soybean oil, Cocoa processed with alkali, Invert sugar, Water, Natural vanilla flavour, Baking powder (sodium acid pyrophosphate, corn starch, baking soda, mono calcium phosphate), Salt, Soy lecithin.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Brownie
+Gluten Free Brownie,CT-Pastry,3.45,430,N,N,Y,Y,Y,N,,Y,N,Y,N,N,,N,N,9/26/2025,Brownie
+Double Chocolate Brownie,Starbucks,3.95,480,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,1/15/2026,Brownie
+3 Sisters Burrito,La Cocina,10.15,680,N,Y,N,Y,Y,N,"black beans, roasted squash, cron, salsa, jalapeno and guacamole",N,N,Y,N,N,,N,Y,1/15/2026,Burrito
+Chicken Tinga Burrito,La Cocina,10.6,700,N,N,N,Y,N,N,"halal chicken, refried beans, pico de gallo, salsa roja, monterey jack cheese and sour cream",N,N,Y,N,N,,N,Y,1/15/2026,Burrito
+Classic Beef Burrito,La Cocina,10.35,740,N,N,N,Y,N,N,"halal beef, black beans, pico de gallo, corn salsa, monterey jack cheese, sour cream",N,N,Y,N,N,,N,Y,1/15/2026,Burrito
+Chicken Burrito,Bridgehead,12.45,,N,N,N,,N,,,,N,,,N,N,,Y,9/24/2025,Burrito
+Veggie Burrito,Bridgehead,10.95,,N,N,N,Y,Y,,,N,Y,,,N,N,,Y,9/24/2025,Burrito
+Lemon Buttermilk Cake,Teraanga Commons Dining Hall,,140,,F,F,F,F,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Cake
+Vegan No Gluten Chocolate Cake,Teraanga Commons Dining Hall,,150,,T,T,T,T,Y,,N,N,N,N,,,N,N,10/6/2025,Cake
+Black Forest Cake,Teraanga Commons Dining Hall,,190,,F,F,F,F,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Cake
+Vegan Marble Cake,Teraanga Commons Dining Hall,,210,,T,T,T,T,Y,,N,N,N,N,,,N,Y,10/6/2025,Cake
+Caramel Coffee Cake,Teraanga Commons Dining Hall,,300,,F,F,F,F,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Cake
+Orange Cremcicle Cake,Teraanga Commons Dining Hall,,310,,F,F,F,F,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Cake
+Cinnamon Coffee Cake,Starbucks,3.95,330,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Cake
+Carrot Cake,CT-Pastry,5.9,450,N,N,N,Y,Y,N,,Y,N,Y,N,N,,N,Y,9/26/2025,Cake
+Key Lime Cheesecake,CT-Pastry,5.9,450,N,N,N,Y,Y,N,,Y,N,Y,N,N,,N,Y,9/26/2025,Cake
+Carrot Cake,Bridgehead,5.75,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Cake
+Chocalate Cake Pop,Starbucks,3.45,160,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,1/15/2026,Cake Pop
+Cookies & Cream Cake Pop,Starbucks,3.45,160,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,1/15/2026,Cake Pop
+Strawberry Cake Pop,Starbucks,3.45,160,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,1/15/2026,Cake Pop
+Birthday Cake Pop,Starbucks,3.45,170,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,1/15/2026,Cake Pop
+Air Heads,Leo's Lounge,0.5,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,,9/26/2025,Candy
+Candy Bar,Leo's Lounge,2,,,N,,Y,Y,N,,,N,Y,,N,Y,,N,9/26/2025,Candy
+Curried Carrots,Teraanga Commons Dining Hall,,80,,T,T,T,T,,,N,N,,N,,,N,N,10/6/2025,Carrot
+Carrot (1000 gram),Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Carrot
+Cauliflower Bites,Ollies,9.5,,N,N,N,N,Y,N,,N,N,Y,N,N,N,N,N,1/14/2026,Cauliflower
+Parmesan Cheese,Teraanga Commons Dining Hall,,10,,F,T,F,F,N,,N,N,Y,N,N,N,N,N,10/6/2025,Cheese
+Cheese Slice,Rodney's Kitchen,1.75,60,N,N,Y,Y,Y,N,,N,N,Y,N,N,N,N,N,1/13/2026,Cheese
+Cheesesticks,Mike's Place,7.99,,,N,N,Y,Y,N,6. Served with a side of marinara sauce,,N,Y,N,N,N,,Y,10/1/2025,Cheese
+Mozza Sticks,Ollies,8.5,,N,N,N,T,Y,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Cheese
+Cream Cheese,Riverbank Social,2,,N,N,Y,Y,Y,N,,N,N,Y,N,N,N,N,N,1/13/2026,Cheese
+Herb Roasted Chicken,Teraanga Commons Dining Hall,,170,,F,T,F,F,Y,,N,N,,N,N,,N,N,10/6/2025,Chicken
+Five Spice Chicken (90 millilitre),Teraanga Commons Dining Hall,,180,,F,T,F,F,Y,,N,N,N,N,N,N,N,,10/6/2025,Chicken
+Cajun Chicken Thigh,Teraanga Commons Dining Hall,,210,,F,F,F,F,Y,,N,N,,N,,,N,N,10/6/2025,Chicken
+Sweet Onion Chicken Teriyaki,Subway,13.66,510,N,N,N,,N,Y,,N,N,N,N,Y,Y,N,N,10/1/2025,Chicken
+Donburi Chicken,Bento Boxes,12,599,N,N,N,N,N,Y,"Chicken with cabbage, carrots and onions over white rice topped with teriyaki sauce and sesame seeds",N,N,N,N,Y,Y,N,N,1/14/2025,Chicken
+Baked Chicken Thighs,Teraanga Commons Dining Hall,,,,F,T,F,F,Y,,N,N,,N,,,N,N,10/6/2025,Chicken
+Mandarin Chicken Salad,Mike's Place,9.99,,Y,N,N,N,N,Y,"Mixed salad greens, mandarin oranges, sliced almonds and croutons",N,N,N,N,,,Y,Y,10/1/2025,Chicken
+Grilled Grain-Fed Chicken,Riverbank Social,10,,N,N,Y,Y,N,Y,,N,N,N,N,N,N,N,N,1/13/2026,Chicken
+Chicken Fingers,Oasis,11.5,980,N,N,N,N,N,N,,,N,N,N,N,N,N,Y,1/15/2026,Chicken Strips
+3 Piece Chicken Strips,Colonel by Chicken,7.75,,N,N,N,Y,N,Y,Three of our delicious chicken wings plus dipping sauce on the side!,N,N,N,N,N,N,N,Y,1/14/2026,Chicken Strips
+Chicken Tenders with Dip,Mike's Place,17.99,,,N,N,Y,N,Y,"Dip choices are ranch, honey mustard, plum, buffalo or BBQ",,N,N,N,N,N,,N,10/1/2025,Chicken Strips
+Tenders And Fries,Ollies,14,,N,N,N,Y,N,Y,,N,N,N,N,N,N,N,N,1/14/2026,Chicken Strips
+5 Piece Chicken Wings,Rodney's Kitchen,7.3,510,N,N,,N,N,Y,,N,N,N,N,,,N,N,1/13/2026,Chicken Wings
+5 Piece Chicken Wings Meal,Rodney's Kitchen,13.2,1400,N,N,,N,N,Y,,N,N,N,N,,,N,N,1/13/2026,Chicken Wings
+5 Piece Chicken Wings,Colonel by Chicken,7.3,,N,N,N,Y,N,Y,Five of our delicious chicken wings plus dipping sauce on the side!,N,N,N,N,N,N,N,Y,1/14/2026,Chicken Wings
+Wings - 1Lb,Ollies,14,,N,N,N,N,N,Y,,N,N,Y,N,N,N,N,Y,1/14/2026,Chicken Wings
+Chickpeas,Teraanga Commons Dining Hall,,70,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Chickpeas
+Chilli,Rooster's,7.99,,N,N,Y,N,N,Y,,N,N,N,N,N,N,N,N,1/13/2026,Chilli
+Chilli with Bread,Rooster's,8.99,,N,N,N,N,N,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Chilli and bread
+Pita Chips,Teraanga Commons Dining Hall,,25,,T,F,T,T,N,,N,N,,N,,,N,Y,10/6/2025,Chips
+Pita Chips (1 kilogram),Teraanga Commons Dining Hall,,,,T,F,T,T,N,,N,N,,N,,,N,Y,10/6/2025,Chips
+Chips,Leo's Lounge,2.5,,N,Y,,Y,Y,Y,,N,N,N,N,N,,N,N,9/26/2025,Chips
+Pita Dippers,Rooster's,6.09,,N,N,N,Y,Y,,"A generous helping of pita pieces, with two dipping sauces and two veggies of your choice.",N,N,,N,N,N,N,Y,1/13/2026,Chips
+Chicken & Corn Chowder,Teraanga Commons Dining Hall,,,,F,F,F,F,N,"A creamy chowder loaded with chicken breast pieces, corn and potatoes.",N,N,Y,N,N,,N,,10/6/2025,Chowder
+Churros,Ollies,8,,N,N,N,N,N,Y,,N,N,N,N,N,N,N,Y,1/14/2026,Churros
+Apple Cabbage Slaw,Teraanga Commons Dining Hall,,60,,F,T,T,T,,,,N,,N,,,N,N,10/6/2025,Coleslaw
+Jalapeno Coleslaw (1000 gram),Teraanga Commons Dining Hall,,,,F,T,T,T,N,"cabbage, carrot, jalapenos, creamy dressing",N,N,,N,,,N,N,10/6/2025,Coleslaw
+Breakfast Bowl,Riverbank Social,14.99,,N,N,N,Y,N,N,"House made fries with montreal smoked meat, sauteed peppers, onions, cheese curds, sunnyside up egg and hollandaise sauce",Y,N,N,N,N,,N,,1/13/2026,Combo
+Breakfast Express,Riverbank Social,9.99,,N,N,N,N,N,N,"Two eggs with toast, fries, bacon or pork sausage",Y,N,N,N,N,N,N,Y,1/13/2026,Combo
+Breakfast Express Deluxe,Riverbank Social,12.75,,N,N,N,N,N,N,"Two eggs with toast, fries, bacon or pork sausage and fruit",Y,N,N,N,N,N,N,Y,1/13/2026,Combo
+Breakfast Pastries & Fruit,Riverbank Social,9.99,,,N,N,Y,Y,,,Y,N,N,,,N,,Y,1/13/2026,Combo
+Lemon Cookie,Teraanga Commons Dining Hall,,70,,F,F,F,F,N,,,N,Y,N,N,,N,Y,10/6/2025,Cookie
+Sugar Cookie,Teraanga Commons Dining Hall,,110,,F,F,T,T,N,,Y,N,Y,N,N,,N,,10/6/2025,Cookie
+Oatmeal Raisin Cookie,Teraanga Commons Dining Hall,,120,,F,F,T,T,N,,,N,,N,N,,N,,10/6/2025,Cookie
+Chocolate Chip Cookie,Teraanga Commons Dining Hall,,130,,F,F,T,T,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Cookie
+Double Chocolate Cookie,Teraanga Commons Dining Hall,,160,,F,F,T,T,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Cookie
+Raisin Tea Biscuit,Tim Hortons,2.29,250,N,N,N,Y,Y,N,"Contains: Milk, Wheat & Gluten May Contain: Sulphites, Soy, Egg",,N,Y,N,N,,N,Y,9/25/2025,Cookie
+Chocolate Chunk Cookie,Tim Hortons,1.69,310,N,N,N,Y,Y,N,"Enriched wheat flour, Sugars (sugar, brown sugar), Butter (milk), Semi-sweet chocolate pieces (unsweetened chocolate, sugar, cocoa butter, soy lecithin, natural flavour), Semi-sweet chocolate chunks (sugar, unsweetened chocolate, dextrose, cocoa butter, soy lecithin, natural flavour), Palm oil margarine, Liquid whole eggs, Water, Modified corn starch, Baking powder, Salt, Sodium bicarbonate, Natural flavour.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Cookie
+Oreo Chunk Cookie,Tim Hortons,1.69,310,,N,N,Y,Y,N,"Contains: Milk, Wheat & Gluten, Soy, Egg May Contain: Tree Nuts, Peanuts",Y,N,Y,,N,Y,,Y,9/25/2025,Cookie
+Chocolate Chunk Cookie,Starbucks,3.65,320,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,1/15/2026,Cookie
+Fox Cookie,Starbucks,3.95,320,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,1/15/2026,Cookie
+Ginger Molasses Cookie,Starbucks,3.65,350,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Cookie
+Reese's Minis Dream Cookies,Tim Hortons,2.29,380,N,N,N,Y,N,N,"Enriched wheat flour, Sugars (sugar, invert sugar, fancy molasses), White chocolate chunks (sugar, cocoa butter, milk ingredients, soy lecithin, natural flavour), Butter (milk), Palm oil margarine, Milk chocolate chunks (sugar, whole milk powder, cocoa butter, unsweetened chocolate, soy lecithin, salt, natural flavour), Liquid whole eggs, Peanut butter flavoured chips (sugars [sugar, dextrose], modified palm kernel oil, partially defatted peanut flour, skim milk powder, modified palm oil, soy lecithin, salt), Peanut butter (peanuts, icing sugar, hydrogenated vegetable oil [rapeseed, cottonseed, and soybean], salt), Natural flavour, Baking powder, Sodium bicarbonate, Salt. Reese's Mini Peanut Butter Cups: Milk chocolate (sugars [sugar, lactose], cocoa butter, milk ingredients, unsweetened chocolate, lecithin [soy], polyglycerol polyricinoleate), Peanuts, Sugars (sugar, dextrose), Modified palm oil and modified vegetable oil (shea, sunflower and/or safflower), Hydrogenated palm kernel oil, Hydrogenated palm oil, Palm kernel oil, Salt, Polyglycerol polyricinoleate, TBHQ, Citric acid.",N,N,Y,N,N,Y,N,Y,9/25/2025,Cookie
+Chocolate Chunk Cookie,CT-Pastry,3,390,N,N,N,Y,Y,N,,Y,N,Y,N,N,,N,Y,9/26/2025,Cookie
+Chocolate Chip Cookie,Tunnel Junction,3.1,390,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,9/26/2025,Cookie
+Chocolate Chip Cookie,Bridgehead,3.65,,N,N,N,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Cookie
+Ginger Cookie,Bridgehead,3.55,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Cookie
+Granola Cookie,Bridgehead,3.75,,Y,Y,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Cookie
+Peanut Butter Bite,Bridgehead,2.35,,Y,N,N,Y,Y,N,,,N,Y,Y,N,N,,Y,9/24/2025,Cookie
+Peanut Butter Cookie,Bridgehead,3.75,,Y,Y,N,Y,Y,N,,Y,N,Y,Y,N,N,,Y,9/24/2025,Cookie
+Raspberry Scone,Bridgehead,4.95,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Cookie
+Corn,Teraanga Commons Dining Hall,,50,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Corn
+Pogos,Ollies,6.5,,N,N,N,N,N,Y,,N,N,N,N,N,N,N,Y,1/14/2026,Corn Dog
+Dried Cranberries,Teraanga Commons Dining Hall,,25,,T,T,T,T,Y,,N,N,N,N,N,,N,N,10/6/2025,Cranberry
+Baked Apple Croissant,Starbucks,4.45,250,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Croissant
+Butter Croissant,Starbucks,3.95,260,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Croissant
+Plain Croissant,Tim Hortons,2.29,260,N,N,N,Y,Y,N,"Enriched wheat flour, Water, Butter, Margarine (palm oil, canola oil, soy lecithin), Sugar, Yeast, Salt, Whey powder, Dextrose, Xanthan gum, Natural flavour, Wheat gluten, Annatto, Turmeric, Ascorbic acid, Enzymes.",N,N,Y,N,N,Y,N,Y,9/25/2025,Croissant
+Cheese Croissant,Tim Hortons,2.59,290,N,N,N,Y,Y,N,"Enriched wheat flour, Water, Butter, Margarine (palm oil, canola oil, soy lecithin), Sugar, Yeast, Salt, Whey powder, Dextrose, Xanthan gum, Natural flavour, Wheat gluten, Annatto, Turmeric, Ascorbic acid, Enzymes. Cheese Topping: Milk, Modified milk ingredients, Cream, Salt, Bacterial culture, Calcium chloride, Annatto (colour), Microbial enzyme.",N,N,Y,N,N,Y,N,Y,9/25/2025,Croissant
+Chocolate Croissant,Starbucks,4.45,340,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,1/15/2026,Croissant
+Chocolate Croissant,Tim Hortons,2.59,350,N,N,N,Y,Y,N,"Enriched wheat flour, Palm and canola margarine, Water, Chocolate (sugars [sugar, dextrose], unsweetened chocolate, cocoa butter, soy lecithin, vanilla), Sugar, Yeast, Wheat gluten, Salt, Whey powder, Ascorbic acid, Enzymes. Chocolate Topping: Sugars (sugar, glucose [corn syrup]), Water, Caramel colour, Anthocyanins (colour), Cocoa (processed with alkali), Rowanberry fruit extract, Tapioca flour, Natural flavour.",N,N,Y,N,N,Y,N,Y,9/25/2025,Croissant
+Cheddar Croissant,Bridgehead,4.95,,N,N,N,Y,Y,N,,N,N,Y,,N,N,,Y,9/24/2025,Croissant
+Chocolatine Croissant,Bridgehead,4.95,,N,N,N,Y,Y,N,,N,N,Y,,N,N,,Y,9/24/2025,Croissant
+Plain Croissant,Bridgehead,4.95,,N,N,N,Y,Y,N,,N,N,Y,,N,N,,Y,9/24/2025,Croissant
+Buttered Croissant,Riverbank Social,3.99,,N,N,N,Y,Y,N,"A buttered croissant with scrambled eggs, cheddar cheese and bacon or sausage",Y,N,Y,N,N,N,N,Y,1/13/2026,Croissant
+Ham & Swiss Croissant,Starbucks,4.65,290,N,N,N,,N,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Croissant Sandwich
+Scrambled Egg Loaded Croissant,Tim Hortons,5.49,590,N,N,N,Y,Y,N,"Contains: Wheat, Egg, Milk, Soy May contain: Tree nuts (coconut)",Y,N,Y,N,N,Y,,Y,9/25/2025,Croissant Sandwich
+Ham & Cheese Croissant,Riverbank Social,8.5,,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,1/13/2026,Croissant Sandwich
+Cucumber,Teraanga Commons Dining Hall,,10,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Cucumber
+Vanilla Cupcake,Teraanga Commons Dining Hall,,310,,F,F,F,F,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Cupcake
+Chickpea Curry,Teraanga Commons Dining Hall,,150,,F,T,T,T,,,N,N,,N,,,N,N,10/6/2025,Curry
+Curry,Leo's Lounge,5,240,N,,Y,,N,,,N,N,,N,N,N,N,N,9/26/2025,Curry
+Coconut Curry,Bridgehead,12.45,,Y,N,N,,N,,,,N,,,N,N,Y,Y,9/24/2025,Curry
+Butter Chicken,Mike's Place,9.79,,,N,N,Y,N,N,,N,N,Y,N,N,N,,N,10/1/2025,Curry
+Chicken Curry,Mike's Place,9.49,,,N,N,Y,N,,,N,N,,N,N,N,,N,10/1/2025,Curry
+Chickpea Curry,Mike's Place,8.99,,,N,N,Y,Y,,,N,N,,N,N,N,,N,10/1/2025,Curry
+Green Chicken Curry with Jasmine Rice,Thai Kitchen,16,,,N,N,,N,N,,N,,,,N,N,,N,1/15/2026,Curry
+Cauliflower Bulgur Curry,Teraanga Commons Dining Hall,,160,,T,F,T,T,,"lentil, bulgur, cauliflower, red pepper, onion, coconut milk",N,N,,N,,,N,Y,10/6/2025,Curry (Vegetable)
+Hummus,Teraanga Commons Dining Hall,,50,,T,T,T,T,Y,,N,N,N,N,Y,,N,N,10/6/2025,Dip
+4 Cheese Spinach Dip,Mike's Place,9.99,,,N,N,Y,Y,N,,N,N,Y,N,N,N,,N,10/1/2025,Dip
+Blueberry Cheesecake Filled Timbit,Tim Hortons,0.49,50,N,N,N,Y,Y,N,"Blueberry Cheesecake Filled Yeast Timbit: Enriched wheat flour, Filling (water, sugars [sugar, blueberry juice concentrate], cream cheese [milk ingredients, salt, locust bean gum, bacterial culture], modified corn starch, salt, lactic acid, natural flavour, citrus fibre, rowanberry fruit extract, tapioca flour, hydroxypropyl methylcellulose), Water, Palm oil shortening (palm oil and/or modified palm oil), Yeast, Sugars (sugar, dextrose), Soybean oil, Whey powder (milk), Salt, Sodium acid pyrophosphate, Sodium bicarbonate, Mono- and diglycerides, Sodium stearoyl-2-lactylate, Guar gum, Wheat starch, Natural flavour, Ascorbic acid, L-cysteine hydrochloride, Amylase, Xylanase.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Donut
+Honey Dip Timbit,Tim Hortons,0.39,50,N,N,N,Y,Y,N,"Yeast Timbit: Enriched wheat flour, Water, Palm oil shortening (palm oil and/or modified palm oil), Yeast, Sugars (sugar, dextrose), Soybean oil, Whey powder (milk), Salt, Sodium acid pyrophosphate, Sodium bicarbonate, Mono- and diglycerides, Sodium stearoyl-2-lactylate, Guar gum, Wheat starch, Natural flavour, Ascorbic acid, L-cysteine hydrochloride, Amylase, Xylanase. Donut Glaze: Sugar, Water, Rowanberry fruit extract, Guar gum, Tapioca flour, Modified potato starch, Citric acid (ph control), Agar, Xanthan gum.",N,N,Y,N,N,Y,N,Y,9/25/2025,Donut
+Birthday Cake Timbit,Tim Hortons,0.39,80,N,N,N,Y,Y,N,"Birthday Cake Timbit: Enriched wheat flour, Water, Palm oil shortening (palm oil and/or modified palm oil), Sugars (sugar, dextrose), Sugar sprinkles, Defatted soy flour, Soybean oil, Skim milk powder, Yellow corn flour, Sodium acid pyrophosphate, Sodium bicarbonate, Monocalcium phosphate, Natural flavour, Dried egg yolks, Whey powder (milk), Salt, Modified corn starch, Potato flour, Soy flour, Wheat starch, Xanthan gum, Soy lecithin, Mono- and diglycerides, Propylene glycol mono- and diesters of fatty acids, Sodium stearoyl lactylate. Donut Glaze: Sugar, Water, Rowanberry fruit extract, Guar gum, Tapioca flour, Modified potato starch, Citric acid (ph control), Agar, Xanthan gum. Rainbow Sprinkles: Sugar, Dextrin, Tapioca starch, Dried glucose syrup, Natural colours, Beet powder, Turmeric, Spirulina extract, Carnauba wax, Glycerin, Gum arabic.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Donut
+Chocolate Glazed Timbit,Tim Hortons,0.39,80,N,N,N,Y,Y,N,"Chocolate Cake Timbit: Palm oil shortening (palm oil and/or modified palm oil), Enriched wheat flour, Water, Sugar, Cocoa (processed with alkali), Soybean oil, Defatted soy flour, Dried whole milk, Dried egg yolks, Sodium acid pyrophosphate, Sodium bicarbonate, Monocalcium phosphate, Modified corn starch, Mono- and diglycerides, Natural flavours, Polyglycerol esters of fatty acids, Rice starch, Salt, Soy lecithin, Xanthan gum. Donut Glaze: Sugar, Water, Rowanberry fruit extract, Guar gum, Tapioca flour, Modified potato starch, Citric acid (ph control), Agar, Xanthan gum. Donut Glaze: Sugar, Water, Rowanberry fruit extract, Guar gum, Tapioca flour, Modified potato starch, Citric acid (ph control), Agar, Xanthan gum.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Donut
+Chocolate Dip Donut,Tim Hortons,1.69,220,N,N,N,Y,Y,N,"Yeast Donut: Enriched wheat flour, Water, Palm oil shortening (palm oil and/or modified palm oil), Yeast, Sugars (sugar, dextrose), Soybean oil, Whey powder (milk), Salt, Sodium acid pyrophosphate, Sodium bicarbonate, Mono- and diglycerides, Sodium stearoyl-2-lactylate, Guar gum, Wheat starch, Natural flavour, Ascorbic acid, L-cysteine hydrochloride, Amylase, Xylanase. Chocolate Fondant: Sugars (sugar, glucose [corn syrup]), Water, Caramel colour, Anthocyanins (colour), Cocoa (processed with alkali), Rowanberry fruit extract, Tapioca flour, Natural flavour.",N,N,Y,N,N,Y,N,Y,9/25/2025,Donut
+Maple Dip Donut,Tim Hortons,1.69,220,N,N,N,Y,Y,N,"Contains: Milk, Wheat & Gluten May Contain: Soy, Sulphites, Tree Nuts, Egg",,N,Y,N,N,,,Y,9/25/2025,Donut
+Boston Cream Donut,Tim Hortons,1.69,240,,N,N,Y,Y,N,"Contains: Milk, Wheat & Gluten, Sulphites May Contain: Egg, Soy, Tree Nuts",,N,Y,N,N,,,Y,9/25/2025,Donut
+Canadian Maple Donut,Tim Hortons,1.69,250,,N,N,Y,Y,N,"Contains: Wheat, Milk, Soy Contains gluten (barley)",N,N,Y,N,N,Y,N,Y,9/25/2025,Donut
+Vanilla Dip Donut,Tim Hortons,1.69,250,N,N,N,Y,Y,N,"Contains: Milk, Wheat & Gluten May Contain: Tree Nuts, Egg, Soy",,N,Y,N,N,,,Y,9/25/2025,Donut
+Old Fashioned Plain Donut,Tim Hortons,1.69,280,N,N,N,Y,N,N,"White Cake Donut: Enriched wheat flour, Water, Palm oil shortening (palm oil and/or modified palm oil), Sugars (sugar, dextrose), Defatted soy flour, Soybean oil, Skim milk powder, Yellow corn flour, Sodium acid pyrophosphate, Sodium bicarbonate, Monocalcium phosphate, Dried egg yolks, Whey powder (milk), Salt, Modified corn starch, Potato flour, Spice, Soy lecithin, Sodium stearoyl lactylate, Mono- and diglycerides, Propylene glycol of mono- and di-esters of fatty acids, Natural flavour.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Donut
+Double Chocolate Donut,Tim Hortons,1.69,310,N,N,N,Y,Y,N,"Chocolate Cake Donut: Palm oil shortening (palm oil and/or modified palm oil), Enriched wheat flour, Water, Sugar, Cocoa (processed with alkali), Soybean oil, Defatted soy flour, Dried whole milk, Dried egg yolks, Sodium acid pyrophosphate, Sodium bicarbonate, Monocalcium phosphate, Modified corn starch, Mono- and diglycerides, Natural flavours, Polyglycerol esters of fatty acids, Rice starch, Salt, Soy lecithin, Xanthan gum. Chocolate Fondant: Sugars (sugar, glucose [corn syrup]), Water, Caramel colour, Anthocyanins (colour), Cocoa (processed with alkali), Rowanberry fruit extract, Tapioca flour, Natural flavour.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Donut
+Honey Cruller Donut,Tim Hortons,1.69,320,N,N,N,Y,Y,N,"Cruller Donut: Water, Palm oil shortening (palm oil and/or modified palm oil), Wheat starch, Liquid whole eggs, Yellow corn flour, Mono- and diglycerides, Sodium bicarbonate, Sodium acid pyrophosphate, Glucono delta lactone, Salt, Canola oil, Sodium caseinate (milk), Dextrose, Natural flavour. Donut Glaze: Sugar, Water, Rowanberry fruit extract, Guar gum, Tapioca flour, Modified potato starch, Citric acid (ph control), Agar, Xanthan gum.",Y,N,Y,N,N,N,N,Y,9/25/2025,Donut
+Spiced Vanilla Filled Ring Donut,Tim Hortons,1.99,320,N,N,N,Y,Y,N,"Vanilla Filled Yeast Donut: Enriched Wheat Flour | Filling (Spread [Canola Oil, Sugar, Modified Palm and Palm Kernel Oils, Water, Pea Protein, Monoglycerides, Salt, Natural Flavours, Beta-Carotene (Colour)], Sugars [Icing Sugar, Liquid Invert Sugar], Soybean Oil, Natural Flavour) | Water | Palm Oil Shortening (Palm Oil and/or Modified Palm Oil) | Yeast | Sugars (Sugar, Dextrose) | Soybean Oil | Whey Powder (Milk) | Salt | Sodium Acid Pyrophosphate | Sodium Bicarbonate | Mono- and Diglycerides | Sodium Stearoyl-2-Lactylate | Guar Gum | Wheat Starch | Natural Flavour | Ascorbic Acid | L-Cysteine Hydrochloride | Amylase | Xylanase.",N,N,Y,N,N,Y,Y,Y,9/25/2025,Donut
+Apple Fritter Donut,Tim Hortons,1.69,330,N,N,N,Y,Y,N,"Apple Fritter Donut: Enriched wheat flour, Water, Apples (apples, citric acid, calcium chloride, salt), Palm oil shortening (palm oil and/or modified palm oil), Sugars (sugar, dextrose), Yeast, Soybean oil, Whey powder (milk), Cinnamon, Salt, Sodium acid pyrophosphate, Sodium bicarbonate, Mono- and diglycerides, Sodium stearoyl-2-lactylate, Guar gum, Wheat starch, Natural flavour, Ascorbic acid, L-cysteine hydrochloride, Amylase, Xylanase, Sunflower oil. Donut Glaze: Sugar, Water, Rowanberry fruit extract, Guar gum, Tapioca flour, Modified potato starch, Citric acid (ph control), Agar, Xanthan gum.",N,N,Y,N,N,Y,N,Y,9/25/2025,Donut
+Egg White (118 millilitre),Teraanga Commons Dining Hall,,60,,F,T,T,T,Y,,Y,N,N,N,N,N,N,,10/6/2025,Egg
+Hard Cooked Egg (1 piece),Teraanga Commons Dining Hall,,60,,F,T,T,T,Y,,Y,N,N,N,N,N,N,N,10/6/2025,Egg
+Creamy Scrambled Egg,Teraanga Commons Dining Hall,,170,,F,F,T,T,N,,Y,N,Y,N,N,N,N,N,10/6/2025,Egg
+Egg (118 millilitre),Teraanga Commons Dining Hall,,180,,F,T,T,T,Y,,Y,N,N,N,N,N,N,,10/6/2025,Egg
+Maple Brown Butter Scrambled Egg Loaded Box,Tim Hortons,5.99,480,N,N,Y,Y,Y,N,"Contains: Egg, Milk, Soy May contain: Tree nuts (coconut)",Y,N,Y,N,N,Y,,N,9/25/2025,Egg
+Maple Brown Butter Scrambled Egg Loaded Wraps,Tim Hortons,5.99,510,N,N,Y,Y,Y,N,"Contains: Wheat, Egg, Milk, Soy May contain: Tree nuts (coconut)",Y,N,Y,N,N,Y,,Y,9/25/2025,Egg
+Scrambled Egg Loaded Box,Tim Hortons,5.49,600,N,N,N,Y,Y,N,"Contains: Milk, Soy & Egg",Y,N,Y,N,N,Y,N,N,9/25/2025,Egg
+Maple Brown Butter Scrambled Egg Loaded Croissant,Tim Hortons,5.99,610,N,N,Y,Y,Y,N,"Contains: Wheat, Egg, Milk, Soy May contain: Tree nuts (coconut)",Y,N,Y,N,N,Y,,Y,9/25/2025,Egg
+Free Range Egg,Riverbank Social,2,,N,N,T,T,T,N,,Y,N,N,N,N,N,N,N,1/13/2026,Egg
+Roasted Eggplant,Teraanga Commons Dining Hall,,70,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Eggplant
+Energy Bite,Bridgehead,2.35,,Y,N,N,Y,Y,,,,N,,,N,N,Y,Y,9/24/2025,Energy Bite
+Falafel,Teraanga Commons Dining Hall,,210,,T,T,T,T,Y,,N,N,N,N,,,N,,10/6/2025,Falafel
+Spicy Falafel Pocket,Starbucks,5.25,230,N,N,N,N,N,Y,,N,N,N,N,Y,Y,N,Y,1/15/2026,Falafel
+Falafel Combo,Shawarma Palace,14,,N,N,N,Y,Y,Y,,N,N,N,N,,N,N,Y,9/26/2025,Falafel
+Falafel Plate,Shawarma Palace,18,,N,N,N,Y,Y,Y,,N,N,N,N,,N,N,N,9/26/2025,Falafel
+Falafel Sandwich,Shawarma Palace,9.5,,N,N,N,Y,Y,Y,,N,N,N,N,,N,N,Y,9/26/2025,Falafel
+Baked Falafel,Urban Deli,8.9,,N,Y,Y,Y,Y,Y,,N,N,N,N,N,N,N,N,9/26/2025,Falafel
+Tuna Salad (59 millilitre),Teraanga Commons Dining Hall,,90,,F,T,F,F,,,,Y,,N,,,N,,10/6/2025,Fish
+Tuna Salad (80 millilitre),Teraanga Commons Dining Hall,,100,,F,T,F,F,,,,Y,,N,,,N,,10/6/2025,Fish
+Pan-Seared ASC Salmon Filet,Riverbank Social,10,,N,N,Y,N,N,Y,,N,Y,N,N,N,N,N,N,1/13/2026,Fish
+Hand Batter MSC Certified Fish & Chips,Oasis,15,990,N,N,N,N,N,N,,,Y,N,N,N,N,N,Y,1/15/2026,Fish and Chips
+Potato Wedges,Teraanga Commons Dining Hall,,110,,F,F,F,F,,,N,N,,N,N,,N,N,10/6/2025,French Fries
+Potato Wedges with Fry Sauce,Colonel by Chicken,4.2,760,N,N,Y,Y,Y,Y,Our delicious seasoned potato wedges served with our homemade fry sauce,N,N,N,N,N,N,N,N,1/14/2026,French Fries
+Fresh Cut Fries,Oasis,4.4,770,N,Y,Y,Y,Y,Y,,N,N,N,N,N,N,N,N,1/15/2026,French Fries
+Classic French Fry,Burger 101,4.9,1130,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,N,1/14/2026,French Fries
+Freshly Cut French Fries,Rodney's Kitchen,4.9,1130,N,N,Y,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,French Fries
+"Combo - Wedges, Fry Sauce & a Fountain Beverage",Colonel by Chicken,5.9,,N,N,Y,Y,Y,Y,,N,N,N,N,N,N,N,N,1/14/2026,French Fries
+Spicy Spiral Fries,Burger 101,4.8,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,N,1/14/2026,French Fries
+French Fries,Mike's Place,4.49,,,,N,Y,Y,Y,,N,N,N,N,N,N,,N,10/1/2025,French Fries
+Fries,Ollies,5.5,,N,N,N,N,N,Y,,N,N,N,N,N,N,N,N,1/14/2026,French Fries
+Kimchi Fries,Ollies,8,,N,N,N,N,N,Y,,N,N,N,N,N,N,N,N,1/14/2026,French Fries
+Sweet Potato Fries,Ollies,7.5,,N,Y,N,N,N,Y,,N,N,N,N,N,N,N,N,1/14/2026,French Fries
+Cone of Freshly Cut Fries,Riverbank Social,6,,N,N,N,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,French Fries
+Home Fries,Riverbank Social,4.25,,N,N,N,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,French Fries
+Sweet Potato Fries with Roasted Garlic,Riverbank Social,8,,N,N,N,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,French Fries
+Cajun-Style Dirty Rice,Teraanga Commons Dining Hall,,160,,T,T,T,T,Y,"black beans, onion, red pepper, celery, peas, spices, brown rice",N,N,,N,N,,N,N,10/6/2025,Fried Rice
+Thai Fried Rice,Thai Kitchen,16,,,,N,,,,,Y,Y,N,,,Y,,Y,1/15/2026,Fried Rice
+Side of Fresh Fruit,Riverbank Social,4.99,,N,Y,Y,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,Fruits
+Garlic,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Garlic
+Chickpea Panzanella Ricotta Salad,Teraanga Commons Dining Hall,,340,,F,F,F,F,N,"crispy pesto chickpeas, ricotta, kalamata olives, cucumber, tomato, celery, red pepper, capers, balsamic glaze",N,N,Y,N,N,,N,Y,10/6/2025,Grain Salad
+Creamy Chickpea Salad (1000 gram),Teraanga Commons Dining Hall,,,,T,T,T,T,N,"chickpeas,Â celery,Â green onion,Â red pepper,Â italian parsley, tahini lemon garlic vinaigrette",,N,,N,,,N,N,10/6/2025,Grain Salad
+Kale Apple Chickpea Salad (1000 gram),Teraanga Commons Dining Hall,,,,T,T,T,T,,"chickpeas, cauliflower,Â carrot, kale, red onion,Â apple, fresh parsley, maple dijon vinaigrette",N,N,,N,,,N,N,10/6/2025,Grain Salad
+Quinoa Salad,Bridgehead,11.95,,Y,N,Y,Y,Y,,,N,N,,,N,N,N,,9/24/2025,Grain Salad
+Tabouli,Shawarma Palace,7,,N,Y,Y,Y,Y,N,,N,N,N,N,,N,N,N,9/26/2025,Grain Salad
+Fattoush Salad,Teraanga Commons Dining Hall,,60,,F,F,F,F,Y,"pita croutons, lettuce, cucumber, tomato, green pepper, red onion, lemon vinaigrette",N,N,N,N,,Y,N,,10/6/2025,Green Salad
+Seaweed Salad,Bento Boxes,6,90,N,Y,Y,Y,Y,Y,,N,N,N,N,Y,N,N,N,1/14/2025,Green Salad
+Superfood Salad (1000 gram),Teraanga Commons Dining Hall,,,,F,F,T,T,,"chickpeas, couscous, tomato,Â cucumber,Â red onion, kale,Â feta cheese,Â greek vinaigrette",N,N,,N,,,N,,10/6/2025,Green Salad
+Kale Caesar Salad,Bridgehead,11.95,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Green Salad
+Entree Salad,Mike's Place,7.99,,,N,N,Y,Y,Y,"Mixed salad greens, tomatoes and croutons with your choice of dressing",N,N,N,N,N,N,,Y,10/1/2025,Green Salad
+Starter Salad,Mike's Place,4.99,,,N,N,Y,Y,Y,"Mixed salad greens, tomatoes and croutons with your choice of dressing",N,N,N,N,N,N,,Y,10/1/2025,Green Salad
+Garden Salad,Ollies,7.5,,N,N,Y,Y,Y,Y,,Y,Y,N,Y,N,N,Y,N,1/14/2026,Green Salad
+Beets & FrisÃ©e,Riverbank Social,12,,Y,N,Y,N,Y,N,"Local red beets, Frisee, blue cheese, labneh, toasted pecans",N,N,Y,N,N,N,Y,N,1/13/2026,Green Salad
+Caesar Salad,Riverbank Social,10,,N,N,N,N,N,N,,Y,N,N,N,N,N,N,Y,1/13/2026,Green Salad
+Leafy Greens Salad,Riverbank Social,10,,N,Y,Y,Y,Y,N,"Radishes, Fruit D'or Sund-Dried Cranberries, Mini cucumbers, Cherry tomatoes, toasted Pumplin seeds and maple cider vinegrette",N,N,N,N,N,N,N,N,1/13/2026,Green Salad
+Yucatan Salad,Riverbank Social,10,,N,Y,Y,Y,Y,Y,"Leaves, Roasted Sweet Corn, Heirloom, Tomato, Red onion, Avocado, Spicy pea tempeh, tortilla allummette and cilantro vinegrette",N,N,N,N,N,N,Y,N,1/13/2026,Green Salad
+Greek Salad,Shawarma Palace,7,,N,N,Y,Y,Y,N,,N,N,Y,N,,N,N,N,9/26/2025,Green Salad
+Grilled Ham,Teraanga Commons Dining Hall,,30,,F,T,F,F,Y,,N,N,N,N,N,,N,N,10/6/2025,Ham
+Ham (59 millilitre),Teraanga Commons Dining Hall,,30,,F,T,F,F,Y,,N,N,N,N,N,,N,N,10/6/2025,Ham
+Ham (3 slice),Teraanga Commons Dining Hall,,60,,F,T,F,F,Y,,N,N,N,N,N,,N,N,10/6/2025,Ham
+Smoked Ham,Riverbank Social,2.99,,N,N,Y,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,Ham
+Burger Patty,Rodney's Kitchen,3.5,230,N,N,N,N,N,Y,,,N,N,N,N,N,N,N,1/13/2026,Hamburger
+Lightlife Patty,Rodney's Kitchen,4.2,270,N,Y,N,N,Y,N,,N,N,N,N,N,N,N,N,1/13/2026,Hamburger
+Hamburger,Burger 101,8,470,N,N,N,Y,N,N,Our freshly-made patty topped with your favourite condiments,,N,N,N,N,N,N,Y,1/14/2026,Hamburger
+Hamburger,Oasis,7.5,470,N,N,N,Y,N,N,Can upgrade burger to Lightlife patty for Vegan,,N,Y,N,,N,N,Y,1/15/2026,Hamburger
+Hamburger,Rodney's Kitchen,8,500,N,N,N,N,N,N,,,N,Y,N,,N,N,Y,1/13/2026,Hamburger
+Lightlife Burger,Rodney's Kitchen,9.2,520,N,Y,N,N,Y,N,,N,N,Y,N,,N,N,Y,1/13/2026,Hamburger
+Cheeseburger,Oasis,8.9,530,N,N,N,Y,N,N,Can upgrade burger to Lightlife patty for Vegan,,N,Y,N,,N,N,Y,1/15/2026,Hamburger
+Bacon Cheeseburger,Oasis,10.8,570,N,N,N,N,N,N,Can upgrade burger to Lightlife patty for Vegan,,N,Y,N,,N,N,Y,1/15/2026,Hamburger
+Bacon Cheeseburger,Rodney's Kitchen,11.5,650,N,N,N,N,N,N,,,N,Y,N,N,N,N,Y,1/13/2026,Hamburger
+Lightlife Burger,Burger 101,9.2,,N,Y,Y,Y,Y,Y,A plant-based vegan patty on your choice of brioche or gluten-free bun with your selection of toppings,N,N,N,N,N,Y,N,Y,1/14/2026,Hamburger
+Sliders,Burger 101,6.95,,N,N,N,N,N,N,Sliders with lettuce and cheese,,N,Y,N,N,N,N,Y,1/14/2026,Hamburger
+Chicken Burger,Mike's Place,8.99,,,N,N,Y,N,N,,,N,Y,N,N,N,,Y,10/1/2025,Hamburger
+The Goblet of Fire,Ollies,16,,N,N,N,Y,N,N,You can exchange for black been patty in which case GF and Vegetarian,N,N,Y,N,N,N,N,Y,1/14/2026,Hamburger
+The Ring,Ollies,16,,N,N,N,Y,N,N,You can exchange for black been patty in which case GF and Vegetarian,N,N,Y,N,N,N,N,Y,1/14/2026,Hamburger
+The Room,Ollies,16,,N,N,N,Y,N,N,You can exchange for black been patty in which case GF and Vegetarian,N,N,Y,N,N,N,N,Y,1/14/2026,Hamburger
+The Royale,Ollies,14,,N,N,N,Y,N,N,You can exchange for black been patty in which case GF and Vegetarian,N,N,N,N,N,N,N,Y,1/14/2026,Hamburger
+The Royale With Cheese,Ollies,15,,N,N,N,Y,N,N,You can exchange for black been patty in which case GF and Vegetarian,N,N,Y,N,N,N,N,Y,1/14/2026,Hamburger
+Veggie Patty,Rooster's,10.99,,N,Y,,Y,Y,Y,"Half a soy based vegitarian patty, wonderfully seasoned with your choice of toppings.",N,N,N,N,N,Y,N,Y,1/13/2026,Hamburger
+Hash Brown,Teraanga Commons Dining Hall,,60,,N,Y,Y,Y,Y,,N,N,N,N,N,N,N,N,10/6/2025,Hash Browns
+Hashbrown,Tim Hortons,2.19,120,N,Y,Y,Y,Y,Y,"Hash Brown: Potatoes, Canola oil, Salt, Dehydrated potatoes (mono- and diglycerides, sodium acid pyrophosphate and citric acid [to maintain colour]), Sodium acid pyrophosphate (to maintain colour), Sugars (dextrose), Natural flavour.",N,N,N,N,N,N,N,N,9/25/2025,Hash Browns
+HashBrown,Rooster's,1.99,,N,N,Y,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,Hash Browns
+Italian Sausage on Portuguese Bun,Rodney's Kitchen,9,600,N,N,N,N,N,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Hot Dog
+Ice Cream,Leo's Lounge,1,,,N,Y,Y,Y,N,,N,N,Y,,N,,,N,9/26/2025,Ice Cream
+Baby Kale,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Kale
+Korean Lentils,Teraanga Commons Dining Hall,,,,T,F,T,T,Y,,N,N,N,N,,,N,N,10/6/2025,Lentils
+Banana Loaf,Starbucks,4.45,360,N,N,N,Y,Y,Y,,Y,N,N,N,N,Y,N,Y,1/15/2026,Loaf
+Pumpkin & Pepita Loaf,Starbucks,4.45,380,N,N,N,Y,Y,Y,,Y,N,N,N,N,Y,N,Y,1/15/2026,Loaf
+Iced Lemon Loaf,Starbucks,4.45,430,N,N,N,Y,Y,Y,,Y,N,N,N,N,Y,N,Y,1/15/2026,Loaf
+Cherry Lemon Loaf,Bridgehead,3.95,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Loaf
+Chocolate Quinoa Loaf,Bridgehead,3.95,,N,N,Y,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Loaf
+Pumpkin Loaf,Bridgehead,3.95,,,N,N,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Loaf
+Backed Mac & Cheese,Colonel by Chicken,4.5,,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,N,1/14/2026,Macaroni And Cheese
+Apple Bran Muffin,Tunnel Junction,3.3,290,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,9/26/2025,Muffin
+Blueberry Crumble Muffin,Tunnel Junction,3.3,310,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,9/26/2025,Muffin
+"Carrot, Pineapple & Pumpkin Seed Muffin",Tunnel Junction,3.3,330,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,9/26/2025,Muffin
+Coconut Muffin,Tunnel Junction,3.3,330,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,9/26/2025,Muffin
+Double Chocolate Muffin,Tunnel Junction,3.3,330,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,9/26/2025,Muffin
+Blueberry Muffin,Starbucks,3.65,350,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,Y,Y,1/15/2026,Muffin
+Pumpkin Cream Cheese Muffin,Starbucks,3.95,350,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,Y,Y,1/15/2026,Muffin
+Carrot Cake with Walnut Muffin,Tim Hortons,2.59,360,Y,N,N,Y,Y,N,"Enriched wheat flour, Sugars (sugar, corn syrup solids), Water, Carrots, Cream cheese filling (sugars [invert sugar, sugar, dextrose], water, cream cheese [milk], sorbitol, modified corn starch, salt, lactic acid, titanium dioxide, natural flavour, potassium sorbate, sodium benzoate, locust bean gum, xanthan gum, beta-carotene), Soybean and/or canola oils, Liquid whole eggs, Glazed walnuts (walnuts, sugars [sugar, corn syrup], salt, canola oil, soy lecithin, rosemary extract, capsicum oleoresin [soybean oil, chili pepper extractives], citric acid), Pineapple, Buttermilk powder (milk), Modified corn starch, Sodium bicarbonate, Sodium acid pyrophosphate, Salt, Spices, Monocalcium phosphate, Natural flavour, Caramel colour, Lemon juice concentrate, Xanthan gum, Guar gum, Monoglycerides, Amylase.",Y,N,Y,N,N,Y,Y,Y,9/25/2025,Muffin
+Fruit Explosion Muffin,Tim Hortons,2.59,360,N,N,N,Y,Y,N,"Enriched wheat flour, Sugars (sugar, corn syrup solids), Water, Raspberry filling (sugars [sugar, glucose, dried glucose syrup], water, raspberries, modified corn starch, purple carrot juice concentrate [colour], lemon juice concentrate, citric acid [pH control], fruit extract [flavour], tapioca flour, natural flavour, salt, xanthan gum, locust bean gum), Soybean and/or canola oils, Liquid whole eggs, Diced apples (apples, citric acid, calcium chloride, salt), Blueberries, Cranberries, Raspberries, Sweetened dried cranberries (cranberries, sugar, sunflower oil), Sodium acid pyrophosphate, Salt, Sodium bicarbonate, Modified corn starch, Natural flavour, Monocalcium phosphate, Monoglycerides, Guar gum, Xanthan gum, Whey powder (milk), Amylase.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Muffin
+Lemon Poppyseed Cheesecake Muffin,Tim Hortons,2.59,370,N,N,N,Y,Y,N,"Contains: Milk, Wheat & Gluten, Egg May Contain: Tree Nuts, Soy",N,N,Y,N,N,,,Y,9/25/2025,Muffin
+Wild Blueberry Muffin,Tim Hortons,2.29,380,N,N,N,Y,Y,N,"Enriched wheat flour | Sugars (sugar, corn syrup solids) | Water | Wild blueberries | Soybean and/or canola oils | Liquid whole eggs | Buttermilk powder (milk) | Sodium acid pyrophosphate | Salt | Shortening (canola, modified palm and palm kernel oils) | Sodium bicarbonate | Modified corn starch | Natural flavour | Monoglycerides | Guar gum | Monocalcium phosphate | Xanthan gum | Amylase",Y,N,Y,N,N,Y,N,Y,9/25/2025,Muffin
+Chocolate Chip Muffin,Tim Hortons,2.29,420,N,N,N,Y,Y,N,"Enriched wheat flour, Water, Sugars (sugar, corn syrup solids), Semi-sweet chocolate chips (sugars [sugar, dextrose], unsweetened chocolate, cocoa butter, soy lecithin, natural flavour), Soybean and/or canola oils, Liquid whole eggs, Modified corn starch, Salt, Sodium bicarbonate, Sodium acid pyrophosphate, Natural flavour, Monocalcium phosphate, Xanthan gum, Monoglycerides, Guar gum, Whey powder (milk), Amylase.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Muffin
+Apple Cranberry Muffin,Bridgehead,3.95,,N,Y,Y,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Muffin
+Banana Chocolate Muffin,Bridgehead,3.95,,N,Y,Y,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Muffin
+Pumpkin Muffin,Bridgehead,3.95,,N,N,N,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Muffin
+Triple Berry Muffin,Bridgehead,3.95,,N,N,N,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Muffin
+Muffin,Leo's Lounge,1.5,,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,9/26/2025,Muffin
+Mushroom,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Mushroom
+Nachos,Oasis,13,470,N,N,N,N,Y,N,,N,N,Y,N,N,N,N,Y,1/15/2026,Nachos
+Blackbean Nachos,Mike's Place,8.99,,,N,Y,Y,Y,N,,N,N,Y,N,N,N,,Y,10/1/2025,Nachos
+Nacho Chips & Salsa,Mike's Place,4.29,,,N,N,Y,Y,N,,N,N,Y,N,N,N,,Y,10/1/2025,Nachos
+Vegetable Nachos,Mike's Place,19.99,,,N,Y,Y,Y,N,,N,N,Y,N,N,N,,Y,10/1/2025,Nachos
+Nachos with Beef,Oasis,15.75,650,N,N,N,Y,N,N,,N,N,Y,N,N,N,N,Y,1/15/2026,Nachos with Protein
+Nachos with Chicken,Oasis,15.75,650,N,N,N,Y,N,N,,N,N,Y,N,N,N,N,Y,1/15/2026,Nachos with Protein
+Chicken Nachos,Mike's Place,19.99,,,N,Y,Y,N,N,,N,N,Y,N,N,N,,Y,10/1/2025,Nachos with Protein
+Loaded Nachos,Ollies,18,,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Nachos with Protein
+Hoisin Chow Mein Salad (59 millilitre),Teraanga Commons Dining Hall,,40,,F,F,T,T,N,"chow mein noodles,Â napa cabbage,Â cucumber,Â carrot, daikon radish, red peppers, green onion,Â sesame seeds, hoisin ginger vinaigrette",,Y,,N,,Y,N,Y,10/6/2025,Noodles
+Rice Noodles,Teraanga Commons Dining Hall,,70,,T,T,T,T,Y,,N,N,N,N,N,,N,N,10/6/2025,Noodles
+Spicy Chicken Noodle Bowl,Teraanga Commons Dining Hall,,160,,F,F,F,F,,"gochujang chicken, spicy cucumber, green onion, sesame seeds, kimchi, udon noodles",N,,,N,,,N,,10/6/2025,Noodles
+Thai Tofu Stir Fry,Teraanga Commons Dining Hall,,170,,T,T,T,T,Y,"tofu, onion, carrot, snow peas, green pepper, cabbage, sweet and spicy sauce, soy sauce, green onion",N,,N,N,,Y,N,,10/6/2025,Noodles
+Mixed Berry Oat Bar,Teraanga Commons Dining Hall,,190,,T,T,T,T,N,,,N,,N,N,,N,,10/6/2025,Oatmeal
+Rolled & Steel-Cut Oatmeal,Starbucks,3.95,250,N,N,N,Y,Y,Y,,N,N,N,N,N,N,N,N,1/15/2026,Oatmeal
+Oat Bar,Starbucks,3.45,310,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,N,1/15/2026,Oatmeal
+Butter Oats,Bridgehead,6.45,,Y,N,Y,Y,Y,N,,N,N,Y,,N,N,,Y,9/24/2025,Oatmeal
+Oatmeal,Leo's Lounge,0.5,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,N,9/26/2025,Oatmeal
+Black Olives,Teraanga Commons Dining Hall,,25,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Olive
+Spinach & Egg White Omellete Bites,Tim Hortons,3.99,130,N,N,Y,Y,Y,N,"Egg White | Cheddar Cheese (Pasteurized Milk, Bacterial Culture, Salt, Calcium Chloride, Microbial Enzymes) | Water | Spinach | Onions | Modified Corn Starch | Milk Ingredients | Soybean Oil | Modified Milk Ingredients | Salt | Xanthan Gum | Natural Flavor",Y,N,Y,N,N,Y,N,N,9/25/2025,Omelette
+Egg White & Roasted Red Pepper Egg Bites,Starbucks,170,170,N,N,N,,N,N,,Y,N,Y,N,N,N,N,N,1/15/2026,Omelette
+Bacon & Cheese Omelette Bites,Tim Hortons,3.99,210,N,N,N,,N,N,"Whole Egg | Water | Cheddar Cheese (Pasteurized Milk, Bacterial Culture, Salt, Calcium Chloride, Microbial Enzymes, Natural Color [Annatto]) | Bacon (Pork, Water, Salt, Sugar, Brown Sugar, Sodium Phosphate, Potassium Chloride, Flavor, Sodium Erythorbate, Sodium Nitrite, Spices, Smoke) | Cornstarch | Milk Ingredients | Soybean Oil | Natural Flavors | Salt | Sodium Bicarbonate | Xanthan Gum | Citric Acid",Y,N,Y,N,N,Y,N,N,9/25/2025,Omelette
+Omelette Bites,Tim Hortons,3.99,250,N,N,N,,N,N,"Spinach & Egg White Omelette Bites: Egg White | Cheddar Cheese (Pasteurized Milk, Bacterial Culture, Salt, Calcium Chloride, Microbial Enzymes) | Water | Spinach | Onions | Modified Corn Starch | Milk Ingredients | Soybean Oil | Modified Milk Ingredients | Salt | Xanthan Gum | Natural Flavor Bacon & Cheese Omelette Bites: Whole Egg | Water | Cheddar Cheese (Pasteurized Milk, Bacterial Culture, Salt, Calcium Chloride, Microbial Enzymes, Natural Color [Annatto]) | Bacon (Pork, Water, Salt, Sugar, Brown Sugar, Sodium Phosphate, Potassium Chloride, Flavor, Sodium Erythorbate, Sodium Nitrite, Spices, Smoke) | Cornstarch | Milk Ingredients | Soybean Oil | Natural Flavors | Salt | Sodium Bicarbonate | Xanthan Gum | Citric Acid",Y,N,Y,N,N,Y,N,N,9/25/2025,Omelette
+Bacon & GruyÃ¨re Egg Bites,Starbucks,320,320,N,N,N,,N,N,,Y,N,Y,N,N,N,N,N,1/15/2026,Omelette
+Bacon Scrambled Egg Loaded,Tim Hortons,5.29,530,N,N,N,,N,N,"Contains: Milk, Soy & Egg",Y,N,Y,N,N,Y,N,N,9/25/2025,Omelette
+Omelette,Rooster's,8.39,,N,N,N,Y,Y,Y,"A two-egg omelette served with bread, bagel or hashbrown.",Y,N,,N,N,N,N,N,1/13/2026,Omelette
+Green Onion,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Onion
+Onion,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Onion
+Red Onion,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Onion
+Onion Rings,Teraanga Commons Dining Hall,,180,,F,F,Y,Y,Y,,,N,,N,N,,N,Y,10/6/2025,Onion Rings
+Onion Rings,Ollies,7.5,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,1/14/2026,Onion Rings
+Pad See-Ew,Thai Kitchen,16,,,N,N,,,,,Y,,N,,,Y,,Y,1/15/2026,Pad Thai
+Pad Thai,Thai Kitchen,16,,Y,N,N,,N,Y,,Y,Y,N,Y,,,,Y,1/15/2026,Pad Thai
+4 Maple Mini Pancakes,Starbucks,2.75,120,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Pancake
+Plain Pancake,Teraanga Commons Dining Hall,,150,,F,F,Y,Y,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Pancake
+Yogurt & Berries Parfait,Tunnel Junction,5.7,310,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,N,9/26/2025,Parfait
+Banana Parfait,Bridgehead,6.45,,N,N,N,Y,Y,N,,N,N,Y,,N,N,,Y,9/24/2025,Parfait
+Yogurt Parfait,Bridgehead,6.75,,Y,N,Y,Y,Y,N,,N,N,Y,,N,N,Y,Y,9/24/2025,Parfait
+Greek Yogurt & Chia Bowl,Riverbank Social,10.99,,,N,Y,Y,Y,N,"Topped with house made granola, pumpkin seeds, berries and dried fruit",N,N,Y,,,N,,Y,1/13/2026,Parfait
+No Gluten Penne,Teraanga Commons Dining Hall,,160,,T,T,T,T,Y,,,N,N,N,N,,N,N,10/6/2025,Pasta
+Farfalle,Teraanga Commons Dining Hall,,200,,T,F,T,T,Y,,,N,N,N,N,Y,N,,10/6/2025,Pasta
+Rotini,Teraanga Commons Dining Hall,,200,,T,F,T,T,,,,N,,N,,,N,Y,10/6/2025,Pasta
+No Gluten Fusilli,Teraanga Commons Dining Hall,,210,,T,T,T,T,Y,,,N,N,N,N,,N,N,10/6/2025,Pasta
+Kale Squash Gnocchi,Teraanga Commons Dining Hall,,320,,T,F,T,T,N,"butternut squash, kale, sage, gnocchi",,N,,N,N,,N,Y,10/6/2025,Pasta
+Tomato Mozzarella Penne (1000 gram),Teraanga Commons Dining Hall,,,,F,F,F,F,N,,,N,Y,N,,,N,,10/6/2025,Pasta
+Chicken Bruschetta Penne Alfredo,Teraanga Commons Dining Hall,,230,,F,F,F,F,N,"chicken breast, tomato, basil, parmesan, alfredo sauce, penne",,N,Y,N,N,,N,Y,10/6/2025,Pasta Salad
+Greek Pasta Salad,Tunnel Junction,5.7,790,N,N,N,Y,N,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Pasta Salad
+Asian Noodle Salad (1000 gram),Teraanga Commons Dining Hall,,,,F,F,T,T,N,"rice noodles,Â snow peas,Â broccoli,Â cucumber,Â carrot, onion, sesame seeds,Â spicy asianÂ vinaigrette",,,,N,,,N,Y,10/6/2025,Pasta Salad
+Herb & Garlic Savoury Pastry,Tim Hortons,2.99,240,N,N,N,Y,Y,N,"Garlic and fine herbs filling (water, cream cheese, bechamel cream [modified milk ingredients, modified corn starch, salt], chives, parsley, roasted garlic [garlic, citric acid], white vinegar, garlic, cultured skim milk [cultured skim milk, skim milk], salt, concentrated lemon juice), Unbleached enriched flour, Water, Butter, Yeast, Sugar, Liquid whole eggs, Salt, Wheat Gluten, Malted wheat flour, Malted barley extract, Food enzymes (xylanase, amylase), Ascorbic acid, Dried whole eggs, Skim milk powder, Soy flour.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Pastry
+Cheese Danish,Starbucks,3.65,310,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Pastry
+Pistachio Danish,Bridgehead,5.95,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Pastry
+Green Peas,Teraanga Commons Dining Hall,,50,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Peas
+Green Pepper,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Pepper
+Perogies,Ollies,7,,N,N,N,N,Y,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Perogies
+Veggie Pho (200 gram),Teraanga Commons Dining Hall,,130,,T,T,T,T,Y,"tofu, onion, mushroom, pho vegetable broth, rice noodles, cilantro, green onion",N,,N,N,,Y,N,N,10/6/2025,Pho
+Chicken Pho,Teraanga Commons Dining Hall,,410,,F,F,F,F,Y,,N,N,N,N,N,,N,N,10/6/2025,Pho
+Dill Pickles,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Pickles
+Naan,Leo's Lounge,4.25,270,N,N,N,Y,Y,N,,N,N,N,N,N,N,N,Y,9/26/2025,Pita
+Tandoori Chicken Stuffed Naan,Mike's Place,8.99,,,N,N,Y,N,N,,N,N,Y,N,N,N,,Y,10/1/2025,Pita With Protein
+Bacon Pita,Rooster's,11.99,,N,N,N,N,N,Y,A generous porion of bacon in a pita with your choice of toppings.,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Black Forest Ham Pita,Rooster's,10.69,,N,N,N,N,N,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Breakfast Pita,Rooster's,6.99,,N,N,N,Y,Y,N,A double serving of egg with cheese and your choice of two toppings all wrapped up in a pita.,Y,N,Y,N,N,N,N,Y,1/13/2026,Pita With Protein
+Ch. Souvlaki Pita,Rooster's,11.99,,N,N,N,N,N,Y,Diced thigh meat seasoned with a lemon and herb season grilled with your choice of toppings.,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Chicken Club Pita,Rooster's,13.19,,N,N,N,N,N,Y,Our grilled chicken pita with bacon added.,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Chicken Pita,Rooster's,10.69,,N,N,N,N,N,Y,Diced chicken breast grilled to perfection with you choice of toppings.,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Chicken Shawarma Pita,Rooster's,11.99,,N,N,N,Y,N,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Chicken Souvlaki Pita,Rooster's,11.99,,N,N,N,N,N,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Club Pita,Rooster's,12.99,,N,N,N,N,N,Y,"Turkey, Black Forest Ham and bacon wrapped with your choice of toppings.",N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Falafel Pita,Rooster's,9.99,,N,N,N,Y,Y,Y,A deliciously spiced falafel and served with your choice of toppings.,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Gyro Pita,Rooster's,10.89,,N,N,N,N,N,Y,Greek style seasoned lamb and beef served with your choice of toppings.,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Halal Chicken Pita,Rooster's,11.99,,N,N,N,Y,N,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Ham Pita,Rooster's,10.69,,N,N,N,N,N,Y,Thin sliced deli fresh black forest ham served hot or cold with your choice of toppings.,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+M. Tofu Pita,Rooster's,9.99,,N,Y,N,Y,Y,N,Firm tofu grilled on our vegitarian grill with your choice of toppings.,N,N,N,N,N,Y,N,Y,1/13/2026,Pita With Protein
+Steak Fajita Pita,Rooster's,12.99,,N,N,N,N,N,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Steak Pita,Rooster's,12.99,,N,N,N,N,N,Y,Fajita style steak strips grilled with your choice of toppings.,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Tofu Pita,Rooster's,9.99,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Tuna Pita,Rooster's,10.89,,N,N,N,N,N,Y,Light flaked tuna wrapped with your choice of toppings.,N,Y,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Turkey Pita,Rooster's,10.69,,N,N,N,N,N,Y,Deli style turkey breast served hot or cold with your choice of toppings.,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
+Veggie Patty Pita,Rooster's,10.99,,N,,N,Y,Y,Y,,N,N,N,N,N,Y,N,Y,1/13/2026,Pita With Protein
+Hawaiian Pizza,Teraanga Commons Dining Hall,,170,,F,F,F,F,N,"ham, pineapple, mozzarella",,N,Y,N,,,N,Y,10/6/2025,Pizza
+Buffalo Chicken Pizza,Teraanga Commons Dining Hall,,180,,F,F,F,F,N,"spicy buffalo chicken, red onion, buffalo sauce, mozzarella, blue cheese",,N,Y,N,,,N,Y,10/6/2025,Pizza
+BBQ Tofu Pizza,Teraanga Commons Dining Hall,,190,,F,F,T,T,N,"tofu, red onion, cilantro, BBQ tomato base, mozzarella",,N,Y,N,,Y,N,Y,10/6/2025,Pizza
+Canadian Pizza,Teraanga Commons Dining Hall,,190,,F,F,F,F,N,"pepperoni, bacon, mushroom, mozzarella",,N,Y,N,,,N,Y,10/6/2025,Pizza
+Jalapeno Popper Pizza,Teraanga Commons Dining Hall,,190,,F,F,F,F,N,"cream cheese, jalapeno peppers, red onions, monterey jack, bacon",,N,Y,N,,,N,Y,10/6/2025,Pizza
+Pepperoni Pizza,Teraanga Commons Dining Hall,,190,,F,F,F,F,N,,,N,Y,N,,,N,Y,10/6/2025,Pizza
+JalepeÃ±o Chicken Pocket,Starbucks,5.25,200,N,N,N,N,N,N,,N,N,Y,N,N,Y,N,Y,1/15/2026,Pizza
+Bacon Cheeseburger Pizza,Teraanga Commons Dining Hall,,210,,F,F,F,F,N,"ground beef, bacon, red onion, mozzarella, 3 cheese blend",,N,Y,N,,,N,Y,10/6/2025,Pizza
+Pepperoni Pizza Slice,The Market Pizzeria,5.2,570,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Pizza
+Create Your Own Pizza,Oasis,16.2,1030,N,,,,,,,N,,,N,N,N,N,Y,1/15/2026,Pizza
+Whole Pepperoni Pizza,The Market Pizzeria,28,3440,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Pizza
+Jamaican Patty,Leo's Lounge,1.5,,N,N,,N,N,N,,,N,,N,N,N,N,Y,9/26/2025,Pizza
+Pizza Pops,Leo's Lounge,2.25,,N,N,N,,N,N,,N,N,Y,N,N,Y,N,Y,9/26/2025,Pizza
+BBQ Chicken Pizza,Mike's Place,9.99,,,N,N,Y,N,N,,N,N,Y,N,N,N,,Y,10/1/2025,Pizza
+Jalapeno Poppers,Ollies,8.5,,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Pizza
+Daily Pizza,Riverbank Social,15,,N,,N,,,N,House made pizza dough topped with seasonal ingredients,N,,Y,N,N,N,N,Y,1/13/2026,Pizza
+Whole BBQ Chicken Pizza,The Market Pizzeria,3460,,N,N,N,Y,N,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Pizza
+Whole Hawaiian Pizza,The Market Pizzeria,28,,N,N,N,,N,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Pizza
+Cheese Pizza,Teraanga Commons Dining Hall,,150,,F,F,T,T,N,,,N,Y,N,,,N,Y,10/6/2025,Pizza (Cheese)
+Cheese Pizza Slice,The Market Pizzeria,5.2,450,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Pizza (Cheese)
+Five Cheese Pizza,Oasis,14,1320,N,N,N,N,Y,N,,N,N,Y,N,N,N,N,Y,1/15/2026,Pizza (Cheese)
+Whole Cheese Pizza,The Market Pizzeria,28,2720,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Pizza (Cheese)
+Margherita Pizza,Teraanga Commons Dining Hall,,170,,F,F,T,T,N,"tomato, fresh basil, mozzarella, ricotta",,N,Y,N,,,N,Y,10/6/2025,Pizza (Vegetarian)
+Grilled Eggplant Pizza,Teraanga Commons Dining Hall,,180,,F,F,T,T,N,"grilled eggplant, black olives, basil, chili pepper flakes, mozzarella",,N,Y,N,,,N,Y,10/6/2025,Pizza (Vegetarian)
+Mushroom & Caramelized Onion Pizza,Teraanga Commons Dining Hall,,200,,F,F,F,F,N,"mushroom, caramelized onion, parsley, alfredo base, mozzarella, parmesan",,N,Y,N,,,N,Y,10/6/2025,Pizza (Vegetarian)
+Veggie Pizza Slice,The Market Pizzeria,570,470,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Pizza (Vegetarian)
+Sweet Potato and Caramelized Onion Pizza,Teraanga Commons Dining Hall,,560,,F,F,T,T,N,,,N,Y,N,,,N,,10/6/2025,Pizza (Vegetarian)
+Margherita Pizza,Oasis,14,1520,N,N,N,N,Y,N,,N,N,Y,N,N,N,N,Y,1/15/2026,Pizza (Vegetarian)
+Whole Vegetarian Pizza,The Market Pizzeria,28,2800,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Pizza (Vegetarian)
+Tofu Poke Bowl,Bento Boxes,15,660,N,Y,Y,Y,Y,Y,"Tofu, cucumber, carrot, seaweed salad, and edamame topped with teriyaki sauce and spicy mayo on a bed of rice",Y,Y,N,N,Y,Y,N,N,1/14/2025,Poke Bowl
+Tuna Poke Bowl,Bento Boxes,15,660,N,N,Y,N,N,Y,"Tuna, cucumbers seaweed salad, edamame, crispy fried onions sitting on a bed of rice",N,Y,N,N,Y,Y,N,N,1/14/2025,Poke Bowl
+Salmon Poke Bowl,Bento Boxes,15,710,N,N,Y,N,N,Y,"Salmon, cucumbers, shaved carrots, seaweed salad, crispy fried onions and spicy mayo sitting on a soft bed of rice",Y,Y,N,N,Y,Y,N,N,1/14/2025,Poke Bowl
+Tempura Shrimp Poke Bowl,Bento Boxes,15,720,N,N,N,N,N,Y,"Shrimp, cucumbers, shaved carrots, seaweed salad, edamame, crispy fried onions sitting on a bed of rice",Y,Y,N,N,Y,Y,N,N,1/14/2025,Poke Bowl
+Spicy California Poke Bowl,Bento Boxes,15,740,N,N,Y,N,N,Y,"Iminitation crab, cucumbers, seaweed salad, edamame, crispy fried onions sitting on a bed of rice",N,Y,N,N,Y,Y,N,N,1/14/2025,Poke Bowl
+Microwave Popcorn,Leo's Lounge,1,,N,Y,Y,Y,Y,N,,N,N,Y,N,N,,N,N,9/26/2025,Popcorn
+Chasu Pork Loin (1 slice),Teraanga Commons Dining Hall,,70,,F,F,F,F,Y,,N,N,N,N,N,,N,N,10/6/2025,Pork
+Pork Souvlaki,Teraanga Commons Dining Hall,,190,,F,T,F,F,Y,,N,N,N,N,N,,N,N,10/6/2025,Pork
+Home Style Potatoes,Teraanga Commons Dining Hall,,90,,F,F,F,F,,,N,N,,N,N,,N,N,10/6/2025,Potato
+Parsley Potatoes,Teraanga Commons Dining Hall,,100,,T,T,T,T,,,N,N,,N,N,,N,N,10/6/2025,Potato
+Red Potatoes,Teraanga Commons Dining Hall,,120,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Potato
+Roasted Potatoes,Teraanga Commons Dining Hall,,130,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Potato
+Red Potatoes & Onions,Teraanga Commons Dining Hall,,160,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Potato
+Home Fried Potatoes,Teraanga Commons Dining Hall,,180,,F,F,F,F,,,N,N,,N,N,,N,N,10/6/2025,Potato
+"Potato, Cheddar & Chive Bakes",Starbucks,6.25,210,N,N,N,,N,N,,Y,N,Y,N,N,N,N,N,1/15/2026,Potato
+Garlic Potatoes,Shawarma Palace,7,,N,Y,Y,Y,Y,,,N,N,,N,,N,N,N,9/26/2025,Potato
+Buffalo Ranch Potato Salad (1000 gram),Teraanga Commons Dining Hall,,140,,F,T,F,F,N,"red potatoes, red pepper, celery, green onion, buffalo ranch dressing",,N,Y,N,,,N,N,10/6/2025,Potato Salad
+Potato Caesar Salad,Urban Deli,4.8,420,N,N,N,N,N,N,,Y,N,Y,N,N,N,N,Y,9/26/2025,Potato Salad
+Grainy Dijon Potato Salad (1000 gram),Teraanga Commons Dining Hall,,,,T,T,T,T,,"mini red potatoes, mustard vinaigretteÂ",,N,,N,N,,N,N,10/6/2025,Potato Salad
+Poutine,Teraanga Commons Dining Hall,,370,,F,F,F,F,N,"cheddar cheese curds, french fries, gravy",N,N,Y,N,N,,N,N,10/6/2025,Poutine
+Poutine,Oasis,8.9,1040,N,N,N,N,Y,N,,N,N,Y,N,N,N,N,N,1/15/2026,Poutine
+Poutine,Burger 101,9.6,1400,N,N,N,Y,Y,N,"Our crispy fries topped with cheese curds, mushroom gravy and onion rings",N,N,Y,N,N,N,N,N,1/14/2026,Poutine
+Classic Poutine,Rodney's Kitchen,9.6,1500,N,N,N,N,N,N,,N,N,Y,N,N,N,N,N,1/13/2026,Poutine
+Vegetarian Poutine,Burger 101,9.6,,N,,N,Y,Y,N,,N,N,Y,N,N,N,N,N,1/14/2026,Poutine
+Poutine,Mike's Place,8.99,,,N,N,Y,Y,Y,,N,N,Y,N,N,N,,N,10/1/2025,Poutine
+Poutine,Ollies,8.5,,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,N,1/14/2026,Poutine
+Poutine with Bacon,Oasis,11.65,1220,N,N,N,N,N,N,,N,N,Y,N,N,N,N,N,1/15/2026,Poutine With Protein
+Poutine with Beef,Oasis,11.65,1220,N,N,N,N,N,N,,N,N,Y,N,N,N,N,N,1/15/2026,Poutine With Protein
+Poutine with Chicken,Oasis,11.65,1220,N,N,N,N,N,N,,N,N,Y,N,N,N,N,N,1/15/2026,Poutine With Protein
+Butter Chicken Poutine,Burger 101,11.9,,N,N,N,,N,N,,N,N,Y,N,N,N,N,N,1/14/2026,Poutine With Protein
+Chipotle Pulled Pork Poutine,Burger 101,11.9,,N,N,N,,N,N,,N,N,Y,N,N,N,N,N,1/14/2026,Poutine With Protein
+Pretzel,Mike's Place,5.99,,,N,N,Y,Y,Y,,,N,N,N,,N,,Y,10/1/2025,Pretzel
+Beef Quesadilla,Teraanga Commons Dining Hall,,280,,F,F,F,F,N,"taco-spiced ground beef, cheddar cheese, tortilla",,N,Y,N,N,,N,Y,10/6/2025,Quesadilla
+Chicken Mini Quesadilla,La Cocina,7.5,400,N,N,N,Y,N,N,"Two quesadillas. Halal chicken tinga, marinated black beans, monterey jack cheese and sour cream on the side",N,N,Y,N,N,,N,Y,1/15/2026,Quesadilla
+Big Bean Quesadilla,La Cocina,9.8,800,N,N,N,Y,Y,N,"marinated black beans, refried beans, pico de gallo monterey jack cheese and sour cream on the side",N,N,Y,N,N,,N,Y,1/15/2026,Quesadilla
+Chicken Tinga Quesadilla,La Cocina,7.5,800,N,N,N,Y,N,N,"halal chicken tinga, marinated black beans, pico de gallo, monterey jack cheese and sour cream on the side",N,N,Y,N,N,,N,Y,1/15/2026,Quesadilla
+Black Bean Quesadillia,Mike's Place,9.99,,,N,N,Y,Y,N,,N,N,Y,N,N,N,,Y,10/1/2025,Quesadilla
+Chicken Quesadillia,Mike's Place,9.99,,,N,N,Y,N,N,,N,N,Y,N,N,N,,Y,10/1/2025,Quesadilla
+Quinoa,Teraanga Commons Dining Hall,,45,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Quinoa
+Ramen Noodles,Teraanga Commons Dining Hall,,70,,F,F,T,T,,,,N,,N,,,N,Y,10/6/2025,Ramen
+Ramen,Leo's Lounge,2,,N,N,N,,N,Y,,N,,N,N,,Y,N,Y,9/26/2025,Ramen
+Aromatic Basmati Rice,Teraanga Commons Dining Hall,,120,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Rice
+White Rice,Teraanga Commons Dining Hall,,130,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Rice
+Coconut Jasmine Rice,Teraanga Commons Dining Hall,,190,,T,T,T,T,,,N,N,,N,N,N,N,N,10/6/2025,Rice
+Steak Bowl,Subway,13.66,560,N,N,Y,,N,Y,,N,N,N,N,N,N,N,N,10/1/2025,Rice Bowl
+Rotisserie-Style Chicken Bowl,Subway,13.66,580,N,N,Y,,N,Y,,N,N,N,N,N,Y,N,N,10/1/2025,Rice Bowl
+Piri-Piri Chicken Bowl,Subway,13.66,610,N,N,Y,,N,Y,,N,N,N,N,N,,N,N,10/1/2025,Rice Bowl
+Southwest Steak & Avocado Bowl,Subway,13.66,630,N,N,Y,,N,Y,,N,N,N,N,N,N,N,N,10/1/2025,Rice Bowl
+3 Sisters Bowl,La Cocina,10.15,660,N,Y,Y,Y,Y,N,"black beans, roasted squash, corn salsa, jalapeno and guacamole",N,N,Y,N,N,,N,N,1/15/2026,Rice Bowl
+Grilled Chicken Rice Bowl,La Cocina,10.35,690,N,N,Y,Y,N,N,"black beans, corn salsa, sour cream and guacamole",N,N,Y,N,N,,N,N,1/15/2026,Rice Bowl
+Burrito Bowl,Ollies,14,,N,N,N,N,N,N,,N,N,Y,N,N,N,N,N,1/14/2026,Rice Bowl
+Mango Sticky Rice,Thai Kitchen,15,,,Y,N,Y,Y,N,"Traditional southesast asian and sout asain dessert made with glutinous rice, fresh mango and coconut milk",N,N,Y,,,N,,N,1/15/2026,Rice Bowl
+Thai Basic Pork Stir-Fry with Jasmine Rice,Thai Kitchen,16,,,N,N,,,,,,Y,,,,Y,,Y,1/15/2026,Rice Bowl
+Nicoise Salad,Riverbank Social,16,,N,N,Y,N,N,Y,"Albacore Tuna tataki, leaves, tomato, kalamata olives, green beans, fingerling potatoes, red onion, hard boiled egg, evoo",Y,Y,N,N,N,N,Y,N,1/13/2026,Salad With Protein
+Samosa,Leo's Lounge,5,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,9/26/2025,Samosa
+Chicken Samosa,Mike's Place,4.99,,,N,N,Y,N,Y,,,N,N,N,,N,,Y,10/1/2025,Samosa
+Vegetable Samosa,Mike's Place,4.49,,,N,N,Y,Y,Y,4. Served with Sweet and Sour sauce,,N,N,N,,N,,Y,10/1/2025,Samosa
+Egg Salad Baguette,Teraanga Commons Dining Hall,,200,,F,F,T,T,N,"egg salad, lettuce, baguette",Y,N,,N,,Y,N,,10/6/2025,Sandwich
+"Bacon-Style Turkey, Cheddar & Egg Sandwich",Starbucks,5.65,230,N,N,N,,N,N,,N,N,N,N,N,N,N,Y,1/15/2026,Sandwich
+Meatball Sub,Teraanga Commons Dining Hall,,230,,F,F,F,F,N,"meatballs, mozzarella, tomato basil sauce, pesto mayo",,N,,N,N,,N,Y,10/6/2025,Sandwich
+Club Sandwich,Teraanga Commons Dining Hall,,250,,F,F,F,F,N,"bacon, ham, turkey, lettuce, tomato, cheddar cheese, mayo, whole wheat bread",,N,,N,,,N,Y,10/6/2025,Sandwich
+Egg & Cheese Breakfast Sandwich,Tim Hortons,3.99,270,N,N,N,Y,Y,N,"English Muffin: Enriched flour, Water, Yeast, Sugars (sugar, barley malt), Degermed corn meal, Vegetable oil (canola or soybean oil), Salt, Cultured wheat flour, Dough conditioners (DATEM, monocalcium phosphate, ascorbic acid, enzymes), Corn starch. Butter: Cream (milk), Salt. May contain annatto. Egg: Canada Grade A large egg. Cooking Spray: Canola oil, Coconut oil, Modified palm oil, Soy lecithin, Natural flavour, Dimethyl silicone, Propellants (isobutane, propane). Processed Cheese: Cheese (milk, modified milk ingredients, cream, bacterial culture, salt, microbial enzyme, calcium chloride, annatto, lipase), Modified milk ingredients, Water, Sugars (glucose), Sodium citrate and/or sodium phosphate, Skim milk powder, Salt, Acetic acid, Cultured skim milk powder, Soy lecithin, Soybean oil (for slice separation), Annatto and paprika oleoresin (paprika extract, sunflower oil), Nisin, Carboxymethylcellulose, Citric acid.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Sandwich
+Egg Salad Sandwich,Tunnel Junction,6.7,270,N,Y,N,N,Y,Y,,Y,N,N,N,N,N,N,Y,9/26/2025,Sandwich
+"6"" Black Forest Ham Sub",Subway,6.69,290,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+"6"" Turkey Breast Sub",Subway,7.79,290,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+Ham & Swiss Sandwich,Tunnel Junction,6.7,310,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Sandwich
+"6"" Rotisserie-Style Chicken Sub",Subway,8.89,320,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+Honey Mustard Ham Snackwich,Subway,4,320,N,N,N,,N,N,,Y,N,Y,N,N,,N,Y,10/1/2025,Sandwich
+Bacon Breakfast Sandwich,Tim Hortons,4.49,330,N,N,N,,N,N,"English Muffin: Enriched flour, Water, Yeast, Sugars (sugar, barley malt), Degermed corn meal, Vegetable oil (canola or soybean oil), Salt, Cultured wheat flour, Dough conditioners (DATEM, monocalcium phosphate, ascorbic acid, enzymes), Corn starch. Butter: Cream (milk), Salt. May contain annatto. Egg: Canada Grade A large egg. Cooking Spray: Canola oil, Coconut oil, Modified palm oil, Soy lecithin, Natural flavour, Dimethyl silicone, Propellants (isobutane, propane). Processed Cheese: Cheese (milk, modified milk ingredients, cream, bacterial culture, salt, microbial enzyme, calcium chloride, annatto, lipase), Modified milk ingredients, Water, Sugars (glucose), Sodium citrate and/or sodium phosphate, Skim milk powder, Salt, Acetic acid, Cultured skim milk powder, Soy lecithin, Soybean oil (for slice separation), Annatto and paprika oleoresin (paprika extract, sunflower oil), Nisin, Carboxymethylcellulose, Citric acid. Bacon: Pork, Water, Salt, Sugar, Smoke flavouring, Sodium phosphates, Sodium erythorbate, Sodium nitrite.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Sandwich
+Turkey Ranch Snackwich,Subway,4,350,N,N,N,,N,N,,Y,N,Y,N,N,N,N,Y,10/1/2025,Sandwich
+"Bacon, Gouda, & Egg Sandwich",Starbucks,5.05,360,N,N,N,,N,N,,N,N,N,N,N,N,N,Y,1/15/2026,Sandwich
+"6"" Steak & Cheese Sub",Subway,9.89,360,N,N,N,,N,N,,N,N,Y,N,N,N,N,Y,10/1/2025,Sandwich
+"Egg, Pesto, & Mozzarella Sandwich",Starbucks,5.75,370,N,N,N,,N,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Sandwich
+Tuna Salad Sandwich,Tunnel Junction,6.7,370,N,N,N,N,N,Y,,N,Y,N,N,N,N,N,Y,9/26/2025,Sandwich
+Smoked Meat Sandwich,Teraanga Commons Dining Hall,,390,,F,F,F,F,N,,,N,,N,,,N,Y,10/6/2025,Sandwich
+"6"" Cold Cut Combo Sub",Subway,5.79,400,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+B.L.T Snackwich,Subway,4,400,N,N,N,,N,Y,,N,N,N,N,N,N,N,Y,10/1/2025,Sandwich
+Hot Beef Sandwich,Teraanga Commons Dining Hall,,400,,F,F,F,F,N,"roast beef, onion, mushroom, gravy, bun",N,N,,N,N,,N,Y,10/6/2025,Sandwich
+"6"" Italian B.M.T Sub",Subway,7.79,410,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+"6"" Tuna Sub",Subway,7.69,450,N,N,N,,N,,,N,Y,,N,N,N,N,Y,10/1/2025,Sandwich
+Simply Sausage Breakfast Sandwich,Tim Hortons,2.99,450,N,N,N,,N,N,"Homestyle Biscuit: Enriched wheat flour, Water, Hydrogenated palm kernel oil (soybean lecithin), Sugars (sugar, dextrose, corn syrup solids), Yeast, Baking powder, Vegetable oil shortening (modified palm oil, canola oil), Salt, Modified cornstarch, Natural flavours, Xanthan gum, Butter solids, Cream, Modified milk ingredients, Paprika, Turmeric. Butter: Cream (milk), Salt. May contain annatto. Sausage: Pork, Water, Salt, Spices, Dextrose, Sugar, Autolyzed yeast, Lemon powder (corn syrup, concentrated lemon juice, natural flavour), Savory flavour (natural flavour, maltodextrin), Natural flavours, Citric acid, Lactic acid.",N,N,Y,N,N,Y,N,Y,9/25/2025,Sandwich
+Colonel By Chicken Sandwich,Oasis,9.1,460,N,N,N,Y,N,N,,,N,N,N,N,N,N,Y,1/15/2026,Sandwich
+"6"" Meatball Marinara Sub",Subway,7.19,460,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+Everything Croissant & Roasted Ham Sandwich,Starbucks,5.95,470,N,N,N,,N,N,,Y,N,Y,N,Y,N,N,Y,1/15/2026,Sandwich
+"Sausage, Cheddar & Egg Sandwich",Starbucks,5.25,480,N,N,N,,N,N,,Y,N,N,N,N,N,N,Y,1/15/2026,Sandwich
+"6"" Great Canadian Club Sub",Subway,9.79,480,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+Beef Brie Sandwich,Urban Deli,9.9,490,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Sandwich
+"Double-Smoked Bacon, Cheddar & Egg Sandwich",Starbucks,5.95,500,N,N,N,,N,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Sandwich
+"6"" Piri-piri Chicken Sub",Subway,8.99,510,N,N,N,,N,,,N,N,,N,N,,N,Y,10/1/2025,Sandwich
+"6"" Bourbon BBQ Steak & Cheddar Sub",Subway,8.59,520,N,N,N,,N,N,,N,N,Y,N,N,N,N,Y,10/1/2025,Sandwich
+Sausage Breakfast Sandwich,Tim Hortons,4.49,530,N,N,N,,N,N,"Homestyle Biscuit: Enriched wheat flour, Water, Hydrogenated palm kernel oil (soybean lecithin), Sugars (sugar, dextrose, corn syrup solids), Yeast, Baking powder, Vegetable oil shortening (modified palm oil, canola oil), Salt, Modified cornstarch, Natural flavours, Xanthan gum, Butter solids, Cream, Modified milk ingredients, Paprika, Turmeric. Butter: Cream (milk), Salt. May contain annatto. Egg: Canada Grade A large egg. Cooking Spray: Canola oil, Coconut oil, Modified palm oil, Soy lecithin, Natural flavour, Dimethyl silicone, Propellants (isobutane, propane). Processed Cheese: Cheese (milk, modified milk ingredients, cream, bacterial culture, salt, microbial enzyme, calcium chloride, annatto, lipase), Modified milk ingredients, Water, Sugars (glucose), Sodium citrate and/or sodium phosphate, Skim milk powder, Salt, Acetic acid, Cultured skim milk powder, Soy lecithin, Soybean oil (for slice separation), Annatto and paprika oleoresin (paprika extract, sunflower oil), Nisin, Carboxymethylcellulose, Citric acid. Sausage: Pork, Water, Salt, Spices, Dextrose, Sugar, Autolyzed yeast, Lemon powder (corn syrup, concentrated lemon juice, natural flavour), Savory flavour (natural flavour, maltodextrin), Natural flavours, Citric acid, Lactic acid.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Sandwich
+Ham & Swiss Sandwich,Urban Deli,9.9,530,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Sandwich
+"6"" Teriyaki Crunch Sub",Subway,9.19,540,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+"6"" Smashed Avocado & Turkey Sub",Subway,7.69,550,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+"6"" Chicken Rancher Sub",Subway,9.59,560,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+Farmer's Breakfast Sandwich,Tim Hortons,5.49,560,N,N,N,,N,N,"Homestyle Biscuit: Enriched wheat flour, Water, Hydrogenated palm kernel oil (soybean lecithin), Sugars (sugar, dextrose, corn syrup solids), Yeast, Baking powder, Vegetable oil shortening (modified palm oil, canola oil), Salt, Modified cornstarch, Natural flavours, Xanthan gum, Butter solids, Cream, Modified milk ingredients, Paprika, Turmeric. Butter: Cream (milk), Salt. May contain annatto. Egg: Canada Grade A large egg. Cooking Spray: Canola oil, Coconut oil, Modified palm oil, Soy lecithin, Natural flavour, Dimethyl silicone, Propellants (isobutane, propane). Processed Cheese: Cheese (milk, modified milk ingredients, cream, bacterial culture, salt, microbial enzyme, calcium chloride, annatto, lipase), Modified milk ingredients, Water, Sugars (glucose), Sodium citrate and/or sodium phosphate, Skim milk powder, Salt, Acetic acid, Cultured skim milk powder, Soy lecithin, Soybean oil (for slice separation), Annatto and paprika oleoresin (paprika extract, sunflower oil), Nisin, Carboxymethylcellulose, Citric acid. Sausage: Pork, Water, Salt, Spices, Dextrose, Sugar, Autolyzed yeast, Lemon powder (corn syrup, concentrated lemon juice, natural flavour), Savory flavour (natural flavour, maltodextrin), Natural flavours, Citric acid, Lactic acid. Hash Brown: Potatoes, Canola oil, Salt, Dehydrated potatoes (mono- and diglycerides, sodium acid pyrophosphate and citric acid [to maintain colour]), Sodium acid pyrophosphate (to maintain colour), Sugars (dextrose), Natural flavour. Chipotle Sauce: Water, Soybean oil, Frozen yolk (egg), Sour cream powder (milk) (sour cream, citric acid, tocopherols), Sugar, Vinegar, Modified milk ingredients, Salt, Modified corn starch, Dehydrated onion, Spices and herbs, Lactic acid, Jalapeno puree (jalapeno peppers, salt, acetic acid), Fruit extract (contains vinegar, tapioca flour, maltodextrin), Dehydrated garlic, Chipotle powder, Xanthan gum, Natural flavour, Calcium disodium EDTA.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Sandwich
+Caprese Sandwich,Urban Deli,9.2,570,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Sandwich
+"12"" Black Forest Ham Sub",Subway,10.99,580,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+"12"" Turkey Breast Sub",Subway,12.39,580,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+Double Stacked Breakfast Sandwich,Tim Hortons,5.49,580,N,N,N,,N,N,"Homestyle Biscuit: Enriched wheat flour, Water, Hydrogenated palm kernel oil (soybean lecithin), Sugars (sugar, dextrose, corn syrup solids), Yeast, Baking powder, Vegetable oil shortening (modified palm oil, canola oil), Salt, Modified cornstarch, Natural flavours, Xanthan gum, Butter solids, Cream, Modified milk ingredients, Paprika, Turmeric. Butter: Cream (milk), Salt. May contain annatto. Egg: Canada Grade A large egg. Cooking Spray: Canola oil, Coconut oil, Modified palm oil, Soy lecithin, Natural flavour, Dimethyl silicone, Propellants (isobutane, propane). Processed Cheese: Cheese (milk, modified milk ingredients, cream, bacterial culture, salt, microbial enzyme, calcium chloride, annatto, lipase), Modified milk ingredients, Water, Sugars (glucose), Sodium citrate and/or sodium phosphate, Skim milk powder, Salt, Acetic acid, Cultured skim milk powder, Soy lecithin, Soybean oil (for slice separation), Annatto and paprika oleoresin (paprika extract, sunflower oil), Nisin, Carboxymethylcellulose, Citric acid. Sausage: Pork, Water, Salt, Spices, Dextrose, Sugar, Autolyzed yeast, Lemon powder (corn syrup, concentrated lemon juice, natural flavour), Savory flavour (natural flavour, maltodextrin), Natural flavours, Citric acid, Lactic acid. Bacon: Pork, Water, Salt, Sugar, Smoke flavouring, Sodium phosphates, Sodium erythorbate, Sodium nitrite.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Sandwich
+"6"" Nashville-Style Hot Chicken Sub",Subway,9.59,590,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+"6"" Steak and Bacon Sub",Subway,11.39,600,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+Crispy Chicken Sandwich,Colonel by Chicken,9.7,620,N,N,N,Y,N,Y,"Our signature hand dedged fried chicken served with spicy mayo, dill pickles, and lettuce on a brioche bun",Y,N,N,N,N,N,N,Y,1/14/2026,Sandwich
+Colonel By Chicken Sandwich,Rodney's Kitchen,9.7,620,N,N,N,Y,N,N,,N,N,N,N,N,N,N,Y,1/13/2026,Sandwich
+Smoked Turkey Sandwich,Teraanga Commons Dining Hall,,620,,F,F,F,F,N,,,N,,N,,,N,Y,10/6/2025,Sandwich
+"12"" Rotisserie-Style Chicken Sub",Subway,13.69,640,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+Nashville Hot Chicken Sandwich,Colonel by Chicken,9.7,680,N,N,N,Y,N,Y,,Y,N,N,N,N,N,N,Y,1/14/2026,Sandwich
+"6"" Bourbon Brisket Sub",Subway,9.99,690,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+"12"" Steak & Cheese Sub",Subway,15.29,720,N,N,N,,N,N,,N,N,Y,N,N,N,N,Y,10/1/2025,Sandwich
+"12"" Cold Cut Combo Sub",Subway,8.99,800,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+"12"" Italian B.M.T Sub",Subway,12.39,820,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+"12"" Tuna Sub",Subway,12.29,900,N,N,N,,N,,,N,Y,,N,N,N,N,Y,10/1/2025,Sandwich
+"12"" Meatball Marinara Sub",Subway,11.49,920,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+"12"" Great Canadian Club Sub",Subway,15.69,960,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+"12"" Piri-Piri Chicken Sub",Subway,13.29,1020,N,N,N,,N,,,N,N,,N,N,,N,Y,10/1/2025,Sandwich
+"12"" Bourbon BBQ Stead & Cheddar Sub",Subway,13.89,1040,N,N,N,,N,N,,N,N,Y,N,N,N,N,Y,10/1/2025,Sandwich
+"12"" Teriyaki Crunch Sub",Subway,13.19,1080,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+"12"" Smashed Avocado & Turkey Sub",Subway,11.89,1100,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+"12"" Chicken Rancher Sub",Subway,15.09,1120,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+"12"" Nashville-Style Hot Chicken Sub",Subway,14.99,1180,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+"12"" Steak and Bacon Sub",Subway,18.19,1200,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
+"12"" Bourbon Brisket Sub",Subway,16.59,1380,N,N,N,,N,,,N,N,,N,N,Y,N,Y,10/1/2025,Sandwich
+Breakfast Sammy,Leo's Lounge,2.5,,N,N,N,,N,N,,Y,N,Y,N,N,N,N,Y,9/26/2025,Sandwich
+Sammich,Leo's Lounge,9,,N,N,N,,N,N,,,N,Y,N,,,N,Y,9/26/2025,Sandwich
+Fried Chicken Sandwich,Ollies,16,,N,N,N,Y,N,Y,You can exchange for black been patty in which case GF and Vegetarian,N,N,N,N,N,N,N,Y,1/14/2026,Sandwich
+New Baconings,Ollies,16,,N,N,N,N,N,N,You can exchange for black been patty in which case GF and Vegetarian,N,N,Y,N,N,N,N,Y,1/14/2026,Sandwich
+B.L.T.,Rooster's,7.99,,N,N,N,N,N,Y,"Classic bacon, lettuce and tomato served on your choice of toasted bread or bagel.",N,N,N,N,N,N,N,Y,1/13/2026,Sandwich
+Bagelwich,Rooster's,6.99,,N,N,N,Y,Y,N,"Toasted Bagel with egg, cheese and your choice of two toppings.",Y,N,Y,N,Y,N,N,Y,1/13/2026,Sandwich
+Fried Egg Sandwich,Rooster's,5.59,,N,N,N,Y,Y,N,"Toasted white, whole wheat or gluten free bread with egg, cheese and your choice of two toppings.",Y,N,N,N,N,N,N,Y,1/13/2026,Sandwich
+Western,Rooster's,7.39,,N,Y,N,Y,Y,Y,"A serving of egg with green peppers and onions fried into it served on toasted bread or bagel, cheese and your choice of two toppings.",N,N,N,N,N,N,N,Y,1/13/2026,Sandwich
+Western Sandwich,Rooster's,7.39,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Sandwich
+Build Your Own Sandwich,Urban Deli,9.2,,,,N,,,,,,,,,,,,,9/26/2025,Sandwich
+"6"" Veggie Delite Sub",Subway,6.09,220,N,,N,Y,Y,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich (No Protein)
+Goat Cheese & Vegetable Baguette,Teraanga Commons Dining Hall,,250,,F,F,F,F,N,"mushroom, caramelized onion, spinach, zucchini, sundried tomato goat cheese",N,N,Y,N,,,N,Y,10/6/2025,Sandwich (No Protein)
+Three Cheese & Egg Sandwich,Starbucks,4.75,330,N,N,N,,N,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Sandwich (No Protein)
+Three Cheese Snackwich,Subway,4,350,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,10/1/2025,Sandwich (No Protein)
+Grilled Vegetables & Hummus on Multigrain Ciabatta Sandwich,Urban Deli,9.2,430,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,9/26/2025,Sandwich (No Protein)
+"12"" Veggie Delite Sub",Subway,9.48,440,N,,N,Y,Y,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich (No Protein)
+Hand Breaded Eggplant Parmesan Sandwich,Oasis,11.5,450,N,N,N,N,Y,N,,,N,N,N,N,N,N,Y,1/15/2026,Sandwich (No Protein)
+"6"" Big Veggie Sub",Subway,8.89,540,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich (No Protein)
+"12"" Big Veggie Sub",Subway,13.89,1080,N,,N,Y,Y,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich (No Protein)
+Classic Grilled Cheese,Rooster's,4.29,,N,N,N,Y,Y,N,"White, whole wheat or gluten free bread grilled with old school cheese slices.",N,N,Y,N,N,N,N,Y,1/13/2026,Sandwich (No Protein)
+Grilled Cheese,Rooster's,5.59,,N,N,N,Y,Y,N,"White, whole wheat or gluten free bread grilled with a blend of cheddar and Monteray jack cheese.",N,N,Y,N,N,N,N,Y,1/13/2026,Sandwich (No Protein)
+Rooster's Grilled Cheese,Rooster's,5.69,,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,1/13/2026,Sandwich (No Protein)
+S.D. Grilled Cheese,Rooster's,9.99,,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,1/13/2026,Sandwich (No Protein)
+Sour Dough Grilled Cheese,Rooster's,9.99,,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,1/13/2026,Sandwich (No Protein)
+Veggie Sandwich,Rooster's,5.19,,N,Y,N,Y,Y,Y,Your choice of three veggies severed on toasted bread or bagel.,N,N,N,N,N,N,N,Y,1/13/2026,Sandwich (No Protein)
+Grilled Cheese with Tomato Soup,Urban Deli,6.75,,N,Y,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Sandwich (No Protein)
+Signature Burrito Sauce,La Cocina,,35,N,Y,Y,Y,Y,N,,N,N,,N,N,N,N,N,1/15/2026,Sauce
+Balsamic Glaze,Teraanga Commons Dining Hall,,35,,T,T,T,T,Y,,N,N,N,N,N,,N,N,10/6/2025,Sauce
+Gravy,Rodney's Kitchen,2.25,50,N,N,N,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,Sauce
+Lemon Garlic Vinaigrette,Teraanga Commons Dining Hall,,100,,T,T,T,T,Y,,N,N,N,N,,,N,N,10/6/2025,Sauce
+Cilantro Lime Vinaigrette,La Cocina,,150,N,Y,Y,Y,Y,N,,N,N,,N,N,N,N,Y,1/15/2026,Sauce
+Pesto Sauce,Teraanga Commons Dining Hall,,420,,F,T,F,F,N,,N,N,Y,N,N,,N,N,10/6/2025,Sauce
+Alfredo Sauce (3000 millilitre),Teraanga Commons Dining Hall,,,,F,T,F,F,N,,,N,Y,N,N,,N,,10/6/2025,Sauce
+Marinara Sauce (3000 millilitre),Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,,N,N,10/6/2025,Sauce
+Salsa (3 litre),Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Sauce
+Turkey Breakfast Sausage,Teraanga Commons Dining Hall,,30,,F,F,F,F,Y,,N,N,,N,,,N,,10/6/2025,Sausage
+Sausage Round,Teraanga Commons Dining Hall,,160,,F,F,F,F,Y,,N,N,,N,,,N,,10/6/2025,Sausage
+Smoky Italian Sausage,Oasis,11,680,N,N,N,N,N,N,,N,N,N,N,N,N,N,N,1/15/2026,Sausage
+Pork Sausage,Riverbank Social,3.99,,N,N,N,N,N,Y,,N,N,N,N,N,N,N,N,1/13/2026,Sausage
+Turkey Sausage,Riverbank Social,3.99,,N,N,N,Y,N,Y,,N,N,N,N,N,N,N,N,1/13/2026,Sausage
+Nori Seaweed,Teraanga Commons Dining Hall,,10,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Seaweed
+Beef Shawarma Combo,Shawarma Palace,14,,N,N,N,,N,Y,Marinated tender beef shawarma wrapped in fresh pita with choice of toppings and side,N,N,N,N,,N,N,Y,9/26/2025,Shawarma
+Beef Shawarma Plate,Shawarma Palace,20,,N,N,N,,N,Y,,N,N,N,N,,N,N,N,9/26/2025,Shawarma
+Beef Shawarma Sandwich,Shawarma Palace,9.5,,N,N,N,,N,Y,,N,N,N,N,,N,N,Y,9/26/2025,Shawarma
+Chicken Shawarma Combo,Shawarma Palace,14,,N,N,N,,N,Y,,N,N,N,N,,N,N,Y,9/26/2025,Shawarma
+Chicken Shawarma Plate,Shawarma Palace,20,,N,N,N,,N,Y,,N,N,N,N,,N,N,N,9/26/2025,Shawarma
+Chicken Shawarma Sandwich,Shawarma Palace,9.5,,N,N,N,,N,Y,,N,N,N,N,,N,N,Y,9/26/2025,Shawarma
+Mixed Shawarma Combo,Shawarma Palace,15,,N,N,N,,N,Y,,N,N,N,N,,N,N,Y,9/26/2025,Shawarma
+Mixed Shawarma Plate,Shawarma Palace,21,,N,N,N,,N,Y,,N,N,N,N,,N,N,N,9/26/2025,Shawarma
+Mixed Shawarma Sandwich,Shawarma Palace,10.5,,N,N,N,,N,Y,,N,N,N,N,,N,N,Y,9/26/2025,Shawarma
+Lentil Shepherd's Pie,Teraanga Commons Dining Hall,,150,,T,F,T,T,,"lentils, carrot, celery, gravy, spices, mashed potato",N,N,,N,N,,N,N,10/6/2025,Shepherd's Pie
+Donburi Shrimp Tempura,Bento Boxes,12,,N,N,N,N,N,Y,,N,Y,N,N,N,N,N,Y,1/14/2025,Shrimp
+Popcorn Shrimp,Mike's Place,7.49,,,N,N,N,N,Y,,,N,N,N,N,N,,Y,10/1/2025,Shrimp
+Tiger Prawns,Riverbank Social,9,,N,N,Y,N,N,Y,,N,Y,N,N,N,N,N,N,1/13/2026,Shrimp
+Chickpea & Root Vegetable Soup (8000 millilitre),Teraanga Commons Dining Hall,,50,,T,T,T,T,Y,,N,N,,N,,,N,N,10/6/2025,Soup
+Miso Broth (356 millilitre),Teraanga Commons Dining Hall,,80,,T,F,T,T,Y,,N,,N,N,N,Y,N,N,10/6/2025,Soup
+Moroccan Chickpea Soup (237 millilitre),Teraanga Commons Dining Hall,,120,,T,T,T,T,Y,"A flavourful tomato-based broth soup loaded with chickpeas, potatoes, carrots, spinach and warm spices.",N,N,N,N,,,N,N,10/6/2025,Soup
+Shoyu Pork Broth (26520 millilitre),Teraanga Commons Dining Hall,,120,,F,F,F,F,Y,,N,,N,N,,Y,N,,10/6/2025,Soup
+Coconut Curry Chickpea Soup (474 millilitre),Teraanga Commons Dining Hall,,480,,T,T,T,T,,"Chickpeas, lentils and sweet potatoes simmered in coconut, ginger, turmeric and cinnamon flavours.",N,N,,N,,,N,N,10/6/2025,Soup
+Corn Lentil Soup (8000 millilitre),Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,,N,,,N,N,10/6/2025,Soup
+Cream of spinach soup,Teraanga Commons Dining Hall,,,,F,F,F,F,N,,N,N,Y,N,N,,N,,10/6/2025,Soup
+GF Broccoli Cheddar Soup,Teraanga Commons Dining Hall,,,,F,F,F,F,N,A thick and delicious cheese soup with onions and broccoli florets.,N,N,Y,N,N,,N,N,10/6/2025,Soup
+Mediterranean Kale Minestrone Soup (8000 millilitre),Teraanga Commons Dining Hall,,,,T,T,T,T,,"A twist on a classic Italian vegetable broth soup containing brown rice, white beans and kale.",N,N,,N,,,N,,10/6/2025,Soup
+No Gluten Turkey Noodle Soup (8 litre),Teraanga Commons Dining Hall,,,,F,T,F,F,,Home-style soup with pieces of turkey breast and no gluten fettuccine noodles.,N,N,,N,N,,N,N,10/6/2025,Soup
+Chef's Inspiration Soup,Riverbank Social,8,,,,,,,,Mystery,,,,,,,,,1/13/2026,Soup
+Large Soup,Rooster's,7.69,,,,,,,,,,,,,,,,,1/13/2026,Soup
+Medium Soup,Rooster's,6.79,,,,,,,,,,,,,,,,,1/13/2026,Soup
+Khao Soi Noodle Soup,Thai Kitchen,18,,,N,N,,N,,,,Y,,,N,,,Y,1/15/2026,Soup
+Sour Cream,Teraanga Commons Dining Hall,,15,,F,T,T,T,N,,N,N,Y,N,N,N,N,,10/6/2025,Sour Cream
+Vegetable Spring Rolls,Mike's Place,5.99,,,N,N,Y,Y,Y,,,N,N,N,,N,,Y,10/1/2025,Spring Rolls
+Rice Krispie Square,Teraanga Commons Dining Hall,,80,,F,F,F,F,N,,N,N,Y,N,N,,N,N,10/6/2025,Square
+Confetti Rice Krispie Square,Teraanga Commons Dining Hall,,90,,F,F,F,F,N,,N,N,Y,N,N,,N,N,10/6/2025,Square
+Chocolate Chip Rice Krispie Square,Teraanga Commons Dining Hall,,100,,F,F,F,F,N,,N,N,Y,N,N,,N,N,10/6/2025,Square
+Mint Fudge,Teraanga Commons Dining Hall,,220,,F,F,F,F,N,,N,N,Y,N,N,,N,N,10/6/2025,Square
+Date Square,CT-Pastry,3.45,340,N,N,N,Y,Y,N,,,N,Y,N,N,,N,Y,9/26/2025,Square
+Macaroon Square,CT-Pastry,3.45,430,N,N,N,Y,Y,N,,Y,N,Y,N,N,,N,N,9/26/2025,Square
+Coconut Date Bite,Bridgehead,2.35,,Y,Y,N,Y,Y,,,Y,N,,,N,N,Y,Y,9/24/2025,Square
+Lemon Square,Bridgehead,4.95,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Square
+Maple Pecan Square,Bridgehead,4.95,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Square
+"STEW, GOULASH, BEEF, POTATO, VEGETABLES RES",Teraanga Commons Dining Hall,,100,,F,T,F,F,,,N,N,,N,N,,N,,10/6/2025,Stew
+Marrakesh Vegetable Stew,Teraanga Commons Dining Hall,,120,,T,T,T,T,Y,"chickpeas, potato, zucchini, tomato, carrots",N,N,N,N,,,N,N,10/6/2025,Stew
+Bean Ragout,Teraanga Commons Dining Hall,,130,,T,T,T,T,Y,"kidney beans, chickpeas, onion, green pepper, carrot, tomato",N,N,,N,,,N,N,10/6/2025,Stew
+Braised Beef Ragu (3000 millilitre),Teraanga Commons Dining Hall,,160,,F,T,F,F,N,,N,N,,N,N,N,N,,10/6/2025,Stew
+Sadza Chicken Stew,Teraanga Commons Dining Hall,,160,,F,F,F,F,Y,"chicken, onion, tomato, green onion",N,N,,N,N,,N,N,10/6/2025,Stew
+Chili Garlic Veggie Stir Fry,Teraanga Commons Dining Hall,,90,,T,F,T,T,Y,"cabbage, carrot, celery, onion, spices, sweet chili sauce, soy sauce",N,N,N,N,,,N,N,10/6/2025,Stir Fry
+Vegetarian California Roll,Bento Boxes,9,270,N,Y,Y,Y,Y,Y,"Carrots, cucumber and avocado wrapped in seaweed and rice",N,N,N,N,Y,N,N,N,1/14/2025,Sushi
+California Roll,Bento Boxes,9,290,N,N,Y,N,N,Y,"Imitation crab meat, cucumber and avocado wrapped in seaweed and rice",N,Y,N,N,Y,N,N,N,1/14/2025,Sushi
+Salmon Avocado Roll,Bento Boxes,12,340,N,N,Y,N,N,Y,Salmon and avocado wrapped in seaweed and rice,N,Y,N,N,Y,N,N,N,1/14/2025,Sushi
+Spicy California Roll,Bento Boxes,10,350,N,N,Y,N,N,Y,Iminitation crab and cucumber wrapped in seaweed and rice topped with spicy mayo,Y,Y,N,N,Y,N,N,N,1/14/2025,Sushi
+Spicy Salmon Roll,Bento Boxes,12,360,N,N,Y,N,N,Y,Salmon and cucumber wrapped in rice and seaweed and topped with spicy mayo,Y,Y,N,N,Y,N,N,N,1/14/2025,Sushi
+Dynamite Crunch Roll,Bento Boxes,12,389,N,N,Y,N,N,Y,"Tempura shrimp, avocado and cucumber topped with teriyaki sauce and crispy fried onions",N,Y,N,N,Y,Y,N,N,1/14/2025,Sushi
+Dynamite Roll,Bento Boxes,11,390,N,N,Y,N,N,Y,"Tempura shrimp, avocado and cucumber wrapped in seaweed and rice and topped with teriyaki sauce",N,Y,N,N,Y,Y,N,N,1/14/2025,Sushi
+Spicy California Crunch Roll,Bento Boxes,10,450,N,N,Y,N,N,Y,"Imitation crab, cucumber and avocado topped with spicy mayo and crisp fried onions",Y,Y,N,N,Y,N,N,N,1/14/2025,Sushi
+California Nigiri Combo,Bento Boxes,15,470,N,N,Y,N,N,Y,"California rolls accompanied by salmon, shrimp and tuna nigiri",N,Y,N,N,Y,N,N,N,1/14/2025,Sushi
+Salmon Sushi Combo,Bento Boxes,17,,N,N,Y,N,N,Y,"Salmon and avocado rolls, spicy salmon rolls, salmon rolls and salmon sashimi",N,Y,N,N,Y,N,N,N,1/14/2025,Sushi
+Chicken Tinga Taco,Teraanga Commons Dining Hall,,240,,F,F,F,F,,"chicken tinga, lettuce, tomato, sour cream, cheddar cheese, tortilla",N,N,,N,N,,N,Y,10/6/2025,Taco
+Taco Salad,Ollies,9.5,,N,N,Y,N,Y,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Taco
+Blueberry Tart,Teraanga Commons Dining Hall,,120,,F,F,F,F,N,,,N,Y,N,N,,N,Y,10/6/2025,Tart
+Maple Butter Tart,Teraanga Commons Dining Hall,,130,,F,F,T,T,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Tart
+Pop Tart,Leo's Lounge,1.5,,N,N,N,Y,Y,N,,N,N,Y,N,N,Y,N,Y,9/26/2025,Tart
+Apple Tart a la Mode,Riverbank Social,8,,N,N,N,Y,Y,N,Served with Caramel sauce,Y,N,Y,N,N,N,N,Y,1/13/2026,Tart
+French Toast,Teraanga Commons Dining Hall,,120,,F,F,T,T,N,,Y,N,Y,N,N,Y,N,,10/6/2025,Toast
+French Toast,Riverbank Social,9.99,,N,N,Y,N,N,N,,Y,N,N,N,N,N,N,Y,1/13/2026,Toast
+Toast,Riverbank Social,3.75,,N,N,N,Y,Y,N,,N,N,N,N,N,N,N,Y,1/13/2026,Toast
+Toast,Rooster's,1.99,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Toast
+Toast w/ Butter,Rooster's,1.99,,N,N,N,Y,Y,N,Two slices of toast served either with butter or dry.,N,N,Y,N,N,N,N,Y,1/13/2026,Toast
+Toast w/ Jam,Rooster's,2.99,,Y,Y,N,Y,Y,Y,Two slices of toast served with your choice of peanut butter and jam.,N,N,N,N,N,N,N,Y,1/13/2026,Toast
+Asian Tofu (59 millilitre),Teraanga Commons Dining Hall,,45,,T,F,T,T,Y,,N,,N,N,,Y,N,N,10/6/2025,Tofu
+Tofu,Teraanga Commons Dining Hall,,45,,T,T,T,T,Y,,N,N,N,N,,Y,N,,10/6/2025,Tofu
+Kung Pao Tofu,Teraanga Commons Dining Hall,,150,,T,F,T,T,N,,N,N,N,N,,Y,N,N,10/6/2025,Tofu
+Donburi Inari Tofu,Bento Boxes,12,580,N,Y,N,Y,Y,Y,,N,N,N,N,Y,Y,N,N,1/14/2025,Tofu
+Tomato,Teraanga Commons Dining Hall,,10,,T,T,T,T,Y,,N,N,N,N,N,N,N,,10/6/2025,Tomato
+Bok Choy,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Vegetables
+Spring Mix,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,,10/6/2025,Vegetables
+Market Mixed Greens,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Vegetables
+Vegetable Medley,Teraanga Commons Dining Hall,,60,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Vegetables
+Pumpkin Seeds,Teraanga Commons Dining Hall,,80,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Vegetables
+Ginger Roasted Cauliflower & Carrots,Teraanga Commons Dining Hall,,100,,T,T,T,T,Y,,N,N,N,N,,,N,N,10/6/2025,Vegetables
+MTO PTN SUNFLOWER SEEDS (30 ML),Teraanga Commons Dining Hall,,110,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Vegetables
+Roasted Corn & Green Pepper,Teraanga Commons Dining Hall,,120,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Vegetables
+Sundried Tomato Stuffed Naan,Mike's Place,9.99,,,N,N,Y,Y,N,,N,N,Y,N,N,N,,Y,10/1/2025,Veggie Pita
+Garden Veggie Pita,Rooster's,8.69,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Veggie Pita
+Roasted Eggplant Pita,Rooster's,10.99,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Veggie Pita
+Veggie Pita,Rooster's,8.69,,N,Y,N,Y,Y,Y,Your choice of our wide selection of fresh veggies.,N,N,N,N,N,N,N,Y,1/13/2026,Veggie pita
+Belgian LiÃ¨ge Waffle,Starbucks,3.35,220,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Waffle
+Chickpea Shawarma Wrap,Teraanga Commons Dining Hall,,240,,T,F,T,T,,"smashed lemon tahini chickpeas, pickled red cabbage, cucumber, carrots, lettuce, garlic sauce, tortilla",N,N,,N,,,N,Y,10/6/2025,Wrap
+Korean BBQ Tempeh Wrap,Teraanga Commons Dining Hall,,280,,T,F,T,T,,"korean BBQ tempeh, red pepper, green onion, guacamole, lettuce, sesame seeds, tortilla",N,N,,N,,Y,N,Y,10/6/2025,Wrap
+"Spinich, Feta & Egg White Wrap",Starbucks,5.65,290,N,N,N,,N,N,,Y,N,Y,N,Y,Y,N,Y,1/15/2026,Wrap
+Buffalo Chicken Wrap,Tunnel Junction,8.2,460,N,N,N,Y,N,Y,,N,N,N,N,N,N,N,Y,9/26/2025,Wrap
+Chicken Caesar Salad,Tunnel Junction,9,500,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Wrap
+Bacon Farmer's Wrap,Tim Hortons,5.49,520,,N,N,,N,N,"Wheat, Egg, Milk, Soy May contain: Tree nuts (coconut)",Y,N,Y,N,N,Y,,Y,9/25/2025,Wrap
+Scrambled Egg Loaded Wrap,Tim Hortons,5.49,530,N,N,N,Y,Y,N,"Contains: Wheat, Egg, Milk, Soy May contain: Tree nuts (coconut)",Y,N,Y,N,N,Y,,Y,9/25/2025,Wrap
+Chicken Caesar Wrap,Tunnel Junction,8.2,570,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Wrap
+Greek Falafel Wrap,Tunnel Junction,7.6,580,N,Y,N,N,Y,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Wrap
+"Bacon, Sausage & Egg Wrap",Starbucks,640,640,N,N,N,,N,N,,N,N,N,N,N,N,N,Y,1/15/2026,Wrap
+Farmer's Breakfast Wrap,Tim Hortons,5.49,640,N,N,N,,N,N,"Wheat Tortilla: Enriched flour, Water, Whole wheat flour, Canola, palm and palm kernel oil shortening, Sugar, Salt, Sodium bicarbonate, Mono- and diglycerides, Fumaric acid, Sodium acid pyrophosphate, Cultured wheat flour, Guar gum, Monoglycerides, Cellulose gum, L-cysteine, Amylase, Xylanase. Egg: Canada Grade A large egg. Cooking Spray: Canola oil, Coconut oil, Modified palm oil, Soy lecithin, Natural flavour, Dimethyl silicone, Propellants (isobutane, propane). Cheddar Cheese: Milk, Modified milk ingredients, Cream, Salt, Bacterial culture, Calcium chloride, Annatto (colour), Microbial enzyme. Sausage: Pork, Water, Salt, Spices, Dextrose, Sugar, Autolyzed yeast, Lemon powder (corn syrup, concentrated lemon juice, natural flavour), Savory flavour (natural flavour, maltodextrin), Natural flavours, Citric acid, Lactic acid. Hash Brown: Potatoes, Canola oil, Salt, Dehydrated potatoes (mono- and diglycerides, sodium acid pyrophosphate and citric acid [to maintain colour]), Sodium acid pyrophosphate (to maintain colour), Sugars (dextrose), Natural flavour. Chipotle Sauce: Water, Soybean oil, Frozen yolk (egg), Sour cream powder (milk) (sour cream, citric acid, tocopherols), Sugar, Vinegar, Modified milk ingredients, Salt, Modified corn starch, Dehydrated onion, Spices and herbs, Lactic acid, Jalapeno puree (jalapeno peppers, salt, acetic acid), Fruit extract (contains vinegar, tapioca flour, maltodextrin), Dehydrated garlic, Chipotle powder, Xanthan gum, Natural flavour, Calcium disodium EDTA.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Wrap
+Sausage Farmer's Wrap,Tim Hortons,5.49,640,N,N,N,,N,N,"Wheat Tortilla: Enriched flour, Water, Whole wheat flour, Canola, palm and palm kernel oil shortening, Sugar, Salt, Sodium bicarbonate, Mono- and diglycerides, Fumaric acid, Sodium acid pyrophosphate, Cultured wheat flour, Guar gum, Monoglycerides, Cellulose gum, L-cysteine, Amylase, Xylanase. Egg: Canada Grade A large egg. Cooking Spray: Canola oil, Coconut oil, Modified palm oil, Soy lecithin, Natural flavour, Dimethyl silicone, Propellants (isobutane, propane). Cheddar Cheese: Milk, Modified milk ingredients, Cream, Salt, Bacterial culture, Calcium chloride, Annatto (colour), Microbial enzyme. Sausage: Pork, Water, Salt, Spices, Dextrose, Sugar, Autolyzed yeast, Lemon powder (corn syrup, concentrated lemon juice, natural flavour), Savory flavour (natural flavour, maltodextrin), Natural flavours, Citric acid, Lactic acid. Hash Brown: Potatoes, Canola oil, Salt, Dehydrated potatoes (mono- and diglycerides, sodium acid pyrophosphate and citric acid [to maintain colour]), Sodium acid pyrophosphate (to maintain colour), Sugars (dextrose), Natural flavour. Chipotle Sauce: Water, Soybean oil, Frozen yolk (egg), Sour cream powder (milk) (sour cream, citric acid, tocopherols), Sugar, Vinegar, Modified milk ingredients, Salt, Modified corn starch, Dehydrated onion, Spices and herbs, Lactic acid, Jalapeno puree (jalapeno peppers, salt, acetic acid), Fruit extract (contains vinegar, tapioca flour, maltodextrin), Dehydrated garlic, Chipotle powder, Xanthan gum, Natural flavour, Calcium disodium EDTA.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Wrap
+Double Stacked Farmer's Wrap,Tim Hortons,6.49,700,N,N,N,,N,N,"Contains: Wheat, Egg, Milk, Soy",Y,N,Y,N,N,Y,N,Y,9/25/2025,Wrap
+Bacon & Egg Wrap,Bridgehead,6.95,,N,N,N,,N,,,Y,N,,,N,N,,Y,9/24/2025,Wrap
+Breakfast Wrap,Bridgehead,6.95,,N,N,N,,N,,,Y,N,,,N,N,,Y,9/24/2025,Wrap
+Chicken Salad Wrap,Bridgehead,12.45,,Y,N,N,,N,,,,N,,,N,N,Y,Y,9/24/2025,Wrap
+Chicken Wrap,Bridgehead,12.45,,Y,N,N,,N,,,,N,,,N,N,Y,Y,9/24/2025,Wrap
+Egg & Cheese Wrap,Bridgehead,6.45,,N,N,N,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Wrap
+Snack Wraps,Colonel by Chicken,6.5,,N,N,N,Y,N,N,"Chicken tenders, lettuce, signature sauce, small tortilla wrap",N,N,,N,N,N,N,Y,1/14/2026,Wrap
+Chef's Feature Piadina,Riverbank Social,14,,,,N,,,,Mystery,,,N,,,,,Y,1/13/2026,Wrap
+Chicken Salad Wrap,Shawarma Palace,15,,N,N,N,,N,Y,,N,N,N,N,,N,N,Y,9/26/2025,Wrap
+Grilled Vegetable Wrap,Teraanga Commons Dining Hall,,200,,F,F,F,F,,"grilled zucchini, roasted red pepper, spinach, sundried tomato pesto, tortilla",N,N,,N,,,N,Y,10/6/2025,Wrap (No protein)
+Cauliflower Lentil Wrap,Teraanga Commons Dining Hall,,260,,T,F,T,T,,"cauliflower & red lentil curry, basmati rice, tortilla",N,N,,N,,,N,Y,10/6/2025,Wrap (No protein)
+Vegetable Provolone Wrap,Teraanga Commons Dining Hall,,260,,F,F,F,F,N,"carrot, red onion, zucchini, bell pepper, lettuce, tomato, provolone cheese, basil pesto mayo, tortilla",N,N,Y,N,,,N,Y,10/6/2025,Wrap (No protein)
+Vegetable Market Wrap,Tunnel Junction,7.6,460,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Wrap (No protein)
+Chipotle Quinoa Wrap,Bridgehead,12.45,,Y,Y,N,Y,Y,,,,N,,,N,N,Y,Y,9/24/2025,Wrap (No protein)
+Zucchini,Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Zucchini
+Sauteed Zucchini,Teraanga Commons Dining Hall,,40,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Zucchini

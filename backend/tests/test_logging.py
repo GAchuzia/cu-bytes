@@ -1,8 +1,14 @@
 # Project imports
-from backend.tests.test_helpers import seeded_food_data, seeded_users
+from backend.tests.test_helpers import (
+    seeded_food_data,
+    seeded_users,
+    seeded_food_categories,
+)
 
 
-def test_valid_transactions_by_id(client, seeded_food_data, seeded_users):
+def test_valid_transactions_by_id(
+    client, seeded_food_data, seeded_users, seeded_food_categories
+):
     response = client.post(
         "/logging/log-by-id",
         json={"username": "Alice", "food_id": 1},
@@ -23,7 +29,9 @@ def test_valid_transactions_by_id(client, seeded_food_data, seeded_users):
     assert "Transaction recorded" in data["message"]
 
 
-def test_transaction_missing_fields_by_id(client, seeded_food_data, seeded_users):
+def test_transaction_missing_fields_by_id(
+    client, seeded_food_data, seeded_users, seeded_food_categories
+):
     # Try empty username
     response = client.post(
         "/logging/log-by-id",
@@ -55,7 +63,9 @@ def test_transaction_missing_fields_by_id(client, seeded_food_data, seeded_users
     assert "food_id is required" in data["message"]
 
 
-def test_transaction_wrong_datatype_by_id(client, seeded_food_data, seeded_users):
+def test_transaction_wrong_datatype_by_id(
+    client, seeded_food_data, seeded_users, seeded_food_categories
+):
     # food_id expects integer, pass in a string
     response = client.post(
         "/logging/log-by-id",
@@ -67,7 +77,9 @@ def test_transaction_wrong_datatype_by_id(client, seeded_food_data, seeded_users
     assert "must be an integer" in data["message"]
 
 
-def test_transaction_nonexistent_user_by_id(client, seeded_food_data, seeded_users):
+def test_transaction_nonexistent_user_by_id(
+    client, seeded_food_data, seeded_users, seeded_food_categories
+):
     response = client.post(
         "/logging/log-by-id",
         json={"username": "Daniel", "food_id": 1},
@@ -78,7 +90,9 @@ def test_transaction_nonexistent_user_by_id(client, seeded_food_data, seeded_use
     assert "No matching username found" in data["message"]
 
 
-def test_transaction_nonexistent_food_id(client, seeded_food_data, seeded_users):
+def test_transaction_nonexistent_food_id(
+    client, seeded_food_data, seeded_users, seeded_food_categories
+):
     response = client.post(
         "/logging/log-by-id",
         json={"username": "Alice", "food_id": 1111},
@@ -89,7 +103,9 @@ def test_transaction_nonexistent_food_id(client, seeded_food_data, seeded_users)
     assert "No matching food_id found" in data["message"]
 
 
-def test_valid_transactions_by_name(client, seeded_food_data, seeded_users):
+def test_valid_transactions_by_name(
+    client, seeded_food_data, seeded_users, seeded_food_categories
+):
     response = client.post(
         "/logging/log-by-name",
         json={"username": "Alice", "food_name": "Pizza"},
@@ -110,7 +126,9 @@ def test_valid_transactions_by_name(client, seeded_food_data, seeded_users):
     assert "Transaction recorded" in data["message"]
 
 
-def test_transaction_missing_fields_by_name(client, seeded_food_data, seeded_users):
+def test_transaction_missing_fields_by_name(
+    client, seeded_food_data, seeded_users, seeded_food_categories
+):
     # Try empty username
     response = client.post(
         "/logging/log-by-name",
@@ -142,7 +160,9 @@ def test_transaction_missing_fields_by_name(client, seeded_food_data, seeded_use
     assert "food_name is required" in data["message"]
 
 
-def test_transaction_wrong_datatype_by_name(client, seeded_food_data, seeded_users):
+def test_transaction_wrong_datatype_by_name(
+    client, seeded_food_data, seeded_users, seeded_food_categories
+):
     # food_name expects string, pass in an int
     response = client.post(
         "/logging/log-by-name",
@@ -154,7 +174,9 @@ def test_transaction_wrong_datatype_by_name(client, seeded_food_data, seeded_use
     assert "must be a string" in data["message"]
 
 
-def test_transaction_nonexistent_user_by_name(client, seeded_food_data, seeded_users):
+def test_transaction_nonexistent_user_by_name(
+    client, seeded_food_data, seeded_users, seeded_food_categories
+):
     response = client.post(
         "/logging/log-by-name",
         json={"username": "Daniel", "food_name": "Pizza"},
@@ -177,7 +199,7 @@ def test_transaction_nonexistent_user_by_name(client, seeded_food_data, seeded_u
 #     assert "No matching food_name found" in data["message"]
 
 
-def test_retreival(client, seeded_food_data, seeded_users):
+def test_retreival(client, seeded_food_data, seeded_users, seeded_food_categories):
     # Retreive an empty list (no transactions yet)
     response = client.get("/logging/history/Alice")
     data = response.get_json()
@@ -205,7 +227,7 @@ def test_retreival(client, seeded_food_data, seeded_users):
     # Add a second item via the other transaction endpoint
     client.post(
         "/logging/log-by-name",
-        json={"username": "Alice", "food_name": "Banana Bread"},
+        json={"username": "Alice", "food_name": "Loaf"},
     )
 
     response = client.get("/logging/history/Alice")
@@ -222,13 +244,16 @@ def test_retreival(client, seeded_food_data, seeded_users):
     assert first_log_entry["food_name"] == "Caesar Salad"
     assert first_log_entry["transaction_time"]
 
+    # The second entry is using the generic category
     second_log_entry = data[0]
-    assert second_log_entry["calories"] == 350
-    assert second_log_entry["food_name"] == "Banana Bread"
+    assert second_log_entry["calories"] == 500
+    assert second_log_entry["food_name"] == "Loaf"
     assert second_log_entry["transaction_time"]
 
 
-def test_retreival_invalid_username(client, seeded_food_data, seeded_users):
+def test_retreival_invalid_username(
+    client, seeded_food_data, seeded_users, seeded_food_categories
+):
     # Retreive an empty list (no transactions yet)
     response = client.get("/logging/history/Alison")
     assert response.status_code == 400
