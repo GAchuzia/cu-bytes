@@ -117,7 +117,7 @@ def create_food_table():
                 has_peanuts=parse_bool(row.get("Peanuts")),
                 has_sesame=parse_bool(row.get("Sesame")),
                 has_soy=parse_bool(row.get("Soy")),
-                has_treenuts=parse_bool(row.get("Treenuts")),
+                has_treenuts=parse_bool(row.get("TreeNuts")),
                 has_wheat=parse_bool(row.get("Wheat")),
                 food_category=row.get("Food Category"),
             )
