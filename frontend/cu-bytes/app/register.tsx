@@ -16,21 +16,20 @@ export default function RegisterScreen() {
     const
         {
             usernameGlobal,
-
             setUsernameGlobal,
             setShowStatsGlobal,
             setHasEggAllergyGlobal,
+            setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
+            setHasMilkAllergyGlobal,
             setHasPeanutAllergyGlobal,
             setHasSesameAllergyGlobal,
-            setHasShellfishAllergyGlobal,
             setHasSoyAllergyGlobal,
             setHasTreenutAllergyGlobal,
             setHasWheatAllergyGlobal,
             setHasGlutenAllergyGlobal,
             setIsVeganGlobal,
             setIsVegetarianGlobal,
-            setPrefersKosherGlobal,
             setPrefersHalalGlobal
 
         } = useUser();
@@ -97,17 +96,17 @@ export default function RegisterScreen() {
                 setUsernameGlobal(username),
                 setShowStatsGlobal(false),
                 setHasEggAllergyGlobal(false),
+                setHasFishOrShellfishAllergyGlobal(false),
                 setHasDairyIntoleranceGlobal(false),
+                setHasMilkAllergyGlobal(false),
                 setHasPeanutAllergyGlobal(false),
                 setHasSesameAllergyGlobal(false),
-                setHasShellfishAllergyGlobal(false),
                 setHasSoyAllergyGlobal(false),
                 setHasTreenutAllergyGlobal(false),
                 setHasWheatAllergyGlobal(false),
                 setHasGlutenAllergyGlobal(false),
                 setIsVeganGlobal(false),
                 setIsVegetarianGlobal(false),
-                setPrefersKosherGlobal(false),
                 setPrefersHalalGlobal(false),
                 
                 // Route to the login page

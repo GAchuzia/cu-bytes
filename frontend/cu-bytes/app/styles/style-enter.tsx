@@ -81,6 +81,28 @@ export const styles = StyleSheet.create({
     height: '12.5%' as any
   },
 
+  buttonPopup: {
+    color: 'black',
+    backgroundColor: '#0a7ea4',
+    padding: '0.5%' as any,
+
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '1%' as any,
+
+    borderRadius: 25,
+    borderWidth: 4,
+    borderBlockColor: 'black',
+    
+    shadowColor: 'black',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    
+    width: '100%' as any,
+    height: '40%' as any
+  },
+
   buttonDisabled: {
     backgroundColor: '#CCCCCC',
   },

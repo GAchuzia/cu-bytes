@@ -15,17 +15,16 @@ export default function SplashScreen() {
             usernameGlobal,
             showStatsGlobal,
             hasEggAllergyGlobal,
+            hasFishOrShellfishAllergyGlobal,
             hasDairyIntoleranceGlobal,
             hasPeanutAllergyGlobal,
             hasSesameAllergyGlobal,
-            hasShellfishAllergyGlobal,
             hasSoyAllergyGlobal,
             hasTreenutAllergyGlobal,
             hasWheatAllergyGlobal,
             hasGlutenAllergyGlobal,
             isVeganGlobal,
             isVegetarianGlobal,
-            prefersKosherGlobal,
             prefersHalalGlobal
 
         } = useUser();
