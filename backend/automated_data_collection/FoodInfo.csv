@@ -47,7 +47,6 @@ Food Item,Dining Location,Cost,Calories,Nuts,Vegan,Gluten Free,Halal,Vegetarian,
 "6"" Turkey Breast Sub",Subway,7.79,290.0,N,N,N,,N,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich
 "6"" Veggie Delite Sub",Subway,6.09,220.0,N,,N,Y,Y,,,N,N,,N,N,N,N,Y,10/1/2025,Sandwich (No Protein)
 Air Heads,Leo's Lounge,0.5,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,,9/26/2025,Candy
-Alfredo Sauce (3000  millilitre),Teraanga Commons Dining Hall,,,,F,T,F,F,,,,,,,,,,,10/6/2025,Sauce
 Alfredo Sauce (3000 millilitre),Teraanga Commons Dining Hall,,,,F,T,F,F,N,,,N,Y,N,N,,N,,10/6/2025,Sauce
 Apple Bran Muffin,Tunnel Junction,3.3,290.0,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,9/26/2025,Muffin
 Apple Cabbage Slaw,Teraanga Commons Dining Hall,,60.0,,F,T,F,T,,,,N,,N,,,N,N,10/6/2025,Coleslaw
@@ -55,10 +54,8 @@ Apple Cranberry Muffin,Bridgehead,3.95,,N,Y,Y,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Muf
 Apple Fritter Donut,Tim Hortons,1.69,330.0,N,N,N,Y,Y,N,"Apple Fritter Donut: Enriched wheat flour, Water, Apples (apples, citric acid, calcium chloride, salt), Palm oil shortening (palm oil and/or modified palm oil), Sugars (sugar, dextrose), Yeast, Soybean oil, Whey powder (milk), Cinnamon, Salt, Sodium acid pyrophosphate, Sodium bicarbonate, Mono- and diglycerides, Sodium stearoyl-2-lactylate, Guar gum, Wheat starch, Natural flavour, Ascorbic acid, L-cysteine hydrochloride, Amylase, Xylanase, Sunflower oil. Donut Glaze: Sugar, Water, Rowanberry fruit extract, Guar gum, Tapioca flour, Modified potato starch, Citric acid (ph control), Agar, Xanthan gum.",N,N,Y,N,N,Y,N,Y,9/25/2025,Donut
 Apple Tart a la Mode,Riverbank Social,8.0,,N,N,N,Y,Y,N,Served with Caramel sauce,Y,N,Y,N,N,N,N,Y,1/13/2026,Tart
 Aromatic Basmati Rice,Teraanga Commons Dining Hall,,120.0,,T,T,F,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Rice
-Asian Noodle Salad (1000  gram),Teraanga Commons Dining Hall,,,,F,F,F,T,,"rice noodles, snow peas, broccoli, cucumber, carrot, onion, sesame seeds, spicy asian vinaigrette",,,,,,,,,10/6/2025,Pasta Salad
-Asian Noodle Salad (1000 gram),Teraanga Commons Dining Hall,,,,F,F,T,T,N,"rice noodles,Â snow peas,Â broccoli,Â cucumber,Â carrot, onion, sesame seeds,Â spicy asianÂ vinaigrette",,,,N,,,N,Y,10/6/2025,Pasta Salad
-Asian Tofu (59  millilitre),Teraanga Commons Dining Hall,,45.0,,T,F,F,T,,,,,,,,,,,10/6/2025,Tofu
-Asian Tofu (59 millilitre),Teraanga Commons Dining Hall,,45.0,,T,F,T,T,Y,,N,,N,N,,Y,N,N,10/6/2025,Tofu
+Asian Noodle Salad (1000 gram),Teraanga Commons Dining Hall,,,,F,F,F,T,N,"rice noodles, snow peas, broccoli, cucumber, carrot, onion, sesame seeds, spicy asian vinaigrette",,,,N,,,N,Y,10/6/2025,Pasta Salad
+Asian Tofu (59 millilitre),Teraanga Commons Dining Hall,,45.0,,T,F,F,T,Y,,N,,N,N,,Y,N,N,10/6/2025,Tofu
 B.L.T Snackwich,Subway,4.0,400.0,N,N,N,,N,Y,,N,N,N,N,N,N,N,Y,10/1/2025,Sandwich
 B.L.T.,Rooster's,7.99,,N,N,N,N,N,Y,"Classic bacon, lettuce and tomato served on your choice of toasted bread or bagel.",N,N,N,N,N,N,N,Y,10/30/2025,Sandwich
 BBQ Chicken Pizza,Mike's Place,9.99,,,N,N,Y,N,N,,N,N,Y,N,N,N,,Y,10/1/2025,Pizza
@@ -116,7 +113,6 @@ Blueberry Muffin,Starbucks,3.65,350.0,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,Y,Y,1/15/2026,Muf
 Blueberry Tart,Teraanga Commons Dining Hall,,120.0,,F,F,F,F,N,,,N,Y,N,N,,N,Y,10/6/2025,Tart
 Bok Choy,Teraanga Commons Dining Hall,,0.0,,T,T,F,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Vegetables
 Boston Cream Donut,Tim Hortons,1.69,240.0,,N,N,Y,Y,N,"Contains: Milk, Wheat & Gluten, Sulphites May Contain: Egg, Soy, Tree Nuts",,N,Y,N,N,,,Y,9/25/2025,Donut
-Braised Beef Ragu (3000  millilitre),Teraanga Commons Dining Hall,,160.0,,F,T,F,F,,,,,,,,,,,10/6/2025,Stew
 Braised Beef Ragu (3000 millilitre),Teraanga Commons Dining Hall,,160.0,,F,T,F,F,N,,N,N,,N,N,N,N,,10/6/2025,Stew
 Breakfast Bowl,Riverbank Social,14.99,,N,N,N,Y,N,N,"House made fries with montreal smoked meat, sauteed peppers, onions, cheese curds, sunnyside up egg and hollandaise sauce",Y,N,N,N,N,,N,,1/13/2026,Combo
 Breakfast Express,Riverbank Social,9.99,,N,N,N,N,N,N,"Two eggs with toast, fries, bacon or pork sausage",Y,N,N,N,N,N,N,Y,1/13/2026,Combo
@@ -128,7 +124,6 @@ Breakfast Wrap,Bridgehead,6.95,,N,N,N,,N,,,Y,N,,,N,N,,Y,9/24/2025,Wrap
 Broccoli,Teraanga Commons Dining Hall,,70.0,,T,T,F,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Broccoli
 Buffalo Chicken Pizza,Teraanga Commons Dining Hall,,180.0,,F,F,F,F,N,"spicy buffalo chicken, red onion, buffalo sauce, mozzarella, blue cheese",,N,Y,N,,,N,Y,10/6/2025,Pizza
 Buffalo Chicken Wrap,Tunnel Junction,8.2,460.0,N,N,N,Y,N,Y,,N,N,N,N,N,N,N,Y,9/26/2025,Wrap
-Buffalo Ranch Potato Salad (1000  gram),Teraanga Commons Dining Hall,,140.0,,F,T,F,F,,"red potatoes, red pepper, celery, green onion, buffalo ranch dressing",,,,,,,,,10/6/2025,Potato Salad
 Buffalo Ranch Potato Salad (1000 gram),Teraanga Commons Dining Hall,,140.0,,F,T,F,F,N,"red potatoes, red pepper, celery, green onion, buffalo ranch dressing",,N,Y,N,,,N,N,10/6/2025,Potato Salad
 Build Your Own Sandwich,Urban Deli,9.2,,,,N,,,,,,,,,,,,,9/26/2025,Sandwich
 Burger Patty,Rodney's Kitchen,3.5,230.0,N,N,N,N,N,Y,,,N,N,N,N,N,N,N,1/13/2026,Hamburger
@@ -148,8 +143,7 @@ Canadian Pizza,Teraanga Commons Dining Hall,,190.0,,F,F,F,F,N,"pepperoni, bacon,
 Candy Bar,Leo's Lounge,2.0,,,N,,Y,Y,N,,,N,Y,,N,Y,,N,9/26/2025,Candy
 Caprese Sandwich,Urban Deli,9.2,570.0,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Sandwich
 Caramel Coffee Cake,Teraanga Commons Dining Hall,,300.0,,F,F,F,F,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Cake
-Carrot (1000  gram),Teraanga Commons Dining Hall,,,,T,T,F,T,,,,,,,,,,,10/6/2025,Carrot
-Carrot (1000 gram),Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Carrot
+Carrot (1000 gram),Teraanga Commons Dining Hall,,,,T,T,F,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Carrot
 Carrot Cake,Bridgehead,5.75,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Cake
 Carrot Cake,CT-Pastry,5.9,450.0,N,N,N,Y,Y,N,,Y,N,Y,N,N,,N,Y,9/26/2025,Cake
 Carrot Cake with Walnut Muffin,Tim Hortons,2.59,360.0,Y,N,N,Y,Y,N,"Enriched wheat flour, Sugars (sugar, corn syrup solids), Water, Carrots, Cream cheese filling (sugars [invert sugar, sugar, dextrose], water, cream cheese [milk], sorbitol, modified corn starch, salt, lactic acid, titanium dioxide, natural flavour, potassium sorbate, sodium benzoate, locust bean gum, xanthan gum, beta-carotene), Soybean and/or canola oils, Liquid whole eggs, Glazed walnuts (walnuts, sugars [sugar, corn syrup], salt, canola oil, soy lecithin, rosemary extract, capsicum oleoresin [soybean oil, chili pepper extractives], citric acid), Pineapple, Buttermilk powder (milk), Modified corn starch, Sodium bicarbonate, Sodium acid pyrophosphate, Salt, Spices, Monocalcium phosphate, Natural flavour, Caramel colour, Lemon juice concentrate, Xanthan gum, Guar gum, Monoglycerides, Amylase.",Y,N,Y,N,N,Y,Y,Y,9/25/2025,Muffin
@@ -158,7 +152,6 @@ Cauliflower Bites,Ollies,9.5,,N,N,N,N,Y,N,,N,N,Y,N,N,N,N,N,1/14/2026,Cauliflower
 Cauliflower Bulgur Curry,Teraanga Commons Dining Hall,,160.0,,T,F,F,T,,"lentil, bulgur, cauliflower, red pepper, onion, coconut milk",N,N,,N,,,N,Y,10/6/2025,Curry (Vegetable)
 Cauliflower Lentil Wrap,Teraanga Commons Dining Hall,,260.0,,T,F,F,T,,"cauliflower & red lentil curry, basmati rice, tortilla",N,N,,N,,,N,Y,10/6/2025,Wrap (No protein)
 Ch. Souvlaki Pita,Rooster's,11.99,,N,N,N,N,N,Y,Diced thigh meat seasoned with a lemon and herb season grilled with your choice of toppings.,N,N,N,N,N,N,N,Y,10/30/2025,Pita with protein
-Chasu Pork Loin (1  slice),Teraanga Commons Dining Hall,,70.0,,F,F,F,F,,,,,,,,,,,10/6/2025,Pork
 Chasu Pork Loin (1 slice),Teraanga Commons Dining Hall,,70.0,,F,F,F,F,Y,,N,N,N,N,N,,N,N,10/6/2025,Pork
 Cheddar Croissant,Bridgehead,4.95,,N,N,N,Y,Y,N,,N,N,Y,,N,N,,Y,9/24/2025,Croissant
 Cheese Croissant,Tim Hortons,2.59,290.0,N,N,N,Y,Y,N,"Enriched wheat flour, Water, Butter, Margarine (palm oil, canola oil, soy lecithin), Sugar, Yeast, Salt, Whey powder, Dextrose, Xanthan gum, Natural flavour, Wheat gluten, Annatto, Turmeric, Ascorbic acid, Enzymes. Cheese Topping: Milk, Modified milk ingredients, Cream, Salt, Bacterial culture, Calcium chloride, Annatto (colour), Microbial enzyme.",N,N,Y,N,N,Y,N,Y,9/25/2025,Croissant
@@ -198,8 +191,7 @@ Chicken Tinga Burrito,La Cocina,10.6,700.0,N,N,N,Y,N,N,"halal chicken, refried b
 Chicken Tinga Quesadilla,La Cocina,7.5,800.0,N,N,N,Y,N,N,"halal chicken tinga, marinated black beans, pico de gallo, monterey jack cheese and sour cream on the side",N,N,Y,N,N,,N,Y,1/15/2026,Quesadilla
 Chicken Tinga Taco,Teraanga Commons Dining Hall,,240.0,,F,F,F,F,,"chicken tinga, lettuce, tomato, sour cream, cheddar cheese, tortilla",N,N,,N,N,,N,Y,10/6/2025,Taco
 Chicken Wrap,Bridgehead,12.45,,Y,N,N,,N,,,,N,,,N,N,Y,Y,9/24/2025,Wrap
-Chickpea & Root Vegetable Soup (8000  millilitre),Teraanga Commons Dining Hall,,50.0,,T,T,F,T,,,,,,,,,,,10/6/2025,Soup
-Chickpea & Root Vegetable Soup (8000 millilitre),Teraanga Commons Dining Hall,,50.0,,T,T,T,T,Y,,N,N,,N,,,N,N,10/6/2025,Soup
+Chickpea & Root Vegetable Soup (8000 millilitre),Teraanga Commons Dining Hall,,50.0,,T,T,F,T,Y,,N,N,,N,,,N,N,10/6/2025,Soup
 Chickpea Curry,Mike's Place,8.99,,,N,N,Y,Y,,,N,N,,N,N,N,,N,10/1/2025,Curry
 Chickpea Curry,Teraanga Commons Dining Hall,,150.0,,F,T,F,T,,,N,N,,N,,,N,N,10/6/2025,Curry
 Chickpea Panzanella Ricotta Salad,Teraanga Commons Dining Hall,,340.0,,F,F,F,F,N,"crispy pesto chickpeas, ricotta, kalamata olives, cucumber, tomato, celery, red pepper, capers, balsamic glaze",N,N,Y,N,N,,N,Y,10/6/2025,Grain Salad
@@ -238,8 +230,7 @@ Classic Poutine,Rodney's Kitchen,9.6,1500.0,N,N,N,N,N,N,,N,N,Y,N,N,N,N,N,1/13/20
 Club Pita,Rooster's,12.99,,N,N,N,N,N,Y,"Turkey, Black Forest Ham and bacon wrapped with your choice of toppings.",N,N,N,N,N,N,N,Y,10/30/2025,Pita with protein
 Club Sandwich,Teraanga Commons Dining Hall,,250.0,,F,F,F,F,N,"bacon, ham, turkey, lettuce, tomato, cheddar cheese, mayo, whole wheat bread",,N,,N,,,N,Y,10/6/2025,Sandwich
 Coconut Curry,Bridgehead,12.45,,Y,N,N,,N,,,,N,,,N,N,Y,Y,9/24/2025,Curry
-Coconut Curry Chickpea Soup (474  millilitre),Teraanga Commons Dining Hall,,480.0,,T,T,F,T,,"Chickpeas, lentils and sweet potatoes simmered in coconut, ginger, turmeric and cinnamon flavours.",,,,,,,,,10/6/2025,Soup
-Coconut Curry Chickpea Soup (474 millilitre),Teraanga Commons Dining Hall,,480.0,,T,T,T,T,,"Chickpeas, lentils and sweet potatoes simmered in coconut, ginger, turmeric and cinnamon flavours.",N,N,,N,,,N,N,10/6/2025,Soup
+Coconut Curry Chickpea Soup (474 millilitre),Teraanga Commons Dining Hall,,480.0,,T,T,F,T,,"Chickpeas, lentils and sweet potatoes simmered in coconut, ginger, turmeric and cinnamon flavours.",N,N,,N,,,N,N,10/6/2025,Soup
 Coconut Date Bite,Bridgehead,2.35,,Y,Y,N,Y,Y,,,Y,N,,,N,N,Y,Y,9/24/2025,Square
 Coconut Jasmine Rice,Teraanga Commons Dining Hall,,190.0,,T,T,F,T,,,N,N,,N,N,N,N,N,10/6/2025,Rice
 Coconut Muffin,Tunnel Junction,3.3,330.0,N,N,N,Y,Y,N,,Y,N,Y,N,N,N,N,Y,9/26/2025,Muffin
@@ -250,12 +241,10 @@ Cone of Freshly Cut Fries,Riverbank Social,6.0,,N,N,N,Y,Y,Y,,N,N,N,N,N,N,N,N,1/1
 Confetti Rice Krispie Square,Teraanga Commons Dining Hall,,90.0,,F,F,F,F,N,,N,N,Y,N,N,,N,N,10/6/2025,Square
 Cookies & Cream Cake Pop,Starbucks,3.45,160.0,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,1/15/2026,Cake Pop
 Corn,Teraanga Commons Dining Hall,,50.0,,T,T,F,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Corn
-Corn Lentil Soup (8000  millilitre),Teraanga Commons Dining Hall,,,,T,T,F,T,,,,,,,,,,,10/6/2025,Soup
-Corn Lentil Soup (8000 millilitre),Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,,N,,,N,N,10/6/2025,Soup
+Corn Lentil Soup (8000 millilitre),Teraanga Commons Dining Hall,,,,T,T,F,T,Y,,N,N,,N,,,N,N,10/6/2025,Soup
 Cream Cheese,Riverbank Social,2.0,,N,N,Y,Y,Y,N,,N,N,Y,N,N,N,N,N,1/13/2026,Cheese
 Cream of spinach soup,Teraanga Commons Dining Hall,,,,F,F,F,F,N,,N,N,Y,N,N,,N,,10/6/2025,Soup
-Creamy Chickpea Salad (1000  gram),Teraanga Commons Dining Hall,,,,T,T,F,T,,"chickpeas, celery, green onion, red pepper, italian parsley, tahini lemon garlic vinaigrette",,,,,,,,,10/6/2025,Grain Salad
-Creamy Chickpea Salad (1000 gram),Teraanga Commons Dining Hall,,,,T,T,T,T,N,"chickpeas,Â celery,Â green onion,Â red pepper,Â italian parsley, tahini lemon garlic vinaigrette",,N,,N,,,N,N,10/6/2025,Grain Salad
+Creamy Chickpea Salad (1000 gram),Teraanga Commons Dining Hall,,,,T,T,F,T,N,"chickpeas, celery, green onion, red pepper, italian parsley, tahini lemon garlic vinaigrette",,N,,N,,,N,N,10/6/2025,Grain Salad
 Creamy Scrambled Egg,Teraanga Commons Dining Hall,,170.0,,F,F,F,F,N,,Y,N,Y,N,N,N,N,N,10/6/2025,Egg
 Create Your Own Pizza,Oasis,16.2,1030.0,N,,,,,,,N,,,N,N,N,N,Y,1/15/2026,Pizza
 Crispy Chicken Sandwich,Colonel by Chicken,9.7,620.0,N,N,N,Y,N,Y,"Our signature hand dedged fried chicken served with spicy mayo, dill pickles, and lettuce on a brioche bun",Y,N,N,N,N,N,N,Y,1/14/2026,Sandwich
@@ -285,13 +274,11 @@ Edamame,Teraanga Commons Dining Hall,,60.0,,T,T,F,T,Y,,N,N,N,N,N,N,N,,10/6/2025,
 Egg & Cheese Bagel,Bridgehead,6.95,,N,N,N,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Bagel with Protein
 Egg & Cheese Breakfast Sandwich,Tim Hortons,3.99,270.0,N,N,N,Y,Y,N,"English Muffin: Enriched flour, Water, Yeast, Sugars (sugar, barley malt), Degermed corn meal, Vegetable oil (canola or soybean oil), Salt, Cultured wheat flour, Dough conditioners (DATEM, monocalcium phosphate, ascorbic acid, enzymes), Corn starch. Butter: Cream (milk), Salt. May contain annatto. Egg: Canada Grade A large egg. Cooking Spray: Canola oil, Coconut oil, Modified palm oil, Soy lecithin, Natural flavour, Dimethyl silicone, Propellants (isobutane, propane). Processed Cheese: Cheese (milk, modified milk ingredients, cream, bacterial culture, salt, microbial enzyme, calcium chloride, annatto, lipase), Modified milk ingredients, Water, Sugars (glucose), Sodium citrate and/or sodium phosphate, Skim milk powder, Salt, Acetic acid, Cultured skim milk powder, Soy lecithin, Soybean oil (for slice separation), Annatto and paprika oleoresin (paprika extract, sunflower oil), Nisin, Carboxymethylcellulose, Citric acid.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Sandwich
 Egg & Cheese Wrap,Bridgehead,6.45,,N,N,N,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Wrap
-Egg (118  millilitre),Teraanga Commons Dining Hall,,180.0,,F,T,F,T,,,,,,,,,,,10/6/2025,Egg
-Egg (118 millilitre),Teraanga Commons Dining Hall,,180.0,,F,T,T,T,Y,,Y,N,N,N,N,N,N,,10/6/2025,Egg
+Egg (118 millilitre),Teraanga Commons Dining Hall,,180.0,,F,T,F,T,Y,,Y,N,N,N,N,N,N,,10/6/2025,Egg
 Egg Salad Baguette,Teraanga Commons Dining Hall,,200.0,,F,F,F,T,N,"egg salad, lettuce, baguette",Y,N,,N,,Y,N,,10/6/2025,Sandwich
 Egg Salad Sandwich,Tunnel Junction,6.7,270.0,N,Y,N,N,Y,Y,,Y,N,N,N,N,N,N,Y,9/26/2025,Sandwich
 Egg White & Roasted Red Pepper Egg Bites,Starbucks,170.0,170.0,N,N,N,,N,N,,Y,N,Y,N,N,N,N,N,1/15/2026,Omelette
-Egg White (118  millilitre),Teraanga Commons Dining Hall,,60.0,,F,T,F,T,,,,,,,,,,,10/6/2025,Egg
-Egg White (118 millilitre),Teraanga Commons Dining Hall,,60.0,,F,T,T,T,Y,,Y,N,N,N,N,N,N,,10/6/2025,Egg
+Egg White (118 millilitre),Teraanga Commons Dining Hall,,60.0,,F,T,F,T,Y,,Y,N,N,N,N,N,N,,10/6/2025,Egg
 "Egg, Pesto, & Mozzarella Sandwich",Starbucks,5.75,370.0,N,N,N,,N,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Sandwich
 Energy Bite,Bridgehead,2.35,,Y,N,N,Y,Y,,,,N,,,N,N,Y,Y,9/24/2025,Energy Bite
 Entree Salad,Mike's Place,7.99,,,N,N,Y,Y,Y,"Mixed salad greens, tomatoes and croutons with your choice of dressing",N,N,N,N,N,N,,Y,10/1/2025,Green Salad
@@ -307,7 +294,6 @@ Farmer's Breakfast Sandwich,Tim Hortons,5.49,560.0,N,N,N,,N,N,"Homestyle Biscuit
 Farmer's Breakfast Wrap,Tim Hortons,5.49,640.0,N,N,N,,N,N,"Wheat Tortilla: Enriched flour, Water, Whole wheat flour, Canola, palm and palm kernel oil shortening, Sugar, Salt, Sodium bicarbonate, Mono- and diglycerides, Fumaric acid, Sodium acid pyrophosphate, Cultured wheat flour, Guar gum, Monoglycerides, Cellulose gum, L-cysteine, Amylase, Xylanase. Egg: Canada Grade A large egg. Cooking Spray: Canola oil, Coconut oil, Modified palm oil, Soy lecithin, Natural flavour, Dimethyl silicone, Propellants (isobutane, propane). Cheddar Cheese: Milk, Modified milk ingredients, Cream, Salt, Bacterial culture, Calcium chloride, Annatto (colour), Microbial enzyme. Sausage: Pork, Water, Salt, Spices, Dextrose, Sugar, Autolyzed yeast, Lemon powder (corn syrup, concentrated lemon juice, natural flavour), Savory flavour (natural flavour, maltodextrin), Natural flavours, Citric acid, Lactic acid. Hash Brown: Potatoes, Canola oil, Salt, Dehydrated potatoes (mono- and diglycerides, sodium acid pyrophosphate and citric acid [to maintain colour]), Sodium acid pyrophosphate (to maintain colour), Sugars (dextrose), Natural flavour. Chipotle Sauce: Water, Soybean oil, Frozen yolk (egg), Sour cream powder (milk) (sour cream, citric acid, tocopherols), Sugar, Vinegar, Modified milk ingredients, Salt, Modified corn starch, Dehydrated onion, Spices and herbs, Lactic acid, Jalapeno puree (jalapeno peppers, salt, acetic acid), Fruit extract (contains vinegar, tapioca flour, maltodextrin), Dehydrated garlic, Chipotle powder, Xanthan gum, Natural flavour, Calcium disodium EDTA.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Wrap
 Fattoush Salad,Teraanga Commons Dining Hall,,60.0,,F,F,F,F,Y,"pita croutons, lettuce, cucumber, tomato, green pepper, red onion, lemon vinaigrette",N,N,N,N,,Y,N,,10/6/2025,Green Salad
 Five Cheese Pizza,Oasis,14.0,1320.0,N,N,N,N,Y,N,,N,N,Y,N,N,N,N,Y,1/15/2026,Pizza (Cheese)
-Five Spice Chicken (90  millilitre),Teraanga Commons Dining Hall,,180.0,,F,T,F,F,,,,,,,,,,,10/6/2025,Chicken
 Five Spice Chicken (90 millilitre),Teraanga Commons Dining Hall,,180.0,,F,T,F,F,Y,,N,N,N,N,N,N,N,,10/6/2025,Chicken
 Four Cheese Bagel,Tim Hortons,2.99,330.0,N,N,N,Y,Y,N,"Contains: Milk, Wheat & Gluten May Contain: Sulphites, Egg, Sesame",,N,Y,N,,N,,Y,9/25/2025,Bagel
 Fox Cookie,Starbucks,3.95,320.0,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,1/15/2026,Cookie
@@ -335,8 +321,7 @@ Ginger Roasted Cauliflower & Carrots,Teraanga Commons Dining Hall,,100.0,,T,T,F,
 Gluten Free Brownie,CT-Pastry,3.45,430.0,N,N,Y,Y,Y,N,,Y,N,Y,N,N,,N,N,9/26/2025,Brownie
 Gluten Free Bun,Rodney's Kitchen,1.6,220.0,N,Y,Y,Y,Y,Y,,N,N,N,N,,N,N,Y,1/13/2026,Bread
 Goat Cheese & Vegetable Baguette,Teraanga Commons Dining Hall,,250.0,,F,F,F,F,N,"mushroom, caramelized onion, spinach, zucchini, sundried tomato goat cheese",N,N,Y,N,,,N,Y,10/6/2025,Sandwich (No protein)
-Grainy Dijon Potato Salad (1000  gram),Teraanga Commons Dining Hall,,,,T,T,F,T,,"mini red potatoes, mustard vinaigrette ",,,,,,,,,10/6/2025,Potato Salad
-Grainy Dijon Potato Salad (1000 gram),Teraanga Commons Dining Hall,,,,T,T,T,T,,"mini red potatoes, mustard vinaigretteÂ",,N,,N,N,,N,N,10/6/2025,Potato Salad
+Grainy Dijon Potato Salad (1000 gram),Teraanga Commons Dining Hall,,,,T,T,F,T,,"mini red potatoes, mustard vinaigrette ",,N,,N,N,,N,N,10/6/2025,Potato Salad
 Granola Cookie,Bridgehead,3.75,,Y,Y,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Cookie
 Gravy,Rodney's Kitchen,2.25,50.0,N,N,N,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,Sauce
 Greek Falafel Wrap,Tunnel Junction,7.6,580.0,N,Y,N,N,Y,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Wrap
@@ -356,7 +341,6 @@ Grilled Grain-Fed Chicken,Riverbank Social,10.0,,N,N,Y,Y,N,Y,,N,N,N,N,N,N,N,N,1/
 Grilled Ham,Teraanga Commons Dining Hall,,30.0,,F,T,F,F,Y,,N,N,N,N,N,,N,N,10/6/2025,Ham
 Grilled Vegetable Wrap,Teraanga Commons Dining Hall,,200.0,,F,F,F,F,,"grilled zucchini, roasted red pepper, spinach, sundried tomato pesto, tortilla",N,N,,N,,,N,Y,10/6/2025,Wrap (No protein)
 Grilled Vegetables & Hummus on Multigrain Ciabatta Sandwich,Urban Deli,9.2,430.0,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,9/26/2025,Sandwich (No Protein)
-Ground Beef (1  kilogram),Teraanga Commons Dining Hall,,,,F,T,F,F,,,,,,,,,,,10/6/2025,Beef
 Ground Beef (1 kilogram),Teraanga Commons Dining Hall,,,,F,T,F,F,Y,,N,N,N,N,N,N,N,N,10/6/2025,Beef
 Gyro Pita,Rooster's,10.89,,N,N,N,N,N,Y,Greek style seasoned lamb and beef served with your choice of toppings.,N,N,N,N,N,N,N,Y,10/30/2025,Pita with protein
 Halal Chicken Pita,Rooster's,11.99,,N,N,N,Y,N,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
@@ -364,9 +348,7 @@ Ham & Cheese Croissant,Riverbank Social,8.5,,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,1/13/2
 Ham & Swiss Croissant,Starbucks,4.65,290.0,N,N,N,,N,N,,Y,N,Y,N,N,N,N,Y,1/15/2026,Croissant Sandwich
 Ham & Swiss Sandwich,Tunnel Junction,6.7,310.0,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Sandwich
 Ham & Swiss Sandwich,Urban Deli,9.9,530.0,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,9/26/2025,Sandwich
-Ham (3  slice),Teraanga Commons Dining Hall,,60.0,,F,T,F,F,,,,,,,,,,,10/6/2025,Ham
 Ham (3 slice),Teraanga Commons Dining Hall,,60.0,,F,T,F,F,Y,,N,N,N,N,N,,N,N,10/6/2025,Ham
-Ham (59  millilitre),Teraanga Commons Dining Hall,,30.0,,F,T,F,F,,,,,,,,,,,10/6/2025,Ham
 Ham (59 millilitre),Teraanga Commons Dining Hall,,30.0,,F,T,F,F,Y,,N,N,N,N,N,,N,N,10/6/2025,Ham
 Ham Pita,Rooster's,10.69,,N,N,N,N,N,Y,Thin sliced deli fresh black forest ham served hot or cold with your choice of toppings.,N,N,N,N,N,N,N,Y,10/30/2025,Pita with protein
 Hamburger,Burger 101,8.0,470.0,N,N,N,Y,N,N,Our freshly-made patty topped with your favourite condiments,,N,N,N,N,N,N,Y,1/14/2026,Hamburger
@@ -374,16 +356,14 @@ Hamburger,Oasis,7.5,470.0,N,N,N,Y,N,N,Can upgrade burger to Lightlife patty for 
 Hamburger,Rodney's Kitchen,8.0,500.0,N,N,N,N,N,N,,,N,Y,N,,N,N,Y,1/13/2026,Hamburger
 Hand Batter MSC Certified Fish & Chips,Oasis,15.0,990.0,N,N,N,N,N,N,,,Y,N,N,N,N,N,Y,1/15/2026,Fish and Chips
 Hand Breaded Eggplant Parmesan Sandwich,Oasis,11.5,450.0,N,N,N,N,Y,N,,,N,N,N,N,N,N,Y,1/15/2026,Sandwich (No Protein)
-Hard Cooked Egg (1  piece),Teraanga Commons Dining Hall,,60.0,,F,T,F,T,,,,,,,,,,,10/6/2025,Egg
-Hard Cooked Egg (1 piece),Teraanga Commons Dining Hall,,60.0,,F,T,T,T,Y,,Y,N,N,N,N,N,N,N,10/6/2025,Egg
+Hard Cooked Egg (1 piece),Teraanga Commons Dining Hall,,60.0,,F,T,F,T,Y,,Y,N,N,N,N,N,N,N,10/6/2025,Egg
 Hash Brown,Teraanga Commons Dining Hall,,60.0,,F,F,F,F,Y,,N,N,N,N,N,N,N,N,10/6/2025,Hash Browns
 HashBrown,Rooster's,1.99,,N,N,Y,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,Hash Browns
 Hashbrown,Tim Hortons,2.19,120.0,N,Y,Y,Y,Y,Y,"Hash Brown: Potatoes, Canola oil, Salt, Dehydrated potatoes (mono- and diglycerides, sodium acid pyrophosphate and citric acid [to maintain colour]), Sodium acid pyrophosphate (to maintain colour), Sugars (dextrose), Natural flavour.",N,N,N,N,N,N,N,N,9/25/2025,Hash Browns
 Hawaiian Pizza,Teraanga Commons Dining Hall,,170.0,,F,F,F,F,N,"ham, pineapple, mozzarella",,N,Y,N,,,N,Y,10/6/2025,Pizza
 Herb & Garlic Savoury Pastry,Tim Hortons,2.99,240.0,N,N,N,Y,Y,N,"Garlic and fine herbs filling (water, cream cheese, bechamel cream [modified milk ingredients, modified corn starch, salt], chives, parsley, roasted garlic [garlic, citric acid], white vinegar, garlic, cultured skim milk [cultured skim milk, skim milk], salt, concentrated lemon juice), Unbleached enriched flour, Water, Butter, Yeast, Sugar, Liquid whole eggs, Salt, Wheat Gluten, Malted wheat flour, Malted barley extract, Food enzymes (xylanase, amylase), Ascorbic acid, Dried whole eggs, Skim milk powder, Soy flour.",Y,N,Y,N,N,Y,N,Y,9/25/2025,Pastry
 Herb Roasted Chicken,Teraanga Commons Dining Hall,,170.0,,F,T,F,F,Y,,N,N,,N,N,,N,N,10/6/2025,Chicken
-Hoisin Chow Mein Salad (59  millilitre),Teraanga Commons Dining Hall,,40.0,,F,F,F,T,,"chow mein noodles, napa cabbage, cucumber, carrot, daikon radish, red peppers, green onion, sesame seeds, hoisin ginger vinaigrette",,,,,,,,,10/6/2025,Noodles
-Hoisin Chow Mein Salad (59 millilitre),Teraanga Commons Dining Hall,,40.0,,F,F,T,T,N,"chow mein noodles,Â napa cabbage,Â cucumber,Â carrot, daikon radish, red peppers, green onion,Â sesame seeds, hoisin ginger vinaigrette",,Y,,N,,Y,N,Y,10/6/2025,Noodles
+Hoisin Chow Mein Salad (59 millilitre),Teraanga Commons Dining Hall,,40.0,,F,F,F,T,N,"chow mein noodles, napa cabbage, cucumber, carrot, daikon radish, red peppers, green onion, sesame seeds, hoisin ginger vinaigrette",,Y,,N,,Y,N,Y,10/6/2025,Noodles
 Home Fried Potatoes,Teraanga Commons Dining Hall,,180.0,,F,F,F,F,,,N,N,,N,N,,N,N,10/6/2025,Potato
 Home Fries,Riverbank Social,4.25,,N,N,N,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,French Fries
 Home Style Potatoes,Teraanga Commons Dining Hall,,90.0,,F,F,F,F,,,N,N,,N,N,,N,N,10/6/2025,Potato
@@ -397,14 +377,12 @@ Ice Cream,Leo's Lounge,1.0,,,N,Y,Y,Y,N,,N,N,Y,,N,,,N,9/26/2025,Ice Cream
 Iced Lemon Loaf,Starbucks,4.45,430.0,N,N,N,Y,Y,Y,,Y,N,N,N,N,Y,N,Y,1/15/2026,Loaf
 Italian Sausage on Portuguese Bun,Rodney's Kitchen,9.0,600.0,N,N,N,N,N,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Hot Dog
 Jalapeno Asiago Mozzarella Bagel,Tim Hortons,2.99,320.0,N,N,N,Y,Y,N,"Contains: Milk, Wheat & Gluten May Contain: Sulphites, Egg, Sesame",,N,Y,N,,N,N,Y,9/25/2025,Bagel
-Jalapeno Coleslaw (1000  gram),Teraanga Commons Dining Hall,,,,F,T,F,T,,"cabbage, carrot, jalapenos, creamy dressing",,,,,,,,,10/6/2025,Coleslaw
-Jalapeno Coleslaw (1000 gram),Teraanga Commons Dining Hall,,,,F,T,T,T,N,"cabbage, carrot, jalapenos, creamy dressing",N,N,,N,,,N,N,10/6/2025,Coleslaw
+Jalapeno Coleslaw (1000 gram),Teraanga Commons Dining Hall,,,,F,T,F,T,N,"cabbage, carrot, jalapenos, creamy dressing",N,N,,N,,,N,N,10/6/2025,Coleslaw
 Jalapeno Popper Pizza,Teraanga Commons Dining Hall,,190.0,,F,F,F,F,N,"cream cheese, jalapeno peppers, red onions, monterey jack, bacon",,N,Y,N,,,N,Y,10/6/2025,Pizza
 Jalapeno Poppers,Ollies,8.5,,N,N,N,N,N,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Pizza
 JalepeÃ±o Chicken Pocket,Starbucks,5.25,200.0,N,N,N,N,N,N,,N,N,Y,N,N,Y,N,Y,1/15/2026,Pizza
 Jamaican Patty,Leo's Lounge,1.5,,N,N,,N,N,N,,,N,,N,N,N,N,Y,9/26/2025,Pizza
-Kale Apple Chickpea Salad (1000  gram),Teraanga Commons Dining Hall,,,,T,T,F,T,,"chickpeas, cauliflower, carrot, kale, red onion, apple, fresh parsley, maple dijon vinaigrette",,,,,,,,,10/6/2025,Grain Salad
-Kale Apple Chickpea Salad (1000 gram),Teraanga Commons Dining Hall,,,,T,T,T,T,,"chickpeas, cauliflower,Â carrot, kale, red onion,Â apple, fresh parsley, maple dijon vinaigrette",N,N,,N,,,N,N,10/6/2025,Grain Salad
+Kale Apple Chickpea Salad (1000 gram),Teraanga Commons Dining Hall,,,,T,T,F,T,,"chickpeas, cauliflower, carrot, kale, red onion, apple, fresh parsley, maple dijon vinaigrette",N,N,,N,,,N,N,10/6/2025,Grain Salad
 Kale Caesar Salad,Bridgehead,11.95,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Green Salad
 Kale Squash Gnocchi,Teraanga Commons Dining Hall,,320.0,,T,F,F,T,N,"butternut squash, kale, sage, gnocchi",,N,,N,N,,N,Y,10/6/2025,Pasta
 Kettleman's Bagel,Riverbank Social,2.99,,N,N,N,Y,Y,,,N,N,N,N,,N,N,Y,1/13/2026,Bagel
@@ -439,25 +417,21 @@ Maple Dip Donut,Tim Hortons,1.69,220.0,N,N,N,Y,Y,N,"Contains: Milk, Wheat & Glut
 Maple Pecan Square,Bridgehead,4.95,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Square
 Margherita Pizza,Oasis,14.0,1520.0,N,N,N,N,Y,N,,N,N,Y,N,N,N,N,Y,1/15/2026,Pizza (Vegetarian)
 Margherita Pizza,Teraanga Commons Dining Hall,,170.0,,F,F,F,T,N,"tomato, fresh basil, mozzarella, ricotta",,N,Y,N,,,N,Y,10/6/2025,Pizza (Vegetarian)
-Marinara Sauce (3000  millilitre),Teraanga Commons Dining Hall,,,,T,T,F,T,,,,,,,,,,,10/6/2025,Sauce
-Marinara Sauce (3000 millilitre),Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,,N,N,10/6/2025,Sauce
+Marinara Sauce (3000 millilitre),Teraanga Commons Dining Hall,,,,T,T,F,T,Y,,N,N,N,N,N,,N,N,10/6/2025,Sauce
 Market Mixed Greens,Teraanga Commons Dining Hall,,5.0,,T,T,F,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Vegetables
 Marrakesh Vegetable Stew,Teraanga Commons Dining Hall,,120.0,,T,T,F,T,Y,"chickpeas, potato, zucchini, tomato, carrots",N,N,N,N,,,N,N,10/6/2025,Stew
 Meatball Sub,Teraanga Commons Dining Hall,,230.0,,F,F,F,F,N,"meatballs, mozzarella, tomato basil sauce, pesto mayo",,N,,N,N,,N,Y,10/6/2025,Sandwich
-Mediterranean Kale Minestrone Soup (8000  millilitre),Teraanga Commons Dining Hall,,,,T,T,F,T,,"A twist on a classic Italian vegetable broth soup containing brown rice, white beans and kale.",,,,,,,,,10/6/2025,Soup
-Mediterranean Kale Minestrone Soup (8000 millilitre),Teraanga Commons Dining Hall,,,,T,T,T,T,,"A twist on a classic Italian vegetable broth soup containing brown rice, white beans and kale.",N,N,,N,,,N,,10/6/2025,Soup
+Mediterranean Kale Minestrone Soup (8000 millilitre),Teraanga Commons Dining Hall,,,,T,T,F,T,,"A twist on a classic Italian vegetable broth soup containing brown rice, white beans and kale.",N,N,,N,,,N,,10/6/2025,Soup
 Medium Soup,Rooster's,6.79,,,,,,,,,,,,,,,,,1/13/2026,Soup
 Microwave Popcorn,Leo's Lounge,1.0,,N,Y,Y,Y,Y,N,,N,N,Y,N,N,,N,N,9/26/2025,Popcorn
 Mini Everything Bagels,Starbucks,4.25,300.0,N,N,N,Y,Y,N,,N,N,Y,N,Y,N,N,Y,1/15/2026,Bagel
 Mint Fudge,Teraanga Commons Dining Hall,,220.0,,F,F,F,F,N,,N,N,Y,N,N,,N,N,10/6/2025,Square
-Miso Broth (356  millilitre),Teraanga Commons Dining Hall,,80.0,,T,F,F,T,,,,,,,,,,,10/6/2025,Soup
-Miso Broth (356 millilitre),Teraanga Commons Dining Hall,,80.0,,T,F,T,T,Y,,N,,N,N,N,Y,N,N,10/6/2025,Soup
+Miso Broth (356 millilitre),Teraanga Commons Dining Hall,,80.0,,T,F,F,T,Y,,N,,N,N,N,Y,N,N,10/6/2025,Soup
 Mixed Berry Oat Bar,Teraanga Commons Dining Hall,,190.0,,T,T,F,T,N,,,N,,N,N,,N,,10/6/2025,Oatmeal
 Mixed Shawarma Combo,Shawarma Palace,15.0,,N,N,N,,N,Y,,N,N,N,N,,N,N,Y,9/26/2025,Shawarma
 Mixed Shawarma Plate,Shawarma Palace,21.0,,N,N,N,,N,Y,,N,N,N,N,,N,N,N,9/26/2025,Shawarma
 Mixed Shawarma Sandwich,Shawarma Palace,10.5,,N,N,N,,N,Y,,N,N,N,N,,N,N,Y,9/26/2025,Shawarma
-Moroccan Chickpea Soup (237  millilitre),Teraanga Commons Dining Hall,,120.0,,T,T,F,T,,"A flavourful tomato-based broth soup loaded with chickpeas, potatoes, carrots, spinach and warm spices.",,,,,,,,,10/6/2025,Soup
-Moroccan Chickpea Soup (237 millilitre),Teraanga Commons Dining Hall,,120.0,,T,T,T,T,Y,"A flavourful tomato-based broth soup loaded with chickpeas, potatoes, carrots, spinach and warm spices.",N,N,N,N,,,N,N,10/6/2025,Soup
+Moroccan Chickpea Soup (237 millilitre),Teraanga Commons Dining Hall,,120.0,,T,T,F,T,Y,"A flavourful tomato-based broth soup loaded with chickpeas, potatoes, carrots, spinach and warm spices.",N,N,N,N,,,N,N,10/6/2025,Soup
 Mozza Sticks,Ollies,8.5,,N,N,N,T,Y,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Cheese
 Muffin,Leo's Lounge,1.5,,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,9/26/2025,Muffin
 Mushroom,Teraanga Commons Dining Hall,,0.0,,T,T,F,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Mushroom
@@ -472,7 +446,6 @@ New Baconings,Ollies,16.0,,N,N,N,N,N,N,You can exchange for black been patty in 
 Nicoise Salad,Riverbank Social,16.0,,N,N,Y,N,N,Y,"Albacore Tuna tataki, leaves, tomato, kalamata olives, green beans, fingerling potatoes, red onion, hard boiled egg, evoo",Y,Y,N,N,N,N,Y,N,1/13/2026,Salad With Protein
 No Gluten Fusilli,Teraanga Commons Dining Hall,,210.0,,T,T,F,T,Y,,,N,N,N,N,,N,N,10/6/2025,Pasta
 No Gluten Penne,Teraanga Commons Dining Hall,,160.0,,T,T,F,T,Y,,,N,N,N,N,,N,N,10/6/2025,Pasta
-No Gluten Turkey Noodle Soup (8  litre),Teraanga Commons Dining Hall,,,,F,T,F,F,,Home-style soup with pieces of turkey breast and no gluten fettuccine noodles.,,,,,,,,,10/6/2025,Soup
 No Gluten Turkey Noodle Soup (8 litre),Teraanga Commons Dining Hall,,,,F,T,F,F,,Home-style soup with pieces of turkey breast and no gluten fettuccine noodles.,N,N,,N,N,,N,N,10/6/2025,Soup
 Nori Seaweed,Teraanga Commons Dining Hall,,10.0,,T,T,F,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Seaweed
 Oat Bar,Starbucks,3.45,310.0,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,N,1/15/2026,Oatmeal
@@ -501,8 +474,7 @@ Pesto Sauce,Teraanga Commons Dining Hall,,420.0,,F,T,F,F,N,,N,N,Y,N,N,,N,N,10/6/
 Piri-Piri Chicken Bowl,Subway,13.66,610.0,N,N,Y,,N,Y,,N,N,N,N,N,,N,N,10/1/2025,Rice Bowl
 Pistachio Danish,Bridgehead,5.95,,Y,N,N,Y,Y,N,,Y,N,Y,,N,N,Y,Y,9/24/2025,Pastry
 Pita Chips,Teraanga Commons Dining Hall,,25.0,,T,F,F,T,N,,N,N,,N,,,N,Y,10/6/2025,Chips
-Pita Chips (1  kilogram),Teraanga Commons Dining Hall,,,,T,F,F,T,,,,,,,,,,,10/6/2025,Chips
-Pita Chips (1 kilogram),Teraanga Commons Dining Hall,,,,T,F,T,T,N,,N,N,,N,,,N,Y,10/6/2025,Chips
+Pita Chips (1 kilogram),Teraanga Commons Dining Hall,,,,T,F,F,T,N,,N,N,,N,,,N,Y,10/6/2025,Chips
 Pita Dippers,Rooster's,6.09,,N,N,N,Y,Y,,"A generous helping of pita pieces, with two dipping sauces and two veggies of your choice.",N,N,,N,N,N,N,Y,10/30/2025,Chips
 Pizza Pops,Leo's Lounge,2.25,,N,N,N,,N,N,,N,N,Y,N,N,Y,N,Y,9/26/2025,Pizza
 Plain Bagel,Tim Hortons,2.29,290.0,N,Y,N,Y,Y,Y,"Enriched flour (wheat flour, niacin, reduced iron, ascorbic acid added as a dough conditioner, thiamine mononitrate, riboflavin, enzyme, folic acid), Water, Sugar, Soybean and/or canola oil, Yeast, Cornmeal, Salt, Guar gum, Malted barley flour, Enzymes.",N,N,N,,N,Y,,Y,9/25/2025,Bagel
@@ -561,8 +533,7 @@ Sadza Chicken Stew,Teraanga Commons Dining Hall,,160.0,,F,F,F,F,Y,"chicken, onio
 Salmon Avocado Roll,Bento Boxes,12.0,340.0,N,N,Y,N,N,Y,Salmon and avocado wrapped in seaweed and rice,N,Y,N,N,Y,N,N,N,1/14/2025,Sushi
 Salmon Poke Bowl,Bento Boxes,15.0,710.0,N,N,Y,N,N,Y,"Salmon, cucumbers, shaved carrots, seaweed salad, crispy fried onions and spicy mayo sitting on a soft bed of rice",Y,Y,N,N,Y,Y,N,N,1/14/2025,Poke Bowl
 Salmon Sushi Combo,Bento Boxes,17.0,,N,N,Y,N,N,Y,"Salmon and avocado rolls, spicy salmon rolls, salmon rolls and salmon sashimi",N,Y,N,N,Y,N,N,N,1/14/2025,Sushi
-Salsa (3  litre),Teraanga Commons Dining Hall,,,,T,T,F,T,,,,,,,,,,,10/6/2025,Sauce
-Salsa (3 litre),Teraanga Commons Dining Hall,,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Sauce
+Salsa (3 litre),Teraanga Commons Dining Hall,,,,T,T,F,T,Y,,N,N,N,N,N,N,N,N,10/6/2025,Sauce
 Salted Caramel Brownie,Teraanga Commons Dining Hall,,230.0,,F,F,F,T,N,,Y,N,Y,N,N,,N,Y,10/6/2025,Brownie
 Sammich,Leo's Lounge,9.0,,N,N,N,,N,N,,,N,Y,N,,,N,Y,9/26/2025,Sandwich
 Samosa,Leo's Lounge,5.0,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,9/26/2025,Samosa
@@ -578,7 +549,6 @@ Scrambled Egg Loaded Wrap,Tim Hortons,5.49,530.0,N,N,N,Y,Y,N,"Contains: Wheat, E
 Seasoned Ground Beef,Teraanga Commons Dining Hall,,150.0,,F,T,F,F,Y,,N,N,,N,,,N,,10/6/2025,Beef
 Seaweed Salad,Bento Boxes,6.0,90.0,N,Y,Y,Y,Y,Y,,N,N,N,N,Y,N,N,N,1/14/2025,Green Salad
 Sesame Seed Bagel,Tim Hortons,2.29,310.0,N,Y,N,Y,Y,Y,"Enriched flour (wheat flour, niacin, reduced iron, ascorbic acid added as a dough conditioner, thiamine mononitrate, riboflavin, enzyme, folic acid), Water, Sesame seeds, Sugar, Soybean and/or canola oil, Yeast, Corn meal, Salt, Guar gum, Gum arabic, Malted barley flour, Enzymes.",N,N,N,N,Y,Y,N,Y,9/25/2025,Bagel
-Shoyu Pork Broth (26520  millilitre),Teraanga Commons Dining Hall,,120.0,,F,F,F,F,,,,,,,,,,,10/6/2025,Soup
 Shoyu Pork Broth (26520 millilitre),Teraanga Commons Dining Hall,,120.0,,F,F,F,F,Y,,N,,N,N,,Y,N,,10/6/2025,Soup
 Side of Fresh Fruit,Riverbank Social,4.99,,N,Y,Y,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,Fruits
 Signature Burrito Sauce,La Cocina,,35.0,N,Y,Y,Y,Y,N,,N,N,,N,N,N,N,N,1/15/2026,Sauce
@@ -614,8 +584,7 @@ Strawberry Brownie,Teraanga Commons Dining Hall,,290.0,,F,F,F,F,N,,Y,N,Y,N,N,,N,
 Strawberry Cake Pop,Starbucks,3.45,160.0,N,N,N,Y,Y,N,,Y,N,Y,N,N,Y,N,Y,1/15/2026,Cake Pop
 Sugar Cookie,Teraanga Commons Dining Hall,,110.0,,F,F,F,T,N,,Y,N,Y,N,N,,N,,10/6/2025,Cookie
 Sundried Tomato Stuffed Naan,Mike's Place,9.99,,,N,N,Y,Y,N,,N,N,Y,N,N,N,,Y,10/1/2025,Veggie Pita
-Superfood Salad (1000  gram),Teraanga Commons Dining Hall,,,,F,F,F,T,,"chickpeas, couscous, tomato, cucumber, red onion, kale, feta cheese, greek vinaigrette",,,,,,,,,10/6/2025,Green Salad
-Superfood Salad (1000 gram),Teraanga Commons Dining Hall,,,,F,F,T,T,,"chickpeas, couscous, tomato,Â cucumber,Â red onion, kale,Â feta cheese,Â greek vinaigrette",N,N,,N,,,N,,10/6/2025,Green Salad
+Superfood Salad (1000 gram),Teraanga Commons Dining Hall,,,,F,F,F,T,,"chickpeas, couscous, tomato, cucumber, red onion, kale, feta cheese, greek vinaigrette",N,N,,N,,,N,,10/6/2025,Green Salad
 Sweet Onion Chicken Teriyaki,Subway,13.66,510.0,N,N,N,,N,Y,,N,N,N,N,Y,Y,N,N,10/1/2025,Chicken
 Sweet Potato Fries,Ollies,7.5,,N,Y,N,N,N,Y,,N,N,N,N,N,N,N,N,1/14/2026,French Fries
 Sweet Potato Fries with Roasted Garlic,Riverbank Social,8.0,,N,N,N,Y,Y,Y,,N,N,N,N,N,N,N,N,1/13/2026,French Fries
@@ -645,14 +614,11 @@ Tofu,Teraanga Commons Dining Hall,,45.0,,T,T,F,T,Y,,N,N,N,N,,Y,N,,10/6/2025,Tofu
 Tofu Pita,Rooster's,9.99,,N,Y,N,Y,Y,Y,,N,N,N,N,N,N,N,Y,1/13/2026,Pita With Protein
 Tofu Poke Bowl,Bento Boxes,15.0,660.0,N,Y,Y,Y,Y,Y,"Tofu, cucumber, carrot, seaweed salad, and edamame topped with teriyaki sauce and spicy mayo on a bed of rice",Y,Y,N,N,Y,Y,N,N,1/14/2025,Poke Bowl
 Tomato,Teraanga Commons Dining Hall,,10.0,,T,T,F,T,Y,,N,N,N,N,N,N,N,,10/6/2025,Tomato
-Tomato Mozzarella Penne (1000  gram),Teraanga Commons Dining Hall,,,,F,F,F,F,,,,,,,,,,,10/6/2025,Pasta
 Tomato Mozzarella Penne (1000 gram),Teraanga Commons Dining Hall,,,,F,F,F,F,N,,,N,Y,N,,,N,,10/6/2025,Pasta
 Triple Berry Muffin,Bridgehead,3.95,,N,N,N,Y,Y,N,,Y,N,Y,,N,N,,Y,9/24/2025,Muffin
 Tuna Pita,Rooster's,10.89,,N,N,N,N,N,Y,Light flaked tuna wrapped with your choice of toppings.,N,Y,N,N,N,N,N,Y,10/30/2025,Pita with protein
 Tuna Poke Bowl,Bento Boxes,15.0,660.0,N,N,Y,N,N,Y,"Tuna, cucumbers seaweed salad, edamame, crispy fried onions sitting on a bed of rice",N,Y,N,N,Y,Y,N,N,1/14/2025,Poke Bowl
-Tuna Salad (59  millilitre),Teraanga Commons Dining Hall,,90.0,,F,T,F,F,,,,,,,,,,,10/6/2025,Fish
 Tuna Salad (59 millilitre),Teraanga Commons Dining Hall,,90.0,,F,T,F,F,,,,Y,,N,,,N,,10/6/2025,Fish
-Tuna Salad (80  millilitre),Teraanga Commons Dining Hall,,100.0,,F,T,F,F,,,,,,,,,,,10/6/2025,Fish
 Tuna Salad (80 millilitre),Teraanga Commons Dining Hall,,100.0,,F,T,F,F,,,,Y,,N,,,N,,10/6/2025,Fish
 Tuna Salad Sandwich,Tunnel Junction,6.7,370.0,N,N,N,N,N,Y,,N,Y,N,N,N,N,N,Y,9/26/2025,Sandwich
 Turkey Breakfast Sausage,Teraanga Commons Dining Hall,,30.0,,F,F,F,F,Y,,N,N,,N,,,N,,10/6/2025,Sausage
@@ -674,8 +640,7 @@ Vegetarian Poutine,Burger 101,9.6,,N,,N,Y,Y,N,,N,N,Y,N,N,N,N,N,1/14/2026,Poutine
 Veggie Burrito,Bridgehead,10.95,,N,N,N,Y,Y,,,N,Y,,,N,N,,Y,9/24/2025,Burrito
 Veggie Patty,Rooster's,10.99,,N,Y,,Y,Y,Y,"Half a soy based vegitarian patty, wonderfully seasoned with your choice of toppings.",N,N,N,N,N,Y,N,Y,10/30/2025,Burger
 Veggie Patty Pita,Rooster's,10.99,,N,,N,Y,Y,Y,,N,N,N,N,N,Y,N,Y,1/13/2026,Pita With Protein
-Veggie Pho (200  gram),Teraanga Commons Dining Hall,,130.0,,T,T,F,T,,"tofu, onion, mushroom, pho vegetable broth, rice noodles, cilantro, green onion",,,,,,,,,10/6/2025,Noodles
-Veggie Pho (200 gram),Teraanga Commons Dining Hall,,130.0,,T,T,T,T,Y,"tofu, onion, mushroom, pho vegetable broth, rice noodles, cilantro, green onion",N,,N,N,,Y,N,N,10/6/2025,Pho
+Veggie Pho (200 gram),Teraanga Commons Dining Hall,,130.0,,T,T,F,T,Y,"tofu, onion, mushroom, pho vegetable broth, rice noodles, cilantro, green onion",N,,N,N,,Y,N,N,10/6/2025,Noodles
 Veggie Pita,Rooster's,8.69,,N,Y,N,Y,Y,Y,Your choice of our wide selection of fresh veggies.,N,N,N,N,N,N,N,Y,10/30/2025,Veggie pita
 Veggie Pizza Slice,The Market Pizzeria,570.0,470.0,N,N,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,1/14/2026,Pizza (Vegetarian)
 Veggie Sandwich,Rooster's,5.19,,N,Y,N,Y,Y,Y,Your choice of three veggies severed on toasted bread or bagel.,N,N,N,N,N,N,N,Y,10/30/2025,Sandwich (No protein)
