@@ -56,6 +56,26 @@ export default function EntriesScreen() {
         handlePressGetFoodItems();
     }, []);
 
+    /*
+        Calculate how to display the calories of the selected food item
+        If the value of the calories key is -1, then there is an "Unknown" number of calories
+        If the value of the calories key is not -1, then the displayed calorie amount is equal to that of the calories key value
+
+        param(s):
+            calories - number : The number of calories of the selected food item, as per the calorie key value
+        
+        returns : The calories value of the selected food item
+    */
+    function processFoodItemCalories(calories: number) {
+
+        if (calories == -1) {
+            return "Unknown" 
+        }
+        else { 
+            return calories;
+        }
+    }
+
     // Display loading symbol while the food items are being fetched
     if (loading) {
         return (
@@ -93,7 +113,7 @@ export default function EntriesScreen() {
                         <Text style={styles.subsubtitle}>
                             {foodItem["food_name"]}
                             <br></br>
-                            Calories: {foodItem["calories"]}
+                            Calories: {processFoodItemCalories(foodItem["calories"])}
                             <br></br>
                             Carbs: {foodItem["carbs_g"]} grams
                             <br></br>
