@@ -22,19 +22,17 @@ export default function DiningScreen() {
         {
             usernameGlobal,
             hasEggAllergyGlobal,
-            hasFishAllergyGlobal,
+            hasFishOrShellfishAllergyGlobal,
             hasDairyIntoleranceGlobal,
             hasMilkAllergyGlobal,
             hasPeanutAllergyGlobal,
             hasSesameAllergyGlobal,
-            hasShellfishAllergyGlobal,
             hasSoyAllergyGlobal,
             hasTreenutAllergyGlobal,
             hasWheatAllergyGlobal,
             hasGlutenAllergyGlobal,
             isVeganGlobal,
             isVegetarianGlobal,
-            prefersKosherGlobal,
             prefersHalalGlobal
         
         } = useUser();
@@ -47,27 +45,31 @@ export default function DiningScreen() {
     const [foodItem, setFoodItem] = useState(
         {
             "calories": -1,
+            "carbs_g": 0.00,
             "comments": "",
-            "cost": 1.0,
-            "dining_location": 0,
+            "cost": 0.00,
+            "dining_location": "",
+            "fat_g": 0.00,
+            "fiber_g": 0.00,
+            "food_category": "",
             "has_eggs": null,
-            "has_fish": null,
+            "has_fish_or_shellfish": null,
             "has_milk": null,
             "has_peanuts": null,
             "has_sesame": null,
-            "has_shellfish": null,
             "has_soy": null,
             "has_treenuts": null,
             "has_wheat": null,
-            "id": 1, // initial value of 1 to prevent errors
+            "id": -1, // Initial value of 1 to prevent errors
             "is_dairy_free": null,
             "is_gluten_free": null,
             "is_halal": null,
-            "is_kosher": null,
             "is_vegan": null,
             "is_vegetarian": null,
-            "last_updated": "Unknown",
-            "name": ""
+            "last_updated": "",
+            "name": "",
+            "proteins_g": 0.00,
+            "sugar_g": 0.00
         }
     );
 
@@ -379,8 +381,8 @@ export default function DiningScreen() {
                     {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs" : null}
                     {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs" : null}
 
-                    {foodItem.has_fish === true && hasFishAllergyGlobal ? "Warning - this item contains fish" : null}
-                    {foodItem.has_fish === null && hasFishAllergyGlobal ? "Warning - this item may contain fish" : null}
+                    {foodItem.has_fish_or_shellfish === true && hasFishOrShellfishAllergyGlobal ? "Warning - this item contains fish or shellfish \n" : null}
+                    {foodItem.has_fish_or_shellfish === null && hasFishOrShellfishAllergyGlobal ? "Warning - this item may contain fish or shellfish \n" : null}
 
                     {foodItem.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Warning - this item contains dairy" : null}
                     {foodItem.is_dairy_free === null && hasDairyIntoleranceGlobal ? "Warning - this item may contain dairy" : null}
@@ -393,9 +395,6 @@ export default function DiningScreen() {
 
                     {foodItem.has_sesame === true && hasSesameAllergyGlobal ? "Warning - this item contains sesame" : null}
                     {foodItem.has_sesame === null && hasSesameAllergyGlobal ? "Warning - this item may contain sesame" : null}
-  
-                    {foodItem.has_shellfish === true && hasShellfishAllergyGlobal ? "Warning - this item contains shellfish" : null}
-                    {foodItem.has_shellfish === null && hasShellfishAllergyGlobal ? "Warning - this item may contain shellfish" : null}
 
                     {foodItem.has_soy === true && hasSoyAllergyGlobal ? "Warning - this item contains soy" : null}
                     {foodItem.has_soy === null && hasSoyAllergyGlobal ? "Warning - this item may contain soy" : null}
@@ -414,9 +413,6 @@ export default function DiningScreen() {
 
                     {foodItem.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian" : null}
                     {foodItem.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian" : null}
-
-                    {foodItem.is_kosher === false && prefersKosherGlobal ? "Warning - this item is not kosher" : null}
-                    {foodItem.is_kosher === null && prefersKosherGlobal ? "Warning - this item may not be kosher" : null}
 
                     {foodItem.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal" : null}
                     {foodItem.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal" : null}

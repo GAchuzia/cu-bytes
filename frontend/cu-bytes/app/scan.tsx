@@ -20,19 +20,18 @@ export default function ScanScreen() {
     const
         {
             usernameGlobal,
-            showStatsGlobal,
             hasEggAllergyGlobal,
+            hasFishOrShellfishAllergyGlobal,
             hasDairyIntoleranceGlobal,
+            hasMilkAllergyGlobal,
             hasPeanutAllergyGlobal,
             hasSesameAllergyGlobal,
-            hasShellfishAllergyGlobal,
             hasSoyAllergyGlobal,
             hasTreenutAllergyGlobal,
             hasWheatAllergyGlobal,
             hasGlutenAllergyGlobal,
             isVeganGlobal,
             isVegetarianGlobal,
-            prefersKosherGlobal,
             prefersHalalGlobal
 
         } = useUser();
