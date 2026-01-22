@@ -42,6 +42,9 @@ def create_single_csv():
     # Replace empty strings with NaN for easier aggregation
     df.replace("", np.nan, inplace=True)
 
+    # Remove use of double spacees so that "Ham Sandwich" == "Ham  Sandwich"
+    df["Food Item"] = df["Food Item"].str.replace(r"\s+", " ", regex=True).str.strip()
+
     # Join Duplicate entries
     # Define primary key columns
     key_cols = ["Food Item", "Dining Location"]
@@ -114,7 +117,7 @@ def create_food_table():
                 has_peanuts=parse_bool(row.get("Peanuts")),
                 has_sesame=parse_bool(row.get("Sesame")),
                 has_soy=parse_bool(row.get("Soy")),
-                has_treenuts=parse_bool(row.get("Treenuts")),
+                has_treenuts=parse_bool(row.get("TreeNuts")),
                 has_wheat=parse_bool(row.get("Wheat")),
                 food_category=row.get("Food Category"),
             )

@@ -95,6 +95,7 @@ cd ..
 python -m backend.database.init_user_settings_db
 python -m backend.database.init_auth_db
 python -m backend.database.init_food_db
+python -m backend.database.init_logging_db
 python -m backend.app
 ```
 
@@ -493,6 +494,7 @@ cd ..
 python -m backend.database.init_user_settings_db
 python -m backend.database.init_auth_db
 python -m backend.database.init_food_db
+python -m backend.database.init_logging_db
 python -m backend.app
 ```
 
