@@ -31,20 +31,20 @@ export default function SettingsScreen() {
         } = useUser();
 
     const [loading, setLoading] = useState(true);
-    
+
     // Variables and setters for each of the configurable settings
     // The variable values will be sent to a backend endpoint to attempt to edit the user profile
-    
-    const [showStatsEnabled, setShowStatsEnabled] = useState(false);    
+
+    const [showStatsEnabled, setShowStatsEnabled] = useState(false);
     const [hasEggAllergy, setHasEggAllergy] = useState(false);
     const [hasFishOrShellfishAllergy, setHasFishOrShellfishAllergy] = useState(false);
     const [hasDairyIntolerance, setHasDairyIntolerance] = useState(false);
-    const [hasMilkAllergy, setHasMilkAllergy] = useState(false);    
+    const [hasMilkAllergy, setHasMilkAllergy] = useState(false);
     const [hasPeanutAllergy, setHasPeanutAllergy] = useState(false);
     const [hasSeasameAllergy, setHasSesameAllergy] = useState(false);
     const [hasSoyAllergy, setHasSoyAllergy] = useState(false);
     const [hasTreenutAllergy, setHasTreenutAllergy] = useState(false);
-    const [hasWheatAllergy, setHasWheatAllergy] = useState(false);            
+    const [hasWheatAllergy, setHasWheatAllergy] = useState(false);
     const [hasGlutenAllergy, setHasGlutenAllergy] = useState(false);
     const [isVegan, setIsVegan] = useState(false);
     const [isVegetarian, setIsVegetarian] = useState(false);
@@ -62,7 +62,7 @@ export default function SettingsScreen() {
                 // Trigger updates for the switches
                 setShowStatsEnabled(data.show_stats);
                 setHasEggAllergy(data.has_egg_allergy);
-                setHasFishOrShellfishAllergy(data.has_shellfish_allergy);
+                setHasFishOrShellfishAllergy(data.has_fish_or_shellfish_allergy);
                 setHasDairyIntolerance(data.has_dairy_intolerance);
                 setHasMilkAllergy(data.has_milk_allergy);
                 setHasPeanutAllergy(data.has_peanut_allergy);
@@ -70,11 +70,11 @@ export default function SettingsScreen() {
                 setHasSoyAllergy(data.has_soy_allergy);
                 setHasTreenutAllergy(data.has_treenut_allergy);
                 setHasWheatAllergy(data.has_wheat_allergy);
-                setHasGlutenAllergy(data.has_gluten_allergy);                
+                setHasGlutenAllergy(data.has_gluten_allergy);
                 setIsVegan(data.is_vegan);
                 setIsVegetarian(data.is_vegetarian);
                 setPrefersHalal(data.prefers_halal);
-                
+
             } catch (err) {
                 console.error(err);
             } finally {
