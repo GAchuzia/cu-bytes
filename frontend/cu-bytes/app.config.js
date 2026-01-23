@@ -15,9 +15,15 @@ export default {
     experiments: {
       typedRoutes: true,
     },
+    android: {
+      package: "com.gachuzia.cubytes",
+    },
     extra: {
       // This will be overridden by environment variables
       apiIP: process.env.EXPO_PUBLIC_API_IP || "YOUR_IP_HERE",
+      eas: {
+        projectId: "8840b0bd-e767-4056-8437-91b2013ea798",
+      },
     },
   },
 };
