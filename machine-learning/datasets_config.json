@@ -27,7 +27,7 @@
       "num_classes": 256,
       "expected_path_after_extract": "UECFOOD256",
       "train_split_ratio": 0.8,
-      "enabled": true
+      "enabled": false
     }
   ]
 }
