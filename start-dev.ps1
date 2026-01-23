@@ -111,61 +111,32 @@ Write-Host "[2/6] Initializing databases..." -ForegroundColor Yellow
 Write-Host "Note: Initializing in correct order (profiles must be created before auth users)" -ForegroundColor Gray
 Write-Host ""
 
-$dbPath = Join-Path $projectRoot "backend\database"
-$profilesDb = Join-Path $dbPath "profiles.db"
-$authDb = Join-Path $dbPath "auth.db"
-$foodDb = Join-Path $dbPath "food_data.db"
-$loggingDb = Join-Path $dbPath "logging.db"
+# Ensure we're in the project root directory
+Set-Location $projectRoot
 
-# Check if all databases exist
-$allDbsExist = (Test-Path $profilesDb) -and (Test-Path $authDb) -and (Test-Path $foodDb) -and (Test-Path $loggingDb)
+# Initialize databases in the correct order
+Write-Host "Initializing user settings database (profiles)..." -ForegroundColor Green
+python -m backend.database.init_user_settings_db
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Warning: Failed to initialize user settings database." -ForegroundColor Yellow
+}
 
-if ($allDbsExist) {
-    Write-Host "All databases already exist. Skipping initialization." -ForegroundColor Green
-    Write-Host "To reinitialize, delete the .db files in backend\database\ and run this script again." -ForegroundColor Gray
-} else {
-    Write-Host "Some databases are missing. Initializing..." -ForegroundColor Yellow
-    Write-Host ""
+Write-Host "Initializing auth database..." -ForegroundColor Green
+python -m backend.database.init_auth_db
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Warning: Failed to initialize auth database." -ForegroundColor Yellow
+}
 
-    if (-not (Test-Path $profilesDb)) {
-        Write-Host "Initializing user settings database (profiles)..." -ForegroundColor Green
-        python -m backend.database.init_user_settings_db
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Warning: Failed to initialize user settings database." -ForegroundColor Yellow
-        }
-    } else {
-        Write-Host "User settings database (profiles) already exists. Skipping." -ForegroundColor Gray
-    }
+Write-Host "Initializing food database..." -ForegroundColor Green
+python -m backend.database.init_food_db
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Warning: Failed to initialize food database." -ForegroundColor Yellow
+}
 
-    if (-not (Test-Path $authDb)) {
-        Write-Host "Initializing auth database..." -ForegroundColor Green
-        python -m backend.database.init_auth_db
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Warning: Failed to initialize auth database." -ForegroundColor Yellow
-        }
-    } else {
-        Write-Host "Auth database already exists. Skipping." -ForegroundColor Gray
-    }
-
-    if (-not (Test-Path $foodDb)) {
-        Write-Host "Initializing food database..." -ForegroundColor Green
-        python -m backend.database.init_food_db
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Warning: Failed to initialize food database." -ForegroundColor Yellow
-        }
-    } else {
-        Write-Host "Food database already exists. Skipping." -ForegroundColor Gray
-    }
-
-    if (-not (Test-Path $loggingDb)) {
-        Write-Host "Initializing logging database..." -ForegroundColor Green
-        python -m backend.database.init_logging_db
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Warning: Failed to initialize logging database." -ForegroundColor Yellow
-        }
-    } else {
-        Write-Host "Logging database already exists. Skipping." -ForegroundColor Gray
-    }
+Write-Host "Initializing logging database..." -ForegroundColor Green
+python -m backend.database.init_logging_db
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Warning: Failed to initialize logging database." -ForegroundColor Yellow
 }
 
 # Step 3: Start Flask Backend Server
