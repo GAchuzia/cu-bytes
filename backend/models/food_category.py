@@ -109,6 +109,6 @@ class FoodCategory(db.Model):
     @classmethod
     def get_by_name(cls, category_name):
         """
-        Retrieve a FoodCategory by name
+        Retrieve a FoodCategory by name (case insensitive)
         """
-        return db.session.get(cls, category_name)
+        return cls.query.filter(cls.category_name.ilike(category_name)).first()
