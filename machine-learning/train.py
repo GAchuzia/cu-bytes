@@ -40,21 +40,21 @@ class FoodClassifier(nn.Module):
             self.backbone = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V2)
             self.backbone.fc = nn.Linear(self.backbone.fc.in_features, num_classes)
 
-        # elif model_name == "efficientnet_b0":
-        #     self.backbone = models.efficientnet_b0(
-        #         weights=EfficientNet_B0_Weights.IMAGENET1K_V1
-        #     )
-        #     self.backbone.classifier[1] = nn.Linear(
-        #         self.backbone.classifier[1].in_features, num_classes
-        #     )
+        elif model_name == "efficientnet_b0":
+            self.backbone = models.efficientnet_b0(
+                weights=EfficientNet_B0_Weights.IMAGENET1K_V1
+            )
+            self.backbone.classifier[1] = nn.Linear(
+                self.backbone.classifier[1].in_features, num_classes
+            )
 
-        # elif model_name == "mobilenet_v3_small":
-        #     self.backbone = models.mobilenet_v3_small(
-        #         weights=models.MobileNet_V3_Small_Weights.IMAGENET1K_V1
-        #     )
-        #     self.backbone.classifier[3] = nn.Linear(
-        #         self.backbone.classifier[3].in_features, num_classes
-        #     )
+        elif model_name == "mobilenet_v3_small":
+            self.backbone = models.mobilenet_v3_small(
+                weights=models.MobileNet_V3_Small_Weights.IMAGENET1K_V1
+            )
+            self.backbone.classifier[3] = nn.Linear(
+                self.backbone.classifier[3].in_features, num_classes
+            )
 
         else:
             raise ValueError(
@@ -202,11 +202,18 @@ class Trainer:
             self.optimizer, mode="min", factor=0.5, patience=5
         )
 
-        # Create directories
+        # Create base directories
         config.create_directories()
+        
+        # Create unique run directory
+        run_dir = config.create_run_directory(
+            model_name=model_name,
+            run_name=None  # Auto-generate from timestamp
+        )
+        print(f"Run directory: {run_dir}")
 
-        # Setup logging
-        self.writer = SummaryWriter(config.MODELS_DIR / "runs")
+        # Setup logging with run-specific TensorBoard directory
+        self.writer = SummaryWriter(config.TENSORBOARD_DIR)
 
         # Training history
         self.train_losses = []
@@ -403,13 +410,31 @@ class Trainer:
             f"\nTraining completed! Best validation accuracy: {self.best_val_acc:.2f}%"
         )
 
-        # Save class names for inference
+        # Save class names for inference (in run directory)
         import json
 
-        class_names_file = self.config.MODELS_DIR / "class_names.json"
+        class_names_file = self.config.RUN_DIR / "class_names.json"
         with open(class_names_file, "w") as f:
             json.dump(self.config.ALL_CLASS_NAMES, f, indent=2)
         print(f"Class names saved to {class_names_file}")
+        
+        # Also save a summary of the run
+        run_summary = {
+            "model_name": self.model_name,
+            "num_classes": self.config.NUM_CLASSES,
+            "batch_size": self.config.BATCH_SIZE,
+            "learning_rate": self.config.LEARNING_RATE,
+            "image_size": self.config.IMAGE_SIZE,
+            "num_epochs": len(self.train_losses),
+            "best_val_acc": self.best_val_acc,
+            "final_train_acc": self.train_accuracies[-1] if self.train_accuracies else None,
+            "final_val_acc": self.val_accuracies[-1] if self.val_accuracies else None,
+            "datasets": [ds.get("name", "unknown") for ds in self.config.DATASETS_CONFIG],
+        }
+        summary_file = self.config.RUN_DIR / "run_summary.json"
+        with open(summary_file, "w") as f:
+            json.dump(run_summary, f, indent=2)
+        print(f"Run summary saved to {summary_file}")
 
 
 def main():
