@@ -2,6 +2,7 @@ import { UserProvider } from './context';
 import { Stack } from "expo-router";
 
 export default function RootLayout() {
+  
   return (
     <UserProvider>
       <Stack>

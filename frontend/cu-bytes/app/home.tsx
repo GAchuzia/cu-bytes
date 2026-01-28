@@ -6,76 +6,62 @@ import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './styles/style-home';
 import { useUser } from './context';
-import { HeaderShownContext } from '@react-navigation/elements';
 
 export default function HomeScreen() {
 
-    // Get the variables and setters used to access and modify a copy of the user profile elements
+    const [loading, setLoading] = useState(false);
+    /*
+        Variables used to store a copy of the logged-in user's username and profile settings 
+    */
     const
         {
-            usernameGlobal,
-            showStatsGlobal,
-            hasEggAllergyGlobal,
-            hasFishOrShellfishAllergyGlobal,
-            hasDairyIntoleranceGlobal,
-            hasPeanutAllergyGlobal,
-            hasSesameAllergyGlobal,
-            hasSoyAllergyGlobal,
-            hasTreenutAllergyGlobal,
-            hasWheatAllergyGlobal,
-            hasGlutenAllergyGlobal,
-            isVeganGlobal,
-            isVegetarianGlobal,
-            prefersHalalGlobal
+            usernameGlobal
 
         } = useUser();
 
-    const [loading, setLoading] = useState(false);
-
-    // The page that the user sees in the app/browser
     return (
 
         <View style={styles.container}>
             <StatusBar style="auto" />
 
-            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
+            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
 
             <Text style={styles.title}>Home</Text>
 
-            {/*Route the user to the scan page*/}
+            {/* Route the user to the 'scan and identify a food item' page */}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => router.push("/scan")}
                 disabled={loading}
             >
                 <Text style={styles.buttonText}>
-                    Scan Food
+                    Scan and Identify a Food Item
                 </Text>
             </TouchableOpacity>
 
-            {/*Route the user to the dining locations page*/}
+            {/* Route the user to the 'browse food items by dining location' page */}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => router.push("/dining")}
                 disabled={loading}
             >
                 <Text style={styles.buttonText}>
-                    Dining Options
+                    Browse Food Items by Dining Location
                 </Text>
             </TouchableOpacity>
 
-            {/*Route the user to the food entries page*/}
+            {/* Route the user to the 'view my saved food items' page */}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => router.push("/entries")}
                 disabled={loading}
             >
                 <Text style={styles.buttonText}>
-                    Food Entries
+                    View My Saved Food Items
                 </Text>
             </TouchableOpacity>
 
-            {/*Route the user to the goals page*/}
+            {/* Route the user to the 'goals' page */}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 //onPress={() => router.push("/goals")}
@@ -86,7 +72,7 @@ export default function HomeScreen() {
                 </Text>
             </TouchableOpacity>
 
-            {/*Route the user to the settings page*/}
+            {/* Route the user to the 'settings' page */}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => router.push("/settings")}
