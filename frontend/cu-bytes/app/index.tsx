@@ -4,46 +4,32 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-splash';
+import { styles } from './styles/style-index';
 import { useUser } from './context';
 
 export default function IndexScreen() {
 
-    // Get the variables and setters used to access and modify a copy of the user profile elements
+    const [loading, setLoading] = useState(false);
+    /*
+        Variables used to store a copy of the logged-in user's username and profile settings 
+    */
     const
         {
-            usernameGlobal,
-            showStatsGlobal,
-            hasEggAllergyGlobal,
-            hasFishOrShellfishAllergyGlobal,
-            hasDairyIntoleranceGlobal,
-            hasPeanutAllergyGlobal,
-            hasSesameAllergyGlobal,
-            hasSoyAllergyGlobal,
-            hasTreenutAllergyGlobal,
-            hasWheatAllergyGlobal,
-            hasGlutenAllergyGlobal,
-            isVeganGlobal,
-            isVegetarianGlobal,
-            prefersHalalGlobal
+            usernameGlobal
 
         } = useUser();
     
-    const [loading, setLoading] = useState(false);
-    
-    // The page that the user sees in the app/browser
     return (
 
         <View style={styles.container}>
             <StatusBar style="auto" />
 
-            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
+            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
 
             <Text style={styles.title}>CU-Bytes</Text>
-            <Text style={styles.subtitle}>Welcome to CU-Bytes!</Text>
-            <Text style={styles.subtitle}>The go-to food app for Carleton University students and faculty!</Text>
+            <Text style={styles.subtitle}>Track Your Campus Meals!</Text>
 
-            {/*Route the user to the login page*/}
+            {/* Route the user to the 'login' page */}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => router.push("/login")}
@@ -54,19 +40,18 @@ export default function IndexScreen() {
                 </Text>
             </TouchableOpacity>
 
-            {/*Route the user to the scan food page*/}
+            {/* Route the user to the 'scan and identify a food item' page */}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => router.push("/scan")}
                 disabled={loading}
             >
                 <Text style={styles.buttonText}>
-                {loading ? 'Checking...' : 'Scan Food'}
+                    Scan and Identify a Food Item
                 </Text>
             </TouchableOpacity>
 
         </View>
-
     )
 
 }
