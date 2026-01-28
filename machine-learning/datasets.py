@@ -38,6 +38,7 @@ class GenericDataset(Dataset):
                     )
 
         if not all_samples:
+            # Try case variations
             for class_name in class_mapping.keys():
                 for variant in [
                     class_name,
@@ -55,17 +56,52 @@ class GenericDataset(Dataset):
                                 ]
                             )
                         break
+        
+        # Debug output if no samples found
+        if not all_samples and len(class_mapping) > 0:
+            print(f"    WARNING: No images found for any class in {self.root_dir}")
+            print(f"    Checked {len(class_mapping)} classes")
+            # Show what directories actually exist
+            existing_dirs = [d.name for d in self.root_dir.iterdir() if d.is_dir() and not d.name.startswith('.')]
+            if existing_dirs:
+                print(f"    Found {len(existing_dirs)} directories: {existing_dirs[:5]}...")
+            else:
+                print(f"    No directories found in {self.root_dir}")
 
         split_path_obj = Path(split) if split else None
         if split_path_obj and split_path_obj.exists() and split_path_obj.is_file():
             with open(split, "r") as f:
                 split_paths = set(line.strip() for line in f.readlines())
-            self.samples = [
-                (path, label)
-                for path, label in all_samples
-                if Path(path).name in split_paths
-                or str(Path(path).relative_to(self.root_dir)) in split_paths
-            ]
+            
+            print(f"    Loading split from {split}: {len(split_paths)} entries")
+            print(f"    Found {len(all_samples)} total samples before filtering")
+            
+            # Normalize split paths (remove extensions for matching)
+            split_paths_normalized = set()
+            for sp in split_paths:
+                # Add original
+                split_paths_normalized.add(sp)
+                # Add without extension
+                split_paths_normalized.add(str(Path(sp).with_suffix('')))
+                # Add just the filename
+                split_paths_normalized.add(Path(sp).name)
+                # Add filename without extension
+                split_paths_normalized.add(Path(sp).stem)
+            
+            self.samples = []
+            for path, label in all_samples:
+                path_obj = Path(path)
+                # Check multiple matching strategies
+                if (path_obj.name in split_paths_normalized or
+                    path_obj.stem in split_paths_normalized or
+                    str(path_obj.relative_to(self.root_dir)) in split_paths_normalized or
+                    str(path_obj.relative_to(self.root_dir).with_suffix('')) in split_paths_normalized):
+                    self.samples.append((path, label))
+            
+            print(f"    Matched {len(self.samples)} samples after filtering")
+            if len(self.samples) == 0 and len(all_samples) > 0:
+                print(f"    WARNING: No samples matched! Sample split entries: {list(split_paths)[:3]}")
+                print(f"    Sample image paths: {[Path(p).name for p, _ in all_samples[:3]]}")
         elif split and split_ratio and split in ["train", "val"]:
             import random
 
@@ -337,8 +373,35 @@ def create_data_loaders(config: Config, num_workers: Optional[int] = None):
                 split_ratio=split_ratio,
             )
 
-            train_datasets.append(generic_train)
-            val_datasets.append(generic_val)
+            # Validate that datasets have samples
+            train_samples = len(generic_train)
+            val_samples = len(generic_val)
+            
+            print(f"  Train samples: {train_samples}, Validation samples: {val_samples}")
+            
+            if train_samples == 0 and val_samples == 0:
+                print(f"  ERROR: No samples found for {dataset_name}!")
+                print(f"  Dataset path: {dataset_path}")
+                print(f"  Class mapping has {len(class_mapping)} classes")
+                print(f"  Checking if class directories exist...")
+                for class_name in list(class_mapping.keys())[:5]:  # Check first 5
+                    class_dir = dataset_path / class_name
+                    if class_dir.exists():
+                        img_count = len(list(class_dir.glob("*.jpg")) + list(class_dir.glob("*.jpeg")) + list(class_dir.glob("*.png")))
+                        print(f"    {class_name}: {img_count} images")
+                    else:
+                        print(f"    {class_name}: directory not found")
+                continue
+            
+            if train_samples == 0:
+                print(f"  WARNING: No training samples found for {dataset_name}, skipping train dataset")
+            else:
+                train_datasets.append(generic_train)
+            
+            if val_samples == 0:
+                print(f"  WARNING: No validation samples found for {dataset_name}, skipping val dataset")
+            else:
+                val_datasets.append(generic_val)
         except Exception as e:
             print(f"Failed to load dataset {dataset_name}: {e}")
             import traceback
@@ -346,7 +409,10 @@ def create_data_loaders(config: Config, num_workers: Optional[int] = None):
             continue
 
     if not train_datasets:
-        raise ValueError("No datasets were successfully loaded!")
+        raise ValueError("No training datasets were successfully loaded! Check dataset paths and class mappings.")
+    
+    if not val_datasets:
+        raise ValueError("No validation datasets were successfully loaded! Check dataset paths and class mappings.")
 
     combined_train = (
         CombinedDataset(train_datasets)
@@ -356,6 +422,26 @@ def create_data_loaders(config: Config, num_workers: Optional[int] = None):
     combined_val = (
         CombinedDataset(val_datasets) if len(val_datasets) > 1 else val_datasets[0]
     )
+
+    # Validate combined datasets have samples
+    train_total = len(combined_train)
+    val_total = len(combined_val)
+    
+    print(f"\nDataset Summary:")
+    print(f"  Total training samples: {train_total}")
+    print(f"  Total validation samples: {val_total}")
+    
+    if train_total == 0:
+        raise ValueError(
+            f"Combined training dataset is empty! "
+            f"Check that dataset paths exist and contain images matching the class mappings."
+        )
+    
+    if val_total == 0:
+        raise ValueError(
+            f"Combined validation dataset is empty! "
+            f"Check that dataset paths exist and contain images matching the class mappings."
+        )
 
     # Set config to use food_categories.json as the base + any newly added categories
     all_class_names = food_categories
