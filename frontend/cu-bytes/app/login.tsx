@@ -12,111 +12,112 @@ export default function LoginScreen() {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
 
-    // Get the variables or setters used to access or modify a copy of the user profile elements
-    const { usernameGlobal, setUsernameGlobal } = useUser();
+    /*
+        Variable and setter for storing and modifying the error returned from the backend endpoint
+    */
+    const [error, setError] = useState(
+        {
+            message: '',
+            status: ''
+        }
+    );
 
-    // Variables and setters for the username and password entered by the user
-    // The variable values will be sent to a backend endpoint to attempt to login to an existing user account
+    /*
+        Variables and setters used to store a copy of the logged-in user's username and profile settings 
+    */
+    const 
+        { 
+            usernameGlobal,
+            setUsernameGlobal
+        
+        } = useUser();
+    
+    /*
+        Variable and setter for storing and modifying the username entered by the user
+    */
     const [username, setUsername] = useState('');
+
+    /*
+        Variable and setter for storing and modifying the password entered by the user
+    */
     const [password, setPassword] = useState('');
 
-    // Variable and setter for the error returned by the backend endpoint
-    const [error, setError] = useState({message: '', status: ''});
-
     /*
-    Set the value of the username variable to the value entered in the username text input element
-    event: The event is the current string value in the username text input element
+        Send a request to the backend endpoint to login the user to an account
+
+        param(s):
+            string - name: The username entered by the user to login into an account
+            string - psswrd: The password entered by the user to login into an account
     */
-    function saveUsernameInputText(event: { target: { value: SetStateAction<string>; }; }) {
-        setError({ message: '', status: '' });
-        setUsername(event.target.value);
-        setVisible(false);
-    }
+    const loginUser = async (name: string, psswrd: string) => {
+        try {
+            const res = await fetch(`http://127.0.0.1:5000/auth/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify( { username: name, password: psswrd} )
+                }
+            );
+            const data = await res.json();
 
-    /*
-    Set the value of the password variable to the value entered in the password text input element
-    event: The event is the current string value in the password text input element
-    */
-    function savePasswordInputText(event: { target: { value: SetStateAction<string>; }; }) {
-        setError({ message: '', status: '' });
-        setPassword(event.target.value);
-        setVisible(false);
-    }
-
-    // Sends a login request to the server containing the username and password
-    function handlePressLogin() {
-        
-        setLoading(true);
-        setError({ message: '', status: '' });
-
-        fetch("http://127.0.0.1:5000/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify( { username: username, password: password } )
-            }
-        )
-        .then((response) => response.json())
-
-        .then((data) => {
-
-            setLoading(false);
-
-            // If the backend endpoint returns an error message, store the error message
+            // If the backend endpoint returns an error, store the error message
+            // (The user failed to log in to an account with the entered username and password)
             if (data.status === 'error') {
                 setError(data);
                 console.log(error);
             }
+            // Else, update the copy of the user's username to the username they entered and route the user to the 'home' page
+            // (The user successfully logged in to an account with the entered username and password)
             else {
-                setUsernameGlobal(username);
+                setUsernameGlobal(name);
                 router.push("/home");
             }
-        })
-
-        .catch((error) => {
-            setError(error);
-            console.log(error);
-        });
+        
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
     }
 
-    // The page that the user sees in the app/browser
     return (
 
         <View style={styles.container}>
             <StatusBar style="auto" />
 
-            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
+            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
 
             <Text style={styles.title}>Login</Text>
-            <Text style={styles.subtitle}>Login in to your CU-Bytes account or create a new CU-Bytes account</Text>
+
+            <Text style={styles.subtitle}>Log in in to your CU-Bytes account or create a new CU-Bytes account</Text>
 
             {visible && (
-                <Text style={styles.description} id="loginErrorMessage">{error.message}</Text>
+                <Text style={styles.subsubtitle} id="loginErrorMessage">{error.message}</Text>
             )}
 
-            {/*Enter the username that will identify the existing account*/}
+            {/* Enter the username that corresponds to the account that the user wants to log in to */}
             <TextInput id="usernameInput"
                 style={styles.textInput}
-                onChange={saveUsernameInputText}
-                placeholder={"Enter your username"}
+                onChangeText={setUsername}
+                placeholder={"Enter CU-Bytes username"}
                 value={username}
             >
             </TextInput>
 
-            {/*Enter the password that will access the existing account*/}
+            {/* Enter the password that corresponds to the account that the user wants to log in to */}
             <TextInput id="passwordInput"
                 style={styles.textInput}
-                onChange={savePasswordInputText}
-                placeholder={"Enter your password"}
+                onChangeText={setPassword}
+                placeholder={"Enter CU-Bytes password"}
                 value={password}
                 secureTextEntry={true}
             >
             </TextInput>
 
-            {/*Send a request to the server to access an existing account with the entered username and password */}
+            {/* Submit a request to the backend endpoint to authenticate the entered credentials and log in to an account */}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => {
-                    handlePressLogin();
+                    loginUser(username, password);
                     setVisible(true);
                 }}
                 disabled={loading}
@@ -125,7 +126,7 @@ export default function LoginScreen() {
 
             </TouchableOpacity>
 
-            {/*Route the user to the register/create account page*/}
+            {/* Route the user to the 'create account' page */}
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => router.push("/register")}

@@ -294,7 +294,6 @@ export default function EnterScreen() {
 
         } catch (err) {
             console.error(err);
-
         } finally {
             setLoading(false);
         }
@@ -339,7 +338,7 @@ export default function EnterScreen() {
                 style={styles.textInput}
                 onChangeText={setFoodItemName}
                 value={foodItemName}
-                placeholder={"Search for food items"}
+                placeholder={"Search for Food Items"}
             >
             </TextInput>
 
