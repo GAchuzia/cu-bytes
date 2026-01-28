@@ -12,12 +12,23 @@ export default function RegisterScreen() {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
 
-    // Get the variables and setters used to access and modify a copy of the user profile elements
+    /*
+        Variable and setter for storing and modifying the error returned from the backend endpoint
+    */
+    const [error, setError] = useState(
+        {
+            message: '',
+            status: ''
+        }
+    );
+
+    /*
+        Variables and setters used to store a copy of the logged-in user's username and profile settings 
+    */
     const
         {
             usernameGlobal,
             setUsernameGlobal,
-            setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
@@ -34,103 +45,80 @@ export default function RegisterScreen() {
 
         } = useUser();
 
-    // Variables and setters for the username and password entered by the user
-    // The variable values will be sent to a backend endpoint to attempt to create a new user account
+    /*
+        Variable and setter for storing and modifying the username entered by the user
+    */
     const [username, setUsername] = useState('');
+
+    /*
+        Variable and setter for storing and modifying the password entered by the user
+    */
     const [password, setPassword] = useState('');
 
-    // Variable and setter for the error returned by the backend endpoint
-    const [error, setError] = useState({ message: '', status: '' });
-
     /*
-    Set the value of the username variable to the value entered in the username text input element
-    event: The event is the current string value in the username text input element
+        Send a request to the backend endpoint to create a new account
+
+        param(s):
+            string - name: The username entered by the user to create a new account
+            string - psswrd: The password entered by the user to create a new account
     */
-    function saveUsernameInputText(event: { target: { value: SetStateAction<string>; }; }) {
-        setError({ message: '', status: '' });
-        setUsername(event.target.value);
-        setVisible(false);
-    }
+    const registerUser = async (name: string, psswrd: string) => {
+        try {
+            const res = await fetch(`http://127.0.0.1:5000/auth/register`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify( { username: name, password: psswrd } )
+                }
+            );
+            const data = await res.json();
 
-    /*
-    Set the value of the password variable to the value entered in the password text input element
-    event: The event is the current string value in the password text input element
-    */
-    function savePasswordInputText(event: { target: { value: SetStateAction<string>; }; }) {
-        setError({ message: '', status: '' });
-        setPassword(event.target.value);
-        setVisible(false);
-    }
-
-    // Sends a register request to the backend endpoint containing the input username and password 
-    function handlePressRegister() {
-
-        setLoading(true);
-        setError({ message: '', status: '' });
-        
-        fetch("http://127.0.0.1:5000/auth/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify( { username: username, password: password } )
-            }
-        )
-        .then((response) => response.json())
-
-        .then(data => {
-
-            setLoading(false);
-
-            // If the backend endpoint returns an error message, store the error message
+            // If the backend endpoint returns an error, store the error message
+            // (The user failed to create a new account with the entered username and password)
             if (data.status === 'error') {
                 setError(data);
                 console.log(error);
             }
+            // Else, update the copy of the user's username and profile settings and route the user to the 'home' page
+            // (The user successfully created a new account with the entered username and password)
+
+            // The profile settings on the frontend reflect the default user account profile settings on the backend
+            // (For reference, see backend/models/users_profile.py)
             else {
-                // Set the user profile global elements
-                // This ensures that the updated user profile elements can be accessed across different fronted pages
-                // (Without requiring sending retrieval requests to the backend endpoint)
-                
-                // Because the user account has been newly created, all of the boolean elements should be false by default
-                // See backend/models/users_profile.py for details
-                // However, the user profile elements should still be set on the frontend on registration to be used when scanning or browsing food items
-                setUsernameGlobal(username),
-                setShowStatsGlobal(false),
+                setUsernameGlobal(name);
                 setHasEggAllergyGlobal(false),
-                setHasFishOrShellfishAllergyGlobal(false),
-                setHasDairyIntoleranceGlobal(false),
-                setHasMilkAllergyGlobal(false),
-                setHasPeanutAllergyGlobal(false),
-                setHasSesameAllergyGlobal(false),
-                setHasSoyAllergyGlobal(false),
-                setHasTreenutAllergyGlobal(false),
-                setHasWheatAllergyGlobal(false),
-                setHasGlutenAllergyGlobal(false),
-                setIsVeganGlobal(false),
-                setIsVegetarianGlobal(false),
-                setPrefersHalalGlobal(false),
-                
-                // Route to the home page
+                setHasFishOrShellfishAllergyGlobal(false);
+                setHasDairyIntoleranceGlobal(false);
+                setHasMilkAllergyGlobal(false);
+                setHasPeanutAllergyGlobal(false);
+                setHasSesameAllergyGlobal(false);
+                setHasSoyAllergyGlobal(false);
+                setHasTreenutAllergyGlobal(false);
+                setHasWheatAllergyGlobal(false);
+                setHasGlutenAllergyGlobal(false);
+                setIsVeganGlobal(false);
+                setIsVegetarianGlobal(false);
+                setPrefersHalalGlobal(false);
+
                 router.push("/home");
             }
-        })
-
-        .catch((error) => {
-            setError(error);
-            console.log(error);
-        });
         
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
     }
 
-    // The page that the user sees in the app/browser
     return (
 
         <View style={styles.container}>
             <StatusBar style="auto" />
 
-            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
+            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
 
-            <Text style={styles.title}>Create Account for CU-Bytes</Text>
-            <Text style={styles.subtitle}>Create a new CU-Bytes account</Text>
+            <Text style={styles.title}>Create Account</Text>
+
+            <Text style={styles.subtitle}>Create new CU-Bytes account</Text>
 
             <Text style={styles.subsubtitle} id="usernameReq">
                 Username Requirements:
@@ -162,35 +150,35 @@ export default function RegisterScreen() {
                 <Text style={styles.description} id="registerErrorMessage">{error.message}</Text>            
             )}
 
-            {/*Enter the username that will identify the new account*/}
+            {/* Enter the username that corresponds to the new account that the user wants to create */}
             <TextInput id="usernameInput"
                 style={styles.textInput}
-                onChange={saveUsernameInputText}
-                placeholder={"Enter a new username"}
+                onChangeText={setUsername}
+                placeholder={"Enter new CU-Bytes username"}
                 value={username}
             >
             </TextInput>
 
-            {/*Enter the password that will secure the new account*/}
+            {/* Enter the password that corresponds to the new account that the user wants to create */}
             <TextInput id="passwordInput"
                 style={styles.textInput}
-                onChange={savePasswordInputText}
-                placeholder={"Enter a new password"}
+                onChangeText={setPassword}
+                placeholder={"Enter new CU-Bytes password"}
                 value={password}
                 secureTextEntry={true}
             >
             </TextInput>
 
-            {/*Send a request to the server to create a new account with the entered username and password */}
+            {/* Submit a request to the backend endpoint to create a new account */}
             <TouchableOpacity
                 style={[styles.button, loading && styles.buttonDisabled]}
                 onPress={() => {
-                    handlePressRegister();
+                    registerUser(username, password);
                     setVisible(true);
                 }}
                 disabled={loading}
             >
-                <Text style={styles.buttonText}>Register</Text>
+                <Text style={styles.buttonText}>Create Account</Text>
             </TouchableOpacity>
 
         </View>
