@@ -9,10 +9,29 @@ import { useUser } from './context';
 
 export default function SettingsScreen() {
 
-    // Get the variables or setters used to access or modify a copy of the user profile elements
+    const [loading, setLoading] = useState(true);
+
+    /*
+        Variables and setters used to store a copy of the logged-in user's username and profile settings
+        (Frontend copy updated based on the backend data) 
+    */
     const
         {
             usernameGlobal,
+            showStatsGlobal,
+            hasEggAllergyGlobal,
+            hasFishOrShellfishAllergyGlobal,
+            hasDairyIntoleranceGlobal,
+            hasMilkAllergyGlobal,
+            hasPeanutAllergyGlobal,
+            hasSesameAllergyGlobal,
+            hasSoyAllergyGlobal,
+            hasTreenutAllergyGlobal,
+            hasWheatAllergyGlobal,
+            hasGlutenAllergyGlobal,
+            isVeganGlobal,
+            isVegetarianGlobal,
+            prefersHalalGlobal,
             setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
@@ -30,50 +49,29 @@ export default function SettingsScreen() {
 
         } = useUser();
 
-    const [loading, setLoading] = useState(true);
-
-    // Variables and setters for each of the configurable settings
-    // The variable values will be sent to a backend endpoint to attempt to edit the user profile
-
-    const [showStatsEnabled, setShowStatsEnabled] = useState(false);
-    const [hasEggAllergy, setHasEggAllergy] = useState(false);
-    const [hasFishOrShellfishAllergy, setHasFishOrShellfishAllergy] = useState(false);
-    const [hasDairyIntolerance, setHasDairyIntolerance] = useState(false);
-    const [hasMilkAllergy, setHasMilkAllergy] = useState(false);
-    const [hasPeanutAllergy, setHasPeanutAllergy] = useState(false);
-    const [hasSeasameAllergy, setHasSesameAllergy] = useState(false);
-    const [hasSoyAllergy, setHasSoyAllergy] = useState(false);
-    const [hasTreenutAllergy, setHasTreenutAllergy] = useState(false);
-    const [hasWheatAllergy, setHasWheatAllergy] = useState(false);
-    const [hasGlutenAllergy, setHasGlutenAllergy] = useState(false);
-    const [isVegan, setIsVegan] = useState(false);
-    const [isVegetarian, setIsVegetarian] = useState(false);
-    const [prefersHalal, setPrefersHalal] = useState(false);
-
-    ////////////////////////////////////////////////// Get Initial Profile //////////////////////////////////////////////////
-
-    // Get the user profile from the backend (will run on page load)
+    /*
+        Send a request to the backend endpoint to get the logged-in user's username and profile settings
+    */
     useEffect(() => {
         const loadSettings = async () => {
             try {
                 const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${usernameGlobal}`);
                 const data = await res.json();
 
-                // Trigger updates for the switches
-                setShowStatsEnabled(data.show_stats);
-                setHasEggAllergy(data.has_egg_allergy);
-                setHasFishOrShellfishAllergy(data.has_fish_or_shellfish_allergy);
-                setHasDairyIntolerance(data.has_dairy_intolerance);
-                setHasMilkAllergy(data.has_milk_allergy);
-                setHasPeanutAllergy(data.has_peanut_allergy);
-                setHasSesameAllergy(data.has_sesame_allergy);
-                setHasSoyAllergy(data.has_soy_allergy);
-                setHasTreenutAllergy(data.has_treenut_allergy);
-                setHasWheatAllergy(data.has_wheat_allergy);
-                setHasGlutenAllergy(data.has_gluten_allergy);
-                setIsVegan(data.is_vegan);
-                setIsVegetarian(data.is_vegetarian);
-                setPrefersHalal(data.prefers_halal);
+                // Update the copy of the logged-in user's username and profile settings using the retrieved data
+                setHasEggAllergyGlobal(data.has_egg_allergy);
+                setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
+                setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
+                setHasMilkAllergyGlobal(data.has_milk_allergy);
+                setHasPeanutAllergyGlobal(data.has_peanut_allergy);
+                setHasSesameAllergyGlobal(data.has_sesame_allergy);
+                setHasSoyAllergyGlobal(data.has_soy_allergy);
+                setHasTreenutAllergyGlobal(data.has_treenut_allergy);
+                setHasWheatAllergyGlobal(data.has_wheat_allergy);
+                setHasGlutenAllergyGlobal(data.has_gluten_allergy);
+                setIsVeganGlobal(data.is_vegan);
+                setIsVegetarianGlobal(data.is_vegetarian);
+                setPrefersHalalGlobal(data.prefers_halal);
 
             } catch (err) {
                 console.error(err);
@@ -83,67 +81,61 @@ export default function SettingsScreen() {
         };
 
         loadSettings();
-        }, []);
 
-    ////////////////////////////////////////////////// Send Profile Update //////////////////////////////////////////////////
+    }, []);
 
-    // Send the user profile update to the backend endpoint
-    const handlePressConfirmSettings = () => {
-        fetch("http://127.0.0.1:5000/profile/edit", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(
-                    {
-                        username: usernameGlobal,
-                        show_stats: showStatsEnabled,
-                        has_egg_allergy: hasEggAllergy,
-                        has_fish_or_shellfish_allergy: hasFishOrShellfishAllergy,
-                        has_dairy_intolerance: hasDairyIntolerance,
-                        has_milk_allergy: hasMilkAllergy,
-                        has_peanut_allergy: hasPeanutAllergy,
-                        has_sesame_allergy: hasSeasameAllergy,
-                        has_soy_allergy: hasSoyAllergy,
-                        has_treenut_allergy: hasTreenutAllergy,
-                        has_wheat_allergy: hasWheatAllergy,
-                        has_gluten_allergy: hasGlutenAllergy,
-                        is_vegan: isVegan,
-                        is_vegetarian: isVegetarian,
-                        prefers_halal: prefersHalal,
-                    }
-                ),
-            }
-        )
-        .then(response => {
-            if (!response.ok) {
-                throw new Error (`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Set the user profile global elements
-            // This ensures that the updated user profile elements can be accessed across different fronted pages
-            // (Without requiring sending retrieval requests to the backend endpoint)
-            setShowStatsGlobal(showStatsEnabled);
-            setHasEggAllergyGlobal(hasEggAllergy);
-            setHasFishOrShellfishAllergyGlobal(hasFishOrShellfishAllergy);
-            setHasDairyIntoleranceGlobal(hasDairyIntolerance);
-            setHasMilkAllergyGlobal(hasMilkAllergy);
-            setHasPeanutAllergyGlobal(hasPeanutAllergy);
-            setHasSesameAllergyGlobal(hasSeasameAllergy);
-            setHasSoyAllergyGlobal(hasSoyAllergy);
-            setHasTreenutAllergyGlobal(hasTreenutAllergy);
-            setHasWheatAllergyGlobal(hasWheatAllergy);
-            setHasGlutenAllergyGlobal(hasGlutenAllergy);
-            setIsVeganGlobal(isVegan);
-            setIsVegetarianGlobal(isVegetarian);
-            setPrefersHalalGlobal(prefersHalal);
+    /*
+        Send a request to the backend endpoint to update the logged-in user's profile settings
+    */
+    const handlePressConfirmSettings = async () => {
+        try {
+            const res = await fetch(`http://127.0.0.1:5000/profile/edit`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(
+                        {
+                            username: usernameGlobal,
+                            has_egg_allergy: hasEggAllergyGlobal,
+                            has_fish_or_shellfish_allergy: hasFishOrShellfishAllergyGlobal,
+                            has_dairy_intolerance: hasDairyIntoleranceGlobal,
+                            has_milk_allergy: hasMilkAllergyGlobal,
+                            has_peanut_allergy: hasPeanutAllergyGlobal,
+                            has_sesame_allergy: hasSesameAllergyGlobal,
+                            has_soy_allergy: hasSoyAllergyGlobal,
+                            has_treenut_allergy: hasTreenutAllergyGlobal,
+                            has_wheat_allergy: hasWheatAllergyGlobal,
+                            has_gluten_allergy: hasGlutenAllergyGlobal,
+                            is_vegan: isVeganGlobal,
+                            is_vegetarian: isVegetarianGlobal,
+                            prefers_halal: prefersHalalGlobal
+                        }
+                    ) 
+                }
+            );
+            const data = await res.json();
 
-            // Route to the home page
+            setHasEggAllergyGlobal(data.has_egg_allergy),
+            setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
+            setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
+            setHasMilkAllergyGlobal(data.has_milk_allergy);
+            setHasPeanutAllergyGlobal(data.has_peanut_allergy);
+            setHasSesameAllergyGlobal(data.has_sesame_allergy);
+            setHasSoyAllergyGlobal(data.has_soy_allergy);
+            setHasTreenutAllergyGlobal(data.has_treenut_allergy);
+            setHasWheatAllergyGlobal(data.has_wheat_allergy);
+            setHasGlutenAllergyGlobal(data.has_gluten_allergy);
+            setIsVeganGlobal(data.is_vegan);
+            setIsVegetarianGlobal(data.is_vegetarian);
+            setPrefersHalalGlobal(data.prefers_halal);
+
             router.push("/home");
-        })
-        .catch(error => {
-            console.log(error);
-        });
+
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    
     }
 
     // Display loading symbol while the profiles are being fetched
@@ -160,7 +152,7 @@ export default function SettingsScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
 
-            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
+            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
 
             <Text style={styles.title}>Settings</Text>
 
@@ -171,8 +163,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasDairyIntolerance}
-                        onValueChange={setHasDairyIntolerance}
+                        value={hasDairyIntoleranceGlobal}
+                        onValueChange={setHasDairyIntoleranceGlobal}
                     />
                 </View>
             </View>
@@ -184,8 +176,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasEggAllergy}
-                        onValueChange={setHasEggAllergy}
+                        value={hasEggAllergyGlobal}
+                        onValueChange={setHasEggAllergyGlobal}
                     />
                 </View>
             </View>
@@ -198,8 +190,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasFishOrShellfishAllergy}
-                        onValueChange={setHasFishOrShellfishAllergy}
+                        value={hasFishOrShellfishAllergyGlobal}
+                        onValueChange={setHasFishOrShellfishAllergyGlobal}
                     />
                 </View>
             </View>
@@ -211,8 +203,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasGlutenAllergy}
-                        onValueChange={setHasGlutenAllergy}
+                        value={hasGlutenAllergyGlobal}
+                        onValueChange={setHasGlutenAllergyGlobal}
                     />
                 </View>
             </View>
@@ -225,8 +217,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasMilkAllergy}
-                        onValueChange={setHasMilkAllergy}
+                        value={hasMilkAllergyGlobal}
+                        onValueChange={setHasMilkAllergyGlobal}
                     />
                 </View>
             </View>
@@ -238,8 +230,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasPeanutAllergy}
-                        onValueChange={setHasPeanutAllergy}
+                        value={hasPeanutAllergyGlobal}
+                        onValueChange={setHasPeanutAllergyGlobal}
                     />
                 </View>
             </View>
@@ -251,8 +243,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasSeasameAllergy}
-                        onValueChange={setHasSesameAllergy}
+                        value={hasSesameAllergyGlobal}
+                        onValueChange={setHasSesameAllergyGlobal}
                     />
                 </View>
             </View>
@@ -264,8 +256,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasSoyAllergy}
-                        onValueChange={setHasSoyAllergy}
+                        value={hasSoyAllergyGlobal}
+                        onValueChange={setHasSoyAllergyGlobal}
                     />
                 </View>
             </View>
@@ -277,8 +269,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasTreenutAllergy}
-                        onValueChange={setHasTreenutAllergy}
+                        value={hasTreenutAllergyGlobal}
+                        onValueChange={setHasTreenutAllergyGlobal}
                     />
                 </View>
             </View>
@@ -290,8 +282,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasWheatAllergy}
-                        onValueChange={setHasWheatAllergy}
+                        value={hasWheatAllergyGlobal}
+                        onValueChange={setHasWheatAllergyGlobal}
                     />
                 </View>
             </View>
@@ -303,8 +295,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={isVegan}
-                        onValueChange={setIsVegan}
+                        value={isVeganGlobal}
+                        onValueChange={setIsVeganGlobal}
                     />
                 </View>
             </View>
@@ -316,8 +308,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={isVegetarian}
-                        onValueChange={setIsVegetarian}
+                        value={isVegetarianGlobal}
+                        onValueChange={setIsVegetarianGlobal}
                     />
                 </View>
             </View>
@@ -329,8 +321,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={prefersHalal}
-                        onValueChange={setPrefersHalal}
+                        value={prefersHalalGlobal}
+                        onValueChange={setPrefersHalalGlobal}
                     />
                 </View>
             </View>
@@ -343,8 +335,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={showStatsEnabled}
-                        onValueChange={setShowStatsEnabled}
+                        value={showStatsGlobal}
+                        onValueChange={setShowStatsGlobal}
                     />
                 </View>
             </View>
