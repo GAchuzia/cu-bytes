@@ -11,6 +11,10 @@ export default function LoginScreen() {
 
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [isHomePressed, setIsHomePressed] = useState(false);
+    const [isLoginPressed, setLoginIsPressed] = useState(false);
+    const [isCreateAccountPressed, setCreateAccountIsPressed] = useState(false);
+    const [secureTextEntry, setSecureTextEntry] = useState(true);
 
     /*
         Variable and setter for storing and modifying the error returned from the backend endpoint
@@ -82,31 +86,78 @@ export default function LoginScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar 
+                style="auto"
+                hidden={true}
+            />
 
-            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
+            <View
+                style={styles.statusbar}>
 
-            <Text style={styles.title}>Login</Text>
+                <TouchableOpacity id="homeButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isHomePressed ? '#666666' : '#131312' }]
+                    }
+                    
+                    onPressIn={ () => setIsHomePressed(true) }
+                    onPressOut={ () => setIsHomePressed(false) }
+                    onPress={ () => router.push('/home') }>
 
-            <Text style={styles.subtitle}>Log in in to your CU-Bytes account or create a new CU-Bytes account</Text>
+                    <Text id="homeButtonText"
+                        style={styles.headerButtonText}>
 
-            {visible && (
-                <Text style={styles.subsubtitle} id="loginErrorMessage">{error.message}</Text>
-            )}
+                        Home
+                    </Text>
+
+                </TouchableOpacity>
+
+                <Text id="loginTitle"
+                    style={styles.headerTitle}>
+                    
+                    Login
+                </Text>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+
+                    {usernameGlobal != "" ? `${usernameGlobal}` : "Guest" }
+                </Text>
+
+            </View>
+
+            <Text id="loginInfo"
+                style={styles.infoText}>
+
+                Sign in or create a new CU-Bytes account
+            </Text>
+
+            <Text id="loginErrorMessage"
+                style={styles.errorInfoText}>
+
+                {visible ? error.message : 'To sign in to your CU-Bytes account, enter your username and password below' }
+            </Text>
 
             {/* Enter the username that corresponds to the account that the user wants to log in to */}
-            <TextInput id="usernameInput"
-                style={styles.textInput}
+            <TextInput id="loginUsernameTextInput"
+                style={styles.usernameTextInput}
                 onChangeText={setUsername}
+                onChange={() => {
+                    setError({ message: '', status: '' });
+                    setVisible(false);
+                }}
                 placeholder={"Enter CU-Bytes username"}
                 value={username}
             >
             </TextInput>
 
             {/* Enter the password that corresponds to the account that the user wants to log in to */}
-            <TextInput id="passwordInput"
-                style={styles.textInput}
+            <TextInput id="loginPasswordTextInput"
+                style={styles.passwordTextInput}
                 onChangeText={setPassword}
+                onChange={() => {
+                    setError({ message: '', status: '' });
+                    setVisible(false);
+                }}
                 placeholder={"Enter CU-Bytes password"}
                 value={password}
                 secureTextEntry={true}
@@ -114,24 +165,39 @@ export default function LoginScreen() {
             </TextInput>
 
             {/* Submit a request to the backend endpoint to authenticate the entered credentials and log in to an account */}
-            <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
+            <TouchableOpacity id="loginButton"
+                style={[styles.bodyButton,
+                    { backgroundColor: isLoginPressed ? '#666666' : '#131312' }]
+                }
+                
+                onPressIn={() => setLoginIsPressed(true) }
+                onPressOut={() => setLoginIsPressed(false) }
                 onPress={() => {
                     loginUser(username, password);
-                    setVisible(true);
-                }}
-                disabled={loading}
-            >
-                <Text style={styles.buttonText}>Login</Text>
+                    setVisible(true);}}>
+
+                <Text id="loginButtonText"
+                    style={styles.bodyButtonText}>
+                        
+                        Login
+                </Text>
 
             </TouchableOpacity>
 
             {/* Route the user to the 'create account' page */}
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => router.push("/register")}
-            >
-                <Text style={styles.buttonText}>Create Account</Text>
+            <TouchableOpacity id="createAccountButton"
+                style={[styles.bodyButtonAlt,
+                    { backgroundColor: isCreateAccountPressed ? '#DDDDDD' : '#FFFFFF' }]
+                }
+                onPressIn={() => setCreateAccountIsPressed(true) }
+                onPressOut={() => setCreateAccountIsPressed(false) }
+                onPress={() => router.push("/register")}>
+                
+                <Text id="createAccountButtonText"
+                    style={styles.bodyButtonTextAlt}>
+                        
+                        Create Account
+                </Text>
 
             </TouchableOpacity>
 

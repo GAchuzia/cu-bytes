@@ -1,14 +1,17 @@
 import { UserProvider } from './context';
 import { Stack } from "expo-router";
+import LoginScreen from './login';
 
 export default function RootLayout() {
   
   return (
     <UserProvider>
-      <Stack>
+      <Stack
+        screenOptions={ { headerShown: false }}
+      >
         <Stack.Screen name="index" />
         <Stack.Screen name="home" />
-        <Stack.Screen name="login" />
+        <Stack.Screen name="login"/>
         <Stack.Screen name="register" />
         <Stack.Screen name="settings" />
         <Stack.Screen name="enter" />
