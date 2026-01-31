@@ -250,7 +250,7 @@ export default function RegisterScreen() {
                 <Text id="createAccountButtonText"
                     style={styles.bodyButtonText}>
                     
-                        Create Account
+                    Create Account
                 </Text>
 
             </TouchableOpacity>

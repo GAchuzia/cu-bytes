@@ -126,7 +126,7 @@ export const styles = StyleSheet.create({
 
   usernameReqTitle: {
     backgroundColor: '#FFFFFF',
-    color: '#131312',
+    color: '#666666',
     fontFamily: 'arial',
     fontSize: '120%' as any,
     fontWeight: 600,
@@ -139,7 +139,7 @@ export const styles = StyleSheet.create({
 
   usernameReqInfoText: {
     backgroundColor: '#FFFFFF',
-    color: '#131312',
+    color: '#666666',
     fontFamily: 'arial',
     fontSize: '100%' as any,
     fontWeight: 500,
@@ -150,7 +150,7 @@ export const styles = StyleSheet.create({
 
   passwordReqTitle: {
     backgroundColor: '#FFFFFF',
-    color: '#131312',
+    color: '#666666',
     fontFamily: 'arial',
     fontSize: '120%' as any,
     fontWeight: 600,
@@ -162,7 +162,7 @@ export const styles = StyleSheet.create({
 
   passwordReqInfoText: {
     backgroundColor: '#FFFFFF',
-    color: '#131312',
+    color: '#666666',
     fontFamily: 'arial',
     fontSize: '100%' as any,
     fontWeight: 500,
