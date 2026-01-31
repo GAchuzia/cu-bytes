@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
@@ -11,9 +11,9 @@ export default function LoginScreen() {
 
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
-    const [isHomePressed, setIsHomePressed] = useState(false);
-    const [isLoginPressed, setLoginIsPressed] = useState(false);
-    const [isCreateAccountPressed, setCreateAccountIsPressed] = useState(false);
+    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isLoginPressed, setIsLoginPressed] = useState(false);
+    const [isCreateAccountPressed, setIsCreateAccountPressed] = useState(false);
     const [secureTextEntry, setSecureTextEntry] = useState(true);
 
     /*
@@ -94,19 +94,19 @@ export default function LoginScreen() {
             <View
                 style={styles.statusbar}>
 
-                <TouchableOpacity id="homeButton"
+                <TouchableOpacity id="backButton"
                     style={[styles.headerButton,
-                        { backgroundColor: isHomePressed ? '#666666' : '#131312' }]
-                    }
+                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
+                    ]}
                     
-                    onPressIn={ () => setIsHomePressed(true) }
-                    onPressOut={ () => setIsHomePressed(false) }
+                    onPressIn={ () => setIsBackPressed(true) }
+                    onPressOut={ () => setIsBackPressed(false) }
                     onPress={ () => router.push('/home') }>
 
-                    <Text id="homeButtonText"
+                    <Text id="backButtonText"
                         style={styles.headerButtonText}>
 
-                        Home
+                        Back
                     </Text>
 
                 </TouchableOpacity>
@@ -120,7 +120,7 @@ export default function LoginScreen() {
                 <Text id="loggedInUser"
                     style={styles.headerUsernameIcon}>
 
-                    {usernameGlobal != "" ? `${usernameGlobal}` : "Guest" }
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
                 </Text>
 
             </View>
@@ -167,11 +167,11 @@ export default function LoginScreen() {
             {/* Submit a request to the backend endpoint to authenticate the entered credentials and log in to an account */}
             <TouchableOpacity id="loginButton"
                 style={[styles.bodyButton,
-                    { backgroundColor: isLoginPressed ? '#666666' : '#131312' }]
-                }
+                    { backgroundColor: isLoginPressed ? '#666666' : '#131312' }
+                ]}
                 
-                onPressIn={() => setLoginIsPressed(true) }
-                onPressOut={() => setLoginIsPressed(false) }
+                onPressIn={() => setIsLoginPressed(true)}
+                onPressOut={() => setIsLoginPressed(false)}
                 onPress={() => {
                     loginUser(username, password);
                     setVisible(true);}}>
@@ -187,10 +187,11 @@ export default function LoginScreen() {
             {/* Route the user to the 'create account' page */}
             <TouchableOpacity id="createAccountButton"
                 style={[styles.bodyButtonAlt,
-                    { backgroundColor: isCreateAccountPressed ? '#DDDDDD' : '#FFFFFF' }]
-                }
-                onPressIn={() => setCreateAccountIsPressed(true) }
-                onPressOut={() => setCreateAccountIsPressed(false) }
+                    { backgroundColor: isCreateAccountPressed ? '#DDDDDD' : '#FFFFFF' }
+                ]}
+
+                onPressIn={() => setIsCreateAccountPressed(true)}
+                onPressOut={() => setIsCreateAccountPressed(false)}
                 onPress={() => router.push("/register")}>
                 
                 <Text id="createAccountButtonText"

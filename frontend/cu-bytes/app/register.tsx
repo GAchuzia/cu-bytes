@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
@@ -11,6 +11,8 @@ export default function RegisterScreen() {
 
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isCreateAccountPressed, setIsCreateAccountPressed] = useState(false);
 
     /*
         Variable and setter for storing and modifying the error returned from the backend endpoint
@@ -112,57 +114,120 @@ export default function RegisterScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar
+                style="auto"
+                hidden={true}
+            />
 
-            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
+            <View
+                style={styles.statusbar}>
+                
+                <TouchableOpacity id="backButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
+                    ]}
 
-            <Text style={styles.title}>Create Account</Text>
+                    onPressIn={ () => setIsBackPressed(true) }
+                    onPressOut={ () => setIsBackPressed(false) }
+                    onPress={ () => router.push('/login') }>
 
-            <Text style={styles.subtitle}>Create new CU-Bytes account</Text>
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}>
+                        
+                        Back
+                    </Text>
 
-            <Text style={styles.subsubtitle} id="usernameReq">
-                Username Requirements:
+                </TouchableOpacity>
+
+                <Text id="createAccountTitle"
+                    style={styles.headerTitle}>
+                
+                    New Account
+                </Text>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
+                </Text>
+
+            </View>
+
+            <Text id="createAccountInfo"
+                style={styles.infoText}>
+
+                Create a new CU-Bytes account
             </Text>
 
-            <Text style={styles.description} id="usernameUniqueReq">
-                - Username is unique to each user
-            </Text>
-            <Text style={styles.description} id="usernameLengthReq">
-                - Between 1 and 80 characters in length
-            </Text>
-            <Text style={styles.description} id="usernameCharReq">
-                - Contains only letters, numbers, and underscores
+            <Text id="usernameReqsTitle"
+                style={styles.usernameReqTitle}>
+                
+                Username Requirements
             </Text>
 
-            <Text style={styles.subsubtitle} id="passwordReq">
-                Password Requirements:
+            <Text id="usernameUniqueReq"
+                style={styles.usernameReqInfoText}>
+
+                Must be unique and not shared by any other user account
+            </Text>
+            
+            <Text id="usernameLengthReq"
+                style={styles.usernameReqInfoText}>
+
+                Must be between 1 and 80 characters long
+            </Text>
+            
+            <Text id="usernameCharReq"
+                style={styles.usernameReqInfoText}>
+
+                Must contain only letters, numbers, or underscores
             </Text>
 
-            <Text style={styles.description} id="passwordLengthReq">
-                - Between 10 and 120 characters in length
+            <Text id="passwordReqsTitle"
+                style={styles.passwordReqTitle}>
+                
+                Password Requirements
             </Text>
 
-            <Text style={styles.description} id="passwordCharReq">
-                - At least one lowercase letter, uppercase letter, number and special character 
+            <Text id="passwordLengthReq"
+                style={styles.passwordReqInfoText}>
+                    
+                Must be between 10 and 120 characters long
             </Text>
 
-            {visible && (
-                <Text style={styles.description} id="registerErrorMessage">{error.message}</Text>            
-            )}
+            <Text id="passwordCharReq"
+                style={styles.passwordReqInfoText}>
+
+                Must contain at least one lowercase letter, uppercase letter, number, and special character
+            </Text>
+
+            <Text id="createAccountErrorMessage"
+                style={styles.errorInfoText}>
+
+                {visible ? error.message : 'To create a new CU-Bytes account, enter a valid username and valid password below' }
+            </Text> 
 
             {/* Enter the username that corresponds to the new account that the user wants to create */}
-            <TextInput id="usernameInput"
-                style={styles.textInput}
+            <TextInput id="createAccountUsernameTextInput"
+                style={styles.usernameTextInput}
                 onChangeText={setUsername}
+                onChange={() => {
+                    setError({ message: '', status: '' });
+                    setVisible(false);
+                }}
                 placeholder={"Enter new CU-Bytes username"}
                 value={username}
             >
             </TextInput>
 
             {/* Enter the password that corresponds to the new account that the user wants to create */}
-            <TextInput id="passwordInput"
-                style={styles.textInput}
+            <TextInput id="createAccountPasswordTextInput"
+                style={styles.passwordTextInput}
                 onChangeText={setPassword}
+                onChange={() => {
+                    setError({ message: '', status: '' });
+                    setVisible(false);
+                }}
                 placeholder={"Enter new CU-Bytes password"}
                 value={password}
                 secureTextEntry={true}
@@ -170,15 +235,24 @@ export default function RegisterScreen() {
             </TextInput>
 
             {/* Submit a request to the backend endpoint to create a new account */}
-            <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
+            <TouchableOpacity id="createAccountButton"
+                style={[styles.bodyButton,
+                    { backgroundColor: isCreateAccountPressed ? '#666666' : '#131312' }
+                ]}
+
+                onPressIn={() => setIsCreateAccountPressed(true)}
+                onPressOut={() => setIsCreateAccountPressed(false)}
                 onPress={() => {
                     registerUser(username, password);
                     setVisible(true);
                 }}
-                disabled={loading}
             >
-                <Text style={styles.buttonText}>Create Account</Text>
+                <Text id="createAccountButtonText"
+                    style={styles.bodyButtonText}>
+                    
+                        Create Account
+                </Text>
+
             </TouchableOpacity>
 
         </View>
