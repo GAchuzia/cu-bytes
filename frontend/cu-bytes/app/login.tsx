@@ -101,7 +101,7 @@ export default function LoginScreen() {
                     
                     onPressIn={ () => setIsBackPressed(true) }
                     onPressOut={ () => setIsBackPressed(false) }
-                    onPress={ () => router.push('/home') }>
+                    onPress={() => router.push('/')}>
 
                     <Text id="backButtonText"
                         style={styles.headerButtonText}>

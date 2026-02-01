@@ -3,96 +3,135 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
 
   container: {
+    alignItems: 'center', // Horizontal
+    backgroundColor: '#C5151A',
     flex: 1,
-
-    backgroundColor: '#FFFFFF',
-    padding: '0.5%' as any,
-
-    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'flex-start', // Vertical 
+    overflowY: 'scroll',
     textAlign: 'center',
+    width: '100%' as any,
+  },
 
-    width: '100%',
+  headerContainer: {
+    backgroundColor: '#C5151A',
+    width: '10%' as any,
+  },
 
-    overflowY: 'scroll'
+  bodyContainer: {
+    backgroundColor: '#FFFFFF',
+    width: '100%' as any,
+  },
+
+  statusbar: {
+    alignItems: 'center', // Horizontal
+    backgroundColor: '#C5151A',
+    flexDirection: 'row',
+    justifyContent: 'space-between', // Vertical
+    padding: '1.5%' as any,
+    textAlign: 'center',
+    width: '100%' as any,
+  },
+
+  headerButton: {
+    alignItems: 'center',
+    backgroundColor: '#131312',
+    borderRadius: 50,
+    borderWidth: 4,
+    borderColor: 'black',
+    color: 'red',
+    padding: '1.5%' as any,
+    width: '10%' as any,
+  },
+
+  headerButtonText: {
+    backgroundColor: '#131312',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    fontWeight: 500,
   },
   
-  title: {
-    color: '#0a7ea4',
-    backgroundColor: '#FFFFFFFF',
-    padding: '1.5%' as any,
-
-    textAlign: 'center',
-    margin: '0.5%' as any,  
-    
-    fontFamily: 'sans-serif',
+  headerTitle: {
+    backgroundColor: '#C5151A',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
     fontSize: '300%' as any,
-    fontWeight: 'bold',    
-  },
-
-  subtitle: {
-    color: '#0a7ea4',
-    backgroundColor: '#FFFFFF',
-    padding: '0.5%' as any,
-
+    fontWeight: 800,
     textAlign: 'center',
-    margin: '0.5%' as any,
-
-    fontFamily: 'sans-serif',
-    fontSize: '175%' as any,
-    fontWeight: 'bold'
+    textShadowColor: '#131312',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 10,
+    width: '50%' as any,
   },
 
-  button: {
-    color: 'black',
-    backgroundColor: '#0a7ea4',
-    padding: '0.5%' as any,
+  headerUsernameIcon: {
+    backgroundColor: '#C5151A',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    width: '10%' as any,
+  },
 
-    justifyContent: 'center',
+  infoText: {
+    backgroundColor: '#C5151A',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    fontWeight: 500,
+    marginTop: '0.5%' as any,
+    paddingTop: '5.0%' as any,
+    paddingBottom: '5.0%' as any,
+    textAlign: 'center',
+    textShadowColor: '#131312',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 10,
+    width: '100%' as any,
+  },
+
+  bodyButton: {
     alignItems: 'center',
-    margin: '1.2%' as any,
-
-    borderRadius: 25,
+    backgroundColor: '#131312',
+    borderRadius: 50,
     borderWidth: 4,
-    borderBlockColor: 'black',
-    
-    shadowColor: 'black',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    
+    borderColor: '#131312',
+    marginTop: '2.5%' as any,
+    marginBottom: '2.5%' as any,
+    padding: '2.5%' as any,
     width: '80%' as any,
-    height: '12.5%' as any
   },
 
-  buttonDisabled: {
-    backgroundColor: '#CCCCCC',
-  },
-
-  buttonText: {
-    color: 'white',
-
-    fontFamily: 'sans-serif',
-    fontSize: '200%' as any,
-    fontWeight: '800',
+  bodyButtonText: {
+    backgroundColor: 'transparent',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '175%' as any,
+    fontWeight: 600,
+    textAlign: 'center',
   },
 
   row: {
-    flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    paddingLeft: '5.0%' as any,
+    paddingRight: '5.0%' as any,
     paddingVertical: '1%' as any,
     width: '85%',
   },
 
   label: {
     flex: 1,
+    flexWrap: 'wrap',
     fontSize: '150%' as any,
     paddingRight: '1%' as any,
-    flexWrap: 'wrap',
   },
 
   switchContainer: {
+    alignItems: 'flex-end',
     width: '15%',
-    alignItems: 'flex-end'
   },
 
   switch: {

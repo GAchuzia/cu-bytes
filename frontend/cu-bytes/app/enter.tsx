@@ -341,7 +341,7 @@ export default function EnterScreen() {
                     ]}
                     onPressIn={() => setIsBackPressed(true)}
                     onPressOut={() => setIsBackPressed(false)}
-                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')  }>
+                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
 
                     <Text id="backButtonText"
                         style={styles.headerButtonText}>

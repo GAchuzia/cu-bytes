@@ -10,6 +10,8 @@ import { useUser } from './context';
 export default function SettingsScreen() {
 
     const [loading, setLoading] = useState(true);
+    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isConfirmPressed, setIsConfirmPressed] = useState(false);
 
     /*
         Variables and setters used to store a copy of the logged-in user's username and profile settings
@@ -147,14 +149,54 @@ export default function SettingsScreen() {
         );
     }
 
-    // The page that the user sees in the app/browser
     return (
         <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar
+                style="auto"
+                hidden={true}
+            />
 
-            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
+            <View
+                style={styles.statusbar}>
 
-            <Text style={styles.title}>Settings</Text>
+                <TouchableOpacity id="backButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
+                    onPress={() => router.push('/home')}>
+                    
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}>
+
+                            Back
+                    </Text>
+
+                </TouchableOpacity>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text id="settingsTitle"
+                    style={styles.headerTitle}>
+
+                    Settings
+                </Text>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+                    
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
+                </Text>
+
+            </View>
+
+            <Text style={styles.infoText}>
+
+                What allergies, intolerances, or preferences do you have?
+            </Text>
 
             <View style={styles.row}>
                 <Text style={styles.label}>
@@ -182,7 +224,6 @@ export default function SettingsScreen() {
                 </View>
             </View>
 
-            {/* Added 01/11/2026 */}
             <View style={styles.row}>
                 <Text style={styles.label}>
                     Do you have an allergy or intolerance to <b>fish</b> or <b>shellfish</b>?
@@ -209,7 +250,6 @@ export default function SettingsScreen() {
                 </View>
             </View>
 
-            {/* Added 01/11/2026 */}
             <View style={styles.row}>
                 <Text style={styles.label}>
                     Do you have an allergy or intolerance to <b>milk</b>?
@@ -341,14 +381,22 @@ export default function SettingsScreen() {
                 </View>
             </View>
 
-            <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
+            <TouchableOpacity id="settingsButton"
+                style={[styles.bodyButton,
+                    { backgroundColor: isConfirmPressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                ]}
+                onPressIn={() => setIsConfirmPressed(true)}
+                onPressOut={() => setIsConfirmPressed(false)}
                 onPress={() => handlePressConfirmSettings()}
-                disabled={loading}
+                disabled={ usernameGlobal == '' ? true : false }
             >
-                <Text style={styles.buttonText}>
+
+                <Text id="settingsButtonText"
+                    style={styles.bodyButtonText}>
+                
                     Confirm
                 </Text>
+
             </TouchableOpacity>
         </View>
     )
