@@ -126,10 +126,9 @@ export default function RegisterScreen() {
                     style={[styles.headerButton,
                         { backgroundColor: isBackPressed ? '#666666' : '#131312' }
                     ]}
-
-                    onPressIn={ () => setIsBackPressed(true) }
-                    onPressOut={ () => setIsBackPressed(false) }
-                    onPress={ () => router.push('/login') }>
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
+                    onPress={() => router.push('/login')}>
 
                     <Text id="backButtonText"
                         style={styles.headerButtonText}>
@@ -148,7 +147,7 @@ export default function RegisterScreen() {
                 <Text id="loggedInUser"
                     style={styles.headerUsernameIcon}>
 
-                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
             </View>
@@ -216,8 +215,7 @@ export default function RegisterScreen() {
                     setVisible(false);
                 }}
                 placeholder={"Enter new CU-Bytes username"}
-                value={username}
-            >
+                value={username}>
             </TextInput>
 
             {/* Enter the password that corresponds to the new account that the user wants to create */}
@@ -230,8 +228,7 @@ export default function RegisterScreen() {
                 }}
                 placeholder={"Enter new CU-Bytes password"}
                 value={password}
-                secureTextEntry={true}
-            >
+                secureTextEntry={true}>
             </TextInput>
 
             {/* Submit a request to the backend endpoint to create a new account */}
@@ -239,14 +236,13 @@ export default function RegisterScreen() {
                 style={[styles.bodyButton,
                     { backgroundColor: isCreateAccountPressed ? '#666666' : '#131312' }
                 ]}
-
                 onPressIn={() => setIsCreateAccountPressed(true)}
                 onPressOut={() => setIsCreateAccountPressed(false)}
                 onPress={() => {
                     registerUser(username, password);
                     setVisible(true);
-                }}
-            >
+                }}>
+
                 <Text id="createAccountButtonText"
                     style={styles.bodyButtonText}>
                     

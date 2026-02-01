@@ -1,4 +1,4 @@
-;import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal } from 'react-native';
 
 import { router } from 'expo-router';
@@ -12,6 +12,8 @@ export default function EnterScreen() {
     const [loading, setLoading] = useState(true);
     const [visible, setVisible] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
+    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isSearchPressed, setIsSearchPressed] = useState(false);
 
     /*
         Variables used to store a copy of the logged-in user's username and profile settings 
@@ -325,39 +327,89 @@ export default function EnterScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar
+                style="auto" 
+                hidden={true}
+            />
 
-            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
+            <View
+                style={styles.statusbar}>
 
-            <Text style={styles.title}>Browse Food Items</Text>
+                <TouchableOpacity id="backButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
+                    onPress={() => router.push('/')}>
 
-            <Text style={styles.subtitle}>Enter the food item name to see related food items</Text>
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}>
+
+                        Back
+                    </Text>     
+
+                </TouchableOpacity>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text id="browseFoodItemsTitle"
+                    style={styles.headerTitle}>
+                        
+                    Browse Food Items
+                </Text>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+                    
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
+                </Text>
+
+            </View>
+
+            <Text id="browseFoodItemsInfo"
+                style={styles.infoText}>
+
+                Search for a food item by name
+            </Text>
 
             {/* Enter the name of a food item */}
-            <TextInput
-                style={styles.textInput}
+            <TextInput id="browseFoodItemsNameTextInput"
+                style={styles.foodItemNameTextInput}
                 onChangeText={setFoodItemName}
+                placeholder={"Search for food items"}
                 value={foodItemName}
-                placeholder={"Search for Food Items"}
             >
             </TextInput>
 
             {/* Filter the food items in the array by the food item name and store in another array */}
-            <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
+            <TouchableOpacity id="browseFoodItemsButton"
+                style={[styles.bodyButton,
+                    { backgroundColor: isSearchPressed ? '#666666' : '#131312' }
+                ]}
+                onPressIn={() => setIsSearchPressed(true)}
+                onPressOut={() => setIsSearchPressed(false)}
                 onPress={() => {
                     filterFoodItemArray(foodItemName);
                     setVisible(false);
-                }}
-                disabled={loading}
-            >
-                <Text style={styles.buttonText}>Search</Text>
+                }}>
+
+                <Text id="browseFoodItemsButtonText"
+                    style={styles.bodyButtonText}>
+                    
+                    Search
+                </Text>
+
             </TouchableOpacity>
 
             {/* If the entered string value does not return any food items, display the following message */}
             {filteredFoodItemArray.length == 0 && !visible && (
-                <View>
-                    <Text style={styles.pressableText}>
+                <View style={styles.bodyContainer}>
+                    <Text 
+                        style={styles.foodInfoText}>
+                        
                         No food items found
                     </Text>
                 </View>
@@ -365,10 +417,10 @@ export default function EnterScreen() {
 
             {/* If the entered string value returns food items, display the name and id of each food item */}
             {filteredFoodItemArray && !visible && (
-                <View>
+                <View style={styles.bodyContainer}>
                     {filteredFoodItemArray.map((foodItem) => (
                         <Text 
-                            style={styles.pressableText}
+                            style={styles.foodInfoText}
                             key={foodItem["id"]}
                             onPress={() => {
                                 getFoodItem(foodItem["id"]);
@@ -383,7 +435,7 @@ export default function EnterScreen() {
             )}
 
             {visible && (
-                <Text style={styles.subsubtitle}>
+                <Text style={styles.foodInfoText}>
                     {foodItem.name}
                     {'\n'}
                     Calories: {processFoodItemCalories(foodItem.calories)}
@@ -444,9 +496,9 @@ export default function EnterScreen() {
                 </Text>
             )}
 
-            {visible && usernameGlobal != "" && (
+            {usernameGlobal != "" && visible && (
                 <TouchableOpacity
-                    style={[styles.button, loading && styles.buttonDisabled]}
+                    style={[styles.bodyButtonAlt]}
                     onPress={() => {
                         logFoodItemById(foodItem.id);
                         setVisible(false);
@@ -460,7 +512,7 @@ export default function EnterScreen() {
                     }}
                     disabled={loading}
                 >
-                    <Text style={styles.buttonText}>Log Food Item</Text>
+                    <Text style={styles.bodyButtonTextAlt}>Save Food Item</Text>
                 </TouchableOpacity>   
             )}
 
@@ -471,8 +523,8 @@ export default function EnterScreen() {
                     visible={modalVisible}
                 >
                     <View>
-                        <View>
-                            <Text style={styles.subsubtitle}>Food Item Logged!</Text>
+                        <View style={styles.bodyContainer}>
+                            <Text style={styles.infoText}>Food Item Saved!</Text>
                         </View>
                     </View>
                 </Modal>
