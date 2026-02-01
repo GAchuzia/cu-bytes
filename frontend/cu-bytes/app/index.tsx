@@ -11,7 +11,9 @@ export default function IndexScreen() {
 
     const [loading, setLoading] = useState(false);
     const [isLoginPressed, setIsLoginPressed] = useState(false);
-    const [isScanFoodPressed, setIsScanFoodPressed] = useState(false);
+    const [isScanFoodItemPressed, setIsScanFoodItemPressed] = useState(false);
+    const [isBrowseFoodItemsPressed, setIsBrowseFoodItemsPressed] = useState(false);
+    const [isBrowseDiningLocationsPressed, setIsBrowseDiningLocationsPressed] = useState(false);
 
     /*
         Variables used to store a copy of the logged-in user's username and profile settings 
@@ -64,20 +66,56 @@ export default function IndexScreen() {
                 </Text>
             </TouchableOpacity>
 
-            {/* Route the user to the 'scan and identify a food item' page */}
+            {/* Route the user to the 'scan food item' page */}
             <TouchableOpacity id="scanFoodButton"
                 style={[styles.bodyButtonAlt,
-                    { backgroundColor: isScanFoodPressed ? '#DDDDDD' : '#FFFFFF' }
+                    { backgroundColor: isScanFoodItemPressed ? '#DDDDDD' : '#FFFFFF' }
                 ]}
 
-                onPressIn={() => setIsScanFoodPressed(true)}
-                onPressOut={() => setIsScanFoodPressed(false)}
+                onPressIn={() => setIsScanFoodItemPressed(true)}
+                onPressOut={() => setIsScanFoodItemPressed(false)}
                 onPress={() => router.push("/scan")}>
 
                 <Text id="scanFoodButtonText"
                     style={styles.bodyButtonTextAlt}>
                     
                     Scan Food Item
+                </Text>
+
+            </TouchableOpacity>
+            
+            {/* Route the user to the 'browse food items' page */}
+            <TouchableOpacity id="browseFoodButton"
+                style={[styles.bodyButtonAlt,
+                    { backgroundColor: isBrowseFoodItemsPressed ? '#DDDDDD' : '#FFFFFF' }
+                ]}
+
+                onPressIn={() => setIsBrowseFoodItemsPressed(true)}
+                onPressOut={() => setIsBrowseFoodItemsPressed(false)}
+                onPress={() => router.push("/enter")}>
+
+                <Text id="browseFoodButtonText"
+                    style={styles.bodyButtonTextAlt}>
+                    
+                    Browse Food Items
+                </Text>
+
+            </TouchableOpacity>
+
+            {/* Route the user to the 'browse dining locations' page */}
+            <TouchableOpacity id="browseDiningButton"
+                style={[styles.bodyButtonAlt,
+                    { backgroundColor: isBrowseDiningLocationsPressed ? '#DDDDDD' : '#FFFFFF' }
+                ]}
+
+                onPressIn={() => setIsBrowseDiningLocationsPressed(true)}
+                onPressOut={() => setIsBrowseDiningLocationsPressed(false)}
+                onPress={() => router.push("/dining")}>
+
+                <Text id="browseDiningButtonText"
+                    style={styles.bodyButtonTextAlt}>
+                    
+                    Browse Dining Locations
                 </Text>
 
             </TouchableOpacity>

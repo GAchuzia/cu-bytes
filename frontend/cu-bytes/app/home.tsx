@@ -10,8 +10,6 @@ import { useUser } from './context';
 export default function HomeScreen() {
 
     const [loading, setLoading] = useState(false);
-    const [isButtonPressed, setIsButtonPressed] = useState(false);
-
     const [isScanFoodItemPressed, setIsScanFoodItemPressed] = useState(false);
     const [isBrowseFoodItemsPressed, setIsBrowseFoodItemsPressed] = useState(false);
     const [isBrowseDiningLocationsPressed, setIsBrowseDiningLocationsPressed] = useState(false);
