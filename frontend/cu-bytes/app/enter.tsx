@@ -341,7 +341,7 @@ export default function EnterScreen() {
                     ]}
                     onPressIn={() => setIsBackPressed(true)}
                     onPressOut={() => setIsBackPressed(false)}
-                    onPress={() => router.push('/')}>
+                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')  }>
 
                     <Text id="backButtonText"
                         style={styles.headerButtonText}>
@@ -356,7 +356,7 @@ export default function EnterScreen() {
                 <Text id="browseFoodItemsTitle"
                     style={styles.headerTitle}>
                         
-                    Browse Food Items
+                    Food Items
                 </Text>
 
                 <View style={styles.headerContainer}></View>
@@ -427,7 +427,7 @@ export default function EnterScreen() {
                                 setVisible(true);
                             }}
                         >
-                            {foodItem["name"]} (ID {foodItem["id"]})
+                            {foodItem["name"]}
                             {'\n'}
                         </Text>
                     ))}

@@ -13,6 +13,8 @@ export default function DiningScreen() {
     const [diningLocationsVisible, setDiningLocationsVisible] = useState(true);
     const [foodItemsVisible, setFoodItemsVisible] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
+    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isSearchPressed, setIsSearchPressed] = useState(false);
 
     /*
         Variables used to store a copy of the logged-in user's username and profile settings 
@@ -387,17 +389,57 @@ export default function DiningScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar
+                style="auto"
+                hidden={true}
+            />
 
-            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
+            <View
+                style={styles.statusbar}>
 
-            <Text style={styles.title}>Browse Food Items by Dining Location</Text>
+                <TouchableOpacity id="backButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
+                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')  }>
 
-            <Text style={styles.subtitle}>Enter the dining location name to see food items</Text>
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}>
+
+                        Back
+                    </Text>
+
+                </TouchableOpacity>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text id="browseDiningLocationsTitle"
+                    style={styles.headerTitle}>
+
+                    Dining Locations
+                </Text>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+                    
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
+                </Text>
+
+            </View>
+
+            <Text id="browseDiningLocationsInfo"
+                style={styles.infoText}>
+
+                Search for a dining location by name
+            </Text>
 
             {/* Enter the name of a dining location */}
-            <TextInput
-                style={styles.textInput}
+            <TextInput id="browseDiningLocationsNameTextInput"
+                style={styles.diningLocationNameTextInput}
                 onChangeText={setDiningLocationName}
                 value={diningLocationName}
                 placeholder={"Search for dining locations"}
@@ -405,22 +447,32 @@ export default function DiningScreen() {
             </TextInput>
 
             {/* Filter the dining locations in the array by the dining location name and store in another array */}
-            <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
+            <TouchableOpacity id="browseDiningLocationsButton"
+                style={[styles.bodyButton,
+                    { backgroundColor: isSearchPressed ? '#666666' : '#131312' }
+                ]}
+                onPressIn={() => setIsSearchPressed(true)}
+                onPressOut={() => setIsSearchPressed(false)}
                 onPress={() => {
                     filterDiningLocationArray(diningLocationName);
                     setFoodItemsVisible(false);
                     setDiningLocationsVisible(true);
-                }}
-                disabled={loading}
-            >
-                <Text style={styles.buttonText}>Confirm</Text>
+                }}>
+                
+                <Text id="browseDiningLocationsButtonText"
+                    style={styles.bodyButtonText}>
+                    
+                    Search
+                </Text>
+
             </TouchableOpacity>
 
             {/* If the entered string value does not return any dining locations, display the following message */}
             {filteredDiningLocationArray.length == 0 && diningLocationsVisible && (
-                <View>
-                    <Text style={styles.pressableText}>
+                <View style={styles.bodyContainer}>
+                    <Text
+                        style={styles.diningInfoText}>
+                        
                         No dining locations found
                     </Text>
                 </View>
@@ -428,10 +480,10 @@ export default function DiningScreen() {
 
             {/* If the entered string value returns dining locations, display the name and id of each dining location */}
             {filteredDiningLocationArray.length > 0 && diningLocationsVisible && (
-                <View>
+                <View style={styles.bodyContainer}>
                     {filteredDiningLocationArray.map((diningLocation) => (
                         <Text
-                            style={styles.pressableText}
+                            style={styles.foodInfoText}
                             key={diningLocation["id"]}
                             onPress={() => {
                                 filterFoodItemArray(diningLocation["id"]);
@@ -439,7 +491,7 @@ export default function DiningScreen() {
                                 setDiningLocationsVisible(false);
                             }}
                         >
-                            {diningLocation["name"]} (ID {diningLocation["id"]})
+                            {diningLocation["name"]}
                             {"\n"}
                         </Text>
                     ))}
@@ -447,17 +499,17 @@ export default function DiningScreen() {
             )}
 
             {filteredFoodItemArray.length > 0 && foodItemsVisible && (
-                <View>
+                <View style={styles.bodyContainer}>
                     {filteredFoodItemArray.map((foodItem) => (
                         <Text 
-                            style={styles.pressableText}
+                            style={styles.foodInfoText}
                             key={foodItem["id"]}
                             onPress={() => {
                                 getFoodItem(foodItem["id"]);
                                 setFoodItemsVisible(false);
                             }}
                         >
-                            {foodItem["name"]} (ID {foodItem["id"]})
+                            {foodItem["name"]}
                             {"\n"}
                         </Text>
                     ))}
@@ -465,7 +517,7 @@ export default function DiningScreen() {
             )}
 
             {!foodItemsVisible && foodItem.name != "" && (
-                <Text style={styles.subsubtitle}>
+                <Text style={styles.foodInfoText}>
                     {foodItem.name}
                     {'\n'}
                     Calories: {processFoodItemCalories(foodItem.calories)}
@@ -528,7 +580,7 @@ export default function DiningScreen() {
 
             {!foodItemsVisible && usernameGlobal != "" && foodItem.name != "" && (
                 <TouchableOpacity
-                    style={[styles.button, loading && styles.buttonDisabled]}
+                    style={[styles.bodyButtonAlt]}
                     onPress={() => {
                         logFoodItemById(foodItem.id);
                         setFoodItemsVisible(true);
@@ -543,7 +595,7 @@ export default function DiningScreen() {
                     }}
                     disabled={loading}
                 >
-                    <Text style={styles.buttonText}>Log Food Item</Text>
+                    <Text style={styles.bodyButtonTextAlt}>Save Food Item</Text>
                 </TouchableOpacity>   
             )}
 
@@ -554,8 +606,8 @@ export default function DiningScreen() {
                     visible={modalVisible}
                 >
                     <View>
-                        <View>
-                            <Text style={styles.subsubtitle}>Food Item Logged!</Text>
+                        <View style={styles.bodyContainer}>
+                            <Text style={styles.infoText}>Food Item Saved!</Text>
                         </View>
                     </View>
                 </Modal>
