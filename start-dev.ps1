@@ -14,54 +14,6 @@ Write-Host ""
 $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $projectRoot
 
-function Wait-ForHttp {
-    param(
-        [Parameter(Mandatory=$true)][string]$Url,
-        [int]$TimeoutSeconds = 60,
-        [int]$DelayMs = 500
-    )
-
-    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
-    while ((Get-Date) -lt $deadline) {
-        try {
-            $resp = Invoke-WebRequest -Uri $Url -UseBasicParsing -TimeoutSec 3
-            if ($resp.StatusCode -ge 200 -and $resp.StatusCode -lt 500) {
-                return $true
-            }
-        } catch {
-            # ignore until ready
-        }
-        Start-Sleep -Milliseconds $DelayMs
-    }
-    return $false
-}
-
-function Wait-ForTcpPort {
-    param(
-        [Parameter(Mandatory=$true)][string]$HostName,
-        [Parameter(Mandatory=$true)][int]$Port,
-        [int]$TimeoutSeconds = 60,
-        [int]$DelayMs = 500
-    )
-
-    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
-    while ((Get-Date) -lt $deadline) {
-        try {
-            $client = New-Object System.Net.Sockets.TcpClient
-            $iar = $client.BeginConnect($HostName, $Port, $null, $null)
-            $connected = $iar.AsyncWaitHandle.WaitOne(3000, $false)
-            if ($connected -and $client.Connected) {
-                $client.Close()
-                return $true
-            }
-            $client.Close()
-        } catch {
-            # ignore until ready
-        }
-        Start-Sleep -Milliseconds $DelayMs
-    }
-    return $false
-}
 
 # Step 1: Setup Python Virtual Environment
 Write-Host "[1/6] Setting up Python virtual environment..." -ForegroundColor Yellow
@@ -111,61 +63,32 @@ Write-Host "[2/6] Initializing databases..." -ForegroundColor Yellow
 Write-Host "Note: Initializing in correct order (profiles must be created before auth users)" -ForegroundColor Gray
 Write-Host ""
 
-$dbPath = Join-Path $projectRoot "backend\database"
-$profilesDb = Join-Path $dbPath "profiles.db"
-$authDb = Join-Path $dbPath "auth.db"
-$foodDb = Join-Path $dbPath "food_data.db"
-$loggingDb = Join-Path $dbPath "logging.db"
+# Ensure we're in the project root directory
+Set-Location $projectRoot
 
-# Check if all databases exist
-$allDbsExist = (Test-Path $profilesDb) -and (Test-Path $authDb) -and (Test-Path $foodDb) -and (Test-Path $loggingDb)
+# Initialize databases in the correct order
+Write-Host "Initializing user settings database (profiles)..." -ForegroundColor Green
+python -m backend.database.init_user_settings_db
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Warning: Failed to initialize user settings database." -ForegroundColor Yellow
+}
 
-if ($allDbsExist) {
-    Write-Host "All databases already exist. Skipping initialization." -ForegroundColor Green
-    Write-Host "To reinitialize, delete the .db files in backend\database\ and run this script again." -ForegroundColor Gray
-} else {
-    Write-Host "Some databases are missing. Initializing..." -ForegroundColor Yellow
-    Write-Host ""
+Write-Host "Initializing auth database..." -ForegroundColor Green
+python -m backend.database.init_auth_db
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Warning: Failed to initialize auth database." -ForegroundColor Yellow
+}
 
-    if (-not (Test-Path $profilesDb)) {
-        Write-Host "Initializing user settings database (profiles)..." -ForegroundColor Green
-        python -m backend.database.init_user_settings_db
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Warning: Failed to initialize user settings database." -ForegroundColor Yellow
-        }
-    } else {
-        Write-Host "User settings database (profiles) already exists. Skipping." -ForegroundColor Gray
-    }
+Write-Host "Initializing food database..." -ForegroundColor Green
+python -m backend.database.init_food_db
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Warning: Failed to initialize food database." -ForegroundColor Yellow
+}
 
-    if (-not (Test-Path $authDb)) {
-        Write-Host "Initializing auth database..." -ForegroundColor Green
-        python -m backend.database.init_auth_db
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Warning: Failed to initialize auth database." -ForegroundColor Yellow
-        }
-    } else {
-        Write-Host "Auth database already exists. Skipping." -ForegroundColor Gray
-    }
-
-    if (-not (Test-Path $foodDb)) {
-        Write-Host "Initializing food database..." -ForegroundColor Green
-        python -m backend.database.init_food_db
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Warning: Failed to initialize food database." -ForegroundColor Yellow
-        }
-    } else {
-        Write-Host "Food database already exists. Skipping." -ForegroundColor Gray
-    }
-
-    if (-not (Test-Path $loggingDb)) {
-        Write-Host "Initializing logging database..." -ForegroundColor Green
-        python -m backend.database.init_logging_db
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Warning: Failed to initialize logging database." -ForegroundColor Yellow
-        }
-    } else {
-        Write-Host "Logging database already exists. Skipping." -ForegroundColor Gray
-    }
+Write-Host "Initializing logging database..." -ForegroundColor Green
+python -m backend.database.init_logging_db
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Warning: Failed to initialize logging database." -ForegroundColor Yellow
 }
 
 # Step 3: Start Flask Backend Server
@@ -220,34 +143,10 @@ pause
 $expoScript | Out-File -FilePath "$env:TEMP\start_expo.ps1" -Encoding UTF8
 Start-Process powershell -ArgumentList "-NoExit", "-File", "$env:TEMP\start_expo.ps1"
 
-# Step 6: Open Browser (only after servers are ready)
+# Step 6: Development servers are running
 Write-Host ""
-Write-Host "[6/6] Waiting for servers to be ready..." -ForegroundColor Yellow
-
-# 1) Wait for Flask
-# Prefer a dedicated health endpoint if you have one (recommended).
-# Example: http://127.0.0.1:5000/health
-$flaskReady = Wait-ForHttp -Url "http://127.0.0.1:5000/" -TimeoutSeconds 60
-
-if ($flaskReady) {
-    Write-Host "Flask is responding." -ForegroundColor Green
-} else {
-    Write-Host "Warning: Flask did not become ready within 60s. Opening browser anyway." -ForegroundColor Yellow
-}
-
-# 2) Wait for Expo/Metro
-# Common ports: 8081 (Metro), 19000/19001 (older Expo), 19006 (web).
-# If your splash page is served by the frontend, wait for that URL directly.
-$expoReady = Wait-ForTcpPort -HostName "127.0.0.1" -Port 8081 -TimeoutSeconds 90
-
-if ($expoReady) {
-    Write-Host "Expo/Metro port is open." -ForegroundColor Green
-} else {
-    Write-Host "Warning: Expo/Metro did not become ready within 90s." -ForegroundColor Yellow
-}
-
+Write-Host "[6/6] Development servers started!" -ForegroundColor Green
+Write-Host "Flask backend: http://127.0.0.1:5000" -ForegroundColor Cyan
+Write-Host "Expo frontend: Check the Expo window for connection details" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "Opening browser..." -ForegroundColor Yellow
-
-# If this page is served by Expo/React Native web, waiting for Expo is the key.
-Start-Process "http://localhost:8081/splash"
+Write-Host "Setup complete! Your development environment is ready." -ForegroundColor Green

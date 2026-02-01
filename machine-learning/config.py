@@ -2,6 +2,7 @@ import torch
 from pathlib import Path
 from typing import List, Optional, Dict, Any
 import json
+from datetime import datetime
 
 
 class Config:
@@ -26,8 +27,12 @@ class Config:
         self.BASE_DIR = base_dir if base_dir else Path(__file__).resolve().parent
         self.DATA_DIR = self.BASE_DIR / "data"
         self.MODELS_DIR = self.BASE_DIR / "models"
-        self.CHECKPOINT_DIR = self.MODELS_DIR / "checkpoints"
-        self.BEST_MODEL_PATH = self.MODELS_DIR / "best_model.pth"
+        
+        # Run-specific directories (will be set when create_run_directory is called)
+        self.RUN_DIR = None
+        self.CHECKPOINT_DIR = None
+        self.BEST_MODEL_PATH = None
+        self.TENSORBOARD_DIR = None
 
         self.IMAGE_SIZE = image_size
         self.BATCH_SIZE = batch_size
@@ -56,8 +61,37 @@ class Config:
 
     def create_directories(self):
         """Create necessary directories"""
-        for directory in [self.DATA_DIR, self.MODELS_DIR, self.CHECKPOINT_DIR]:
+        for directory in [self.DATA_DIR, self.MODELS_DIR]:
             directory.mkdir(parents=True, exist_ok=True)
+        
+        # Run-specific directories are created in create_run_directory()
+    
+    def create_run_directory(self, model_name: str = "food_classifier", run_name: Optional[str] = None):
+        """
+        Create a unique directory for this training run.
+        
+        Args:
+            model_name: Name of the model architecture (e.g., 'resnet50')
+            run_name: Optional custom name for the run. If None, uses timestamp.
+        
+        Returns:
+            Path to the created run directory
+        """
+        if run_name is None:
+            # Create timestamp-based run name: YYYYMMDD_HHMMSS_modelname
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            run_name = f"{timestamp}_{model_name}"
+        
+        self.RUN_DIR = self.MODELS_DIR / "runs" / run_name
+        self.CHECKPOINT_DIR = self.RUN_DIR / "checkpoints"
+        self.BEST_MODEL_PATH = self.RUN_DIR / "best_model.pth"
+        self.TENSORBOARD_DIR = self.RUN_DIR / "tensorboard"
+        
+        # Create all run-specific directories
+        for directory in [self.RUN_DIR, self.CHECKPOINT_DIR, self.TENSORBOARD_DIR]:
+            directory.mkdir(parents=True, exist_ok=True)
+        
+        return self.RUN_DIR
 
     @classmethod
     def from_config_file(

@@ -6,7 +6,6 @@ export default function RootLayout() {
     <UserProvider>
       <Stack>
         <Stack.Screen name="index" />
-        <Stack.Screen name="splash" />
         <Stack.Screen name="home" />
         <Stack.Screen name="login" />
         <Stack.Screen name="register" />

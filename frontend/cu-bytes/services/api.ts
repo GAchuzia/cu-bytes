@@ -64,12 +64,6 @@ api.interceptors.response.use(
 
 // API functions
 export const apiService = {
-  // Health check
-  async healthCheck() {
-    const response = await api.get('/api/health');
-    return response.data;
-  },
-
   // ML Prediction
   async predictFood(imageUri: string) {
     // Convert image URI to FormData for upload
