@@ -418,7 +418,7 @@ export default function DiningScreen() {
                 <Text id="browseDiningLocationsTitle"
                     style={styles.headerTitle}>
 
-                    Dining Locations
+                    Dining Options
                 </Text>
 
                 <View style={styles.headerContainer}></View>
