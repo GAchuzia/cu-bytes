@@ -12,28 +12,21 @@ export default function EntriesScreen() {
     const [loading, setLoading] = useState(true);
     const [visible, setVisible] = useState(false); 
 
-    // Get the variables and setters used to access and modify a copy of the user profile elements
+    /*
+        Variables used to store a copy of the logged-in user's username and profile settings 
+    */
     const 
-        { usernameGlobal } = useUser();
-
-    // Variables and setters for food item elements
-    const [foodItem, setFoodItem] = useState(
-        {
-            "calories": -1,
-            "carbs_g": 0.00,
-            "fat_g": 0.00,
-            "fiber_g": 0.00,
-            "food_name": "",
-            "proteins_g": 0.00,
-            "sugar_g": 0.00,
-            "transaction_time": ""
-        }
-    );
+        { 
+            usernameGlobal
+        
+        } = useUser();
 
     // Variables and setters for storing food item JSON objects
     const [foodItemArray, setFoodItemArray] = useState([]);
 
-    // Sends a get all food items request to the server exactly once
+    /*
+        Send a request to the backend endpoint to get all food items from the database logged by the logged-in user
+    */
     useEffect(() => {
         const foodItemEntryRequest = `http://127.0.0.1:5000/logging/history/${usernameGlobal}`
 
@@ -69,7 +62,7 @@ export default function EntriesScreen() {
     function processFoodItemCalories(calories: number) {
 
         if (calories == -1) {
-            return "Unknown" 
+            return "Unknown";
         }
         else { 
             return calories;
@@ -89,10 +82,10 @@ export default function EntriesScreen() {
    function processFoodItemCarbs(carbs: number) {
 
         if (carbs == -1) {
-            return "Unknown"
+            return "Unknown";
         }
         else {
-            return carbs
+            return carbs;
         }
    }
 
@@ -109,10 +102,10 @@ export default function EntriesScreen() {
    function processFoodItemFat(fat: number) {
 
         if (fat == -1) {
-            return "Unknown"
+            return "Unknown";
         }
         else {
-            return fat
+            return fat;
         }
    }
 
@@ -129,10 +122,10 @@ export default function EntriesScreen() {
    function processFoodItemFiber(fiber: number) {
 
         if (fiber == -1) {
-            return "Unknown"
+            return "Unknown";
         }
         else {
-            return fiber
+            return fiber;
         }
    }
 
@@ -149,10 +142,10 @@ export default function EntriesScreen() {
    function processFoodItemProteins(proteins: number) {
 
         if (proteins == -1) {
-            return "Unknown"
+            return "Unknown";
         }
         else {
-            return proteins
+            return proteins;
         }
    }
 
@@ -169,14 +162,16 @@ export default function EntriesScreen() {
    function processFoodItemSugar(sugar: number) {
 
         if (sugar == -1) {
-            return "Unknown"
+            return "Unknown";
         }
         else {
-            return sugar
+            return sugar;
         }
    }
 
-    // Display loading symbol while the food items are being fetched
+    /*
+        Display the loading symbol while food items are being retrieved or logged
+    */
     if (loading) {
         return (
             <View>
@@ -185,7 +180,6 @@ export default function EntriesScreen() {
         );
     }
 
-    // The page that the user sees in the app/browser
     return (
 
         <View style={styles.container}>
@@ -197,7 +191,6 @@ export default function EntriesScreen() {
 
             <Text style={styles.subtitle}>Here are the food items that {usernameGlobal} has selected</Text>
 
-            {/* If the entered string value does not return any food items, display the following message */}
             {foodItemArray.length == 0 && !visible && (
                 <View>
                     <Text style={styles.pressableText}>
@@ -206,7 +199,6 @@ export default function EntriesScreen() {
                 </View>
             )}
 
-            {/* If the entered string value returns any food items, display the name and id of each food item */}
             {foodItemArray && !visible && (
                 <ScrollView>
                     {foodItemArray.map((foodItem) => (

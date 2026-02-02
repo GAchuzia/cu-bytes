@@ -156,7 +156,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-    bodyButtonAlt: {
+  bodyButtonAlt: {
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     borderRadius: 50,
