@@ -290,7 +290,7 @@ export default function ScanScreen() {
                     <Text id="backButtonText"
                         style={styles.headerButtonText}>
 
-                            Back
+                        Back
                     </Text>
 
                 </TouchableOpacity>

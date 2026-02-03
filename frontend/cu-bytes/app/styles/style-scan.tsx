@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
   },
 
   bodyContainer: {
+    alignItems: 'center', // Horizontal
     backgroundColor: '#FFFFFF',
     width: '100%' as any,
   },

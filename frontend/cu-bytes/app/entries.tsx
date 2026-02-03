@@ -1,5 +1,5 @@
-import { SetStateAction, useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
+import { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -10,7 +10,8 @@ import { useUser } from './context';
 export default function EntriesScreen() {
 
     const [loading, setLoading] = useState(true);
-    const [visible, setVisible] = useState(false); 
+    const [visible, setVisible] = useState(false);
+    const [isBackPressed, setIsBackPressed] = useState(false);
 
     /*
         Variables used to store a copy of the logged-in user's username and profile settings 
@@ -169,61 +170,98 @@ export default function EntriesScreen() {
         }
    }
 
-    /*
-        Display the loading symbol while food items are being retrieved or logged
-    */
-    if (loading) {
-        return (
-            <View>
-                <ActivityIndicator size="large" />
-            </View>
-        );
-    }
-
     return (
 
         <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar
+                style="auto"
+                hidden={true}
+            />
 
-            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
+            <View
+                style={styles.statusbar}>
 
-            <Text style={styles.title}>Food Entries</Text>
+                <TouchableOpacity id="backButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
+                    onPress={() => router.push('/home')}>
 
-            <Text style={styles.subtitle}>Here are the food items that {usernameGlobal} has selected</Text>
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}>
+
+                        Back
+                    </Text>
+                
+                </TouchableOpacity>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text id="savedFoodItemsTitle"
+                    style={styles.headerTitle}>
+
+                    Saved Food Items
+                </Text>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text  id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
+                </Text>
+
+            </View>
+
+            <Text style={styles.infoText}>
+                
+                Here are the food items that you saved
+            </Text>
 
             {foodItemArray.length == 0 && !visible && (
                 <View>
-                    <Text style={styles.pressableText}>
-                        There are no food items on campus that match this search
+                    <Text style={styles.foodInfoText}>
+                        You have saved no food items
                     </Text>
                 </View>
             )}
 
             {foodItemArray && !visible && (
-                <ScrollView>
-                    {foodItemArray.map((foodItem) => (
-                        <Text style={styles.subsubtitle}>
-                            {foodItem["food_name"]}
-                            <br></br>
-                            Calories: {processFoodItemCalories(foodItem["calories"])}
-                            <br></br>
-                            Carbs: {processFoodItemCarbs(foodItem["carbs_g"])} grams
-                            <br></br>
-                            Fat: {processFoodItemFat(foodItem["fat_g"])} grams
-                            <br></br>
-                            Fiber: {processFoodItemFiber(foodItem["fiber_g"])} grams
-                            <br></br>
-                            Proteins: {processFoodItemProteins(foodItem["proteins_g"])} grams
-                            <br></br>
-                            Sugar: {processFoodItemSugar(foodItem["sugar_g"])} grams
-                            <br></br>
-                            {foodItem["transaction_time"]}
-                            <br></br>
-                            <line>---</line>
-                        </Text>
-                    ))}
-                </ScrollView>
-            )}
+
+                <View style={styles.bodyContainer}>
+
+                    <View style={styles.columnHeader}>
+                        <Text style={styles.columnHeaderText}>Name</Text>
+                        <Text style={styles.columnHeaderText}>Calories</Text>
+                        <Text style={styles.columnHeaderText}>Carbs</Text>
+                        <Text style={styles.columnHeaderText}>Fat</Text>
+                        <Text style={styles.columnHeaderText}>Fiber</Text>
+                        <Text style={styles.columnHeaderText}>Proteins</Text>
+                        <Text style={styles.columnHeaderText}>Sugar</Text>
+                        <Text style={styles.columnHeaderText}>Saved</Text>
+                    </View>
+
+                    <FlatList
+                        data={foodItemArray}
+                        renderItem={({ item }) => (
+                        <View style={styles.row}>
+                            <Text style={styles.rowCell}>{item["food_name"]}</Text>
+                            <Text style={styles.rowCell}>{processFoodItemCalories(item["calories"])}</Text>
+                            <Text style={styles.rowCell}>{processFoodItemCarbs(item["carbs_g"])} g</Text>
+                            <Text style={styles.rowCell}>{processFoodItemFat(item["fat_g"])} g</Text>
+                            <Text style={styles.rowCell}>{processFoodItemFiber(item["fiber_g"])} g</Text>
+                            <Text style={styles.rowCell}>{processFoodItemProteins(item["proteins_g"])} g</Text>
+                            <Text style={styles.rowCell}>{processFoodItemSugar(item["sugar_g"])} g</Text>
+                            <Text style={styles.rowCell}>{item["transaction_time"]}</Text>
+                        </View>
+                        )}
+                        keyExtractor={foodItem => foodItem["food_name"]}
+                    />
+
+                </View>
+            )};
 
         </View>
     )
