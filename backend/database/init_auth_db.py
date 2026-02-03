@@ -2,6 +2,7 @@
 from backend.app import create_app
 from backend.extensions import db
 from backend.services.authentication_service import create_user
+from backend.services.profile_service import edit_profile_json
 
 app = create_app()
 
@@ -14,4 +15,26 @@ if __name__ == "__main__":
         create_user("Alice", "Password123!")
         create_user("Bob", "Secret456!")
         create_user("Charlie", "IamAdmin789!")
+        create_user("Dave", "UniquePass222!")
+
+        # Allows stats sharing for some users
+        edit_profile_json(
+            {
+                "username": "Alice",
+                "show_stats": True,
+            }
+        )
+        edit_profile_json(
+            {
+                "username": "Bob",
+                "show_stats": True,
+            }
+        )
+        edit_profile_json(
+            {
+                "username": "Dave",
+                "show_stats": True,
+            }
+        )
+
         print("Created auth.db and added dummy users.")

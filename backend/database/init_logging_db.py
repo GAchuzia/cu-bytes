@@ -1,4 +1,5 @@
 # Project imports
+from datetime import datetime, timedelta
 from backend.app import create_app
 from backend.extensions import db
 from backend.services.logging_service import create_transaction
@@ -25,6 +26,7 @@ if __name__ == "__main__":
             proteins_g=12.8,
             fiber_g=5.4,
             sugar_g=22.0,
+            transaction_time=datetime.now() - timedelta(days=1),  # One day ago
         )
 
         create_transaction(
@@ -40,6 +42,7 @@ if __name__ == "__main__":
             proteins_g=32.5,
             fiber_g=6.1,
             sugar_g=4.2,
+            transaction_time=datetime.now() - timedelta(days=2),  # Two days ago
         )
 
         create_transaction(
@@ -55,6 +58,7 @@ if __name__ == "__main__":
             proteins_g=9.5,
             fiber_g=6.8,
             sugar_g=7.1,
+            transaction_time=datetime.now() - timedelta(days=2),  # Two days ago
         )
 
         create_transaction(
@@ -70,6 +74,7 @@ if __name__ == "__main__":
             proteins_g=32.1,
             fiber_g=3.2,
             sugar_g=6.5,
+            transaction_time=datetime.now() - timedelta(days=1),  # One day ago
         )
 
         create_transaction(
@@ -85,6 +90,7 @@ if __name__ == "__main__":
             proteins_g=28.4,
             fiber_g=4.1,
             sugar_g=8.7,
+            transaction_time=datetime.now() - timedelta(days=3),  # Three days ago
         )
 
         create_transaction(
@@ -100,6 +106,39 @@ if __name__ == "__main__":
             proteins_g=0.5,
             fiber_g=4.4,
             sugar_g=18.9,
+            transaction_time=datetime.now() - timedelta(days=3),  # Three days ago
+        )
+
+        create_transaction(
+            username="Charlie",
+            food_name="Yogurt Parfait",
+            calories=320,
+            percent_fruit_veg=40,
+            percent_grain=30,
+            percent_dairy=30,
+            percent_protein=0,
+            fat_g=6.5,
+            carbs_g=45.2,
+            proteins_g=12.8,
+            fiber_g=5.4,
+            sugar_g=22.0,
+            transaction_time=datetime.now() - timedelta(days=1),  # One day ago
+        )
+
+        create_transaction(
+            username="Dave",
+            food_name="Apple",
+            calories=320,
+            percent_fruit_veg=100,
+            percent_grain=0,
+            percent_dairy=0,
+            percent_protein=0,
+            fat_g=6.5,
+            carbs_g=45.2,
+            proteins_g=12.8,
+            fiber_g=5.4,
+            sugar_g=22.0,
+            transaction_time=datetime.now() - timedelta(days=1),  # One day ago
         )
 
         print("Created logging.db and added dummy transactions.")
