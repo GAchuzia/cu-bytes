@@ -11,6 +11,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import argparse
 import json
+import shutil
 from typing import Optional
 
 from config import Config
@@ -435,6 +436,13 @@ class Trainer:
         with open(summary_file, "w") as f:
             json.dump(run_summary, f, indent=2)
         print(f"Run summary saved to {summary_file}")
+
+        # Copy best model and class names to models/ for ML inference
+        dest_best_model = self.config.MODELS_DIR / "best_model.pth"
+        dest_class_names = self.config.MODELS_DIR / "class_names.json"
+        shutil.copy(self.config.BEST_MODEL_PATH, dest_best_model)
+        shutil.copy(class_names_file, dest_class_names)
+        print(f"Copied best model and class_names to {self.config.MODELS_DIR} for inference")
 
 
 def main():
