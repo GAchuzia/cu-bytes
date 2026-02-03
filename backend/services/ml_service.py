@@ -42,13 +42,20 @@ def load_ml_model():
     # Set device
     _device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # Load model
+    # Load model - use num_classes from checkpoint so model matches saved weights
     _model = load_model(
         model_path=str(model_path),
         model_name="resnet50",
-        num_classes=len(_class_names),
+        num_classes=None,  # Get from checkpoint
         device=_device,
     )
+
+    # Validate class names match model
+    if len(_class_names) < _model.backbone.fc.out_features:
+        raise ValueError(
+            f"class_names.json has {len(_class_names)} entries but model expects "
+            f"{_model.backbone.fc.out_features}. Ensure class_names.json matches the model."
+        )
     _model.eval()
 
     # Image preprocessing transform (matching training preprocessing)

@@ -1,7 +1,9 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-// The variable for storing the profile of the logged-in user
-// and the setter for setting the values of the profile
+/*
+    Define the context
+    Define the variables and setters used to store and modify a copy of the logged-in user's username and profile settings
+*/
 type UserContextType = {
 
     usernameGlobal: string;
@@ -38,12 +40,14 @@ type UserContextType = {
     setPrefersHalalGlobal: (setPrefersHalalGlobal: boolean) => void;
 }
 
-// Create the state that will be used to store the profile of the logged-in user
-// and share this state across the different components (pages represented by the tsx files)
+/*
+    Create a copy of the context and store it in a variable
+*/
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-// Set up a component that can accept child components (tsx files)
-// and pass on a variable and its setter to these child components
+/*
+    Export the component that enables child components (the frontend pages / tsx files) to access or update the state
+*/
 export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     const [usernameGlobal, setUsernameGlobal] = useState('');
@@ -107,7 +111,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     );
 };
 
-// The component that the child components (tsx files) use to access the state
+/*
+    Export the component that child components (the frontend pages / tsx files) use to access or update the state
+*/
 export const useUser = () => {
     const context = useContext(UserContext);
 

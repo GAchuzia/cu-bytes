@@ -35,7 +35,18 @@ interface PredictionResult {
 
 export default function ScanScreen() {
 
-    // Get the variables or setters used to access or modify a copy of the user profile elements
+    const [loading, setLoading] = useState(false);
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [prediction, setPrediction] = useState<PredictionResult | null>(null);
+    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isUploadPhotoPressed, setIsUploadPhotoPressed] = useState(false);
+    const [isScanPressed, setIsScanPressed] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+
+    /*
+        Variables and setters used to store a copy of the logged-in user's username and profile settings
+        (Frontend copy updated based on the backend data) 
+    */
     const
         {
             usernameGlobal,
@@ -55,90 +66,6 @@ export default function ScanScreen() {
 
         } = useUser();
 
-    const [loading, setLoading] = useState(false);
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
-    const [prediction, setPrediction] = useState<PredictionResult | null>(null);
-
-    const [modalVisible, setModalVisible] = useState(false);
-
-    const pickImage = async () => {
-        try {
-            // Request permissions
-            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-            if (status !== 'granted') {
-                Alert.alert('Permission needed', 'Sorry, we need camera roll permissions to select an image!');
-                return;
-            }
-
-            // Launch image picker
-            const result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                allowsEditing: true,
-                aspect: [4, 3],
-                quality: 1,
-            });
-
-            if (!result.canceled && result.assets[0]) {
-                setSelectedImage(result.assets[0].uri);
-                setPrediction(null); // Clear previous prediction
-            }
-        } catch (error) {
-            console.error('Error picking image:', error);
-            Alert.alert('Error', 'Failed to pick image');
-        }
-    };
-
-    const scanFood = async () => {
-        if (!selectedImage) {
-            Alert.alert('No Image', 'Please select an image first');
-            return;
-        }
-
-        setLoading(true);
-        try {
-            const result = await apiService.predictFood(selectedImage);
-            console.log('Prediction result received:', result);
-            setPrediction(result);
-
-        } catch (error: any) {
-            console.error('Prediction error:', error);
-            Alert.alert('Error', error.response?.data?.error || 'Failed to predict food. Please try again.');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    /*
-    Sends a log food item by id request to the server
-    */
-    function handlePressLogFoodItemByName(foodItemName: string) {
-        const foodItemEntryRequest = `http://127.0.0.1:5000/logging/log-by-name`;
-
-        fetch(foodItemEntryRequest, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify( { username: usernameGlobal, food_name: foodItemName } )
-            }
-        )
-        .then((response) => response.json())
-
-        .then((data) => {
-
-            setLoading(false);
-
-            console.log(data);
-            
-            // If the backend endpoint returns an error message, store the error message
-            if (data.status === 'error') {
-                throw new Error (`HTTP error! status: ${data.status}`);
-            }
-        })
-
-        .catch((error) => {
-
-        });
-    }
-
     /*
         Calculate how to display the calories of the selected food item
         If the value of the calories key is -1, then there is an "Unknown" number of calories
@@ -152,7 +79,7 @@ export default function ScanScreen() {
     function processFoodItemCalories(calories: number) {
 
         if (calories == -1) {
-            return "Unknown" 
+            return "Unknown";
         }
         else { 
             return calories;
@@ -172,10 +99,10 @@ export default function ScanScreen() {
    function processFoodItemCarbs(carbs: number) {
 
         if (carbs == -1) {
-            return "Unknown"
+            return "Unknown";
         }
         else {
-            return carbs
+            return carbs;
         }
    }
 
@@ -192,10 +119,10 @@ export default function ScanScreen() {
    function processFoodItemFat(fat: number) {
 
         if (fat == -1) {
-            return "Unknown"
+            return "Unknown";
         }
         else {
-            return fat
+            return fat;
         }
    }
 
@@ -212,10 +139,10 @@ export default function ScanScreen() {
    function processFoodItemFiber(fiber: number) {
 
         if (fiber == -1) {
-            return "Unknown"
+            return "Unknown";
         }
         else {
-            return fiber
+            return fiber;
         }
    }
 
@@ -232,10 +159,10 @@ export default function ScanScreen() {
    function processFoodItemProteins(proteins: number) {
 
         if (proteins == -1) {
-            return "Unknown"
+            return "Unknown";
         }
         else {
-            return proteins
+            return proteins;
         }
    }
 
@@ -252,38 +179,160 @@ export default function ScanScreen() {
    function processFoodItemSugar(sugar: number) {
 
         if (sugar == -1) {
-            return "Unknown"
+            return "Unknown";
         }
         else {
-            return sugar
+            return sugar;
         }
    }
 
+    /*
+        Enable the user to select an image on the device that cu-bytes is running on
+        The selected image will be analyzed by the machine learning component
+    */
+    const pickImage = async () => {
+        try {
+            // Request permissions
+            const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+            if (status !== 'granted') {
+                Alert.alert('Permission needed', 'Sorry, we need camera roll permissions to select an image!');
+                return;
+            }
+
+            // Launch image picker
+            const result = await ImagePicker.launchImageLibraryAsync({
+                
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+            });
+
+            if (!result.canceled && result.assets[0]) {
+
+                setSelectedImage(result.assets[0].uri);
+                // Clear previous prediction
+                setPrediction(null); 
+            }
+        } catch (err) {
+            console.error('Error picking image:', err);
+            Alert.alert('Error', 'Failed to pick image');
+        }
+    };
+
+    /*
+        Send the selected image to the machine learning component to be identified and analyzed
+    */
+    const scanFood = async () => {
+
+        if (!selectedImage) {
+            Alert.alert('No Image', 'Please select an image first');
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const result = await apiService.predictFood(selectedImage);
+            console.log('Prediction result received:', result);
+            setPrediction(result);
+        } catch (err: any) {
+            console.error('Prediction error:', err);
+            Alert.alert('Error', err.response?.data?.error || 'Failed to predict food. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    /*
+        Send a request to the backend endpoint to log a username and food item name in the database
+        This records which user purchased what food item
+
+        param(s):
+            name - string : The name of the food item to be logged
+    */
+    const logFoodItemByName = async (name: string) => {
+        try {
+            const res = await fetch(`http://127.0.0.1:5000/logging/log-by-name`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify( { username: usernameGlobal, food_name: name } )
+                }
+            );
+            const data = await res.json();
+
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar
+                style="auto"
+                hidden={true}
+            />
 
-            <Text style={styles.subtitle}>{usernameGlobal != "" ? `Logged in as ${usernameGlobal}` : "Not logged in"}</Text>
-            
-            <Text style={styles.title}>Scan</Text>
-            <Text style={styles.subtitle}>Upload a photo of the food item that you would like to have analyzed</Text>
-            <Text style={styles.subtitle}>CU-Bytes will identify the food item and provide important statistics</Text>
+            <View
+                style={styles.statusbar}>
+
+                <TouchableOpacity id="backButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
+                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
+                    
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}>
+
+                        Back
+                    </Text>
+
+                </TouchableOpacity>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text id="scanFoodItemTitle"
+                    style={styles.headerTitle}>
+
+                    Scan Food Item
+                </Text>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+                    
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
+                </Text>
+
+            </View>
+
+            <Text style={styles.infoText}>
+
+                Upload an image of the food item that you would like CU-Bytes to identify
+            </Text>
 
             {selectedImage && (
                 <Image 
                     source={{ uri: selectedImage }} 
-                    style={{ width: 300, height: 300, marginVertical: 20, borderRadius: 10 }}
+                    style={styles.foodImage}
                     resizeMode="contain"
                 />
             )}
 
             {!selectedImage && (
-                <Text style={styles.subtitle}>Your Photo Here</Text>
+                <Text style={styles.placeholderText}>Uploaded photos will be displayed here</Text>
             )}
 
             {prediction && (
-                <View style={styles.infoSection}>
-                    <Text style={styles.subtitle}>
+                <View style={styles.bodyContainer}>
+                    <Text style={styles.foodInfoText}>
                         Food: {prediction.food_name}
                         {'\n'}
                         Calories: {processFoodItemCalories(prediction.calories)}
@@ -344,11 +393,11 @@ export default function ScanScreen() {
             )}
 
             {prediction && usernameGlobal != "" && (
-                <View style={styles.infoSection}>
+                <View style={styles.bodyContainer}>
                     <TouchableOpacity
-                        style={[styles.button, loading && styles.buttonDisabled]}
+                        style={[styles.bodyButtonAlt]}
                         onPress={() => {
-                            handlePressLogFoodItemByName(prediction.food_name);
+                            logFoodItemByName(prediction.food_name);
                             
                             setModalVisible(true);
                             setTimeout(() => {
@@ -359,7 +408,7 @@ export default function ScanScreen() {
                         }}
                         disabled={loading}
                     >
-                        <Text style={styles.buttonText}>Log Food Item</Text>
+                        <Text style={styles.bodyButtonTextAlt}>Save Food Item</Text>
                     </TouchableOpacity>
                 </View>
             )}
@@ -371,46 +420,70 @@ export default function ScanScreen() {
                     visible={modalVisible}
                 >
                     <View>
-                        <View>
-                            <Text style={styles.subsubtitle}>Food Item Logged!</Text>
+                        <View style={styles.bodyContainer}>
+                            <Text style={styles.infoText}>Food Item Saved!</Text>
                         </View>
                     </View>
                 </Modal>
             )}  
 
-            <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
+            <TouchableOpacity id="uploadPhotoButton"
+                style={[styles.bodyButtonDefault,
+                    loading && styles.buttonDisabled
+                ]}
                 onPress={pickImage}
                 disabled={loading}
             >
-                <Text style={styles.buttonText}>
-                    Upload Photo
+                <Text id="uploadPhotoButtonText"
+                    style={styles.bodyButtonTextDefault}>
+
+                    {selectedImage ?  'Upload Different Photo' : 'Upload Photo' }
                 </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
-                onPress={scanFood}
-                disabled={loading || !selectedImage}
-            >
-                {loading ? (
-                    <ActivityIndicator color="white" />
-                ) : (
-                    <Text style={styles.buttonText}>
-                        Scan Food
-                    </Text>
-                )}
-            </TouchableOpacity>
+            {selectedImage && (
+                <TouchableOpacity id="scanFoodButton"
+                    style={[styles.bodyButtonScanFood,
+                        loading && styles.buttonDisabled,
+                        !selectedImage && styles.buttonDisabled
+                    ]}
+                    onPress={scanFood}
+                    disabled={loading || !selectedImage}
+                >
+                    {loading ? (<ActivityIndicator color="white"/>) : 
+                        
+                        (<Text id="scanFoodButtonText" 
+                            style={styles.bodyButtonTextDefault}>
+                            
+                            Scan Food
+                        </Text>)
+                    }
+                </TouchableOpacity>
+            )}
 
-            <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
-                onPress={() => router.push("/enter")}
-                disabled={loading}
-            >
-                <Text style={styles.buttonText}>
-                    Enter Food
-                </Text>
-            </TouchableOpacity>
+            {selectedImage && (
+                <TouchableOpacity id="deleteFoodButton"
+                    style={[styles.bodyButtonDeleteFood,
+                        loading && styles.buttonDisabled,
+                        !selectedImage && styles.buttonDisabled
+                    ]}
+                    onPress={() => {
+                        setSelectedImage(null);
+                        setPrediction(null);
+                    }}
+                    disabled={loading || !selectedImage}
+                >
+                    {loading ? (<ActivityIndicator color="white"/>) : 
+                        
+                        (<Text id="deleteFoodButtonText" 
+                            style={styles.bodyButtonTextAlt}>
+                            
+                            Delete Food
+                        </Text>)
+                    }
+                </TouchableOpacity>
+            )}
+
         </View>
     )
 }
