@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
@@ -11,126 +11,194 @@ export default function LoginScreen() {
 
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isLoginPressed, setIsLoginPressed] = useState(false);
+    const [isCreateAccountPressed, setIsCreateAccountPressed] = useState(false);
+    const [secureTextEntry, setSecureTextEntry] = useState(true);
 
-    // Get the variables or setters used to access or modify a copy of the user profile elements
-    const { usernameGlobal, setUsernameGlobal } = useUser();
+    /*
+        Variable and setter for storing and modifying the error returned from the backend endpoint
+    */
+    const [error, setError] = useState(
+        {
+            message: '',
+            status: ''
+        }
+    );
 
-    // Variables and setters for the username and password entered by the user
-    // The variable values will be sent to a backend endpoint to attempt to login to an existing user account
+    /*
+        Variables and setters used to store a copy of the logged-in user's username and profile settings 
+    */
+    const 
+        { 
+            usernameGlobal,
+            setUsernameGlobal
+        
+        } = useUser();
+    
+    /*
+        Variable and setter for storing and modifying the username entered by the user
+    */
     const [username, setUsername] = useState('');
+
+    /*
+        Variable and setter for storing and modifying the password entered by the user
+    */
     const [password, setPassword] = useState('');
 
-    // Variable and setter for the error returned by the backend endpoint
-    const [error, setError] = useState({message: '', status: ''});
-
     /*
-    Set the value of the username variable to the value entered in the username text input element
-    event: The event is the current string value in the username text input element
+        Send a request to the backend endpoint to login the user to an account
+
+        param(s):
+            string - name: The username entered by the user to login into an account
+            string - psswrd: The password entered by the user to login into an account
     */
-    function saveUsernameInputText(event: { target: { value: SetStateAction<string>; }; }) {
-        setError({ message: '', status: '' });
-        setUsername(event.target.value);
-        setVisible(false);
-    }
+    const loginUser = async (name: string, psswrd: string) => {
+        try {
+            const res = await fetch(`http://127.0.0.1:5000/auth/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify( { username: name, password: psswrd} )
+                }
+            );
+            const data = await res.json();
 
-    /*
-    Set the value of the password variable to the value entered in the password text input element
-    event: The event is the current string value in the password text input element
-    */
-    function savePasswordInputText(event: { target: { value: SetStateAction<string>; }; }) {
-        setError({ message: '', status: '' });
-        setPassword(event.target.value);
-        setVisible(false);
-    }
-
-    // Sends a login request to the server containing the username and password
-    function handlePressLogin() {
-        
-        setLoading(true);
-        setError({ message: '', status: '' });
-
-        fetch("http://127.0.0.1:5000/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify( { username: username, password: password } )
-            }
-        )
-        .then((response) => response.json())
-
-        .then((data) => {
-
-            setLoading(false);
-
-            // If the backend endpoint returns an error message, store the error message
+            // If the backend endpoint returns an error, store the error message
+            // (The user failed to log in to an account with the entered username and password)
             if (data.status === 'error') {
                 setError(data);
                 console.log(error);
             }
+            // Else, update the copy of the user's username to the username they entered and route the user to the 'home' page
+            // (The user successfully logged in to an account with the entered username and password)
             else {
-                setUsernameGlobal(username);
+                setUsernameGlobal(name);
                 router.push("/home");
             }
-        })
-
-        .catch((error) => {
-            setError(error);
-            console.log(error);
-        });
+        
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
     }
 
-    // The page that the user sees in the app/browser
     return (
 
         <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar 
+                style="auto"
+                hidden={true}
+            />
 
-            <Text style={styles.subtitle}>Logged in as {usernameGlobal}</Text>
+            <View
+                style={styles.statusbar}>
 
-            <Text style={styles.title}>Login</Text>
-            <Text style={styles.subtitle}>Login in to your CU-Bytes account or create a new CU-Bytes account</Text>
+                <TouchableOpacity id="backButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
+                    ]}
+                    
+                    onPressIn={ () => setIsBackPressed(true) }
+                    onPressOut={ () => setIsBackPressed(false) }
+                    onPress={() => router.push('/')}>
 
-            {visible && (
-                <Text style={styles.description} id="loginErrorMessage">{error.message}</Text>
-            )}
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}>
 
-            {/*Enter the username that will identify the existing account*/}
-            <TextInput id="usernameInput"
-                style={styles.textInput}
-                onChange={saveUsernameInputText}
-                placeholder={"Enter your username"}
+                        Back
+                    </Text>
+
+                </TouchableOpacity>
+
+                <Text id="loginTitle"
+                    style={styles.headerTitle}>
+                    
+                    Login
+                </Text>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
+                </Text>
+
+            </View>
+
+            <Text id="loginInfo"
+                style={styles.infoText}>
+
+                Sign in or create a new CU-Bytes account
+            </Text>
+
+            <Text id="loginErrorMessage"
+                style={styles.errorInfoText}>
+
+                {visible ? error.message : 'To sign in to your CU-Bytes account, enter your username and password below' }
+            </Text>
+
+            {/* Enter the username that corresponds to the account that the user wants to log in to */}
+            <TextInput id="loginUsernameTextInput"
+                style={styles.usernameTextInput}
+                onChangeText={setUsername}
+                onChange={() => {
+                    setError({ message: '', status: '' });
+                    setVisible(false);
+                }}
+                placeholder={"Enter CU-Bytes username"}
                 value={username}
             >
             </TextInput>
 
-            {/*Enter the password that will access the existing account*/}
-            <TextInput id="passwordInput"
-                style={styles.textInput}
-                onChange={savePasswordInputText}
-                placeholder={"Enter your password"}
+            {/* Enter the password that corresponds to the account that the user wants to log in to */}
+            <TextInput id="loginPasswordTextInput"
+                style={styles.passwordTextInput}
+                onChangeText={setPassword}
+                onChange={() => {
+                    setError({ message: '', status: '' });
+                    setVisible(false);
+                }}
+                placeholder={"Enter CU-Bytes password"}
                 value={password}
                 secureTextEntry={true}
             >
             </TextInput>
 
-            {/*Send a request to the server to access an existing account with the entered username and password */}
-            <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
+            {/* Submit a request to the backend endpoint to authenticate the entered credentials and log in to an account */}
+            <TouchableOpacity id="loginButton"
+                style={[styles.bodyButton,
+                    { backgroundColor: isLoginPressed ? '#666666' : '#131312' }
+                ]}
+                
+                onPressIn={() => setIsLoginPressed(true)}
+                onPressOut={() => setIsLoginPressed(false)}
                 onPress={() => {
-                    handlePressLogin();
-                    setVisible(true);
-                }}
-                disabled={loading}
-            >
-                <Text style={styles.buttonText}>Login</Text>
+                    loginUser(username, password);
+                    setVisible(true);}}>
+
+                <Text id="loginButtonText"
+                    style={styles.bodyButtonText}>
+                        
+                        Login
+                </Text>
 
             </TouchableOpacity>
 
-            {/*Route the user to the register/create account page*/}
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => router.push("/register")}
-            >
-                <Text style={styles.buttonText}>Create Account</Text>
+            {/* Route the user to the 'create account' page */}
+            <TouchableOpacity id="createAccountButton"
+                style={[styles.bodyButtonAlt,
+                    { backgroundColor: isCreateAccountPressed ? '#DDDDDD' : '#FFFFFF' }
+                ]}
+
+                onPressIn={() => setIsCreateAccountPressed(true)}
+                onPressOut={() => setIsCreateAccountPressed(false)}
+                onPress={() => router.push("/register")}>
+                
+                <Text id="createAccountButtonText"
+                    style={styles.bodyButtonTextAlt}>
+                        
+                        Create Account
+                </Text>
 
             </TouchableOpacity>
 

@@ -3,158 +3,199 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
 
   container: {
+    alignItems: 'center', // Horizontal
+    backgroundColor: '#C5151A',
     flex: 1,
-
-    backgroundColor: '#FFFFFF',
-    padding: '0.5%' as any,
-
-
-    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'flex-start', // Vertical 
+    overflowY: 'scroll',
     textAlign: 'center',
-
-    width: '100%',
-
-    overflowY: 'scroll'
-  },
-  
-  title: {
-    color: '#0a7ea4',
-    backgroundColor: '#FFFFFFFF',
-    padding: '1.5%' as any,
-
-    textAlign: 'center',
-    margin: '0.5%' as any,  
-    
-    fontFamily: 'sans-serif',
-    fontSize: '300%' as any,
-    fontWeight: 'bold',    
-  },
-
-  subtitle: {
-    color: '#0a7ea4',
-    backgroundColor: '#FFFFFF',
-    padding: '0.5%' as any,
-
-    textAlign: 'center',
-    margin: '0.5%' as any,
-
-    fontFamily: 'sans-serif',
-    fontSize: '175%' as any,
-    fontWeight: 'bold'
-  },
-
-  subsubtitle: {
-    color: 'black',
-    backgroundColor: '#a1e7ff',
-    padding: '0.5%' as any,
-    
-    textAlign: 'center',
-    margin: '0.5%' as any,
-    lineHeight: 50,
-
-    fontFamily: 'sans-serif',
-    fontSize: '175%' as any,
-    fontWeight: 'bold',
-
-    width: '100%' as any
-  },
-
-  button: {
-    color: 'black',
-    backgroundColor: '#0a7ea4',
-    padding: '0.5%' as any,
-
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: '1.2%' as any,
-
-    borderRadius: 25,
-    borderWidth: 4,
-    borderBlockColor: 'black',
-    
-    shadowColor: 'black',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    
-    width: '80%' as any,
-    height: '12.5%' as any
-  },
-
-  buttonPopup: {
-    color: 'black',
-    backgroundColor: '#0a7ea4',
-    padding: '0.5%' as any,
-
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: '1%' as any,
-
-    borderRadius: 25,
-    borderWidth: 4,
-    borderBlockColor: 'black',
-    
-    shadowColor: 'black',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    
     width: '100%' as any,
-    height: '40%' as any
   },
 
-  buttonDisabled: {
-    backgroundColor: '#CCCCCC',
+  headerContainer: {
+    backgroundColor: '#C5151A',
+    width: '10%' as any,
   },
 
-  buttonText: {
-    color: 'white',
-
-    fontFamily: 'sans-serif',
-    fontSize: '200%' as any,
-    fontWeight: '800',
-  },
-
-  pressableText: {
-    color: 'black',
-    backgroundColor: '#a1e7ff',
-    padding: '1.5%' as any,
-
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    lineHeight: 50,
-
-    fontFamily: 'sans-serif',
-    fontSize: '175%' as any,
-    fontWeight: '600',
-
-    borderRadius: 0,
-
-    width: '100%' as any
-  },
-  
-  textInput: {
+  bodyContainer: {
     backgroundColor: '#FFFFFF',
-    padding: '0.5%' as any,
-
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: '1.2%' as any,
-
-    fontSize: '150%' as any,
-    fontFamily: 'Sans-Serif',   
-    
-    borderRadius: 0,
-    borderWidth: 2.5,
-    borderBlockColor: 'black',
-
-    shadowColor: 'black',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    
-    width: '80%' as any,
-    height: '10%' as any
+    width: '100%' as any,
   },
+
+  statusbar: {
+    alignItems: 'center', // Horizontal
+    backgroundColor: '#C5151A',
+    flexDirection: 'row',
+    justifyContent: 'space-between', // Vertical
+    padding: '1.5%' as any,
+    textAlign: 'center',
+    width: '100%' as any,
+  },
+
+  headerButton: {
+    alignItems: 'center',
+    backgroundColor: '#131312',
+    borderRadius: 50,
+    borderWidth: 4,
+    borderColor: 'black',
+    color: 'red',
+    padding: '1.5%' as any,
+    width: '10%' as any,
+  },
+
+  headerButtonText: {
+    backgroundColor: '#131312',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    fontWeight: 500,
+  },
+
+  bodyButton: {
+    alignItems: 'center',
+    backgroundColor: '#131312',
+    borderRadius: 50,
+    borderWidth: 4,
+    borderColor: '#131312',
+    marginBottom: '2.5%',
+    padding: '2.5%' as any,
+    width: '80%' as any,
+  },
+
+  bodyButtonText: {
+    backgroundColor: '#131312',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '175%' as any,
+    fontWeight: 600,
+    textAlign: 'center',
+  },
+
+  bodyButtonAlt: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 50,
+    borderWidth: 4,
+    borderColor: '#FFFFFF',
+    marginTop: '2.5%' as any,
+    marginBottom: '2.5%',
+    padding: '2.5%' as any,
+    shadowColor: '#131312',
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 10,
+    width: '80%' as any,
+  },
+
+  bodyButtonTextAlt: {
+    backgroundColor: '#FFFFFF',
+    color: '#C5151A',
+    fontFamily: 'arial',
+    fontSize: '175%' as any,
+    fontWeight: 600,
+    textAlign: 'center',
+  },
+
+  headerTitle: {
+    backgroundColor: '#C5151A',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '300%' as any,
+    fontWeight: 800,
+    textAlign: 'center',
+    textShadowColor: '#131312',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 10,
+    width: '50%' as any,
+  },
+
+  headerUsernameIcon: {
+    backgroundColor: '#C5151A',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    width: '10%' as any,
+  },
+
+  infoText: {
+    backgroundColor: '#C5151A',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    fontWeight: 500,
+    marginTop: '0.5%' as any,
+    paddingTop: '5.0%' as any,
+    paddingBottom: '5.0%' as any,
+    textAlign: 'center',
+    textShadowColor: '#131312',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 10,
+    width: '100%' as any,
+  },
+
+  foodInfoText: {
+    backgroundColor: '#FFFFFF',
+    borderWidth: 5,
+    borderTopColor: '#666666',
+    borderBottomColor: '#666666',
+    color: '#131312',
+    fontFamily: 'arial',
+    fontSize: '175%' as any,
+    fontWeight: 600,
+    marginTop: '1.5%' as any,
+    marginBottom: '1.5%' as any,
+    paddingTop: '5.0%' as any,
+    paddingBottom: '5.0%' as any,
+    paddingLeft: '5.0%' as any,
+    paddingRight: '5.0%' as any,
+    textAlign: 'center',
+    shadowColor: '#131312',
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 10,
+    width: '100%' as any,
+  },
+
+  diningInfoText: {
+    backgroundColor: '#FFFFFF',
+    borderWidth: 5,
+    borderTopColor: '#666666',
+    borderBottomColor: '#666666',
+    color: '#131312',
+    fontFamily: 'arial',
+    fontSize: '175%' as any,
+    fontWeight: 600,
+    marginTop: '1.5%' as any,
+    marginBottom: '1.5%' as any,
+    paddingTop: '5.0%' as any,
+    paddingBottom: '5.0%' as any,
+    paddingLeft: '5.0%' as any,
+    paddingRight: '5.0%' as any,
+    textAlign: 'center',
+    shadowColor: '#131312',
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 10,
+    width: '100%' as any,
+  },
+
+  diningLocationNameTextInput: {
+    backgroundColor: "#FFFFFF",
+    color: '#131312',
+    borderColor: '#131312',
+    borderRadius: 15,
+    borderWidth: 2,
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    marginBottom: '5%' as any,
+    paddingTop: '1.5%' as any,
+    paddingBottom: '1.5%' as any,
+    paddingLeft: '1.5%' as any,
+    paddingRight: '1.5%' as any,
+    shadowColor: '#131312',
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 2,
+    width: '80%' as any,
+  },
+
 });

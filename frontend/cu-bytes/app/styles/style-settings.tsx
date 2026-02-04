@@ -1,88 +1,141 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+
   container: {
+    alignItems: 'center', // Horizontal
+    backgroundColor: '#C5151A',
     flex: 1,
-    backgroundColor: 'rgba(255, 180, 180, 1)',
-    paddingTop: '0.5%' as any,
-    paddingHorizontal: '0.5%' as any,
-    alignItems: 'center',
-    overflowY: 'scroll'
-  },
-  title: {
-    fontFamily: 'sans-serif',
-    fontSize: '280%' as any,
-    fontWeight: '800',
-
+    flexDirection: 'column',
+    justifyContent: 'flex-start', // Vertical 
+    overflowY: 'scroll',
     textAlign: 'center',
-    margin: '0.5%' as any,
-
-    color: 'red',
-    backgroundColor: '#FFFFFFFF',
-    padding: '1.8%' as any,
-    borderRadius: 40
+    width: '100%' as any,
   },
-  subtitle: {
-    fontFamily: 'sans-serif',
-    fontSize: '150%' as any,
-    fontWeight: '600',
 
-    textAlign: 'center',
-    margin: '0.5%' as any,
-
-    color: '#000000FF',
-    backgroundColor: 'rgba(255, 210, 210, 1)',
-    padding: '1.2%' as any,
-    borderRadius: 40
+  headerContainer: {
+    backgroundColor: '#C5151A',
+    width: '10%' as any,
   },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
 
-    margin: '1.2%' as any,
-    elevation: 8,
-
-    backgroundColor: '#007AFF',
-    padding: '0.5%' as any,
-
-    borderRadius: 30,
-    borderWidth: 3,
-    borderBlockColor: '#000000FF',
-
-    shadowColor: '#000000FF',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-
-    width: '50%'
+  bodyContainer: {
+    backgroundColor: '#FFFFFF',
+    width: '100%' as any,
   },
-  buttonDisabled: {
-    backgroundColor: '#cccccccc',
-  },
-  buttonText: {
-    fontFamily: 'sans-serif',
-    fontSize: '200%' as any,
-    fontWeight: '800',
 
-    color: 'white',
-  },
-  row: {
+  statusbar: {
+    alignItems: 'center', // Horizontal
+    backgroundColor: '#C5151A',
     flexDirection: 'row',
+    justifyContent: 'space-between', // Vertical
+    padding: '1.5%' as any,
+    textAlign: 'center',
+    width: '100%' as any,
+  },
+
+  headerButton: {
     alignItems: 'center',
+    backgroundColor: '#131312',
+    borderRadius: 50,
+    borderWidth: 4,
+    borderColor: 'black',
+    color: 'red',
+    padding: '1.5%' as any,
+    width: '10%' as any,
+  },
+
+  headerButtonText: {
+    backgroundColor: '#131312',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    fontWeight: 500,
+  },
+  
+  headerTitle: {
+    backgroundColor: '#C5151A',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '300%' as any,
+    fontWeight: 800,
+    textAlign: 'center',
+    textShadowColor: '#131312',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 10,
+    width: '50%' as any,
+  },
+
+  headerUsernameIcon: {
+    backgroundColor: '#C5151A',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    width: '10%' as any,
+  },
+
+  infoText: {
+    backgroundColor: '#C5151A',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    fontWeight: 500,
+    marginTop: '0.5%' as any,
+    paddingTop: '5.0%' as any,
+    paddingBottom: '5.0%' as any,
+    textAlign: 'center',
+    textShadowColor: '#131312',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 10,
+    width: '100%' as any,
+  },
+
+  bodyButton: {
+    alignItems: 'center',
+    backgroundColor: '#131312',
+    borderRadius: 50,
+    borderWidth: 4,
+    borderColor: '#131312',
+    marginTop: '2.5%' as any,
+    marginBottom: '2.5%' as any,
+    padding: '2.5%' as any,
+    width: '80%' as any,
+  },
+
+  bodyButtonText: {
+    backgroundColor: 'transparent',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '175%' as any,
+    fontWeight: 600,
+    textAlign: 'center',
+  },
+
+  row: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    paddingLeft: '5.0%' as any,
+    paddingRight: '5.0%' as any,
     paddingVertical: '1%' as any,
     width: '85%',
   },
+
   label: {
     flex: 1,
+    flexWrap: 'wrap',
     fontSize: '150%' as any,
     paddingRight: '1%' as any,
-    flexWrap: 'wrap',
   },
+
   switchContainer: {
+    alignItems: 'flex-end',
     width: '15%',
-    alignItems: 'flex-end'
   },
+
   switch: {
     transform: [{ scale: 1.4 }],
   },
+
 });
