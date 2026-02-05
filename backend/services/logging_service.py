@@ -275,11 +275,14 @@ def create_transaction(
     proteins_g,
     fiber_g,
     sugar_g,
+    transaction_time=None,  # Time customization is optional
 ):
     """Create a new transaction and store it in the database"""
+    transaction_time = transaction_time or datetime.now()
+
     transaction = FoodLogging.create(
         username=username,
-        transaction_time=datetime.now(),
+        transaction_time=transaction_time,
         food_name=food_name,
         calories=calories,
         percent_fruit_veg=percent_fruit_veg,
