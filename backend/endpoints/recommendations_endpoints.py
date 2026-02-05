@@ -1,8 +1,7 @@
-from flask import Blueprint, request
+from flask import Blueprint
 from backend.services.browse_service import (
     get_all_food_items_json,
     get_food_item_by_id_json,
-    get_food_item_by_name_json,
 )
 
 browse_bp = Blueprint("browse", __name__)
@@ -90,41 +89,3 @@ def get_food_item_by_id(id):
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
     return get_food_item_by_id_json(food_id=id)
-
-
-@browse_bp.route("/food-item-by-name", methods=["GET"])
-def get_food_item_by_name():
-    """
-    GET /browse/get_food_item_by_name
-
-    Description:
-    Retrieve a list of food items that match the provided food name
-    If the food name does not match a generic category the list of food ids
-    will be empty.
-
-    Request Body:
-    {
-        "food_name": "Bagel"
-    }
-
-    Responses:
-    200 OK - Successfully retrieved the specified food item
-        {
-            "food_items": [
-                {
-                    "dining_location": "Starbucks",
-                    "id": 426,
-                    "name": "Mini Everything Bagels"
-                },
-                {
-                    "dining_location": "Tim Hortons",
-                    "id": 479,
-                    "name": "Plain Bagel"
-                },
-            ]
-        }
-    400 Bad Request - Missing food_name parameter
-    500 Internal Server Error - Database retrieval failed or unexpected error occurred
-    """
-    data = request.json
-    return get_food_item_by_name_json(data)
