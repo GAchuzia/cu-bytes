@@ -74,3 +74,38 @@ def test_get_last_food_item(client, seeded_food_data, seeded_food_categories):
 def test_get_nonexistant_food_item(client, seeded_food_data):
     response = client.get("/browse/food-item/30")
     assert response.status_code == 400
+
+
+# ------------------------------------
+# Testing Get Food Items By Name
+# ------------------------------------
+def test_get_by_name_invalid(client, seeded_food_data):
+    # Try missing food_name in JSON
+    response = client.get("/browse/food-item-by-name", json={"username": "Alice"})
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert "food_name is required" in data["message"]
+
+
+def test_get_by_name_invalid_category(client, seeded_food_data):
+    # Try non existent category
+    response = client.get("/browse/food-item-by-name", json={"food_name": "Alice"})
+    data = response.get_json()
+
+    assert response.status_code == 200
+    assert len(data["food_items"]) == 0
+
+
+def test_get_by_name_valid_category(client, seeded_food_data):
+    # Try valid category
+    response = client.get("/browse/food-item-by-name", json={"food_name": "Loaf"})
+    data = response.get_json()
+
+    assert response.status_code == 200
+    assert len(data["food_items"]) == 1
+
+    loaf = data["food_items"][0]
+    assert loaf["dining_location"] == "Tim Hortons"
+    assert loaf["id"] == 3
+    assert loaf["name"] == "Banana Bread"

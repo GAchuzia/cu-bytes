@@ -95,7 +95,7 @@ def get_food_item_by_id(id):
 @browse_bp.route("/food-item-by-name", methods=["GET"])
 def get_food_item_by_name():
     """
-    GET /browse/get_food_item_by_name
+    GET /browse/food-item-by-name
 
     Description:
     Retrieve a list of food items that match the provided food name

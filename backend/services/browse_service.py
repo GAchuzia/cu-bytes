@@ -83,7 +83,7 @@ def get_food_item_by_name_json(data):
     try:
         food_items = FoodItem.query.filter_by(food_category=food_name).all()
 
-        result = [
+        food_list = [
             {
                 "id": item.id,
                 "name": item.food_name,
@@ -93,7 +93,7 @@ def get_food_item_by_name_json(data):
         ]
 
         # Return as a JSON response
-        return jsonify(result), 200
+        return jsonify({"food_items": food_list}), 200
 
     except Exception as e:
         print(f"BrowsingService: Error retrieving food items by category name: {e}")
