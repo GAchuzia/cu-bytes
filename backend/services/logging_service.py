@@ -66,6 +66,7 @@ def log_food_item_by_id_json(data):
         t = create_transaction(
             username=username,
             food_name=food_item.food_name,
+            dining_location=food_item.dining_location,
             calories=food_category.calories,
             percent_fruit_veg=food_category.percent_fruit_veg,
             percent_grain=food_category.percent_grain,
@@ -98,6 +99,7 @@ def log_food_item_by_id_json(data):
         t = create_transaction(
             username=username,
             food_name=food_item.food_name,
+            dining_location=food_item.dining_location,
             calories=food_item.calories,
             percent_fruit_veg=food_category.percent_fruit_veg,
             percent_grain=food_category.percent_grain,
@@ -173,6 +175,7 @@ def log_food_item_by_name_json(data):
         t = create_transaction(
             username=username,
             food_name=food_name,
+            dining_location=-1,
             calories=-1,
             percent_fruit_veg=0,
             percent_grain=0,
@@ -189,6 +192,7 @@ def log_food_item_by_name_json(data):
         t = create_transaction(
             username=username,
             food_name=food_name,
+            dining_location=-1,
             calories=food_category.calories,
             percent_fruit_veg=food_category.percent_fruit_veg,
             percent_grain=food_category.percent_grain,
@@ -265,6 +269,7 @@ Helper methods
 def create_transaction(
     username,
     food_name,
+    dining_location,
     calories,
     percent_fruit_veg,
     percent_grain,
@@ -284,6 +289,7 @@ def create_transaction(
         username=username,
         transaction_time=transaction_time,
         food_name=food_name,
+        dining_location=dining_location,
         calories=calories,
         percent_fruit_veg=percent_fruit_veg,
         percent_grain=percent_grain,

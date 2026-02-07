@@ -202,6 +202,7 @@ def add_hamburger(
     create_transaction(
         username=username,
         food_name="Hamburger",
+        dining_location=1,
         calories=460,
         percent_fruit_veg=20,
         percent_grain=70,
@@ -224,6 +225,7 @@ def add_salad(
     create_transaction(
         username=username,
         food_name="Caesar Salad",
+        dining_location=2,
         calories=300,
         percent_fruit_veg=85,
         percent_grain=10,
@@ -246,6 +248,7 @@ def add_banana_bread(
     create_transaction(
         username=username,
         food_name="Banana Bread",
+        dining_location=3,
         calories=600,
         percent_fruit_veg=20,
         percent_grain=70,

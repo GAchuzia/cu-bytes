@@ -16,6 +16,7 @@ if __name__ == "__main__":
         create_transaction(
             username="Alice",
             food_name="Yogurt Parfait",
+            dining_location=1,
             calories=320,
             percent_fruit_veg=40,
             percent_grain=30,
@@ -32,6 +33,7 @@ if __name__ == "__main__":
         create_transaction(
             username="Alice",
             food_name="Chicken Salad",
+            dining_location=2,
             calories=420,
             percent_fruit_veg=50,
             percent_grain=10,
@@ -48,6 +50,7 @@ if __name__ == "__main__":
         create_transaction(
             username="Alice",
             food_name="Oatmeal",
+            dining_location=1,
             calories=250,
             percent_fruit_veg=20,
             percent_grain=70,
@@ -64,6 +67,7 @@ if __name__ == "__main__":
         create_transaction(
             username="Bob",
             food_name="Cheeseburger",
+            dining_location=3,
             calories=650,
             percent_fruit_veg=10,
             percent_grain=30,
@@ -80,6 +84,7 @@ if __name__ == "__main__":
         create_transaction(
             username="Bob",
             food_name="Pepperoni Pizza",
+            dining_location=3,
             calories=720,
             percent_fruit_veg=5,
             percent_grain=45,
@@ -96,6 +101,7 @@ if __name__ == "__main__":
         create_transaction(
             username="Bob",
             food_name="Apple",
+            dining_location=2,
             calories=95,
             percent_fruit_veg=100,
             percent_grain=0,
@@ -112,6 +118,7 @@ if __name__ == "__main__":
         create_transaction(
             username="Charlie",
             food_name="Yogurt Parfait",
+            dining_location=1,
             calories=320,
             percent_fruit_veg=40,
             percent_grain=30,
@@ -128,6 +135,7 @@ if __name__ == "__main__":
         create_transaction(
             username="Dave",
             food_name="Apple",
+            dining_location=3,
             calories=320,
             percent_fruit_veg=100,
             percent_grain=0,
