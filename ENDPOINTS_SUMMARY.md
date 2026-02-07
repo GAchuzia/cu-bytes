@@ -72,11 +72,13 @@ Summary of endpoints.
             "food_items": [
                 {
                     "id": 651,
-                    "name": "Yogurt & Berries Parfait"
+                    "name": "Yogurt & Berries Parfait",
+                    "location": 10
                 },
                 {
                     "id": 652,
-                    "name": "Yogurt Parfait"
+                    "name": "Yogurt Parfait",
+                    "location": 11
                 }
                 ...
             ]
@@ -127,6 +129,40 @@ Summary of endpoints.
             }
 
     400 Bad Request - Item not found
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
+
+
+    """
+    GET /browse/food-item-by-name
+
+    Description:
+    Retrieve a list of food items that match the provided food name
+    If the food name does not match a generic category the list of food ids
+    will be empty.
+
+    Request Body:
+    {
+        "food_name": "Bagel"
+    }
+
+    Responses:
+    200 OK - Successfully retrieved the specified food item
+        {
+            "food_items": [
+                {
+                    "dining_location": "Starbucks",
+                    "id": 426,
+                    "name": "Mini Everything Bagels"
+                },
+                {
+                    "dining_location": "Tim Hortons",
+                    "id": 479,
+                    "name": "Plain Bagel"
+                },
+            ]
+        }
+    400 Bad Request - Missing food_name parameter
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
 

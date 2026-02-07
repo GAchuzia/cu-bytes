@@ -3,7 +3,7 @@ from flask import jsonify
 
 # Project imports
 from backend.models.food_category import FoodCategory
-from backend.models.food_item import FoodItem
+from backend.models.food_item import FoodItem, get_dining_location_name
 
 """
 Methods directly connected to endpoints
@@ -61,4 +61,40 @@ def get_food_item_by_id_json(food_id):
 
     except Exception as e:
         print("BrowsingService: Error retrieving food item " f"information: {e}")
+        return {"error": "Failed to retrieve food item information"}, 500
+
+
+def get_food_item_by_name_json(data):
+    food_name = data.get("food_name")
+
+    # Validate input
+    if not isinstance(food_name, str) or len(food_name) == 0:
+        print("BrowsingService: food_name is required and must be a non-empty string")
+        return (
+            jsonify(
+                {
+                    "status": "error",
+                    "message": "food_name is required and must be a non-empty string",
+                }
+            ),
+            400,
+        )
+
+    try:
+        food_items = FoodItem.query.filter_by(food_category=food_name).all()
+
+        food_list = [
+            {
+                "id": item.id,
+                "name": item.food_name,
+                "dining_location": get_dining_location_name(item.dining_location),
+            }
+            for item in food_items
+        ]
+
+        # Return as a JSON response
+        return jsonify({"food_items": food_list}), 200
+
+    except Exception as e:
+        print(f"BrowsingService: Error retrieving food items by category name: {e}")
         return {"error": "Failed to retrieve food item information"}, 500
