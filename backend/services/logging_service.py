@@ -6,6 +6,7 @@ from flask import jsonify
 from backend.models.food_category import FoodCategory
 from backend.models.food_logging import FoodLogging
 from backend.models.food_item import FoodItem
+from backend.models.locations import DiningLocation
 from backend.models.users_auth import UsersAuth
 
 """
@@ -235,13 +236,21 @@ def get_logging_history_json(username):
             .all()
         )
 
+        # Load dictionary of dining locations
+        dining_location_dict = {
+            location.dining_service_id: location.dining_location_name
+            for location in DiningLocation.query.all()
+        }
+
         # Specify desired attributes
-        result = [
-            {
+        result = []
+        for log in logs:
+            row = {
                 col: getattr(log, col)
                 for col in (
                     "transaction_time",
                     "food_name",
+                    "dining_location",
                     "calories",
                     "fat_g",
                     "carbs_g",
@@ -250,8 +259,11 @@ def get_logging_history_json(username):
                     "sugar_g",
                 )
             }
-            for log in logs
-        ]
+            # Convert dining location from id to name
+            row["dining_location"] = dining_location_dict.get(
+                row["dining_location"], "Unknown"
+            )
+            result.append(row)
 
         # Return as a JSON response
         return jsonify(result), 200

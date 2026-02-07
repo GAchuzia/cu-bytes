@@ -194,6 +194,21 @@ def seeded_dining_location_data(app):
         db.session.commit()
 
 
+@pytest.fixture
+def seeded_dining_locations(app):
+    """Setup a small dining_locations DB for each test in this file."""
+    add_test_dining_location(app, "Tim Hortons")
+    add_test_dining_location(app, "Starbucks")
+    add_test_dining_location(app, "Bridgehead")
+
+    yield  # test runs here
+
+    # Clean up after test
+    with app.app_context():
+        db.session.query(DiningLocation).delete()
+        db.session.commit()
+
+
 def add_hamburger(
     username,
     transaction_time,

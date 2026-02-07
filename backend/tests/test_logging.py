@@ -3,6 +3,7 @@ from backend.tests.test_helpers import (
     seeded_food_data,
     seeded_users,
     seeded_food_categories,
+    seeded_dining_locations,
 )
 
 
@@ -199,7 +200,13 @@ def test_transaction_nonexistent_user_by_name(
 #     assert "No matching food_name found" in data["message"]
 
 
-def test_retreival(client, seeded_food_data, seeded_users, seeded_food_categories):
+def test_retreival(
+    client,
+    seeded_food_data,
+    seeded_users,
+    seeded_food_categories,
+    seeded_dining_locations,
+):
     # Retreive an empty list (no transactions yet)
     response = client.get("/logging/history/Alice")
     data = response.get_json()
@@ -222,6 +229,7 @@ def test_retreival(client, seeded_food_data, seeded_users, seeded_food_categorie
     first_log_entry = data[0]
     assert first_log_entry["calories"] == 350
     assert first_log_entry["food_name"] == "Caesar Salad"
+    assert first_log_entry["dining_location"] == "Tim Hortons"
     assert first_log_entry["transaction_time"]
 
     # Add a second item via the other transaction endpoint
@@ -242,12 +250,14 @@ def test_retreival(client, seeded_food_data, seeded_users, seeded_food_categorie
     first_log_entry = data[1]
     assert first_log_entry["calories"] == 350
     assert first_log_entry["food_name"] == "Caesar Salad"
+    assert first_log_entry["dining_location"] == "Tim Hortons"
     assert first_log_entry["transaction_time"]
 
     # The second entry is using the generic category
     second_log_entry = data[0]
     assert second_log_entry["calories"] == 500
     assert second_log_entry["food_name"] == "Loaf"
+    assert second_log_entry["dining_location"] == "Unknown"
     assert second_log_entry["transaction_time"]
 
 

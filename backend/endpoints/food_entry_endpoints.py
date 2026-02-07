@@ -77,34 +77,37 @@ def get_logging_history(username):
         Response Body (JSON):
         [
             {
-                "calories": 250,
-                "carbs_g": 42.0,
-                "fat_g": 4.2,
-                "fiber_g": 6.8,
-                "food_name": "Oatmeal",
-                "proteins_g": 9.5,
-                "sugar_g": 7.1,
-                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
-            },
-            {
-                "calories": 420,
-                "carbs_g": 18.7,
-                "fat_g": 14.3,
-                "fiber_g": 6.1,
-                "food_name": "Chicken Salad",
-                "proteins_g": 32.5,
-                "sugar_g": 4.2,
-                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
+                "calories": 480,
+                "carbs_g": 75.733,
+                "dining_location": "Starbucks",
+                "fat_g": 19.319,
+                "fiber_g": 2.489,
+                "food_name": "Double Chocolate Brownie",
+                "proteins_g": 5.689,
+                "sugar_g": 43.378,
+                "transaction_time": "Sat, 07 Feb 2026 14:12:17 GMT"
             },
             {
                 "calories": 320,
-                "carbs_g": 45.2,
-                "fat_g": 6.5,
-                "fiber_g": 5.4,
-                "food_name": "Yogurt Parfait",
-                "proteins_g": 12.8,
-                "sugar_g": 22.0,
-                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
+                "carbs_g": 27.0,
+                "dining_location": "Mike's Place",
+                "fat_g": 19.0,
+                "fiber_g": 0.0,
+                "food_name": "Popcorn Shrimp",
+                "proteins_g": 11.0,
+                "sugar_g": 9.09,
+                "transaction_time": "Sat, 07 Feb 2026 14:12:05 GMT"
+            },
+            {
+                "calories": -1,
+                "carbs_g": -1.0,
+                "dining_location": "Unknown",
+                "fat_g": -1.0,
+                "fiber_g": -1.0,
+                "food_name": "Shrimp And Grits",
+                "proteins_g": -1.0,
+                "sugar_g": -1.0,
+                "transaction_time": "Sat, 07 Feb 2026 14:11:46 GMT"
             }
         ]
     400 Bad Request - Invalid username
