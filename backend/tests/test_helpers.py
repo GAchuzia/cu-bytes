@@ -194,6 +194,21 @@ def seeded_dining_location_data(app):
         db.session.commit()
 
 
+@pytest.fixture
+def seeded_dining_locations(app):
+    """Setup a small dining_locations DB for each test in this file."""
+    add_test_dining_location(app, "Tim Hortons")
+    add_test_dining_location(app, "Starbucks")
+    add_test_dining_location(app, "Bridgehead")
+
+    yield  # test runs here
+
+    # Clean up after test
+    with app.app_context():
+        db.session.query(DiningLocation).delete()
+        db.session.commit()
+
+
 def add_hamburger(
     username,
     transaction_time,
@@ -202,6 +217,7 @@ def add_hamburger(
     create_transaction(
         username=username,
         food_name="Hamburger",
+        dining_location=1,
         calories=460,
         percent_fruit_veg=20,
         percent_grain=70,
@@ -224,6 +240,7 @@ def add_salad(
     create_transaction(
         username=username,
         food_name="Caesar Salad",
+        dining_location=2,
         calories=300,
         percent_fruit_veg=85,
         percent_grain=10,
@@ -246,6 +263,7 @@ def add_banana_bread(
     create_transaction(
         username=username,
         food_name="Banana Bread",
+        dining_location=3,
         calories=600,
         percent_fruit_veg=20,
         percent_grain=70,
