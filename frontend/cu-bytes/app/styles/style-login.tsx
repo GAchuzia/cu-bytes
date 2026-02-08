@@ -12,6 +12,11 @@ export const styles = StyleSheet.create({
     width: '100%' as any,
   },
 
+  headerContainer: {
+    backgroundColor: '#C5151A',
+    width: '10%' as any,
+  },
+
   statusbar: {
     alignItems: 'center', // Horizontal
     backgroundColor: '#C5151A',
@@ -34,7 +39,7 @@ export const styles = StyleSheet.create({
   },
 
   headerButtonText: {
-    backgroundColor: '#131312',
+    backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
     fontSize: '150%' as any,
