@@ -72,11 +72,13 @@ Summary of endpoints.
             "food_items": [
                 {
                     "id": 651,
-                    "name": "Yogurt & Berries Parfait"
+                    "name": "Yogurt & Berries Parfait",
+                    "location": 10
                 },
                 {
                     "id": 652,
-                    "name": "Yogurt Parfait"
+                    "name": "Yogurt Parfait",
+                    "location": 11
                 }
                 ...
             ]
@@ -127,6 +129,40 @@ Summary of endpoints.
             }
 
     400 Bad Request - Item not found
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
+
+
+    """
+    GET /browse/food-item-by-name
+
+    Description:
+    Retrieve a list of food items that match the provided food name
+    If the food name does not match a generic category the list of food ids
+    will be empty.
+
+    Request Body:
+    {
+        "food_name": "Bagel"
+    }
+
+    Responses:
+    200 OK - Successfully retrieved the specified food item
+        {
+            "food_items": [
+                {
+                    "dining_location": "Starbucks",
+                    "id": 426,
+                    "name": "Mini Everything Bagels"
+                },
+                {
+                    "dining_location": "Tim Hortons",
+                    "id": 479,
+                    "name": "Plain Bagel"
+                },
+            ]
+        }
+    400 Bad Request - Missing food_name parameter
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
 
@@ -189,34 +225,37 @@ The following endpoint should be used when food_name is determined through machi
         Response Body (JSON):
         [
             {
-                "calories": 250,
-                "carbs_g": 42.0,
-                "fat_g": 4.2,
-                "fiber_g": 6.8,
-                "food_name": "Oatmeal",
-                "proteins_g": 9.5,
-                "sugar_g": 7.1,
-                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
-            },
-            {
-                "calories": 420,
-                "carbs_g": 18.7,
-                "fat_g": 14.3,
-                "fiber_g": 6.1,
-                "food_name": "Chicken Salad",
-                "proteins_g": 32.5,
-                "sugar_g": 4.2,
-                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
+                "calories": 480,
+                "carbs_g": 75.733,
+                "dining_location": "Starbucks",
+                "fat_g": 19.319,
+                "fiber_g": 2.489,
+                "food_name": "Double Chocolate Brownie",
+                "proteins_g": 5.689,
+                "sugar_g": 43.378,
+                "transaction_time": "Sat, 07 Feb 2026 14:12:17 GMT"
             },
             {
                 "calories": 320,
-                "carbs_g": 45.2,
-                "fat_g": 6.5,
-                "fiber_g": 5.4,
-                "food_name": "Yogurt Parfait",
-                "proteins_g": 12.8,
-                "sugar_g": 22.0,
-                "transaction_time": "Wed, 21 Jan 2026 08:35:58 GMT"
+                "carbs_g": 27.0,
+                "dining_location": "Mike's Place",
+                "fat_g": 19.0,
+                "fiber_g": 0.0,
+                "food_name": "Popcorn Shrimp",
+                "proteins_g": 11.0,
+                "sugar_g": 9.09,
+                "transaction_time": "Sat, 07 Feb 2026 14:12:05 GMT"
+            },
+            {
+                "calories": -1,
+                "carbs_g": -1.0,
+                "dining_location": "Unknown",
+                "fat_g": -1.0,
+                "fiber_g": -1.0,
+                "food_name": "Shrimp And Grits",
+                "proteins_g": -1.0,
+                "sugar_g": -1.0,
+                "transaction_time": "Sat, 07 Feb 2026 14:11:46 GMT"
             }
         ]
     400 Bad Request - Invalid username
@@ -407,4 +446,161 @@ The following endpoint should be used when food_name is determined through machi
 
     400 Bad Request - No file provided or invalid file
     500 Internal Server Error - Prediction failed
+    """
+
+### Statistics
+    """
+    GET /statistics/daily/{username}
+
+    Description:
+    Retrieve day-by-day nutrition and calorie breakdown for a user
+    across a configurable number of recent days.
+
+    Query Parameters:
+    - days (optional, default=7): Number of days to include
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved daily statistics
+        Response Body (JSON):
+        {
+            {
+                "2026-01-31": {
+                    "calories": 320,
+                    "carbs_g": 45.2,
+                    "fat_g": 6.5,
+                    "fiber_g": 5.4,
+                    "items_logged": 1,
+                    "proteins_g": 12.8,
+                    "sugar_g": 22.0
+                },
+                "2026-02-01": {
+                    "calories": 70,
+                    "carbs_g": 6.64,
+                    "fat_g": 0.37,
+                    "fiber_g": 2.6,
+                    "items_logged": 1,
+                    "proteins_g": 2.82,
+                    "sugar_g": 1.7
+                }
+            }
+        }
+    204 No Content - Could not create statistics because
+    user has not logged any food items
+    400 Bad Request - Invalid username or query parameters
+    500 Internal Server Error - Statistics generation failed
+    """
+
+
+    """
+    GET /statistics/aggregate/{username}
+
+    Description:
+    Retrieve aggregate nutrition statistics for a user over a
+    configurable number of recent days.
+
+    Query Parameters:
+    - days (optional, default=7): Number of days to include
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved aggregate statistics
+        Response Body (JSON):
+        {
+            "days_active": 3,
+            "items_logged": 4,
+            "percent_dairy": 11.42,
+            "percent_fruit_veg": 43.21,
+            "percent_grain": 29.53,
+            "percent_protein": 15.85,
+            "top_dining_location": "Unknown",
+            "top_food": "Chicken Salad",
+            "total_calories": 1060,
+            "total_carbs_g": 112.54,
+            "total_fat_g": 25.37,
+            "total_fiber_g": 20.9,
+            "total_protein_g": 57.62,
+            "total_sugar_g": 35.0
+        }
+    204 No Content - Could not create statistics because
+    user has not logged any food items
+    400 Bad Request - Invalid username or query parameters
+    500 Internal Server Error - Statistics generation failed
+    """
+
+
+    """
+    GET /statistics/global
+
+    Description:
+    Retrieve global user statistics over a configurable number of recent days.
+    Only users who have consented to share their data will be included.
+
+    Query Parameters:
+    - days (optional, default=7): Number of days to include
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved global statistics
+        Response Body (JSON):
+        {
+            "trending_item_1": "Pizza",
+            "trending_item_2": "Donut",
+            "trending_item_3": "Lasagna",
+            "trending_item_4": "Pad Thai",
+            "trending_item_5": "French Fries",
+            "trending_location_1": "Bridgehead",
+            "trending_location_2": "Subway",
+            "trending_location_3": "Tim Hortons",
+        }
+    400 Bad Request - Invalid query parameters
+    500 Internal Server Error - Statistics generation failed
+    """
+
+
+    """
+    GET /statistics/comparative/{username}
+
+    Description:
+    Retrieve user percentiles for various statistics over a
+    configurable number of recent days.
+    Food group and macronutrient percentiles are calculated on being
+    closest to the recommended amounts.
+    The user must have allowed for statistics sharing.
+    Only users who have consented to share their data will be compared against.
+
+    Query Parameters:
+    - days (optional, default=7): Number of days to include
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved comparative statistics
+        Response Body (JSON):
+        {
+            "balanced_food_groups_percentile": 100,
+            "balanced_macronutrients_percentile": 100,
+            "carbs_percentile": 100,
+            "checkin_percentile": 100,
+            "dairy_percentile": 100,
+            "fat_percentile": 100,
+            "fiber_percentile": 100,
+            "food_logging_percentile": 100,
+            "fruits_veg_percentile": 100,
+            "grain_percentile": 100,
+            "protein_fg_percentile": 100,
+            "sugar_percentile": 0
+        }
+    204 No Content - Could not create statistics because
+    user has not logged any food items
+    400 Bad Request - Invalid username or query parameters
+    403 Forbidden - User has not configured their settings for statistics sharing
+    500 Internal Server Error - Statistics generation failed
     """

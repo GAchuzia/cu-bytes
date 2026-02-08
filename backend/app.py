@@ -11,6 +11,7 @@ from backend.endpoints.locations_endpoints import locations_bp
 from backend.endpoints.food_entry_endpoints import logging_bp
 from backend.endpoints.profile_endpoints import profile_bp
 from backend.endpoints.ml_endpoints import ml_bp
+from backend.endpoints.statistics_endpoints import statistics_bp
 from backend.extensions import db
 
 
@@ -32,6 +33,7 @@ def create_app(config_override=None):
     app.register_blueprint(logging_bp, url_prefix="/logging")
     app.register_blueprint(profile_bp, url_prefix="/profile")
     app.register_blueprint(ml_bp, url_prefix="/ml")
+    app.register_blueprint(statistics_bp, url_prefix="/statistics")
 
     # Configure CORS (Which domains are permitted to access this app)
     CORS(

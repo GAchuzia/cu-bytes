@@ -11,8 +11,9 @@ class FoodLogging(db.Model):
     username = db.Column(db.String(80), primary_key=True)
     transaction_time = db.Column(db.DateTime, primary_key=True)
 
-    # Name of the food item
+    # Name and dining location id of the food item
     food_name = db.Column(db.String(80), nullable=False)
+    dining_location = db.Column(db.Integer, nullable=False)
 
     calories = db.Column(db.Integer, nullable=True)
 
@@ -41,6 +42,7 @@ class FoodLogging(db.Model):
         username,
         transaction_time,
         food_name,
+        dining_location,
         calories,
         percent_fruit_veg,
         percent_grain,
@@ -58,6 +60,7 @@ class FoodLogging(db.Model):
             username=username,
             transaction_time=transaction_time,
             food_name=food_name,
+            dining_location=dining_location,
             calories=calories,
             percent_fruit_veg=percent_fruit_veg,
             percent_grain=percent_grain,
