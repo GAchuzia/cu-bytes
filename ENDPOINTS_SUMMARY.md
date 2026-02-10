@@ -6,8 +6,7 @@ Summary of endpoints.
 
 - [CU-Bytes Endpoints Summary](#cu-bytes-endpoints-summary)
   - [Table Of Contents](#table-of-contents)
-    - [Login](#login)
-    - [Register](#register)
+    - [Authentication](#authentication)
     - [Browse](#browse)
     - [Logging](#logging)
     - [Profiles](#profiles)
@@ -15,7 +14,7 @@ Summary of endpoints.
     - [ML Prediction](#ml-prediction)
 
 
-### Login
+### Authentication
 
     """
     POST /auth/login
@@ -31,7 +30,6 @@ Summary of endpoints.
     400 Bad Request - Wrong username or password
     """
 
-### Register
 
     """
     POST /auth/register
@@ -52,6 +50,26 @@ Summary of endpoints.
     201 Creation Success - User registered successfully
     400 Bad Request - Missing or invalid data
     409 Conflict - Username already exists
+    """
+
+    """
+    POST /auth/change-pw
+
+    Request Body (JSON):
+    {
+        "username": "string",       # required
+        "old_password": "string"    # required
+        "new_password": "string"    # required
+    }
+
+    Restrictions:
+    The password will only be changed if the old password is correct.
+    New passwords must be between 10 and 120 characters, with at least
+    one special character, one number, one uppercase and one lowercase
+
+    Responses:
+    201 Success - Password changed successfully
+    400 Bad Request - Missing or invalid data
     """
 
 ### Browse

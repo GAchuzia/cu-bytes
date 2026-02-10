@@ -45,3 +45,9 @@ class UsersAuth(db.Model):
         except Exception:
             # Includes VerifyMismatchError which triggers on wrong password
             return False
+
+    def edit_password(self, new_password):
+        """Change the user's password"""
+        self.password = ph.hash(new_password)
+        db.session.add(self)
+        db.session.commit()
