@@ -21,7 +21,7 @@ def login_user_json(data):
     # attackers
 
     # Check missing fields
-    if len(username) == 0 or len(password) == 0:
+    if username is None or len(username) == 0 or password is None or len(password) == 0:
         return (
             jsonify({"status": "error", "message": "Invalid password or username."}),
             400,
@@ -75,7 +75,7 @@ def register_user_json(data):
     )
 
     # Check missing fields
-    if len(username) == 0 or len(password) == 0:
+    if username is None or len(username) == 0 or password is None or len(password) == 0:
         print("AuthenticationService: Username and password are required")
         return (
             jsonify(
@@ -223,7 +223,14 @@ def change_password_json(data):
     )
 
     # Check missing fields
-    if len(username) == 0 or len(old_password) == 0 or len(new_password) == 0:
+    if (
+        username is None
+        or len(username) == 0
+        or old_password is None
+        or len(old_password) == 0
+        or new_password is None
+        or len(new_password) == 0
+    ):
         print(
             "AuthenticationService: Username, old password, and new "
             "password are required"
