@@ -1,6 +1,6 @@
 # Project imports
 from backend.models.users_auth import UsersAuth
-from backend.tests.test_helpers import add_test_user
+from backend.tests.test_helpers import add_test_user, seeded_users
 
 # Arguments like client and app are automatically injected from conftest.py
 
@@ -268,6 +268,212 @@ def test_login_success(client, app):
     # Try again
     response = client.post(
         "/auth/login", json={"username": "Ellen", "password": "Password123!"}
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 200
+    assert data["status"] == "success"
+    assert "User logged in successfully." in data["message"]
+
+
+# ------------------------------------
+# Testing Changing Password
+# ------------------------------------
+def test_change_pw_missing_fields(client, seeded_users):
+    # Test missing username
+    response = client.post(
+        "/auth/change-pw",
+        json={
+            "username": "",
+            "old_password": "1234",
+            "new_password": "Password123!",
+        },
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Username, old password and new password required." in data["message"]
+
+    # Test missing old password
+    response = client.post(
+        "/auth/change-pw",
+        json={
+            "username": "Alice",
+            "new_password": "Password123!",
+        },
+    )
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Username, old password and new password required." in data["message"]
+
+    # Test missing new password
+    response = client.post(
+        "/auth/change-pw",
+        json={
+            "username": "Alice",
+            "old_password": "Password123!",
+        },
+    )
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Username, old password and new password required." in data["message"]
+
+
+def test_change_pw_username_invalid(client, seeded_users):
+    response = client.post(
+        "/auth/change-pw",
+        json={
+            "username": "helloworld",
+            "old_password": "Password123!",
+            "new_password": "HelloWorld123!@#&",
+        },
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "user does not exist" in data["message"]
+
+
+def test_change_pw_wrong_password(client, seeded_users):
+    response = client.post(
+        "/auth/change-pw",
+        json={
+            "username": "Alice",
+            "old_password": "Password1234!",
+            "new_password": "HelloWorld123!@#&",
+        },
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "password does not match" in data["message"]
+
+
+def test_change_pw_invalid_new_password(client, seeded_users):
+    # Try password too short
+    response = client.post(
+        "/auth/change-pw",
+        json={
+            "username": "Alice",
+            "old_password": "Password123!",
+            "new_password": "Bp1!",
+        },
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Password must be between 10 and 120 characters." in data["message"]
+
+    # Try password missing special character
+    response = client.post(
+        "/auth/change-pw",
+        json={
+            "username": "Alice",
+            "old_password": "Password123!",
+            "new_password": "BestPassword789",
+        },
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Password must contain at least one special character." in data["message"]
+
+    # Try password missing numberic character
+    response = client.post(
+        "/auth/change-pw",
+        json={
+            "username": "Alice",
+            "old_password": "Password123!",
+            "new_password": "BestPassword?!#",
+        },
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Password must contain at least one numeric character." in data["message"]
+
+    # Try password missing uppercase
+    response = client.post(
+        "/auth/change-pw",
+        json={
+            "username": "Alice",
+            "old_password": "Password123!",
+            "new_password": "bestpassword789?!#",
+        },
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Password must contain at least one uppercase character." in data["message"]
+
+    # Try password missing lowercase
+    response = client.post(
+        "/auth/change-pw",
+        json={
+            "username": "Alice",
+            "old_password": "Password123!",
+            "new_password": "BESTPASSWORD789?!#",
+        },
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Password must contain at least one lowercase character." in data["message"]
+
+
+def test_change_pw_valid(client, seeded_users):
+    # Sucessfully change the password
+    response = client.post(
+        "/auth/change-pw",
+        json={
+            "username": "Alice",
+            "old_password": "Password123!",
+            "new_password": "HelloWorld123!@#&",
+        },
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 201
+    assert "password changed successfully" in data["message"]
+
+    # Try logging in with the old password
+    response = client.post(
+        "/auth/login",
+        json={"username": "Alice", "password": "Password123!"},
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 400
+    assert data["status"] == "error"
+    assert "Invalid password or username." in data["message"]
+
+    # Try logging in with the new password
+    response = client.post(
+        "/auth/login",
+        json={"username": "Alice", "password": "HelloWorld123!@#&"},
     )
 
     data = response.get_json()
