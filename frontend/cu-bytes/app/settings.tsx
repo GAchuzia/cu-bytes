@@ -16,7 +16,7 @@ export default function SettingsScreen() {
 
     /*
         Variables and setters used to store a copy of the logged-in user's username and profile settings
-        (Frontend copy updated based on the backend data) 
+        (Frontend copy updated based on the backend data)
     */
     const
         {
@@ -113,7 +113,7 @@ export default function SettingsScreen() {
                             is_vegetarian: isVegetarianGlobal,
                             prefers_halal: prefersHalalGlobal
                         }
-                    ) 
+                    )
                 }
             );
             const data = await res.json();
@@ -139,7 +139,7 @@ export default function SettingsScreen() {
         } finally {
             setLoading(false);
         }
-    
+
     }
 
     /*
@@ -192,7 +192,7 @@ export default function SettingsScreen() {
                     onPressIn={() => setIsBackPressed(true)}
                     onPressOut={() => setIsBackPressed(false)}
                     onPress={() => router.push('/home')}>
-                    
+
                     <Text id="backButtonText"
                         style={styles.headerButtonText}>
 
@@ -213,7 +213,7 @@ export default function SettingsScreen() {
 
                 <Text id="loggedInUser"
                     style={styles.headerUsernameIcon}>
-                    
+
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
@@ -230,7 +230,7 @@ export default function SettingsScreen() {
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
-                    
+
                 </TouchableOpacity>
 
             </View>
@@ -411,8 +411,9 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you consent to having your statistics anonymously collected for
-                    statistics purposes?
+                    Enable <b>comparisons & recommendations</b>. Your food logs are always saved
+                    to your account. If enabled, we will use your data to generate aggregated
+                    trends and to personalize comparisons and recommendations.
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -435,7 +436,7 @@ export default function SettingsScreen() {
 
                 <Text id="settingsButtonText"
                     style={styles.bodyButtonText}>
-                
+
                     Confirm
                 </Text>
 
