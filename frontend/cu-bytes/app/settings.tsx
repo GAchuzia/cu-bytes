@@ -76,6 +76,7 @@ export default function SettingsScreen() {
                 setIsVeganGlobal(data.is_vegan);
                 setIsVegetarianGlobal(data.is_vegetarian);
                 setPrefersHalalGlobal(data.prefers_halal);
+                setShowStatsGlobal(data.show_stats);
 
             } catch (err) {
                 console.error(err);
@@ -111,7 +112,8 @@ export default function SettingsScreen() {
                             has_gluten_allergy: hasGlutenAllergyGlobal,
                             is_vegan: isVeganGlobal,
                             is_vegetarian: isVegetarianGlobal,
-                            prefers_halal: prefersHalalGlobal
+                            prefers_halal: prefersHalalGlobal,
+                            show_stats: showStatsGlobal,
                         }
                     )
                 }
@@ -131,6 +133,7 @@ export default function SettingsScreen() {
             setIsVeganGlobal(data.is_vegan);
             setIsVegetarianGlobal(data.is_vegetarian);
             setPrefersHalalGlobal(data.prefers_halal);
+            setShowStatsGlobal(data.showStatsGlobal);
 
             router.push("/home");
 

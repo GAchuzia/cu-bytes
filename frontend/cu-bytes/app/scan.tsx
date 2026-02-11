@@ -43,10 +43,10 @@ export default function ScanScreen() {
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isUploadPhotoPressed, setIsUploadPhotoPressed] = useState(false);
     const [isScanPressed, setIsScanPressed] = useState(false);
-    
+
     /*
         Variables and setters used to store a copy of the logged-in user's username and profile settings
-        (Frontend copy updated based on the backend data) 
+        (Frontend copy updated based on the backend data)
     */
     const
         {
@@ -65,6 +65,7 @@ export default function ScanScreen() {
             isVegetarianGlobal,
             prefersHalalGlobal,
             setUsernameGlobal,
+            setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
@@ -88,7 +89,7 @@ export default function ScanScreen() {
 
         param(s):
             calories - number : The number of calories of the selected food item, as per the calorie key value
-        
+
         returns : The calories value of the selected food item
     */
     function processFoodItemCalories(calories: number) {
@@ -96,7 +97,7 @@ export default function ScanScreen() {
         if (calories == -1) {
             return "Unknown";
         }
-        else { 
+        else {
             return calories;
         }
     }
@@ -217,7 +218,7 @@ export default function ScanScreen() {
 
             // Launch image picker
             const result = await ImagePicker.launchImageLibraryAsync({
-                
+
                 mediaTypes: ImagePicker.MediaTypeOptions.Images,
                 allowsEditing: true,
                 aspect: [4, 3],
@@ -228,7 +229,7 @@ export default function ScanScreen() {
 
                 setSelectedImage(result.assets[0].uri);
                 // Clear previous prediction
-                setPrediction(null); 
+                setPrediction(null);
             }
         } catch (err) {
             console.error('Error picking image:', err);
@@ -290,6 +291,7 @@ export default function ScanScreen() {
     const logout = () => {
 
         setUsernameGlobal("");
+        setShowStatsGlobal(false)
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
         setHasDairyIntoleranceGlobal(false);
@@ -324,7 +326,7 @@ export default function ScanScreen() {
                     onPressIn={() => setIsBackPressed(true)}
                     onPressOut={() => setIsBackPressed(false)}
                     onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
-                    
+
                     <Text id="backButtonText"
                         style={styles.headerButtonText}>
 
@@ -343,7 +345,7 @@ export default function ScanScreen() {
 
                 <Text id="loggedInUser"
                     style={styles.headerUsernameIcon}>
-                    
+
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
@@ -360,7 +362,7 @@ export default function ScanScreen() {
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
-                    
+
                 </TouchableOpacity>
 
             </View>
@@ -371,8 +373,8 @@ export default function ScanScreen() {
             </Text>
 
             {selectedImage && (
-                <Image 
-                    source={{ uri: selectedImage }} 
+                <Image
+                    source={{ uri: selectedImage }}
                     style={styles.foodImage}
                     resizeMode="contain"
                 />
@@ -428,17 +430,17 @@ export default function ScanScreen() {
 
                         {prediction.confidence >= 75 && prediction.has_wheat === true && hasWheatAllergyGlobal ? "Warning - this item contains wheat \n" : null}
                         {prediction.confidence >= 75 && prediction.has_wheat === null && hasWheatAllergyGlobal ? "Warning - this item may contain wheat \n" : null}
-                    
+
                         {prediction.confidence >= 75 && prediction.is_gluten_free === false && hasGlutenAllergyGlobal ? "Warning - this item contains gluten \n" : null}
                         {prediction.confidence >= 75 && prediction.is_gluten_free === null && hasGlutenAllergyGlobal ? "Warning - this item may contain gluten \n" : null}
-                        
+
                         {prediction.confidence >= 75 && prediction.is_vegan === false && isVeganGlobal ?  "Warning - this item is not vegan \n" : null}
                         {prediction.confidence >= 75 && prediction.is_vegan === null && isVeganGlobal ?  "Warning - this item may not be vegan \n" : null}
-                        
+
                         {prediction.confidence >= 75 && prediction.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian \n" : null}
-                        {prediction.confidence >= 75 && prediction.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian \n" : null}                        
-                        
-                        {prediction.confidence >= 75 && prediction.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal \n" : null}                                                
+                        {prediction.confidence >= 75 && prediction.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian \n" : null}
+
+                        {prediction.confidence >= 75 && prediction.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal \n" : null}
                         {prediction.confidence >= 75 && prediction.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal \n" : null}
                     </Text>
                 </View>
@@ -450,7 +452,7 @@ export default function ScanScreen() {
                         style={[styles.bodyButtonAlt]}
                         onPress={() => {
                             logFoodItemByName(prediction.food_name);
-                            
+
                             setModalVisible(true);
                             setTimeout(() => {
                             setModalVisible(false);
@@ -477,7 +479,7 @@ export default function ScanScreen() {
                         </View>
                     </View>
                 </Modal>
-            )}  
+            )}
 
             <TouchableOpacity id="uploadPhotoButton"
                 style={[styles.bodyButtonDefault,
@@ -502,11 +504,11 @@ export default function ScanScreen() {
                     onPress={scanFood}
                     disabled={loading || !selectedImage}
                 >
-                    {loading ? (<ActivityIndicator color="white"/>) : 
-                        
-                        (<Text id="scanFoodButtonText" 
+                    {loading ? (<ActivityIndicator color="white"/>) :
+
+                        (<Text id="scanFoodButtonText"
                             style={styles.bodyButtonTextDefault}>
-                            
+
                             Scan Food
                         </Text>)
                     }
@@ -525,11 +527,11 @@ export default function ScanScreen() {
                     }}
                     disabled={loading || !selectedImage}
                 >
-                    {loading ? (<ActivityIndicator color="white"/>) : 
-                        
-                        (<Text id="deleteFoodButtonText" 
+                    {loading ? (<ActivityIndicator color="white"/>) :
+
+                        (<Text id="deleteFoodButtonText"
                             style={styles.bodyButtonTextAlt}>
-                            
+
                             Delete Food
                         </Text>)
                     }
@@ -539,4 +541,3 @@ export default function ScanScreen() {
         </View>
     )
 }
-
