@@ -38,7 +38,8 @@ def get_trending_recommendations_json(username, items):
     try:
         # Grab the logs from other users with stats enabled
         users_to_aggregate = get_stats_enabled_users()
-        users_to_aggregate.remove(username)
+        if username in users_to_aggregate:
+            users_to_aggregate.remove(username)
         logs = query_logs(days=7, include_list=users_to_aggregate)
 
         # Create a frequency table for most frequent foods
