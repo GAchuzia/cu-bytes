@@ -26,12 +26,13 @@ export default function RegisterScreen() {
     );
 
     /*
-        Variables and setters used to store a copy of the logged-in user's username and profile settings 
+        Variables and setters used to store a copy of the logged-in user's username and profile settings
     */
     const
         {
             usernameGlobal,
             setUsernameGlobal,
+            setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
@@ -88,7 +89,8 @@ export default function RegisterScreen() {
             // (For reference, see backend/models/users_profile.py)
             else {
                 setUsernameGlobal(name);
-                setHasEggAllergyGlobal(false),
+                setShowStatsGlobal(false);
+                setHasEggAllergyGlobal(false);
                 setHasFishOrShellfishAllergyGlobal(false);
                 setHasDairyIntoleranceGlobal(false);
                 setHasMilkAllergyGlobal(false);
@@ -104,7 +106,7 @@ export default function RegisterScreen() {
 
                 router.push("/home");
             }
-        
+
         } catch (err) {
             console.error(err);
         } finally {
@@ -118,6 +120,7 @@ export default function RegisterScreen() {
     const logout = () => {
 
         setUsernameGlobal("");
+        setShowStatsGlobal(false);
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
         setHasDairyIntoleranceGlobal(false);
@@ -145,7 +148,7 @@ export default function RegisterScreen() {
 
             <View
                 style={styles.statusbar}>
-                
+
                 <TouchableOpacity id="backButton"
                     style={[styles.headerButton,
                         { backgroundColor: isBackPressed ? '#666666' : '#131312' }
@@ -156,7 +159,7 @@ export default function RegisterScreen() {
 
                     <Text id="backButtonText"
                         style={styles.headerButtonText}>
-                        
+
                         Back
                     </Text>
 
@@ -166,7 +169,7 @@ export default function RegisterScreen() {
 
                 <Text id="createAccountTitle"
                     style={styles.headerTitle}>
-                
+
                     New Account
                 </Text>
 
@@ -202,7 +205,7 @@ export default function RegisterScreen() {
 
             <Text id="usernameReqsTitle"
                 style={styles.usernameReqTitle}>
-                
+
                 Username Requirements
             </Text>
 
@@ -211,13 +214,13 @@ export default function RegisterScreen() {
 
                 Must be unique and not shared by any other user account
             </Text>
-            
+
             <Text id="usernameLengthReq"
                 style={styles.usernameReqInfoText}>
 
                 Must be between 1 and 80 characters long
             </Text>
-            
+
             <Text id="usernameCharReq"
                 style={styles.usernameReqInfoText}>
 
@@ -226,13 +229,13 @@ export default function RegisterScreen() {
 
             <Text id="passwordReqsTitle"
                 style={styles.passwordReqTitle}>
-                
+
                 Password Requirements
             </Text>
 
             <Text id="passwordLengthReq"
                 style={styles.passwordReqInfoText}>
-                    
+
                 Must be between 10 and 120 characters long
             </Text>
 
@@ -246,7 +249,7 @@ export default function RegisterScreen() {
                 style={styles.errorInfoText}>
 
                 {visible ? error.message : 'To create a new CU-Bytes account, enter a valid username and valid password below' }
-            </Text> 
+            </Text>
 
             {/* Enter the username that corresponds to the new account that the user wants to create */}
             <TextInput id="createAccountUsernameTextInput"
@@ -287,7 +290,7 @@ export default function RegisterScreen() {
 
                 <Text id="createAccountButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Create Account
                 </Text>
 

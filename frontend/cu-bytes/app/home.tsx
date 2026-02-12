@@ -19,12 +19,13 @@ export default function HomeScreen() {
     const [isSettingsPressed, setIsSettingsPressed] = useState(false);
 
     /*
-        Variables used to store a copy of the logged-in user's username and profile settings 
+        Variables used to store a copy of the logged-in user's username and profile settings
     */
     const
         {
             usernameGlobal,
             setUsernameGlobal,
+            setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
@@ -47,6 +48,7 @@ export default function HomeScreen() {
     const logout = () => {
 
         setUsernameGlobal("");
+        setShowStatsGlobal(false);
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
         setHasDairyIntoleranceGlobal(false);
@@ -76,12 +78,12 @@ export default function HomeScreen() {
                 style={styles.statusbar}>
 
                 <View style={styles.headerContainer}></View>
-                
+
                 <View style={styles.headerContainer}></View>
 
                 <Text id="homeTitle"
                     style={styles.headerTitle}>
-                
+
                     Home
                 </Text>
 
@@ -104,9 +106,9 @@ export default function HomeScreen() {
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
-                    
+
                 </TouchableOpacity>
-                
+
             </View>
 
             <Text id="homeInfo"
@@ -127,7 +129,7 @@ export default function HomeScreen() {
 
                 <Text id="scanFoodItemButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Scan Food Item
                 </Text>
             </TouchableOpacity>
@@ -143,7 +145,7 @@ export default function HomeScreen() {
             >
                 <Text id="browseFoodItemsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Browse Food Items
                 </Text>
             </TouchableOpacity>
@@ -159,7 +161,7 @@ export default function HomeScreen() {
             >
                 <Text id="browseDiningLocationsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Browse Dining Locations
                 </Text>
             </TouchableOpacity>
@@ -177,7 +179,7 @@ export default function HomeScreen() {
             >
                 <Text id="viewSavedFoodItemsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     View Saved Food Items
                 </Text>
             </TouchableOpacity>
@@ -192,9 +194,9 @@ export default function HomeScreen() {
                 onPress={() => router.push("/goals")}
                 disabled={ usernameGlobal == '' ? true : false }
             >
-                <Text id="goalsButtonText" 
+                <Text id="goalsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Goals
                 </Text>
             </TouchableOpacity>
@@ -209,9 +211,9 @@ export default function HomeScreen() {
                 onPress={() => router.push("/settings")}
                 disabled={ usernameGlobal == '' ? true : false }
             >
-                <Text id="settingsButtonText" 
+                <Text id="settingsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Settings
                 </Text>
             </TouchableOpacity>

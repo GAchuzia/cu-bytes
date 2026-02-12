@@ -28,12 +28,13 @@ export default function LoginScreen() {
     );
 
     /*
-        Variables and setters used to store a copy of the logged-in user's username and profile settings 
+        Variables and setters used to store a copy of the logged-in user's username and profile settings
     */
-    const 
-        { 
+    const
+        {
             usernameGlobal,
             setUsernameGlobal,
+            setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
@@ -47,9 +48,9 @@ export default function LoginScreen() {
             setIsVeganGlobal,
             setIsVegetarianGlobal,
             setPrefersHalalGlobal
-        
+
         } = useUser();
-    
+
     /*
         Variable and setter for storing and modifying the username entered by the user
     */
@@ -89,7 +90,7 @@ export default function LoginScreen() {
                 setUsernameGlobal(name);
                 router.push("/home");
             }
-        
+
         } catch (err) {
             console.error(err);
         } finally {
@@ -103,6 +104,7 @@ export default function LoginScreen() {
     const logout = () => {
 
         setUsernameGlobal("");
+        setShowStatsGlobal(false);
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
         setHasDairyIntoleranceGlobal(false);
@@ -123,7 +125,7 @@ export default function LoginScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar 
+            <StatusBar
                 style="auto"
                 hidden={true}
             />
@@ -135,7 +137,7 @@ export default function LoginScreen() {
                     style={[styles.headerButton,
                         { backgroundColor: isBackPressed ? '#666666' : '#131312' }
                     ]}
-                    
+
                     onPressIn={ () => setIsBackPressed(true) }
                     onPressOut={ () => setIsBackPressed(false) }
                     onPress={() => router.push('/')}>
@@ -152,7 +154,7 @@ export default function LoginScreen() {
 
                 <Text id="loginTitle"
                     style={styles.headerTitle}>
-                    
+
                     Login
                 </Text>
 
@@ -175,7 +177,7 @@ export default function LoginScreen() {
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
-                    
+
                 </TouchableOpacity>
 
             </View>
@@ -224,7 +226,7 @@ export default function LoginScreen() {
                 style={[styles.bodyButton,
                     { backgroundColor: isLoginPressed ? '#666666' : '#131312' }
                 ]}
-                
+
                 onPressIn={() => setIsLoginPressed(true)}
                 onPressOut={() => setIsLoginPressed(false)}
                 onPress={() => {
@@ -233,7 +235,7 @@ export default function LoginScreen() {
 
                 <Text id="loginButtonText"
                     style={styles.bodyButtonText}>
-                        
+
                         Login
                 </Text>
 
@@ -248,10 +250,10 @@ export default function LoginScreen() {
                 onPressIn={() => setIsCreateAccountPressed(true)}
                 onPressOut={() => setIsCreateAccountPressed(false)}
                 onPress={() => router.push("/register")}>
-                
+
                 <Text id="createAccountButtonText"
                     style={styles.bodyButtonTextAlt}>
-                        
+
                         Create Account
                 </Text>
 
