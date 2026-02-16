@@ -189,9 +189,9 @@ export default function EntriesScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => {
-
-        setUsernameGlobal("");
+    const logout = () => { 
+        
+        setUsernameGlobal('');
         setShowStatsGlobal(false);
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);

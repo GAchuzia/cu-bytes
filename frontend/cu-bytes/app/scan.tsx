@@ -51,7 +51,6 @@ export default function ScanScreen() {
     const
         {
             usernameGlobal,
-            showStatsGlobal,
             hasEggAllergyGlobal,
             hasFishOrShellfishAllergyGlobal,
             hasDairyIntoleranceGlobal,
@@ -289,10 +288,10 @@ export default function ScanScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => {
-
-        setUsernameGlobal("");
-        setShowStatsGlobal(false)
+    const logout = () => { 
+        
+        setUsernameGlobal('');
+        setShowStatsGlobal(false);
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
         setHasDairyIntoleranceGlobal(false);

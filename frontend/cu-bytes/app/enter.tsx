@@ -22,7 +22,6 @@ export default function EnterScreen() {
     const 
         {
             usernameGlobal,
-            showStatsGlobal,
             hasEggAllergyGlobal,
             hasFishOrShellfishAllergyGlobal,
             hasDairyIntoleranceGlobal,
@@ -333,9 +332,9 @@ export default function EnterScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => {
-
-        setUsernameGlobal("");
+    const logout = () => { 
+        
+        setUsernameGlobal('');
         setShowStatsGlobal(false);
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
@@ -509,7 +508,7 @@ export default function EnterScreen() {
                     {'\n'}
                     Sugar: {processFoodItemSugar(foodItem.sugar_g)} grams
                     {'\n'}
- 
+
                     {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
                     {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs \n" : null}
 
