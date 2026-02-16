@@ -112,9 +112,9 @@ def get_random_recommendations_json(username, items):
         # Create a set to track consumed food items
         consumed_food_ids = set()
         for log in logs:
-            food_id = FoodItem.query.filter_by(food_name=log.food_name).first()
-            if food_id is not None:
-                consumed_food_ids.add(food_id)
+            food_item = FoodItem.query.filter_by(food_name=log.food_name).first()
+            if food_item is not None:
+                consumed_food_ids.add(food_item.id)
 
         # Get all food item ids
         all_items = FoodItem.query.all()
