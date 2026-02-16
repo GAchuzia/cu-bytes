@@ -672,3 +672,46 @@ The following endpoint should be used when food_name is determined through machi
     400 Bad Request - Invalid username or query parameters
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
+
+    """
+    GET /recommend/random/{username}
+
+    Description:
+    Retrieves random (default=3) food items from the database that
+    the user has not yet tried.
+
+    In the unlikely case that there are not enough untried items
+    the endpoint will recommend items that the user has already consumed
+    to make up the difference.
+
+    Query Parameters:
+    - items (optional, default=3): Number of fooditems to return
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved recommended food items
+        Response Body (JSON):
+        {
+            "food_items": [
+                {
+                "dining_location": "Starbucks",
+                "id": 241,
+                "name": "Cookies & Cream Cake Pop"
+                },
+                {
+                "dining_location": "Bento Boxes",
+                "id": 594,
+                "name": "Tempura Shrimp Poke Bowl"
+                },
+                {
+                "dining_location": "Bridgehead",
+                "id": 77,
+                "name": "Bacon, Egg & Cheese Bagel"
+                }
+            ]
+        }
+    400 Bad Request - Invalid username or query parameters
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """

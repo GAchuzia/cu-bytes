@@ -5,6 +5,7 @@ from flask import jsonify
 
 # Project imports
 from backend.models.food_item import FoodItem, get_dining_location_name
+from backend.models.food_logging import FoodLogging
 from backend.models.users_auth import UsersAuth
 from backend.services.statistics_service import (
     get_stats_enabled_users,
@@ -84,6 +85,87 @@ def get_trending_recommendations_json(username, items):
     except Exception as e:
         print(f"RecommendationsService: Error retrieving trending recommendations: {e}")
         return jsonify({"error": "Failed to retrieve trending recommendations"}), 500
+
+
+def get_random_recommendations_json(username, items):
+    # Validate user
+    currentUser = UsersAuth.get_user_by_name(username)
+    if currentUser is None:
+        print(f"RecommendationsService: No matching username for {username}")
+        return (
+            jsonify({"status": "error", "message": "No matching username found"}),
+            400,
+        )
+
+    # Validate items
+    if items < 1:
+        print("RecommendationsService: Invalid number of items requested")
+        return (
+            jsonify({"status": "error", "message": "Items must be positive"}),
+            400,
+        )
+
+    try:
+        # Grab the logs from the user
+        logs = FoodLogging.query.filter_by(username=username).all()
+
+        # Create a set to track consumed food items
+        consumed_food_ids = set()
+        for log in logs:
+            food_id = FoodItem.query.filter_by(food_name=log.food_name).first()
+            if food_id is not None:
+                consumed_food_ids.add(food_id)
+
+        # Get all food item ids
+        all_items = FoodItem.query.all()
+        all_food_ids = {item.id for item in all_items}
+
+        # Ensure that the user is not trying to request more items than items available
+        if items > len(all_food_ids):
+            print(
+                "RecommendationsService: Invalid number of items requested",
+                f"(exceeded {len(all_food_ids)})",
+            )
+            return (
+                jsonify({"status": "error", "message": "Not enough items in database"}),
+                400,
+            )
+
+        # Calculate difference between two sets
+        difference = list(all_food_ids.difference(consumed_food_ids))
+
+        food_ids_to_return = []
+        items_added = 0
+
+        # Add items untried by the user
+        while items_added < items and len(difference) != 0:
+            rand_index = random.randint(0, len(difference) - 1)
+            food_ids_to_return.append(difference.pop(rand_index))
+            items_added += 1
+
+        # Fill in any remaining room with some already consumed items
+        while items_added < items:
+            food_ids_to_return.append(consumed_food_ids.pop())
+            items_added += 1
+
+        food_list = []
+        for food_id in food_ids_to_return:
+            food_item = FoodItem.get_by_id(food_id)
+            food_list.append(
+                {
+                    "id": food_id,
+                    "name": food_item.food_name,
+                    "dining_location": get_dining_location_name(
+                        food_item.dining_location
+                    ),
+                }
+            )
+
+        return jsonify({"food_items": food_list}), 200
+
+    except Exception as e:
+        print(f"RecommendationsService: Error retrieving random recommendations: {e}")
+        return jsonify({"error": "Failed to retrieve random recommendations"}), 500
 
 
 # Helper functions
