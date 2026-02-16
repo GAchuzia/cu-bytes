@@ -333,26 +333,7 @@ export default function EnterScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => {
-
-        setUsernameGlobal("");
-        setShowStatsGlobal(false);
-        setHasEggAllergyGlobal(false);
-        setHasFishOrShellfishAllergyGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
-        setHasMilkAllergyGlobal(false);
-        setHasPeanutAllergyGlobal(false);
-        setHasSesameAllergyGlobal(false);
-        setHasSoyAllergyGlobal(false);
-        setHasTreenutAllergyGlobal(false);
-        setHasWheatAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
-        setIsVeganGlobal(false);
-        setIsVegetarianGlobal(false);
-        setPrefersHalalGlobal(false);
-
-        router.push('/');
-    }
+    const logout = () => { router.push('/'); }
 
     /*
         Display the loading symbol while food items are being retrieved or logged
@@ -509,7 +490,7 @@ export default function EnterScreen() {
                     {'\n'}
                     Sugar: {processFoodItemSugar(foodItem.sugar_g)} grams
                     {'\n'}
- 
+
                     {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
                     {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs \n" : null}
 

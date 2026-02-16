@@ -70,6 +70,7 @@ export default function LoginScreen() {
             const data = await res.json();
 
             // Update the copy of the logged-in user's username and profile settings using the retrieved data
+            setShowStatsGlobal(data.show_stats);
             setHasEggAllergyGlobal(data.has_egg_allergy);
             setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
             setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
@@ -83,7 +84,6 @@ export default function LoginScreen() {
             setIsVeganGlobal(data.is_vegan);
             setIsVegetarianGlobal(data.is_vegetarian);
             setPrefersHalalGlobal(data.prefers_halal);
-            setShowStatsGlobal(data.show_stats);
 
         } catch (err) {
             console.error(err);
@@ -134,26 +134,7 @@ export default function LoginScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => {
-
-        setUsernameGlobal("");
-        setShowStatsGlobal(false);
-        setHasEggAllergyGlobal(false);
-        setHasFishOrShellfishAllergyGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
-        setHasMilkAllergyGlobal(false);
-        setHasPeanutAllergyGlobal(false);
-        setHasSesameAllergyGlobal(false);
-        setHasSoyAllergyGlobal(false);
-        setHasTreenutAllergyGlobal(false);
-        setHasWheatAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
-        setIsVeganGlobal(false);
-        setIsVegetarianGlobal(false);
-        setPrefersHalalGlobal(false);
-
-        router.push('/');
-    }
+    const logout = () => { router.push('/'); }
 
     return (
 

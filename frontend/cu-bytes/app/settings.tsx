@@ -164,26 +164,7 @@ export default function SettingsScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => {
-
-        setUsernameGlobal("");
-        setShowStatsGlobal(false);
-        setHasEggAllergyGlobal(false);
-        setHasFishOrShellfishAllergyGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
-        setHasMilkAllergyGlobal(false);
-        setHasPeanutAllergyGlobal(false);
-        setHasSesameAllergyGlobal(false);
-        setHasSoyAllergyGlobal(false);
-        setHasTreenutAllergyGlobal(false);
-        setHasWheatAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
-        setIsVeganGlobal(false);
-        setIsVegetarianGlobal(false);
-        setPrefersHalalGlobal(false);
-
-        router.push('/');
-    }
+    const logout = () => { router.push('/'); }
 
     // Display loading symbol while the profiles are being fetched
     if (loading) {

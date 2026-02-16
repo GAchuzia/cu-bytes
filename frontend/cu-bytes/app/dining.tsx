@@ -394,26 +394,7 @@ export default function DiningScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => {
-
-        setUsernameGlobal("");
-        setShowStatsGlobal(false);
-        setHasEggAllergyGlobal(false);
-        setHasFishOrShellfishAllergyGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
-        setHasMilkAllergyGlobal(false);
-        setHasPeanutAllergyGlobal(false);
-        setHasSesameAllergyGlobal(false);
-        setHasSoyAllergyGlobal(false);
-        setHasTreenutAllergyGlobal(false);
-        setHasWheatAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
-        setIsVeganGlobal(false);
-        setIsVegetarianGlobal(false);
-        setPrefersHalalGlobal(false);
-
-        router.push('/');
-    }
+    const logout = () => { router.push('/'); }
 
     /*
         Display the loading symbol while dining locations are being retrieved or logged
@@ -593,44 +574,44 @@ export default function DiningScreen() {
                     Sugar: {processFoodItemSugar(foodItem.sugar_g)} grams
                     {'\n'}
 
-                    {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs" : null}
-                    {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs" : null}
+                    {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
+                    {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs \n" : null}
 
                     {foodItem.has_fish_or_shellfish === true && hasFishOrShellfishAllergyGlobal ? "Warning - this item contains fish or shellfish \n" : null}
                     {foodItem.has_fish_or_shellfish === null && hasFishOrShellfishAllergyGlobal ? "Warning - this item may contain fish or shellfish \n" : null}
 
-                    {foodItem.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Warning - this item contains dairy" : null}
-                    {foodItem.is_dairy_free === null && hasDairyIntoleranceGlobal ? "Warning - this item may contain dairy" : null}
+                    {foodItem.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Warning - this item contains dairy \n" : null}
+                    {foodItem.is_dairy_free === null && hasDairyIntoleranceGlobal ? "Warning - this item may contain dairy \n" : null}
 
-                    {foodItem.has_milk === true && hasMilkAllergyGlobal ? "Warning - this item contains milk" : null}
-                    {foodItem.has_milk === null && hasMilkAllergyGlobal ? "Warning - this item may contain milk" : null}
+                    {foodItem.has_milk === true && hasMilkAllergyGlobal ? "Warning - this item contains milk \n" : null}
+                    {foodItem.has_milk === null && hasMilkAllergyGlobal ? "Warning - this item may contain milk \n" : null}
 
-                    {foodItem.has_peanuts === true && hasPeanutAllergyGlobal ? "Warning - this item contains peanuts" : null}
-                    {foodItem.has_peanuts === null && hasPeanutAllergyGlobal ? "Warning - this item may contain peanuts" : null}
+                    {foodItem.has_peanuts === true && hasPeanutAllergyGlobal ? "Warning - this item contains peanuts \n" : null}
+                    {foodItem.has_peanuts === null && hasPeanutAllergyGlobal ? "Warning - this item may contain peanuts \n" : null}
 
-                    {foodItem.has_sesame === true && hasSesameAllergyGlobal ? "Warning - this item contains sesame" : null}
-                    {foodItem.has_sesame === null && hasSesameAllergyGlobal ? "Warning - this item may contain sesame" : null}
+                    {foodItem.has_sesame === true && hasSesameAllergyGlobal ? "Warning - this item contains sesame \n" : null}
+                    {foodItem.has_sesame === null && hasSesameAllergyGlobal ? "Warning - this item may contain sesame \n" : null}
 
-                    {foodItem.has_soy === true && hasSoyAllergyGlobal ? "Warning - this item contains soy" : null}
-                    {foodItem.has_soy === null && hasSoyAllergyGlobal ? "Warning - this item may contain soy" : null}
+                    {foodItem.has_soy === true && hasSoyAllergyGlobal ? "Warning - this item contains soy \n" : null}
+                    {foodItem.has_soy === null && hasSoyAllergyGlobal ? "Warning - this item may contain soy \n" : null}
 
-                    {foodItem.has_treenuts === true && hasTreenutAllergyGlobal ? "Warning - this item contains treenuts" : null}
-                    {foodItem.has_treenuts === null && hasTreenutAllergyGlobal ? "Warning - this item may contain treenuts" : null}
+                    {foodItem.has_treenuts === true && hasTreenutAllergyGlobal ? "Warning - this item contains treenuts \n" : null}
+                    {foodItem.has_treenuts === null && hasTreenutAllergyGlobal ? "Warning - this item may contain treenuts \n" : null}
 
-                    {foodItem.has_wheat === true && hasWheatAllergyGlobal ? "Warning - this item contains wheat" : null}
-                    {foodItem.has_wheat === null && hasWheatAllergyGlobal ? "Warning - this item may contain wheat" : null}
+                    {foodItem.has_wheat === true && hasWheatAllergyGlobal ? "Warning - this item contains wheat \n" : null}
+                    {foodItem.has_wheat === null && hasWheatAllergyGlobal ? "Warning - this item may contain wheat \n" : null}
 
-                    {foodItem.is_gluten_free === false && hasGlutenAllergyGlobal ? "Warning - this item contains gluten" : null}
-                    {foodItem.is_gluten_free === null && hasGlutenAllergyGlobal ? "Warning - this item may contain gluten" : null}
+                    {foodItem.is_gluten_free === false && hasGlutenAllergyGlobal ? "Warning - this item contains gluten \n" : null}
+                    {foodItem.is_gluten_free === null && hasGlutenAllergyGlobal ? "Warning - this item may contain gluten \n" : null}
 
-                    {foodItem.is_vegan === false && isVeganGlobal ?  "Warning - this item is not vegan" : null}
-                    {foodItem.is_vegan === null && isVeganGlobal ?  "Warning - this item may not be vegan" : null}
+                    {foodItem.is_vegan === false && isVeganGlobal ?  "Warning - this item is not vegan \n" : null}
+                    {foodItem.is_vegan === null && isVeganGlobal ?  "Warning - this item may not be vegan \n" : null}
 
-                    {foodItem.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian" : null}
-                    {foodItem.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian" : null}
+                    {foodItem.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian \n" : null}
+                    {foodItem.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian \n" : null}
 
-                    {foodItem.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal" : null}
-                    {foodItem.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal" : null}
+                    {foodItem.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal \n" : null}
+                    {foodItem.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal \n" : null}
                 </Text>
             )}
 
