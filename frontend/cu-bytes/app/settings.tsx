@@ -13,6 +13,22 @@ export default function SettingsScreen() {
     const [isBackPressed, setIsBackPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isConfirmPressed, setIsConfirmPressed] = useState(false);
+    
+    const [showStats, setShowStats] = useState(false);
+    const [hasEggAllergy, setHasEggAllergy] = useState(false);
+    const [hasFishOrShellfishAllergy, setHasFishOrShellfishAllergy] = useState(false);
+    const [hasDairyIntolerance, setHasDairyIntolerance] = useState(false);
+    const [hasMilkAllergy, setHasMilkAllergy] = useState(false);
+    const [hasPeanutAllergy, setHasPeanutAllergy] = useState(false);
+    const [hasSesameAllergy, setHasSesameAllergy] = useState(false);
+    const [hasSoyAllergy, setHasSoyAllergy] = useState(false);
+    const [hasTreenutAllergy, setHasTreenutAllergy] = useState(false);
+    const [hasWheatAllergy, setHasWheatAllergy] = useState(false);
+    const [hasGlutenAllergy, setHasGlutenAllergy] = useState(false);
+    const [isVegan, setIsVegan] = useState(false);
+    const [isVegetarian, setIsVegetarian] = useState(false);
+    const [prefersHalal, setPrefersHalal] = useState(false);
+
 
     /*
         Variables and setters used to store a copy of the logged-in user's username and profile settings
@@ -21,20 +37,6 @@ export default function SettingsScreen() {
     const
         {
             usernameGlobal,
-            showStatsGlobal,
-            hasEggAllergyGlobal,
-            hasFishOrShellfishAllergyGlobal,
-            hasDairyIntoleranceGlobal,
-            hasMilkAllergyGlobal,
-            hasPeanutAllergyGlobal,
-            hasSesameAllergyGlobal,
-            hasSoyAllergyGlobal,
-            hasTreenutAllergyGlobal,
-            hasWheatAllergyGlobal,
-            hasGlutenAllergyGlobal,
-            isVeganGlobal,
-            isVegetarianGlobal,
-            prefersHalalGlobal,
             setUsernameGlobal,
             setShowStatsGlobal,
             setHasEggAllergyGlobal,
@@ -63,6 +65,7 @@ export default function SettingsScreen() {
                 const data = await res.json();
 
                 // Update the copy of the logged-in user's username and profile settings using the retrieved data
+                setShowStatsGlobal(data.show_stats);
                 setHasEggAllergyGlobal(data.has_egg_allergy);
                 setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
                 setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
@@ -76,7 +79,21 @@ export default function SettingsScreen() {
                 setIsVeganGlobal(data.is_vegan);
                 setIsVegetarianGlobal(data.is_vegetarian);
                 setPrefersHalalGlobal(data.prefers_halal);
-                setShowStatsGlobal(data.show_stats);
+                
+                setShowStats(data.show_stats);
+                setHasEggAllergy(data.has_egg_allergy);
+                setHasFishOrShellfishAllergy(data.has_fish_or_shellfish_allergy);
+                setHasDairyIntolerance(data.has_dairy_intolerance);
+                setHasMilkAllergy(data.has_milk_allergy);
+                setHasPeanutAllergy(data.has_peanut_allergy);
+                setHasSesameAllergy(data.has_sesame_allergy);
+                setHasSoyAllergy(data.has_soy_allergy);
+                setHasTreenutAllergy(data.has_treenut_allergy);
+                setHasWheatAllergy(data.has_wheat_allergy);
+                setHasGlutenAllergy(data.has_gluten_allergy);
+                setIsVegan(data.is_vegan);
+                setIsVegetarian(data.is_vegetarian);
+                setPrefersHalal(data.prefers_halal);
 
             } catch (err) {
                 console.error(err);
@@ -100,40 +117,39 @@ export default function SettingsScreen() {
                     body: JSON.stringify(
                         {
                             username: usernameGlobal,
-                            has_egg_allergy: hasEggAllergyGlobal,
-                            has_fish_or_shellfish_allergy: hasFishOrShellfishAllergyGlobal,
-                            has_dairy_intolerance: hasDairyIntoleranceGlobal,
-                            has_milk_allergy: hasMilkAllergyGlobal,
-                            has_peanut_allergy: hasPeanutAllergyGlobal,
-                            has_sesame_allergy: hasSesameAllergyGlobal,
-                            has_soy_allergy: hasSoyAllergyGlobal,
-                            has_treenut_allergy: hasTreenutAllergyGlobal,
-                            has_wheat_allergy: hasWheatAllergyGlobal,
-                            has_gluten_allergy: hasGlutenAllergyGlobal,
-                            is_vegan: isVeganGlobal,
-                            is_vegetarian: isVegetarianGlobal,
-                            prefers_halal: prefersHalalGlobal,
-                            show_stats: showStatsGlobal,
+                            has_egg_allergy: hasEggAllergy,
+                            has_fish_or_shellfish_allergy: hasFishOrShellfishAllergy,
+                            has_dairy_intolerance: hasDairyIntolerance,
+                            has_milk_allergy: hasMilkAllergy,
+                            has_peanut_allergy: hasPeanutAllergy,
+                            has_sesame_allergy: hasSesameAllergy,
+                            has_soy_allergy: hasSoyAllergy,
+                            has_treenut_allergy: hasTreenutAllergy,
+                            has_wheat_allergy: hasWheatAllergy,
+                            has_gluten_allergy: hasGlutenAllergy,
+                            is_vegan: isVegan,
+                            is_vegetarian: isVegetarian,
+                            prefers_halal: prefersHalal,
+                            show_stats: showStats,
                         }
                     )
                 }
             );
-            const data = await res.json();
 
-            setHasEggAllergyGlobal(data.has_egg_allergy),
-            setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
-            setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
-            setHasMilkAllergyGlobal(data.has_milk_allergy);
-            setHasPeanutAllergyGlobal(data.has_peanut_allergy);
-            setHasSesameAllergyGlobal(data.has_sesame_allergy);
-            setHasSoyAllergyGlobal(data.has_soy_allergy);
-            setHasTreenutAllergyGlobal(data.has_treenut_allergy);
-            setHasWheatAllergyGlobal(data.has_wheat_allergy);
-            setHasGlutenAllergyGlobal(data.has_gluten_allergy);
-            setIsVeganGlobal(data.is_vegan);
-            setIsVegetarianGlobal(data.is_vegetarian);
-            setPrefersHalalGlobal(data.prefers_halal);
-            setShowStatsGlobal(data.showStatsGlobal);
+            setShowStatsGlobal(showStats);
+            setHasEggAllergyGlobal(hasEggAllergy),
+            setHasFishOrShellfishAllergyGlobal(hasFishOrShellfishAllergy);
+            setHasDairyIntoleranceGlobal(hasDairyIntolerance);
+            setHasMilkAllergyGlobal(hasMilkAllergy);
+            setHasPeanutAllergyGlobal(hasPeanutAllergy);
+            setHasSesameAllergyGlobal(hasSesameAllergy);
+            setHasSoyAllergyGlobal(hasSoyAllergy);
+            setHasTreenutAllergyGlobal(hasTreenutAllergy);
+            setHasWheatAllergyGlobal(hasWheatAllergy);
+            setHasGlutenAllergyGlobal(hasGlutenAllergy);
+            setIsVeganGlobal(isVegan);
+            setIsVegetarianGlobal(isVegetarian);
+            setPrefersHalalGlobal(prefersHalal);
 
             router.push("/home");
 
@@ -148,9 +164,9 @@ export default function SettingsScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => {
-
-        setUsernameGlobal("");
+    const logout = () => { 
+        
+        setUsernameGlobal('');
         setShowStatsGlobal(false);
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
@@ -212,8 +228,6 @@ export default function SettingsScreen() {
                     Settings
                 </Text>
 
-                <View style={styles.headerContainer}></View>
-
                 <Text id="loggedInUser"
                     style={styles.headerUsernameIcon}>
 
@@ -250,8 +264,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasDairyIntoleranceGlobal}
-                        onValueChange={setHasDairyIntoleranceGlobal}
+                        value={hasDairyIntolerance}
+                        onValueChange={setHasDairyIntolerance}
                     />
                 </View>
             </View>
@@ -263,8 +277,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasEggAllergyGlobal}
-                        onValueChange={setHasEggAllergyGlobal}
+                        value={hasEggAllergy}
+                        onValueChange={setHasEggAllergy}
                     />
                 </View>
             </View>
@@ -276,8 +290,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasFishOrShellfishAllergyGlobal}
-                        onValueChange={setHasFishOrShellfishAllergyGlobal}
+                        value={hasFishOrShellfishAllergy}
+                        onValueChange={setHasFishOrShellfishAllergy}
                     />
                 </View>
             </View>
@@ -289,8 +303,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasGlutenAllergyGlobal}
-                        onValueChange={setHasGlutenAllergyGlobal}
+                        value={hasGlutenAllergy}
+                        onValueChange={setHasGlutenAllergy}
                     />
                 </View>
             </View>
@@ -302,8 +316,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasMilkAllergyGlobal}
-                        onValueChange={setHasMilkAllergyGlobal}
+                        value={hasMilkAllergy}
+                        onValueChange={setHasMilkAllergy}
                     />
                 </View>
             </View>
@@ -315,8 +329,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasPeanutAllergyGlobal}
-                        onValueChange={setHasPeanutAllergyGlobal}
+                        value={hasPeanutAllergy}
+                        onValueChange={setHasPeanutAllergy}
                     />
                 </View>
             </View>
@@ -328,8 +342,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasSesameAllergyGlobal}
-                        onValueChange={setHasSesameAllergyGlobal}
+                        value={hasSesameAllergy}
+                        onValueChange={setHasSesameAllergy}
                     />
                 </View>
             </View>
@@ -341,8 +355,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasSoyAllergyGlobal}
-                        onValueChange={setHasSoyAllergyGlobal}
+                        value={hasSoyAllergy}
+                        onValueChange={setHasSoyAllergy}
                     />
                 </View>
             </View>
@@ -354,8 +368,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasTreenutAllergyGlobal}
-                        onValueChange={setHasTreenutAllergyGlobal}
+                        value={hasTreenutAllergy}
+                        onValueChange={setHasTreenutAllergy}
                     />
                 </View>
             </View>
@@ -367,8 +381,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={hasWheatAllergyGlobal}
-                        onValueChange={setHasWheatAllergyGlobal}
+                        value={hasWheatAllergy}
+                        onValueChange={setHasWheatAllergy}
                     />
                 </View>
             </View>
@@ -380,8 +394,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={isVeganGlobal}
-                        onValueChange={setIsVeganGlobal}
+                        value={isVegan}
+                        onValueChange={setIsVegan}
                     />
                 </View>
             </View>
@@ -393,8 +407,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={isVegetarianGlobal}
-                        onValueChange={setIsVegetarianGlobal}
+                        value={isVegetarian}
+                        onValueChange={setIsVegetarian}
                     />
                 </View>
             </View>
@@ -406,8 +420,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={prefersHalalGlobal}
-                        onValueChange={setPrefersHalalGlobal}
+                        value={prefersHalal}
+                        onValueChange={setPrefersHalal}
                     />
                 </View>
             </View>
@@ -421,8 +435,8 @@ export default function SettingsScreen() {
                 <View style={styles.switchContainer}>
                     <Switch
                         style={styles.switch}
-                        value={showStatsGlobal}
-                        onValueChange={setShowStatsGlobal}
+                        value={showStats}
+                        onValueChange={setShowStats}
                     />
                 </View>
             </View>
