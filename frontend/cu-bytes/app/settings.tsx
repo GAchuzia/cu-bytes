@@ -11,11 +11,12 @@ export default function SettingsScreen() {
 
     const [loading, setLoading] = useState(true);
     const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isConfirmPressed, setIsConfirmPressed] = useState(false);
 
     /*
         Variables and setters used to store a copy of the logged-in user's username and profile settings
-        (Frontend copy updated based on the backend data) 
+        (Frontend copy updated based on the backend data)
     */
     const
         {
@@ -34,6 +35,7 @@ export default function SettingsScreen() {
             isVeganGlobal,
             isVegetarianGlobal,
             prefersHalalGlobal,
+            setUsernameGlobal,
             setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
@@ -74,6 +76,7 @@ export default function SettingsScreen() {
                 setIsVeganGlobal(data.is_vegan);
                 setIsVegetarianGlobal(data.is_vegetarian);
                 setPrefersHalalGlobal(data.prefers_halal);
+                setShowStatsGlobal(data.show_stats);
 
             } catch (err) {
                 console.error(err);
@@ -109,9 +112,10 @@ export default function SettingsScreen() {
                             has_gluten_allergy: hasGlutenAllergyGlobal,
                             is_vegan: isVeganGlobal,
                             is_vegetarian: isVegetarianGlobal,
-                            prefers_halal: prefersHalalGlobal
+                            prefers_halal: prefersHalalGlobal,
+                            show_stats: showStatsGlobal,
                         }
-                    ) 
+                    )
                 }
             );
             const data = await res.json();
@@ -129,6 +133,7 @@ export default function SettingsScreen() {
             setIsVeganGlobal(data.is_vegan);
             setIsVegetarianGlobal(data.is_vegetarian);
             setPrefersHalalGlobal(data.prefers_halal);
+            setShowStatsGlobal(data.showStatsGlobal);
 
             router.push("/home");
 
@@ -137,7 +142,31 @@ export default function SettingsScreen() {
         } finally {
             setLoading(false);
         }
-    
+
+    }
+
+    /*
+        Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
+    */
+    const logout = () => {
+
+        setUsernameGlobal("");
+        setShowStatsGlobal(false);
+        setHasEggAllergyGlobal(false);
+        setHasFishOrShellfishAllergyGlobal(false);
+        setHasDairyIntoleranceGlobal(false);
+        setHasMilkAllergyGlobal(false);
+        setHasPeanutAllergyGlobal(false);
+        setHasSesameAllergyGlobal(false);
+        setHasSoyAllergyGlobal(false);
+        setHasTreenutAllergyGlobal(false);
+        setHasWheatAllergyGlobal(false);
+        setHasGlutenAllergyGlobal(false);
+        setIsVeganGlobal(false);
+        setIsVegetarianGlobal(false);
+        setPrefersHalalGlobal(false);
+
+        router.push('/');
     }
 
     // Display loading symbol while the profiles are being fetched
@@ -166,7 +195,7 @@ export default function SettingsScreen() {
                     onPressIn={() => setIsBackPressed(true)}
                     onPressOut={() => setIsBackPressed(false)}
                     onPress={() => router.push('/home')}>
-                    
+
                     <Text id="backButtonText"
                         style={styles.headerButtonText}>
 
@@ -187,9 +216,25 @@ export default function SettingsScreen() {
 
                 <Text id="loggedInUser"
                     style={styles.headerUsernameIcon}>
-                    
+
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
+
+                <TouchableOpacity id="loginLogoutButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsLoginLogoutPressed(true)}
+                    onPressOut={() => setIsLoginLogoutPressed(false)}
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+
+                    <Text id="loginLogoutButtonText"
+                        style={styles.headerButtonText}>
+
+                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    </Text>
+
+                </TouchableOpacity>
 
             </View>
 
@@ -369,8 +414,9 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you consent to having your statistics anonymously collected for
-                    statistics purposes?
+                    Enable <b>comparisons & recommendations</b>. Your food logs are always saved
+                    to your account. If enabled, we will use your data to generate aggregated
+                    trends and to personalize comparisons and recommendations.
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -393,7 +439,7 @@ export default function SettingsScreen() {
 
                 <Text id="settingsButtonText"
                     style={styles.bodyButtonText}>
-                
+
                     Confirm
                 </Text>
 

@@ -1,5 +1,9 @@
 from flask import Blueprint, request
-from backend.services.authentication_service import login_user_json, register_user_json
+from backend.services.authentication_service import (
+    login_user_json,
+    register_user_json,
+    change_password_json,
+)
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -47,3 +51,28 @@ def register():
     """
     data = request.json
     return register_user_json(data)
+
+
+@auth_bp.route("/change-pw", methods=["POST"])
+def change_password():
+    """
+    POST /auth/change-pw
+
+    Request Body (JSON):
+    {
+        "username": "string",       # required
+        "old_password": "string"    # required
+        "new_password": "string"    # required
+    }
+
+    Restrictions:
+    The password will only be changed if the old password is correct.
+    New passwords must be between 10 and 120 characters, with at least
+    one special character, one number, one uppercase and one lowercase
+
+    Responses:
+    201 Success - Password changed successfully
+    400 Bad Request - Missing or invalid data
+    """
+    data = request.json
+    return change_password_json(data)

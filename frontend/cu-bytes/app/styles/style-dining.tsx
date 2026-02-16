@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
   },
 
   headerButtonText: {
-    backgroundColor: '#131312',
+    backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
     fontSize: '150%' as any,

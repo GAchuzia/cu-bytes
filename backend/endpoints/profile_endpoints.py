@@ -3,6 +3,7 @@ from backend.services.profile_service import (
     edit_profile_json,
     retreive_profile_json,
     configured_json,
+    delete_profile_json,
 )
 
 profile_bp = Blueprint("profile", __name__)
@@ -103,3 +104,26 @@ def edit_profile():
     """
     data = request.json
     return edit_profile_json(data)
+
+
+@profile_bp.route("/<string:username>", methods=["DELETE"])
+def delete_profile(username):
+    """
+    DELETE /profile/{username}
+
+    Description:
+    Delete all user data associated with the username.
+    The password for the user must be included for authentication.
+
+    Request Body (JSON):
+    {
+        "password": "string",   # required
+    }
+
+    Responses:
+    200 OK - Successfully deleted the user
+    400 Bad Request - Invalid argument
+    500 Internal Server Error - Error deleting the user
+    """
+    data = request.json
+    return delete_profile_json(data, username)

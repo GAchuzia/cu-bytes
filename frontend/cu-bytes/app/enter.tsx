@@ -13,12 +13,13 @@ export default function EnterScreen() {
     const [visible, setVisible] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isSearchPressed, setIsSearchPressed] = useState(false);
 
     /*
-        Variables used to store a copy of the logged-in user's username and profile settings 
+        Variables used to store a copy of the logged-in user's username and profile settings
     */
-    const 
+    const
         {
             usernameGlobal,
             hasEggAllergyGlobal,
@@ -33,7 +34,22 @@ export default function EnterScreen() {
             hasGlutenAllergyGlobal,
             isVeganGlobal,
             isVegetarianGlobal,
-            prefersHalalGlobal
+            prefersHalalGlobal,
+            setUsernameGlobal,
+            setShowStatsGlobal,
+            setHasEggAllergyGlobal,
+            setHasFishOrShellfishAllergyGlobal,
+            setHasDairyIntoleranceGlobal,
+            setHasMilkAllergyGlobal,
+            setHasPeanutAllergyGlobal,
+            setHasSesameAllergyGlobal,
+            setHasSoyAllergyGlobal,
+            setHasTreenutAllergyGlobal,
+            setHasWheatAllergyGlobal,
+            setHasGlutenAllergyGlobal,
+            setIsVeganGlobal,
+            setIsVegetarianGlobal,
+            setPrefersHalalGlobal
 
         } = useUser();
 
@@ -98,15 +114,15 @@ export default function EnterScreen() {
 
         param(s):
             calories - number : The number of calories of the selected food item, as per the calorie key value
-        
+
         returns : The calories value of the selected food item
     */
     function processFoodItemCalories(calories: number) {
 
         if (calories == -1) {
-            return "Unknown" 
+            return "Unknown"
         }
-        else { 
+        else {
             return calories;
         }
     }
@@ -300,7 +316,7 @@ export default function EnterScreen() {
             setLoading(false);
         }
     }
-    
+
     /*
         Filter the array of food items by the entered string value
         If the name of the food item includes the entered string, store the food item in the filtered array
@@ -311,6 +327,30 @@ export default function EnterScreen() {
     const filterFoodItemArray = (name: string) => {
         const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"].toLowerCase() as string).includes(name.toLowerCase()));
         setFilteredFoodItemArray(filteredFoodItemArray);
+    }
+
+    /*
+        Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
+    */
+    const logout = () => {
+
+        setUsernameGlobal("");
+        setShowStatsGlobal(false);
+        setHasEggAllergyGlobal(false);
+        setHasFishOrShellfishAllergyGlobal(false);
+        setHasDairyIntoleranceGlobal(false);
+        setHasMilkAllergyGlobal(false);
+        setHasPeanutAllergyGlobal(false);
+        setHasSesameAllergyGlobal(false);
+        setHasSoyAllergyGlobal(false);
+        setHasTreenutAllergyGlobal(false);
+        setHasWheatAllergyGlobal(false);
+        setHasGlutenAllergyGlobal(false);
+        setIsVeganGlobal(false);
+        setIsVegetarianGlobal(false);
+        setPrefersHalalGlobal(false);
+
+        router.push('/');
     }
 
     /*
@@ -328,7 +368,7 @@ export default function EnterScreen() {
 
         <View style={styles.container}>
             <StatusBar
-                style="auto" 
+                style="auto"
                 hidden={true}
             />
 
@@ -347,7 +387,7 @@ export default function EnterScreen() {
                         style={styles.headerButtonText}>
 
                         Back
-                    </Text>     
+                    </Text>
 
                 </TouchableOpacity>
 
@@ -355,17 +395,31 @@ export default function EnterScreen() {
 
                 <Text id="browseFoodItemsTitle"
                     style={styles.headerTitle}>
-                        
+
                     Food Items
                 </Text>
 
-                <View style={styles.headerContainer}></View>
-
                 <Text id="loggedInUser"
                     style={styles.headerUsernameIcon}>
-                    
+
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
+
+                <TouchableOpacity id="loginLogoutButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsLoginLogoutPressed(true)}
+                    onPressOut={() => setIsLoginLogoutPressed(false)}
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+
+                    <Text id="loginLogoutButtonText"
+                        style={styles.headerButtonText}>
+
+                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    </Text>
+
+                </TouchableOpacity>
 
             </View>
 
@@ -398,7 +452,7 @@ export default function EnterScreen() {
 
                 <Text id="browseFoodItemsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Search
                 </Text>
 
@@ -407,9 +461,9 @@ export default function EnterScreen() {
             {/* If the entered string value does not return any food items, display the following message */}
             {filteredFoodItemArray.length == 0 && !visible && (
                 <View style={styles.bodyContainer}>
-                    <Text 
+                    <Text
                         style={styles.foodInfoText}>
-                        
+
                         No food items found
                     </Text>
                 </View>
@@ -419,7 +473,7 @@ export default function EnterScreen() {
             {filteredFoodItemArray && !visible && (
                 <View style={styles.bodyContainer}>
                     {filteredFoodItemArray.map((foodItem) => (
-                        <Text 
+                        <Text
                             style={styles.foodInfoText}
                             key={foodItem["id"]}
                             onPress={() => {
@@ -454,7 +508,7 @@ export default function EnterScreen() {
                     {'\n'}
                     Sugar: {processFoodItemSugar(foodItem.sugar_g)} grams
                     {'\n'}
- 
+
                     {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
                     {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs \n" : null}
 
@@ -481,17 +535,17 @@ export default function EnterScreen() {
 
                     {foodItem.has_wheat === true && hasWheatAllergyGlobal ? "Warning - this item contains wheat \n" : null}
                     {foodItem.has_wheat === null && hasWheatAllergyGlobal ? "Warning - this item may contain wheat \n" : null}
-                
+
                     {foodItem.is_gluten_free === false && hasGlutenAllergyGlobal ? "Warning - this item contains gluten \n" : null}
                     {foodItem.is_gluten_free === null && hasGlutenAllergyGlobal ? "Warning - this item may contain gluten \n" : null}
-                    
+
                     {foodItem.is_vegan === false && isVeganGlobal ?  "Warning - this item is not vegan \n" : null}
                     {foodItem.is_vegan === null && isVeganGlobal ?  "Warning - this item may not be vegan \n" : null}
-                    
+
                     {foodItem.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian \n" : null}
-                    {foodItem.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian \n" : null}                        
-                    
-                    {foodItem.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal \n" : null}                                                
+                    {foodItem.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian \n" : null}
+
+                    {foodItem.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal \n" : null}
                     {foodItem.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal \n" : null}
                 </Text>
             )}
@@ -502,7 +556,7 @@ export default function EnterScreen() {
                     onPress={() => {
                         logFoodItemById(foodItem.id);
                         setVisible(false);
-                        
+
                         setModalVisible(true);
                         setTimeout(() => {
                         setModalVisible(false);
@@ -513,7 +567,7 @@ export default function EnterScreen() {
                     disabled={loading}
                 >
                     <Text style={styles.bodyButtonTextAlt}>Save Food Item</Text>
-                </TouchableOpacity>   
+                </TouchableOpacity>
             )}
 
             {modalVisible && usernameGlobal != "" && (

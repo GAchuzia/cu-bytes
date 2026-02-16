@@ -10,6 +10,7 @@ import { useUser } from './context';
 export default function HomeScreen() {
 
     const [loading, setLoading] = useState(false);
+    const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isScanFoodItemPressed, setIsScanFoodItemPressed] = useState(false);
     const [isBrowseFoodItemsPressed, setIsBrowseFoodItemsPressed] = useState(false);
     const [isBrowseDiningLocationsPressed, setIsBrowseDiningLocationsPressed] = useState(false);
@@ -18,13 +19,52 @@ export default function HomeScreen() {
     const [isSettingsPressed, setIsSettingsPressed] = useState(false);
 
     /*
-        Variables used to store a copy of the logged-in user's username and profile settings 
+        Variables used to store a copy of the logged-in user's username and profile settings
     */
     const
         {
-            usernameGlobal
+            usernameGlobal,
+            setUsernameGlobal,
+            setShowStatsGlobal,
+            setHasEggAllergyGlobal,
+            setHasFishOrShellfishAllergyGlobal,
+            setHasDairyIntoleranceGlobal,
+            setHasMilkAllergyGlobal,
+            setHasPeanutAllergyGlobal,
+            setHasSesameAllergyGlobal,
+            setHasSoyAllergyGlobal,
+            setHasTreenutAllergyGlobal,
+            setHasWheatAllergyGlobal,
+            setHasGlutenAllergyGlobal,
+            setIsVeganGlobal,
+            setIsVegetarianGlobal,
+            setPrefersHalalGlobal
 
         } = useUser();
+
+    /*
+        Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
+    */
+    const logout = () => {
+
+        setUsernameGlobal("");
+        setShowStatsGlobal(false);
+        setHasEggAllergyGlobal(false);
+        setHasFishOrShellfishAllergyGlobal(false);
+        setHasDairyIntoleranceGlobal(false);
+        setHasMilkAllergyGlobal(false);
+        setHasPeanutAllergyGlobal(false);
+        setHasSesameAllergyGlobal(false);
+        setHasSoyAllergyGlobal(false);
+        setHasTreenutAllergyGlobal(false);
+        setHasWheatAllergyGlobal(false);
+        setHasGlutenAllergyGlobal(false);
+        setIsVeganGlobal(false);
+        setIsVegetarianGlobal(false);
+        setPrefersHalalGlobal(false);
+
+        router.push('/');
+    }
 
     return (
 
@@ -38,22 +78,36 @@ export default function HomeScreen() {
                 style={styles.statusbar}>
 
                 <View style={styles.headerContainer}></View>
-                
+
                 <View style={styles.headerContainer}></View>
 
                 <Text id="homeTitle"
                     style={styles.headerTitle}>
-                
+
                     Home
                 </Text>
-
-                <View style={styles.headerContainer}></View>
 
                 <Text id="loggedInUser"
                     style={styles.headerUsernameIcon}>
 
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
                 </Text>
+
+                <TouchableOpacity id="loginLogoutButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsLoginLogoutPressed(true)}
+                    onPressOut={() => setIsLoginLogoutPressed(false)}
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+
+                    <Text id="loginLogoutButtonText"
+                        style={styles.headerButtonText}>
+
+                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    </Text>
+
+                </TouchableOpacity>
 
             </View>
 
@@ -75,7 +129,7 @@ export default function HomeScreen() {
 
                 <Text id="scanFoodItemButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Scan Food Item
                 </Text>
             </TouchableOpacity>
@@ -91,7 +145,7 @@ export default function HomeScreen() {
             >
                 <Text id="browseFoodItemsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Browse Food Items
                 </Text>
             </TouchableOpacity>
@@ -107,7 +161,7 @@ export default function HomeScreen() {
             >
                 <Text id="browseDiningLocationsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Browse Dining Locations
                 </Text>
             </TouchableOpacity>
@@ -125,7 +179,7 @@ export default function HomeScreen() {
             >
                 <Text id="viewSavedFoodItemsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     View Saved Food Items
                 </Text>
             </TouchableOpacity>
@@ -140,9 +194,9 @@ export default function HomeScreen() {
                 onPress={() => router.push("/goals")}
                 disabled={ usernameGlobal == '' ? true : false }
             >
-                <Text id="goalsButtonText" 
+                <Text id="goalsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Goals
                 </Text>
             </TouchableOpacity>
@@ -157,9 +211,9 @@ export default function HomeScreen() {
                 onPress={() => router.push("/settings")}
                 disabled={ usernameGlobal == '' ? true : false }
             >
-                <Text id="settingsButtonText" 
+                <Text id="settingsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Settings
                 </Text>
             </TouchableOpacity>

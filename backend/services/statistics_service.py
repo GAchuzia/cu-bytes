@@ -32,37 +32,19 @@ def get_daily_statistics_json(username, days):
         )
 
     try:
-        # Compute date range for N days, including today
-        end_date = datetime.now().date()
-        start_date = end_date - timedelta(days=days - 1)
-
-        # 00:00:00 on cutoff date
-        cutoff_start = datetime.combine(start_date, datetime.min.time())
-
-        # Pull user logs from the past N days
-        logs = (
-            FoodLogging.query.filter_by(username=username)
-            .filter(FoodLogging.transaction_time >= cutoff_start)
-            .all()
-        )
+        logs = query_logs(days=days, include_list=[username])
 
         # Make sure the user has logged at least one item
         if len(logs) == 0:
-            return (
-                jsonify(
-                    {
-                        "status": "no_data",
-                        "message": (
-                            "No statistics found. "
-                            "Please log an item to generate statistics."
-                        ),
-                    }
-                ),
-                204,
+            print(
+                f"StatisticsService: No statistics created because {username}"
+                f" has not logged any items in the past {days} days"
             )
+            return "", 204
 
         # Create an empty template for each day
         daily_stats = {}
+        end_date = datetime.now().date()
         for i in range(days):
             # Date Key is of form "YYYY-MM-DD"
             date_key = (end_date - timedelta(days=i)).isoformat()
@@ -130,19 +112,7 @@ def get_aggregate_statistics_json(username, days):
         )
 
     try:
-        # Compute date range for N days, including today
-        end_date = datetime.now().date()
-        start_date = end_date - timedelta(days=days - 1)
-
-        # 00:00:00 on cutoff date
-        cutoff_start = datetime.combine(start_date, datetime.min.time())
-
-        # Pull user logs from the past N days
-        logs = (
-            FoodLogging.query.filter_by(username=username)
-            .filter(FoodLogging.transaction_time >= cutoff_start)
-            .all()
-        )
+        logs = query_logs(days=days, include_list=[username])
 
         # Create an empty template for stats
         aggregate_stats = {
@@ -199,18 +169,11 @@ def get_aggregate_statistics_json(username, days):
 
         # Make sure the user has logged at least one item
         if aggregate_stats["items_logged"] == 0:
-            return (
-                jsonify(
-                    {
-                        "status": "no_data",
-                        "message": (
-                            "No aggregation possible. "
-                            "Please log an item to generate statistics.",
-                        ),
-                    }
-                ),
-                204,
+            print(
+                f"StatisticsService: No aggregation created because {username}"
+                f" has not logged any items in the past {days} days"
             )
+            return "", 204
 
         # Calculate days active
         aggregate_stats["days_active"] = len(days_active)
@@ -263,25 +226,7 @@ def get_global_statistics_json(days):
         )
 
     try:
-        # Compute date range for N days, including today
-        end_date = datetime.now().date()
-        start_date = end_date - timedelta(days=days - 1)
-
-        # 00:00:00 on cutoff date
-        cutoff_start = datetime.combine(start_date, datetime.min.time())
-
-        # Get stats-enabled usernames
-        stats_enabled_usernames = {
-            user.username
-            for user in UsersProfile.query.filter_by(show_stats=True).all()
-        }
-
-        # Filter logs by username and date
-        logs = (
-            FoodLogging.query.filter(FoodLogging.username.in_(stats_enabled_usernames))
-            .filter(FoodLogging.transaction_time >= cutoff_start)
-            .all()
-        )
+        logs = query_logs(days=days, include_list=get_stats_enabled_users())
 
         # Create an empty template for stats
         aggregate_stats = {
@@ -344,9 +289,7 @@ def get_comparative_statistics_json(username, days):
         )
 
     # Ensure user statistics turned on
-    stats_enabled_usernames = {
-        user.username for user in UsersProfile.query.filter_by(show_stats=True).all()
-    }
+    stats_enabled_usernames = get_stats_enabled_users()
     if username not in stats_enabled_usernames:
         print(
             f"StatisticsService: {username} does not have statistics sharing enabled."
@@ -363,25 +306,7 @@ def get_comparative_statistics_json(username, days):
         )
 
     try:
-        # Compute date range for N days, including today
-        end_date = datetime.now().date()
-        start_date = end_date - timedelta(days=days - 1)
-
-        # 00:00:00 on cutoff date
-        cutoff_start = datetime.combine(start_date, datetime.min.time())
-
-        # Get stats-enabled usernames
-        stats_enabled_usernames = {
-            user.username
-            for user in UsersProfile.query.filter_by(show_stats=True).all()
-        }
-
-        # Filter logs by username and date
-        logs = (
-            FoodLogging.query.filter(FoodLogging.username.in_(stats_enabled_usernames))
-            .filter(FoodLogging.transaction_time >= cutoff_start)
-            .all()
-        )
+        logs = query_logs(days=days, include_list=stats_enabled_usernames)
 
         # Track per-user data (defaultdict used to initialize the starting entry)
         user_data = defaultdict(
@@ -434,18 +359,11 @@ def get_comparative_statistics_json(username, days):
 
         # Make sure the user has logged at least one item
         if user_data[username]["items_logged"] == 0:
-            return (
-                jsonify(
-                    {
-                        "status": "no_data",
-                        "message": (
-                            "No comparisons created. "
-                            "Please log an item to generate statistics."
-                        ),
-                    }
-                ),
-                204,
+            print(
+                f"StatisticsService: No comparisons created because {username}"
+                f" has not logged any items in the past {days} days"
             )
+            return "", 204
 
         # user_data is complete, but to compare we need to normalize the data
         normalized_metrics = []
@@ -720,3 +638,38 @@ def food_group_delta_score(metrics):
             total_deviation += deviation
 
     return total_deviation
+
+
+def query_logs(
+    days=7,
+    include_list=[],
+):
+    """
+    Returns a list of FoodLogging items based on the number of days and
+    usernames to include.
+
+    Args:
+        days: The number of days in the past from which to extract logs
+        include_list: List of usernames to include in the log collection.
+    """
+    # Compute date range for N days, including today
+    end_date = datetime.now().date()
+    start_date = end_date - timedelta(days=days - 1)
+
+    # 00:00:00 on cutoff date
+    cutoff_start = datetime.combine(start_date, datetime.min.time())
+
+    return (
+        FoodLogging.query.filter(FoodLogging.username.in_(include_list))
+        .filter(FoodLogging.transaction_time >= cutoff_start)
+        .all()
+    )
+
+
+def get_stats_enabled_users():
+    """
+    Return a list of usernames that have their statistics enabled.
+    """
+    return {
+        user.username for user in UsersProfile.query.filter_by(show_stats=True).all()
+    }

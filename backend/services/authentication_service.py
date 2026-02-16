@@ -21,7 +21,7 @@ def login_user_json(data):
     # attackers
 
     # Check missing fields
-    if len(username) == 0 or len(password) == 0:
+    if username is None or len(username) == 0 or password is None or len(password) == 0:
         return (
             jsonify({"status": "error", "message": "Invalid password or username."}),
             400,
@@ -75,7 +75,7 @@ def register_user_json(data):
     )
 
     # Check missing fields
-    if len(username) == 0 or len(password) == 0:
+    if username is None or len(username) == 0 or password is None or len(password) == 0:
         print("AuthenticationService: Username and password are required")
         return (
             jsonify(
@@ -203,6 +203,148 @@ def register_user_json(data):
 
     return (
         jsonify({"status": "success", "message": "User registered successfully."}),
+        201,
+    )
+
+
+def change_password_json(data):
+    """
+    Attempt to change the password of an existing user.
+
+    Passwords must be between 10 and 120 characters, with at least one
+    special character, one number, one uppercase and one lowercase
+    """
+    username = data.get("username")
+    old_password = data.get("old_password")
+    new_password = data.get("new_password")
+    print(
+        f"AuthenticationService: Attempting to change user {username}'s "
+        f"password to {new_password}"
+    )
+
+    # Check missing fields
+    if (
+        username is None
+        or len(username) == 0
+        or old_password is None
+        or len(old_password) == 0
+        or new_password is None
+        or len(new_password) == 0
+    ):
+        print(
+            "AuthenticationService: Username, old password, and new "
+            "password are required"
+        )
+        return (
+            jsonify(
+                {
+                    "status": "error",
+                    "message": "Username, old password and new password required.",
+                }
+            ),
+            400,
+        )
+
+    # Authenticate the user using their old password
+    current_user = UsersAuth.get_user_by_name(username=username)
+    if current_user is None:
+        print("AuthenticationService: Username not found.")
+        return (
+            jsonify({"status": "error", "message": "This user does not exist."}),
+            400,
+        )
+
+    if not current_user.verify_password(old_password):
+        print("AuthenticationService: Old password does not match.")
+        return (
+            jsonify({"status": "error", "message": "Old password does not match."}),
+            400,
+        )
+
+    # Validate new password
+    if not len(new_password) >= 10 and len(new_password) <= 120:
+        print("AuthenticationService: Invalid new password format (length).")
+        return (
+            jsonify(
+                {
+                    "status": "error",
+                    "message": (
+                        "Invalid password format. Password must be between 10 "
+                        "and 120 characters."
+                    ),
+                }
+            ),
+            400,
+        )
+
+    if not re.search(r'[!@#$%^&*()_\-+=\[\]{}\\|:;"\'<>,.?/]', new_password):
+        print("AuthenticationService: Invalid new password format (missing char).")
+        return (
+            jsonify(
+                {
+                    "status": "error",
+                    "message": (
+                        "Invalid password format. Password must contain at "
+                        "least one special character."
+                    ),
+                }
+            ),
+            400,
+        )
+
+    if not re.search(r"[0-9]", new_password):
+        print("AuthenticationService: Invalid new password format (missing num).")
+        return (
+            jsonify(
+                {
+                    "status": "error",
+                    "message": (
+                        "Invalid password format. Password must contain at "
+                        "least one numeric character."
+                    ),
+                }
+            ),
+            400,
+        )
+
+    if not re.search(r"[A-Z]", new_password):
+        print("AuthenticationService: Invalid new password format (missing cap).")
+        return (
+            jsonify(
+                {
+                    "status": "error",
+                    "message": (
+                        "Invalid password format. Password must contain at "
+                        "least one uppercase character."
+                    ),
+                }
+            ),
+            400,
+        )
+
+    if not re.search(r"[a-z]", new_password):
+        print("AuthenticationService: Invalid new password format (missing low).")
+        return (
+            jsonify(
+                {
+                    "status": "error",
+                    "message": (
+                        "Invalid password format. Password must contain at "
+                        "least one lowercase character."
+                    ),
+                }
+            ),
+            400,
+        )
+
+    current_user.edit_password(new_password)
+
+    print("AuthenticationService: User changed password successfully.")
+
+    return (
+        jsonify(
+            {"status": "success", "message": "User password changed successfully."}
+        ),
         201,
     )
 

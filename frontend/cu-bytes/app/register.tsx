@@ -12,6 +12,7 @@ export default function RegisterScreen() {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
     const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isCreateAccountPressed, setIsCreateAccountPressed] = useState(false);
 
     /*
@@ -25,12 +26,13 @@ export default function RegisterScreen() {
     );
 
     /*
-        Variables and setters used to store a copy of the logged-in user's username and profile settings 
+        Variables and setters used to store a copy of the logged-in user's username and profile settings
     */
     const
         {
             usernameGlobal,
             setUsernameGlobal,
+            setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
@@ -87,7 +89,8 @@ export default function RegisterScreen() {
             // (For reference, see backend/models/users_profile.py)
             else {
                 setUsernameGlobal(name);
-                setHasEggAllergyGlobal(false),
+                setShowStatsGlobal(false);
+                setHasEggAllergyGlobal(false);
                 setHasFishOrShellfishAllergyGlobal(false);
                 setHasDairyIntoleranceGlobal(false);
                 setHasMilkAllergyGlobal(false);
@@ -103,12 +106,36 @@ export default function RegisterScreen() {
 
                 router.push("/home");
             }
-        
+
         } catch (err) {
             console.error(err);
         } finally {
             setLoading(false);
         }
+    }
+
+    /*
+        Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
+    */
+    const logout = () => {
+
+        setUsernameGlobal("");
+        setShowStatsGlobal(false);
+        setHasEggAllergyGlobal(false);
+        setHasFishOrShellfishAllergyGlobal(false);
+        setHasDairyIntoleranceGlobal(false);
+        setHasMilkAllergyGlobal(false);
+        setHasPeanutAllergyGlobal(false);
+        setHasSesameAllergyGlobal(false);
+        setHasSoyAllergyGlobal(false);
+        setHasTreenutAllergyGlobal(false);
+        setHasWheatAllergyGlobal(false);
+        setHasGlutenAllergyGlobal(false);
+        setIsVeganGlobal(false);
+        setIsVegetarianGlobal(false);
+        setPrefersHalalGlobal(false);
+
+        router.push('/');
     }
 
     return (
@@ -121,7 +148,7 @@ export default function RegisterScreen() {
 
             <View
                 style={styles.statusbar}>
-                
+
                 <TouchableOpacity id="backButton"
                     style={[styles.headerButton,
                         { backgroundColor: isBackPressed ? '#666666' : '#131312' }
@@ -132,15 +159,17 @@ export default function RegisterScreen() {
 
                     <Text id="backButtonText"
                         style={styles.headerButtonText}>
-                        
+
                         Back
                     </Text>
 
                 </TouchableOpacity>
 
+                <View style={styles.headerContainer}></View>
+
                 <Text id="createAccountTitle"
                     style={styles.headerTitle}>
-                
+
                     New Account
                 </Text>
 
@@ -149,6 +178,22 @@ export default function RegisterScreen() {
 
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
+
+                <TouchableOpacity id="loginLogoutButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsLoginLogoutPressed(true)}
+                    onPressOut={() => setIsLoginLogoutPressed(false)}
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+
+                    <Text id="loginLogoutButtonText"
+                        style={styles.headerButtonText}>
+
+                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    </Text>
+
+                </TouchableOpacity>
 
             </View>
 
@@ -160,7 +205,7 @@ export default function RegisterScreen() {
 
             <Text id="usernameReqsTitle"
                 style={styles.usernameReqTitle}>
-                
+
                 Username Requirements
             </Text>
 
@@ -169,13 +214,13 @@ export default function RegisterScreen() {
 
                 Must be unique and not shared by any other user account
             </Text>
-            
+
             <Text id="usernameLengthReq"
                 style={styles.usernameReqInfoText}>
 
                 Must be between 1 and 80 characters long
             </Text>
-            
+
             <Text id="usernameCharReq"
                 style={styles.usernameReqInfoText}>
 
@@ -184,13 +229,13 @@ export default function RegisterScreen() {
 
             <Text id="passwordReqsTitle"
                 style={styles.passwordReqTitle}>
-                
+
                 Password Requirements
             </Text>
 
             <Text id="passwordLengthReq"
                 style={styles.passwordReqInfoText}>
-                    
+
                 Must be between 10 and 120 characters long
             </Text>
 
@@ -204,7 +249,7 @@ export default function RegisterScreen() {
                 style={styles.errorInfoText}>
 
                 {visible ? error.message : 'To create a new CU-Bytes account, enter a valid username and valid password below' }
-            </Text> 
+            </Text>
 
             {/* Enter the username that corresponds to the new account that the user wants to create */}
             <TextInput id="createAccountUsernameTextInput"
@@ -245,7 +290,7 @@ export default function RegisterScreen() {
 
                 <Text id="createAccountButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Create Account
                 </Text>
 

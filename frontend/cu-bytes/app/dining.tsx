@@ -14,10 +14,11 @@ export default function DiningScreen() {
     const [foodItemsVisible, setFoodItemsVisible] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
     const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isSearchPressed, setIsSearchPressed] = useState(false);
 
     /*
-        Variables used to store a copy of the logged-in user's username and profile settings 
+        Variables used to store a copy of the logged-in user's username and profile settings
     */
     const
         {
@@ -34,8 +35,23 @@ export default function DiningScreen() {
             hasGlutenAllergyGlobal,
             isVeganGlobal,
             isVegetarianGlobal,
-            prefersHalalGlobal
-        
+            prefersHalalGlobal,
+            setUsernameGlobal,
+            setShowStatsGlobal,
+            setHasEggAllergyGlobal,
+            setHasFishOrShellfishAllergyGlobal,
+            setHasDairyIntoleranceGlobal,
+            setHasMilkAllergyGlobal,
+            setHasPeanutAllergyGlobal,
+            setHasSesameAllergyGlobal,
+            setHasSoyAllergyGlobal,
+            setHasTreenutAllergyGlobal,
+            setHasWheatAllergyGlobal,
+            setHasGlutenAllergyGlobal,
+            setIsVeganGlobal,
+            setIsVegetarianGlobal,
+            setPrefersHalalGlobal
+
         } = useUser();
 
     /*
@@ -84,7 +100,7 @@ export default function DiningScreen() {
         Variable and setter for storing food items retrieved from the backend database
         Every time the user searches for a food item by name,
         Every food item whose name includes the entered string is stored in the filtered array
-    */    
+    */
     const [filteredFoodItemArray, setFilteredFoodItemArray] = useState([]);
 
     /*
@@ -94,15 +110,15 @@ export default function DiningScreen() {
 
         param(s):
             calories - number : The number of calories of the selected food item, as per the calorie key value
-        
+
         returns : The calories value of the selected food item
     */
     function processFoodItemCalories(calories: number) {
 
         if (calories == -1) {
-            return "Unknown" 
+            return "Unknown"
         }
-        else { 
+        else {
             return calories;
         }
     }
@@ -296,7 +312,7 @@ export default function DiningScreen() {
             setLoading(false);
         }
     }
-    
+
     /*
         Filter the array of food items by the id of the selected dining location
         If the dining location id of the food item equals the id of the selected dining location, store the food item in the filtered array
@@ -320,7 +336,7 @@ export default function DiningScreen() {
             "name": ""
         }
     )
-    
+
     /*
         Variable and setter for storing and modifying the dining location name entered by the user
     */
@@ -360,7 +376,7 @@ export default function DiningScreen() {
         };
 
         getDiningLocations();
-    
+
     }, []);
 
     /*
@@ -373,6 +389,30 @@ export default function DiningScreen() {
     const filterDiningLocationArray = (name: string) => {
         const filteredDiningLocationArray = diningLocationArray.filter(diningLocation => (diningLocation["name"].toLowerCase() as string).includes(name.toLowerCase()));
         setFilteredDiningLocationArray(filteredDiningLocationArray);
+    }
+
+    /*
+        Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
+    */
+    const logout = () => {
+
+        setUsernameGlobal("");
+        setShowStatsGlobal(false);
+        setHasEggAllergyGlobal(false);
+        setHasFishOrShellfishAllergyGlobal(false);
+        setHasDairyIntoleranceGlobal(false);
+        setHasMilkAllergyGlobal(false);
+        setHasPeanutAllergyGlobal(false);
+        setHasSesameAllergyGlobal(false);
+        setHasSoyAllergyGlobal(false);
+        setHasTreenutAllergyGlobal(false);
+        setHasWheatAllergyGlobal(false);
+        setHasGlutenAllergyGlobal(false);
+        setIsVeganGlobal(false);
+        setIsVegetarianGlobal(false);
+        setPrefersHalalGlobal(false);
+
+        router.push('/');
     }
 
     /*
@@ -425,9 +465,25 @@ export default function DiningScreen() {
 
                 <Text id="loggedInUser"
                     style={styles.headerUsernameIcon}>
-                    
+
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
+
+                <TouchableOpacity id="loginLogoutButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsLoginLogoutPressed(true)}
+                    onPressOut={() => setIsLoginLogoutPressed(false)}
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+
+                    <Text id="loginLogoutButtonText"
+                        style={styles.headerButtonText}>
+
+                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    </Text>
+
+                </TouchableOpacity>
 
             </View>
 
@@ -458,10 +514,10 @@ export default function DiningScreen() {
                     setFoodItemsVisible(false);
                     setDiningLocationsVisible(true);
                 }}>
-                
+
                 <Text id="browseDiningLocationsButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Search
                 </Text>
 
@@ -472,7 +528,7 @@ export default function DiningScreen() {
                 <View style={styles.bodyContainer}>
                     <Text
                         style={styles.diningInfoText}>
-                        
+
                         No dining locations found
                     </Text>
                 </View>
@@ -501,7 +557,7 @@ export default function DiningScreen() {
             {filteredFoodItemArray.length > 0 && foodItemsVisible && (
                 <View style={styles.bodyContainer}>
                     {filteredFoodItemArray.map((foodItem) => (
-                        <Text 
+                        <Text
                             style={styles.foodInfoText}
                             key={foodItem["id"]}
                             onPress={() => {
@@ -548,7 +604,7 @@ export default function DiningScreen() {
 
                     {foodItem.has_milk === true && hasMilkAllergyGlobal ? "Warning - this item contains milk" : null}
                     {foodItem.has_milk === null && hasMilkAllergyGlobal ? "Warning - this item may contain milk" : null}
-                  
+
                     {foodItem.has_peanuts === true && hasPeanutAllergyGlobal ? "Warning - this item contains peanuts" : null}
                     {foodItem.has_peanuts === null && hasPeanutAllergyGlobal ? "Warning - this item may contain peanuts" : null}
 
@@ -557,7 +613,7 @@ export default function DiningScreen() {
 
                     {foodItem.has_soy === true && hasSoyAllergyGlobal ? "Warning - this item contains soy" : null}
                     {foodItem.has_soy === null && hasSoyAllergyGlobal ? "Warning - this item may contain soy" : null}
-   
+
                     {foodItem.has_treenuts === true && hasTreenutAllergyGlobal ? "Warning - this item contains treenuts" : null}
                     {foodItem.has_treenuts === null && hasTreenutAllergyGlobal ? "Warning - this item may contain treenuts" : null}
 
@@ -596,7 +652,7 @@ export default function DiningScreen() {
                     disabled={loading}
                 >
                     <Text style={styles.bodyButtonTextAlt}>Save Food Item</Text>
-                </TouchableOpacity>   
+                </TouchableOpacity>
             )}
 
             {modalVisible && usernameGlobal != "" && (

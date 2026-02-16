@@ -12,14 +12,30 @@ export default function EntriesScreen() {
     const [loading, setLoading] = useState(true);
     const [visible, setVisible] = useState(false);
     const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
 
     /*
-        Variables used to store a copy of the logged-in user's username and profile settings 
+        Variables used to store a copy of the logged-in user's username and profile settings
     */
-    const 
-        { 
-            usernameGlobal
-        
+    const
+        {
+            usernameGlobal,
+            setUsernameGlobal,
+            setShowStatsGlobal,
+            setHasEggAllergyGlobal,
+            setHasFishOrShellfishAllergyGlobal,
+            setHasDairyIntoleranceGlobal,
+            setHasMilkAllergyGlobal,
+            setHasPeanutAllergyGlobal,
+            setHasSesameAllergyGlobal,
+            setHasSoyAllergyGlobal,
+            setHasTreenutAllergyGlobal,
+            setHasWheatAllergyGlobal,
+            setHasGlutenAllergyGlobal,
+            setIsVeganGlobal,
+            setIsVegetarianGlobal,
+            setPrefersHalalGlobal
+
         } = useUser();
 
     // Variables and setters for storing food item JSON objects
@@ -57,7 +73,7 @@ export default function EntriesScreen() {
 
         param(s):
             calories - number : The number of calories of the selected food item, as per the calorie key value
-        
+
         returns : The calories value of the selected food item
     */
     function processFoodItemCalories(calories: number) {
@@ -65,7 +81,7 @@ export default function EntriesScreen() {
         if (calories == -1) {
             return "Unknown";
         }
-        else { 
+        else {
             return calories;
         }
     }
@@ -170,6 +186,30 @@ export default function EntriesScreen() {
         }
    }
 
+    /*
+        Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
+    */
+    const logout = () => {
+
+        setUsernameGlobal("");
+        setShowStatsGlobal(false);
+        setHasEggAllergyGlobal(false);
+        setHasFishOrShellfishAllergyGlobal(false);
+        setHasDairyIntoleranceGlobal(false);
+        setHasMilkAllergyGlobal(false);
+        setHasPeanutAllergyGlobal(false);
+        setHasSesameAllergyGlobal(false);
+        setHasSoyAllergyGlobal(false);
+        setHasTreenutAllergyGlobal(false);
+        setHasWheatAllergyGlobal(false);
+        setHasGlutenAllergyGlobal(false);
+        setIsVeganGlobal(false);
+        setIsVegetarianGlobal(false);
+        setPrefersHalalGlobal(false);
+
+        router.push('/');
+    }
+
     return (
 
         <View style={styles.container}>
@@ -194,7 +234,7 @@ export default function EntriesScreen() {
 
                         Back
                     </Text>
-                
+
                 </TouchableOpacity>
 
                 <View style={styles.headerContainer}></View>
@@ -213,10 +253,26 @@ export default function EntriesScreen() {
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
+                <TouchableOpacity id="loginLogoutButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsLoginLogoutPressed(true)}
+                    onPressOut={() => setIsLoginLogoutPressed(false)}
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+
+                    <Text id="loginLogoutButtonText"
+                        style={styles.headerButtonText}>
+
+                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    </Text>
+
+                </TouchableOpacity>
+
             </View>
 
             <Text style={styles.infoText}>
-                
+
                 Here are the food items that you saved
             </Text>
 

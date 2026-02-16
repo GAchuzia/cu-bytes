@@ -2,6 +2,8 @@
 from flask import jsonify
 
 # Project imports
+from backend.models.food_logging import FoodLogging
+from backend.models.users_auth import UsersAuth
 from backend.models.users_profile import UsersProfile
 from backend.extensions import db
 
@@ -113,5 +115,71 @@ def edit_profile_json(data):
         print(f"ProfileService: Update error: {e}")
         return (
             jsonify({"error": "Failed to update profile"}),
+            500,
+        )
+
+
+def delete_profile_json(data, username):
+    """Attempt to delete a user profile"""
+    password = data.get("password")
+
+    # Ensure password is present
+    if not isinstance(password, str) or len(password) == 0:
+        print("ProfileService: password is required")
+        return (
+            jsonify(
+                {
+                    "status": "error",
+                    "message": "password is required",
+                }
+            ),
+            400,
+        )
+
+    # Ensure valid username and password pair
+    current_user = UsersAuth.get_user_by_name(username)
+    if current_user is None:
+        print(f"ProfileService: No matching username for {username}")
+        return (
+            jsonify({"status": "error", "message": "No matching username found"}),
+            400,
+        )
+
+    if not current_user.verify_password(password):
+        print("ProfileService: Password does not match.")
+        return (
+            jsonify({"status": "error", "message": "Password does not match."}),
+            400,
+        )
+
+    # Find the associated user profile
+    current_profile = UsersProfile.get_profile_by_name(username)
+
+    # Find all associated food transactions
+    user_logs = FoodLogging.query.filter_by(username=username).all()
+
+    try:
+        # Delete everything associated with the user
+        for log in user_logs:
+            db.session.delete(log)
+
+        if current_profile is not None:  # Check just in case
+            db.session.delete(current_profile)
+
+        db.session.delete(current_user)
+
+        db.session.commit()
+        print(f"ProfileService: Deletion complete for {username}.")
+
+        return (
+            jsonify({"message": "User deleted successfully"}),
+            200,
+        )
+
+    except Exception as e:
+        db.session.rollback()  # Ensure no partial changes are committed
+        print(f"ProfileService: Update error: {e}")
+        return (
+            jsonify({"error": "Failed to delete user"}),
             500,
         )
