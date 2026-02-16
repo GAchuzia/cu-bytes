@@ -367,6 +367,24 @@ The following endpoint should be used when food_name is determined through machi
     500 Internal Server Error - Error adding transaction to database
     """
 
+    """
+    DELETE /profile/{username}
+
+    Description:
+    Delete all user data associated with the username.
+    The password for the user must be included for authentication.
+
+    Request Body (JSON):
+    {
+        "password": "string",   # required
+    }
+
+    Responses:
+    200 OK - Successfully deleted the user
+    400 Bad Request - Invalid argument
+    500 Internal Server Error - Error deleting the user
+    """
+
 ### Dining Locations
     """
     GET /locations/dining-locations
