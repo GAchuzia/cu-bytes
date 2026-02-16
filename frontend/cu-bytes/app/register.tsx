@@ -64,10 +64,11 @@ export default function RegisterScreen() {
     */
     const loadSettings = async () => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${usernameGlobal}`);
+            const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${username}`);
             const data = await res.json();
 
             // Update the copy of the logged-in user's username and profile settings using the retrieved data
+            setUsernameGlobal(username);
             setShowStatsGlobal(data.show_stats);
             setHasEggAllergyGlobal(data.has_egg_allergy);
             setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
@@ -121,8 +122,7 @@ export default function RegisterScreen() {
             // The profile settings on the frontend reflect the default user account profile settings on the backend
             // (For reference, see backend/models/users_profile.py)
             else {
-                setUsernameGlobal(name);
-                loadSettings();
+                await loadSettings();
                 router.push("/home");
             }
 
@@ -136,7 +136,11 @@ export default function RegisterScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => { router.push('/'); }
+    const logout = () => { 
+        
+        setUsernameGlobal('');
+        router.push('/');
+    }
 
     return (
 

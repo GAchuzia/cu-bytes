@@ -51,7 +51,6 @@ export default function ScanScreen() {
     const
         {
             usernameGlobal,
-            showStatsGlobal,
             hasEggAllergyGlobal,
             hasFishOrShellfishAllergyGlobal,
             hasDairyIntoleranceGlobal,
@@ -289,7 +288,26 @@ export default function ScanScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => { router.push('/'); }
+    const logout = () => { 
+        
+        setUsernameGlobal('');
+        setShowStatsGlobal(false);
+        setHasEggAllergyGlobal(false);
+        setHasFishOrShellfishAllergyGlobal(false);
+        setHasDairyIntoleranceGlobal(false);
+        setHasMilkAllergyGlobal(false);
+        setHasPeanutAllergyGlobal(false);
+        setHasSesameAllergyGlobal(false);
+        setHasSoyAllergyGlobal(false);
+        setHasTreenutAllergyGlobal(false);
+        setHasWheatAllergyGlobal(false);
+        setHasGlutenAllergyGlobal(false);
+        setIsVeganGlobal(false);
+        setIsVegetarianGlobal(false);
+        setPrefersHalalGlobal(false);
+
+        router.push('/');
+    }
 
     return (
         <View style={styles.container}>
