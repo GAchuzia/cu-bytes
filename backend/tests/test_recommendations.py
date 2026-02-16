@@ -13,11 +13,23 @@ def test_all_recommendations_invalid_user(client, seeded_users):
     response = client.get("/recommend/trending/Alison")
     assert response.status_code == 400
 
+    response = client.get("/recommend/random/Alison")
+    assert response.status_code == 400
 
-def test_all_recommendations_invalid_range(client, seeded_users):
+
+def test_all_recommendations_invalid_range(client, seeded_users, seeded_food_data):
     # Test invalid ranges for all statistics endpoints
     response = client.get("/recommend/trending/Alice?items=0")
     assert response.status_code == 400
+
+    response = client.get("/recommend/random/Alice?items=0")
+    assert response.status_code == 400
+
+    # Maximum items capped by number of items in database
+    response = client.get("/recommend/random/Alice?items=4")
+    assert response.status_code == 400
+    data = response.get_json()
+    assert "Not enough items in database" in data["message"]
 
 
 def test_all_recommendations_no_items_in_range(
@@ -61,7 +73,6 @@ def test_trending_recommendations_by_name(
     )
 
     # Test Make sure Alice is recommended the item
-    print("Fiona DEBUG: Call recommend")
     response = client.get("/recommend/trending/Alice")
     assert response.status_code == 200
 
@@ -215,3 +226,79 @@ def test_trending_recommendations_multi_user(
     assert recommended_item["dining_location"] == "Tim Hortons"
     assert recommended_item["id"] == 2
     assert recommended_item["name"] == "Hamburger"
+
+
+def test_random_recommendation_no_overlap(
+    client, seeded_users, seeded_food_data, seeded_transactions
+):
+    # Test requesting items less than the number of uneaten items
+    # This means that recommendations should not include consumed food items
+
+    # Alice already consumed Salad and Hamburger, the only uneaten item in the loaf
+    response = client.get("/recommend/random/Alice?items=1")
+    assert response.status_code == 200
+
+    data = response.get_json()
+    assert len(data["food_items"]) == 1
+
+    recommended_item = data["food_items"][0]
+    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["id"] == 3
+    assert recommended_item["name"] == "Banana Bread"
+
+    # Bob has already consumed Salad
+    response = client.get("/recommend/random/Bob?items=1")
+    assert response.status_code == 200
+
+    data = response.get_json()
+    assert len(data["food_items"]) == 1
+
+    # Check that the item is not Ceasar Salad
+    recommended_item = data["food_items"][0]
+    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["id"] != 1
+    assert recommended_item["name"] != "Caesar Salad"
+
+
+def test_random_recommendation_overlap(
+    client, seeded_users, seeded_food_data, seeded_transactions
+):
+    # Test requesting items more than the number of uneaten items
+    # This means that recommendations will include the uneaten items
+    # plus some already-eaten items
+
+    # Alice already consumed Salad and Hamburger
+    response = client.get("/recommend/random/Alice?items=2")
+    assert response.status_code == 200
+
+    data = response.get_json()
+    assert len(data["food_items"]) == 2
+
+    # Top recommendation should be the uneaten item
+    recommended_item1 = data["food_items"][0]
+    assert recommended_item1["dining_location"] == "Tim Hortons"
+    assert recommended_item1["id"] == 3
+    assert recommended_item1["name"] == "Banana Bread"
+
+    # Check that the second item is different
+    recommended_item2 = data["food_items"][1]
+    assert recommended_item2["name"] != "Banana Bread"
+
+    # Bob has already consumed Salad
+    response = client.get("/recommend/random/Bob?items=3")
+    assert response.status_code == 200
+
+    data = response.get_json()
+    assert len(data["food_items"]) == 3
+
+    # Check that the first two items are not Salad
+    recommended_item1 = data["food_items"][0]
+    recommended_item2 = data["food_items"][1]
+    assert recommended_item1["name"] != "Caesar Salad"
+    assert recommended_item2["name"] != "Caesar Salad"
+
+    # Check that the last of the recommended items is the Salad
+    recommended_item3 = data["food_items"][2]
+    assert recommended_item3["dining_location"] == "Tim Hortons"
+    assert recommended_item3["id"] == 1
+    assert recommended_item3["name"] == "Caesar Salad"
