@@ -15,12 +15,13 @@ export default function EntriesScreen() {
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
 
     /*
-        Variables used to store a copy of the logged-in user's username and profile settings 
+        Variables used to store a copy of the logged-in user's username and profile settings
     */
-    const 
-        { 
+    const
+        {
             usernameGlobal,
             setUsernameGlobal,
+            setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
@@ -34,7 +35,7 @@ export default function EntriesScreen() {
             setIsVeganGlobal,
             setIsVegetarianGlobal,
             setPrefersHalalGlobal
-        
+
         } = useUser();
 
     // Variables and setters for storing food item JSON objects
@@ -72,7 +73,7 @@ export default function EntriesScreen() {
 
         param(s):
             calories - number : The number of calories of the selected food item, as per the calorie key value
-        
+
         returns : The calories value of the selected food item
     */
     function processFoodItemCalories(calories: number) {
@@ -80,7 +81,7 @@ export default function EntriesScreen() {
         if (calories == -1) {
             return "Unknown";
         }
-        else { 
+        else {
             return calories;
         }
     }
@@ -188,9 +189,10 @@ export default function EntriesScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => {
-
-        setUsernameGlobal("");
+    const logout = () => { 
+        
+        setUsernameGlobal('');
+        setShowStatsGlobal(false);
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
         setHasDairyIntoleranceGlobal(false);
@@ -232,7 +234,7 @@ export default function EntriesScreen() {
 
                         Back
                     </Text>
-                
+
                 </TouchableOpacity>
 
                 <View style={styles.headerContainer}></View>
@@ -264,13 +266,13 @@ export default function EntriesScreen() {
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
-                    
+
                 </TouchableOpacity>
 
             </View>
 
             <Text style={styles.infoText}>
-                
+
                 Here are the food items that you saved
             </Text>
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
@@ -28,12 +28,13 @@ export default function LoginScreen() {
     );
 
     /*
-        Variables and setters used to store a copy of the logged-in user's username and profile settings 
+        Variables and setters used to store a copy of the logged-in user's username and profile settings
     */
-    const 
-        { 
+    const
+        {
             usernameGlobal,
             setUsernameGlobal,
+            setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
@@ -47,9 +48,9 @@ export default function LoginScreen() {
             setIsVeganGlobal,
             setIsVegetarianGlobal,
             setPrefersHalalGlobal
-        
+
         } = useUser();
-    
+
     /*
         Variable and setter for storing and modifying the username entered by the user
     */
@@ -59,6 +60,39 @@ export default function LoginScreen() {
         Variable and setter for storing and modifying the password entered by the user
     */
     const [password, setPassword] = useState('');
+
+    /*
+        Send a request to the backend endpoint to get the logged-in user's username and profile settings
+    */
+    const loadSettings = async () => {
+
+        try {
+            const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${username}`);
+            const data = await res.json();
+
+            // Update the copy of the logged-in user's username and profile settings using the retrieved data
+            setUsernameGlobal(username)
+            setShowStatsGlobal(data.show_stats);
+            setHasEggAllergyGlobal(data.has_egg_allergy);
+            setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
+            setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
+            setHasMilkAllergyGlobal(data.has_milk_allergy);
+            setHasPeanutAllergyGlobal(data.has_peanut_allergy);
+            setHasSesameAllergyGlobal(data.has_sesame_allergy);
+            setHasSoyAllergyGlobal(data.has_soy_allergy);
+            setHasTreenutAllergyGlobal(data.has_treenut_allergy);
+            setHasWheatAllergyGlobal(data.has_wheat_allergy);
+            setHasGlutenAllergyGlobal(data.has_gluten_allergy);
+            setIsVeganGlobal(data.is_vegan);
+            setIsVegetarianGlobal(data.is_vegetarian);
+            setPrefersHalalGlobal(data.prefers_halal);
+
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     /*
         Send a request to the backend endpoint to login the user to an account
@@ -83,13 +117,14 @@ export default function LoginScreen() {
                 setError(data);
                 console.log(error);
             }
-            // Else, update the copy of the user's username to the username they entered and route the user to the 'home' page
+            // Else, update the copy of the user's username to the username they entered,
+            // load the user's profile settings from the backend endpoint, and route the user to the 'home' page
             // (The user successfully logged in to an account with the entered username and password)
-            else {
-                setUsernameGlobal(name);
+            else if (data.status === 'success') {
+                await loadSettings();
                 router.push("/home");
             }
-        
+
         } catch (err) {
             console.error(err);
         } finally {
@@ -100,9 +135,10 @@ export default function LoginScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => {
-
-        setUsernameGlobal("");
+    const logout = () => { 
+        
+        setUsernameGlobal('');
+        setShowStatsGlobal(false);
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
         setHasDairyIntoleranceGlobal(false);
@@ -123,7 +159,7 @@ export default function LoginScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar 
+            <StatusBar
                 style="auto"
                 hidden={true}
             />
@@ -135,7 +171,7 @@ export default function LoginScreen() {
                     style={[styles.headerButton,
                         { backgroundColor: isBackPressed ? '#666666' : '#131312' }
                     ]}
-                    
+
                     onPressIn={ () => setIsBackPressed(true) }
                     onPressOut={ () => setIsBackPressed(false) }
                     onPress={() => router.push('/')}>
@@ -152,7 +188,7 @@ export default function LoginScreen() {
 
                 <Text id="loginTitle"
                     style={styles.headerTitle}>
-                    
+
                     Login
                 </Text>
 
@@ -175,7 +211,7 @@ export default function LoginScreen() {
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
-                    
+
                 </TouchableOpacity>
 
             </View>
@@ -224,7 +260,7 @@ export default function LoginScreen() {
                 style={[styles.bodyButton,
                     { backgroundColor: isLoginPressed ? '#666666' : '#131312' }
                 ]}
-                
+
                 onPressIn={() => setIsLoginPressed(true)}
                 onPressOut={() => setIsLoginPressed(false)}
                 onPress={() => {
@@ -233,7 +269,7 @@ export default function LoginScreen() {
 
                 <Text id="loginButtonText"
                     style={styles.bodyButtonText}>
-                        
+
                         Login
                 </Text>
 
@@ -248,10 +284,10 @@ export default function LoginScreen() {
                 onPressIn={() => setIsCreateAccountPressed(true)}
                 onPressOut={() => setIsCreateAccountPressed(false)}
                 onPress={() => router.push("/register")}>
-                
+
                 <Text id="createAccountButtonText"
                     style={styles.bodyButtonTextAlt}>
-                        
+
                         Create Account
                 </Text>
 

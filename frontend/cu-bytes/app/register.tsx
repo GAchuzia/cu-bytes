@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
@@ -26,12 +26,13 @@ export default function RegisterScreen() {
     );
 
     /*
-        Variables and setters used to store a copy of the logged-in user's username and profile settings 
+        Variables and setters used to store a copy of the logged-in user's username and profile settings
     */
     const
         {
             usernameGlobal,
             setUsernameGlobal,
+            setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
@@ -59,6 +60,38 @@ export default function RegisterScreen() {
     const [password, setPassword] = useState('');
 
     /*
+        Send a request to the backend endpoint to get the logged-in user's username and profile settings
+    */
+    const loadSettings = async () => {
+        try {
+            const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${username}`);
+            const data = await res.json();
+
+            // Update the copy of the logged-in user's username and profile settings using the retrieved data
+            setUsernameGlobal(username);
+            setShowStatsGlobal(data.show_stats);
+            setHasEggAllergyGlobal(data.has_egg_allergy);
+            setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
+            setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
+            setHasMilkAllergyGlobal(data.has_milk_allergy);
+            setHasPeanutAllergyGlobal(data.has_peanut_allergy);
+            setHasSesameAllergyGlobal(data.has_sesame_allergy);
+            setHasSoyAllergyGlobal(data.has_soy_allergy);
+            setHasTreenutAllergyGlobal(data.has_treenut_allergy);
+            setHasWheatAllergyGlobal(data.has_wheat_allergy);
+            setHasGlutenAllergyGlobal(data.has_gluten_allergy);
+            setIsVeganGlobal(data.is_vegan);
+            setIsVegetarianGlobal(data.is_vegetarian);
+            setPrefersHalalGlobal(data.prefers_halal);
+
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    /*
         Send a request to the backend endpoint to create a new account
 
         param(s):
@@ -81,30 +114,18 @@ export default function RegisterScreen() {
                 setError(data);
                 console.log(error);
             }
-            // Else, update the copy of the user's username and profile settings and route the user to the 'home' page
+            // Else, update the copy of the user's username to the username they entered,
+            // load the user's profile settings from the backend endpoint, and route the user to the 'home' page
+
             // (The user successfully created a new account with the entered username and password)
 
             // The profile settings on the frontend reflect the default user account profile settings on the backend
             // (For reference, see backend/models/users_profile.py)
             else {
-                setUsernameGlobal(name);
-                setHasEggAllergyGlobal(false),
-                setHasFishOrShellfishAllergyGlobal(false);
-                setHasDairyIntoleranceGlobal(false);
-                setHasMilkAllergyGlobal(false);
-                setHasPeanutAllergyGlobal(false);
-                setHasSesameAllergyGlobal(false);
-                setHasSoyAllergyGlobal(false);
-                setHasTreenutAllergyGlobal(false);
-                setHasWheatAllergyGlobal(false);
-                setHasGlutenAllergyGlobal(false);
-                setIsVeganGlobal(false);
-                setIsVegetarianGlobal(false);
-                setPrefersHalalGlobal(false);
-
+                await loadSettings();
                 router.push("/home");
             }
-        
+
         } catch (err) {
             console.error(err);
         } finally {
@@ -115,23 +136,9 @@ export default function RegisterScreen() {
     /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
-    const logout = () => {
-
-        setUsernameGlobal("");
-        setHasEggAllergyGlobal(false);
-        setHasFishOrShellfishAllergyGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
-        setHasMilkAllergyGlobal(false);
-        setHasPeanutAllergyGlobal(false);
-        setHasSesameAllergyGlobal(false);
-        setHasSoyAllergyGlobal(false);
-        setHasTreenutAllergyGlobal(false);
-        setHasWheatAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
-        setIsVeganGlobal(false);
-        setIsVegetarianGlobal(false);
-        setPrefersHalalGlobal(false);
-
+    const logout = () => { 
+        
+        setUsernameGlobal('');
         router.push('/');
     }
 
@@ -145,7 +152,7 @@ export default function RegisterScreen() {
 
             <View
                 style={styles.statusbar}>
-                
+
                 <TouchableOpacity id="backButton"
                     style={[styles.headerButton,
                         { backgroundColor: isBackPressed ? '#666666' : '#131312' }
@@ -156,7 +163,7 @@ export default function RegisterScreen() {
 
                     <Text id="backButtonText"
                         style={styles.headerButtonText}>
-                        
+
                         Back
                     </Text>
 
@@ -166,7 +173,7 @@ export default function RegisterScreen() {
 
                 <Text id="createAccountTitle"
                     style={styles.headerTitle}>
-                
+
                     New Account
                 </Text>
 
@@ -202,7 +209,7 @@ export default function RegisterScreen() {
 
             <Text id="usernameReqsTitle"
                 style={styles.usernameReqTitle}>
-                
+
                 Username Requirements
             </Text>
 
@@ -211,13 +218,13 @@ export default function RegisterScreen() {
 
                 Must be unique and not shared by any other user account
             </Text>
-            
+
             <Text id="usernameLengthReq"
                 style={styles.usernameReqInfoText}>
 
                 Must be between 1 and 80 characters long
             </Text>
-            
+
             <Text id="usernameCharReq"
                 style={styles.usernameReqInfoText}>
 
@@ -226,13 +233,13 @@ export default function RegisterScreen() {
 
             <Text id="passwordReqsTitle"
                 style={styles.passwordReqTitle}>
-                
+
                 Password Requirements
             </Text>
 
             <Text id="passwordLengthReq"
                 style={styles.passwordReqInfoText}>
-                    
+
                 Must be between 10 and 120 characters long
             </Text>
 
@@ -246,7 +253,7 @@ export default function RegisterScreen() {
                 style={styles.errorInfoText}>
 
                 {visible ? error.message : 'To create a new CU-Bytes account, enter a valid username and valid password below' }
-            </Text> 
+            </Text>
 
             {/* Enter the username that corresponds to the new account that the user wants to create */}
             <TextInput id="createAccountUsernameTextInput"
@@ -287,7 +294,7 @@ export default function RegisterScreen() {
 
                 <Text id="createAccountButtonText"
                     style={styles.bodyButtonText}>
-                    
+
                     Create Account
                 </Text>
 

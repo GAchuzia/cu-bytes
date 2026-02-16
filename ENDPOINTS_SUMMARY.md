@@ -12,6 +12,8 @@ Summary of endpoints.
     - [Profiles](#profiles)
     - [Dining Locations](#dining-locations)
     - [ML Prediction](#ml-prediction)
+    - [Statistics](#statistics)
+    - [Recommendations](#recommendations)
 
 
 ### Authentication
@@ -365,6 +367,24 @@ The following endpoint should be used when food_name is determined through machi
     500 Internal Server Error - Error adding transaction to database
     """
 
+    """
+    DELETE /profile/{username}
+
+    Description:
+    Delete all user data associated with the username.
+    The password for the user must be included for authentication.
+
+    Request Body (JSON):
+    {
+        "password": "string",   # required
+    }
+
+    Responses:
+    200 OK - Successfully deleted the user
+    400 Bad Request - Invalid argument
+    500 Internal Server Error - Error deleting the user
+    """
+
 ### Dining Locations
     """
     GET /locations/dining-locations
@@ -621,4 +641,52 @@ The following endpoint should be used when food_name is determined through machi
     400 Bad Request - Invalid username or query parameters
     403 Forbidden - User has not configured their settings for statistics sharing
     500 Internal Server Error - Statistics generation failed
+    """
+
+### Recommendations
+    """
+    GET /recommend/trending/{username}
+
+    Description:
+    Retrieves the top X (default=3) food items from the database that
+    are trending in the last 7 days among other users who have enabled
+    statistics sharing.
+
+    If there are not enough trending items, the number of items will
+    be as close as possible to the desired amount. Items will be
+    listed with the most popular item first with no tiebreaking
+    mechanism.
+
+    Query Parameters:
+    - items (optional, default=3): Number of fooditems to return
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved recommended food items
+        Response Body (JSON):
+        {
+            "food_items": [
+                {
+                "dining_location": "Bridgehead",
+                "id": 658,
+                "name": "Yogurt Parfait"
+                },
+                {
+                "dining_location": "Bento Boxes",
+                "id": 259,
+                "name": "Donburi Inari Tofu"
+                },
+                {
+                "dining_location": "Leo's Lounge",
+                "id": 451,
+                "name": "Oatmeal"
+                }
+            ]
+        }
+    204 No Content - Could not create statistics because there are no valid
+    entries made by other users who have statistics enabled
+    400 Bad Request - Invalid username or query parameters
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
