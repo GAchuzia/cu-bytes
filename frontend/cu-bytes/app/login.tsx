@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
@@ -62,6 +62,37 @@ export default function LoginScreen() {
     const [password, setPassword] = useState('');
 
     /*
+        Send a request to the backend endpoint to get the logged-in user's username and profile settings
+    */
+    const loadSettings = async () => {
+        try {
+            const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${usernameGlobal}`);
+            const data = await res.json();
+
+            // Update the copy of the logged-in user's username and profile settings using the retrieved data
+            setHasEggAllergyGlobal(data.has_egg_allergy);
+            setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
+            setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
+            setHasMilkAllergyGlobal(data.has_milk_allergy);
+            setHasPeanutAllergyGlobal(data.has_peanut_allergy);
+            setHasSesameAllergyGlobal(data.has_sesame_allergy);
+            setHasSoyAllergyGlobal(data.has_soy_allergy);
+            setHasTreenutAllergyGlobal(data.has_treenut_allergy);
+            setHasWheatAllergyGlobal(data.has_wheat_allergy);
+            setHasGlutenAllergyGlobal(data.has_gluten_allergy);
+            setIsVeganGlobal(data.is_vegan);
+            setIsVegetarianGlobal(data.is_vegetarian);
+            setPrefersHalalGlobal(data.prefers_halal);
+            setShowStatsGlobal(data.show_stats);
+
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    /*
         Send a request to the backend endpoint to login the user to an account
 
         param(s):
@@ -84,10 +115,12 @@ export default function LoginScreen() {
                 setError(data);
                 console.log(error);
             }
-            // Else, update the copy of the user's username to the username they entered and route the user to the 'home' page
+            // Else, update the copy of the user's username to the username they entered,
+            // load the user's profile settings from the backend endpoint, and route the user to the 'home' page
             // (The user successfully logged in to an account with the entered username and password)
             else {
                 setUsernameGlobal(name);
+                loadSettings();
                 router.push("/home");
             }
 
