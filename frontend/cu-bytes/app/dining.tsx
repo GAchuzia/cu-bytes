@@ -23,6 +23,7 @@ export default function DiningScreen() {
     const
         {
             usernameGlobal,
+            showStatsGlobal,
             hasEggAllergyGlobal,
             hasFishOrShellfishAllergyGlobal,
             hasDairyIntoleranceGlobal,
@@ -304,7 +305,6 @@ export default function DiningScreen() {
                     body: JSON.stringify( { username: usernameGlobal, food_id: id } )
                 }
             );
-            const data = await res.json();
 
         } catch (err) {
             console.error(err);

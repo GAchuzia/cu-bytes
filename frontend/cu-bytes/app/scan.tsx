@@ -51,6 +51,7 @@ export default function ScanScreen() {
     const
         {
             usernameGlobal,
+            showStatsGlobal,
             hasEggAllergyGlobal,
             hasFishOrShellfishAllergyGlobal,
             hasDairyIntoleranceGlobal,
