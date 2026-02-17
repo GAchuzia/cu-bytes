@@ -14,7 +14,8 @@ export default function StatisticsScreen() {
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
 
     /*
-        Variables used to store a copy of the logged-in user's username and profile settings 
+        Variables and setters used to store a copy of the logged-in user's username and profile settings
+        (Frontend copy updated based on the backend data)
     */
     const 
         {
@@ -33,6 +34,7 @@ export default function StatisticsScreen() {
             isVegetarianGlobal,
             prefersHalalGlobal,
             setUsernameGlobal,
+            setShowStatsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
@@ -48,6 +50,30 @@ export default function StatisticsScreen() {
             setPrefersHalalGlobal
 
         } = useUser();
+
+    /*
+        Log out the logged-in user by setting their username and profile settings to null, 
+    */
+    const logout = () => {
+
+        setUsernameGlobal('');
+        setShowStatsGlobal(false);
+        setHasEggAllergyGlobal(false);
+        setHasFishOrShellfishAllergyGlobal(false);
+        setHasDairyIntoleranceGlobal(false);
+        setHasMilkAllergyGlobal(false);
+        setHasPeanutAllergyGlobal(false);
+        setHasSesameAllergyGlobal(false);
+        setHasSoyAllergyGlobal(false);
+        setHasTreenutAllergyGlobal(false);
+        setHasWheatAllergyGlobal(false);
+        setHasGlutenAllergyGlobal(false);
+        setIsVeganGlobal(false);
+        setIsVegetarianGlobal(false);
+        setPrefersHalalGlobal(false);
+
+        router.push('/');
+    }
 
     /*
         Display the loading symbol while food items are being retrieved or logged
