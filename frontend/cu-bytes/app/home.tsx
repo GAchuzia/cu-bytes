@@ -197,7 +197,7 @@ export default function HomeScreen() {
                 <Text id="goalsButtonText"
                     style={styles.bodyButtonText}>
 
-                    Goals
+                    Statistics
                 </Text>
             </TouchableOpacity>
 

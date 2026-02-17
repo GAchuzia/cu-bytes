@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-home';
+import { styles } from './styles/style-statistics';
 import { useUser } from './context';
 
 export default function StatisticsScreen() {
@@ -89,7 +89,61 @@ export default function StatisticsScreen() {
     return (
 
         <View style={styles.container}>
+            <StatusBar
+                style="auto"
+                hidden={true}
+            />
 
+            <View
+                style={styles.statusbar}>
+
+                <TouchableOpacity id="backButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
+                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
+
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}>
+
+                        Back
+                    </Text>
+
+                </TouchableOpacity>
+
+                    <View style={styles.headerContainer}></View>
+
+                    <Text id="statisticsTitle"
+                        style={styles.headerTitle}>
+                        
+                        Statistics
+                    </Text>
+
+                    <Text id="loggedInUser"
+                        style={styles.headerUsernameIcon}>
+                    
+                        {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
+                    </Text>
+
+                    <TouchableOpacity id="loginLogoutButton"
+                        style={[styles.headerButton,
+                            { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                        ]}
+                        onPressIn={() => setIsLoginLogoutPressed(true)}
+                        onPressOut={() => setIsLoginLogoutPressed(false)}
+                        onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+
+                        <Text id="loginLogoutButtonText"
+                            style={styles.headerButtonText}>
+
+                            {usernameGlobal != '' ? 'Logout' : 'Login' }
+                        </Text>
+
+                    </TouchableOpacity>
+
+            </View>
             
         </View>
 
