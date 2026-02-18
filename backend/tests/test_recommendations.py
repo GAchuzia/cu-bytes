@@ -1,10 +1,11 @@
 # Project imports
-from datetime import datetime, timedelta
 from backend.tests.test_helpers import (
+    add_test_user,
     seeded_food_data,
     seeded_users,
     seeded_food_categories,
     seeded_transactions,
+    seeded_extended_food_data,
 )
 
 
@@ -14,6 +15,9 @@ def test_all_recommendations_invalid_user(client, seeded_users):
     assert response.status_code == 400
 
     response = client.get("/recommend/random/Alison")
+    assert response.status_code == 400
+
+    response = client.get("/recommend/ideal/Alison")
     assert response.status_code == 400
 
 
@@ -30,6 +34,9 @@ def test_all_recommendations_invalid_range(client, seeded_users, seeded_food_dat
     assert response.status_code == 400
     data = response.get_json()
     assert "Not enough items in database" in data["message"]
+
+    response = client.get("/recommend/ideal/Alice?items=0")
+    assert response.status_code == 400
 
 
 def test_all_recommendations_no_items_in_range(
@@ -302,3 +309,52 @@ def test_random_recommendation_overlap(
     assert recommended_item3["dining_location"] == "Tim Hortons"
     assert recommended_item3["id"] == 1
     assert recommended_item3["name"] == "Caesar Salad"
+
+
+def test_ideal_recommendation_old_user(
+    client, seeded_users, seeded_transactions, seeded_extended_food_data
+):
+    # Test using Alice, who has already logged a few items
+    response = client.get("/recommend/ideal/Alice?items=10")
+    assert response.status_code == 200
+
+    data = response.get_json()
+    # Number of ttems requested will try to be as close to requested as possible
+    assert len(data["food_items"]) == 2
+
+    # Based on Alice's consumption patterns, a Hamburger is prefered over Salad
+    recommended_item = data["food_items"][0]
+    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["id"] == 2
+    assert recommended_item["name"] == "Hamburger"
+
+    recommended_item = data["food_items"][1]
+    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["id"] == 1
+    assert recommended_item["name"] == "Caesar Salad"
+
+    # Banana loaf should not show up as a recommendation due to high sugar
+
+
+def test_ideal_recommendation_new_user(client, seeded_extended_food_data):
+    # Add a new user
+    response = client.post(
+        "/auth/register", json={"username": "Ellen", "password": "HelloWorld123!@#"}
+    )
+
+    response = client.get("/recommend/ideal/Ellen?items=10")
+    assert response.status_code == 200
+
+    data = response.get_json()
+    assert len(data["food_items"]) == 2
+
+    # At a baseline (no history), a Caesar salad is recommended over a burger
+    recommended_item = data["food_items"][0]
+    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["id"] == 1
+    assert recommended_item["name"] == "Caesar Salad"
+
+    recommended_item = data["food_items"][1]
+    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["id"] == 2
+    assert recommended_item["name"] == "Hamburger"

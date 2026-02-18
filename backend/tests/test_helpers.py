@@ -166,7 +166,7 @@ def seeded_food_categories(app):
 
     # Clean up after test
     with app.app_context():
-        db.session.query(FoodItem).delete()
+        db.session.query(FoodCategory).delete()
         db.session.commit()
 
 
@@ -317,4 +317,65 @@ def seeded_transactions(app):
     # Clean up after test
     with app.app_context():
         db.session.query(FoodLogging).delete()
+        db.session.commit()
+
+
+@pytest.fixture
+def seeded_extended_food_data(app):
+    """
+    Setup a small food_data DB for each test in this file.
+    Food categories are more fleshed out to provide recommendations.
+    """
+    add_test_food_category(
+        app,
+        "Green Salad",
+        calories=350,
+        percent_fruit_veg=90,
+        percent_grain=5,
+        percent_dairy=5,
+        percent_protein=0,
+        fat_g=0.3,
+        carbs_g=0.7,
+        proteins_g=0.1,
+        fiber_g=7.0,
+        sugar_g=0.1,
+    )
+    add_test_food_category(
+        app,
+        "Burger",
+        calories=750,
+        percent_fruit_veg=30,
+        percent_grain=30,
+        percent_dairy=10,
+        percent_protein=30,
+        fat_g=2.4,
+        carbs_g=1.7,
+        proteins_g=7.8,
+        fiber_g=0.5,
+        sugar_g=0.1,
+    )
+    add_test_food_category(
+        app,
+        "Loaf",
+        calories=450,
+        percent_fruit_veg=15,
+        percent_grain=65,
+        percent_dairy=10,
+        percent_protein=10,
+        fat_g=2.1,
+        carbs_g=1.4,
+        proteins_g=0.3,
+        fiber_g=0.9,
+        sugar_g=100.3,
+    )
+    add_test_food_item(app, "Caesar Salad", "Green Salad")
+    add_test_food_item(app, "Hamburger", "Burger")
+    add_test_food_item(app, "Banana Bread", "Loaf")
+
+    yield  # test runs here
+
+    # Clean up after test
+    with app.app_context():
+        db.session.query(FoodCategory).delete()
+        db.session.query(FoodItem).delete()
         db.session.commit()
