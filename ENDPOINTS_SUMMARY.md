@@ -733,3 +733,47 @@ The following endpoint should be used when food_name is determined through machi
     400 Bad Request - Invalid username or query parameters
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
+
+    """
+    GET /recommend/ideal/{username}
+
+    Description:
+    Retrieves (default=3) food items from the database that bring the user
+    closest to the ideal dietary proportions. IDEAL_TARGETS are based on
+    the USDA/AMDR 2000-cal adult.
+
+    Query Parameters:
+    - items (optional, default=3): Number of fooditems to return
+
+    Note: If there are not enough items that pass nutrient-filtering
+    to reach the item count, the number of returned items may not match
+    the requested query amount
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved recommended food items
+        Response Body (JSON):
+        {
+            "food_items": [
+                {
+                "dining_location": "Starbucks",
+                "id": 241,
+                "name": "Cookies & Cream Cake Pop"
+                },
+                {
+                "dining_location": "Bento Boxes",
+                "id": 594,
+                "name": "Tempura Shrimp Poke Bowl"
+                },
+                {
+                "dining_location": "Bridgehead",
+                "id": 77,
+                "name": "Bacon, Egg & Cheese Bagel"
+                }
+            ]
+        }
+    400 Bad Request - Invalid username or query parameters
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """

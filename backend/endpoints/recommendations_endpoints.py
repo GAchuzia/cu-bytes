@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from backend.services.recommendations_service import (
     get_trending_recommendations_json,
     get_random_recommendations_json,
+    get_ideal_recommendations_json,
 )
 
 recommendations_bp = Blueprint("recommend", __name__)
@@ -61,7 +62,7 @@ def get_trending_recommendations(username):
 
 
 @recommendations_bp.route("/random/<string:username>", methods=["GET"])
-def get_randome_recommendations(username):
+def get_random_recommendations(username):
     """
     GET /recommend/random/{username}
 
@@ -107,3 +108,53 @@ def get_randome_recommendations(username):
     items = request.args.get("items", default=3, type=int)
 
     return get_random_recommendations_json(username, items)
+
+
+@recommendations_bp.route("/ideal/<string:username>", methods=["GET"])
+def get_ideal_health_recommendations(username):
+    """
+    GET /recommend/ideal/{username}
+
+    Description:
+    Retrieves (default=3) food items from the database that bring the user
+    closest to the ideal dietary proportions. IDEAL_TARGETS are based on
+    the USDA/AMDR 2000-cal adult.
+
+    Query Parameters:
+    - items (optional, default=3): Number of fooditems to return
+
+    Note: If there are not enough items that pass nutrient-filtering
+    to reach the item count, the number of returned items may not match
+    the requested query amount
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved recommended food items
+        Response Body (JSON):
+        {
+            "food_items": [
+                {
+                "dining_location": "Starbucks",
+                "id": 241,
+                "name": "Cookies & Cream Cake Pop"
+                },
+                {
+                "dining_location": "Bento Boxes",
+                "id": 594,
+                "name": "Tempura Shrimp Poke Bowl"
+                },
+                {
+                "dining_location": "Bridgehead",
+                "id": 77,
+                "name": "Bacon, Egg & Cheese Bagel"
+                }
+            ]
+        }
+    400 Bad Request - Invalid username or query parameters
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
+    items = request.args.get("items", default=3, type=int)
+
+    return get_ideal_recommendations_json(username, items)
