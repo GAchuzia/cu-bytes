@@ -20,6 +20,9 @@ def test_all_recommendations_invalid_user(client, seeded_users):
     response = client.get("/recommend/ideal/Alison")
     assert response.status_code == 400
 
+    response = client.get("/recommend/nutrient/Alison")
+    assert response.status_code == 400
+
 
 def test_all_recommendations_invalid_range(client, seeded_users, seeded_food_data):
     # Test invalid ranges for all statistics endpoints
@@ -38,8 +41,11 @@ def test_all_recommendations_invalid_range(client, seeded_users, seeded_food_dat
     response = client.get("/recommend/ideal/Alice?items=0")
     assert response.status_code == 400
 
+    response = client.get("/recommend/nutrient/Alison?items=0")
+    assert response.status_code == 400
 
-def test_all_recommendations_no_items_in_range(
+
+def test_trending_recommendations_no_items_in_range(
     client, seeded_users, seeded_transactions
 ):
     # All seeded users have show stats are off by default
@@ -358,3 +364,41 @@ def test_ideal_recommendation_new_user(client, seeded_extended_food_data):
     assert recommended_item["dining_location"] == "Tim Hortons"
     assert recommended_item["id"] == 2
     assert recommended_item["name"] == "Hamburger"
+
+
+def test_nutrient_recommendation_new_user(client, seeded_extended_food_data):
+    # Add a new user
+    response = client.post(
+        "/auth/register", json={"username": "Ellen", "password": "HelloWorld123!@#"}
+    )
+
+    # Expect no content because no logged items to calculate a deficient nutrient
+    response = client.get("/recommend/nutrient/Ellen?items=10")
+    assert response.status_code == 204
+
+
+def test_nutrient_recommendation(
+    client, seeded_users, seeded_transactions, seeded_extended_food_data
+):
+    # Test using Alice, who has already logged a few items
+    response = client.get("/recommend/nutrient/Alice?items=10")
+    assert response.status_code == 200
+
+    data = response.get_json()
+    assert data["deficient_nutrient"] == "Fat"
+
+    # Number of ttems requested will try to be as close to requested as possible
+    assert len(data["food_items"]) == 2
+
+    # Hamburgers are higher in fat than salads
+    recommended_item = data["food_items"][0]
+    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["id"] == 2
+    assert recommended_item["name"] == "Hamburger"
+
+    recommended_item = data["food_items"][1]
+    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["id"] == 1
+    assert recommended_item["name"] == "Caesar Salad"
+
+    # Banana loaf should not show up as a recommendation due to high sugar
