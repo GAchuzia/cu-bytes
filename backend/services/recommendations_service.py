@@ -4,6 +4,7 @@ import random
 from flask import jsonify
 
 # Project imports
+from backend.config import IDEAL_TARGETS
 from backend.models.food_category import FoodCategory
 from backend.models.food_item import FoodItem, get_dining_location_name
 from backend.models.food_logging import FoodLogging
@@ -434,3 +435,186 @@ def build_normalized(data):
         "dairy_pct": data["cal_dairy"] / total_cal,
         "protein_pct_fg": data["cal_protein"] / total_cal,
     }
+
+
+def get_nutrient_recommendations_json(username, items):
+    # Validate user
+    if UsersAuth.get_user_by_name(username) is None:
+        print(f"RecommendationsService: No matching username for {username}")
+        return (
+            jsonify({"status": "error", "message": "No matching username found"}),
+            400,
+        )
+
+    # Validate items
+    if items < 1:
+        print("RecommendationsService: Invalid number of items requested")
+        return (
+            jsonify({"status": "error", "message": "Items must be positive"}),
+            400,
+        )
+
+    try:
+        # Get stats from the last 30 days (longer period is better for stability)
+        logs = query_logs(days=30, include_list=[username])
+
+        if len(logs) == 0:
+            print(
+                "RecommendationService: User has not logged any"
+                "items in the last 30 days. No deficient nutrient."
+            )
+            return "", 204
+
+        current = {
+            "total_calories": 0.0,
+            "total_fat_g": 0.0,
+            "total_carbs_g": 0.0,
+            "total_protein_g": 0.0,
+            "total_fiber_g": 0.0,
+            "total_sugar_g": 0.0,
+            "cal_fruit_veg": 0.0,
+            "cal_grain": 0.0,
+            "cal_dairy": 0.0,
+            "cal_protein": 0.0,
+        }
+
+        # Create the users current nutrition baseline based on logged items
+        for log in logs:
+            if log.calories and log.calories > 0:
+                current["total_calories"] += log.calories
+
+            if log.fat_g and log.fat_g > 0:
+                current["total_fat_g"] += log.fat_g
+            if log.carbs_g and log.carbs_g > 0:
+                current["total_carbs_g"] += log.carbs_g
+            if log.proteins_g and log.proteins_g > 0:
+                current["total_protein_g"] += log.proteins_g
+            if log.fiber_g and log.fiber_g > 0:
+                current["total_fiber_g"] += log.fiber_g
+
+        current_normalized = build_normalized(current)
+
+        # Determine the most deficient nutrient
+        nutrient_keys = [
+            ("fat_pct", "Fat"),
+            ("carbs_pct", "Carbs"),
+            ("protein_pct", "Protein"),
+            ("fiber_per1000", "Fiber"),
+        ]
+
+        lowest_ratio = float("inf")
+        deficient_nutrient = None
+
+        for key, common_name in nutrient_keys:
+            ideal_value = IDEAL_TARGETS.get(key)
+            current_value = current_normalized.get(key)
+
+            if ideal_value is None or ideal_value <= 0:
+                continue
+
+            ratio = current_value / ideal_value
+
+            if ratio < lowest_ratio:
+                lowest_ratio = ratio
+                deficient_nutrient = common_name
+
+        # User is somehow perfectly balanced
+        if deficient_nutrient is None:
+            print("RecommendationService: User has no deficient nutrient.")
+            return "", 204
+
+        MAX_SUGAR_PER_1000 = 80  # hard sugar guardrail
+
+        all_foods = FoodItem.query.all()
+        scored_foods = []
+
+        # Iterate through all foods and score by nutrient density
+        for food in all_foods:
+            food_category = FoodCategory.get_by_name(food.food_category)
+
+            # Skip items with no category
+            if food_category is None:
+                print(
+                    "RecommendationService: Warning! No food category found "
+                    f"for {food.food_name}"
+                )
+                continue
+
+            generic_calories = food_category.calories or 0
+
+            # Scale nutrients if food has custom calorie value
+            if food.calories and food.calories > 0 and generic_calories > 0:
+                ratio = food.calories / generic_calories
+                added_calories = food.calories
+            else:
+                ratio = 1
+                added_calories = generic_calories
+
+            # Skip items with no calorie data
+            if added_calories <= 0:
+                continue
+
+            # SKip items with high amounts of sugar
+            sugar_g = (food_category.sugar_g or 0) * ratio
+            sugar_per1000 = sugar_g / (added_calories / 1000)
+
+            if sugar_per1000 > MAX_SUGAR_PER_1000:
+                continue
+
+            # Determine nutrient value using inheritance + scaling
+            nutrient_value = 0
+            if deficient_nutrient == "Protein":
+                nutrient_value = (food_category.proteins_g or 0) * ratio
+            elif deficient_nutrient == "Fiber":
+                nutrient_value = (food_category.fiber_g or 0) * ratio
+            elif deficient_nutrient == "Fat":
+                nutrient_value = (food_category.fat_g or 0) * ratio
+            elif deficient_nutrient == "Carbs":
+                nutrient_value = (food_category.carbs_g or 0) * ratio
+
+            # Calculate the health by nutrient density. This prevents items with
+            # high calorie counts from being constantly recommended.
+            nutrient_density = nutrient_value / (added_calories / 1000)
+
+            scored_foods.append((nutrient_density, food))
+
+        # Rank foods by highest nutrient density first
+        scored_foods.sort(key=lambda x: x[0], reverse=True)
+
+        # Convert food items into presentable formats
+        # Ensures that the same category is not recommended twice for diversity
+        food_list = []
+        used_categories = set()
+
+        for score, food in scored_foods:
+            if food.food_category in used_categories:
+                continue
+
+            used_categories.add(food.food_category)
+
+            food_list.append(
+                {
+                    "id": food.id,
+                    "name": food.food_name,
+                    "dining_location": get_dining_location_name(food.dining_location),
+                }
+            )
+
+            if len(food_list) >= items:
+                break
+
+        return (
+            jsonify(
+                {
+                    "deficient_nutrient": deficient_nutrient.replace(
+                        "total_", ""
+                    ).replace("_g", ""),
+                    "food_items": food_list,
+                }
+            ),
+            200,
+        )
+
+    except Exception as e:
+        print(f"RecommendationService: Error retrieving nutrient recommendations: {e}")
+        return jsonify({"error": "Failed to retrieve recommendations"}), 500
