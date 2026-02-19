@@ -23,6 +23,9 @@ def test_all_recommendations_invalid_user(client, seeded_users):
     response = client.get("/recommend/nutrient/Alison")
     assert response.status_code == 400
 
+    response = client.get("/recommend/similar/Alison")
+    assert response.status_code == 400
+
 
 def test_all_recommendations_invalid_range(client, seeded_users, seeded_food_data):
     # Test invalid ranges for all statistics endpoints
@@ -41,7 +44,13 @@ def test_all_recommendations_invalid_range(client, seeded_users, seeded_food_dat
     response = client.get("/recommend/ideal/Alice?items=0")
     assert response.status_code == 400
 
-    response = client.get("/recommend/nutrient/Alison?items=0")
+    response = client.get("/recommend/nutrient/Alice?items=0")
+    assert response.status_code == 400
+
+    response = client.get("/recommend/similar/Alice?items=0")
+    assert response.status_code == 400
+
+    response = client.get("/recommend/similar/Alice?users=0")
     assert response.status_code == 400
 
 
@@ -402,3 +411,100 @@ def test_nutrient_recommendation(
     assert recommended_item["name"] == "Caesar Salad"
 
     # Banana loaf should not show up as a recommendation due to high sugar
+
+
+def test_similar_recommendations_no_items_logged(client, seeded_users):
+    # Turn on stats for Charlie
+    client.post(
+        "/profile/edit",
+        json={"show_stats": True, "username": "Charlie"},
+    )
+
+    # No items logged by users (no seeded_transactions), so no items to compare
+    response = client.get("/recommend/similar/Alice")
+    assert response.status_code == 204
+
+
+def test_similar_recommendations_no_users_showing_stats(
+    client, seeded_users, seeded_transactions
+):
+    # All seeded users have show stats are off by default
+    # Turn on show_stats for Alice
+    client.post(
+        "/profile/edit",
+        json={"show_stats": True, "username": "Alice"},
+    )
+
+    # Alice should not get recommendations based on herself
+    response = client.get("/recommend/similar/Alice")
+    assert response.status_code == 204
+
+
+def test_similar_recommendations_full_overlap(
+    client,
+    seeded_users,
+    seeded_food_data,
+    seeded_food_categories,
+    seeded_transactions,
+):
+    """
+    Test when there is no extra overlap between similar users
+    """
+    # Turn on stats for Bob
+    client.post(
+        "/profile/edit",
+        json={"show_stats": True, "username": "Bob"},
+    )
+
+    # Alice has eaten a hamburger and salad, Bob has only eaten the salad
+    response = client.get("/recommend/similar/Alice")
+    assert response.status_code == 204
+
+
+def test_similar_recommendations_some_overlap(
+    client,
+    seeded_users,
+    seeded_food_data,
+    seeded_food_categories,
+    seeded_transactions,
+):
+    """
+    Test when there is only overlap between similar users
+    """
+    # Turn on stats for Charlie
+    client.post(
+        "/profile/edit",
+        json={"show_stats": True, "username": "Charlie"},
+    )
+
+    # Alice has eaten a hamburger and salad, Charlie has eaten Banana bread and salad
+    response = client.get("/recommend/similar/Alice")
+    assert response.status_code == 200
+
+    data = response.get_json()
+    assert len(data["food_items"]) == 1
+
+    # Check that the item is Banana bread
+    recommended_item = data["food_items"][0]
+    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["id"] == 3
+    assert recommended_item["name"] == "Banana Bread"
+
+    # Check recommendation in the reverse direction
+    # Turn on stats for Alice
+    client.post(
+        "/profile/edit",
+        json={"show_stats": True, "username": "Alice"},
+    )
+
+    response = client.get("/recommend/similar/Charlie")
+    assert response.status_code == 200
+
+    data = response.get_json()
+    assert len(data["food_items"]) == 1
+
+    # Check that the item is Hamburger
+    recommended_item = data["food_items"][0]
+    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["id"] == 2
+    assert recommended_item["name"] == "Hamburger"

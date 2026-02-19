@@ -638,7 +638,7 @@ def get_similar_recommendations_json(username, items, users):
         )
 
     # Validate users
-    if items < 1:
+    if users < 1:
         print("RecommendationsService: Invalid number of users to compare against")
         return (
             jsonify({"status": "error", "message": "Users must be positive"}),
@@ -733,7 +733,7 @@ def get_similar_recommendations_json(username, items, users):
         food_list = []
 
         for food_id, score in sorted_foods:
-            food = FoodItem.query.get(food_id)
+            food = FoodItem.get_by_id(food_id)
 
             if food is None:
                 continue
