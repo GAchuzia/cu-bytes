@@ -618,3 +618,139 @@ def get_nutrient_recommendations_json(username, items):
     except Exception as e:
         print(f"RecommendationService: Error retrieving nutrient recommendations: {e}")
         return jsonify({"error": "Failed to retrieve recommendations"}), 500
+
+
+def get_similar_recommendations_json(username, items, users):
+    # Validate user
+    if UsersAuth.get_user_by_name(username) is None:
+        print(f"RecommendationsService: No matching username for {username}")
+        return (
+            jsonify({"status": "error", "message": "No matching username found"}),
+            400,
+        )
+
+    # Validate items
+    if items < 1:
+        print("RecommendationsService: Invalid number of items requested")
+        return (
+            jsonify({"status": "error", "message": "Items must be positive"}),
+            400,
+        )
+
+    # Validate users
+    if items < 1:
+        print("RecommendationsService: Invalid number of users to compare against")
+        return (
+            jsonify({"status": "error", "message": "Users must be positive"}),
+            400,
+        )
+
+    try:
+        # Get current user's logs from last 30 days
+        current_logs = query_logs(days=30, include_list=[username])
+
+        if len(current_logs) == 0:
+            print(
+                "RecommendationService: User has not logged any "
+                "items in the last 30 days. No similarity baseline."
+            )
+            return "", 204
+
+        # Build set of food_ids current user has eaten
+        current_food_ids = set()
+        for log in current_logs:
+            foodItem = FoodItem.query.filter_by(food_name=log.food_name).first()
+            if foodItem is not None:
+                current_food_ids.add(foodItem.id)
+
+        # Get logs for users with sharing enabled in last 30 days
+        all_logs = query_logs(days=30, include_list=get_stats_enabled_users())
+
+        # Build mapping: username -> set(food_ids)
+        user_food_map = {}
+
+        for log in all_logs:
+            if log.username == username:
+                continue
+
+            if log.username not in user_food_map:
+                user_food_map[log.username] = set()
+
+            foodItem = FoodItem.query.filter_by(food_name=log.food_name).first()
+            if foodItem is not None:
+                user_food_map[log.username].add(foodItem.id)
+
+        # Compute Jaccard similarity
+        similarity_scores = []
+
+        for other_user, food_ids in user_food_map.items():
+            intersection = len(current_food_ids.intersection(food_ids))
+            union = len(current_food_ids.union(food_ids))
+
+            if union == 0:
+                continue
+
+            similarity = intersection / union
+
+            if similarity > 0:
+                similarity_scores.append((similarity, other_user))
+
+        if len(similarity_scores) == 0:
+            print("RecommendationService: No similar users found.")
+            return "", 204
+
+        # Sort by highest similarity first
+        similarity_scores.sort(key=lambda x: x[0], reverse=True)
+
+        # Take top N similar users (adjustable based on query param)
+        top_similar_users = similarity_scores[:users]
+
+        # Aggregate food scores
+        food_scores = {}
+
+        for similarity, other_user in top_similar_users:
+            other_logs = user_food_map.get(other_user, set())
+
+            for food_id in other_logs:
+                # Exclude foods current user has already eaten
+                if food_id in current_food_ids:
+                    continue
+
+                if food_id not in food_scores:
+                    food_scores[food_id] = 0.0
+
+                # Weight by similarity score
+                food_scores[food_id] += similarity
+
+        if len(food_scores) == 0:
+            print("RecommendationService: No new foods to recommend.")
+            return "", 204
+
+        # Rank foods by weighted popularity
+        sorted_foods = sorted(food_scores.items(), key=lambda x: x[1], reverse=True)
+
+        # Convert to output format
+        food_list = []
+
+        for food_id, score in sorted_foods:
+            food = FoodItem.query.get(food_id)
+
+            if food is None:
+                continue
+
+            food_list.append(
+                {
+                    "id": food.id,
+                    "name": food.food_name,
+                    "dining_location": get_dining_location_name(food.dining_location),
+                }
+            )
+
+            if len(food_list) >= items:
+                break
+
+        return jsonify({"food_items": food_list}), 200
+
+    except Exception as e:
+        print(f"RecommendationService: Error retrieving similar recommendations: {e}")
+        return jsonify({"error": "Failed to retrieve recommendations"}), 500

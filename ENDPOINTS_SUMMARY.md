@@ -825,3 +825,52 @@ The following endpoint should be used when food_name is determined through machi
     400 Bad Request - Invalid username or query parameters
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
+
+
+    """
+    GET /recommend/similar/{username}
+
+    Description:
+    Retrieves (default=3) food items from the database that are popular with
+    other users sharing your tastes.
+
+    Query Parameters:
+    - items (optional, default=3): Number of fooditems to return
+    - users (optional, default=10): Number of users to compare with
+
+
+    Note: If there are not enough items high in the deficient nutrient
+    to reach the item count, the number of returned items may not match
+    the requested query amount
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved recommended food items
+        Response Body (JSON):
+        {
+            "deficient_nutrient": "Fat",
+            "food_items": [
+                {
+                "dining_location": "Leo's Lounge",
+                "id": 204,
+                "name": "Chips"
+                },
+                {
+                "dining_location": "Ollies",
+                "id": 483,
+                "name": "Pogos"
+                },
+                {
+                "dining_location": "Teraanga Commons Dining Hall",
+                "id": 106,
+                "name": "Black Olives"
+                }
+            ]
+        }
+    204 No content - No items available: Could be user has not consumed items in the
+    last 30 days, or no matches with other stats-enabled users
+    400 Bad Request - Invalid username or query parameters
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
