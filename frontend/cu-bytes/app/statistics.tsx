@@ -10,12 +10,16 @@ import { useUser } from './context';
 export default function StatisticsScreen() {
 
     const [loading, setLoading] = useState(false);
+    const [selectedStatistic, setSelectedStatistic] = useState(false);
+    
     const [isBackPressed, setIsBackPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isDailyPressed, setIsDailyPressed] = useState(false);
     const [isAggregatePressed, setIsAggregatePressed] = useState(false);
     const [isGlobalPressed, setIsGlobalPressed] = useState(false);
     const [isComparativePressed, setIsComparativePressed] = useState(false);
+
+    const [numberDays, setnumberDays] = useState(7);
 
     /*
         Variables and setters used to store a copy of the logged-in user's username and profile settings
@@ -156,10 +160,13 @@ export default function StatisticsScreen() {
 
     /*
         Send a request to the backend endpoint to get the logged-in user's daily statistics
+
+        param(s):
+            days - number : The number of days to include in the statistics
     */
-    const getDailyStats = async () => {
+    const getDailyStats = async (days: number) => {
         try {
-            fetch(`http://127.0.0.1:5000/statistics/daily/${usernameGlobal}`)
+            fetch(`http://127.0.0.1:5000/statistics/daily/${usernameGlobal}?days=${days}`)
                 .then( response => response.json() )
                 .then( data => {
                     setDailyStatistics(data);
@@ -175,10 +182,13 @@ export default function StatisticsScreen() {
 
     /*
         Send a request to the backend endpoint to get the logged-in user's aggregate statistics
+
+        param(s):
+            days - number : The number of days to include in the statistics
     */
-    const getAggregateStats = async () => {
+    const getAggregateStats = async (days: number) => {
         try {
-            fetch(`http://127.0.0.1:5000/statistics/aggregate/${usernameGlobal}`)
+            fetch(`http://127.0.0.1:5000/statistics/aggregate/${usernameGlobal}?days=${days}`)
                 .then( response => response.json() )
                 .then( data => {
                     setAggregateStatistics(data);
@@ -194,10 +204,13 @@ export default function StatisticsScreen() {
 
     /*
         Send a request to the backend endpoint to get the global statistics
+
+        param(s):
+            days - number : The number of days to include in the statistics
     */
-    const getGlobalStats = async () => {
+    const getGlobalStats = async (days: number) => {
         try {
-            fetch(`http://127.0.0.1:5000/statistics/global`)
+            fetch(`http://127.0.0.1:5000/statistics/global?days=${days}`)
                 .then( response => response.json() )
                 .then( data => {
                     setGlobalStatistics(data);
@@ -213,10 +226,13 @@ export default function StatisticsScreen() {
 
     /*
         Send a request to the backend endpoint to get the comparative statistics for the logged-in user
+
+        param(s):
+            days - number : The number of days to include in the statistics
     */
-    const getComparativeStats = async () => {
+    const getComparativeStats = async (days: number) => {
         try {
-            fetch(`http://127.0.0.1:5000/statistics/comparative/${usernameGlobal}`)
+            fetch(`http://127.0.0.1:5000/statistics/comparative/${usernameGlobal}?days=${days}`)
                 .then( response => response.json() )
                 .then( data => {
                     setComparativeStatistics(data);
@@ -306,77 +322,98 @@ export default function StatisticsScreen() {
             </Text>
 
             {/* Daily Statistics */}
-            <TouchableOpacity id="dailyStatsButton"
-                style={[styles.bodyButtonDefault,
-                    { backgroundColor: isDailyPressed || usernameGlobal == '' ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsDailyPressed(true)}
-                onPressOut={() => setIsDailyPressed(false)}
-                onPress={() => getDailyStats()}
-                disabled={ usernameGlobal == '' ? true : false }
-            >
+            {!selectedStatistic && (
+                <TouchableOpacity id="dailyStatsButton"
+                    style={[styles.bodyButtonDefault,
+                        { backgroundColor: isDailyPressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsDailyPressed(true)}
+                    onPressOut={() => setIsDailyPressed(false)}
+                    onPress={() =>
+                        setSelectedStatistic(true)
+                        //getDailyStats()
+                    }
+                    disabled={ usernameGlobal == '' ? true : false }
+                >
 
-                <Text id="dailyStatsButtonText"
-                    style={styles.bodyButtonTextDefault}>
+                    <Text id="dailyStatsButtonText"
+                        style={styles.bodyButtonTextDefault}>
 
-                    Daily Statistics
-                </Text>
+                        Daily Statistics
+                    </Text>
 
-            </TouchableOpacity>
+                </TouchableOpacity>                
+            )}
 
             {/* Aggregate Statistics */}
-            <TouchableOpacity id="aggregateStatsButton"
-                style={[styles.bodyButtonDefault,
-                    { backgroundColor: isAggregatePressed || usernameGlobal == '' ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsAggregatePressed(true)}
-                onPressOut={() => setIsAggregatePressed(false)}
-                onPress={() => getAggregateStats()}
-            >
+            {!selectedStatistic && (
+                <TouchableOpacity id="aggregateStatsButton"
+                    style={[styles.bodyButtonDefault,
+                        { backgroundColor: isAggregatePressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsAggregatePressed(true)}
+                    onPressOut={() => setIsAggregatePressed(false)}
+                    onPress={() => 
+                        setSelectedStatistic(true)    
+                        //getAggregateStats()
+                    }
+                >
 
-                <Text id="aggregateStatsButtonText"
-                    style={styles.bodyButtonTextDefault}>
+                    <Text id="aggregateStatsButtonText"
+                        style={styles.bodyButtonTextDefault}>
 
-                    Aggregate Statistics
-                </Text>
+                        Aggregate Statistics
+                    </Text>
 
-            </TouchableOpacity>
+                </TouchableOpacity>                
+            )}
 
             {/* Global Statistics */}
-            <TouchableOpacity id="globalStatsButton"
-                style={[styles.bodyButtonDefault,
-                    { backgroundColor: isGlobalPressed || usernameGlobal == '' ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsGlobalPressed(true)}
-                onPressOut={() => setIsGlobalPressed(false)}
-                onPress={() => getGlobalStats()}
-            >
+            {!selectedStatistic && (
+                <TouchableOpacity id="globalStatsButton"
+                    style={[styles.bodyButtonDefault,
+                        { backgroundColor: isGlobalPressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsGlobalPressed(true)}
+                    onPressOut={() => setIsGlobalPressed(false)}
+                    onPress={() => 
+                        setSelectedStatistic(true)
+                        //getGlobalStats()
+                    }
+                >
 
-                <Text id="globalStatsButtonText"
-                    style={styles.bodyButtonTextDefault}>
+                    <Text id="globalStatsButtonText"
+                        style={styles.bodyButtonTextDefault}>
 
-                    Global Statistics
-                </Text>
+                        Global Statistics
+                    </Text>
 
-            </TouchableOpacity>
+                </TouchableOpacity>                
+            )}
 
             {/* Comparative Statistics */}
-            <TouchableOpacity id="comparativeStatsButton"
-                style={[styles.bodyButtonDefault,
-                    { backgroundColor: isComparativePressed || usernameGlobal == '' ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsComparativePressed(true)}
-                onPressOut={() => setIsComparativePressed(false)}
-                onPress={() => getComparativeStats()}
-            >
+            {!selectedStatistic && (
+                <TouchableOpacity id="comparativeStatsButton"
+                    style={[styles.bodyButtonDefault,
+                        { backgroundColor: isComparativePressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsComparativePressed(true)}
+                    onPressOut={() => setIsComparativePressed(false)}
+                    onPress={() =>
+                        setSelectedStatistic(true)
+                        //getComparativeStats()
+                    }
+                >
 
-                <Text id="comparativeStatsButtonText"
-                    style={styles.bodyButtonTextDefault}>
+                    <Text id="comparativeStatsButtonText"
+                        style={styles.bodyButtonTextDefault}>
 
-                    Comparative Statistics
-                </Text>
+                        Comparative Statistics
+                    </Text>
 
-            </TouchableOpacity>
+                </TouchableOpacity>                
+            )}
+
 
         </View>
 
