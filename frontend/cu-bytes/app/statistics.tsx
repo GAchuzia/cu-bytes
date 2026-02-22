@@ -12,6 +12,10 @@ export default function StatisticsScreen() {
     const [loading, setLoading] = useState(false);
     const [isBackPressed, setIsBackPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
+    const [isDailyPressed, setIsDailyPressed] = useState(false);
+    const [isAggregatePressed, setIsAggregatePressed] = useState(false);
+    const [isGlobalPressed, setIsGlobalPressed] = useState(false);
+    const [isComparativePressed, setIsComparativePressed] = useState(false);
 
     /*
         Variables and setters used to store a copy of the logged-in user's username and profile settings
@@ -52,6 +56,81 @@ export default function StatisticsScreen() {
         } = useUser();
 
     /*
+        Variable and setter for storing and modifying the daily statistics of the logged-in user
+    */
+    const [dailyStatistics, setDailyStatistics] = useState(
+        {
+            "1900-01-01": {
+                "calories": 0,
+                "carbs_g": 0,
+                "fat_g": 0,
+                "fiber_g": 0,
+                "items_logged": 0,
+                "proteins_g": 0,
+                "sugar_g": 0
+            }
+        }
+    );
+
+    /*
+        Variable and setter for storing and modifying the aggregate statistics of the logged-in user
+    */
+    const [aggregateStatistics, setAggregateStatistics] = useState(
+        {
+            "days_active": 0,
+            "items_logged": 0,
+            "percent_dairy": 0,
+            "percent_fruit_veg": 0,
+            "percent_grain": 0,
+            "percent_protein": 0,
+            "top_dining_location": "Unknown",
+            "top_food": "Unknown",
+            "total_calories": 0,
+            "total_carbs_g": 0,
+            "total_fat_g": 0,
+            "total_fiber_g": 0,
+            "total_protein_g": 0,
+            "total_sugar_g": 0
+        }
+    );
+
+    /*
+        Variable and setter for storing and modifying the global statistics
+    */
+    const [globalStatistics, setGlobalStatistics] = useState(
+        {
+            "trending_item_1": "Unknown",
+            "trending_item_2": "Unknown",
+            "trending_item_3": "Unknown",
+            "trending_item_4": "Unknown",
+            "trending_item_5": "Unknown",
+            "trending_location_1": "Unknown",
+            "trending_location_2": "Unknown",
+            "trending_location_3": "Unknown",
+        }
+    );
+
+    /*
+        Variable and setter for storing and modifying the comparative statistics of the logged-in user
+    */
+    const [comparativeStatistics, setComparativeStatistics] = useState(
+        {
+            "balanced_food_groups_percentile": 0,
+            "balanced_macronutrients_percentile": 0,
+            "carbs_percentile": 0,
+            "checkin_percentile": 0,
+            "dairy_percentile": 0,
+            "fat_percentile": 0,
+            "fiber_percentile": 0,
+            "food_logging_percentile": 0,
+            "fruits_veg_percentile": 0,
+            "grain_percentile": 0,
+            "protein_fg_percentile": 0,
+            "sugar_percentile": 0
+        }
+    );
+
+    /*
         Log out the logged-in user by setting their username and profile settings to null, 
     */
     const logout = () => {
@@ -73,6 +152,82 @@ export default function StatisticsScreen() {
         setPrefersHalalGlobal(false);
 
         router.push('/');
+    }
+
+    /*
+        Send a request to the backend endpoint to get the logged-in user's daily statistics
+    */
+    const getDailyStats = async () => {
+        try {
+            fetch(`http://127.0.0.1:5000/statistics/daily/${usernameGlobal}`)
+                .then( response => response.json() )
+                .then( data => {
+                    setDailyStatistics(data);
+                    console.log(dailyStatistics);
+                })
+                .catch( error => { console.error(error) });
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    /*
+        Send a request to the backend endpoint to get the logged-in user's aggregate statistics
+    */
+    const getAggregateStats = async () => {
+        try {
+            fetch(`http://127.0.0.1:5000/statistics/aggregate/${usernameGlobal}`)
+                .then( response => response.json() )
+                .then( data => {
+                    setAggregateStatistics(data);
+                    console.log(aggregateStatistics);
+                })
+                .catch( error => { console.error(error) });
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    /*
+        Send a request to the backend endpoint to get the global statistics
+    */
+    const getGlobalStats = async () => {
+        try {
+            fetch(`http://127.0.0.1:5000/statistics/global`)
+                .then( response => response.json() )
+                .then( data => {
+                    setGlobalStatistics(data);
+                    console.log(globalStatistics);
+                })
+                .catch( error => { console.error(error) });
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    /*
+        Send a request to the backend endpoint to get the comparative statistics for the logged-in user
+    */
+    const getComparativeStats = async () => {
+        try {
+            fetch(`http://127.0.0.1:5000/statistics/comparative/${usernameGlobal}`)
+                .then( response => response.json() )
+                .then( data => {
+                    setComparativeStatistics(data);
+                    console.log(comparativeStatistics);
+                })
+                .catch( error => { console.error(error) });
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
     }
 
     /*
@@ -144,7 +299,85 @@ export default function StatisticsScreen() {
                     </TouchableOpacity>
 
             </View>
-            
+                    
+            <Text style={styles.infoText}>
+
+                What statistics would you like to view?
+            </Text>
+
+            {/* Daily Statistics */}
+            <TouchableOpacity id="dailyStatsButton"
+                style={[styles.bodyButtonDefault,
+                    { backgroundColor: isDailyPressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                ]}
+                onPressIn={() => setIsDailyPressed(true)}
+                onPressOut={() => setIsDailyPressed(false)}
+                onPress={() => getDailyStats()}
+                disabled={ usernameGlobal == '' ? true : false }
+            >
+
+                <Text id="dailyStatsButtonText"
+                    style={styles.bodyButtonTextDefault}>
+
+                    Daily Statistics
+                </Text>
+
+            </TouchableOpacity>
+
+            {/* Aggregate Statistics */}
+            <TouchableOpacity id="aggregateStatsButton"
+                style={[styles.bodyButtonDefault,
+                    { backgroundColor: isAggregatePressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                ]}
+                onPressIn={() => setIsAggregatePressed(true)}
+                onPressOut={() => setIsAggregatePressed(false)}
+                onPress={() => getAggregateStats()}
+            >
+
+                <Text id="aggregateStatsButtonText"
+                    style={styles.bodyButtonTextDefault}>
+
+                    Aggregate Statistics
+                </Text>
+
+            </TouchableOpacity>
+
+            {/* Global Statistics */}
+            <TouchableOpacity id="globalStatsButton"
+                style={[styles.bodyButtonDefault,
+                    { backgroundColor: isGlobalPressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                ]}
+                onPressIn={() => setIsGlobalPressed(true)}
+                onPressOut={() => setIsGlobalPressed(false)}
+                onPress={() => getGlobalStats()}
+            >
+
+                <Text id="globalStatsButtonText"
+                    style={styles.bodyButtonTextDefault}>
+
+                    Global Statistics
+                </Text>
+
+            </TouchableOpacity>
+
+            {/* Comparative Statistics */}
+            <TouchableOpacity id="comparativeStatsButton"
+                style={[styles.bodyButtonDefault,
+                    { backgroundColor: isComparativePressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                ]}
+                onPressIn={() => setIsComparativePressed(true)}
+                onPressOut={() => setIsComparativePressed(false)}
+                onPress={() => getComparativeStats()}
+            >
+
+                <Text id="comparativeStatsButtonText"
+                    style={styles.bodyButtonTextDefault}>
+
+                    Comparative Statistics
+                </Text>
+
+            </TouchableOpacity>
+
         </View>
 
     )
