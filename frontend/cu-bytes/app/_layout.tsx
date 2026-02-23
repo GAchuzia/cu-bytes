@@ -1,4 +1,4 @@
-import { UserProvider } from './context';
+import { UserProvider } from './_context';
 import { Stack } from "expo-router";
 
 export default function RootLayout() {

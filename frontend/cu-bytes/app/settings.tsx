@@ -4,8 +4,8 @@ import { View, Text, TouchableOpacity, Switch, ActivityIndicator } from 'react-n
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-settings';
-import { useUser } from './context';
+import { styles } from './_styles/style-settings';
+import { useUser } from './_context';
 
 export default function SettingsScreen() {
 

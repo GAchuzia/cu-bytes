@@ -6,8 +6,8 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { apiService } from '../services/api';
 
-import { styles } from './styles/style-scan';
-import { useUser } from './context';
+import { styles } from './_styles/style-scan';
+import { useUser } from './_context';
 
 interface PredictionResult {
     food_name: string;
