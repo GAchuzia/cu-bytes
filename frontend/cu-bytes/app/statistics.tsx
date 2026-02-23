@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -19,7 +19,7 @@ export default function StatisticsScreen() {
     const [isGlobalPressed, setIsGlobalPressed] = useState(false);
     const [isComparativePressed, setIsComparativePressed] = useState(false);
 
-    const [numberDays, setnumberDays] = useState(7);
+    const [numberOfDays, setNumberOfDays] = useState(7);
 
     /*
         Variables and setters used to store a copy of the logged-in user's username and profile settings
@@ -412,6 +412,36 @@ export default function StatisticsScreen() {
                     </Text>
 
                 </TouchableOpacity>                
+            )}
+
+            {/* Enter the number of days to include when retrieving the statistics */}
+            {selectedStatistic && (
+                <View>
+                    
+                    <TouchableOpacity id="increaseNumberOfDaysButton"
+                        onPress={() => setNumberOfDays(numberOfDays + 1)}
+                    >
+                        <Text id="increaseNumberOfDaysButtonText"
+                        >
+                            +
+                        </Text>
+
+                    </TouchableOpacity>
+
+                    <Text>
+                        {numberOfDays}
+                    </Text>
+
+                    <TouchableOpacity id="decreaseNumberOfDaysButton"
+                        onPress={() => {numberOfDays > 0 ? setNumberOfDays(numberOfDays - 1) : null }}
+                    >    
+                        <Text id="decreaseNumberOfDaysButtonText"
+                        >
+                            -
+                        </Text>
+                    </TouchableOpacity>
+
+                </View>
             )}
 
 

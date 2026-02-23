@@ -136,4 +136,24 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
+  numberOfDaysTextInput: {
+    backgroundColor: "#FFFFFF",
+    color: '#131312',
+    borderColor: '#131312',
+    borderRadius: 15,
+    borderWidth: 2,
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    marginTop: '5%' as any,
+    marginBottom: '2.5%' as any,
+    paddingTop: '1.5%' as any,
+    paddingBottom: '1.5%' as any,
+    paddingLeft: '1.5%' as any,
+    paddingRight: '1.5%' as any,
+    shadowColor: '#131312',
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 2,
+    width: '75%' as any,
+  },
+
 })
