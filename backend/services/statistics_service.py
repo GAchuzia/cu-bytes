@@ -7,6 +7,7 @@ from flask import jsonify
 from backend.models.food_logging import FoodLogging
 from backend.models.users_auth import UsersAuth
 from backend.models.users_profile import UsersProfile
+from backend.config import IDEAL_TARGETS
 
 """
 Methods directly connected to endpoints
@@ -255,20 +256,6 @@ def get_global_statistics_json(days):
     except Exception as e:
         print(f"StatisticsService: Error retrieving global statistics: {e}")
         return jsonify({"error": "Failed to retrieve global statistics"}), 500
-
-
-# Hardcoded ideal targets (USDA/AMDR 2000-cal adult)
-IDEAL_TARGETS = {
-    "fat_pct": 0.275,  # 27.5%
-    "carbs_pct": 0.55,  # 55%
-    "protein_pct": 0.20,  # 20%
-    "fiber_per1000": 14,  # g/1000 cal
-    "sugar_per1000": 25,  # g/1000 cal max
-    "fruit_veg_pct": 0.40,
-    "grain_pct": 0.30,
-    "dairy_pct": 0.10,
-    "protein_pct_fg": 0.20,
-}
 
 
 def get_comparative_statistics_json(username, days):
