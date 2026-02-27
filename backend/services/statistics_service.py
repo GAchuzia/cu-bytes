@@ -251,16 +251,24 @@ def get_global_statistics_json(days):
             "trending_location_2": "Unknown",
             "trending_location_3": "Unknown",
         }
-        # Fiona TODO later: Implement dining location properly
 
         consumed_foods = []
+        visited_locations = []
         for log in logs:
             consumed_foods.append(log.food_name)
+
+            if log.dining_location != -1:
+                visited_locations.append(log.dining_location)
 
         # Calculate the most frequent foods
         top_foods = Counter(consumed_foods).most_common(5)
         for i, (food, count) in enumerate(top_foods, 1):
             aggregate_stats[f"trending_item_{i}"] = food
+
+        # Calculate the most frequent dining locations
+        top_location_ids = Counter(visited_locations).most_common(3)
+        for i, (id, count) in enumerate(top_location_ids, 1):
+            aggregate_stats[f"trending_location_{i}"] = get_dining_location_name(id)
 
         return jsonify(aggregate_stats), 200
 
