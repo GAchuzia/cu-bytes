@@ -179,4 +179,4 @@ def get_dining_location_name(dining_location_id):
     elif dining_location_id == 22:
         return "Thai Kitchen"
     else:
-        return ""
+        return "Unknown"
