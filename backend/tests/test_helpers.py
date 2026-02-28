@@ -198,8 +198,8 @@ def seeded_dining_location_data(app):
 def seeded_dining_locations(app):
     """Setup a small dining_locations DB for each test in this file."""
     add_test_dining_location(app, "Tim Hortons")
-    add_test_dining_location(app, "Starbucks")
-    add_test_dining_location(app, "Bridgehead")
+    add_test_dining_location(app, "Subway")
+    add_test_dining_location(app, "Colonel by Chicken")
 
     yield  # test runs here
 
