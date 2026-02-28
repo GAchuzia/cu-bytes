@@ -1,28 +1,37 @@
 import { StyleSheet } from "react-native";
+import StatisticsScreen from "../statistics";
 
 export const styles = StyleSheet.create({
 
-    container: {
-        alignItems: 'center', // Horizontal
-        backgroundColor: '#C5151A',
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start', // Vertical
-        overflowY: 'scroll',
-        textAlign: 'center',
-        width: '100%' as any,
-    },
+  container: {
+    alignItems: 'center', // Horizontal
+    backgroundColor: '#C5151A',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start', // Vertical
+    overflowY: 'scroll',
+    textAlign: 'center',
+    width: '100%' as any,
+  },
 
-    headerContainer: {
-        backgroundColor: '#C5151A',
-        width: '10%' as any,
-    },
+  headerContainer: {
+    backgroundColor: '#C5151A',
+    width: '10%' as any,
+  },
 
-    bodyContainer: {
-        alignItems: 'center', // Horizontal
-        backgroundColor: '#FFFFFF',
-        width: '100%' as any,
-    },
+  bodyContainerDefault: {
+    alignItems: 'center', // Horizontal
+    backgroundColor: '#C5151A',
+    width: '100%' as any,
+  },
+
+  bodyContainerAlt: {
+    alignItems: 'center', // Horizontal
+    backgroundColor: '#C5151A',
+    flexDirection: 'row',
+    justifyContent: 'center', // Vertical
+    width: '100%' as any,
+  },
 
   statusbar: {
     alignItems: 'center', // Horizontal
@@ -92,6 +101,40 @@ export const styles = StyleSheet.create({
     width: '100%' as any,
   },
 
+  statisticsInfoText: {
+    backgroundColor: '#FFFFFF',
+    color: '#131312',
+    fontFamily: 'arial',
+    fontSize: '150%' as any,
+    fontWeight: 600,
+    marginTop: '1.5%' as any,
+    marginBottom: '1.5%' as any,
+    paddingTop: '5.0%' as any,
+    paddingBottom: '5.0%' as any,
+    paddingLeft: '5.0%' as any,
+    width: '40%' as any,
+  },
+
+  numberOfDaysText: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 25,
+    borderWidth: 4,
+    borderColor: '#131312',
+    color: '#131312',
+    fontFamily: 'arial',
+    fontSize: '300%' as any,
+    fontWeight: 800,
+    marginTop: '0.5%' as any,
+    marginLeft: '5.0%' as any,
+    marginRight: '5.0%' as any,
+    paddingTop: '2.5%' as any,
+    paddingBottom: '2.5%' as any,
+    paddingLeft: '2.5%' as any,
+    paddingRight: '2.5%' as any,
+    textAlign: 'center',
+    width: '20%' as any,
+  },
+
   bodyButtonDefault: {
     alignItems: 'center',
     backgroundColor: '#131312',
@@ -112,21 +155,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  bodyButtonAlt: {
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 50,
-    borderWidth: 4,
-    borderColor: '#FFFFFF',
-    marginTop: '2.5%' as any,
-    marginBottom: '2.5%',
-    padding: '2.5%' as any,
-    shadowColor: '#131312',
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 10,
-    width: '80%' as any,
-  },
-
   bodyButtonTextAlt: {
     backgroundColor: 'transparent',
     color: '#C5151A',
@@ -136,24 +164,46 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  numberOfDaysTextInput: {
-    backgroundColor: "#FFFFFF",
-    color: '#131312',
+  bodyButtonIncreaseNumberOfDays: {
+    alignItems: 'center',
+    backgroundColor: '#697A37',
+    borderRadius: 50,
+    borderWidth: 6,
     borderColor: '#131312',
-    borderRadius: 15,
-    borderWidth: 2,
-    fontFamily: 'arial',
-    fontSize: '150%' as any,
-    marginTop: '5%' as any,
+    marginTop: '2.5%' as any,
     marginBottom: '2.5%' as any,
-    paddingTop: '1.5%' as any,
-    paddingBottom: '1.5%' as any,
-    paddingLeft: '1.5%' as any,
-    paddingRight: '1.5%' as any,
-    shadowColor: '#131312',
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 2,
-    width: '75%' as any,
+    padding: '1.5%' as any,
+    width: '25%' as any,
   },
+
+  bodyButtonDecreaseNumberOfDays: {
+    alignItems: 'center',
+    backgroundColor: '#FFB4B4',
+    borderRadius: 50,
+    borderWidth: 6,
+    borderColor: '#131312',
+    marginTop: '2.5%' as any,
+    marginBottom: '2.5%' as any,
+    padding: '1.5%' as any,
+    width: '25%' as any,
+  },
+
+  bodyButtonTextIncreaseNumberOfDays: {
+    backgroundColor: 'transparent',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: '300%' as any,
+    fontWeight: 800,
+    textAlign: 'center',
+  },
+  
+  bodyButtonTextDecreaseNumberOfDays: {
+    backgroundColor: 'transparent',
+    color: '#C5151A',
+    fontFamily: 'arial',
+    fontSize: '300%' as any,
+    fontWeight: 800,
+    textAlign: 'center',
+  }
 
 })

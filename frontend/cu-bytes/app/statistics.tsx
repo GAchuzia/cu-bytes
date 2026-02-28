@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -10,7 +10,29 @@ import { useUser } from './context';
 export default function StatisticsScreen() {
 
     const [loading, setLoading] = useState(false);
-    const [selectedStatistic, setSelectedStatistic] = useState(false);
+
+    /*
+        Variable and setter used to track whether one of the statistic mode buttons has been pressed
+        Initialized with the value false
+        Set to the value true everytime a statistics mode button is pressed
+        Set to the value false everytime a statistics fetch button is pressed
+    */
+    const [statisticModeButtonPressed, setStatisticModeButtonPressed] = useState(false);
+
+    /*
+        Variable and setter used to track what statistic mode button has specifically been pressed
+        Initialized with the value ""
+        Set to the value "Daily", "Aggregate", "Global", or "Comparative" everytime a statistics mode button is pressed
+        Set to the value "" everytime a statistics fetch button is pressed
+    */
+    const [selectedStatisticMode, setSelectedStatisticMode] = useState("");
+
+    /*
+        Variable and setter used to track whether any statistics have been fetched from the backend
+        Initialized with the value false
+        Set to the value true everytime a statistics fetch button is pressed
+    */
+    const [fetchedStatistics, setFetchedStatistics] = useState(false);
     
     const [isBackPressed, setIsBackPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
@@ -158,6 +180,27 @@ export default function StatisticsScreen() {
         router.push('/');
     }
 
+    useEffect(() => {
+        const getStatistics = async () => {
+            try {
+                fetch(`http://127.0.0.1:5000/statistics/daily/${usernameGlobal}?`)
+                    .then( response => response.json() )
+                    .then( data => {
+                        setDailyStatistics(data);
+                        console.log(dailyStatistics);
+                    })
+                    .catch( error => { console.error(error) });
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getStatistics();
+
+    }, []);
+
     /*
         Send a request to the backend endpoint to get the logged-in user's daily statistics
 
@@ -179,7 +222,7 @@ export default function StatisticsScreen() {
             setLoading(false);
         }
     }
-
+    
     /*
         Send a request to the backend endpoint to get the logged-in user's aggregate statistics
 
@@ -315,27 +358,35 @@ export default function StatisticsScreen() {
                     </TouchableOpacity>
 
             </View>
-                    
-            <Text style={styles.infoText}>
 
-                What statistics would you like to view?
-            </Text>
+            {/* Display the following message when no statistics buttons have been pressed and no statistics have been fetched */}
+            {!statisticModeButtonPressed && !fetchedStatistics && (
+                <Text style={styles.infoText}>
+                    What statistics would you like to view?
+                </Text>
+            )}
+            
+            {/* Display the following message when a statistics button has been pressed but no statistics have been fetched */}
+            {statisticModeButtonPressed && !fetchedStatistics && (
+                <Text style={styles.infoText}>
+                    Enter the number of days to include in the retrieved statistics
+                </Text>
+            )}
 
-            {/* Daily Statistics */}
-            {!selectedStatistic && (
+            {/* Display the button used to notify the frontend to retrieve daily statistics */}
+            {!statisticModeButtonPressed && (
                 <TouchableOpacity id="dailyStatsButton"
                     style={[styles.bodyButtonDefault,
                         { backgroundColor: isDailyPressed || usernameGlobal == '' ? '#666666' : '#131312' }
                     ]}
                     onPressIn={() => setIsDailyPressed(true)}
                     onPressOut={() => setIsDailyPressed(false)}
-                    onPress={() =>
-                        setSelectedStatistic(true)
-                        //getDailyStats()
-                    }
+                    onPress={() => {
+                        setStatisticModeButtonPressed(true)
+                        setSelectedStatisticMode("Daily")
+                    }}
                     disabled={ usernameGlobal == '' ? true : false }
                 >
-
                     <Text id="dailyStatsButtonText"
                         style={styles.bodyButtonTextDefault}>
 
@@ -345,20 +396,20 @@ export default function StatisticsScreen() {
                 </TouchableOpacity>                
             )}
 
-            {/* Aggregate Statistics */}
-            {!selectedStatistic && (
+            {/* Display the button used to notify the frontend to retrieve aggregate statistics */}
+            {!statisticModeButtonPressed && (
                 <TouchableOpacity id="aggregateStatsButton"
                     style={[styles.bodyButtonDefault,
                         { backgroundColor: isAggregatePressed || usernameGlobal == '' ? '#666666' : '#131312' }
                     ]}
                     onPressIn={() => setIsAggregatePressed(true)}
                     onPressOut={() => setIsAggregatePressed(false)}
-                    onPress={() => 
-                        setSelectedStatistic(true)    
-                        //getAggregateStats()
-                    }
+                    onPress={() => {
+                        setStatisticModeButtonPressed(true)    
+                        setSelectedStatisticMode("Aggregate");
+                    }}
+                    disabled={ usernameGlobal == '' ? true : false }
                 >
-
                     <Text id="aggregateStatsButtonText"
                         style={styles.bodyButtonTextDefault}>
 
@@ -368,20 +419,20 @@ export default function StatisticsScreen() {
                 </TouchableOpacity>                
             )}
 
-            {/* Global Statistics */}
-            {!selectedStatistic && (
+            {/* Display the button used to notify the frontend to retrieve global statistics */}
+            {!statisticModeButtonPressed && (
                 <TouchableOpacity id="globalStatsButton"
                     style={[styles.bodyButtonDefault,
                         { backgroundColor: isGlobalPressed || usernameGlobal == '' ? '#666666' : '#131312' }
                     ]}
                     onPressIn={() => setIsGlobalPressed(true)}
                     onPressOut={() => setIsGlobalPressed(false)}
-                    onPress={() => 
-                        setSelectedStatistic(true)
-                        //getGlobalStats()
-                    }
+                    onPress={() => {
+                        setStatisticModeButtonPressed(true)
+                        setSelectedStatisticMode("Global")
+                    }}
+                    disabled={ usernameGlobal == '' ? true : false }
                 >
-
                     <Text id="globalStatsButtonText"
                         style={styles.bodyButtonTextDefault}>
 
@@ -391,20 +442,20 @@ export default function StatisticsScreen() {
                 </TouchableOpacity>                
             )}
 
-            {/* Comparative Statistics */}
-            {!selectedStatistic && (
+            {/* Display the button used to notify the frontend to retrieve comparative statistics */}
+            {!statisticModeButtonPressed && (
                 <TouchableOpacity id="comparativeStatsButton"
                     style={[styles.bodyButtonDefault,
                         { backgroundColor: isComparativePressed || usernameGlobal == '' ? '#666666' : '#131312' }
                     ]}
                     onPressIn={() => setIsComparativePressed(true)}
                     onPressOut={() => setIsComparativePressed(false)}
-                    onPress={() =>
-                        setSelectedStatistic(true)
-                        //getComparativeStats()
-                    }
+                    onPress={() => {
+                        setStatisticModeButtonPressed(true)
+                        setSelectedStatisticMode("Comparative")
+                    }}
+                    disabled={ usernameGlobal == '' ? true : false }
                 >
-
                     <Text id="comparativeStatsButtonText"
                         style={styles.bodyButtonTextDefault}>
 
@@ -414,36 +465,378 @@ export default function StatisticsScreen() {
                 </TouchableOpacity>                
             )}
 
-            {/* Enter the number of days to include when retrieving the statistics */}
-            {selectedStatistic && (
-                <View>
-                    
-                    <TouchableOpacity id="increaseNumberOfDaysButton"
-                        onPress={() => setNumberOfDays(numberOfDays + 1)}
-                    >
-                        <Text id="increaseNumberOfDaysButtonText"
+            {/* Display buttons to increase/decrease the number of days to include when retrieving the statistics */}
+            {statisticModeButtonPressed && !fetchedStatistics && (
+                <View style={styles.bodyContainerDefault}>
+
+                    <View style={styles.bodyContainerAlt}>
+
+                        <TouchableOpacity id="decreaseNumberOfDaysButton"
+                            style={styles.bodyButtonDecreaseNumberOfDays}
+                            onPress={() => {numberOfDays > 3 ? setNumberOfDays(numberOfDays-1) : null}}
+                        >    
+                            <Text id="decreaseNumberOfDaysButtonText"
+                                style={styles.bodyButtonTextDecreaseNumberOfDays}
+                            >
+                                -
+                            </Text>
+                        </TouchableOpacity>
+
+                        <Text style={styles.numberOfDaysText}>{numberOfDays}</Text>                        
+                        
+                        <TouchableOpacity id="increaseNumberOfDaysButton"
+                            style={styles.bodyButtonIncreaseNumberOfDays}
+                            onPress={() => setNumberOfDays(numberOfDays+1)}
                         >
-                            +
+                            <Text id="increaseNumberOfDaysButtonText"
+                                style={styles.bodyButtonTextIncreaseNumberOfDays}
+                            >
+                                +
+                            </Text>
+                        </TouchableOpacity>
+
+                    </View>
+                    
+                    <TouchableOpacity id="getStatsButton"
+                        style={[styles.bodyButtonDefault,
+                            { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                        ]}
+                        onPress={() => {
+                            { 
+                                selectedStatisticMode === 'Daily' ? getDailyStats(numberOfDays) :
+                                selectedStatisticMode === 'Aggregate' ? getAggregateStats(numberOfDays) :
+                                selectedStatisticMode === 'Global' ? getGlobalStats(numberOfDays) :
+                                selectedStatisticMode === 'Comparative' ? getComparativeStats(numberOfDays) :
+                                null
+                            }
+                            setFetchedStatistics(true)
+                        }}
+                    >    
+                        <Text id="getStatsButtonText"
+                            style={styles.bodyButtonTextDefault} 
+                        >
+                            { 
+                                selectedStatisticMode === 'Daily' ? 'Get Daily Statistics' :
+                                selectedStatisticMode === 'Aggregate' ? 'Get Aggregate Statistics' :
+                                selectedStatisticMode === 'Global' ? 'Get Global Statistics' :
+                                selectedStatisticMode === 'Comparative' ? 'Get Comparative Statistics' :
+                                ''
+                            }
                         </Text>
 
                     </TouchableOpacity>
 
-                    <Text>
-                        {numberOfDays}
-                    </Text>
-
-                    <TouchableOpacity id="decreaseNumberOfDaysButton"
-                        onPress={() => {numberOfDays > 0 ? setNumberOfDays(numberOfDays - 1) : null }}
+                    <TouchableOpacity id="viewOtherStatsButton"
+                        style={[styles.bodyButtonDefault,
+                            { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                        ]}
+                        onPress={() => {
+                            setStatisticModeButtonPressed(false)
+                            setSelectedStatisticMode("")
+                            setFetchedStatistics(false)
+                            setNumberOfDays(7)
+                        }}
                     >    
-                        <Text id="decreaseNumberOfDaysButtonText"
+                        <Text id="viewOtherStatsButtonText"
+                            style={styles.bodyButtonTextDefault} 
                         >
-                            -
+                            View Other Statistics
                         </Text>
+
                     </TouchableOpacity>
 
                 </View>
             )}
 
+            {/* Display the fetched daily statistics */}
+            {selectedStatisticMode === 'Daily' && fetchedStatistics &&
+                <View style={styles.bodyContainerDefault}>
+
+                    <Text style={styles.infoText}>
+                        Daily statistics for {usernameGlobal} over the last {numberOfDays} days
+                    </Text>
+
+                    <View style={styles.bodyContainerAlt}>
+
+                    </View>
+
+                    <TouchableOpacity id="viewOtherStatsAgainButton"
+                        style={[styles.bodyButtonDefault,
+                            { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                        ]}
+                        onPress={() => {
+                            setStatisticModeButtonPressed(false)
+                            setSelectedStatisticMode("")
+                            setFetchedStatistics(false)
+                            setNumberOfDays(7)
+                        }}
+                    >
+                        <Text id="viewOtherStatsAgainButtonText" 
+                            style={styles.bodyButtonTextDefault}>
+
+                            View Other Statistics
+                        </Text>
+
+                    </TouchableOpacity>
+
+                </View>
+            }
+
+            {/* Display the fetched aggregated statistics */}
+            {selectedStatisticMode === 'Aggregate' && fetchedStatistics && (
+                <View style={styles.bodyContainerDefault}>
+
+                    <Text style={styles.infoText}>
+                        Aggregate statistics for {usernameGlobal} over the last {numberOfDays} days
+                    </Text>
+
+                    <View style={styles.bodyContainerAlt}>
+
+                        <Text style={styles.statisticsInfoText}>
+                            Days Active:
+                            {'\n'}
+                            Items Logged:
+                            {'\n'}
+                            Percent Dairy:
+                            {'\n'}
+                            Percent Fruits / Vegs:
+                            {'\n'}
+                            Percent Grain:
+                            {'\n'}
+                            Percent Protein:
+                            {'\n'}
+                            Top Dining Location:
+                            {'\n'}
+                            Top Food Item:
+                            {'\n'}                    
+                            Total Calories:
+                            {'\n'}
+                            Total Carbs:
+                            {'\n'}
+                            Total Fat:
+                            {'\n'}
+                            Total Fiber:
+                            {'\n'}
+                            Total Protein:
+                            {'\n'}
+                            Total Sugar:
+                            {'\n'}
+                        </Text>
+
+                        <Text style={styles.statisticsInfoText}>
+                            {aggregateStatistics.days_active}
+                            {'\n'}
+                            {aggregateStatistics.items_logged}
+                            {'\n'}
+                            {aggregateStatistics.percent_dairy} %
+                            {'\n'}
+                            {aggregateStatistics.percent_fruit_veg} %
+                            {'\n'}
+                            {aggregateStatistics.percent_grain} %
+                            {'\n'}
+                            {aggregateStatistics.percent_protein} %
+                            {'\n'}
+                            {aggregateStatistics.top_dining_location}
+                            {'\n'}
+                            {aggregateStatistics.top_food}
+                            {'\n'}                    
+                            {aggregateStatistics.total_calories}
+                            {'\n'}
+                            {aggregateStatistics.total_carbs_g} grams
+                            {'\n'}
+                            {aggregateStatistics.total_fat_g} grams
+                            {'\n'}
+                            {aggregateStatistics.total_fiber_g} grams
+                            {'\n'}
+                            {aggregateStatistics.total_protein_g} grams
+                            {'\n'}
+                            {aggregateStatistics.total_sugar_g} grams
+                            {'\n'}
+                        </Text>
+
+                    </View>
+
+                    <TouchableOpacity id="viewOtherStatsAgainButton"
+                        style={[styles.bodyButtonDefault,
+                            { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                        ]}
+                        onPress={() => {
+                            setStatisticModeButtonPressed(false)
+                            setSelectedStatisticMode("")
+                            setFetchedStatistics(false)
+                            setNumberOfDays(7)
+                        }}
+                    >
+                        <Text id="viewOtherStatsAgainButtonText" 
+                            style={styles.bodyButtonTextDefault}>
+
+                            View Other Statistics
+                        </Text>
+
+                    </TouchableOpacity>
+
+                </View>
+            )}
+
+            {/* Display the fetched global statistics */}
+            {selectedStatisticMode === 'Global' && fetchedStatistics && (
+                <View style={styles.bodyContainerDefault}>
+
+                    <Text style={styles.infoText}>
+                        Global statistics for all users who agreed to share their data over the last {numberOfDays} days
+                    </Text>
+
+                    <View style={styles.bodyContainerAlt}>
+
+                        <Text style={styles.statisticsInfoText}>
+                            Trending Food Item:
+                            {'\n'}
+                            Trending Food Item:
+                            {'\n'}
+                            Trending Food Item:
+                            {'\n'}
+                            Trending Food Item:
+                            {'\n'}
+                            Trending Food Item:
+                            {'\n'}
+                            Trending Dining Location:
+                            {'\n'}
+                            Trending Dining Location:
+                            {'\n'}
+                            Trending Dining Location:
+                            {'\n'}
+                        </Text>
+
+                        <Text style={styles.statisticsInfoText}>
+                            {globalStatistics.trending_item_1}
+                            {'\n'}
+                            {globalStatistics.trending_item_2}
+                            {'\n'}
+                            {globalStatistics.trending_item_3}
+                            {'\n'}
+                            {globalStatistics.trending_item_4}
+                            {'\n'}
+                            {globalStatistics.trending_item_5}
+                            {'\n'}
+                            {globalStatistics.trending_location_1}
+                            {'\n'}
+                            {globalStatistics.trending_location_2}
+                            {'\n'}
+                            {globalStatistics.trending_location_3}
+                            {'\n'}
+                        </Text>
+
+                    </View>
+
+                    <TouchableOpacity id="viewOtherStatsAgainButton"
+                        style={[styles.bodyButtonDefault,
+                            { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                        ]}
+                        onPress={() => {
+                            setStatisticModeButtonPressed(false)
+                            setSelectedStatisticMode("")
+                            setFetchedStatistics(false)
+                            setNumberOfDays(7)
+                        }}
+                    >
+                        <Text id="viewOtherStatsAgainButtonText" 
+                            style={styles.bodyButtonTextDefault}>
+
+                            View Other Statistics
+                        </Text>
+
+                    </TouchableOpacity>
+
+                </View>
+            )}
+            
+            {/* Display the fetched comparative statistics */}
+            {selectedStatisticMode === 'Comparative' && fetchedStatistics && (
+                <View style={styles.bodyContainerDefault}>
+
+                    <Text style={styles.infoText}>
+                        Here are the comparative statistics for all users who agreed to share their data over the last {numberOfDays} days
+                    </Text>
+
+                    <View style={styles.bodyContainerAlt}>
+
+                        <Text style={styles.statisticsInfoText}>
+                            Balanced Food Groups Percentile:
+                            {'\n'}
+                            Balanced Macronutrients Percentile:
+                            {'\n'}
+                            Carbs Percentile:
+                            {'\n'}
+                            Checkin Percentile:
+                            {'\n'}
+                            Dairy Percentile:
+                            {'\n'}
+                            Fat Percentile:
+                            {'\n'}
+                            Fiber Percentile:
+                            {'\n'}
+                            Food Logging Percentile:
+                            {'\n'}
+                            Fruits / Vegs Percentile:
+                            {'\n'}
+                            Grain Percentile:
+                            {'\n'}
+                            Protein Percentile:
+                            {'\n'}
+                            Sugar Percentile:
+                            {'\n'}
+                        </Text>
+
+                        <Text style={styles.statisticsInfoText}>
+                            {comparativeStatistics.balanced_food_groups_percentile}
+                            {'\n'}
+                            {comparativeStatistics.balanced_macronutrients_percentile}
+                            {'\n'}
+                            {comparativeStatistics.carbs_percentile}
+                            {'\n'}
+                            {comparativeStatistics.checkin_percentile}
+                            {'\n'}
+                            {comparativeStatistics.dairy_percentile}
+                            {'\n'}
+                            {comparativeStatistics.fat_percentile}
+                            {'\n'}
+                            {comparativeStatistics.fiber_percentile}
+                            {'\n'}
+                            {comparativeStatistics.food_logging_percentile}
+                            {'\n'}
+                            {comparativeStatistics.fruits_veg_percentile}
+                            {'\n'}
+                            {comparativeStatistics.grain_percentile}
+                            {'\n'}
+                            {comparativeStatistics.protein_fg_percentile}
+                            {'\n'}
+                            {comparativeStatistics.sugar_percentile}
+                            {'\n'}
+                        </Text>
+
+                    </View>
+
+                    <TouchableOpacity id="viewOtherStatsAgainButton"
+                        style={[styles.bodyButtonDefault,
+                            { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
+                        ]}
+                        onPress={() => {
+                            setStatisticModeButtonPressed(false)
+                            setSelectedStatisticMode("")
+                            setFetchedStatistics(false)
+                            setNumberOfDays(7)
+                        }}
+                    >
+                        <Text id="viewOtherStatsAgainButtonText" 
+                            style={styles.bodyButtonTextDefault}>
+
+                            View Other Statistics
+                        </Text>
+
+                    </TouchableOpacity>
+
+                </View>
+            )}
 
         </View>
 
