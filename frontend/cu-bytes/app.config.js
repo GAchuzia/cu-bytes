@@ -4,7 +4,7 @@ export default {
     slug: "cu-bytes",
     version: "1.0.0",
     orientation: "portrait",
-    icon: "./assets/images/CU-Bytes Logo.png",
+    icon: "./assets/images/cu-bytes-logo.png",
     scheme: "cubytes",
     userInterfaceStyle: "automatic",
     newArchEnabled: true,
@@ -14,7 +14,7 @@ export default {
     android: {
       adaptiveIcon: {
         backgroundColor: "#E6F4FE",
-        foregroundImage: "./assets/images/CU-Bytes Logo.png",
+        foregroundImage: "./assets/images/cu-bytes-logo.png",
       },
       edgeToEdgeEnabled: true,
       predictiveBackGestureEnabled: false,
@@ -23,7 +23,7 @@ export default {
     web: {
       bundler: "metro",
       output: "static",
-      favicon: "./assets/images/favicon.png",
+      favicon: "./assets/images/cu-bytes-logo.png",
     },
     plugins: [
       "expo-router",
