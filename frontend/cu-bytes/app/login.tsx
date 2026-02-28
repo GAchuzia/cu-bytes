@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './_styles/style-login';
 import { useUser } from './_context';
+import { API_BASE_URL } from '../services/api';
 
 export default function LoginScreen() {
 
@@ -67,7 +68,7 @@ export default function LoginScreen() {
     const loadSettings = async () => {
 
         try {
-            const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${username}`);
+            const res = await fetch(`${API_BASE_URL}/profile/retreive/${username}`);
             const data = await res.json();
 
             // Update the copy of the logged-in user's username and profile settings using the retrieved data
@@ -103,7 +104,7 @@ export default function LoginScreen() {
     */
     const loginUser = async (name: string, psswrd: string) => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/auth/login`, {
+            const res = await fetch(`${API_BASE_URL}/auth/login`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify( { username: name, password: psswrd} )
