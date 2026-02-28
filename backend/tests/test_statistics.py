@@ -204,7 +204,7 @@ def test_get_aggregate_statistics_success(
     assert abs(total_percent - 100.0) < 0.1
 
     assert data["top_food"] == "Hamburger"
-    assert isinstance(data["top_dining_location"], str)  # Unknown for now
+    assert data["top_dining_location"] == "Tim Hortons"
 
     # Test default days (should match because Alice consumed no new items)
     response2 = client.get("/statistics/aggregate/Alice")
@@ -246,7 +246,7 @@ def test_get_aggregate_statistics_small_window(
     assert abs(total_percent - 100.0) < 0.1
 
     assert data["top_food"] == "Banana Bread"
-    assert isinstance(data["top_dining_location"], str)  # Unknown for now
+    assert data["top_dining_location"] == "Colonel by Chicken"
 
 
 def test_get_global_statistics_success(
@@ -269,9 +269,9 @@ def test_get_global_statistics_success(
     assert data["trending_item_3"] == "Unknown"
     assert data["trending_item_4"] == "Unknown"
     assert data["trending_item_5"] == "Unknown"
-    assert isinstance(data["trending_location_1"], str)  # Unknown for now
-    assert isinstance(data["trending_location_2"], str)  # Unknown for now
-    assert isinstance(data["trending_location_3"], str)  # Unknown for now
+    assert data["trending_location_1"] == "Tim Hortons"
+    assert data["trending_location_2"] == "Subway"
+    assert data["trending_location_3"] == "Unknown"
 
     # Test default days (should match because Alice consumed no new items)
     response2 = client.get("/statistics/global")
@@ -301,9 +301,9 @@ def test_get_global_statistics_success(
     assert data3["trending_item_3"] == "Banana Bread"
     assert data3["trending_item_4"] == "Unknown"
     assert data3["trending_item_5"] == "Unknown"
-    assert isinstance(data3["trending_location_1"], str)  # Unknown for now
-    assert isinstance(data3["trending_location_2"], str)  # Unknown for now
-    assert isinstance(data3["trending_location_3"], str)  # Unknown for now
+    assert data["trending_location_1"] == "Tim Hortons"
+    assert data["trending_location_2"] == "Subway"
+    assert data["trending_location_3"] == "Unknown"
 
 
 def test_get_comparative_statistics_success(

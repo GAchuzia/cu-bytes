@@ -87,7 +87,7 @@ def get_aggregate_statistics(username):
             "percent_fruit_veg": 43.21,
             "percent_grain": 29.53,
             "percent_protein": 15.85,
-            "top_dining_location": "Unknown",
+            "top_dining_location": "Starbucks",
             "top_food": "Chicken Salad",
             "total_calories": 1060,
             "total_carbs_g": 112.54,
