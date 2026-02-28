@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
 
 import { router } from 'expo-router';
@@ -94,7 +94,25 @@ export default function StatisticsScreen() {
                 "items_logged": 0,
                 "proteins_g": 0,
                 "sugar_g": 0
-            }
+            },
+            "1900-01-02": {
+                "calories": 0,
+                "carbs_g": 0,
+                "fat_g": 0,
+                "fiber_g": 0,
+                "items_logged": 0,
+                "proteins_g": 0,
+                "sugar_g": 0
+            },
+            "1900-01-03": {
+                "calories": 0,
+                "carbs_g": 0,
+                "fat_g": 0,
+                "fiber_g": 0,
+                "items_logged": 0,
+                "proteins_g": 0,
+                "sugar_g": 0
+            },
         }
     );
 
@@ -179,27 +197,6 @@ export default function StatisticsScreen() {
 
         router.push('/');
     }
-
-    useEffect(() => {
-        const getStatistics = async () => {
-            try {
-                fetch(`http://127.0.0.1:5000/statistics/daily/${usernameGlobal}?`)
-                    .then( response => response.json() )
-                    .then( data => {
-                        setDailyStatistics(data);
-                        console.log(dailyStatistics);
-                    })
-                    .catch( error => { console.error(error) });
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        getStatistics();
-
-    }, []);
 
     /*
         Send a request to the backend endpoint to get the logged-in user's daily statistics
@@ -549,15 +546,63 @@ export default function StatisticsScreen() {
             )}
 
             {/* Display the fetched daily statistics */}
-            {selectedStatisticMode === 'Daily' && fetchedStatistics &&
+            {selectedStatisticMode === 'Daily' && fetchedStatistics && (
                 <View style={styles.bodyContainerDefault}>
 
                     <Text style={styles.infoText}>
                         Daily statistics for {usernameGlobal} over the last {numberOfDays} days
                     </Text>
 
-                    <View style={styles.bodyContainerAlt}>
+                    <View style={styles.bodyContainerDefault}>
+                        {Object.entries(dailyStatistics).map(([date, stats]) => (
 
+                            <View style={styles.bodyContainerAlt}>
+
+                                <Text
+                                    style={styles.statisticsInfoText}
+                                >
+                                    Date:
+                                    {'\n'}
+                                    Items Logged:
+                                    {'\n'}
+                                    Calories:
+                                    {'\n'}
+                                    Carbs:
+                                    {'\n'}
+                                    Fat:
+                                    {'\n'}
+                                    Fiber:
+                                    {'\n'}
+                                    Proteins:
+                                    {'\n'}
+                                    Sugar:
+                                    {'\n'}
+                                </Text>                                
+                            
+                                <Text
+                                    key={date}
+                                    style={styles.statisticsInfoText}
+                                >
+                                    {date}
+                                    {'\n'}
+                                    {stats.items_logged}
+                                    {'\n'}
+                                    {stats.calories}
+                                    {'\n'}
+                                    {stats.carbs_g} grams
+                                    {'\n'}
+                                    {stats.fat_g} grams
+                                    {'\n'}
+                                    {stats.fiber_g} grams
+                                    {'\n'}
+                                    {stats.proteins_g} grams
+                                    {'\n'}
+                                    {stats.sugar_g} grams
+                                    {'\n'}
+                                </Text>
+
+                            </View>
+                        ))}
                     </View>
 
                     <TouchableOpacity id="viewOtherStatsAgainButton"
@@ -580,7 +625,7 @@ export default function StatisticsScreen() {
                     </TouchableOpacity>
 
                 </View>
-            }
+            )}
 
             {/* Display the fetched aggregated statistics */}
             {selectedStatisticMode === 'Aggregate' && fetchedStatistics && (

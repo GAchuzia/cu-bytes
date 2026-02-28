@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import StatisticsScreen from "../statistics";
 
 export const styles = StyleSheet.create({
 
@@ -149,15 +148,6 @@ export const styles = StyleSheet.create({
   bodyButtonTextDefault: {
     backgroundColor: 'transparent',
     color: '#FFFFFF',
-    fontFamily: 'arial',
-    fontSize: '175%' as any,
-    fontWeight: 600,
-    textAlign: 'center',
-  },
-
-  bodyButtonTextAlt: {
-    backgroundColor: 'transparent',
-    color: '#C5151A',
     fontFamily: 'arial',
     fontSize: '175%' as any,
     fontWeight: 600,
