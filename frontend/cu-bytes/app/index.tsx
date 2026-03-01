@@ -4,8 +4,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-index';
-import { useUser } from './context';
+import { styles } from './_styles/style-index';
+import { useUser } from './_context';
 
 export default function IndexScreen() {
 

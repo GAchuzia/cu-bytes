@@ -4,8 +4,8 @@ import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Moda
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-enter';
-import { useUser } from './context';
+import { styles } from './_styles/style-enter';
+import { useUser } from './_context';
 
 export default function EnterScreen() {
 

@@ -690,3 +690,187 @@ The following endpoint should be used when food_name is determined through machi
     400 Bad Request - Invalid username or query parameters
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
+
+    """
+    GET /recommend/random/{username}
+
+    Description:
+    Retrieves random (default=3) food items from the database that
+    the user has not yet tried.
+
+    In the unlikely case that there are not enough untried items
+    the endpoint will recommend items that the user has already consumed
+    to make up the difference.
+
+    Query Parameters:
+    - items (optional, default=3): Number of fooditems to return
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved recommended food items
+        Response Body (JSON):
+        {
+            "food_items": [
+                {
+                "dining_location": "Starbucks",
+                "id": 241,
+                "name": "Cookies & Cream Cake Pop"
+                },
+                {
+                "dining_location": "Bento Boxes",
+                "id": 594,
+                "name": "Tempura Shrimp Poke Bowl"
+                },
+                {
+                "dining_location": "Bridgehead",
+                "id": 77,
+                "name": "Bacon, Egg & Cheese Bagel"
+                }
+            ]
+        }
+    400 Bad Request - Invalid username or query parameters
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
+
+    """
+    GET /recommend/ideal/{username}
+
+    Description:
+    Retrieves (default=3) food items from the database that bring the user
+    closest to the ideal dietary proportions. IDEAL_TARGETS are based on
+    the USDA/AMDR 2000-cal adult.
+
+    Query Parameters:
+    - items (optional, default=3): Number of fooditems to return
+
+    Note: If there are not enough items that pass nutrient-filtering
+    to reach the item count, the number of returned items may not match
+    the requested query amount
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved recommended food items
+        Response Body (JSON):
+        {
+            "food_items": [
+                {
+                "dining_location": "Starbucks",
+                "id": 241,
+                "name": "Cookies & Cream Cake Pop"
+                },
+                {
+                "dining_location": "Bento Boxes",
+                "id": 594,
+                "name": "Tempura Shrimp Poke Bowl"
+                },
+                {
+                "dining_location": "Bridgehead",
+                "id": 77,
+                "name": "Bacon, Egg & Cheese Bagel"
+                }
+            ]
+        }
+    400 Bad Request - Invalid username or query parameters
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
+
+
+    """
+    GET /recommend/nutrient/{username}
+
+    Description:
+    Retrieves (default=3) food items from the database that are high in the
+    user's most deficient nutrient. The deficient nutrient is calculated as
+    the nutrient whose value is lowest in relation to IDEAL_TARGETS created
+    uisng the USDA/AMDR 2000-cal adult.
+
+    Query Parameters:
+    - items (optional, default=3): Number of fooditems to return
+
+    Note: If there are not enough items high in the deficient nutrient
+    to reach the item count, the number of returned items may not match
+    the requested query amount
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved recommended food items
+        Response Body (JSON):
+        {
+            "deficient_nutrient": "Fat",
+            "food_items": [
+                {
+                "dining_location": "Leo's Lounge",
+                "id": 204,
+                "name": "Chips"
+                },
+                {
+                "dining_location": "Ollies",
+                "id": 483,
+                "name": "Pogos"
+                },
+                {
+                "dining_location": "Teraanga Commons Dining Hall",
+                "id": 106,
+                "name": "Black Olives"
+                }
+            ]
+        }
+    204 No content - No deficient nutrient - Either perfect or no items logged
+    400 Bad Request - Invalid username or query parameters
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """
+
+
+    """
+    GET /recommend/similar/{username}
+
+    Description:
+    Retrieves (default=3) food items from the database that are popular with
+    other users sharing your tastes.
+
+    Query Parameters:
+    - items (optional, default=3): Number of fooditems to return
+    - users (optional, default=10): Number of users to compare with
+
+
+    Note: If there are not enough items high in the deficient nutrient
+    to reach the item count, the number of returned items may not match
+    the requested query amount
+
+    Request Body:
+    None
+
+    Responses:
+    200 OK - Successfully retrieved recommended food items
+        Response Body (JSON):
+        {
+            "deficient_nutrient": "Fat",
+            "food_items": [
+                {
+                "dining_location": "Leo's Lounge",
+                "id": 204,
+                "name": "Chips"
+                },
+                {
+                "dining_location": "Ollies",
+                "id": 483,
+                "name": "Pogos"
+                },
+                {
+                "dining_location": "Teraanga Commons Dining Hall",
+                "id": 106,
+                "name": "Black Olives"
+                }
+            ]
+        }
+    204 No content - No items available: Could be user has not consumed items in the
+    last 30 days, or no matches with other stats-enabled users
+    400 Bad Request - Invalid username or query parameters
+    500 Internal Server Error - Database retrieval failed or unexpected error occurred
+    """

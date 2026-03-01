@@ -74,6 +74,6 @@ if __name__ == "__main__":
     app = create_app()
     port = int(os.environ.get("PORT", 5000))
     debug = os.environ.get("FLASK_ENV") == "development"
-    print(f"Starting server on http://127.0.0.1:{port}")  # noqa: E231
+    print(f"Starting server on http://0.0.0.0:{port} (accepts LAN connections)")
     print(f"Debug Mode is {debug}")
-    app.run(host="127.0.0.1", port=port, debug=debug)
+    app.run(host="0.0.0.0", port=port, debug=debug)

@@ -4,8 +4,8 @@ import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Moda
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { useUser } from './context';
-import { styles } from "./styles/style-dining";
+import { useUser } from './_context';
+import { styles } from "./_styles/style-dining";
 
 export default function DiningScreen() {
 

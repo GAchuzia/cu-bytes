@@ -4,8 +4,8 @@ import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-entries';
-import { useUser } from './context';
+import { styles } from './_styles/style-entries';
+import { useUser } from './_context';
 
 export default function EntriesScreen() {
 
