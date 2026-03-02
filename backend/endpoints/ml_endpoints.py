@@ -1,4 +1,5 @@
 import traceback
+import uuid
 
 from flask import Blueprint, request, jsonify
 from werkzeug.utils import secure_filename
@@ -7,14 +8,17 @@ from backend.services.ml_service import predict_food
 
 ml_bp = Blueprint("ml", __name__)
 
-# Configure upload folder
+# Configure upload folder (absolute path under project root)
 UPLOAD_FOLDER = Path(__file__).resolve().parent.parent.parent / "uploads"
-UPLOAD_FOLDER.mkdir(exist_ok=True)
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
 
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+def _ensure_upload_dir():
+    UPLOAD_FOLDER.mkdir(parents=True, exist_ok=True)
 
 
 @ml_bp.route("/predict", methods=["POST"])
@@ -75,10 +79,15 @@ def predict_food_image():
 
     filepath = None
     try:
-        # Save file temporarily
-        filename = secure_filename(file.filename)
-        filepath = UPLOAD_FOLDER / filename
+        _ensure_upload_dir()
+        # Use a unique filename to avoid collisions and ensure we write to a known path
+        ext = Path(secure_filename(file.filename)).suffix or ".jpg"
+        unique_name = f"predict_{uuid.uuid4().hex}{ext}"
+        filepath = (UPLOAD_FOLDER.resolve() / unique_name)
         file.save(str(filepath))
+
+        if not filepath.exists():
+            return jsonify({"error": "Failed to save uploaded file"}), 500
 
         # Predict
         result = predict_food(str(filepath))
