@@ -4,8 +4,9 @@ import { View, Text, TouchableOpacity, ActivityIndicator, FlatList } from 'react
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-statistics';
-import { useUser } from './context';
+import { styles } from './_styles/style-statistics';
+import { useUser } from './_context';
+import { API_BASE_URL } from '../services/api';
 
 export default function StatisticsScreen() {
 
@@ -206,7 +207,7 @@ export default function StatisticsScreen() {
     */
     const getDailyStats = async (days: number) => {
         try {
-            fetch(`http://127.0.0.1:5000/statistics/daily/${usernameGlobal}?days=${days}`)
+            fetch(`${API_BASE_URL}/statistics/daily/${usernameGlobal}?days=${days}`)
                 .then( response => response.json() )
                 .then( data => {
                     setDailyStatistics(data);
@@ -228,7 +229,7 @@ export default function StatisticsScreen() {
     */
     const getAggregateStats = async (days: number) => {
         try {
-            fetch(`http://127.0.0.1:5000/statistics/aggregate/${usernameGlobal}?days=${days}`)
+            fetch(`${API_BASE_URL}/statistics/aggregate/${usernameGlobal}?days=${days}`)
                 .then( response => response.json() )
                 .then( data => {
                     setAggregateStatistics(data);
@@ -250,7 +251,7 @@ export default function StatisticsScreen() {
     */
     const getGlobalStats = async (days: number) => {
         try {
-            fetch(`http://127.0.0.1:5000/statistics/global?days=${days}`)
+            fetch(`${API_BASE_URL}/statistics/global?days=${days}`)
                 .then( response => response.json() )
                 .then( data => {
                     setGlobalStatistics(data);
@@ -272,7 +273,7 @@ export default function StatisticsScreen() {
     */
     const getComparativeStats = async (days: number) => {
         try {
-            fetch(`http://127.0.0.1:5000/statistics/comparative/${usernameGlobal}?days=${days}`)
+            fetch(`${API_BASE_URL}/statistics/comparative/${usernameGlobal}?days=${days}`)
                 .then( response => response.json() )
                 .then( data => {
                     setComparativeStatistics(data);
@@ -556,7 +557,7 @@ export default function StatisticsScreen() {
                     <View style={styles.bodyContainerDefault}>
                         {Object.entries(dailyStatistics).map(([date, stats]) => (
 
-                            <View style={styles.bodyContainerAlt}>
+                            <View key={date} style={styles.bodyContainerAlt}>
 
                                 <Text
                                     style={styles.statisticsInfoText}
@@ -580,7 +581,6 @@ export default function StatisticsScreen() {
                                 </Text>                                
                             
                                 <Text
-                                    key={date}
                                     style={styles.statisticsInfoText}
                                 >
                                     {date}
