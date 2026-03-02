@@ -191,13 +191,13 @@ export default function HomeScreen() {
                 ]}
                 onPressIn={() => setIsGoalsPressed(true)}
                 onPressOut={() => setIsGoalsPressed(false)}
-                onPress={() => router.push("/goals")}
+                onPress={() => router.push("/statistics")}
                 disabled={ usernameGlobal == '' ? true : false }
             >
                 <Text id="goalsButtonText"
                     style={styles.bodyButtonText}>
 
-                    Goals
+                    Statistics
                 </Text>
             </TouchableOpacity>
 

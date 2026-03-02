@@ -245,8 +245,6 @@ export default function EntriesScreen() {
                     Saved Food Items
                 </Text>
 
-                <View style={styles.headerContainer}></View>
-
                 <Text  id="loggedInUser"
                     style={styles.headerUsernameIcon}>
 
@@ -290,6 +288,7 @@ export default function EntriesScreen() {
 
                     <View style={styles.columnHeader}>
                         <Text style={styles.columnHeaderText}>Name</Text>
+                        <Text style={styles.columnHeaderText}>Dining Location</Text>
                         <Text style={styles.columnHeaderText}>Calories</Text>
                         <Text style={styles.columnHeaderText}>Carbs</Text>
                         <Text style={styles.columnHeaderText}>Fat</Text>
@@ -304,6 +303,7 @@ export default function EntriesScreen() {
                         renderItem={({ item }) => (
                         <View style={styles.row}>
                             <Text style={styles.rowCell}>{item["food_name"]}</Text>
+                            <Text style={styles.rowCell}>{item["dining_location"]}</Text>
                             <Text style={styles.rowCell}>{processFoodItemCalories(item["calories"])}</Text>
                             <Text style={styles.rowCell}>{processFoodItemCarbs(item["carbs_g"])} g</Text>
                             <Text style={styles.rowCell}>{processFoodItemFat(item["fat_g"])} g</Text>
