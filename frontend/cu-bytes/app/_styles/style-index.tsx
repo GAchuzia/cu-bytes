@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'scroll',
     textAlign: 'center',
-    width: '100%',
+    width: w(100),
   },
 
   statusbar: {
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: w(4),
     paddingVertical: h(1.5),
-    width: '100%',
+    width: w(100),
   },
 
   bodyButton: {
@@ -78,7 +78,7 @@ export const styles = StyleSheet.create({
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: '100%',
+    width: w(100),
   },
 
   infoText: {
@@ -94,7 +94,7 @@ export const styles = StyleSheet.create({
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: '100%',
+    width: w(100),
   },
 
 });
