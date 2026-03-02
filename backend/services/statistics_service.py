@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from flask import jsonify
 
 # Project imports
+from backend.models.food_item import get_dining_location_name
 from backend.models.food_logging import FoodLogging
 from backend.models.users_auth import UsersAuth
 from backend.models.users_profile import UsersProfile
@@ -132,7 +133,6 @@ def get_aggregate_statistics_json(username, days):
             "top_food": "Unknown",
             "top_dining_location": "Unknown",
         }
-        # Fiona TODO later: Implement dining location properly
 
         days_active = set()
         cal_fruit_veg = 0.0
@@ -140,6 +140,7 @@ def get_aggregate_statistics_json(username, days):
         cal_dairy = 0.0
         cal_protein = 0.0
         consumed_foods = []
+        visited_locations = []
 
         # Use each log to contribute to the various statistics
         for log in logs:
@@ -167,6 +168,9 @@ def get_aggregate_statistics_json(username, days):
                 aggregate_stats["total_sugar_g"] += log.sugar_g
 
             consumed_foods.append(log.food_name)
+
+            if log.dining_location != -1:
+                visited_locations.append(log.dining_location)
 
         # Make sure the user has logged at least one item
         if aggregate_stats["items_logged"] == 0:
@@ -205,6 +209,13 @@ def get_aggregate_statistics_json(username, days):
         # Calculate the most frequent food
         aggregate_stats["top_food"] = max(consumed_foods, key=consumed_foods.count)
 
+        # Calculate the most frequent dining location
+        if len(visited_locations) > 0:
+            most_common_location_id = Counter(visited_locations).most_common(1)[0][0]
+            aggregate_stats["top_dining_location"] = get_dining_location_name(
+                most_common_location_id
+            )
+
         # Convert calories to an integer for consistency
         aggregate_stats["total_calories"] = int(
             round(aggregate_stats["total_calories"], 0)
@@ -240,16 +251,24 @@ def get_global_statistics_json(days):
             "trending_location_2": "Unknown",
             "trending_location_3": "Unknown",
         }
-        # Fiona TODO later: Implement dining location properly
 
         consumed_foods = []
+        visited_locations = []
         for log in logs:
             consumed_foods.append(log.food_name)
+
+            if log.dining_location != -1:
+                visited_locations.append(log.dining_location)
 
         # Calculate the most frequent foods
         top_foods = Counter(consumed_foods).most_common(5)
         for i, (food, count) in enumerate(top_foods, 1):
             aggregate_stats[f"trending_item_{i}"] = food
+
+        # Calculate the most frequent dining locations
+        top_location_ids = Counter(visited_locations).most_common(3)
+        for i, (id, count) in enumerate(top_location_ids, 1):
+            aggregate_stats[f"trending_location_{i}"] = get_dining_location_name(id)
 
         return jsonify(aggregate_stats), 200
 
