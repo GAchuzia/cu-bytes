@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './_styles/style-entries';
 import { useUser } from './_context';
+import { API_BASE_URL } from '../services/api';
 
 export default function EntriesScreen() {
 
@@ -45,7 +46,7 @@ export default function EntriesScreen() {
         Send a request to the backend endpoint to get all food items from the database logged by the logged-in user
     */
     useEffect(() => {
-        const foodItemEntryRequest = `http://127.0.0.1:5000/logging/history/${usernameGlobal}`
+        const foodItemEntryRequest = `${API_BASE_URL}/logging/history/${usernameGlobal}`
 
         const handlePressGetFoodItems = () => {
             fetch(foodItemEntryRequest, {

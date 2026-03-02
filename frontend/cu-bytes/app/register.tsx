@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './_styles/style-register';
 import { useUser } from './_context';
+import { API_BASE_URL } from '../services/api';
 
 export default function RegisterScreen() {
 
@@ -64,7 +65,7 @@ export default function RegisterScreen() {
     */
     const loadSettings = async () => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${username}`);
+            const res = await fetch(`${API_BASE_URL}/profile/retreive/${username}`);
             const data = await res.json();
 
             // Update the copy of the logged-in user's username and profile settings using the retrieved data
@@ -100,7 +101,7 @@ export default function RegisterScreen() {
     */
     const registerUser = async (name: string, psswrd: string) => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/auth/register`, {
+            const res = await fetch(`${API_BASE_URL}/auth/register`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify( { username: name, password: psswrd } )
