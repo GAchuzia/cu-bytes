@@ -106,6 +106,15 @@ def test_trending_recommendations_by_name(
     assert recommended_item["id"] == 1
     assert recommended_item["name"] == "Caesar Salad"
 
+    # Make Alice allergic to the item
+    client.post(
+        "/profile/edit",
+        json={"has_egg_allergy": True, "username": "Alice"},
+    )
+
+    response = client.get("/recommend/trending/Alice")
+    assert response.status_code == 204
+
 
 def test_trending_recommendations_by_category(
     client,
@@ -281,6 +290,15 @@ def test_random_recommendation_no_overlap(
     assert recommended_item["id"] != 1
     assert recommended_item["name"] != "Caesar Salad"
 
+    # Make Alice allergic to all items
+    client.post(
+        "/profile/edit",
+        json={"has_egg_allergy": True, "username": "Alice"},
+    )
+
+    response = client.get("/recommend/random/Alice?items=1")
+    assert response.status_code == 204
+
 
 def test_random_recommendation_overlap(
     client, seeded_users, seeded_food_data, seeded_transactions
@@ -350,6 +368,15 @@ def test_ideal_recommendation_old_user(
 
     # Banana loaf should not show up as a recommendation due to high sugar
 
+    # Make Alice allergic all items
+    client.post(
+        "/profile/edit",
+        json={"has_egg_allergy": True, "username": "Alice"},
+    )
+
+    response = client.get("/recommend/ideal/Alice?items=10")
+    assert response.status_code == 204
+
 
 def test_ideal_recommendation_new_user(client, seeded_extended_food_data):
     # Add a new user
@@ -411,6 +438,18 @@ def test_nutrient_recommendation(
     assert recommended_item["name"] == "Caesar Salad"
 
     # Banana loaf should not show up as a recommendation due to high sugar
+
+    # Make Alice allergic all items
+    client.post(
+        "/profile/edit",
+        json={"has_egg_allergy": True, "username": "Alice"},
+    )
+
+    response = client.get("/recommend/nutrient/Alice?items=10")
+    data = response.get_json()
+
+    assert data["deficient_nutrient"] == "Fat"
+    assert len(data["food_items"]) == 0
 
 
 def test_similar_recommendations_no_items_logged(client, seeded_users):
@@ -508,3 +547,12 @@ def test_similar_recommendations_some_overlap(
     assert recommended_item["dining_location"] == "Tim Hortons"
     assert recommended_item["id"] == 2
     assert recommended_item["name"] == "Hamburger"
+
+    # Make Alice allergic all items
+    client.post(
+        "/profile/edit",
+        json={"has_egg_allergy": True, "username": "Alice"},
+    )
+
+    response = client.get("/recommend/similar/Alice")
+    assert response.status_code == 204

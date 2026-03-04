@@ -9,6 +9,7 @@ from backend.models.food_category import FoodCategory
 from backend.models.food_item import FoodItem, get_dining_location_name
 from backend.models.food_logging import FoodLogging
 from backend.models.users_auth import UsersAuth
+from backend.models.users_profile import UsersProfile
 from backend.services.statistics_service import (
     food_group_delta_score,
     get_stats_enabled_users,
@@ -56,30 +57,32 @@ def get_trending_recommendations_json(username, items):
 
         # Get basic food information for the common foods
         food_list = []
+        user_profile = UsersProfile.get_profile_by_name(username)
         for food_name, _ in top_foods:
             food_id = convert_food_name_to_id(food_name)
 
             # Ignore food names that don't match any Carleton food item
             if food_id > 0:
                 food_item = FoodItem.get_by_id(food_id)
-                food_list.append(
-                    {
-                        "id": food_id,
-                        "name": food_item.food_name,
-                        "dining_location": get_dining_location_name(
-                            food_item.dining_location
-                        ),
-                    }
-                )
+                if allergy_free(user_profile, food_item):
+                    food_list.append(
+                        {
+                            "id": food_id,
+                            "name": food_item.food_name,
+                            "dining_location": get_dining_location_name(
+                                food_item.dining_location
+                            ),
+                        }
+                    )
 
-                # Stop adding foods once the desired threshold is reached
-                if len(food_list) >= items:
-                    break
+                    # Stop adding foods once the desired threshold is reached
+                    if len(food_list) >= items:
+                        break
 
         # Print warning if recommendation is empty
         if len(food_list) == 0:
             print(
-                "RecommendationsService: WARNING - No statistics created because "
+                "RecommendationsService: WARNING - No recommendation created because "
                 "there are no valid items logged in the past 7 days"
             )
             return "", 204
@@ -138,26 +141,38 @@ def get_random_recommendations_json(username, items):
         # Calculate difference between two sets
         difference = list(all_food_ids.difference(consumed_food_ids))
 
-        food_ids_to_return = []
+        food_items_to_return = []
+        user_profile = UsersProfile.get_profile_by_name(username)
         items_added = 0
 
         # Add items untried by the user
         while items_added < items and len(difference) != 0:
             rand_index = random.randint(0, len(difference) - 1)
-            food_ids_to_return.append(difference.pop(rand_index))
-            items_added += 1
+            food_item = FoodItem.get_by_id(difference.pop(rand_index))
+            if allergy_free(user_profile, food_item):
+                food_items_to_return.append(food_item)
+                items_added += 1
 
         # Fill in any remaining room with some already consumed items
-        while items_added < items:
-            food_ids_to_return.append(consumed_food_ids.pop())
-            items_added += 1
+        while items_added < items and len(consumed_food_ids) > 0:
+            food_item = FoodItem.get_by_id(consumed_food_ids.pop())
+            if allergy_free(user_profile, food_item):
+                food_items_to_return.append(food_item)
+                items_added += 1
+
+        # Print warning if recommendation is empty
+        if len(food_items_to_return) == 0:
+            print(
+                "RecommendationsService: WARNING - No recommendation created because "
+                "there are no items that match the user's dietary restrictions"
+            )
+            return "", 204
 
         food_list = []
-        for food_id in food_ids_to_return:
-            food_item = FoodItem.get_by_id(food_id)
+        for food_item in food_items_to_return:
             food_list.append(
                 {
-                    "id": food_id,
+                    "id": food_item.id,
                     "name": food_item.food_name,
                     "dining_location": get_dining_location_name(
                         food_item.dining_location
@@ -333,6 +348,7 @@ def get_ideal_recommendations_json(username, items):
         # Ensures that the same category is not recommended twice for diversity
         food_list = []
         used_categories = set()
+        user_profile = UsersProfile.get_profile_by_name(username)
 
         for score, food in scored_foods:
             if food.food_category in used_categories:
@@ -340,101 +356,33 @@ def get_ideal_recommendations_json(username, items):
 
             used_categories.add(food.food_category)
 
-            food_list.append(
-                {
-                    "id": food.id,
-                    "name": food.food_name,
-                    "dining_location": get_dining_location_name(food.dining_location),
-                }
-            )
+            if allergy_free(user_profile, food):
+                food_list.append(
+                    {
+                        "id": food.id,
+                        "name": food.food_name,
+                        "dining_location": get_dining_location_name(
+                            food.dining_location
+                        ),
+                    }
+                )
 
-            if len(food_list) >= items:
-                break
+                if len(food_list) >= items:
+                    break
+
+        # Print warning if recommendation is empty
+        if len(food_list) == 0:
+            print(
+                "RecommendationsService: WARNING - No recommendation created because "
+                "there are no items that match the user's dietary restrictions"
+            )
+            return "", 204
 
         return jsonify({"food_items": food_list}), 200
 
     except Exception as e:
         print(f"RecommendationService: Error retrieving ideal recommendations: {e}")
         return jsonify({"error": "Failed to retrieve recommendations"}), 500
-
-
-# Helper functions
-
-
-def convert_food_name_to_id(food_identifier):
-    """
-    Best guess that converts a food_name (which may be a generic category)
-    into a tangible Carleton food item labelled with a food_id.
-
-    Will return -1 if a name does not match any food name or food category
-
-    Args:
-        food_name: The name of the food
-    """
-    # Try finding the direct name in the food database
-    food_items = FoodItem.query.filter_by(food_name=food_identifier).all()
-    if len(food_items) != 0:
-        # If muliple matches, pick one of them randomnly
-        randIndex = random.randint(1, len(food_items)) - 1
-        return food_items[randIndex].id
-
-    # If unsuccessful try searching by the generic category
-    food_items = FoodItem.query.filter_by(food_category=food_identifier).all()
-    if len(food_items) != 0:
-        # If muliple matches, pick one of them randomnly
-        randIndex = random.randint(1, len(food_items)) - 1
-        return food_items[randIndex].id
-
-    print(f"RecommendationsService: No match for food identifier {food_identifier}.")
-    return -1
-
-
-def build_normalized(data):
-    """
-    Normalizes food data based on the total calories.
-
-    Args:
-        data: Food data in the form:
-        {
-            "total_calories": 0.0,
-            "total_fat_g": 0.0,
-            "total_carbs_g": 0.0,
-            "total_protein_g": 0.0,
-            "total_fiber_g": 0.0,
-            "total_sugar_g": 0.0,
-            "cal_fruit_veg": 0.0,
-            "cal_grain": 0.0,
-            "cal_dairy": 0.0,
-            "cal_protein": 0.0,
-        }
-    """
-    total_cal = data["total_calories"]
-
-    # If no calories logged, return zeros
-    if total_cal <= 0:
-        return {
-            "fat_pct": 0,
-            "carbs_pct": 0,
-            "protein_pct": 0,
-            "fiber_per1000": 0,
-            "sugar_per1000": 0,
-            "fruit_veg_pct": 0,
-            "grain_pct": 0,
-            "dairy_pct": 0,
-            "protein_pct_fg": 0,
-        }
-
-    return {
-        "fat_pct": data["total_fat_g"] * 9 / total_cal,
-        "carbs_pct": data["total_carbs_g"] * 4 / total_cal,
-        "protein_pct": data["total_protein_g"] * 4 / total_cal,
-        "fiber_per1000": data["total_fiber_g"] / (total_cal / 1000),
-        "sugar_per1000": data["total_sugar_g"] / (total_cal / 1000),
-        "fruit_veg_pct": data["cal_fruit_veg"] / total_cal,
-        "grain_pct": data["cal_grain"] / total_cal,
-        "dairy_pct": data["cal_dairy"] / total_cal,
-        "protein_pct_fg": data["cal_protein"] / total_cal,
-    }
 
 
 def get_nutrient_recommendations_json(username, items):
@@ -585,6 +533,7 @@ def get_nutrient_recommendations_json(username, items):
         # Ensures that the same category is not recommended twice for diversity
         food_list = []
         used_categories = set()
+        user_profile = UsersProfile.get_profile_by_name(username)
 
         for score, food in scored_foods:
             if food.food_category in used_categories:
@@ -592,16 +541,19 @@ def get_nutrient_recommendations_json(username, items):
 
             used_categories.add(food.food_category)
 
-            food_list.append(
-                {
-                    "id": food.id,
-                    "name": food.food_name,
-                    "dining_location": get_dining_location_name(food.dining_location),
-                }
-            )
+            if allergy_free(user_profile, food):
+                food_list.append(
+                    {
+                        "id": food.id,
+                        "name": food.food_name,
+                        "dining_location": get_dining_location_name(
+                            food.dining_location
+                        ),
+                    }
+                )
 
-            if len(food_list) >= items:
-                break
+                if len(food_list) >= items:
+                    break
 
         return (
             jsonify(
@@ -731,6 +683,7 @@ def get_similar_recommendations_json(username, items, users):
 
         # Convert to output format
         food_list = []
+        user_profile = UsersProfile.get_profile_by_name(username)
 
         for food_id, score in sorted_foods:
             food = FoodItem.get_by_id(food_id)
@@ -738,19 +691,152 @@ def get_similar_recommendations_json(username, items, users):
             if food is None:
                 continue
 
-            food_list.append(
-                {
-                    "id": food.id,
-                    "name": food.food_name,
-                    "dining_location": get_dining_location_name(food.dining_location),
-                }
-            )
+            if allergy_free(user_profile, food):
+                food_list.append(
+                    {
+                        "id": food.id,
+                        "name": food.food_name,
+                        "dining_location": get_dining_location_name(
+                            food.dining_location
+                        ),
+                    }
+                )
 
-            if len(food_list) >= items:
-                break
+                if len(food_list) >= items:
+                    break
+
+        # Print warning if recommendation is empty
+        if len(food_list) == 0:
+            print(
+                "RecommendationsService: WARNING - No recommendation created because "
+                "there are no items that match the user's dietary restrictions"
+            )
+            return "", 204
 
         return jsonify({"food_items": food_list}), 200
 
     except Exception as e:
         print(f"RecommendationService: Error retrieving similar recommendations: {e}")
         return jsonify({"error": "Failed to retrieve recommendations"}), 500
+
+
+# Helper functions
+
+
+def convert_food_name_to_id(food_identifier):
+    """
+    Best guess that converts a food_name (which may be a generic category)
+    into a tangible Carleton food item labelled with a food_id.
+
+    Will return -1 if a name does not match any food name or food category
+
+    Args:
+        food_name: The name of the food
+    """
+    # Try finding the direct name in the food database
+    food_items = FoodItem.query.filter_by(food_name=food_identifier).all()
+    if len(food_items) != 0:
+        # If muliple matches, pick one of them randomnly
+        randIndex = random.randint(1, len(food_items)) - 1
+        return food_items[randIndex].id
+
+    # If unsuccessful try searching by the generic category
+    food_items = FoodItem.query.filter_by(food_category=food_identifier).all()
+    if len(food_items) != 0:
+        # If muliple matches, pick one of them randomnly
+        randIndex = random.randint(1, len(food_items)) - 1
+        return food_items[randIndex].id
+
+    print(f"RecommendationsService: No match for food identifier {food_identifier}.")
+    return -1
+
+
+def build_normalized(data):
+    """
+    Normalizes food data based on the total calories.
+
+    Args:
+        data: Food data in the form:
+        {
+            "total_calories": 0.0,
+            "total_fat_g": 0.0,
+            "total_carbs_g": 0.0,
+            "total_protein_g": 0.0,
+            "total_fiber_g": 0.0,
+            "total_sugar_g": 0.0,
+            "cal_fruit_veg": 0.0,
+            "cal_grain": 0.0,
+            "cal_dairy": 0.0,
+            "cal_protein": 0.0,
+        }
+    """
+    total_cal = data["total_calories"]
+
+    # If no calories logged, return zeros
+    if total_cal <= 0:
+        return {
+            "fat_pct": 0,
+            "carbs_pct": 0,
+            "protein_pct": 0,
+            "fiber_per1000": 0,
+            "sugar_per1000": 0,
+            "fruit_veg_pct": 0,
+            "grain_pct": 0,
+            "dairy_pct": 0,
+            "protein_pct_fg": 0,
+        }
+
+    return {
+        "fat_pct": data["total_fat_g"] * 9 / total_cal,
+        "carbs_pct": data["total_carbs_g"] * 4 / total_cal,
+        "protein_pct": data["total_protein_g"] * 4 / total_cal,
+        "fiber_per1000": data["total_fiber_g"] / (total_cal / 1000),
+        "sugar_per1000": data["total_sugar_g"] / (total_cal / 1000),
+        "fruit_veg_pct": data["cal_fruit_veg"] / total_cal,
+        "grain_pct": data["cal_grain"] / total_cal,
+        "dairy_pct": data["cal_dairy"] / total_cal,
+        "protein_pct_fg": data["cal_protein"] / total_cal,
+    }
+
+
+def allergy_free(user, food):
+    """
+    Return whether or not the user should be recommended the food item
+    based on their dietary restrictions
+
+    Items that the user is allergic to will return False
+    Items that are safe for consumption will return True
+    Items that may contain will return True (otherwise this filters out
+    many food items)
+
+    Args:
+        user: The the user's profile object (UserProfile)
+        food: The food item in question (FoodItem)
+    """
+    if user.has_egg_allergy and food.has_eggs:
+        return False
+    if user.has_fish_or_shellfish_allergy and food.has_fish_or_shellfish:
+        return False
+    if user.has_dairy_intolerance and not food.is_dairy_free:
+        return False
+    if user.has_milk_allergy and food.has_milk:
+        return False
+    if user.has_peanut_allergy and food.has_peanuts:
+        return False
+    if user.has_sesame_allergy and food.has_sesame:
+        return False
+    if user.has_soy_allergy and food.has_soy:
+        return False
+    if user.has_treenut_allergy and food.has_treenuts:
+        return False
+    if user.has_wheat_allergy and food.has_wheat:
+        return False
+    if user.has_gluten_allergy and not food.is_gluten_free:
+        return False
+    if user.is_vegan and not food.is_vegan:
+        return False
+    if user.is_vegetarian and not food.is_vegetarian:
+        return False
+    if user.prefers_halal and not food.is_halal:
+        return False
+    return True
