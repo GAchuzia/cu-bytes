@@ -685,7 +685,7 @@ The following endpoint should be used when food_name is determined through machi
                 }
             ]
         }
-    204 No Content - Could not create statistics because there are no valid
+    204 No Content - Could not create recommendations because there are no valid
     entries made by other users who have statistics enabled
     400 Bad Request - Invalid username or query parameters
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
@@ -730,6 +730,8 @@ The following endpoint should be used when food_name is determined through machi
                 }
             ]
         }
+    204 No Content - Could not create recommendations because no items match the users
+    dietary restrictions
     400 Bad Request - Invalid username or query parameters
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
@@ -774,6 +776,8 @@ The following endpoint should be used when food_name is determined through machi
                 }
             ]
         }
+    204 No Content - Could not create recommendations because no items match the users
+    dietary restrictions
     400 Bad Request - Invalid username or query parameters
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
@@ -870,7 +874,7 @@ The following endpoint should be used when food_name is determined through machi
             ]
         }
     204 No content - No items available: Could be user has not consumed items in the
-    last 30 days, or no matches with other stats-enabled users
+    last 30 days, or no valid matches with other stats-enabled users
     400 Bad Request - Invalid username or query parameters
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
