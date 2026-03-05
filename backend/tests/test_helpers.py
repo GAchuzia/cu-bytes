@@ -48,7 +48,7 @@ def add_test_food_item(
     is_gluten_free=False,
     is_halal=False,
     is_dairy_free=False,
-    has_eggs=False,
+    has_eggs=True,
     has_fish_or_shellfish=False,
     has_milk=False,
     has_peanuts=False,
