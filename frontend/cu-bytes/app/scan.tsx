@@ -4,10 +4,10 @@ import * as ImagePicker from 'expo-image-picker';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { apiService } from '../services/api';
+import { apiService, API_BASE_URL } from '../services/api';
 
-import { styles } from './styles/style-scan';
-import { useUser } from './context';
+import { styles } from './_styles/style-scan';
+import { useUser } from './_context';
 
 interface PredictionResult {
     food_name: string;
@@ -270,7 +270,7 @@ export default function ScanScreen() {
     */
     const logFoodItemByName = async (name: string) => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/logging/log-by-name`, {
+            const res = await fetch(`${API_BASE_URL}/logging/log-by-name`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify( { username: usernameGlobal, food_name: name } )

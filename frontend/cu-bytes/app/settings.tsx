@@ -4,8 +4,9 @@ import { View, Text, TouchableOpacity, Switch, ActivityIndicator } from 'react-n
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-settings';
-import { useUser } from './context';
+import { styles } from './_styles/style-settings';
+import { useUser } from './_context';
+import { API_BASE_URL } from '../services/api';
 
 export default function SettingsScreen() {
 
@@ -61,7 +62,7 @@ export default function SettingsScreen() {
     useEffect(() => {
         const loadSettings = async () => {
             try {
-                const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${usernameGlobal}`);
+                const res = await fetch(`${API_BASE_URL}/profile/retreive/${usernameGlobal}`);
                 const data = await res.json();
 
                 // Update the copy of the logged-in user's username and profile settings using the retrieved data
@@ -111,7 +112,7 @@ export default function SettingsScreen() {
     */
     const handlePressConfirmSettings = async () => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/profile/edit`, {
+            const res = await fetch(`${API_BASE_URL}/profile/edit`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(

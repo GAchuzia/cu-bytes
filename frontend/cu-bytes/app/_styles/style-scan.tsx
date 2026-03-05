@@ -1,37 +1,38 @@
 import { StyleSheet } from 'react-native';
+import { w, h, font } from './dimensions';
 
 export const styles = StyleSheet.create({
 
   container: {
-    alignItems: 'center', // Horizontal
+    alignItems: 'center',
     backgroundColor: '#C5151A',
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'flex-start', // Vertical 
-    overflowY: 'scroll',
+    justifyContent: 'flex-start',
+    overflow: 'scroll',
     textAlign: 'center',
-    width: '100%' as any,
+    width: w(100),
   },
 
   headerContainer: {
     backgroundColor: '#C5151A',
-    width: '10%' as any,
+    width: w(10),
   },
 
   bodyContainer: {
-    alignItems: 'center', // Horizontal
+    alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    width: '100%' as any,
+    width: w(100),
   },
 
   statusbar: {
-    alignItems: 'center', // Horizontal
+    alignItems: 'center',
     backgroundColor: '#C5151A',
     flexDirection: 'row',
-    justifyContent: 'space-between', // Vertical
-    padding: '1.5%' as any,
+    justifyContent: 'space-between',
+    padding: w(1.5),
     textAlign: 'center',
-    width: '100%' as any,
+    width: w(100),
   },
 
   headerButton: {
@@ -40,72 +41,71 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 4,
     borderColor: 'black',
-    color: 'red',
-    padding: '1.5%' as any,
-    width: '10%' as any,
+    padding: w(1.5),
+    width: w(10),
   },
 
   headerButtonText: {
     backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: '150%' as any,
-    fontWeight: 500,
+    fontSize: font(150),
+    fontWeight: '500',
   },
-  
+
   headerTitle: {
     backgroundColor: '#C5151A',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: '300%' as any,
-    fontWeight: 800,
+    fontSize: font(300),
+    fontWeight: '800',
     textAlign: 'center',
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: '50%' as any,
+    width: w(50),
   },
 
   headerUsernameIcon: {
     backgroundColor: '#C5151A',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: '150%' as any,
+    fontSize: font(150),
     fontWeight: 'bold',
     textAlign: 'center',
-    width: '10%' as any,
+    width: w(10),
   },
 
   infoText: {
     backgroundColor: '#C5151A',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: '150%' as any,
-    fontWeight: 500,
-    marginTop: '0.5%' as any,
-    paddingTop: '5.0%' as any,
-    paddingBottom: '5.0%' as any,
+    fontSize: font(150),
+    fontWeight: '500',
+    marginTop: h(0.5),
+    paddingTop: h(5),
+    paddingBottom: h(5),
     textAlign: 'center',
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: '100%' as any,
+    width: w(100),
   },
 
   placeholderText: {
     backgroundColor: '#666666',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: '175%' as any,
-    fontWeight: 500,
-    marginTop: '0.5%' as any,
-    paddingTop: '10.0%' as any,
-    paddingBottom: '10.0%' as any,
+    fontSize: font(175),
+    fontWeight: '500',
+    marginTop: h(0.5),
+    paddingTop: h(10),
+    paddingBottom: h(10),
     textAlign: 'center',
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: '80%' as any,
+    width: w(80),
   },
 
   foodInfoText: {
@@ -115,26 +115,26 @@ export const styles = StyleSheet.create({
     borderBottomColor: '#666666',
     color: '#131312',
     fontFamily: 'arial',
-    fontSize: '175%' as any,
-    fontWeight: 600,
-    marginTop: '1.5%' as any,
-    marginBottom: '1.5%' as any,
-    paddingTop: '5.0%' as any,
-    paddingBottom: '5.0%' as any,
-    paddingLeft: '5.0%' as any,
-    paddingRight: '5.0%' as any,
+    fontSize: font(175),
+    fontWeight: '600',
+    marginTop: h(1.5),
+    marginBottom: h(1.5),
+    paddingTop: h(5),
+    paddingBottom: h(5),
+    paddingLeft: w(5),
+    paddingRight: w(5),
     textAlign: 'center',
     shadowColor: '#131312',
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 10,
-    width: '100%' as any,
+    width: w(100),
   },
 
   foodImage: {
     borderTopColor: 'white',
     borderRadius: 0,
     height: 250,
-    width: 250, 
+    width: 250,
   },
 
   bodyButtonDefault: {
@@ -143,17 +143,17 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 4,
     borderColor: '#131312',
-    marginTop: '2.5%' as any,
-    padding: '2.5%' as any,
-    width: '80%' as any,
+    marginTop: h(2.5),
+    padding: h(2.5),
+    width: w(80),
   },
 
   bodyButtonTextDefault: {
     backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: '175%' as any,
-    fontWeight: 600,
+    fontSize: font(175),
+    fontWeight: '600',
     textAlign: 'center',
   },
 
@@ -163,21 +163,21 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 4,
     borderColor: '#FFFFFF',
-    marginTop: '2.5%' as any,
-    marginBottom: '2.5%',
-    padding: '2.5%' as any,
+    marginTop: h(2.5),
+    marginBottom: h(2.5),
+    padding: h(2.5),
     shadowColor: '#131312',
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 10,
-    width: '80%' as any,
+    width: w(80),
   },
 
   bodyButtonTextAlt: {
     backgroundColor: 'transparent',
     color: '#C5151A',
     fontFamily: 'arial',
-    fontSize: '175%' as any,
-    fontWeight: 600,
+    fontSize: font(175),
+    fontWeight: '600',
     textAlign: 'center',
   },
 
@@ -187,12 +187,12 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 4,
     borderColor: '#131312',
-    marginTop: '2.5%' as any,
-    padding: '2.5%' as any,
+    marginTop: h(2.5),
+    padding: h(2.5),
     shadowColor: '#131312',
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 10,
-    width: '80%' as any,
+    width: w(80),
   },
 
   bodyButtonDeleteFood: {
@@ -201,12 +201,12 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 4,
     borderColor: '#131312',
-    marginTop: '2.5%' as any,
-    padding: '2.5%' as any,
+    marginTop: h(2.5),
+    padding: h(2.5),
     shadowColor: '#131312',
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 10,
-    width: '80%' as any,
+    width: w(80),
   },
 
   buttonDisabled: {

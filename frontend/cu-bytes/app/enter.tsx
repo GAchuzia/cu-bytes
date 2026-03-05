@@ -4,8 +4,9 @@ import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Moda
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { styles } from './styles/style-enter';
-import { useUser } from './context';
+import { styles } from './_styles/style-enter';
+import { useUser } from './_context';
+import { API_BASE_URL } from '../services/api';
 
 export default function EnterScreen() {
 
@@ -253,7 +254,7 @@ export default function EnterScreen() {
     useEffect(() => {
         const getFoodItems = async () => {
             try {
-                const res = await fetch(`http://127.0.0.1:5000/browse/food-items`);
+                const res = await fetch(`${API_BASE_URL}/browse/food-items`);
                 const data = await res.json();
 
                 // Store the retrieved food items in the array
@@ -279,7 +280,7 @@ export default function EnterScreen() {
     */
     const getFoodItem = async (id: number) => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/browse//food-item/${id}`);
+            const res = await fetch(`${API_BASE_URL}/browse/food-item/${id}`);
             const data = await res.json();
 
             // Store the retrieved food item in the variable
@@ -302,7 +303,7 @@ export default function EnterScreen() {
     */
     const logFoodItemById = async (id: number) => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/logging/log-by-id`, {
+            const res = await fetch(`${API_BASE_URL}/logging/log-by-id`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify( { username: usernameGlobal, food_id: id } )
