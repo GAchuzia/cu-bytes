@@ -365,7 +365,55 @@ export default function RecommendationsScreen() {
 
             <View style={styles.statusbar}>
 
+                <TouchableOpacity id="backButton"
+                    style={[styles.headerButton,
+                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
+                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
+
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}>
+
+                        Back
+                    </Text>
+
+                </TouchableOpacity>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text id="recommendationsTitle"
+                    style={styles.headerTitle}>
+
+                    Recommendations
+                </Text>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
+                </Text>
+
+                <TouchableOpacity id="loginLogoutButton"
+                    style={[styles.headerButton,
+                        { backgroundColor : isLoginLogoutPressed ? '#666666' : '#131312' }
+                    ]}
+                    onPressIn={() => setIsLoginLogoutPressed(true)}
+                    onPressOut={() => setIsLoginLogoutPressed(false)}
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+
+                    <Text id="loginLogoutButtonText"
+                        style={styles.headerButtonText}>
+
+                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    </Text>
+
+                </TouchableOpacity>
+
             </View>
+
+
 
         </View>
     )
