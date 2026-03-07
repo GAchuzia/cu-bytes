@@ -364,7 +364,7 @@ export default function RecommendationsScreen() {
             />
 
             <View style={styles.statusbar}>
-
+                
                 <TouchableOpacity id="backButton"
                     style={[styles.headerButton,
                         { backgroundColor: isBackPressed ? '#666666' : '#131312' }
@@ -381,21 +381,7 @@ export default function RecommendationsScreen() {
 
                 </TouchableOpacity>
 
-                <View style={styles.headerContainer}></View>
-
-                <Text id="recommendationsTitle"
-                    style={styles.headerTitle}>
-
-                    Recommendations
-                </Text>
-
-                <Text id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-
-                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
-                </Text>
-
-                <TouchableOpacity id="loginLogoutButton"
+                                <TouchableOpacity id="loginLogoutButton"
                     style={[styles.headerButton,
                         { backgroundColor : isLoginLogoutPressed ? '#666666' : '#131312' }
                     ]}
@@ -413,6 +399,134 @@ export default function RecommendationsScreen() {
 
             </View>
 
+            <View style={styles.statusbar}>
+
+                <View style={styles.headerContainer}></View>
+
+                <Text id="recommendationsTitle"
+                    style={styles.headerTitle}>
+
+                    Recommendations
+                </Text>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
+                </Text>
+
+            </View>
+
+            {/* Display the following message when no recommendations buttons have been pressed and no recommendations have been fetched */}
+            {!recommendationModeButtonPressed && !fetchedRecommendations && (
+                <Text style={styles.infoText}>
+                    What recommendations would you like to view?
+                </Text>
+            )}
+
+            {/* Display the following message when a recommendations button has been pressed but no recommendations have been fetched */}
+            {recommendationModeButtonPressed && !fetchedRecommendations && (
+                <Text style={styles.infoText}>
+                    Enter the number of food items to include in the retrieved recommendations
+                </Text>
+            )}
+
+            {/* Display the buttons used to notify the frontend to retrieve recommendations */}
+            {!recommendationModeButtonPressed && (
+                <View style={styles.bodyContainerAlt}>
+
+                    <View style={styles.bodyContainerAlt}>
+                        <TouchableOpacity id="trendingRecsButton"
+                            style={[styles.bodyButtonDefault,
+                                //{ backgroundColor : isTrendingPressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                            ]}
+                        >
+                            <Text id="trendingRecsButtonText"
+                                style={styles.bodyButtonTextDefault}
+                            >
+                                Trending 
+                                {'\n'}
+                                Recs.
+                            </Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity id="randomRecsButton"
+                            style={[styles.bodyButtonDefault,
+                                //{ backgroundColor : isRandomPressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                            ]}
+                        >
+                            <Text id="randomRecsButtonText"
+                                style={styles.bodyButtonTextDefault}
+                            >
+                                Random 
+                                {'\n'}
+                                Recs.
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.bodyContainerAlt}>
+                        <TouchableOpacity id="idealRecsButton"
+                            style={[styles.bodyButtonDefault,
+                                //{ backgroundColor : isRandomPressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                            ]}
+                        >
+                            <Text id="idealRecsButtonText"
+                                style={styles.bodyButtonTextDefault}
+                            >
+                                Ideal
+                                {'\n'}
+                                Recs.
+                            </Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity id="nutrientRecsButton"
+                            style={[styles.bodyButtonDefault,
+                                //{ backgroundColor : isNutrientPressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                            ]}
+                        >
+                            <Text id="nutrientRecsButtonText"
+                                style={styles.bodyButtonTextDefault}
+                            >
+                                Nutrient 
+                                {'\n'}
+                                Recs.
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.bodyContainerAlt}>
+                        <TouchableOpacity id="similarRecsButton"
+                            style={[styles.bodyButtonDefault,
+                                //{ backgroundColor : isSimilarPressed || usernameGlobal == '' ? '#666666' : '#131312' }
+                            ]}
+                        >
+                            <Text id="similarRecsButtonText"
+                                style={styles.bodyButtonTextDefault}
+                            >
+                                Similar 
+                                {'\n'}
+                                Recs.
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+            )}
+
+            {/* Display the button used to notify the frontend to retrieve trending recommendations */}
+
+
+            {/* Display the button used to notify the frontend to retrieve random recommendations */}
+
+
+            {/* Display the button used to notify the frontend to retrieve ideal recommendations */}
+
+
+            {/* Display the button used to notify the frontend to retrieve nutrient recommendations */}
+
+
+            {/* Display the button used to notify the frontend to retrieve similar recommendations */}
 
 
         </View>
