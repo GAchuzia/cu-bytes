@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import { w, h, font } from './dimensions';
-import { HeaderBackContext } from "@react-navigation/elements";
 
 export const styles = StyleSheet.create({
 
@@ -12,17 +11,6 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         overflow: 'scroll',
         textAlign: 'center',
-        width: w(100),
-    },
-
-    headerContainer: {
-        backgroundColor: '#C5151A',
-        width: w(10),
-    },
-
-    bodyContainerDefault: {
-        alignItems: 'center',
-        backgroundColor: 'yellow',
         width: w(100),
     },
 
@@ -40,7 +28,10 @@ export const styles = StyleSheet.create({
         backgroundColor: '#C5151A',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: w(1.5),
+        paddingTop: h(2.0),
+        paddingBottom: (2.0),
+        paddingLeft: w(2.0),
+        paddingRight: w(2.0),
         textAlign: 'center',
         width: w(80),
     },
@@ -52,7 +43,10 @@ export const styles = StyleSheet.create({
         borderWidth: 4,
         borderColor: '#666666',
         color: 'red',
-        padding: w(1.5),
+        paddingTop: h(2.0),
+        paddingBottom: h(2.0),
+        paddingLeft: w(2.0),
+        paddingRight: w(2.0),
         width: w(10),
     },
 
@@ -61,46 +55,60 @@ export const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontFamily: 'arial',
         fontSize: font(150),
-        fontWeight: '500',
+        fontWeight: '600',
     },
 
     headerTitle: {
-        backgroundColor: '#C5151A',
+        backgroundColor: 'blue',//'#C5151A',
         color: '#FFFFFF',
         fontFamily: 'arial',
         fontSize: font(300),
         fontWeight: '800',
+        paddingTop: h(2.0),
+        paddingBottom: h(2.0),
+        paddingLeft: w(2.0),
+        paddingRight: w(2.0),
         textAlign: 'center',
         textShadowColor: '#131312',
         textShadowOffset: { width: 2, height: 2 },
         textShadowRadius: 10,
-        width: w(50),
+        width: w(100),
     },
 
     headerUsernameIcon: {
-        backgroundColor: '#C5151A',
+        backgroundColor: 'blue',//'#C5151A',
         color: '#FFFFFF',
         fontFamily: 'arial',
         fontSize: font(150),
-        fontWeight: 'bold',
-        textAlign: 'center',
-        width: w(10),
-    },
-
-    infoText: {
-        backgroundColor: '#C5151A',
-        color: '#FFFFFF',
-        fontFamily: 'arial',
-        fontSize: font(175),
-        fontWeight: '500',
-        marginTop: h(0.5),
-        paddingTop: h(5),
-        paddingBottom: h(5),
+        fontWeight: '600',
+        paddingTop: h(2.0),
+        paddingBottom: h(2.0),
+        paddingLeft: w(2.0),
+        paddingRight: w(2.0),
         textAlign: 'center',
         textShadowColor: '#131312',
         textShadowOffset: { width: 2, height: 2 },
         textShadowRadius: 10,
         width: w(80),
+    },
+
+    infoText: {
+        backgroundColor: 'green',//'#C5151A',
+        color: '#FFFFFF',
+        fontFamily: 'arial',
+        fontSize: font(150),
+        fontWeight: '600',
+        marginTop: h(1.0),
+        marginBottom: h(1.0),
+        paddingTop: h(2.0),
+        paddingBottom: h(2.0),
+        paddingLeft: w(2.0),
+        paddingRight: w(2.0),
+        textAlign: 'center',
+        textShadowColor: '#131312',
+        textShadowOffset: { width: 2, height: 2 },
+        textShadowRadius: 10,
+        width: w(60),
     },
 
     bodyButtonDefault: {
@@ -109,17 +117,14 @@ export const styles = StyleSheet.create({
         borderRadius: 20,
         borderWidth: 4,
         borderColor: '#666666',
-        
         marginTop: h(1.0),
         marginBottom: h(1.0),
-        marginLeft: h(1.0),
-        marginRight: h(1.0),
-        
+        marginLeft: w(0.5),
+        marginRight: w(0.5),
         paddingTop: h(5.0),
         paddingBottom: h(5.0),
-        paddingLeft: h(8.0),
-        paddingRight: h(8.0),
-
+        paddingLeft: w(5.0),
+        paddingRight: w(5.0),
         width: w(20),
     },
 
@@ -128,7 +133,7 @@ export const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontFamily: 'arial',
         fontSize: font(200),
-        fontWeight: '700',
+        fontWeight: '600',
         textAlign: 'center',
     }
 

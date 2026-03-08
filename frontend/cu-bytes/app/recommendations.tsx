@@ -364,7 +364,6 @@ export default function RecommendationsScreen() {
             />
 
             <View style={styles.statusbar}>
-                
                 <TouchableOpacity id="backButton"
                     style={[styles.headerButton,
                         { backgroundColor: isBackPressed ? '#666666' : '#131312' }
@@ -381,7 +380,13 @@ export default function RecommendationsScreen() {
 
                 </TouchableOpacity>
 
-                                <TouchableOpacity id="loginLogoutButton"
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+
+                    {usernameGlobal != '' ? `Logged in as ${usernameGlobal}` : 'Logged in as Guest' }
+                </Text>
+
+                <TouchableOpacity id="loginLogoutButton"
                     style={[styles.headerButton,
                         { backgroundColor : isLoginLogoutPressed ? '#666666' : '#131312' }
                     ]}
@@ -396,25 +401,13 @@ export default function RecommendationsScreen() {
                     </Text>
 
                 </TouchableOpacity>
-
+                
             </View>
 
             <View style={styles.statusbar}>
-
-                <View style={styles.headerContainer}></View>
-
-                <Text id="recommendationsTitle"
-                    style={styles.headerTitle}>
-
+                <Text id="recommendationsTitle" style={styles.headerTitle}>
                     Recommendations
                 </Text>
-
-                <Text id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-
-                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
-                </Text>
-
             </View>
 
             {/* Display the following message when no recommendations buttons have been pressed and no recommendations have been fetched */}
