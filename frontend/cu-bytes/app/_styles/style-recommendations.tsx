@@ -14,10 +14,6 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
-  headerContainer: {
-    width: w(10),
-  },
-
   bodyContainer: {
     alignItems: 'center',
     backgroundColor: '#C5151A',
@@ -126,7 +122,7 @@ export const styles = StyleSheet.create({
     width: w(80),
   },
 
-  bodyButton: {
+  bodyButtonDefault: {
     alignItems: 'center',
     backgroundColor: '#131312',
     borderRadius: 20,
@@ -145,7 +141,7 @@ export const styles = StyleSheet.create({
     width: w(60),
   },
 
-  bodyButtonText: {
+  bodyButtonTextDefault: {
     backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',

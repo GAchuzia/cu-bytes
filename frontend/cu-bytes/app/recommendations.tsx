@@ -420,21 +420,21 @@ export default function RecommendationsScreen() {
 
                         <View style={styles.bodyContainer}>
                             <TouchableOpacity id="trendingRecsButton"
-                                style={[styles.bodyButton,
+                                style={[styles.bodyButtonDefault,
                                     { backgroundColor : isTrendingPressed || usernameGlobal == '' ? '#666666' : '#131312' }
                                 ]}
                             >
-                                <Text id="trendingRecsButtonText" style={styles.bodyButtonText}>
+                                <Text id="trendingRecsButtonText" style={styles.bodyButtonTextDefault}>
                                     Trending{'\n'}Recs.
                                 </Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity id="randomRecsButton"
-                                style={[styles.bodyButton,
+                                style={[styles.bodyButtonDefault,
                                     { backgroundColor : isRandomPressed || usernameGlobal == '' ? '#666666' : '#131312' }
                                 ]}
                             >
-                                <Text id="randomRecsButtonText" style={styles.bodyButtonText}>
+                                <Text id="randomRecsButtonText" style={styles.bodyButtonTextDefault}>
                                     Random{'\n'}Recs.
                                 </Text>
                             </TouchableOpacity>
@@ -442,21 +442,21 @@ export default function RecommendationsScreen() {
 
                         <View style={styles.bodyContainer}>
                             <TouchableOpacity id="idealRecsButton"
-                                style={[styles.bodyButton,
+                                style={[styles.bodyButtonDefault,
                                     { backgroundColor : isRandomPressed || usernameGlobal == '' ? '#666666' : '#131312' }
                                 ]}
                             >
-                                <Text id="idealRecsButtonText" style={styles.bodyButtonText}>
+                                <Text id="idealRecsButtonText" style={styles.bodyButtonTextDefault}>
                                     Ideal{'\n'}Recs.
                                 </Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity id="nutrientRecsButton"
-                                style={[styles.bodyButton,
+                                style={[styles.bodyButtonDefault,
                                     { backgroundColor : isNutrientPressed || usernameGlobal == '' ? '#666666' : '#131312' }
                                 ]}
                             >
-                                <Text id="nutrientRecsButtonText" style={styles.bodyButtonText}>
+                                <Text id="nutrientRecsButtonText" style={styles.bodyButtonTextDefault}>
                                     Nutrient{'\n'}Recs.
                                 </Text>
                             </TouchableOpacity>
@@ -464,11 +464,11 @@ export default function RecommendationsScreen() {
 
                         <View style={styles.bodyContainer}>
                             <TouchableOpacity id="similarRecsButton"
-                                style={[styles.bodyButton,
+                                style={[styles.bodyButtonDefault,
                                     { backgroundColor : isSimilarPressed || usernameGlobal == '' ? '#666666' : '#131312' }
                                 ]}
                             >
-                                <Text id="similarRecsButtonText" style={styles.bodyButtonText}>
+                                <Text id="similarRecsButtonText" style={styles.bodyButtonTextDefault}>
                                     Similar{'\n'}Recs.
                                 </Text>
                             </TouchableOpacity>
