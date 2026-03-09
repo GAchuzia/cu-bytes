@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -77,10 +77,6 @@ export default function HomeScreen() {
             <View
                 style={styles.statusbar}>
 
-                <View style={styles.headerContainer}></View>
-
-                <View style={styles.headerContainer}></View>
-
                 <Text id="homeTitle"
                     style={styles.headerTitle}>
 
@@ -102,7 +98,8 @@ export default function HomeScreen() {
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
                     <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
@@ -111,6 +108,13 @@ export default function HomeScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
             <Text id="homeInfo"
                 style={styles.infoText}>
 
@@ -217,6 +221,9 @@ export default function HomeScreen() {
                     Settings
                 </Text>
             </TouchableOpacity>
+
+            </ScrollView>
+            </View>
 
         </View>
     )

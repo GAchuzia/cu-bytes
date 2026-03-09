@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, Alert, Modal, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Alert, Modal, ActivityIndicator, ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 import { router } from 'expo-router';
@@ -238,6 +238,35 @@ export default function ScanScreen() {
     };
 
     /*
+        Enable the user to take a photo with the device camera.
+    */
+    const takePhoto = async () => {
+        try {
+            const { status } = await ImagePicker.requestCameraPermissionsAsync();
+
+            if (status !== 'granted') {
+                Alert.alert('Permission needed', 'Sorry, we need camera permissions to take a photo!');
+                return;
+            }
+
+            const result = await ImagePicker.launchCameraAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+            });
+
+            if (!result.canceled && result.assets[0]) {
+                setSelectedImage(result.assets[0].uri);
+                setPrediction(null);
+            }
+        } catch (err) {
+            console.error('Error taking photo:', err);
+            Alert.alert('Error', 'Failed to take photo');
+        }
+    };
+
+    /*
         Send the selected image to the machine learning component to be identified and analyzed
     */
     const scanFood = async () => {
@@ -328,14 +357,13 @@ export default function ScanScreen() {
                     onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
 
                     <Text id="backButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         Back
                     </Text>
 
                 </TouchableOpacity>
-
-                <View style={styles.headerContainer}></View>
 
                 <Text id="scanFoodItemTitle"
                     style={styles.headerTitle}>
@@ -358,7 +386,8 @@ export default function ScanScreen() {
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
                     <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
@@ -367,9 +396,18 @@ export default function ScanScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+                bounces={true}
+                overScrollMode="always"
+            >
             <Text style={styles.infoText}>
 
-                Upload an image of the food item that you would like CU-Bytes to identify
+                Take a photo or upload an image of the food item that you would like CU-Bytes to identify
             </Text>
 
             {selectedImage && (
@@ -481,6 +519,20 @@ export default function ScanScreen() {
                 </Modal>
             )}
 
+            <TouchableOpacity id="takePhotoButton"
+                style={[styles.bodyButtonDefault,
+                    loading && styles.buttonDisabled
+                ]}
+                onPress={takePhoto}
+                disabled={loading}
+            >
+                <Text id="takePhotoButtonText"
+                    style={styles.bodyButtonTextDefault}>
+
+                    Take Photo
+                </Text>
+            </TouchableOpacity>
+
             <TouchableOpacity id="uploadPhotoButton"
                 style={[styles.bodyButtonDefault,
                     loading && styles.buttonDisabled
@@ -537,6 +589,9 @@ export default function ScanScreen() {
                     }
                 </TouchableOpacity>
             )}
+
+            </ScrollView>
+            </View>
 
         </View>
     )

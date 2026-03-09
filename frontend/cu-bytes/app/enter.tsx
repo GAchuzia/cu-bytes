@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -385,14 +385,13 @@ export default function EnterScreen() {
                     onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
 
                     <Text id="backButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         Back
                     </Text>     
 
                 </TouchableOpacity>
-
-                <View style={styles.headerContainer}></View>
 
                 <Text id="browseFoodItemsTitle"
                     style={styles.headerTitle}>
@@ -415,7 +414,8 @@ export default function EnterScreen() {
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
                     <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
@@ -424,6 +424,13 @@ export default function EnterScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
             <Text id="browseFoodItemsInfo"
                 style={styles.infoText}>
 
@@ -584,6 +591,9 @@ export default function EnterScreen() {
                     </View>
                 </Modal>
             )}
+
+            </ScrollView>
+            </View>
 
         </View>
     )

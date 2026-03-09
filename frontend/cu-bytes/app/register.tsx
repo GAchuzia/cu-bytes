@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -163,14 +163,13 @@ export default function RegisterScreen() {
                     onPress={() => router.push('/login')}>
 
                     <Text id="backButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         Back
                     </Text>
 
                 </TouchableOpacity>
-
-                <View style={styles.headerContainer}></View>
 
                 <Text id="createAccountTitle"
                     style={styles.headerTitle}>
@@ -193,7 +192,8 @@ export default function RegisterScreen() {
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
                     <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
@@ -202,6 +202,13 @@ export default function RegisterScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
             <Text id="createAccountInfo"
                 style={styles.infoText}>
 
@@ -300,6 +307,9 @@ export default function RegisterScreen() {
                 </Text>
 
             </TouchableOpacity>
+
+            </ScrollView>
+            </View>
 
         </View>
     )
