@@ -8,9 +8,19 @@ export const styles = StyleSheet.create({
     backgroundColor: '#C5151A',
     flex: 1,
     justifyContent: 'flex-start',
-    overflow: 'scroll',
     textAlign: 'center',
     width: w(100),
+  },
+
+  scrollContent: {
+    alignItems: 'center',
+    paddingBottom: h(6),
+    width: w(100),
+  },
+
+  scrollView: {
+    alignSelf: 'stretch',
+    flex: 1,
   },
 
   headerContainer: {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, Alert, Modal, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Alert, Modal, ActivityIndicator, ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 import { router } from 'expo-router';
@@ -396,6 +396,15 @@ export default function ScanScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+                bounces={true}
+                overScrollMode="always"
+            >
             <Text style={styles.infoText}>
 
                 Take a photo or upload an image of the food item that you would like CU-Bytes to identify
@@ -580,6 +589,9 @@ export default function ScanScreen() {
                     }
                 </TouchableOpacity>
             )}
+
+            </ScrollView>
+            </View>
 
         </View>
     )

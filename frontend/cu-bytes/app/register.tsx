@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -202,6 +202,13 @@ export default function RegisterScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
             <Text id="createAccountInfo"
                 style={styles.infoText}>
 
@@ -300,6 +307,9 @@ export default function RegisterScreen() {
                 </Text>
 
             </TouchableOpacity>
+
+            </ScrollView>
+            </View>
 
         </View>
     )

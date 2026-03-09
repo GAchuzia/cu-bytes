@@ -9,9 +9,19 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    overflow: 'scroll',
     textAlign: 'center',
     width: w(100),
+  },
+
+  scrollContent: {
+    alignItems: 'center',
+    paddingBottom: h(6),
+    width: w(100),
+  },
+
+  scrollView: {
+    alignSelf: 'stretch',
+    flex: 1,
   },
 
   headerContainer: {
@@ -37,12 +47,12 @@ export const styles = StyleSheet.create({
 
   headerButton: {
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#131312',
-    borderRadius: 50,
-    borderWidth: 4,
-    borderColor: 'black',
-    padding: w(1.5),
-    width: w(10),
+    borderRadius: 24,
+    paddingVertical: h(1.2),
+    paddingHorizontal: w(4),
+    minHeight: 44,
   },
 
   headerButtonText: {
@@ -50,7 +60,7 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontFamily: 'arial',
     fontSize: font(150),
-    fontWeight: '500',
+    fontWeight: '600',
   },
 
   headerTitle: {

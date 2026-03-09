@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -270,6 +270,14 @@ export default function EntriesScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+                nestedScrollEnabled
+            >
             <Text style={styles.infoText}>
 
                 Here are the food items that you saved
@@ -301,6 +309,7 @@ export default function EntriesScreen() {
 
                     <FlatList
                         data={foodItemArray}
+                        scrollEnabled={false}
                         renderItem={({ item }) => (
                         <View style={styles.row}>
                             <Text style={styles.rowCell}>{item["food_name"]}</Text>
@@ -319,6 +328,9 @@ export default function EntriesScreen() {
 
                 </View>
             )};
+
+            </ScrollView>
+            </View>
 
         </View>
     )

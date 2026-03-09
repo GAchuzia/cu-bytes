@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Switch, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, Switch, ActivityIndicator, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -253,6 +253,13 @@ export default function SettingsScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
             <Text style={styles.infoText}>
 
                 What allergies, intolerances, or preferences do you have?
@@ -459,6 +466,10 @@ export default function SettingsScreen() {
                 </Text>
 
             </TouchableOpacity>
+
+            </ScrollView>
+            </View>
+
         </View>
     )
 }

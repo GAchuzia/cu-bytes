@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, FlatList, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -357,6 +357,13 @@ export default function StatisticsScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
             {/* Display the following message when no statistics buttons have been pressed and no statistics have been fetched */}
             {!statisticModeButtonPressed && !fetchedStatistics && (
                 <Text style={styles.infoText}>
@@ -882,6 +889,9 @@ export default function StatisticsScreen() {
 
                 </View>
             )}
+
+            </ScrollView>
+            </View>
 
         </View>
 
