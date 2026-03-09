@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
+import { ScrollView, View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -146,160 +146,105 @@ export default function RegisterScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar
-                style="auto"
-                hidden={true}
-            />
+            
+            <StatusBar style="auto" hidden={true}/>
 
-            <View
-                style={styles.statusbar}>
+            <View style={styles.statusbar}>
 
                 <TouchableOpacity id="backButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
-                    ]}
-                    onPressIn={() => setIsBackPressed(true)}
-                    onPressOut={() => setIsBackPressed(false)}
-                    onPress={() => router.push('/login')}>
+                    style={[styles.headerButton, { backgroundColor: isBackPressed ? '#666666' : '#131312' }]}
+                    onPressIn={ () => setIsBackPressed(true) }
+                    onPressOut={ () => setIsBackPressed(false) }
+                    onPress={ () => router.push('/login') }>
 
-                    <Text id="backButtonText"
-                        style={styles.headerButtonText}>
-
-                        Back
-                    </Text>
-
+                    <Text id="backButtonText" style={styles.headerButtonText}>Back</Text>
                 </TouchableOpacity>
 
-                <View style={styles.headerContainer}></View>
-
-                <Text id="createAccountTitle"
-                    style={styles.headerTitle}>
-
-                    New Account
-                </Text>
-
-                <Text id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-
+                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
-                    ]}
-                    onPressIn={() => setIsLoginLogoutPressed(true)}
-                    onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+                    style={[styles.headerButton, { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }]}
+                    onPressIn={ () => setIsLoginLogoutPressed(true) }
+                    onPressOut={ () => setIsLoginLogoutPressed(false) }
+                    onPress={ () => usernameGlobal != '' ? logout() : router.push('/login') }>
 
-                    <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
-
+                    <Text id="loginLogoutButtonText" style={styles.headerButtonText}>
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
-
                 </TouchableOpacity>
 
             </View>
 
-            <Text id="createAccountInfo"
-                style={styles.infoText}>
+            <ScrollView contentContainerStyle={styles.bodyContainer}>
 
-                Create a new CU-Bytes account
-            </Text>
+                <Text id="createAccountTitle" style={styles.headerTitle}>Register</Text>
 
-            <Text id="usernameReqsTitle"
-                style={styles.usernameReqTitle}>
+                <Text id="createAccountInfo" style={styles.infoText}>Create a new CU-Bytes account </Text>
 
-                Username Requirements
-            </Text>
+                <Text id="usernameReqsTitle" style={styles.usernameReqTitle}>Username Requirements</Text>
 
-            <Text id="usernameUniqueReq"
-                style={styles.usernameReqInfoText}>
-
-                Must be unique and not shared by any other user account
-            </Text>
-
-            <Text id="usernameLengthReq"
-                style={styles.usernameReqInfoText}>
-
-                Must be between 1 and 80 characters long
-            </Text>
-
-            <Text id="usernameCharReq"
-                style={styles.usernameReqInfoText}>
-
-                Must contain only letters, numbers, or underscores
-            </Text>
-
-            <Text id="passwordReqsTitle"
-                style={styles.passwordReqTitle}>
-
-                Password Requirements
-            </Text>
-
-            <Text id="passwordLengthReq"
-                style={styles.passwordReqInfoText}>
-
-                Must be between 10 and 120 characters long
-            </Text>
-
-            <Text id="passwordCharReq"
-                style={styles.passwordReqInfoText}>
-
-                Must contain at least one lowercase letter, uppercase letter, number, and special character
-            </Text>
-
-            <Text id="createAccountErrorMessage"
-                style={styles.errorInfoText}>
-
-                {visible ? error.message : 'To create a new CU-Bytes account, enter a valid username and valid password below' }
-            </Text>
-
-            {/* Enter the username that corresponds to the new account that the user wants to create */}
-            <TextInput id="createAccountUsernameTextInput"
-                style={styles.usernameTextInput}
-                onChangeText={setUsername}
-                onChange={() => {
-                    setError({ message: '', status: '' });
-                    setVisible(false);
-                }}
-                placeholder={"Enter new CU-Bytes username"}
-                value={username}>
-            </TextInput>
-
-            {/* Enter the password that corresponds to the new account that the user wants to create */}
-            <TextInput id="createAccountPasswordTextInput"
-                style={styles.passwordTextInput}
-                onChangeText={setPassword}
-                onChange={() => {
-                    setError({ message: '', status: '' });
-                    setVisible(false);
-                }}
-                placeholder={"Enter new CU-Bytes password"}
-                value={password}
-                secureTextEntry={true}>
-            </TextInput>
-
-            {/* Submit a request to the backend endpoint to create a new account */}
-            <TouchableOpacity id="createAccountButton"
-                style={[styles.bodyButton,
-                    { backgroundColor: isCreateAccountPressed ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsCreateAccountPressed(true)}
-                onPressOut={() => setIsCreateAccountPressed(false)}
-                onPress={() => {
-                    registerUser(username, password);
-                    setVisible(true);
-                }}>
-
-                <Text id="createAccountButtonText"
-                    style={styles.bodyButtonText}>
-
-                    Create Account
+                <Text id="usernameUniqueReq" style={styles.usernameReqInfoText}>
+                    Must not shared by any other user account
                 </Text>
 
-            </TouchableOpacity>
+                <Text id="usernameLengthReq" style={styles.usernameReqInfoText}>
+                    Must be between 1 and 80 characters long
+                </Text>
+
+                <Text id="usernameCharReq" style={styles.usernameReqInfoText}>
+                    Must contain only letters, numbers, or underscores
+                </Text>
+    
+                <Text id="passwordReqsTitle" style={styles.passwordReqTitle}>Password Requirements</Text>
+
+                <Text id="passwordLengthReq" style={styles.passwordReqInfoText}>
+                    Must be between 10 and 120 characters long
+                </Text>
+
+                <Text id="passwordCharReq" style={styles.passwordReqInfoText}>
+                    Must contain at least one lowercase letter, uppercase letter, number, and special character
+                </Text>
+
+                <Text id="createAccountErrorMessage" style={styles.errorInfoText}>
+                    { visible ? error.message : 'To register, enter a valid username and a valid password' }
+                </Text>
+
+                {/* Enter the username that corresponds to the new account that the user wants to create */}
+                <TextInput id="createAccountUsernameTextInput" style={styles.usernameTextInput}
+                    onChangeText={setUsername}
+                    onChange={ () => {
+                        setError({ message: '', status: '' });
+                        setVisible(false); }}
+                    placeholder={"Enter new CU-Bytes username"}
+                    value={username}>
+                </TextInput>
+
+                {/* Enter the password that corresponds to the new account that the user wants to create */}
+                <TextInput id="createAccountPasswordTextInput" style={styles.passwordTextInput}
+                    onChangeText={setPassword}
+                    onChange={ () => {
+                        setError({ message: '', status: '' });
+                        setVisible(false); }}
+                    placeholder={"Enter new CU-Bytes password"}
+                    value={password}
+                    secureTextEntry={true}>
+                </TextInput>
+
+                {/* Submit a request to the backend endpoint to create a new account */}
+                <TouchableOpacity id="createAccountButton"
+                    style={[styles.bodyButtonDefault, { backgroundColor: isCreateAccountPressed ? '#666666' : '#131312' }]}
+                    onPressIn={ () => setIsCreateAccountPressed(true) }
+                    onPressOut={ () => setIsCreateAccountPressed(false) }
+                    onPress={ () => {
+                        registerUser(username, password);
+                        setVisible(true); }}>
+
+                    <Text id="createAccountButtonText" style={styles.bodyButtonTextDefault}>Create Account</Text>
+                </TouchableOpacity>
+
+            </ScrollView>
 
         </View>
     )

@@ -191,14 +191,14 @@ export default function LoginScreen() {
 
             </View>
 
-            <ScrollView contentContainerStyle={styles.container}>
+            <ScrollView contentContainerStyle={styles.bodyContainer}>
                 
                 <Text id="loginTitle" style={styles.headerTitle}>Login</Text>
 
                 <Text id="loginInfo" style={styles.infoText}>Sign in or create a new CU-Bytes account</Text>
 
                 <Text id="loginErrorMessage" style={styles.errorInfoText}>
-                    { visible ? error.message : 'To sign in, enter your username and password below' }
+                    { visible ? error.message : 'To sign in, enter your username and password' }
                 </Text>
 
                 {/* Enter the username that corresponds to the account that the user wants to log in to */}

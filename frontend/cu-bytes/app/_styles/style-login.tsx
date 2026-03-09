@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    width: w(80),
+    width: w(100),
   },
 
   statusbar: {

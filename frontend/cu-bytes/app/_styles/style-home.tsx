@@ -14,17 +14,13 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
-  headerContainer: {
-    width: w(10),
-  },
-
   bodyContainer: {
     alignItems: 'center',
     backgroundColor: '#C5151A',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    width: w(80),
+    width: w(100),
   },
 
   statusbar: {
