@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal } from 'react-native';
+import { ScrollView, View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -368,223 +368,177 @@ export default function EnterScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar
-                style="auto" 
-                hidden={true}
-            />
+            
+            <StatusBar style="auto" hidden={true}/>
 
-            <View
-                style={styles.statusbar}>
+            <View style={styles.statusbar}>
 
                 <TouchableOpacity id="backButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
-                    ]}
-                    onPressIn={() => setIsBackPressed(true)}
-                    onPressOut={() => setIsBackPressed(false)}
-                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
+                    style={[styles.headerButton, { backgroundColor: isBackPressed ? '#666666' : '#131312' }]}
+                    onPressIn={ () => setIsBackPressed(true) }
+                    onPressOut={ () => setIsBackPressed(false) }
+                    onPress={ () => usernameGlobal != '' ? router.push('/home') : router.push('/') }>
 
-                    <Text id="backButtonText"
-                        style={styles.headerButtonText}>
-
-                        Back
-                    </Text>     
-
+                    <Text id="backButtonText" style={styles.headerButtonText}>Back</Text>     
                 </TouchableOpacity>
 
-                <View style={styles.headerContainer}></View>
-
-                <Text id="browseFoodItemsTitle"
-                    style={styles.headerTitle}>
-                        
-                    Food Items
-                </Text>
-
-                <Text id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-                    
+                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
-                    ]}
-                    onPressIn={() => setIsLoginLogoutPressed(true)}
-                    onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+                    style={[styles.headerButton, { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }]}
+                    onPressIn={ () => setIsLoginLogoutPressed(true) }
+                    onPressOut={ () => setIsLoginLogoutPressed(false) }
+                    onPress={ () => usernameGlobal != '' ? logout() : router.push('/login') }>
 
-                    <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
-
+                    <Text id="loginLogoutButtonText" style={styles.headerButtonText}>
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
-                    
                 </TouchableOpacity>
 
             </View>
 
-            <Text id="browseFoodItemsInfo"
-                style={styles.infoText}>
+            <ScrollView contentContainerStyle={styles.bodyContainer}>
 
-                Search for a food item by name
-            </Text>
-
-            {/* Enter the name of a food item */}
-            <TextInput id="browseFoodItemsNameTextInput"
-                style={styles.foodItemNameTextInput}
-                onChangeText={setFoodItemName}
-                placeholder={"Search for food items"}
-                value={foodItemName}
-            >
-            </TextInput>
-
-            {/* Filter the food items in the array by the food item name and store in another array */}
-            <TouchableOpacity id="browseFoodItemsButton"
-                style={[styles.bodyButton,
-                    { backgroundColor: isSearchPressed ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsSearchPressed(true)}
-                onPressOut={() => setIsSearchPressed(false)}
-                onPress={() => {
-                    filterFoodItemArray(foodItemName);
-                    setVisible(false);
-                }}>
-
-                <Text id="browseFoodItemsButtonText"
-                    style={styles.bodyButtonText}>
-                    
-                    Search
-                </Text>
-
-            </TouchableOpacity>
-
-            {/* If the entered string value does not return any food items, display the following message */}
-            {filteredFoodItemArray.length == 0 && !visible && (
-                <View style={styles.bodyContainer}>
-                    <Text 
-                        style={styles.foodInfoText}>
-                        
-                        No food items found
-                    </Text>
-                </View>
-            )}
-
-            {/* If the entered string value returns food items, display the name and id of each food item */}
-            {filteredFoodItemArray && !visible && (
-                <View style={styles.bodyContainer}>
-                    {filteredFoodItemArray.map((foodItem) => (
-                        <Text 
-                            style={styles.foodInfoText}
-                            key={foodItem["id"]}
-                            onPress={() => {
-                                getFoodItem(foodItem["id"]);
-                                setVisible(true);
-                            }}
-                        >
-                            {foodItem["name"]}
-                            {'\n'}
-                        </Text>
-                    ))}
-                </View>
-            )}
-
-            {visible && (
-                <Text style={styles.foodInfoText}>
-                    {foodItem.name}
-                    {'\n'}
-                    Calories: {processFoodItemCalories(foodItem.calories)}
-                    {'\n'}
-                    Dining Location: {foodItem.dining_location}
-                    {'\n'}
-                    Cost: $ {processFoodItemCost(foodItem.cost)}
-                    {'\n'}
-                    Carbs: {processFoodItemCarbs(foodItem.carbs_g)} grams
-                    {'\n'}
-                    Fat: {processFoodItemFat(foodItem.fat_g)} grams
-                    {'\n'}
-                    Fiber: {processFoodItemFiber(foodItem.fiber_g)} grams
-                    {'\n'}
-                    Proteins: {processFoodItemProteins(foodItem.proteins_g)} grams
-                    {'\n'}
-                    Sugar: {processFoodItemSugar(foodItem.sugar_g)} grams
-                    {'\n'}
-
-                    {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
-                    {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs \n" : null}
-
-                    {foodItem.has_fish_or_shellfish === true && hasFishOrShellfishAllergyGlobal ? "Warning - this item contains fish or shellfish \n" : null}
-                    {foodItem.has_fish_or_shellfish === null && hasFishOrShellfishAllergyGlobal ? "Warning - this item may contain fish or shellfish \n" : null}
-
-                    {foodItem.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Warning - this item contains dairy \n" : null}
-                    {foodItem.is_dairy_free === null && hasDairyIntoleranceGlobal ? "Warning - this item may contain dairy \n" : null}
-
-                    {foodItem.has_milk === true && hasMilkAllergyGlobal ? "Warning - this item contains milk \n" : null}
-                    {foodItem.has_milk === null && hasMilkAllergyGlobal ? "Warning - this item may contain milk \n" : null}
-
-                    {foodItem.has_peanuts === true && hasPeanutAllergyGlobal ? "Warning - this item contains peanuts \n" : null}
-                    {foodItem.has_peanuts === null && hasPeanutAllergyGlobal ? "Warning - this item may contain peanuts \n" : null}
-
-                    {foodItem.has_sesame === true && hasSesameAllergyGlobal ? "Warning - this item contains sesame \n" : null}
-                    {foodItem.has_sesame === null && hasSesameAllergyGlobal ? "Warning - this item may contain sesame \n" : null}
-
-                    {foodItem.has_soy === true && hasSoyAllergyGlobal ? "Warning - this item contains soy \n" : null}
-                    {foodItem.has_soy === null && hasSoyAllergyGlobal ? "Warning - this item may contain soy \n" : null}
-
-                    {foodItem.has_treenuts === true && hasTreenutAllergyGlobal ? "Warning - this item contains treenuts \n" : null}
-                    {foodItem.has_treenuts === null && hasTreenutAllergyGlobal ? "Warning - this item may contain treenuts \n" : null}
-
-                    {foodItem.has_wheat === true && hasWheatAllergyGlobal ? "Warning - this item contains wheat \n" : null}
-                    {foodItem.has_wheat === null && hasWheatAllergyGlobal ? "Warning - this item may contain wheat \n" : null}
+                <Text id="browseFoodItemsTitle" style={styles.headerTitle}>Food Items</Text>
                 
-                    {foodItem.is_gluten_free === false && hasGlutenAllergyGlobal ? "Warning - this item contains gluten \n" : null}
-                    {foodItem.is_gluten_free === null && hasGlutenAllergyGlobal ? "Warning - this item may contain gluten \n" : null}
-                    
-                    {foodItem.is_vegan === false && isVeganGlobal ?  "Warning - this item is not vegan \n" : null}
-                    {foodItem.is_vegan === null && isVeganGlobal ?  "Warning - this item may not be vegan \n" : null}
-                    
-                    {foodItem.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian \n" : null}
-                    {foodItem.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian \n" : null}                        
-                    
-                    {foodItem.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal \n" : null}                                                
-                    {foodItem.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal \n" : null}
-                </Text>
-            )}
+                <Text id="browseFoodItemsInfo" style={styles.infoText}>Search for a food item by name</Text>
 
-            {usernameGlobal != "" && visible && (
-                <TouchableOpacity
-                    style={[styles.bodyButtonAlt]}
-                    onPress={() => {
-                        logFoodItemById(foodItem.id);
-                        setVisible(false);
-                        
-                        setModalVisible(true);
-                        setTimeout(() => {
-                        setModalVisible(false);
-                        }, 2000);
+                {/* Enter the name of a food item */}
+                <TextInput id="browseFoodItemsNameTextInput" style={styles.foodItemNameTextInput}
+                    onChangeText={setFoodItemName}
+                    placeholder={"Search for food items"}
+                    value={foodItemName}>
+                </TextInput>
 
-                        router.push("/home");
-                    }}
-                    disabled={loading}
-                >
-                    <Text style={styles.bodyButtonTextAlt}>Save Food Item</Text>
-                </TouchableOpacity>   
-            )}
+                {/* Filter the food items in the array by the food item name and store in another array */}
+                <TouchableOpacity id="browseFoodItemsButton"
+                    style={[styles.bodyButtonDefault, { backgroundColor: isSearchPressed ? '#666666' : '#131312' }]}
+                    onPressIn={ () => setIsSearchPressed(true) }
+                    onPressOut={ () => setIsSearchPressed(false) }
+                    onPress={ () => {
+                        filterFoodItemArray(foodItemName);
+                        setVisible(false); }}>
 
-            {modalVisible && usernameGlobal != "" && (
-                <Modal
-                    animationType="fade"
-                    transparent={true}
-                    visible={modalVisible}
-                >
-                    <View>
-                        <View style={styles.bodyContainer}>
-                            <Text style={styles.infoText}>Food Item Saved!</Text>
-                        </View>
+                    <Text id="browseFoodItemsButtonText" style={styles.bodyButtonTextDefault}>Search</Text>
+                </TouchableOpacity>
+
+                {/* If the entered string value does not return any food items, display the following message */}
+                {filteredFoodItemArray.length == 0 && !visible && (
+                    <View style={styles.bodyContainer}>
+                        <Text style={styles.foodInfoText}>No food items found</Text>
                     </View>
-                </Modal>
-            )}
+                )}
+
+                {/* If the entered string value returns food items, display the name and id of each food item */}
+                {filteredFoodItemArray && !visible && (
+                    <View style={styles.bodyContainer}>
+                        {filteredFoodItemArray.map((foodItem) => (
+
+                            <Text style={styles.foodInfoText}
+                                key={foodItem["id"]}
+                                onPress={ () => {
+                                    getFoodItem(foodItem["id"]);
+                                    setVisible(true); }}>
+                                {foodItem["name"]}
+                                {'\n'}
+                            </Text>
+                            
+                        ))}
+                    </View>
+                )}
+
+                {visible && (
+                    <Text style={styles.foodInfoText}>
+                        {foodItem.name}
+                        {'\n'}
+                        Calories: {processFoodItemCalories(foodItem.calories)}
+                        {'\n'}
+                        Dining Location: {foodItem.dining_location}
+                        {'\n'}
+                        Cost: $ {processFoodItemCost(foodItem.cost)}
+                        {'\n'}
+                        Carbs: {processFoodItemCarbs(foodItem.carbs_g)} grams
+                        {'\n'}
+                        Fat: {processFoodItemFat(foodItem.fat_g)} grams
+                        {'\n'}
+                        Fiber: {processFoodItemFiber(foodItem.fiber_g)} grams
+                        {'\n'}
+                        Proteins: {processFoodItemProteins(foodItem.proteins_g)} grams
+                        {'\n'}
+                        Sugar: {processFoodItemSugar(foodItem.sugar_g)} grams
+                        {'\n'}
+
+                        {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
+                        {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs \n" : null}
+
+                        {foodItem.has_fish_or_shellfish === true && hasFishOrShellfishAllergyGlobal ? "Warning - this item contains fish or shellfish \n" : null}
+                        {foodItem.has_fish_or_shellfish === null && hasFishOrShellfishAllergyGlobal ? "Warning - this item may contain fish or shellfish \n" : null}
+
+                        {foodItem.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Warning - this item contains dairy \n" : null}
+                        {foodItem.is_dairy_free === null && hasDairyIntoleranceGlobal ? "Warning - this item may contain dairy \n" : null}
+
+                        {foodItem.has_milk === true && hasMilkAllergyGlobal ? "Warning - this item contains milk \n" : null}
+                        {foodItem.has_milk === null && hasMilkAllergyGlobal ? "Warning - this item may contain milk \n" : null}
+
+                        {foodItem.has_peanuts === true && hasPeanutAllergyGlobal ? "Warning - this item contains peanuts \n" : null}
+                        {foodItem.has_peanuts === null && hasPeanutAllergyGlobal ? "Warning - this item may contain peanuts \n" : null}
+
+                        {foodItem.has_sesame === true && hasSesameAllergyGlobal ? "Warning - this item contains sesame \n" : null}
+                        {foodItem.has_sesame === null && hasSesameAllergyGlobal ? "Warning - this item may contain sesame \n" : null}
+
+                        {foodItem.has_soy === true && hasSoyAllergyGlobal ? "Warning - this item contains soy \n" : null}
+                        {foodItem.has_soy === null && hasSoyAllergyGlobal ? "Warning - this item may contain soy \n" : null}
+
+                        {foodItem.has_treenuts === true && hasTreenutAllergyGlobal ? "Warning - this item contains treenuts \n" : null}
+                        {foodItem.has_treenuts === null && hasTreenutAllergyGlobal ? "Warning - this item may contain treenuts \n" : null}
+
+                        {foodItem.has_wheat === true && hasWheatAllergyGlobal ? "Warning - this item contains wheat \n" : null}
+                        {foodItem.has_wheat === null && hasWheatAllergyGlobal ? "Warning - this item may contain wheat \n" : null}
+                    
+                        {foodItem.is_gluten_free === false && hasGlutenAllergyGlobal ? "Warning - this item contains gluten \n" : null}
+                        {foodItem.is_gluten_free === null && hasGlutenAllergyGlobal ? "Warning - this item may contain gluten \n" : null}
+                        
+                        {foodItem.is_vegan === false && isVeganGlobal ?  "Warning - this item is not vegan \n" : null}
+                        {foodItem.is_vegan === null && isVeganGlobal ?  "Warning - this item may not be vegan \n" : null}
+                        
+                        {foodItem.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian \n" : null}
+                        {foodItem.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian \n" : null}                        
+                        
+                        {foodItem.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal \n" : null}                                                
+                        {foodItem.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal \n" : null}
+                    </Text>
+                )}
+
+                {usernameGlobal != "" && visible && (
+                    <TouchableOpacity style={[styles.bodyButtonAlt]}
+                        onPress={ () => {
+                            logFoodItemById(foodItem.id);
+                            setVisible(false);
+                            setModalVisible(true);
+                            setTimeout( () => { setModalVisible(false); }, 2000 );
+                            router.push("/home"); }}
+
+                        disabled={loading}>
+
+                        <Text style={styles.bodyButtonTextAlt}>Save Food Item</Text>
+                    </TouchableOpacity>   
+                )}
+
+                {modalVisible && usernameGlobal != "" && (
+                    <Modal animationType="fade" transparent={true} visible={modalVisible}>
+                        <View>
+                            <View style={styles.bodyContainer}>
+                                <Text style={styles.infoText}>Food Item Saved!</Text>
+                            </View>
+                        </View>
+                    </Modal>
+                )}
+
+            </ScrollView>
 
         </View>
+
     )
 }
