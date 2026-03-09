@@ -231,14 +231,13 @@ export default function EntriesScreen() {
                     onPress={() => router.push('/home')}>
 
                     <Text id="backButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         Back
                     </Text>
 
                 </TouchableOpacity>
-
-                <View style={styles.headerContainer}></View>
 
                 <Text id="savedFoodItemsTitle"
                     style={styles.headerTitle}>
@@ -261,7 +260,8 @@ export default function EntriesScreen() {
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
                     <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
@@ -283,15 +283,15 @@ export default function EntriesScreen() {
                 Here are the food items that you saved
             </Text>
 
-            {foodItemArray.length == 0 && !visible && (
+            {foodItemArray.length === 0 && !visible ? (
                 <View>
                     <Text style={styles.foodInfoText}>
                         You have saved no food items
                     </Text>
                 </View>
-            )}
+            ) : null}
 
-            {foodItemArray && !visible && (
+            {foodItemArray && foodItemArray.length > 0 && !visible ? (
 
                 <View style={styles.bodyContainer}>
 
@@ -327,7 +327,7 @@ export default function EntriesScreen() {
                     />
 
                 </View>
-            )};
+            ) : null}
 
             </ScrollView>
             </View>
