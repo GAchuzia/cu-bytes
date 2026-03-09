@@ -77,10 +77,6 @@ export default function HomeScreen() {
             <View
                 style={styles.statusbar}>
 
-                <View style={styles.headerContainer}></View>
-
-                <View style={styles.headerContainer}></View>
-
                 <Text id="homeTitle"
                     style={styles.headerTitle}>
 
@@ -102,7 +98,8 @@ export default function HomeScreen() {
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
                     <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
