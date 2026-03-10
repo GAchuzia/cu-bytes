@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -231,14 +231,13 @@ export default function EntriesScreen() {
                     onPress={() => router.push('/home')}>
 
                     <Text id="backButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         Back
                     </Text>
 
                 </TouchableOpacity>
-
-                <View style={styles.headerContainer}></View>
 
                 <Text id="savedFoodItemsTitle"
                     style={styles.headerTitle}>
@@ -261,7 +260,8 @@ export default function EntriesScreen() {
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
                     <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
@@ -270,20 +270,28 @@ export default function EntriesScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+                nestedScrollEnabled
+            >
             <Text style={styles.infoText}>
 
                 Here are the food items that you saved
             </Text>
 
-            {foodItemArray.length == 0 && !visible && (
+            {foodItemArray.length === 0 && !visible ? (
                 <View>
                     <Text style={styles.foodInfoText}>
                         You have saved no food items
                     </Text>
                 </View>
-            )}
+            ) : null}
 
-            {foodItemArray && !visible && (
+            {foodItemArray && foodItemArray.length > 0 && !visible ? (
 
                 <View style={styles.bodyContainer}>
 
@@ -301,6 +309,7 @@ export default function EntriesScreen() {
 
                     <FlatList
                         data={foodItemArray}
+                        scrollEnabled={false}
                         renderItem={({ item }) => (
                         <View style={styles.row}>
                             <Text style={styles.rowCell}>{item["food_name"]}</Text>
@@ -318,7 +327,10 @@ export default function EntriesScreen() {
                     />
 
                 </View>
-            )};
+            ) : null}
+
+            </ScrollView>
+            </View>
 
         </View>
     )

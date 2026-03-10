@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ScrollView, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -157,10 +157,24 @@ export default function RegisterScreen() {
                     onPressOut={ () => setIsBackPressed(false) }
                     onPress={ () => router.push('/login') }>
 
-                    <Text id="backButtonText" style={styles.headerButtonText}>Back</Text>
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
+
+                        Back
+                    </Text>
+
                 </TouchableOpacity>
 
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
+                <Text id="createAccountTitle"
+                    style={styles.headerTitle}>
+
+                    New Account
+                </Text>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
@@ -170,28 +184,43 @@ export default function RegisterScreen() {
                     onPressOut={ () => setIsLoginLogoutPressed(false) }
                     onPress={ () => usernameGlobal != '' ? logout() : router.push('/login') }>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonText}>
+                    <Text id="loginLogoutButtonText"
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
+
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
                 </TouchableOpacity>
 
             </View>
 
-            <ScrollView contentContainerStyle={styles.bodyContainer}>
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
 
-                <Text id="createAccountTitle" style={styles.headerTitle}>Register</Text>
+            <Text id="createAccountInfo" style={styles.infoText}>Create a new CU-Bytes account </Text>
 
-                <Text id="createAccountInfo" style={styles.infoText}>Create a new CU-Bytes account </Text>
+            <Text id="usernameReqsTitle"
+                style={styles.usernameReqTitle}>
 
-                <Text id="usernameReqsTitle" style={styles.usernameReqTitle}>Username Requirements</Text>
+                Username Requirements
+            </Text>
 
-                <Text id="usernameUniqueReq" style={styles.usernameReqInfoText}>
-                    Must not shared by any other user account
-                </Text>
+            <Text id="usernameUniqueReq"
+                style={styles.usernameReqInfoText}>
 
-                <Text id="usernameLengthReq" style={styles.usernameReqInfoText}>
-                    Must be between 1 and 80 characters long
-                </Text>
+                Must be unique and not shared by any other user account
+            </Text>
+
+            <Text id="usernameLengthReq"
+                style={styles.usernameReqInfoText}>
+
+                Must be between 1 and 80 characters long
+            </Text>
 
                 <Text id="usernameCharReq" style={styles.usernameReqInfoText}>
                     Must contain only letters, numbers, or underscores
@@ -245,6 +274,7 @@ export default function RegisterScreen() {
                 </TouchableOpacity>
 
             </ScrollView>
+            </View>
 
         </View>
     )

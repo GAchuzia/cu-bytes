@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ScrollView, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -171,11 +171,25 @@ export default function LoginScreen() {
                     onPressOut={ () => setIsBackPressed(false) }
                     onPress={ () => router.push('/') }>
 
-                    <Text id="backButtonText" style={styles.headerButtonText}>Back</Text>
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
+
+                        Back
+                    </Text>
+
                 </TouchableOpacity>
 
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
-                    { usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
+                <Text id="loginTitle"
+                    style={styles.headerTitle}>
+
+                    Login
+                </Text>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
                 </Text>
 
                 <TouchableOpacity id="loginLogoutButton"
@@ -184,16 +198,28 @@ export default function LoginScreen() {
                     onPressOut={ () => setIsLoginLogoutPressed(false) }
                     onPress={ () => usernameGlobal != '' ? logout() : router.push('/login') }>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonText}>
-                        { usernameGlobal != '' ? 'Logout' : 'Login' }
+                    <Text id="loginLogoutButtonText"
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
+
+                        {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
                 </TouchableOpacity>
 
             </View>
 
-            <ScrollView contentContainerStyle={styles.bodyContainer}>
-                
-                <Text id="loginTitle" style={styles.headerTitle}>Login</Text>
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
+            <Text id="loginInfo"
+                style={styles.infoText}>
+
+                Sign in or create a new CU-Bytes account
+            </Text>
 
                 <Text id="loginInfo" style={styles.infoText}>Sign in or create a new CU-Bytes account</Text>
 
@@ -249,6 +275,7 @@ export default function LoginScreen() {
                 </TouchableOpacity>
 
             </ScrollView>
+            </View>
 
         </View>
 

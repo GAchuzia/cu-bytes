@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ScrollView, View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -379,10 +379,24 @@ export default function EnterScreen() {
                     onPressOut={ () => setIsBackPressed(false) }
                     onPress={ () => usernameGlobal != '' ? router.push('/home') : router.push('/') }>
 
-                    <Text id="backButtonText" style={styles.headerButtonText}>Back</Text>     
+                    <Text id="backButtonText"
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
+
+                        Back
+                    </Text>     
+
                 </TouchableOpacity>
 
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
+                <Text id="browseFoodItemsTitle"
+                    style={styles.headerTitle}>
+                        
+                    Food Items
+                </Text>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+                    
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
@@ -392,18 +406,28 @@ export default function EnterScreen() {
                     onPressOut={ () => setIsLoginLogoutPressed(false) }
                     onPress={ () => usernameGlobal != '' ? logout() : router.push('/login') }>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonText}>
+                    <Text id="loginLogoutButtonText"
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
+
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
                 </TouchableOpacity>
 
             </View>
 
-            <ScrollView contentContainerStyle={styles.bodyContainer}>
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
+            <Text id="browseFoodItemsInfo"
+                style={styles.infoText}>
 
-                <Text id="browseFoodItemsTitle" style={styles.headerTitle}>Food Items</Text>
-                
-                <Text id="browseFoodItemsInfo" style={styles.infoText}>Search for a food item by name</Text>
+                Search for a food item by name
+            </Text>
 
                 {/* Enter the name of a food item */}
                 <TextInput id="browseFoodItemsNameTextInput" style={styles.foodItemNameTextInput}
@@ -537,6 +561,7 @@ export default function EnterScreen() {
                 )}
 
             </ScrollView>
+            </View>
 
         </View>
 

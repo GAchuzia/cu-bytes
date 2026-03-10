@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -73,8 +73,18 @@ export default function HomeScreen() {
             
             <StatusBar style="auto" hidden={true}/>
 
-            <View style={styles.statusbar}>
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
+            <View
+                style={styles.statusbar}>
+
+                <Text id="homeTitle"
+                    style={styles.headerTitle}>
+
+                    Home
+                </Text>
+
+                <Text id="loggedInUser"
+                    style={styles.headerUsernameIcon}>
+
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
                 </Text>            
 
@@ -86,22 +96,27 @@ export default function HomeScreen() {
                     onPressOut={() => setIsLoginLogoutPressed(false)}
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonText}>
+                    <Text id="loginLogoutButtonText"
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
                 </TouchableOpacity>
             </View>
 
-            <ScrollView contentContainerStyle={styles.bodyContainer}>
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
+            <Text id="homeInfo"
+                style={styles.infoText}>
 
-                <Text id="homeTitle" style={styles.headerTitle}>
-                    Home
-                </Text>
-
-                <Text id="homeInfo" style={styles.infoText}>
-                    What would you like to do?
-                </Text>
+                What would you like to do?
+            </Text>
 
                 {/* Route the user to the 'scan food item' page */}
                 <TouchableOpacity id="scanFoodItemButton"
@@ -184,28 +199,13 @@ export default function HomeScreen() {
                     onPressOut={() => setIsSettingsPressed(false)}
                     onPress={() => router.push("/settings")}
                     disabled={ usernameGlobal == '' ? true : false }>
+                <Text>
+                    Settings
+                </Text>
+            </TouchableOpacity>
 
-                    <Text id="settingsButtonText" style={styles.bodyButtonText}>
-                        View{'\n'}Settings
-                    </Text>
-                </TouchableOpacity>
-            
-                {/* Route the user to the 'view saved food items' page */}
-                <TouchableOpacity id="viewSavedFoodItemsButton"
-                    style={[styles.bodyButton,
-                        { backgroundColor: isViewSavedFoodItemsPressed || usernameGlobal == '' ? '#666666' : '#131312' }
-                    ]}
-
-                    onPressIn={() => setIsViewSavedFoodItemsPressed(true)}
-                    onPressOut={() => setIsViewSavedFoodItemsPressed(false)}
-                    onPress={() => router.push("/entries")}
-                    disabled={ usernameGlobal == '' ? true : false }>
-                    
-                    <Text id="viewSavedFoodItemsButtonText" style={styles.bodyButtonText}>
-                        View Saved{'\n'}Food Items
-                    </Text>
-                </TouchableOpacity>
             </ScrollView>
+            </View>
 
         </View>
     )

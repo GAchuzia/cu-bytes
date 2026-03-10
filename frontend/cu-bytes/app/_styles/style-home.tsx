@@ -9,18 +9,23 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    overflow: 'scroll',
     textAlign: 'center',
     width: w(100),
   },
 
-  bodyContainer: {
+  scrollContent: {
     alignItems: 'center',
-    backgroundColor: '#C5151A',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    paddingBottom: h(6),
     width: w(100),
+  },
+
+  scrollView: {
+    alignSelf: 'stretch',
+    flex: 1,
+  },
+
+  headerContainer: {
+    width: w(10),
   },
 
   statusbar: {
@@ -28,31 +33,36 @@ export const styles = StyleSheet.create({
     backgroundColor: '#AB0006',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: h(2.0),
-    paddingBottom: h(2.0),
-    paddingLeft: w(2.0),
-    paddingRight: w(2.0),
+    paddingVertical: h(1),
+    paddingHorizontal: w(2),
     textAlign: 'center',
     width: w(100),
   },
 
   headerButton: {
+    alignSelf: 'center',
     alignItems: 'center',
-    backgroundColor: '#131312',
-    borderRadius: 20,
-    borderWidth: 4,
-    borderColor: '#666666',
-    color: 'red',
-    height: h(10),
     justifyContent: 'center',
-    paddingTop: h(1.0),
-    paddingBottom: h(1.0),
-    paddingLeft: w(1.0),
-    paddingRight: w(1.0),
-    width: w(35),
+    backgroundColor: '#131312',
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: 'white',
+    paddingVertical: h(1.2),
+    paddingHorizontal: w(3),
+    minWidth: w(18),
+    maxHeight: h(6),
   },
 
   headerButtonText: {
+    backgroundColor: 'transparent',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: font(125),
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+
+  bodyButton: {
     alignItems: 'center',
     backgroundColor: 'transparent',
     color: '#FFFFFF',
@@ -63,11 +73,10 @@ export const styles = StyleSheet.create({
   },
 
   headerTitle: {
-    alignItems: 'center',
-    backgroundColor: '#C5151A',
+    backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: font(250),
+    fontSize: font(280),
     fontWeight: '800',
     justifyContent: 'center',
     marginTop: h(1.0),
@@ -80,24 +89,18 @@ export const styles = StyleSheet.create({
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: w(60),
+    flex: 1,
   },
 
   headerUsernameIcon: {
-    backgroundColor: '#AB0006',
+    backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: font(125),
-    fontWeight: '600',
-    paddingTop: h(1.0),
-    paddingBottom: h(1.0),
-    paddingLeft: w(2.0),
-    paddingRight: w(2.0),
-    textAlign: 'left',
-    textShadowColor: '#131312',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 10,
-    width: w(60),
+    fontSize: font(110),
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginRight: w(1),
+    maxWidth: w(15),
   },
 
   infoText: {

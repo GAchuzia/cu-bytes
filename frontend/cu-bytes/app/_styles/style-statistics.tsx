@@ -9,9 +9,19 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    overflow: 'scroll',
     textAlign: 'center',
     width: w(100),
+  },
+
+  scrollContent: {
+    alignItems: 'center',
+    paddingBottom: h(6),
+    width: w(100),
+  },
+
+  scrollView: {
+    alignSelf: 'stretch',
+    flex: 1,
   },
 
   headerContainer: {
@@ -38,51 +48,57 @@ export const styles = StyleSheet.create({
     backgroundColor: '#C5151A',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: w(1.5),
+    paddingVertical: h(1),
+    paddingHorizontal: w(2),
     textAlign: 'center',
     width: w(100),
   },
 
   headerButton: {
+    alignSelf: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#131312',
     borderRadius: 50,
-    borderWidth: 4,
-    borderColor: 'black',
-    color: 'red',
-    padding: w(1.5),
-    width: w(10),
+    borderWidth: 2,
+    borderColor: 'white',
+    paddingVertical: h(1.2),
+    paddingHorizontal: w(3),
+    minWidth: w(18),
+    maxHeight: h(6),
   },
 
   headerButtonText: {
     backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: font(150),
-    fontWeight: '500',
+    fontSize: font(125),
+    fontWeight: '600',
+    textAlign: 'center',
   },
 
   headerTitle: {
-    backgroundColor: '#C5151A',
+    backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: font(300),
+    fontSize: font(280),
     fontWeight: '800',
     textAlign: 'center',
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: w(50),
+    flex: 1,
   },
 
   headerUsernameIcon: {
-    backgroundColor: '#C5151A',
+    backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: font(150),
+    fontSize: font(110),
     fontWeight: 'bold',
     textAlign: 'center',
-    width: w(10),
+    marginRight: w(1),
+    maxWidth: w(15),
   },
 
   infoText: {

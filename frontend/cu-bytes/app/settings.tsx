@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Switch, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, Switch, ActivityIndicator, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -214,14 +214,13 @@ export default function SettingsScreen() {
                     onPress={() => router.push('/home')}>
 
                     <Text id="backButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                             Back
                     </Text>
 
                 </TouchableOpacity>
-
-                <View style={styles.headerContainer}></View>
 
                 <Text id="settingsTitle"
                     style={styles.headerTitle}>
@@ -244,7 +243,8 @@ export default function SettingsScreen() {
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
                     <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
@@ -253,6 +253,13 @@ export default function SettingsScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
             <Text style={styles.infoText}>
 
                 What allergies, intolerances, or preferences do you have?
@@ -260,7 +267,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you have an allergy or intolerance to <b>dairy</b> products?
+                    Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>dairy</Text> products?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -273,7 +280,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you have an allergy or intolerance to <b>eggs</b>?
+                    Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>eggs</Text>?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -286,7 +293,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you have an allergy or intolerance to <b>fish</b> or <b>shellfish</b>?
+                    Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>fish</Text> or <Text style={{ fontWeight: 'bold' }}>shellfish</Text>?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -299,7 +306,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you have an allergy or intolerance to <b>gluten</b>?
+                    Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>gluten</Text>?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -312,7 +319,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you have an allergy or intolerance to <b>milk</b>?
+                    Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>milk</Text>?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -325,7 +332,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you have an allergy or intolerance to <b>peanuts</b>?
+                    Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>peanuts</Text>?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -338,7 +345,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you have an allergy or intolerance to <b>sesame</b>?
+                    Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>sesame</Text>?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -351,7 +358,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you have an allergy or intolerance to <b>soy</b>?
+                    Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>soy</Text>?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -364,7 +371,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you have an allergy or intolerance to <b>treenuts</b>?
+                    Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>treenuts</Text>?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -377,7 +384,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you have an allergy or intolerance to <b>wheat</b>?
+                    Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>wheat</Text>?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -390,7 +397,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Are you <b>vegan</b>?
+                    Are you <Text style={{ fontWeight: 'bold' }}>vegan</Text>?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -403,7 +410,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Are you <b>vegetarian</b>?
+                    Are you <Text style={{ fontWeight: 'bold' }}>vegetarian</Text>?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -416,7 +423,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Do you prefer <b>halal</b> products?
+                    Do you prefer <Text style={{ fontWeight: 'bold' }}>halal</Text> products?
                 </Text>
                 <View style={styles.switchContainer}>
                     <Switch
@@ -429,7 +436,7 @@ export default function SettingsScreen() {
 
             <View style={styles.row}>
                 <Text style={styles.label}>
-                    Enable <b>comparisons & recommendations</b>. Your food logs are always saved
+                    Enable <Text style={{ fontWeight: 'bold' }}>comparisons & recommendations</Text>. Your food logs are always saved
                     to your account. If enabled, we will use your data to generate aggregated
                     trends and to personalize comparisons and recommendations.
                 </Text>
@@ -459,6 +466,10 @@ export default function SettingsScreen() {
                 </Text>
 
             </TouchableOpacity>
+
+            </ScrollView>
+            </View>
+
         </View>
     )
 }

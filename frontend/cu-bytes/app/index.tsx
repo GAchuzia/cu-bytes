@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -32,11 +32,29 @@ export default function IndexScreen() {
 
             <View style={styles.statusbar}></View>
 
-            <ScrollView contentContainerStyle={styles.bodyContainer}>
-                
-                <Text id="splashTitle" style={styles.headerTitle}>CU-Bytes</Text>
+            <View
+                style={styles.statusbar}>
 
-                <Text id="splashInfo" style={styles.infoText}>Track Your Campus Meals!</Text>
+                <Text id="splashTitle"
+                    style={styles.headerTitle}>
+
+                    CU-Bytes
+                </Text>
+
+            </View>
+
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
+            <Text id="splashInfo"
+                style={styles.infoText}>
+
+                Track Your Campus Meals!
+            </Text>
 
                 {/* Route the user to the 'login' page */}
                 <TouchableOpacity id="loginButton"
@@ -88,6 +106,7 @@ export default function IndexScreen() {
                 </TouchableOpacity>
 
             </ScrollView>
+            </View>
 
         </View>
     )
