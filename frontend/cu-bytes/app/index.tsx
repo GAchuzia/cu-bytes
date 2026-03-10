@@ -20,7 +20,7 @@ export default function IndexScreen() {
             
             <StatusBar style="auto" hidden={true}/>
 
-            <View style={styles.statusbar}>
+            <View id="splashStatusBar" style={styles.statusbar}>
                 <Text id="splashTitle" style={styles.headerTitle}>
                     CU-Bytes
                 </Text>

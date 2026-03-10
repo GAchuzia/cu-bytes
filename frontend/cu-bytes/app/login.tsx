@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { useState } from 'react';
+import { View, ScrollView, Text, TouchableOpacity, TextInput } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -163,73 +163,57 @@ export default function LoginScreen() {
             
             <StatusBar style="auto" hidden={true}/>
 
-            <View style={styles.statusbar}>
+            <View id="loginStatusBar" style={styles.statusbar}>
 
+                {/* Route the user to the 'splash' page */}
                 <TouchableOpacity id="backButton"
-                    style={[styles.headerButton, { backgroundColor: isBackPressed ? '#666666' : '#131312' }]}
-                    onPressIn={ () => setIsBackPressed(true) }
-                    onPressOut={ () => setIsBackPressed(false) }
-                    onPress={ () => router.push('/') }>
+                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
+                    onPress={() => router.push('/')}>
 
-                    <Text id="backButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
+                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
                         Back
                     </Text>
-
                 </TouchableOpacity>
 
-                <Text id="loginTitle"
-                    style={styles.headerTitle}>
-
-                    Login
+                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
-                <Text id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-
-                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
-                </Text>
-
+                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButton, { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }]}
-                    onPressIn={ () => setIsLoginLogoutPressed(true) }
-                    onPressOut={ () => setIsLoginLogoutPressed(false) }
-                    onPress={ () => usernameGlobal != '' ? logout() : router.push('/login') }>
+                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsLoginLogoutPressed(true)}
+                    onPressOut={() => setIsLoginLogoutPressed(false)}
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
-                    <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
-                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Logout' : 'Login'}
                     </Text>
                 </TouchableOpacity>
 
             </View>
 
-            <View style={styles.scrollView}>
-            <ScrollView
-                style={styles.scrollView}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={true}
-                keyboardShouldPersistTaps="handled"
-            >
-            <Text id="loginInfo"
-                style={styles.infoText}>
-
-                Sign in or create a new CU-Bytes account
+            <Text id="loginTitle" style={styles.headerTitle}>
+                Login
             </Text>
 
-                <Text id="loginInfo" style={styles.infoText}>Sign in or create a new CU-Bytes account</Text>
+            <ScrollView id="loginScrollView" style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled">
 
-                <Text id="loginErrorMessage" style={styles.errorInfoText}>
-                    { visible ? error.message : 'To sign in, enter your username and password' }
+                <Text id="loginInfoText" style={styles.infoText}>
+                    Or create a new account
                 </Text>
 
-                {/* Enter the username that corresponds to the account that the user wants to log in to */}
-                <TextInput id="loginUsernameTextInput"
-                    style={styles.usernameTextInput}
+                <Text id="loginErrorMessage" style={styles.errorInfoText}>
+                    {visible ? error.message : 'Enter your username and password'}
+                </Text>
+
+                {/* Enter the username that corresponds to the account that the user wants to access */}
+                <TextInput id="loginUsernameTextInput" style={styles.usernameTextInput}
                     onChangeText={setUsername}
                     onChange={() => {
                         setError({ message: '', status: '' });
@@ -239,7 +223,7 @@ export default function LoginScreen() {
                     value={username}>
                 </TextInput>
 
-                {/* Enter the password that corresponds to the account that the user wants to log in to */}
+                {/* Enter the password that corresponds to the account that the user wants to access */}
                 <TextInput id="loginPasswordTextInput"
                     style={styles.passwordTextInput}
                     onChangeText={setPassword}
@@ -254,30 +238,33 @@ export default function LoginScreen() {
 
                 {/* Submit a request to the backend endpoint to authenticate the entered credentials and log in to an account */}
                 <TouchableOpacity id="loginButton"
-                    style={[styles.bodyButtonDefault, { backgroundColor: isLoginPressed ? '#666666' : '#131312' }]}
-                    onPressIn={ () => setIsLoginPressed(true) }
-                    onPressOut={ () => setIsLoginPressed(false) }
-                    onPress={ () => {
+                    style={[styles.bodyButtonDefault, {backgroundColor: isLoginPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsLoginPressed(true)}
+                    onPressOut={() => setIsLoginPressed(false)}
+                    onPress={() => {
                         loginUser(username, password);
-                        setVisible(true);} }>
+                        setVisible(true);}}>
 
-                    <Text id="loginButtonText" style={styles.bodyButtonTextDefault}>Login</Text>
+                    <Text id="loginButtonText" style={styles.bodyButtonTextDefault}>
+                        Login
+                    </Text>
                 </TouchableOpacity>
 
                 {/* Route the user to the 'create account' page */}
                 <TouchableOpacity id="createAccountButton"
-                    style={[styles.bodyButtonAlt, { backgroundColor: isCreateAccountPressed ? '#DDDDDD' : '#FFFFFF' }]}
-                    onPressIn={ () => setIsCreateAccountPressed(true) }
-                    onPressOut={ () => setIsCreateAccountPressed(false) }
-                    onPress={ () => router.push("/register") }>
+                    style={[styles.bodyButtonAlt, {backgroundColor: isCreateAccountPressed ? '#DDDDDD' : '#FFFFFF'}]}
+                    onPressIn={() => setIsCreateAccountPressed(true)}
+                    onPressOut={() => setIsCreateAccountPressed(false)}
+                    onPress={() => router.push("/register")}>
 
-                    <Text id="createAccountButtonText" style={styles.bodyButtonTextAlt}>Create Account</Text>
+                    <Text id="createAccountButtonText" style={styles.bodyButtonTextAlt}>
+                        Create Account
+                    </Text>
                 </TouchableOpacity>
 
             </ScrollView>
-            </View>
 
         </View>
-
     )
+
 }
