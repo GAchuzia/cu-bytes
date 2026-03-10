@@ -13,24 +13,14 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
-  scrollContent: {
-    alignItems: 'center',
-    paddingBottom: h(6),
-    width: w(100),
-  },
-
   scrollView: {
     alignSelf: 'stretch',
     flex: 1,
   },
 
-  statusbar: {
-    alignSelf: 'stretch',
+  scrollContent: {
     alignItems: 'center',
-    backgroundColor: '#C5151A',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    paddingBottom: h(6.0),
     width: w(100),
   },
 
@@ -38,7 +28,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#AB0006',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     paddingTop: h(2.0),
     paddingBottom: h(2.0),
     paddingLeft: w(2.0),
@@ -49,7 +39,7 @@ export const styles = StyleSheet.create({
 
   headerTitle: {
     alignItems: 'center',
-    backgroundColor: '#C5151A',
+    backgroundColor: '#AB0006',
     color: '#FFFFFF',
     fontFamily: 'arial',
     fontSize: font(250),
@@ -74,7 +64,7 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     flexDirection: 'row',
     fontFamily: 'arial',
-    fontSize: font(125),
+    fontSize: font(150),
     fontWeight: '600',
     justifyContent: 'center',
     marginTop: h(1.0),
@@ -87,7 +77,7 @@ export const styles = StyleSheet.create({
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: w(80),
+    width: w(100),
   },
 
   bodyButtonDefault: {
@@ -114,7 +104,7 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontFamily: 'arial',
     fontSize: font(175),
-    fontWeight: '600',
+    fontWeight: 'bold',
     textAlign: 'center',
   },
 
@@ -142,7 +132,7 @@ export const styles = StyleSheet.create({
     color: '#C5151A',
     fontFamily: 'arial',
     fontSize: font(175),
-    fontWeight: '600',
+    fontWeight: 'bold',
     textAlign: 'center',
   }
 
