@@ -141,7 +141,7 @@ export default function HomeScreen() {
                     disabled={usernameGlobal == '' ? true : false}>
 
                     <Text id="browseDiningLocationsButtonText" style={styles.bodyButtonTextDefault}>
-                        Browse Locations
+                        Browse Dining
                     </Text>
                 </TouchableOpacity>
 

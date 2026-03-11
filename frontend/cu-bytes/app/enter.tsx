@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal, ScrollView } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, TextInput, ActivityIndicator, Modal } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -371,63 +371,50 @@ export default function EnterScreen() {
             
             <StatusBar style="auto" hidden={true}/>
 
-            <View style={styles.statusbar}>
+            <View id="browseFoodItemsStatusbar" style={styles.statusbar}>
 
+                {/* Route the user to the 'home' page or the 'splash' page */}
                 <TouchableOpacity id="backButton"
-                    style={[styles.headerButton, { backgroundColor: isBackPressed ? '#666666' : '#131312' }]}
-                    onPressIn={ () => setIsBackPressed(true) }
-                    onPressOut={ () => setIsBackPressed(false) }
-                    onPress={ () => usernameGlobal != '' ? router.push('/home') : router.push('/') }>
+                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
+                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
 
-                    <Text id="backButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
+                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
                         Back
                     </Text>     
-
                 </TouchableOpacity>
 
-                <Text id="browseFoodItemsTitle"
-                    style={styles.headerTitle}>
-                        
-                    Food Items
-                </Text>
-
-                <Text id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-                    
+                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
+                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButton, { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }]}
-                    onPressIn={ () => setIsLoginLogoutPressed(true) }
-                    onPressOut={ () => setIsLoginLogoutPressed(false) }
-                    onPress={ () => usernameGlobal != '' ? logout() : router.push('/login') }>
+                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsLoginLogoutPressed(true)}
+                    onPressOut={() => setIsLoginLogoutPressed(false)}
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
-                    <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
-                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Logout' : 'Login'}
                     </Text>
                 </TouchableOpacity>
 
             </View>
 
-            <View style={styles.scrollView}>
-            <ScrollView
-                style={styles.scrollView}
+            <Text id="browseFoodItemsTitle" style={styles.headerTitle}>
+                Food Items
+            </Text>
+
+            <ScrollView id="browseFoodItemsScrollView" style={styles.scrollView}
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={true}
-                keyboardShouldPersistTaps="handled"
-            >
-            <Text id="browseFoodItemsInfo"
-                style={styles.infoText}>
+                keyboardShouldPersistTaps="handled">
 
-                Search for a food item by name
-            </Text>
+                <Text id="browseFoodItemsInfoText" style={styles.infoText}>
+                    Search for a food item by name
+                </Text>
 
                 {/* Enter the name of a food item */}
                 <TextInput id="browseFoodItemsNameTextInput" style={styles.foodItemNameTextInput}
@@ -438,61 +425,96 @@ export default function EnterScreen() {
 
                 {/* Filter the food items in the array by the food item name and store in another array */}
                 <TouchableOpacity id="browseFoodItemsButton"
-                    style={[styles.bodyButtonDefault, { backgroundColor: isSearchPressed ? '#666666' : '#131312' }]}
-                    onPressIn={ () => setIsSearchPressed(true) }
-                    onPressOut={ () => setIsSearchPressed(false) }
-                    onPress={ () => {
+                    style={[styles.bodyButtonDefault, {backgroundColor: isSearchPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsSearchPressed(true)}
+                    onPressOut={() => setIsSearchPressed(false)}
+                    onPress={() => {
                         filterFoodItemArray(foodItemName);
-                        setVisible(false); }}>
+                        setVisible(false);}}>
 
-                    <Text id="browseFoodItemsButtonText" style={styles.bodyButtonTextDefault}>Search</Text>
+                    <Text id="browseFoodItemsButtonText" style={styles.bodyButtonTextDefault}>
+                        Search
+                    </Text>
                 </TouchableOpacity>
 
                 {/* If the entered string value does not return any food items, display the following message */}
                 {filteredFoodItemArray.length == 0 && !visible && (
-                    <View style={styles.bodyContainer}>
-                        <Text style={styles.foodInfoText}>No food items found</Text>
+                    <View id="browseFoodItemsFailureView" style={styles.foodItemViewDefault}>
+
+                        <Text id="browseFoodItemsFailureText" style={styles.foodItemTextDefault}>
+                            No food items found
+                        </Text>
                     </View>
                 )}
 
                 {/* If the entered string value returns food items, display the name and id of each food item */}
                 {filteredFoodItemArray && !visible && (
-                    <View style={styles.bodyContainer}>
+                    <View id="browseFoodItemsSuccessView" style={styles.foodItemViewDefault}>
+
                         {filteredFoodItemArray.map((foodItem) => (
 
-                            <Text style={styles.foodInfoText}
+                            <Text id="browseFoodItemsSuccessText" style={styles.foodItemTextDefault}
                                 key={foodItem["id"]}
-                                onPress={ () => {
+                                onPress={() => {
                                     getFoodItem(foodItem["id"]);
-                                    setVisible(true); }}>
+                                    setVisible(true);}}>
                                 {foodItem["name"]}
-                                {'\n'}
                             </Text>
-                            
                         ))}
                     </View>
                 )}
 
+                {/* Display general information about the selected food item */}
                 {visible && (
-                    <Text style={styles.foodInfoText}>
-                        {foodItem.name}
-                        {'\n'}
-                        Calories: {processFoodItemCalories(foodItem.calories)}
-                        {'\n'}
-                        Dining Location: {foodItem.dining_location}
-                        {'\n'}
-                        Cost: $ {processFoodItemCost(foodItem.cost)}
-                        {'\n'}
-                        Carbs: {processFoodItemCarbs(foodItem.carbs_g)} grams
-                        {'\n'}
-                        Fat: {processFoodItemFat(foodItem.fat_g)} grams
-                        {'\n'}
-                        Fiber: {processFoodItemFiber(foodItem.fiber_g)} grams
-                        {'\n'}
-                        Proteins: {processFoodItemProteins(foodItem.proteins_g)} grams
-                        {'\n'}
-                        Sugar: {processFoodItemSugar(foodItem.sugar_g)} grams
-                        {'\n'}
+                    <View id="foodItemView" style={styles.selectedFoodItemView}>
+
+                        <Text id="foodItemLabelsText" style={styles.foodItemLabelText}>
+                            Name:
+                            {'\n'}
+                            Calories:
+                            {'\n'}
+                            Location:
+                            {'\n'}
+                            Cost:
+                            {'\n'}
+                            Carbs:
+                            {'\n'}
+                            Fat:
+                            {'\n'}
+                            Fiber:
+                            {'\n'}
+                            Proteins:
+                            {'\n'}
+                            Sugar:
+                        </Text>
+
+                        <Text id="foodItemDataText" style={styles.foodItemDataText}>
+                            {foodItem.name}
+                            {'\n'}
+                            {processFoodItemCalories(foodItem.calories)}
+                            {'\n'}
+                            {foodItem.dining_location}
+                            {'\n'}
+                            $ {processFoodItemCost(foodItem.cost)}
+                            {'\n'}
+                            {processFoodItemCarbs(foodItem.carbs_g)} grams
+                            {'\n'}
+                            {processFoodItemFat(foodItem.fat_g)} grams
+                            {'\n'}
+                            {processFoodItemFiber(foodItem.fiber_g)} grams
+                            {'\n'}
+                            {processFoodItemProteins(foodItem.proteins_g)} grams
+                            {'\n'}
+                            {processFoodItemSugar(foodItem.sugar_g)} grams
+                        </Text>
+
+                    </View>
+                )}
+
+                {/* Display warning information about the selected food item */}
+                {visible && (
+                    <Text id="warningsText" style={styles.foodItemTextDefault}>
+                        {usernameGlobal == '' ? "Warnings will be displayed here" : null}
 
                         {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
                         {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs \n" : null}
@@ -535,35 +557,47 @@ export default function EnterScreen() {
                     </Text>
                 )}
 
+                {/*  */}
                 {usernameGlobal != "" && visible && (
-                    <TouchableOpacity style={[styles.bodyButtonAlt]}
-                        onPress={ () => {
+                    <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
+                        onPress={() => {
                             logFoodItemById(foodItem.id);
                             setVisible(false);
                             setModalVisible(true);
-                            setTimeout( () => { setModalVisible(false); }, 2000 );
-                            router.push("/home"); }}
-
+                            setTimeout(() => {setModalVisible(false);}, 8000);
+                            router.push("/home");}}
                         disabled={loading}>
 
-                        <Text style={styles.bodyButtonTextAlt}>Save Food Item</Text>
+                        <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
+                            Save Food Item
+                        </Text>
                     </TouchableOpacity>   
                 )}
 
-                {modalVisible && usernameGlobal != "" && (
-                    <Modal animationType="fade" transparent={true} visible={modalVisible}>
-                        <View>
-                            <View style={styles.bodyContainer}>
-                                <Text style={styles.infoText}>Food Item Saved!</Text>
+                {/* Display a message when the selected food item is saved */}
+                {usernameGlobal != "" && modalVisible && (
+                    <Modal id="savedFoodItemModal"
+                        animationType="fade"
+                        transparent={true}
+                        visible={modalVisible}>
+
+                        <View id="savedFoodItemOuterView">
+
+                            <View id="savedFoodItemInnerView" style={styles.savedFoodItemModal}>
+
+                                <Text id="savedFoodItemText" style={styles.savedFoodItemText}>
+                                    Food Item Saved!
+                                </Text>
                             </View>
+
                         </View>
+
                     </Modal>
                 )}
 
             </ScrollView>
-            </View>
 
         </View>
-
     )
+
 }
