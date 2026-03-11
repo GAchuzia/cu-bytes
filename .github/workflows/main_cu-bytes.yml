@@ -1,4 +1,4 @@
-name: Deploy Flask Backend to Azure via Service Principal
+name: Deploy Flask Backend to Azure using App Service Managed Identity
 
 on:
   push:
@@ -25,13 +25,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r backend/requirements.txt
 
-      - name: Login to Azure using Service Principal
+      - name: Login to Azure using App Service Managed Identity
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_5F672AD4C2B04122B43AF6B3C08C6131 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CE2ADE0C4D3E4564839918C24D732CFD }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_18DAD916089A4A7C9DFDAC93144042A3 }}
 
       - name: Deploy backend folder to Azure
         uses: azure/webapps-deploy@v3
