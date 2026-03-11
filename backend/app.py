@@ -70,10 +70,11 @@ def create_app(config_override=None):
 
 
 # Run the server
+# Top-level app for Gunicorn
+app = create_app()
+
+# optional: only run locally
 if __name__ == "__main__":
-    app = create_app()
     port = int(os.environ.get("PORT", 5000))
     debug = os.environ.get("FLASK_ENV") == "development"
-    print(f"Starting server on http://0.0.0.0:{port} (accepts LAN connections)")
-    print(f"Debug Mode is {debug}")
     app.run(host="0.0.0.0", port=port, debug=debug)
