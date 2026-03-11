@@ -186,7 +186,7 @@ export default function LoginScreen() {
                     style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+                    onPress={() => usernameGlobal != '' ? logout() : null}>
 
                     <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
                         {usernameGlobal != '' ? 'Logout' : 'Login'}

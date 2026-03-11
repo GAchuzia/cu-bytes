@@ -223,7 +223,7 @@ export default function RegisterScreen() {
                 </Text>
 
                 <Text id="createAccountErrorMessage" style={styles.errorInfoText}>
-                    { visible ? error.message : 'Enter a valid username and password' }
+                    {visible ? error.message : 'Enter a valid username and password'}
                 </Text>
 
                 {/* Enter the username that corresponds to the new account that the user wants to create */}
