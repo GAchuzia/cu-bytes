@@ -163,7 +163,7 @@ export default function LoginScreen() {
             
             <StatusBar style="auto" hidden={true}/>
 
-            <View id="loginStatusBar" style={styles.statusbar}>
+            <View id="loginStatusbar" style={styles.statusbar}>
 
                 {/* Route the user to the 'splash' page */}
                 <TouchableOpacity id="backButton"

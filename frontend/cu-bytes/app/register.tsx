@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
@@ -149,84 +149,70 @@ export default function RegisterScreen() {
             
             <StatusBar style="auto" hidden={true}/>
 
-            <View style={styles.statusbar}>
+            <View id="registerStatusbar" style={styles.statusbar}>
 
+                {/* Route the user to the 'splash' page */}
                 <TouchableOpacity id="backButton"
-                    style={[styles.headerButton, { backgroundColor: isBackPressed ? '#666666' : '#131312' }]}
-                    onPressIn={ () => setIsBackPressed(true) }
-                    onPressOut={ () => setIsBackPressed(false) }
-                    onPress={ () => router.push('/login') }>
+                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
+                    onPress={() => router.push('/login')}>
 
-                    <Text id="backButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
+                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
                         Back
                     </Text>
-
                 </TouchableOpacity>
 
-                <Text id="createAccountTitle"
-                    style={styles.headerTitle}>
-
-                    New Account
-                </Text>
-
-                <Text id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-
+                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
+                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButton, { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }]}
-                    onPressIn={ () => setIsLoginLogoutPressed(true) }
-                    onPressOut={ () => setIsLoginLogoutPressed(false) }
-                    onPress={ () => usernameGlobal != '' ? logout() : router.push('/login') }>
+                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsLoginLogoutPressed(true)}
+                    onPressOut={() => setIsLoginLogoutPressed(false)}
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
-                    <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
-                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Logout' : 'Login'}
                     </Text>
                 </TouchableOpacity>
 
             </View>
 
-            <View style={styles.scrollView}>
-            <ScrollView
-                style={styles.scrollView}
+            <Text id="registerTitle" style={styles.headerTitle}>
+                Register
+            </Text>
+
+            <ScrollView id="registerScrollView" style={styles.scrollView}
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={true}
-                keyboardShouldPersistTaps="handled"
-            >
+                keyboardShouldPersistTaps="handled">
 
-            <Text id="createAccountInfo" style={styles.infoText}>Create a new CU-Bytes account </Text>
+                <Text id="createAccountInfo" style={styles.infoText}>
+                    Create a new account
+                </Text>
 
-            <Text id="usernameReqsTitle"
-                style={styles.usernameReqTitle}>
+                <Text id="usernameReqsTitle" style={styles.usernameReqTitle}>
+                    Username Requirements
+                </Text>
 
-                Username Requirements
-            </Text>
+                <Text id="usernameUniqueReq" style={styles.usernameReqInfoText}>
+                    Must be unique
+                </Text>
 
-            <Text id="usernameUniqueReq"
-                style={styles.usernameReqInfoText}>
-
-                Must be unique and not shared by any other user account
-            </Text>
-
-            <Text id="usernameLengthReq"
-                style={styles.usernameReqInfoText}>
-
-                Must be between 1 and 80 characters long
-            </Text>
+                <Text id="usernameLengthReq" style={styles.usernameReqInfoText}>
+                    Must be between 1 and 80 characters long
+                </Text>
 
                 <Text id="usernameCharReq" style={styles.usernameReqInfoText}>
                     Must contain only letters, numbers, or underscores
                 </Text>
     
-                <Text id="passwordReqsTitle" style={styles.passwordReqTitle}>Password Requirements</Text>
+                <Text id="passwordReqsTitle" style={styles.passwordReqTitle}>
+                    Password Requirements
+                </Text>
 
                 <Text id="passwordLengthReq" style={styles.passwordReqInfoText}>
                     Must be between 10 and 120 characters long
@@ -237,7 +223,7 @@ export default function RegisterScreen() {
                 </Text>
 
                 <Text id="createAccountErrorMessage" style={styles.errorInfoText}>
-                    { visible ? error.message : 'To register, enter a valid username and a valid password' }
+                    { visible ? error.message : 'Enter a valid username and password' }
                 </Text>
 
                 {/* Enter the username that corresponds to the new account that the user wants to create */}
@@ -253,9 +239,9 @@ export default function RegisterScreen() {
                 {/* Enter the password that corresponds to the new account that the user wants to create */}
                 <TextInput id="createAccountPasswordTextInput" style={styles.passwordTextInput}
                     onChangeText={setPassword}
-                    onChange={ () => {
+                    onChange={() => {
                         setError({ message: '', status: '' });
-                        setVisible(false); }}
+                        setVisible(false);}}
                     placeholder={"Enter new CU-Bytes password"}
                     value={password}
                     secureTextEntry={true}>
@@ -263,19 +249,21 @@ export default function RegisterScreen() {
 
                 {/* Submit a request to the backend endpoint to create a new account */}
                 <TouchableOpacity id="createAccountButton"
-                    style={[styles.bodyButtonDefault, { backgroundColor: isCreateAccountPressed ? '#666666' : '#131312' }]}
-                    onPressIn={ () => setIsCreateAccountPressed(true) }
-                    onPressOut={ () => setIsCreateAccountPressed(false) }
-                    onPress={ () => {
+                    style={[styles.bodyButtonDefault, {backgroundColor: isCreateAccountPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsCreateAccountPressed(true)}
+                    onPressOut={() => setIsCreateAccountPressed(false)}
+                    onPress={() => {
                         registerUser(username, password);
-                        setVisible(true); }}>
+                        setVisible(true);}}>
 
-                    <Text id="createAccountButtonText" style={styles.bodyButtonTextDefault}>Create Account</Text>
+                    <Text id="createAccountButtonText" style={styles.bodyButtonTextDefault}>
+                        Create Account
+                    </Text>
                 </TouchableOpacity>
 
             </ScrollView>
-            </View>
 
         </View>
     )
+
 }
