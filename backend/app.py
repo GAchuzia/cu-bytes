@@ -70,7 +70,7 @@ def create_app(config_override=None):
 
 
 # Run the server
-# top-level app for Gunicorn
+# Top-level app for Gunicorn
 app = create_app()
 
 # optional: only run locally
