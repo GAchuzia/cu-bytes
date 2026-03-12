@@ -13,13 +13,13 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
-  foodItemViewDefault: {
+  foodItemContainer: {
     alignItems: 'center',
     backgroundColor: '#C5151A',
     width: w(100),
   },
 
-  selectedFoodItemView: {
+  selectedFoodItemContainer: {
     alignItems: 'center',
     backgroundColor: '#C5151A',
     flexDirection: 'row',
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
-  savedFoodItemModal: {
+  savedFoodItemMessageContainer: {
     alignItems: 'center',
     backgroundColor: '#AB0006',
     width: w(100),
@@ -162,6 +162,27 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
+  foodItemNameTextInput: {
+    alignItems: 'center',
+    backgroundColor: "#FFFFFF",
+    color: '#131312',
+    borderColor: '#131312',
+    borderRadius: 15,
+    borderWidth: 2,
+    fontFamily: 'arial',
+    fontSize: font(150),
+    marginTop: h(2.0),
+    marginBottom: h(2.0),
+    paddingTop: h(1.0),
+    paddingBottom: h(1.0),
+    paddingLeft: w(1.0),
+    paddingRight: w(1.0),
+    shadowColor: '#131312',
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 2,
+    width: w(80),
+  },
+  
   foodItemTextDefault: {
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
@@ -183,27 +204,6 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 10,
     width: w(100),
-  },
-
-  foodItemNameTextInput: {
-    alignItems: 'center',
-    backgroundColor: "#FFFFFF",
-    color: '#131312',
-    borderColor: '#131312',
-    borderRadius: 15,
-    borderWidth: 2,
-    fontFamily: 'arial',
-    fontSize: font(150),
-    marginTop: h(2.0),
-    marginBottom: h(2.0),
-    paddingTop: h(1.0),
-    paddingBottom: h(1.0),
-    paddingLeft: w(1.0),
-    paddingRight: w(1.0),
-    shadowColor: '#131312',
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 2,
-    width: w(80),
   },
 
   foodItemLabelText: {

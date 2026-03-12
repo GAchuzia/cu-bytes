@@ -404,7 +404,7 @@ export default function EnterScreen() {
             </View>
 
             <Text id="browseFoodItemsTitle" style={styles.headerTitle}>
-                Food Items
+                Browse Food
             </Text>
 
             <ScrollView id="browseFoodItemsScrollView" style={styles.scrollView}
@@ -439,7 +439,7 @@ export default function EnterScreen() {
 
                 {/* If the entered string value does not return any food items, display the following message */}
                 {filteredFoodItemArray.length == 0 && !visible && (
-                    <View id="browseFoodItemsFailureView" style={styles.foodItemViewDefault}>
+                    <View id="browseFoodItemsFailureView" style={styles.foodItemContainer}>
 
                         <Text id="browseFoodItemsFailureText" style={styles.foodItemTextDefault}>
                             No food items found
@@ -447,9 +447,9 @@ export default function EnterScreen() {
                     </View>
                 )}
 
-                {/* If the entered string value returns food items, display the name and id of each food item */}
+                {/* If the entered string value returns food items, display the name of each food item */}
                 {filteredFoodItemArray && !visible && (
-                    <View id="browseFoodItemsSuccessView" style={styles.foodItemViewDefault}>
+                    <View id="browseFoodItemsSuccessView" style={styles.foodItemContainer}>
 
                         {filteredFoodItemArray.map((foodItem) => (
 
@@ -461,12 +461,13 @@ export default function EnterScreen() {
                                 {foodItem["name"]}
                             </Text>
                         ))}
+
                     </View>
                 )}
 
                 {/* Display general information about the selected food item */}
                 {visible && (
-                    <View id="foodItemView" style={styles.selectedFoodItemView}>
+                    <View id="foodItemView" style={styles.selectedFoodItemContainer}>
 
                         <Text id="foodItemLabelsText" style={styles.foodItemLabelText}>
                             Name:
@@ -557,7 +558,7 @@ export default function EnterScreen() {
                     </Text>
                 )}
 
-                {/*  */}
+                {/* Display a button that enables the selected food item to be saved to the backend database */}
                 {usernameGlobal != "" && visible && (
                     <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
                         onPress={() => {
@@ -583,13 +584,12 @@ export default function EnterScreen() {
 
                         <View id="savedFoodItemOuterView">
 
-                            <View id="savedFoodItemInnerView" style={styles.savedFoodItemModal}>
+                            <View id="savedFoodItemInnerView" style={styles.savedFoodItemMessageContainer}>
 
                                 <Text id="savedFoodItemText" style={styles.savedFoodItemText}>
                                     Food Item Saved!
                                 </Text>
                             </View>
-
                         </View>
 
                     </Modal>
