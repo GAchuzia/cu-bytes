@@ -23,9 +23,6 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: Install dependencies
-        run: pip install -r backend/requirements.txt
-
       - name: Login to Azure using App Service Managed Identity
         uses: azure/login@v2
         with:
@@ -37,4 +34,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: CU-bytes
-          package: backend
+          package: .
+
