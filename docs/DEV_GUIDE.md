@@ -54,7 +54,6 @@
 ### 1. Create Virtual Environment
 
 ```bash
-cd backend
 python -m venv backenv
 ```
 
@@ -91,7 +90,6 @@ PORT=5000
 ### 5. Run Backend Server
 
 ```bash
-cd ..
 python -m backend.database.init_user_settings_db
 python -m backend.database.init_auth_db
 python -m backend.database.init_food_db

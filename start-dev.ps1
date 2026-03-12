@@ -17,18 +17,16 @@ Set-Location $projectRoot
 
 # Step 1: Setup Python Virtual Environment
 Write-Host "[1/6] Setting up Python virtual environment..." -ForegroundColor Yellow
-$venvPath = Join-Path $projectRoot "backend\backenv"
+$venvPath = Join-Path $projectRoot "backenv"
 
 if (-not (Test-Path $venvPath)) {
     Write-Host "Creating virtual environment..." -ForegroundColor Green
-    $backendPath = Join-Path $projectRoot "backend"
-    Set-Location $backendPath
+    Set-Location $projectRoot
     python -m venv backenv
     if ($LASTEXITCODE -ne 0) {
         Write-Host "Error: Failed to create virtual environment. Make sure Python is installed." -ForegroundColor Red
         exit 1
     }
-    Set-Location $projectRoot
 }
 
 # Activate virtual environment
@@ -51,7 +49,7 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
-pip install -r backend\requirements.txt
+pip install -r requirements.txt
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Error: Failed to install Python requirements." -ForegroundColor Red
     exit 1
