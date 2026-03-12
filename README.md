@@ -22,11 +22,9 @@ CU-Bytes is a comprehensive food tracking system consisting of:
 2. **Set up backend**
 
    ```bash
-   cd backend
    python -m venv backenv
-   backenv\Scripts\activate  # Windows
+   backenv\Scripts\activate # Windows
    pip install -r requirements.txt
-   cd ..
    python -m backend.database.init_user_settings_db
    python -m backend.database.init_auth_db
    python -m backend.database.init_food_db
