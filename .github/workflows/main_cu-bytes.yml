@@ -1,0 +1,40 @@
+name: Deploy Flask Backend to Azure using App Service Managed Identity
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write       # ✅ needed for OIDC token
+      contents: read        # ✅ needed to checkout code
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Login to Azure using App Service Managed Identity
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_5F672AD4C2B04122B43AF6B3C08C6131 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CE2ADE0C4D3E4564839918C24D732CFD }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_18DAD916089A4A7C9DFDAC93144042A3 }}
+
+      - name: Deploy backend folder to Azure
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: CU-bytes
+          package: backend
