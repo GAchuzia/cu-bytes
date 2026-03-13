@@ -309,7 +309,7 @@ export default function EntriesScreen() {
 
                     <FlatList
                         data={foodItemArray}
-                        scrollEnabled={false}
+                        scrollEnabled={true}
                         renderItem={({ item }) => (
                         <View style={styles.row}>
                             <Text style={styles.rowCell}>{item["food_name"]}</Text>
