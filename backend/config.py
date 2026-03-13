@@ -2,8 +2,9 @@ import os
 from dotenv import load_dotenv
 
 # Detect Azure environment (Oryx, Azure's build system, sets home=/tmp/XXXX)
-# If your local HOME variable contains tmp this will mistakenly be set to True
-IS_AZURE = "tmp" in os.getenv("HOME", "")
+# If your local HOME variable contains root this will mistakenly be set to True
+# In powershell you can check your home variable using "Write-Output $HOME"
+IS_AZURE = "root" in os.getenv("HOME", "")
 print(f"Config.py: IS_AZURE={IS_AZURE}")  # DEBUG
 print(f'Config.py: HOME={os.getenv("HOME", "")}')
 
