@@ -10,7 +10,7 @@ from backend.endpoints.browsing_endpoints import browse_bp
 from backend.endpoints.locations_endpoints import locations_bp
 from backend.endpoints.food_entry_endpoints import logging_bp
 
-# from backend.endpoints.ml_endpoints import ml_bp
+from backend.endpoints.ml_endpoints import ml_bp
 from backend.endpoints.profile_endpoints import profile_bp
 from backend.endpoints.recommendations_endpoints import recommendations_bp
 from backend.endpoints.statistics_endpoints import statistics_bp
@@ -33,7 +33,7 @@ def create_app(config_override=None):
     app.register_blueprint(browse_bp, url_prefix="/browse")
     app.register_blueprint(locations_bp, url_prefix="/locations")
     app.register_blueprint(logging_bp, url_prefix="/logging")
-    # app.register_blueprint(ml_bp, url_prefix="/ml")
+    app.register_blueprint(ml_bp, url_prefix="/ml")
     app.register_blueprint(profile_bp, url_prefix="/profile")
     app.register_blueprint(recommendations_bp, url_prefix="/recommend")
     app.register_blueprint(statistics_bp, url_prefix="/statistics")
