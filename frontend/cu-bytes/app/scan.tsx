@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, Alert, Modal, ActivityIndicator, ScrollView } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, FlatList, Image, Alert, ActivityIndicator, Modal } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { apiService, API_BASE_URL } from '../services/api';
 
 import { styles } from './_styles/style-scan';
 import { useUser } from './_context';
+import { apiService, API_BASE_URL } from '../services/api';
 
 interface PredictionResult {
     food_name: string;
@@ -112,7 +112,7 @@ export default function ScanScreen() {
 
         returns : The amount of carbs for the selected food item
     */
-   function processFoodItemCarbs(carbs: number) {
+    function processFoodItemCarbs(carbs: number) {
 
         if (carbs == -1) {
             return "Unknown";
@@ -120,7 +120,7 @@ export default function ScanScreen() {
         else {
             return carbs;
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of fat for the selected food item
@@ -132,7 +132,7 @@ export default function ScanScreen() {
 
         returns : The amount of fat for the selected food item
     */
-   function processFoodItemFat(fat: number) {
+    function processFoodItemFat(fat: number) {
 
         if (fat == -1) {
             return "Unknown";
@@ -140,7 +140,7 @@ export default function ScanScreen() {
         else {
             return fat;
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of fiber for the selected food item
@@ -152,7 +152,7 @@ export default function ScanScreen() {
 
         returns : The amount of fiber for the selected food item
     */
-   function processFoodItemFiber(fiber: number) {
+    function processFoodItemFiber(fiber: number) {
 
         if (fiber == -1) {
             return "Unknown";
@@ -160,7 +160,7 @@ export default function ScanScreen() {
         else {
             return fiber;
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of proteins for the selected food item
@@ -172,7 +172,7 @@ export default function ScanScreen() {
 
         returns : The amount of proteins for the selected food item
     */
-   function processFoodItemProteins(proteins: number) {
+    function processFoodItemProteins(proteins: number) {
 
         if (proteins == -1) {
             return "Unknown";
@@ -180,7 +180,7 @@ export default function ScanScreen() {
         else {
             return proteins;
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of sugar for the selected food item
@@ -192,7 +192,7 @@ export default function ScanScreen() {
 
         returns : The amount of sugar for the selected food item
     */
-   function processFoodItemSugar(sugar: number) {
+    function processFoodItemSugar(sugar: number) {
 
         if (sugar == -1) {
             return "Unknown";
@@ -200,7 +200,135 @@ export default function ScanScreen() {
         else {
             return sugar;
         }
-   }
+    }
+
+    /*
+        Convert the selected food item from a JSON object to an array of JSON objects
+
+        param(s):
+            foodItem - any : The selected food item, a JSON object
+
+        returns : The selected food item, an array of JSON objects
+    */
+    const processSelectedFoodItem = (foodItem: any) => {
+
+        return [
+            { field_name: "Name", field_value: foodItem["food_name"]},
+            { field_name: "Confidence", field_value: foodItem["confidence"] + " %" },
+            { field_name: "Calories", field_value: processFoodItemCalories(foodItem["calories"]) },
+            { field_name: "Carbs", field_value: processFoodItemCarbs(foodItem["carbs_g"]) + " grams" },
+            { field_name: "Fat", field_value: processFoodItemFat(foodItem["fat_g"]) + " grams" },
+            { field_name: "Fiber", field_value: processFoodItemFiber(foodItem["fiber_g"]) + " grams" },
+            { field_name: "Proteins", field_value: processFoodItemProteins(foodItem["proteins_g"]) + " grams" },
+            { field_name: "Sugar", field_value: processFoodItemSugar(foodItem["sugar_g"]) + " grams" }
+        ]
+    }
+
+    /*
+        Generate the relevant warnings for the selected food item based on the logged-in user's settings
+
+        param(s):
+            foodItem - any : The selected food item, a JSON object
+
+        returns : The warnings for the selected food item, an array of JSON objects
+    */
+    const processSelectedFoodItemWarnings = (foodItem: any) => {
+
+        let foodItemWarningsArray = Array();
+
+        if (foodItem.confidence >= 75 && foodItem["has_eggs"] === true && hasEggAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains eggs" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["has_eggs"] === null && hasEggAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain eggs" });
+        }
+
+        if (foodItem.confidence >= 75 && foodItem["has_fish_or_shellfish"] === true && hasFishOrShellfishAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains fish or shellfish" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["has_fish_or_shellfish"] === null && hasFishOrShellfishAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain fish or shellfish" });
+        }
+
+        if (foodItem.confidence >= 75 && foodItem["is_dairy_free"] === false && hasDairyIntoleranceGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains dairy" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["is_dairy_free"] === null && hasDairyIntoleranceGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain dairy" });
+        }
+
+        if (foodItem.confidence >= 75 && foodItem["has_milk"] === true && hasMilkAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains milk" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["has_milk"] === null && hasMilkAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain milk" });
+        }
+
+        if (foodItem.confidence >= 75 && foodItem["has_peanuts"] === true && hasPeanutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains peanuts" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["has_peanuts"] === null && hasPeanutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain peanuts" });
+        }
+
+        if (foodItem.confidence >= 75 && foodItem["has_sesame"] === true && hasSesameAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains sesame" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["has_sesame"] === null && hasSesameAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain sesame" });
+        }
+        
+        if (foodItem.confidence >= 75 && foodItem["has_soy"] === true && hasSoyAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains soy" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["has_soy"] === null && hasSoyAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain soy" });
+        }
+
+        if (foodItem.confidence >= 75 && foodItem["has_treenuts"] === true && hasTreenutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains treenuts" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["has_treenuts"] === null && hasTreenutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain treenuts" });
+        }
+
+        if (foodItem.confidence >= 75 && foodItem["has_wheat"] === true && hasWheatAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains wheat" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["has_wheat"] === null && hasWheatAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain wheat" });
+        }
+
+        if (foodItem.confidence >= 75 && foodItem["is_gluten_free"] === false && hasGlutenAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains gluten" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["is_gluten_free"] === null && hasGlutenAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain gluten" });
+        }
+
+        if (foodItem.confidence >= 75 && foodItem["is_vegan"] === false && isVeganGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not vegan" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["is_vegan"] === null && isVeganGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may not be vegan" });
+        }
+
+        if (foodItem.confidence >= 75 && foodItem["is_vegetarian"] === false && isVegetarianGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not vegetarian" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["is_vegetarian"] === null && isVegetarianGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may not be vegetarian" });
+        }
+
+        if (foodItem.confidence >= 75 && foodItem["is_halal"] === false && prefersHalalGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not halal" });
+        }
+        if (foodItem.confidence >= 75 && foodItem["is_halal"] === null && prefersHalalGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may not be halal" });
+        }       
+
+        return foodItemWarningsArray;
+    }
 
     /*
         Enable the user to select an image on the device that cu-bytes is running on
@@ -212,7 +340,7 @@ export default function ScanScreen() {
             const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
             if (status !== 'granted') {
-                Alert.alert('Permission needed', 'Sorry, we need camera roll permissions to select an image!');
+                Alert.alert('Permission Needed', 'Sorry, we need camera roll permissions to select an image!');
                 return;
             }
 
@@ -340,259 +468,204 @@ export default function ScanScreen() {
 
     return (
         <View style={styles.container}>
-            <StatusBar
-                style="auto"
-                hidden={true}
-            />
+            
+            <StatusBar style="auto" hidden={true}/>
 
-            <View
-                style={styles.statusbar}>
+            <View id="scanFoodItemsStatusbar" style={styles.statusbar}>
 
-                <TouchableOpacity id="backButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
-                    ]}
+                {/* Route the user to the 'home' page or the 'splash' page */}
+                <TouchableOpacity id="backButton" style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
                     onPressIn={() => setIsBackPressed(true)}
                     onPressOut={() => setIsBackPressed(false)}
                     onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
 
-                    <Text id="backButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
+                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
                         Back
                     </Text>
-
                 </TouchableOpacity>
 
-                <Text id="scanFoodItemTitle"
-                    style={styles.headerTitle}>
-
-                    Scan Food Item
-                </Text>
-
-                <Text id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-
+                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
-                <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
-                    ]}
+                {/* Route the user to the 'splash' page or the 'login' page */}
+                <TouchableOpacity id="loginLogoutButton" style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
-                    <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
-                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Logout' : 'Login'}
                     </Text>
-
                 </TouchableOpacity>
 
             </View>
 
-            <View style={styles.scrollView}>
-            <ScrollView
-                style={styles.scrollView}
+            <Text id="scanFoodItemsTitle" style={styles.headerTitle}>
+                Scan Food
+            </Text>
+
+            <ScrollView id="scanFoodItemsScrollView" style={styles.scrollView}
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={true}
                 keyboardShouldPersistTaps="handled"
                 bounces={true}
-                overScrollMode="always"
-            >
-            <Text style={styles.infoText}>
+                overScrollMode="always">
 
-                Take a photo or upload an image of the food item that you would like CU-Bytes to identify
-            </Text>
+                <Text id="scanFoodItemsInfoText" style={styles.infoText}>
+                    Take a photo or upload a photo of a food item to identify
+                </Text>
 
-            {selectedImage && (
-                <Image
-                    source={{ uri: selectedImage }}
-                    style={styles.foodImage}
-                    resizeMode="contain"
-                />
-            )}
+                {/* Display the uploaded photo of a food item, henceforth known as the selected food item */}
+                {selectedImage && (
+                    <Image id="foodItemImage" style={styles.foodImage}
+                        source={{uri: selectedImage}}
+                        resizeMode="contain">    
+                    </Image>
+                )}
 
-            {!selectedImage && (
-                <Text style={styles.placeholderText}>Uploaded photos will be displayed here</Text>
-            )}
-
-            {prediction && (
-                <View style={styles.bodyContainer}>
-                    <Text style={styles.foodInfoText}>
-                        Food: {prediction.food_name}
-                        {'\n'}
-                        Calories: {processFoodItemCalories(prediction.calories)}
-                        {'\n'}
-                        Confidence: {prediction.confidence}%
-                        {'\n'}
-                        Carbs: {prediction.carbs_g != null ? processFoodItemCarbs(prediction.carbs_g) : "Unknown" } grams
-                        {'\n'}
-                        Fat: {prediction.fat_g != null ? processFoodItemFat(prediction.fat_g) : "Unknown" } grams
-                        {'\n'}
-                        Fiber: {prediction.fiber_g != null ? processFoodItemFiber(prediction.fiber_g) : "Unknown" } grams
-                        {'\n'}
-                        Proteins: {prediction.proteins_g != null ? processFoodItemProteins(prediction.proteins_g) : "Unknown" } grams
-                        {'\n'}
-                        Sugar: {prediction.sugar_g != null ? processFoodItemSugar(prediction.sugar_g) : "Unknown" } grams
-                        {'\n'}
-
-                        {prediction.confidence >= 75 && prediction.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
-                        {prediction.confidence >= 75 && prediction.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.has_fish_or_shellfish === true && hasFishOrShellfishAllergyGlobal ? "Warning - this item contains fish or shellfish \n" : null}
-                        {prediction.confidence >= 75 && prediction.has_fish_or_shellfish === null && hasFishOrShellfishAllergyGlobal ? "Warning - this item may contain fish or shellfish \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Warning - this item contains dairy \n" : null}
-                        {prediction.confidence >= 75 && prediction.is_dairy_free === null && hasDairyIntoleranceGlobal ? "Warning - this item may contain dairy \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.has_milk === true && hasMilkAllergyGlobal ? "Warning - this item contains milk \n" : null}
-                        {prediction.confidence >= 75 && prediction.has_milk === null && hasMilkAllergyGlobal ? "Warning - this item may contain milk \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.has_peanuts === true && hasPeanutAllergyGlobal ? "Warning - this item contains peanuts \n" : null}
-                        {prediction.confidence >= 75 && prediction.has_peanuts === null && hasPeanutAllergyGlobal ? "Warning - this item may contain peanuts \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.has_sesame === true && hasSesameAllergyGlobal ? "Warning - this item contains sesame \n" : null}
-                        {prediction.confidence >= 75 && prediction.has_sesame === null && hasSesameAllergyGlobal ? "Warning - this item may contain sesame \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.has_soy === true && hasSoyAllergyGlobal ? "Warning - this item contains soy \n" : null}
-                        {prediction.confidence >= 75 && prediction.has_soy === null && hasSoyAllergyGlobal ? "Warning - this item may contain soy \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.has_treenuts === true && hasTreenutAllergyGlobal ? "Warning - this item contains treenuts \n" : null}
-                        {prediction.confidence >= 75 && prediction.has_treenuts === null && hasTreenutAllergyGlobal ? "Warning - this item may contain treenuts \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.has_wheat === true && hasWheatAllergyGlobal ? "Warning - this item contains wheat \n" : null}
-                        {prediction.confidence >= 75 && prediction.has_wheat === null && hasWheatAllergyGlobal ? "Warning - this item may contain wheat \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.is_gluten_free === false && hasGlutenAllergyGlobal ? "Warning - this item contains gluten \n" : null}
-                        {prediction.confidence >= 75 && prediction.is_gluten_free === null && hasGlutenAllergyGlobal ? "Warning - this item may contain gluten \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.is_vegan === false && isVeganGlobal ?  "Warning - this item is not vegan \n" : null}
-                        {prediction.confidence >= 75 && prediction.is_vegan === null && isVeganGlobal ?  "Warning - this item may not be vegan \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian \n" : null}
-                        {prediction.confidence >= 75 && prediction.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian \n" : null}
-
-                        {prediction.confidence >= 75 && prediction.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal \n" : null}
-                        {prediction.confidence >= 75 && prediction.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal \n" : null}
+                {/* Display placeholder text if a photo of a food item has not been uploaded */}
+                {!selectedImage && (
+                    <Text id="foodItemPlaceholderText" style={styles.placeholderText}>
+                        Uploaded photos will be displayed here
                     </Text>
-                </View>
-            )}
+                )}
 
-            {prediction && usernameGlobal != "" && (
-                <View style={styles.bodyContainer}>
-                    <TouchableOpacity
-                        style={[styles.bodyButtonAlt]}
+                {/* Display information about the selected food item */}
+                {prediction && (
+                    <View id="foodItemOuterView" style={styles.selectedFoodItemContainer}>
+
+                        <FlatList id="foodItemFlatList"
+                            data={processSelectedFoodItem(prediction)}
+                            scrollEnabled={false}
+                            renderItem={({ item }) => (
+                                <View id="foodItemInnerView" style={styles.row}>
+                                    <Text id="foodItemFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
+                                    <Text id="foodItemFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                </View>
+                            )}>
+                        </FlatList>
+
+                    </View>
+                )}
+
+                {/* Display the relevant warnings for the selected food item based on the logged-in user's settings */}
+                {prediction && (
+                    <View id="warningOuterView" style={styles.selectedFoodItemContainer}>
+
+                        <FlatList id="warningFlatList"
+                            data={processSelectedFoodItemWarnings(prediction)}
+                            scrollEnabled={false}
+                            renderItem={({ item }) => (
+                                <View id="warningInnerView" style={styles.row}>
+                                    <Text id="warningFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
+                                    <Text id="warningFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                </View>
+                            )}>
+
+                        </FlatList>
+
+                    </View>
+                )}
+
+                {/* Display a button that enables the selected food item to be saved to the backend database */}
+                {usernameGlobal != "" && prediction && (
+                    <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
                         onPress={() => {
                             logFoodItemByName(prediction.food_name);
-
                             setModalVisible(true);
-                            setTimeout(() => {
-                            setModalVisible(false);
-                            }, 2000);
+                            setTimeout(() => {setModalVisible(false);}, 8000);
+                            router.push('/home');}}
+                        disabled={loading}>
 
-                            router.push('/home');
-                        }}
-                        disabled={loading}
-                    >
-                        <Text style={styles.bodyButtonTextAlt}>Save Food Item</Text>
+                        <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
+                            Save Food Item
+                        </Text>
                     </TouchableOpacity>
-                </View>
-            )}
+                )}
 
-            {modalVisible && usernameGlobal != "" && (
-                <Modal
-                    animationType="fade"
-                    transparent={true}
-                    visible={modalVisible}
-                >
-                    <View>
-                        <View style={styles.bodyContainer}>
-                            <Text style={styles.infoText}>Food Item Saved!</Text>
+                {/* Display a message when the selected food item is saved */}
+                {usernameGlobal != "" && modalVisible && (
+                    <Modal id="savedFoodItemModal"
+                        animationType="fade"
+                        transparent={true}
+                        visible={modalVisible}>
+
+                        <View id="savedFoodItemOuterView">
+
+                            <View id="savedFoodItemInnerView" style={styles.savedFoodItemMessageContainer}>
+
+                                <Text id="savedFoodItemText" style={styles.savedFoodItemText}>
+                                    Food Item Saved!
+                                </Text>
+                            </View>
                         </View>
-                    </View>
-                </Modal>
-            )}
 
-            <TouchableOpacity id="takePhotoButton"
-                style={[styles.bodyButtonDefault,
-                    loading && styles.buttonDisabled
-                ]}
-                onPress={takePhoto}
-                disabled={loading}
-            >
-                <Text id="takePhotoButtonText"
-                    style={styles.bodyButtonTextDefault}>
+                    </Modal>
+                )}
 
-                    Take Photo
-                </Text>
-            </TouchableOpacity>
+                {/* Display a button that enables the user to take a photo of the food item to identify */}
+                <TouchableOpacity id="takePhotoButton" style={[styles.bodyButtonDefault, loading && styles.buttonDisabled]}
+                    onPress={takePhoto}
+                    disabled={loading}>
 
-            <TouchableOpacity id="uploadPhotoButton"
-                style={[styles.bodyButtonDefault,
-                    loading && styles.buttonDisabled
-                ]}
-                onPress={pickImage}
-                disabled={loading}
-            >
-                <Text id="uploadPhotoButtonText"
-                    style={styles.bodyButtonTextDefault}>
-
-                    {selectedImage ?  'Upload Different Photo' : 'Upload Photo' }
-                </Text>
-            </TouchableOpacity>
-
-            {selectedImage && (
-                <TouchableOpacity id="scanFoodButton"
-                    style={[styles.bodyButtonScanFood,
-                        loading && styles.buttonDisabled,
-                        !selectedImage && styles.buttonDisabled
-                    ]}
-                    onPress={scanFood}
-                    disabled={loading || !selectedImage}
-                >
-                    {loading ? (<ActivityIndicator color="white"/>) :
-
-                        (<Text id="scanFoodButtonText"
-                            style={styles.bodyButtonTextDefault}>
-
-                            Scan Food
-                        </Text>)
-                    }
+                    <Text id="takePhotoButtonText" style={styles.bodyButtonTextDefault}>
+                        Take Photo
+                    </Text>
                 </TouchableOpacity>
-            )}
 
-            {selectedImage && (
-                <TouchableOpacity id="deleteFoodButton"
-                    style={[styles.bodyButtonDeleteFood,
-                        loading && styles.buttonDisabled,
-                        !selectedImage && styles.buttonDisabled
-                    ]}
-                    onPress={() => {
-                        setSelectedImage(null);
-                        setPrediction(null);
-                    }}
-                    disabled={loading || !selectedImage}
-                >
-                    {loading ? (<ActivityIndicator color="white"/>) :
+                {/* Display a button that enables the user to upload a photo or an image of the food item to identify */}
+                <TouchableOpacity id="uploadPhotoButton" style={[styles.bodyButtonDefault, loading && styles.buttonDisabled]}
+                    onPress={pickImage}
+                    disabled={loading}>
 
-                        (<Text id="deleteFoodButtonText"
-                            style={styles.bodyButtonTextAlt}>
-
-                            Delete Food
-                        </Text>)
-                    }
+                    <Text id="uploadPhotoButtonText" style={styles.bodyButtonTextDefault}>
+                        {selectedImage ?  'Upload Different Photo' : 'Upload Photo'}
+                    </Text>
                 </TouchableOpacity>
-            )}
+
+                {/* Display a button that prompts the AI model to scan the photo or image to identify the food item */}
+                {selectedImage && (
+                    <TouchableOpacity id="scanFoodButton"
+                        style={[styles.bodyButtonScanFood,
+                            loading && styles.buttonDisabled,
+                            !selectedImage && styles.buttonDisabled]}
+                        onPress={scanFood}
+                        disabled={loading || !selectedImage}>
+
+                        {loading ? (<ActivityIndicator color="white"/>) :
+                            
+                            (<Text id="scanFoodButtonText" style={styles.bodyButtonTextDefault}>
+                                Scan Food
+                            </Text>)
+                        }
+                    </TouchableOpacity>
+                )}
+
+                {/* Display a button to remove the uploaded photo or image */}
+                {selectedImage && (
+                    <TouchableOpacity id="deleteFoodButton"
+                        style={[styles.bodyButtonDeleteFood,
+                            loading && styles.buttonDisabled,
+                            !selectedImage && styles.buttonDisabled]}
+                        onPress={() => {
+                            setSelectedImage(null);
+                            setPrediction(null);
+                        }}
+                        disabled={loading || !selectedImage}>
+
+                        {loading ? (<ActivityIndicator color="white"/>) :
+
+                            (<Text id="deleteFoodButtonText" style={styles.bodyButtonTextAlt}>
+                                Delete Food
+                            </Text>)
+                        }
+                    </TouchableOpacity>
+                )}
 
             </ScrollView>
-            </View>
 
         </View>
     )
+
 }
