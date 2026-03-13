@@ -104,7 +104,7 @@ export default function EnterScreen() {
             has_soy: null,
             has_treenuts: null,
             has_wheat: null,
-            id: number, // Initial value of 1 to prevent errors
+            id: number,
             is_dairy_free: null,
             is_gluten_free: null,
             is_halal: null,
@@ -165,7 +165,7 @@ export default function EnterScreen() {
 
         returns : The cost of the selected food item
     */
-   function processFoodItemCost(cost: number) {
+    function processFoodItemCost(cost: number) {
 
         if (cost == -1) {
             return "Unknown"
@@ -173,7 +173,7 @@ export default function EnterScreen() {
         else {
             return cost
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of carbs for the selected food item
@@ -185,7 +185,7 @@ export default function EnterScreen() {
 
         returns : The amount of carbs for the selected food item
     */
-   function processFoodItemCarbs(carbs: number) {
+    function processFoodItemCarbs(carbs: number) {
 
         if (carbs == -1) {
             return "Unknown"
@@ -193,7 +193,7 @@ export default function EnterScreen() {
         else {
             return carbs
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of fat for the selected food item
@@ -205,7 +205,7 @@ export default function EnterScreen() {
 
         returns : The amount of fat for the selected food item
     */
-   function processFoodItemFat(fat: number) {
+    function processFoodItemFat(fat: number) {
 
         if (fat == -1) {
             return "Unknown"
@@ -213,7 +213,7 @@ export default function EnterScreen() {
         else {
             return fat
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of fiber for the selected food item
@@ -225,7 +225,7 @@ export default function EnterScreen() {
 
         returns : The amount of fiber for the selected food item
     */
-   function processFoodItemFiber(fiber: number) {
+    function processFoodItemFiber(fiber: number) {
 
         if (fiber == -1) {
             return "Unknown"
@@ -233,7 +233,7 @@ export default function EnterScreen() {
         else {
             return fiber
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of proteins for the selected food item
@@ -245,7 +245,7 @@ export default function EnterScreen() {
 
         returns : The amount of proteins for the selected food item
     */
-   function processFoodItemProteins(proteins: number) {
+    function processFoodItemProteins(proteins: number) {
 
         if (proteins == -1) {
             return "Unknown"
@@ -253,7 +253,7 @@ export default function EnterScreen() {
         else {
             return proteins
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of sugar for the selected food item
@@ -265,7 +265,7 @@ export default function EnterScreen() {
 
         returns : The amount of sugar for the selected food item
     */
-   function processFoodItemSugar(sugar: number) {
+    function processFoodItemSugar(sugar: number) {
 
         if (sugar == -1) {
             return "Unknown"
@@ -273,7 +273,7 @@ export default function EnterScreen() {
         else {
             return sugar
         }
-   }
+    }
 
     /*
         Convert the selected food item from a JSON object to an array of JSON objects
