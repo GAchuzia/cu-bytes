@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 # If your local HOME variable contains tmp this will mistakenly be set to True
 IS_AZURE = "tmp" in os.getenv("HOME", "")
 print(f"Config.py: IS_AZURE={IS_AZURE}")  # DEBUG
+print(f'Config.py: HOME={os.getenv("HOME", "")}')
 
 # Set database directory
 if IS_AZURE:
