@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, TextInput, ActivityIndicator, Modal } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, TextInput, FlatList, ActivityIndicator, Modal } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -61,32 +61,59 @@ export default function EnterScreen() {
     */
     const [foodItem, setFoodItem] = useState(
         {
-            "calories": -1,
-            "carbs_g": 0.00,
-            "comments": "",
-            "cost": 0.00,
-            "dining_location": "",
-            "fat_g": 0.00,
-            "fiber_g": 0.00,
-            "food_category": "",
-            "has_eggs": null,
-            "has_fish_or_shellfish": null,
-            "has_milk": null,
-            "has_peanuts": null,
-            "has_sesame": null,
-            "has_soy": null,
-            "has_treenuts": null,
-            "has_wheat": null,
-            "id": -1, // Initial value of 1 to prevent errors
-            "is_dairy_free": null,
-            "is_gluten_free": null,
-            "is_halal": null,
-            "is_vegan": null,
-            "is_vegetarian": null,
-            "last_updated": "",
-            "name": "",
-            "proteins_g": 0.00,
-            "sugar_g": 0.00
+            calories: -1,
+            carbs_g: 0.00,
+            comments: "",
+            cost: 0.00,
+            dining_location: "",
+            fat_g: 0.00,
+            fiber_g: 0.00,
+            food_category: "",
+            has_eggs: null,
+            has_fish_or_shellfish: null,
+            has_milk: null,
+            has_peanuts: null,
+            has_sesame: null,
+            has_soy: null,
+            has_treenuts: null,
+            has_wheat: null,
+            id: -1, // Initial value of 1 to prevent errors
+            is_dairy_free: null,
+            is_gluten_free: null,
+            is_halal: null,
+            is_vegan: null,
+            is_vegetarian: null,
+            last_updated: "",
+            name: "",
+            proteins_g: 0.00,
+            sugar_g: 0.00
+        } as {
+            calories: number,
+            carbs_g: number,
+            comments: string,
+            cost: number,
+            dining_location: string,
+            fat_g: number,
+            fiber_g: number,
+            food_category: string,
+            has_eggs: null,
+            has_fish_or_shellfish: null,
+            has_milk: null,
+            has_peanuts: null,
+            has_sesame: null,
+            has_soy: null,
+            has_treenuts: null,
+            has_wheat: null,
+            id: number, // Initial value of 1 to prevent errors
+            is_dairy_free: null,
+            is_gluten_free: null,
+            is_halal: null,
+            is_vegan: null,
+            is_vegetarian: null,
+            last_updated: string,
+            name: string,
+            proteins_g: number,
+            sugar_g: number
         }
     );
 
@@ -247,6 +274,135 @@ export default function EnterScreen() {
             return sugar
         }
    }
+
+    /*
+        Convert the selected food item from a JSON object to an array of JSON objects
+
+        param(s):
+            foodItem - any : The selected food item, a JSON object
+
+        returns : The selected food item, an array of JSON objects
+    */
+    const processSelectedFoodItem = (foodItem: any) => {
+
+        return [
+            { field_name: "Name", field_value: foodItem["name"]},
+            { field_name: "Calories", field_value: processFoodItemCalories(foodItem["calories"]) },
+            { field_name: "Location", field_value: foodItem["dining_location"] },
+            { field_name: "Cost", field_value: "$ " + processFoodItemCost(foodItem["cost"]) },
+            { field_name: "Carbs", field_value: processFoodItemCarbs(foodItem["carbs_g"]) + " grams" },
+            { field_name: "Fat", field_value: processFoodItemFat(foodItem["fat_g"]) + " grams" },
+            { field_name: "Fiber", field_value: processFoodItemFiber(foodItem["fiber_g"]) + " grams" },
+            { field_name: "Proteins", field_value: processFoodItemProteins(foodItem["proteins_g"]) + " grams" },
+            { field_name: "Sugar", field_value: processFoodItemSugar(foodItem["sugar_g"]) + " grams" }
+        ]
+    }
+
+    /*
+        Generate the relevant warnings for the selected food item based on the logged-in user's settings
+
+        param(s):
+            foodItem - any : The selected food item, a JSON object
+
+        returns : The warnings for the selected food item, an array of JSON objects
+    */
+    const processSelectedFoodItemWarnings = (foodItem: any) => {
+
+        let foodItemWarningsArray = Array();
+
+        if (foodItem["has_eggs"] === true && hasEggAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains eggs" });
+        }
+        if (foodItem["has_eggs"] === null && hasEggAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain eggs" });
+        }
+
+        if (foodItem["has_fish_or_shellfish"] === true && hasFishOrShellfishAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains fish or shellfish" });
+        }
+        if (foodItem["has_fish_or_shellfish"] === null && hasFishOrShellfishAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain fish or shellfish" });
+        }
+
+        if (foodItem["is_dairy_free"] === false && hasDairyIntoleranceGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains dairy" });
+        }
+        if (foodItem["is_dairy_free"] === null && hasDairyIntoleranceGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain dairy" });
+        }
+
+        if (foodItem["has_milk"] === true && hasMilkAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains milk" });
+        }
+        if (foodItem["has_milk"] === null && hasMilkAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain milk" });
+        }
+
+        if (foodItem["has_peanuts"] === true && hasPeanutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains peanuts" });
+        }
+        if (foodItem["has_peanuts"] === null && hasPeanutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain peanuts" });
+        }
+
+        if (foodItem["has_sesame"] === true && hasSesameAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains sesame" });
+        }
+        if (foodItem["has_sesame"] === null && hasSesameAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain sesame" });
+        }
+        
+        if (foodItem["has_soy"] === true && hasSoyAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains soy" });
+        }
+        if (foodItem["has_soy"] === null && hasSoyAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain soy" });
+        }
+
+        if (foodItem["has_treenuts"] === true && hasTreenutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains treenuts" });
+        }
+        if (foodItem["has_treenuts"] === null && hasTreenutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain treenuts" });
+        }
+
+        if (foodItem["has_wheat"] === true && hasWheatAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains wheat" });
+        }
+        if (foodItem["has_wheat"] === null && hasWheatAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain wheat" });
+        }
+
+        if (foodItem["is_gluten_free"] === false && hasGlutenAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains gluten" });
+        }
+        if (foodItem["is_gluten_free"] === null && hasGlutenAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain gluten" });
+        }
+
+        if (foodItem["is_vegan"] === false && isVeganGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not vegan" });
+        }
+        if (foodItem["is_vegan"] === null && isVeganGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may not be vegan" });
+        }
+
+        if (foodItem["is_vegetarian"] === false && isVegetarianGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not vegetarian" });
+        }
+        if (foodItem["is_vegetarian"] === null && isVegetarianGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may not be vegetarian" });
+        }
+
+        if (foodItem["is_halal"] === false && prefersHalalGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not halal" });
+        }
+        if (foodItem["is_halal"] === null && prefersHalalGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may not be halal" });
+        }       
+
+        return foodItemWarningsArray;
+    }
 
     /*
         Send a request to the backend endpoint to get all food items from the database
@@ -465,97 +621,43 @@ export default function EnterScreen() {
                     </View>
                 )}
 
-                {/* Display general information about the selected food item */}
+                {/* Display information about the selected food item */}
                 {visible && (
-                    <View id="foodItemView" style={styles.selectedFoodItemContainer}>
+                    <View id="foodItemOuterView" style={styles.selectedFoodItemContainer}>
 
-                        <Text id="foodItemLabelsText" style={styles.foodItemLabelText}>
-                            Name:
-                            {'\n'}
-                            Calories:
-                            {'\n'}
-                            Location:
-                            {'\n'}
-                            Cost:
-                            {'\n'}
-                            Carbs:
-                            {'\n'}
-                            Fat:
-                            {'\n'}
-                            Fiber:
-                            {'\n'}
-                            Proteins:
-                            {'\n'}
-                            Sugar:
-                        </Text>
-
-                        <Text id="foodItemDataText" style={styles.foodItemDataText}>
-                            {foodItem.name}
-                            {'\n'}
-                            {processFoodItemCalories(foodItem.calories)}
-                            {'\n'}
-                            {foodItem.dining_location}
-                            {'\n'}
-                            $ {processFoodItemCost(foodItem.cost)}
-                            {'\n'}
-                            {processFoodItemCarbs(foodItem.carbs_g)} grams
-                            {'\n'}
-                            {processFoodItemFat(foodItem.fat_g)} grams
-                            {'\n'}
-                            {processFoodItemFiber(foodItem.fiber_g)} grams
-                            {'\n'}
-                            {processFoodItemProteins(foodItem.proteins_g)} grams
-                            {'\n'}
-                            {processFoodItemSugar(foodItem.sugar_g)} grams
-                        </Text>
+                        <FlatList id="foodItemFlatList"
+                            data={processSelectedFoodItem(foodItem)}
+                            scrollEnabled={false}
+                            renderItem={({ item }) => (
+                                <View id="foodItemInnerView" style={styles.row}>
+                                    <Text id="foodItemFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
+                                    <Text id="foodItemFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                </View>
+                            )}>
+                        </FlatList>
 
                     </View>
                 )}
 
-                {/* Display warning information about the selected food item */}
+                <View style={styles.container}></View>
+
+                {/* Display the relevant warnings for the selected food item based on the logged-in user's settings */}
                 {visible && (
-                    <Text id="warningsText" style={styles.foodItemTextDefault}>
-                        {usernameGlobal == '' ? "Warnings will be displayed here" : null}
+                    <View id="warningOuterView" style={styles.selectedFoodItemContainer}>
 
-                        {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
-                        {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs \n" : null}
+                        <FlatList id="warningFlatList"
+                            data={processSelectedFoodItemWarnings(foodItem)}
+                            scrollEnabled={false}
+                            renderItem={({ item }) => (
+                                <View id="warningInnerView" style={styles.row}>
+                                    <Text id="warningFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
+                                    <Text id="warningFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                </View>
+                            )}>
 
-                        {foodItem.has_fish_or_shellfish === true && hasFishOrShellfishAllergyGlobal ? "Warning - this item contains fish or shellfish \n" : null}
-                        {foodItem.has_fish_or_shellfish === null && hasFishOrShellfishAllergyGlobal ? "Warning - this item may contain fish or shellfish \n" : null}
+                        </FlatList>
 
-                        {foodItem.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Warning - this item contains dairy \n" : null}
-                        {foodItem.is_dairy_free === null && hasDairyIntoleranceGlobal ? "Warning - this item may contain dairy \n" : null}
-
-                        {foodItem.has_milk === true && hasMilkAllergyGlobal ? "Warning - this item contains milk \n" : null}
-                        {foodItem.has_milk === null && hasMilkAllergyGlobal ? "Warning - this item may contain milk \n" : null}
-
-                        {foodItem.has_peanuts === true && hasPeanutAllergyGlobal ? "Warning - this item contains peanuts \n" : null}
-                        {foodItem.has_peanuts === null && hasPeanutAllergyGlobal ? "Warning - this item may contain peanuts \n" : null}
-
-                        {foodItem.has_sesame === true && hasSesameAllergyGlobal ? "Warning - this item contains sesame \n" : null}
-                        {foodItem.has_sesame === null && hasSesameAllergyGlobal ? "Warning - this item may contain sesame \n" : null}
-
-                        {foodItem.has_soy === true && hasSoyAllergyGlobal ? "Warning - this item contains soy \n" : null}
-                        {foodItem.has_soy === null && hasSoyAllergyGlobal ? "Warning - this item may contain soy \n" : null}
-
-                        {foodItem.has_treenuts === true && hasTreenutAllergyGlobal ? "Warning - this item contains treenuts \n" : null}
-                        {foodItem.has_treenuts === null && hasTreenutAllergyGlobal ? "Warning - this item may contain treenuts \n" : null}
-
-                        {foodItem.has_wheat === true && hasWheatAllergyGlobal ? "Warning - this item contains wheat \n" : null}
-                        {foodItem.has_wheat === null && hasWheatAllergyGlobal ? "Warning - this item may contain wheat \n" : null}
-                    
-                        {foodItem.is_gluten_free === false && hasGlutenAllergyGlobal ? "Warning - this item contains gluten \n" : null}
-                        {foodItem.is_gluten_free === null && hasGlutenAllergyGlobal ? "Warning - this item may contain gluten \n" : null}
-                        
-                        {foodItem.is_vegan === false && isVeganGlobal ?  "Warning - this item is not vegan \n" : null}
-                        {foodItem.is_vegan === null && isVeganGlobal ?  "Warning - this item may not be vegan \n" : null}
-                        
-                        {foodItem.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian \n" : null}
-                        {foodItem.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian \n" : null}                        
-                        
-                        {foodItem.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal \n" : null}                                                
-                        {foodItem.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal \n" : null}
-                    </Text>
+                    </View>
                 )}
 
                 {/* Display a button that enables the selected food item to be saved to the backend database */}
