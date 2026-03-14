@@ -654,7 +654,6 @@ export default function EnterScreen() {
                                     <Text id="warningFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
                                 </View>
                             )}>
-
                         </FlatList>
 
                     </View>
