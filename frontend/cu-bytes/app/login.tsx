@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, TextInput, Switch } from 'react-native';
+import { View, ScrollView, Text, TextInput, TouchableOpacity, Switch } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -238,7 +238,7 @@ export default function LoginScreen() {
                 {/* Toggle the switch to hide or unhide the password input by converting the characters to or from the * character */}
                 <View id="hideOrUnhidePasswordView" style={styles.row}>
                     <Text id="hideOrUnhidePasswordInfoText" style={styles.passwordSwitchInfoText}>
-                        Hide or unhide your password
+                        Hide or unhide the password
                     </Text>
 
                     <Switch id="hideOrUnhidePasswordSwitch" style={styles.switch}
