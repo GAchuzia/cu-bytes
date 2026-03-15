@@ -9,6 +9,7 @@ from backend.endpoints.authentication_endpoints import auth_bp
 from backend.endpoints.browsing_endpoints import browse_bp
 from backend.endpoints.locations_endpoints import locations_bp
 from backend.endpoints.food_entry_endpoints import logging_bp
+
 from backend.endpoints.ml_endpoints import ml_bp
 from backend.endpoints.profile_endpoints import profile_bp
 from backend.endpoints.recommendations_endpoints import recommendations_bp

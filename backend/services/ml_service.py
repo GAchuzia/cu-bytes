@@ -4,12 +4,25 @@ from PIL import Image
 import json
 from pathlib import Path
 import sys
+from backend.config import IS_AZURE
 
-# Add machine-learning directory to path
-ml_dir = Path(__file__).resolve().parent.parent.parent / "machine-learning"
-sys.path.insert(0, str(ml_dir))
+# Locate the machine-learning code directory
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+ML_CODE_DIR = BASE_DIR / "machine-learning"
+
+# Add machine-learning directory to Python path so we can import train.py
+sys.path.insert(0, str(ML_CODE_DIR))
 
 from train import load_model  # noqa: E402
+
+# Determine where model files are stored
+if IS_AZURE:
+    MODEL_DIR = Path("/home/models")
+else:
+    MODEL_DIR = ML_CODE_DIR / "models"
+
+MODEL_PATH = MODEL_DIR / "best_model.pth"
+CLASS_NAMES_PATH = MODEL_DIR / "class_names.json"
 
 # Global variables to cache the model
 _model = None
@@ -25,18 +38,20 @@ def load_ml_model():
     if _model is not None:
         return _model, _class_names, _device, _transform
 
-    # Paths
-    base_dir = Path(__file__).resolve().parent.parent.parent
-    model_path = base_dir / "machine-learning" / "models" / "best_model.pth"
-    class_names_path = base_dir / "machine-learning" / "models" / "class_names.json"
-
-    if not model_path.exists():
-        raise FileNotFoundError(f"Model not found at {model_path}")
-    if not class_names_path.exists():
-        raise FileNotFoundError(f"Class names not found at {class_names_path}")
+    # Check for best_model.pth and class_names.json
+    if not MODEL_PATH.exists():
+        raise RuntimeError(
+            f"Model not found. Expecting {MODEL_PATH}. "
+            f"Please ensure best_model.pth is uploaded to {MODEL_DIR}"
+        )
+    if not CLASS_NAMES_PATH.exists():
+        raise RuntimeError(
+            f"ClassNames not found. Expecting {CLASS_NAMES_PATH}. "
+            f"Please ensure class_names.json is uploaded to {MODEL_DIR}"
+        )
 
     # Load class names
-    with open(class_names_path, "r") as f:
+    with open(CLASS_NAMES_PATH, "r") as f:
         _class_names = json.load(f)
 
     # Set device
@@ -44,7 +59,7 @@ def load_ml_model():
 
     # Load model - use num_classes from checkpoint so model matches saved weights
     _model = load_model(
-        model_path=str(model_path),
+        model_path=str(MODEL_PATH),
         model_name="resnet50",
         num_classes=None,  # Get from checkpoint
         device=_device,
@@ -54,7 +69,8 @@ def load_ml_model():
     if len(_class_names) < _model.backbone.fc.out_features:
         raise ValueError(
             f"class_names.json has {len(_class_names)} entries but model expects "
-            f"{_model.backbone.fc.out_features}. Ensure class_names.json matches the model."
+            f"{_model.backbone.fc.out_features}. "
+            "Ensure class_names.json matches the model."
         )
     _model.eval()
 

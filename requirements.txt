@@ -1,4 +1,4 @@
-absl-py==2.3.1
+﻿absl-py==2.3.1
 argon2-cffi==25.1.0
 argon2-cffi-bindings==25.1.0
 blinker==1.9.0
@@ -28,7 +28,6 @@ Markdown==3.10
 MarkupSafe==3.0.3
 mccabe==0.7.0
 mpmath==1.3.0
-networkx==3.6
 nodeenv==1.9.1
 numpy==2.3.4
 packaging==25.0
@@ -53,12 +52,13 @@ scipy==1.16.3
 setuptools==80.9.0
 six==1.17.0
 SQLAlchemy==2.0.44
-sympy==1.14.0
 tensorboard==2.20.0
 tensorboard-data-server==0.7.2
 threadpoolctl==3.6.0
-torch==2.9.1
-torchvision==0.24.1
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.9.1+cpu
+torchvision==0.24.1+cpu
 tqdm==4.67.1
 typing_extensions==4.15.0
 tzdata==2025.2
