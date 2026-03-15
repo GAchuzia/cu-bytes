@@ -4,6 +4,7 @@ import uuid
 from flask import Blueprint, request, jsonify
 from werkzeug.utils import secure_filename
 from pathlib import Path
+
 from backend.services.ml_service import predict_food
 
 ml_bp = Blueprint("ml", __name__)
@@ -83,7 +84,7 @@ def predict_food_image():
         # Use a unique filename to avoid collisions and ensure we write to a known path
         ext = Path(secure_filename(file.filename)).suffix or ".jpg"
         unique_name = f"predict_{uuid.uuid4().hex}{ext}"
-        filepath = (UPLOAD_FOLDER.resolve() / unique_name)
+        filepath = UPLOAD_FOLDER.resolve() / unique_name
         file.save(str(filepath))
 
         if not filepath.exists():
@@ -93,7 +94,9 @@ def predict_food_image():
         result = predict_food(str(filepath))
 
         return jsonify(result), 200
-
+    # Be prepared to catch a runtime error for Azure deployment
+    except RuntimeError as e:
+        return jsonify({"error": str(e)}), 503
     except Exception as e:
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500

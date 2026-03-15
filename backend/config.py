@@ -1,12 +1,15 @@
 import os
 from dotenv import load_dotenv
 
-# Detect Azure environment (Azure will always create this variable)
-IS_AZURE = os.getenv("HOME") == "/home"
+# Reliable Azure detection
+IS_AZURE = os.getenv("WEBSITE_SITE_NAME") is not None
+
+print(f"Config.py: IS_AZURE={IS_AZURE}")
+print(f"Config.py: WEBSITE_SITE_NAME={os.getenv('WEBSITE_SITE_NAME')}")
 
 # Set database directory
 if IS_AZURE:
-    DB_DIR = os.path.join(os.getenv("HOME"), "site", "wwwroot", "backend", "database")
+    DB_DIR = "/home/site/wwwroot/backend/database"
 else:
     DB_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "database")
 
