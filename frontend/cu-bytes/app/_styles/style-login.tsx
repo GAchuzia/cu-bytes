@@ -139,6 +139,25 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
+  passwordSwitchInfoText: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    color: '#131312',
+    flexDirection: 'row',
+    fontFamily: 'arial',
+    fontSize: font(100),
+    fontWeight: '600',
+    justifyContent: 'center',
+    marginTop: h(1.0),
+    marginBottom: h(1.0),
+    paddingTop: h(1.0),
+    paddingBottom: h(1.0),
+    paddingLeft: w(1.0),
+    paddingRight: w(1.0),
+    textAlign: 'center',
+    width: w(75),
+  },
+
   bodyButtonDefault: {
     alignItems: 'center',
     backgroundColor: '#131312',
@@ -235,6 +254,23 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowRadius: 2,
     width: w(80),
-  }
+  },
+
+  row: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    marginTop: h(1.0),
+    marginBottom: h(1.0),
+    paddingTop: h(1.0),
+    paddingBottom: h(1.0),
+    paddingLeft: w(1.0),
+    paddingRight: w(1.0),
+    width: w(100),
+  },
+
+  switch: {
+    transform: [{ scale: 1.4 }],
+  },
 
 });
