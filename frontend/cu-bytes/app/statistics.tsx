@@ -518,10 +518,10 @@ export default function StatisticsScreen() {
                             setStatisticModeButtonPressed(true)
                             setSelectedStatisticMode("Daily")
                         }}
-                        disabled={usernameGlobal == '' ? true : false}>
+                        disabled={usernameGlobal === '' ? true : false}>
 
                         <Text id="dailyStatsButtonText" style={styles.bodyButtonTextDefault}>
-                            Daily Statistics
+                            Daily Stats
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -536,10 +536,10 @@ export default function StatisticsScreen() {
                             setStatisticModeButtonPressed(true)    
                             setSelectedStatisticMode("Aggregate");
                         }}
-                        disabled={usernameGlobal == '' ? true : false}>
+                        disabled={usernameGlobal === '' ? true : false}>
 
                         <Text id="aggregateStatsButtonText" style={styles.bodyButtonTextDefault}>
-                            Aggregate Statistics
+                            Aggregate Stats
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -554,10 +554,10 @@ export default function StatisticsScreen() {
                             setStatisticModeButtonPressed(true)
                             setSelectedStatisticMode("Global")
                         }}
-                        disabled={usernameGlobal == '' ? true : false}>
+                        disabled={usernameGlobal === '' ? true : false}>
 
                         <Text id="globalStatsButtonText" style={styles.bodyButtonTextDefault}>
-                            Global Statistics
+                            Global Stats
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -572,10 +572,10 @@ export default function StatisticsScreen() {
                             setStatisticModeButtonPressed(true)
                             setSelectedStatisticMode("Comparative")
                         }}
-                        disabled={usernameGlobal == '' ? true : false}>
+                        disabled={usernameGlobal === '' ? true : false}>
 
                         <Text id="comparativeStatsButtonText" style={styles.bodyButtonTextDefault}>
-                            Comparative Statistics
+                            Comparative Stats
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -595,7 +595,7 @@ export default function StatisticsScreen() {
                                 </Text>
                             </TouchableOpacity>
 
-                            <Text style={styles.numberOfDaysText}>
+                            <Text id="numberOfDaysText" style={styles.numberOfDaysText}>
                                 {numberOfDays}
                             </Text>                        
                             
@@ -644,7 +644,7 @@ export default function StatisticsScreen() {
                             }}>
 
                             <Text id="viewOtherStatsButtonText" style={styles.bodyButtonTextDefault}>
-                                View Other Statistics
+                                View Other Stats
                             </Text>
                         </TouchableOpacity>
 
@@ -662,7 +662,7 @@ export default function StatisticsScreen() {
                         <View id="dailyStatisticsOuterView1" style={styles.container}>
                             {Object.entries(dailyStatistics).map(([date, stats]) => (
 
-                                <View id="dailyStatisticsInnerView" style={styles.fetchedStatisticsContainer} key={date} >
+                                <View id="dailyStatisticsInnerView1" style={styles.fetchedStatisticsContainer} key={date} >
 
                                     <Text id="dailyStatisticsDateInfoText" style={styles.infoText}>
                                         {date}
@@ -672,7 +672,7 @@ export default function StatisticsScreen() {
                                         data={processDailyStatistics(stats)}
                                         scrollEnabled={false}
                                         renderItem={({ item }) => (
-                                            <View id="dailyStatistics" style={styles.row}>
+                                            <View id="dailyStatisticsInnerView2" style={styles.row}>
                                                 <Text id="dailyStatisticsFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
                                                 <Text id="dailyStatisticsFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
                                             </View>
@@ -763,7 +763,7 @@ export default function StatisticsScreen() {
                         }}>
 
                         <Text id="viewOtherStatsAgainButtonText" style={styles.bodyButtonTextDefault}>
-                            View Other Statistics
+                            View Other Stats
                         </Text>
                     </TouchableOpacity>
                 )}

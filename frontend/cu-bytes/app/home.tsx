@@ -167,7 +167,7 @@ export default function HomeScreen() {
                     disabled={usernameGlobal == '' ? true : false}>
                         
                     <Text id="statisticsButtonText" style={[styles.bodyButtonTextAlt, {color: usernameGlobal == '' ? '#FFFFFF' : '#C5151A'}]}>
-                        View Statistics
+                        View Stats
                     </Text>
                 </TouchableOpacity>
 
@@ -180,7 +180,7 @@ export default function HomeScreen() {
                     disabled={usernameGlobal == '' ? true : false}>
 
                     <Text id="recommendationsButtonText" style={[styles.bodyButtonTextAlt, {color: usernameGlobal == '' ? '#FFFFFF' : '#C5151A'}]}>
-                        View Recs.
+                        View Recs
                     </Text>
                 </TouchableOpacity>
 

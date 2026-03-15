@@ -9,17 +9,33 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    overflow: 'scroll',
     textAlign: 'center',
     width: w(100),
   },
 
-  bodyContainer: {
+  fetchedRecommendationsContainer: {
+    backgroundColor: '#C5151A',
+    marginTop: h(1.0),
+    marginBottom: h(1.0),
+    width: w(100),
+  },
+
+  buttonContainer: {
     alignItems: 'center',
     backgroundColor: '#C5151A',
     flexDirection: 'row',
-    flexWrap: 'wrap',
     justifyContent: 'center',
+    width: w(100),
+  },
+
+  scrollView: {
+    alignSelf: 'stretch',
+    flex: 1,
+  },
+
+  scrollContent: {
+    alignItems: 'center',
+    paddingBottom: h(6.0),
     width: w(100),
   },
 
@@ -36,38 +52,12 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
-  headerButton: {
-    alignItems: 'center',
-    backgroundColor: '#131312',
-    borderRadius: 20,
-    borderWidth: 4,
-    borderColor: '#666666',
-    color: 'red',
-    height: h(10),
-    justifyContent: 'center',
-    paddingTop: h(1.0),
-    paddingBottom: h(1.0),
-    paddingLeft: w(1.0),
-    paddingRight: w(1.0),
-    width: w(25),
-  },
-
-  headerButtonText: {
+  headerTitle: {
     alignItems: 'center',
     backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: font(125),
-    fontWeight: '600',
-    justifyContent: 'center',
-  },
-
-  headerTitle: {
-    alignItems: 'center',
-    backgroundColor: '#C5151A',
-    color: '#FFFFFF',
-    fontFamily: 'arial',
-    fontSize: font(250),
+    fontSize: font(140),
     fontWeight: '800',
     justifyContent: 'center',
     marginTop: h(1.0),
@@ -84,20 +74,43 @@ export const styles = StyleSheet.create({
   },
 
   headerUsernameIcon: {
-    backgroundColor: '#AB0006',
+    backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
     fontSize: font(125),
-    fontWeight: '600',
+    fontWeight: '700',
     paddingTop: h(1.0),
     paddingBottom: h(1.0),
     paddingLeft: w(2.0),
     paddingRight: w(2.0),
     textAlign: 'center',
-    textShadowColor: '#131312',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 10,
     width: w(40),
+  },
+
+  headerButtonDefault: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    backgroundColor: '#131312',
+    borderColor: '#666666',    
+    borderRadius: 20,
+    borderWidth: 2,    
+    justifyContent: 'center',
+    maxHeight: h(10),    
+    minWidth: w(25),
+    paddingTop: h(1.0),
+    paddingBottom: h(1.0),
+    paddingLeft: w(1.0),
+    paddingRight: w(1.0),
+  },
+
+  headerButtonTextDefault: {
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: font(125),
+    fontWeight: '700',
+    textAlign: 'center',
   },
 
   infoText: {
@@ -119,7 +132,54 @@ export const styles = StyleSheet.create({
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: w(80),
+    width: w(100),
+  },
+
+  recommendationsInfoText: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    color: '#131312',
+    borderColor: '#131312',
+    borderWidth: 2,
+    fontFamily: 'arial',
+    fontSize: font(150),
+    fontWeight: '600',
+    justifyContent: 'center',
+    marginTop: h(2.0),
+    marginBottom: h(2.0),
+    paddingTop: h(5.0),
+    paddingBottom: h(5.0),
+    paddingLeft: w(1.0),
+    paddingRight: w(1.0),
+    textAlign: 'center',
+    shadowColor: '#131312',
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 10,
+    width: w(100),
+  },
+
+  
+  numberOfItemsOrUsersText: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 25,
+    borderWidth: 4,
+    borderColor: '#131312',
+    color: '#131312',
+    fontFamily: 'arial',
+    fontSize: font(250),
+    fontWeight: 'bold',
+    justifyContent: 'center',    
+    marginTop: h(2.0),
+    marginBottom: h(2.0),
+    marginLeft: h(1.0),
+    marginRight: h(1.0),
+    paddingTop: h(5.0),
+    paddingBottom: h(5.0),
+    paddingLeft: w(1.0),
+    paddingRight: w(1.0),
+    textAlign: 'center',
+    width: w(30),
   },
 
   bodyButtonDefault: {
@@ -138,7 +198,7 @@ export const styles = StyleSheet.create({
     paddingBottom: h(2.0),
     paddingLeft: w(2.0),
     paddingRight: w(2.0),
-    width: w(60),
+    width: w(80),
   },
 
   bodyButtonTextDefault: {
@@ -146,8 +206,82 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontFamily: 'arial',
     fontSize: font(175),
-    fontWeight: '600',
+    fontWeight: 'bold',
     textAlign: 'center',
-  }
+  },
+
+  bodyButtonIncreaseNumberOfItemsOrUsers: {
+    alignItems: 'center',
+    backgroundColor: '#697A37',
+    borderRadius: 50,
+    borderWidth: 4,
+    borderColor: '#131312',
+    height: h(15),
+    justifyContent: 'center',
+    marginTop: h(1.0),
+    marginBottom: h(1.0),
+    marginLeft: w(0.5),
+    marginRight: w(0.5),
+    paddingTop: h(2.0),
+    paddingBottom: h(2.0),
+    paddingLeft: w(2.0),
+    paddingRight: w(2.0),
+    width: w(30),
+  },
+
+  bodyButtonDecreaseNumberOfItemsOrUsers: {
+    alignItems: 'center',
+    backgroundColor: '#FFB4B4',
+    borderRadius: 50,
+    borderWidth: 4,
+    borderColor: '#131312',
+    height: h(15),
+    justifyContent: 'center',
+    marginTop: h(1.0),
+    marginBottom: h(1.0),
+    marginLeft: w(0.5),
+    marginRight: w(0.5),
+    paddingTop: h(2.0),
+    paddingBottom: h(2.0),
+    paddingLeft: w(2.0),
+    paddingRight: w(2.0),
+    width: w(30),
+  },
+
+  bodyButtonTextIncreaseNumberOfItemsOrUsers: {
+    backgroundColor: 'transparent',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: font(250),
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
+  bodyButtonTextDecreaseNumberOfItemsOrUsers: {
+    backgroundColor: 'transparent',
+    color: '#C5151A',
+    fontFamily: 'arial',
+    fontSize: font(250),
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
+  row: {
+    borderColor: '#131312',
+    borderWidth: 1,
+    flexDirection: 'row',
+  },
+
+  rowCell: {
+    backgroundColor: "#FFFFFF",
+    flex: 1,
+    fontFamily: 'arial',
+    fontSize: font(125),
+    fontWeight: '600',
+    paddingTop: h(2.0),
+    paddingBottom: h(2.0),
+    paddingLeft: w(2.0),
+    paddingRight: w(2.0),
+  },
 
 });
