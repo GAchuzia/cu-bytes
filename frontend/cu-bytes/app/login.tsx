@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { useState } from 'react';
+import { View, ScrollView, Text, TouchableOpacity, TextInput } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -160,151 +160,111 @@ export default function LoginScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar
-                style="auto"
-                hidden={true}
-            />
+            
+            <StatusBar style="auto" hidden={true}/>
 
-            <View
-                style={styles.statusbar}>
+            <View id="loginStatusbar" style={styles.statusbar}>
 
+                {/* Route the user to the 'splash' page */}
                 <TouchableOpacity id="backButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
-                    ]}
-
-                    onPressIn={ () => setIsBackPressed(true) }
-                    onPressOut={ () => setIsBackPressed(false) }
+                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsBackPressed(true)}
+                    onPressOut={() => setIsBackPressed(false)}
                     onPress={() => router.push('/')}>
 
-                    <Text id="backButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
+                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
                         Back
                     </Text>
-
                 </TouchableOpacity>
 
-                <Text id="loginTitle"
-                    style={styles.headerTitle}>
-
-                    Login
+                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
-                <Text id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-
-                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
-                </Text>
-
+                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
-                    ]}
+                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+                    onPress={() => usernameGlobal != '' ? logout() : null}>
 
-                    <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
-                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Logout' : 'Login'}
                     </Text>
-
                 </TouchableOpacity>
 
             </View>
 
-            <View style={styles.scrollView}>
-            <ScrollView
-                style={styles.scrollView}
+            <Text id="loginTitle" style={styles.headerTitle}>
+                Login
+            </Text>
+
+            <ScrollView id="loginScrollView" style={styles.scrollView}
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={true}
-                keyboardShouldPersistTaps="handled"
-            >
-            <Text id="loginInfo"
-                style={styles.infoText}>
+                keyboardShouldPersistTaps="handled">
 
-                Sign in or create a new CU-Bytes account
-            </Text>
+                <Text id="loginInfoText" style={styles.infoText}>
+                    Or create a new account
+                </Text>
 
-            <Text id="loginErrorMessage"
-                style={styles.errorInfoText}>
+                <Text id="loginErrorMessage" style={styles.errorInfoText}>
+                    {visible ? error.message : 'Enter your username and password'}
+                </Text>
 
-                {visible ? error.message : 'To sign in to your CU-Bytes account, enter your username and password below' }
-            </Text>
+                {/* Enter the username that corresponds to the account that the user wants to access */}
+                <TextInput id="loginUsernameTextInput" style={styles.usernameTextInput}
+                    onChangeText={setUsername}
+                    onChange={() => {
+                        setError({ message: '', status: '' });
+                        setVisible(false);
+                    }}
+                    placeholder={"Enter CU-Bytes username"}
+                    value={username}>
+                </TextInput>
 
-            {/* Enter the username that corresponds to the account that the user wants to log in to */}
-            <TextInput id="loginUsernameTextInput"
-                style={styles.usernameTextInput}
-                onChangeText={setUsername}
-                onChange={() => {
-                    setError({ message: '', status: '' });
-                    setVisible(false);
-                }}
-                placeholder={"Enter CU-Bytes username"}
-                value={username}
-            >
-            </TextInput>
+                {/* Enter the password that corresponds to the account that the user wants to access */}
+                <TextInput id="loginPasswordTextInput"
+                    style={styles.passwordTextInput}
+                    onChangeText={setPassword}
+                    onChange={() => {
+                        setError({ message: '', status: '' });
+                        setVisible(false);
+                    }}
+                    placeholder={"Enter CU-Bytes password"}
+                    value={password}
+                    secureTextEntry={true}>
+                </TextInput>
 
-            {/* Enter the password that corresponds to the account that the user wants to log in to */}
-            <TextInput id="loginPasswordTextInput"
-                style={styles.passwordTextInput}
-                onChangeText={setPassword}
-                onChange={() => {
-                    setError({ message: '', status: '' });
-                    setVisible(false);
-                }}
-                placeholder={"Enter CU-Bytes password"}
-                value={password}
-                secureTextEntry={true}
-            >
-            </TextInput>
+                {/* Submit a request to the backend endpoint to authenticate the entered credentials and log in to an account */}
+                <TouchableOpacity id="loginButton"
+                    style={[styles.bodyButtonDefault, {backgroundColor: isLoginPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsLoginPressed(true)}
+                    onPressOut={() => setIsLoginPressed(false)}
+                    onPress={() => {
+                        loginUser(username, password);
+                        setVisible(true);}}>
 
-            {/* Submit a request to the backend endpoint to authenticate the entered credentials and log in to an account */}
-            <TouchableOpacity id="loginButton"
-                style={[styles.bodyButton,
-                    { backgroundColor: isLoginPressed ? '#666666' : '#131312' }
-                ]}
-
-                onPressIn={() => setIsLoginPressed(true)}
-                onPressOut={() => setIsLoginPressed(false)}
-                onPress={() => {
-                    loginUser(username, password);
-                    setVisible(true);}}>
-
-                <Text id="loginButtonText"
-                    style={styles.bodyButtonText}>
-
+                    <Text id="loginButtonText" style={styles.bodyButtonTextDefault}>
                         Login
-                </Text>
+                    </Text>
+                </TouchableOpacity>
 
-            </TouchableOpacity>
+                {/* Route the user to the 'create account' page */}
+                <TouchableOpacity id="createAccountButton"
+                    style={[styles.bodyButtonAlt, {backgroundColor: isCreateAccountPressed ? '#DDDDDD' : '#FFFFFF'}]}
+                    onPressIn={() => setIsCreateAccountPressed(true)}
+                    onPressOut={() => setIsCreateAccountPressed(false)}
+                    onPress={() => router.push("/register")}>
 
-            {/* Route the user to the 'create account' page */}
-            <TouchableOpacity id="createAccountButton"
-                style={[styles.bodyButtonAlt,
-                    { backgroundColor: isCreateAccountPressed ? '#DDDDDD' : '#FFFFFF' }
-                ]}
-
-                onPressIn={() => setIsCreateAccountPressed(true)}
-                onPressOut={() => setIsCreateAccountPressed(false)}
-                onPress={() => router.push("/register")}>
-
-                <Text id="createAccountButtonText"
-                    style={styles.bodyButtonTextAlt}>
-
+                    <Text id="createAccountButtonText" style={styles.bodyButtonTextAlt}>
                         Create Account
-                </Text>
-
-            </TouchableOpacity>
+                    </Text>
+                </TouchableOpacity>
 
             </ScrollView>
-            </View>
 
         </View>
-
     )
+
 }

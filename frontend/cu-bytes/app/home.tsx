@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -15,7 +15,8 @@ export default function HomeScreen() {
     const [isBrowseFoodItemsPressed, setIsBrowseFoodItemsPressed] = useState(false);
     const [isBrowseDiningLocationsPressed, setIsBrowseDiningLocationsPressed] = useState(false);
     const [isViewSavedFoodItemsPressed, setIsViewSavedFoodItemsPressed] = useState(false);
-    const [isGoalsPressed, setIsGoalsPressed] = useState(false);
+    const [isStatisticsPressed, setIsStatisticsPressed] = useState(false);
+    const [isRecommendationsPressed, setIsRecommendationsPressed] = useState(false)
     const [isSettingsPressed, setIsSettingsPressed] = useState(false);
 
     /*
@@ -69,161 +70,134 @@ export default function HomeScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar
-                style="auto"
-                hidden={true}
-            />
+            
+            <StatusBar style="auto" hidden={true}/>
 
-            <View
-                style={styles.statusbar}>
+            <View id="homeStatusbar" style={styles.statusbar}>
 
-                <Text id="homeTitle"
-                    style={styles.headerTitle}>
+                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
+                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
+                </Text>            
 
-                    Home
-                </Text>
-
-                <Text id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-
-                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest' }
-                </Text>
-
+                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
-                    ]}
+                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
-                    <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
-                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Logout' : 'Login'}
                     </Text>
-
                 </TouchableOpacity>
 
             </View>
 
-            <View style={styles.scrollView}>
-            <ScrollView
-                style={styles.scrollView}
+            <ScrollView id="homeScrollView" style={styles.scrollView}
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={true}
-                keyboardShouldPersistTaps="handled"
-            >
-            <Text id="homeInfo"
-                style={styles.infoText}>
+                keyboardShouldPersistTaps="handled">
 
-                What would you like to do?
-            </Text>
-
-            {/* Route the user to the 'scan food item' page */}
-            <TouchableOpacity id="scanFoodItemButton"
-                style={[styles.bodyButton,
-                    { backgroundColor: isScanFoodItemPressed || usernameGlobal == '' ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsScanFoodItemPressed(true)}
-                onPressOut={() => setIsScanFoodItemPressed(false)}
-                onPress={() => router.push("/scan")}
-            >
-
-                <Text id="scanFoodItemButtonText"
-                    style={styles.bodyButtonText}>
-
-                    Scan Food Item
+                <Text id="homeTitle" style={styles.headerTitle}>
+                    Home
                 </Text>
-            </TouchableOpacity>
 
-            {/* Route the user to the 'browse food items' page */}
-            <TouchableOpacity id="browseFoodItemsButton"
-                style={[styles.bodyButton,
-                    { backgroundColor: isBrowseFoodItemsPressed || usernameGlobal == '' ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsBrowseFoodItemsPressed(true)}
-                onPressOut={() => setIsBrowseFoodItemsPressed(false)}
-                onPress={() => router.push("/enter")}
-            >
-                <Text id="browseFoodItemsButtonText"
-                    style={styles.bodyButtonText}>
-
-                    Browse Food Items
+                <Text id="homeInfoText" style={styles.infoText}>
+                    What would you like to do?
                 </Text>
-            </TouchableOpacity>
 
-            {/* Route the user to the 'browse dining locations' page */}
-            <TouchableOpacity id="browseDiningLocationsButton"
-                style={[styles.bodyButton,
-                    { backgroundColor: isBrowseDiningLocationsPressed || usernameGlobal == '' ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsBrowseDiningLocationsPressed(true)}
-                onPressOut={() => setIsBrowseDiningLocationsPressed(false)}
-                onPress={() => router.push("/dining")}
-            >
-                <Text id="browseDiningLocationsButtonText"
-                    style={styles.bodyButtonText}>
+                {/* Route the user to the 'scan food item' page */}
+                <TouchableOpacity id="scanFoodItemButton"
+                    style={[styles.bodyButtonDefault, {backgroundColor: isScanFoodItemPressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsScanFoodItemPressed(true)}
+                    onPressOut={() => setIsScanFoodItemPressed(false)}
+                    onPress={() => router.push("/scan")}
+                    disabled={usernameGlobal == '' ? true : false}>
 
-                    Browse Dining Locations
-                </Text>
-            </TouchableOpacity>
+                    <Text id="scanFoodItemButtonText" style={styles.bodyButtonTextDefault}>
+                        Scan Food
+                    </Text>
+                </TouchableOpacity>
 
-            {/* Route the user to the 'view saved food items' page */}
-            <TouchableOpacity id="viewSavedFoodItemsButton"
-                style={[styles.bodyButton,
-                    { backgroundColor: isViewSavedFoodItemsPressed || usernameGlobal == '' ? '#666666' : '#131312' }
-                ]}
+                {/* Route the user to the 'browse food items' page */}
+                <TouchableOpacity id="browseFoodItemsButton"
+                    style={[styles.bodyButtonDefault, {backgroundColor: isBrowseFoodItemsPressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsBrowseFoodItemsPressed(true)}
+                    onPressOut={() => setIsBrowseFoodItemsPressed(false)}
+                    onPress={() => router.push("/enter")}
+                    disabled={usernameGlobal == '' ? true : false}>
 
-                onPressIn={() => setIsViewSavedFoodItemsPressed(true)}
-                onPressOut={() => setIsViewSavedFoodItemsPressed(false)}
-                onPress={() => router.push("/entries")}
-                disabled={ usernameGlobal == '' ? true : false }
-            >
-                <Text id="viewSavedFoodItemsButtonText"
-                    style={styles.bodyButtonText}>
+                    <Text id="browseFoodItemsButtonText" style={styles.bodyButtonTextDefault}>
+                        Browse Food
+                    </Text>
+                </TouchableOpacity>
 
-                    View Saved Food Items
-                </Text>
-            </TouchableOpacity>
+                {/* Route the user to the 'browse dining locations' page */}
+                <TouchableOpacity id="browseDiningLocationsButton"
+                    style={[styles.bodyButtonDefault, {backgroundColor: isBrowseDiningLocationsPressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsBrowseDiningLocationsPressed(true)}
+                    onPressOut={() => setIsBrowseDiningLocationsPressed(false)}
+                    onPress={() => router.push("/dining")}
+                    disabled={usernameGlobal == '' ? true : false}>
 
-            {/* Route the user to the 'goals' page */}
-            <TouchableOpacity id="goalsButton"
-                style={[styles.bodyButton,
-                    { backgroundColor: isGoalsPressed || usernameGlobal == '' ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsGoalsPressed(true)}
-                onPressOut={() => setIsGoalsPressed(false)}
-                onPress={() => router.push("/statistics")}
-                disabled={ usernameGlobal == '' ? true : false }
-            >
-                <Text id="goalsButtonText"
-                    style={styles.bodyButtonText}>
+                    <Text id="browseDiningLocationsButtonText" style={styles.bodyButtonTextDefault}>
+                        Browse Dining
+                    </Text>
+                </TouchableOpacity>
 
-                    Statistics
-                </Text>
-            </TouchableOpacity>
+                {/* Route the user to the 'view saved food items' page */}
+                <TouchableOpacity id="viewSavedFoodItemsButton"
+                    style={[styles.bodyButtonAlt, {backgroundColor: usernameGlobal == '' ? '#FFFFFF' : '#FFFFFF'}]}
+                    onPressIn={() => setIsViewSavedFoodItemsPressed(true)}
+                    onPressOut={() => setIsViewSavedFoodItemsPressed(false)}
+                    onPress={() => router.push("/entries")}
+                    disabled={usernameGlobal == '' ? true : false}>
 
-            {/* Route the user to the 'settings' page */}
-            <TouchableOpacity id="settingsButton"
-                style={[styles.bodyButton,
-                    { backgroundColor: isSettingsPressed || usernameGlobal == '' ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsSettingsPressed(true)}
-                onPressOut={() => setIsSettingsPressed(false)}
-                onPress={() => router.push("/settings")}
-                disabled={ usernameGlobal == '' ? true : false }
-            >
-                <Text id="settingsButtonText"
-                    style={styles.bodyButtonText}>
+                    <Text id="viewSavedFoodItemsButtonText" style={[styles.bodyButtonTextAlt, {color: usernameGlobal == '' ? '#FFFFFF' : '#C5151A'}]}>
+                        View Saved Foods
+                    </Text>
+                </TouchableOpacity>
 
-                    Settings
-                </Text>
-            </TouchableOpacity>
+                {/* Route the user to the 'statistics' page */}
+                <TouchableOpacity id="statisticsButton"
+                    style={[styles.bodyButtonAlt, {backgroundColor: usernameGlobal == '' ? '#FFFFFF' : '#FFFFFF'}]}
+                    onPressIn={() => setIsStatisticsPressed(true)}
+                    onPressOut={() => setIsStatisticsPressed(false)}
+                    onPress={() => router.push("/statistics")}
+                    disabled={usernameGlobal == '' ? true : false}>
+                        
+                    <Text id="statisticsButtonText" style={[styles.bodyButtonTextAlt, {color: usernameGlobal == '' ? '#FFFFFF' : '#C5151A'}]}>
+                        View Stats
+                    </Text>
+                </TouchableOpacity>
+
+                {/* Route the user to the 'recommendations' page */}
+                <TouchableOpacity id="recommendationsButton"
+                    style={[styles.bodyButtonAlt, {backgroundColor: usernameGlobal == '' ? '#FFFFFF' : '#FFFFFF'}]}
+                    onPressIn={() => setIsRecommendationsPressed(true)}
+                    onPressOut={() => setIsRecommendationsPressed(false)}
+                    onPress={() => router.push("/recommendations")}
+                    disabled={usernameGlobal == '' ? true : false}>
+
+                    <Text id="recommendationsButtonText" style={[styles.bodyButtonTextAlt, {color: usernameGlobal == '' ? '#FFFFFF' : '#C5151A'}]}>
+                        View Recs
+                    </Text>
+                </TouchableOpacity>
+
+                {/* Route the user to the 'settings' page */}
+                <TouchableOpacity id="settingsButton"
+                    style={[styles.bodyButtonAlt, {backgroundColor: usernameGlobal == '' ? '#FFFFFF' : '#FFFFFF'}]}
+                    onPressIn={() => setIsSettingsPressed(true)}
+                    onPressOut={() => setIsSettingsPressed(false)}
+                    onPress={() => router.push("/settings")}
+                    disabled={usernameGlobal == '' ? true : false}>
+                    
+                    <Text id="settingsButtonText" style={[styles.bodyButtonTextAlt, {color: usernameGlobal == '' ? '#FFFFFF' : '#C5151A'}]}>
+                        Settings
+                    </Text>
+                </TouchableOpacity>
 
             </ScrollView>
-            </View>
 
         </View>
     )
