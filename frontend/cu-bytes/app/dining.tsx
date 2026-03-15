@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal, ScrollView } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, TextInput, FlatList, ActivityIndicator, Modal } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { useUser } from './_context';
 import { styles } from "./_styles/style-dining";
+import { useUser } from './_context';
 import { API_BASE_URL } from '../services/api';
 
 export default function DiningScreen() {
@@ -62,32 +62,59 @@ export default function DiningScreen() {
     */
     const [foodItem, setFoodItem] = useState(
         {
-            "calories": -1,
-            "carbs_g": 0.00,
-            "comments": "",
-            "cost": 0.00,
-            "dining_location": "",
-            "fat_g": 0.00,
-            "fiber_g": 0.00,
-            "food_category": "",
-            "has_eggs": null,
-            "has_fish_or_shellfish": null,
-            "has_milk": null,
-            "has_peanuts": null,
-            "has_sesame": null,
-            "has_soy": null,
-            "has_treenuts": null,
-            "has_wheat": null,
-            "id": -1, // Initial value of 1 to prevent errors
-            "is_dairy_free": null,
-            "is_gluten_free": null,
-            "is_halal": null,
-            "is_vegan": null,
-            "is_vegetarian": null,
-            "last_updated": "",
-            "name": "",
-            "proteins_g": 0.00,
-            "sugar_g": 0.00
+            calories: -1,
+            carbs_g: 0.00,
+            comments: "",
+            cost: 0.00,
+            dining_location: "",
+            fat_g: 0.00,
+            fiber_g: 0.00,
+            food_category: "",
+            has_eggs: null,
+            has_fish_or_shellfish: null,
+            has_milk: null,
+            has_peanuts: null,
+            has_sesame: null,
+            has_soy: null,
+            has_treenuts: null,
+            has_wheat: null,
+            id: -1, // Initial value of 1 to prevent errors
+            is_dairy_free: null,
+            is_gluten_free: null,
+            is_halal: null,
+            is_vegan: null,
+            is_vegetarian: null,
+            last_updated: "",
+            name: "",
+            proteins_g: 0.00,
+            sugar_g: 0.00
+        } as {
+            calories: number,
+            carbs_g: number,
+            comments: string,
+            cost: number,
+            dining_location: string,
+            fat_g: number,
+            fiber_g: number,
+            food_category: string,
+            has_eggs: null,
+            has_fish_or_shellfish: null,
+            has_milk: null,
+            has_peanuts: null,
+            has_sesame: null,
+            has_soy: null,
+            has_treenuts: null,
+            has_wheat: null,
+            id: number,
+            is_dairy_free: null,
+            is_gluten_free: null,
+            is_halal: null,
+            is_vegan: null,
+            is_vegetarian: null,
+            last_updated: string,
+            name: string,
+            proteins_g: number,
+            sugar_g: number
         }
     );
 
@@ -134,7 +161,7 @@ export default function DiningScreen() {
 
         returns : The cost of the selected food item
     */
-   function processFoodItemCost(cost: number) {
+    function processFoodItemCost(cost: number) {
 
         if (cost == -1) {
             return "Unknown"
@@ -142,7 +169,7 @@ export default function DiningScreen() {
         else {
             return cost
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of carbs for the selected food item
@@ -154,7 +181,7 @@ export default function DiningScreen() {
 
         returns : The amount of carbs for the selected food item
     */
-   function processFoodItemCarbs(carbs: number) {
+    function processFoodItemCarbs(carbs: number) {
 
         if (carbs == -1) {
             return "Unknown"
@@ -162,7 +189,7 @@ export default function DiningScreen() {
         else {
             return carbs
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of fat for the selected food item
@@ -174,7 +201,7 @@ export default function DiningScreen() {
 
         returns : The amount of fat for the selected food item
     */
-   function processFoodItemFat(fat: number) {
+    function processFoodItemFat(fat: number) {
 
         if (fat == -1) {
             return "Unknown"
@@ -182,7 +209,7 @@ export default function DiningScreen() {
         else {
             return fat
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of fiber for the selected food item
@@ -194,7 +221,7 @@ export default function DiningScreen() {
 
         returns : The amount of fiber for the selected food item
     */
-   function processFoodItemFiber(fiber: number) {
+    function processFoodItemFiber(fiber: number) {
 
         if (fiber == -1) {
             return "Unknown"
@@ -202,7 +229,7 @@ export default function DiningScreen() {
         else {
             return fiber
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of proteins for the selected food item
@@ -214,7 +241,7 @@ export default function DiningScreen() {
 
         returns : The amount of proteins for the selected food item
     */
-   function processFoodItemProteins(proteins: number) {
+    function processFoodItemProteins(proteins: number) {
 
         if (proteins == -1) {
             return "Unknown"
@@ -222,7 +249,7 @@ export default function DiningScreen() {
         else {
             return proteins
         }
-   }
+    }
 
     /*
         Calculate how to display the amount of sugar for the selected food item
@@ -234,7 +261,7 @@ export default function DiningScreen() {
 
         returns : The amount of sugar for the selected food item
     */
-   function processFoodItemSugar(sugar: number) {
+    function processFoodItemSugar(sugar: number) {
 
         if (sugar == -1) {
             return "Unknown"
@@ -242,7 +269,136 @@ export default function DiningScreen() {
         else {
             return sugar
         }
-   }
+    }
+
+    /*
+        Convert the selected food item from a JSON object to an array of JSON objects
+
+        param(s):
+            foodItem - any : The selected food item, a JSON object
+
+        returns : The selected food item, an array of JSON objects
+    */
+    const processSelectedFoodItem = (foodItem: any) => {
+
+        return [
+            { field_name: "Name", field_value: foodItem["name"]},
+            { field_name: "Calories", field_value: processFoodItemCalories(foodItem["calories"]) },
+            { field_name: "Location", field_value: foodItem["dining_location"] },
+            { field_name: "Cost", field_value: "$ " + processFoodItemCost(foodItem["cost"]) },
+            { field_name: "Carbs", field_value: processFoodItemCarbs(foodItem["carbs_g"]) + " grams" },
+            { field_name: "Fat", field_value: processFoodItemFat(foodItem["fat_g"]) + " grams" },
+            { field_name: "Fiber", field_value: processFoodItemFiber(foodItem["fiber_g"]) + " grams" },
+            { field_name: "Proteins", field_value: processFoodItemProteins(foodItem["proteins_g"]) + " grams" },
+            { field_name: "Sugar", field_value: processFoodItemSugar(foodItem["sugar_g"]) + " grams" }
+        ]
+    }
+
+    /*
+        Generate the relevant warnings for the selected food item based on the logged-in user's settings
+
+        param(s):
+            foodItem - any : The selected food item, a JSON object
+
+        returns : The warnings for the selected food item, an array of JSON objects
+    */
+    const processSelectedFoodItemWarnings = (foodItem: any) => {
+
+        let foodItemWarningsArray = Array();
+
+        if (foodItem["has_eggs"] === true && hasEggAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains eggs" });
+        }
+        if (foodItem["has_eggs"] === null && hasEggAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain eggs" });
+        }
+
+        if (foodItem["has_fish_or_shellfish"] === true && hasFishOrShellfishAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains fish or shellfish" });
+        }
+        if (foodItem["has_fish_or_shellfish"] === null && hasFishOrShellfishAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain fish or shellfish" });
+        }
+
+        if (foodItem["is_dairy_free"] === false && hasDairyIntoleranceGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains dairy" });
+        }
+        if (foodItem["is_dairy_free"] === null && hasDairyIntoleranceGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain dairy" });
+        }
+
+        if (foodItem["has_milk"] === true && hasMilkAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains milk" });
+        }
+        if (foodItem["has_milk"] === null && hasMilkAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain milk" });
+        }
+
+        if (foodItem["has_peanuts"] === true && hasPeanutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains peanuts" });
+        }
+        if (foodItem["has_peanuts"] === null && hasPeanutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain peanuts" });
+        }
+
+        if (foodItem["has_sesame"] === true && hasSesameAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains sesame" });
+        }
+        if (foodItem["has_sesame"] === null && hasSesameAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain sesame" });
+        }
+        
+        if (foodItem["has_soy"] === true && hasSoyAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains soy" });
+        }
+        if (foodItem["has_soy"] === null && hasSoyAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain soy" });
+        }
+
+        if (foodItem["has_treenuts"] === true && hasTreenutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains treenuts" });
+        }
+        if (foodItem["has_treenuts"] === null && hasTreenutAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain treenuts" });
+        }
+
+        if (foodItem["has_wheat"] === true && hasWheatAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains wheat" });
+        }
+        if (foodItem["has_wheat"] === null && hasWheatAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain wheat" });
+        }
+
+        if (foodItem["is_gluten_free"] === false && hasGlutenAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains gluten" });
+        }
+        if (foodItem["is_gluten_free"] === null && hasGlutenAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain gluten" });
+        }
+
+        if (foodItem["is_vegan"] === false && isVeganGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not vegan" });
+        }
+        if (foodItem["is_vegan"] === null && isVeganGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may not be vegan" });
+        }
+
+        if (foodItem["is_vegetarian"] === false && isVegetarianGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not vegetarian" });
+        }
+        if (foodItem["is_vegetarian"] === null && isVegetarianGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may not be vegetarian" });
+        }
+
+        if (foodItem["is_halal"] === false && prefersHalalGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not halal" });
+        }
+        if (foodItem["is_halal"] === null && prefersHalalGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may not be halal" });
+        }       
+
+        return foodItemWarningsArray;
+    }
 
     /*
         Send a request to the backend endpoint to get all food items from the database
@@ -429,253 +585,201 @@ export default function DiningScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar
-                style="auto"
-                hidden={true}
-            />
+            
+            <StatusBar style="auto" hidden={true}/>
 
-            <View
-                style={styles.statusbar}>
+            <View id="browseDiningLocationsStatusbar" style={styles.statusbar}>
 
+                {/* Route the user to the 'home' page or the 'splash' page */}
                 <TouchableOpacity id="backButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
-                    ]}
+                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
                     onPressIn={() => setIsBackPressed(true)}
                     onPressOut={() => setIsBackPressed(false)}
                     onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
 
-                    <Text id="backButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
+                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
                         Back
                     </Text>
-
                 </TouchableOpacity>
 
-                <Text id="browseDiningLocationsTitle"
-                    style={styles.headerTitle}>
-
-                    Dining Options
-                </Text>
-
-                <Text id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-
+                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
+                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
-                    ]}
+                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
-                    <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
-                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Logout' : 'Login'}
                     </Text>
 
                 </TouchableOpacity>
 
             </View>
 
-            <View style={styles.scrollView}>
-            <ScrollView
-                style={styles.scrollView}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={true}
-                keyboardShouldPersistTaps="handled"
-            >
-            <Text id="browseDiningLocationsInfo"
-                style={styles.infoText}>
-
-                Search for a dining location by name
+            <Text id="browseDiningLocationsTitle" style={styles.headerTitle}>
+                Browse Dining
             </Text>
 
-            {/* Enter the name of a dining location */}
-            <TextInput id="browseDiningLocationsNameTextInput"
-                style={styles.diningLocationNameTextInput}
-                onChangeText={setDiningLocationName}
-                value={diningLocationName}
-                placeholder={"Search for dining locations"}
-            >
-            </TextInput>
+            <ScrollView id="browseDiningLocationsScrollView" style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled">
 
-            {/* Filter the dining locations in the array by the dining location name and store in another array */}
-            <TouchableOpacity id="browseDiningLocationsButton"
-                style={[styles.bodyButton,
-                    { backgroundColor: isSearchPressed ? '#666666' : '#131312' }
-                ]}
-                onPressIn={() => setIsSearchPressed(true)}
-                onPressOut={() => setIsSearchPressed(false)}
-                onPress={() => {
-                    filterDiningLocationArray(diningLocationName);
-                    setFoodItemsVisible(false);
-                    setDiningLocationsVisible(true);
-                }}>
-
-                <Text id="browseDiningLocationsButtonText"
-                    style={styles.bodyButtonText}>
-
-                    Search
+                <Text id="browseDiningLocationsInfoText" style={styles.infoText}>
+                    Search for a location by name
                 </Text>
 
-            </TouchableOpacity>
+                {/* Enter the name of a dining location */}
+                <TextInput id="browseDiningLocationsNameTextInput" style={styles.diningLocationNameTextInput}
+                    onChangeText={setDiningLocationName}
+                    placeholder={"Search for dining locations"}
+                    value={diningLocationName}>
+                </TextInput>
 
-            {/* If the entered string value does not return any dining locations, display the following message */}
-            {filteredDiningLocationArray.length == 0 && diningLocationsVisible && (
-                <View style={styles.bodyContainer}>
-                    <Text
-                        style={styles.diningInfoText}>
-
-                        No dining locations found
-                    </Text>
-                </View>
-            )}
-
-            {/* If the entered string value returns dining locations, display the name and id of each dining location */}
-            {filteredDiningLocationArray.length > 0 && diningLocationsVisible && (
-                <View style={styles.bodyContainer}>
-                    {filteredDiningLocationArray.map((diningLocation) => (
-                        <Text
-                            style={styles.foodInfoText}
-                            key={diningLocation["id"]}
-                            onPress={() => {
-                                filterFoodItemArray(diningLocation["id"]);
-                                setFoodItemsVisible(true);
-                                setDiningLocationsVisible(false);
-                            }}
-                        >
-                            {diningLocation["name"]}
-                            {"\n"}
-                        </Text>
-                    ))}
-                </View>
-            )}
-
-            {filteredFoodItemArray.length > 0 && foodItemsVisible && (
-                <View style={styles.bodyContainer}>
-                    {filteredFoodItemArray.map((foodItem) => (
-                        <Text
-                            style={styles.foodInfoText}
-                            key={foodItem["id"]}
-                            onPress={() => {
-                                getFoodItem(foodItem["id"]);
-                                setFoodItemsVisible(false);
-                            }}
-                        >
-                            {foodItem["name"]}
-                            {"\n"}
-                        </Text>
-                    ))}
-                </View>
-            )}
-
-            {!foodItemsVisible && foodItem.name != "" && (
-                <Text style={styles.foodInfoText}>
-                    {foodItem.name}
-                    {'\n'}
-                    Calories: {processFoodItemCalories(foodItem.calories)}
-                    {'\n'}
-                    Dining Location: {foodItem.dining_location}
-                    {'\n'}
-                    Cost: $ {processFoodItemCost(foodItem.cost)}
-                    {'\n'}
-                    Carbs: {processFoodItemCarbs(foodItem.carbs_g)} grams
-                    {'\n'}
-                    Fat: {processFoodItemFat(foodItem.fat_g)} grams
-                    {'\n'}
-                    Fiber: {processFoodItemFiber(foodItem.fiber_g)} grams
-                    {'\n'}
-                    Proteins: {processFoodItemProteins(foodItem.proteins_g)} grams
-                    {'\n'}
-                    Sugar: {processFoodItemSugar(foodItem.sugar_g)} grams
-                    {'\n'}
-
-                    {foodItem.has_eggs === true && hasEggAllergyGlobal ? "Warning - this item contains eggs \n" : null}
-                    {foodItem.has_eggs === null && hasEggAllergyGlobal ? "Warning - this item may contain eggs \n" : null}
-
-                    {foodItem.has_fish_or_shellfish === true && hasFishOrShellfishAllergyGlobal ? "Warning - this item contains fish or shellfish \n" : null}
-                    {foodItem.has_fish_or_shellfish === null && hasFishOrShellfishAllergyGlobal ? "Warning - this item may contain fish or shellfish \n" : null}
-
-                    {foodItem.is_dairy_free === false && hasDairyIntoleranceGlobal ? "Warning - this item contains dairy \n" : null}
-                    {foodItem.is_dairy_free === null && hasDairyIntoleranceGlobal ? "Warning - this item may contain dairy \n" : null}
-
-                    {foodItem.has_milk === true && hasMilkAllergyGlobal ? "Warning - this item contains milk \n" : null}
-                    {foodItem.has_milk === null && hasMilkAllergyGlobal ? "Warning - this item may contain milk \n" : null}
-
-                    {foodItem.has_peanuts === true && hasPeanutAllergyGlobal ? "Warning - this item contains peanuts \n" : null}
-                    {foodItem.has_peanuts === null && hasPeanutAllergyGlobal ? "Warning - this item may contain peanuts \n" : null}
-
-                    {foodItem.has_sesame === true && hasSesameAllergyGlobal ? "Warning - this item contains sesame \n" : null}
-                    {foodItem.has_sesame === null && hasSesameAllergyGlobal ? "Warning - this item may contain sesame \n" : null}
-
-                    {foodItem.has_soy === true && hasSoyAllergyGlobal ? "Warning - this item contains soy \n" : null}
-                    {foodItem.has_soy === null && hasSoyAllergyGlobal ? "Warning - this item may contain soy \n" : null}
-
-                    {foodItem.has_treenuts === true && hasTreenutAllergyGlobal ? "Warning - this item contains treenuts \n" : null}
-                    {foodItem.has_treenuts === null && hasTreenutAllergyGlobal ? "Warning - this item may contain treenuts \n" : null}
-
-                    {foodItem.has_wheat === true && hasWheatAllergyGlobal ? "Warning - this item contains wheat \n" : null}
-                    {foodItem.has_wheat === null && hasWheatAllergyGlobal ? "Warning - this item may contain wheat \n" : null}
-
-                    {foodItem.is_gluten_free === false && hasGlutenAllergyGlobal ? "Warning - this item contains gluten \n" : null}
-                    {foodItem.is_gluten_free === null && hasGlutenAllergyGlobal ? "Warning - this item may contain gluten \n" : null}
-
-                    {foodItem.is_vegan === false && isVeganGlobal ?  "Warning - this item is not vegan \n" : null}
-                    {foodItem.is_vegan === null && isVeganGlobal ?  "Warning - this item may not be vegan \n" : null}
-
-                    {foodItem.is_vegetarian === false && isVegetarianGlobal ?  "Warning - this item is not vegetarian \n" : null}
-                    {foodItem.is_vegetarian === null && isVegetarianGlobal ?  "Warning - this item may not be vegetarian \n" : null}
-
-                    {foodItem.is_halal === false && prefersHalalGlobal ? "Warning - this item is not halal \n" : null}
-                    {foodItem.is_halal === null && prefersHalalGlobal ? "Warning - this item may not be halal \n" : null}
-                </Text>
-            )}
-
-            {!foodItemsVisible && usernameGlobal != "" && foodItem.name != "" && (
-                <TouchableOpacity
-                    style={[styles.bodyButtonAlt]}
+                {/* Filter the dining locations in the array by the dining location name and store in another array */}
+                <TouchableOpacity id="browseDiningLocationsButton"
+                    style={[styles.bodyButtonDefault, {backgroundColor: isSearchPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsSearchPressed(true)}
+                    onPressOut={() => setIsSearchPressed(false)}
                     onPress={() => {
-                        logFoodItemById(foodItem.id);
-                        setFoodItemsVisible(true);
-                        setModalVisible(true);
+                        filterDiningLocationArray(diningLocationName);
+                        setFoodItemsVisible(false);
+                        setDiningLocationsVisible(true);}}>
 
-                        setModalVisible(true);
-                        setTimeout(() => {
-                        setModalVisible(false);
-                        }, 2000);
-
-                        router.push("/home");
-                    }}
-                    disabled={loading}
-                >
-                    <Text style={styles.bodyButtonTextAlt}>Save Food Item</Text>
+                    <Text id="browseDiningLocationsButtonText" style={styles.bodyButtonTextDefault}>
+                        Search
+                    </Text>
                 </TouchableOpacity>
-            )}
 
-            {modalVisible && usernameGlobal != "" && (
-                <Modal
-                    animationType="fade"
-                    transparent={true}
-                    visible={modalVisible}
-                >
-                    <View>
-                        <View style={styles.bodyContainer}>
-                            <Text style={styles.infoText}>Food Item Saved!</Text>
-                        </View>
+                {/* If the entered string value does not return any dining locations, display the following message */}
+                {filteredDiningLocationArray.length == 0 && diningLocationsVisible && (
+                    <View id="browseDiningLocationsFailureView" style={styles.diningLocationContainer}>
+                        
+                        <Text id="browseDiningLocationsFailureText" style={styles.diningLocationTextDefault}>
+                            No dining locations found
+                        </Text>
                     </View>
-                </Modal>
-            )}
+                )}
+
+                {/* If the entered string value returns dining locations, display the name of each dining location */}
+                {filteredDiningLocationArray.length > 0 && diningLocationsVisible && (
+                    <View id="browseDiningLocationsSuccessView" style={styles.diningLocationContainer}>
+
+                        {filteredDiningLocationArray.map((diningLocation) => (
+
+                            <Text id="browseDiningLocationsSuccessText" style={styles.diningLocationTextDefault}
+                                key={diningLocation["id"]}
+                                onPress={() => {
+                                    filterFoodItemArray(diningLocation["id"]);
+                                    setFoodItemsVisible(true);
+                                    setDiningLocationsVisible(false);}}>
+                                {diningLocation["name"]}
+                            </Text>
+                        ))}
+
+                    </View>
+                )}
+
+                {/* Display the name of each food item associated with the selected dining location */}
+                {filteredFoodItemArray.length > 0 && foodItemsVisible && (
+                    <View id="browseFoodItemsSuccessView" style={styles.foodItemContainer}>
+
+                        {filteredFoodItemArray.map((foodItem) => (
+
+                            <Text id="browseFoodItemsSuccessText" style={styles.foodItemTextDefault}
+                                key={foodItem["id"]}
+                                onPress={() => {
+                                    getFoodItem(foodItem["id"]);
+                                    setFoodItemsVisible(false);}}>
+                                {foodItem["name"]}
+                            </Text>
+                        ))}
+
+                    </View>
+                )}
+
+                {/* Display information about the selected food item */}
+                {!foodItemsVisible && foodItem.name != "" && (
+                    <View id="foodItemOuterView" style={styles.selectedFoodItemContainer}>
+
+                        <FlatList id="foodItemFlatList"
+                            data={processSelectedFoodItem(foodItem)}
+                            scrollEnabled={false}
+                            renderItem={({ item }) => (
+                                <View id="foodItemInnerView" style={styles.row}>
+                                    <Text id="foodItemFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
+                                    <Text id="foodItemFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                </View>
+                            )}>
+                        </FlatList>
+
+                    </View>                    
+                )}
+
+                {/* Display the relevant warnings for the selected food item based on the logged-in user's settings */}
+                {!foodItemsVisible && foodItem.name != "" && (
+                    <View id="warningOuterView" style={styles.selectedFoodItemContainer}>
+
+                        <FlatList id="warningFlatList"
+                            data={processSelectedFoodItemWarnings(foodItem)}
+                            scrollEnabled={false}
+                            renderItem={({ item }) => (
+                                <View id="warningInnerView" style={styles.row}>
+                                    <Text id="warningFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
+                                    <Text id="warningFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                </View>
+                            )}>
+
+                        </FlatList>
+
+                    </View>                    
+                )}
+
+                <View style={styles.container}></View>
+
+                {/* Display a button that enables the selected food item to be saved to the backend database */}
+                {usernameGlobal != "" && !foodItemsVisible && foodItem.name != "" && (
+                    <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
+                        onPress={() => {
+                            logFoodItemById(foodItem.id);
+                            setFoodItemsVisible(true);
+                            setModalVisible(true);
+                            setTimeout(() => {setModalVisible(false);}, 8000);
+                            router.push("/home");}}
+                        disabled={loading}>
+
+                        <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
+                            Save Food Item
+                        </Text>
+                    </TouchableOpacity>   
+                )}
+
+                {/* Display a message when the selected food item is saved */}
+                {modalVisible && usernameGlobal != "" && (
+                    <Modal id="savedFoodItemModal"
+                        animationType="fade"
+                        transparent={true}
+                        visible={modalVisible}>
+
+                        <View id="savedFoodItemOuterView">
+
+                            <View id="savedFoodItemInnerView" style={styles.savedFoodItemMessageContainer}>
+                                
+                                <Text id="savedFoodItemText" style={styles.savedFoodItemText}>
+                                    Food Item Saved!
+                                </Text>
+                            </View>
+                        </View>
+
+                    </Modal>
+                )}
 
             </ScrollView>
-            </View>
 
         </View>
     )
