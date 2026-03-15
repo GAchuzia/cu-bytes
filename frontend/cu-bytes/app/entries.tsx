@@ -214,124 +214,92 @@ export default function EntriesScreen() {
     return (
 
         <View style={styles.container}>
-            <StatusBar
-                style="auto"
-                hidden={true}
-            />
+            
+            <StatusBar style="auto" hidden={true}/>
 
-            <View
-                style={styles.statusbar}>
+            <View id="viewSavedFoodItemsStatusbar" style={styles.statusbar}>
 
+                {/* Route the user to the 'home' page */}
                 <TouchableOpacity id="backButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isBackPressed ? '#666666' : '#131312' }
-                    ]}
+                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
                     onPressIn={() => setIsBackPressed(true)}
                     onPressOut={() => setIsBackPressed(false)}
                     onPress={() => router.push('/home')}>
 
-                    <Text id="backButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
+                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
                         Back
                     </Text>
-
                 </TouchableOpacity>
 
-                <Text id="savedFoodItemsTitle"
-                    style={styles.headerTitle}>
-
-                    Saved Food Items
-                </Text>
-
-                <Text  id="loggedInUser"
-                    style={styles.headerUsernameIcon}>
-
+                <Text  id="loggedInUser" style={styles.headerUsernameIcon}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
+                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButton,
-                        { backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312' }
-                    ]}
+                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
-                    <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}
-                        numberOfLines={1}>
-
-                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Logout' : 'Login'}
                     </Text>
-
                 </TouchableOpacity>
 
             </View>
 
-            <View style={styles.scrollView}>
-            <ScrollView
-                style={styles.scrollView}
+            <Text id="savedFoodItemsTitle" style={styles.headerTitle}>
+                Saved Food Items
+            </Text>
+
+            <ScrollView id="viewSavedFoodItemsScrollView" style={styles.scrollView}
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={true}
                 keyboardShouldPersistTaps="handled"
-                nestedScrollEnabled
-            >
-            <Text style={styles.infoText}>
+                nestedScrollEnabled>
 
-                Here are the food items that you saved
-            </Text>
+                <Text id="viewSavedFoodItemsInfoTextDefault" style={styles.infoText}>
+                    Here are the food items that you saved
+                </Text>
 
-            {foodItemArray.length === 0 && !visible ? (
-                <View>
-                    <Text style={styles.foodInfoText}>
-                        You have saved no food items
-                    </Text>
-                </View>
-            ) : null}
-
-            {foodItemArray && foodItemArray.length > 0 && !visible ? (
-
-                <View style={styles.bodyContainer}>
-
-                    <View style={styles.columnHeader}>
-                        <Text style={styles.columnHeaderText}>Name</Text>
-                        <Text style={styles.columnHeaderText}>Dining Location</Text>
-                        <Text style={styles.columnHeaderText}>Calories</Text>
-                        <Text style={styles.columnHeaderText}>Carbs</Text>
-                        <Text style={styles.columnHeaderText}>Fat</Text>
-                        <Text style={styles.columnHeaderText}>Fiber</Text>
-                        <Text style={styles.columnHeaderText}>Proteins</Text>
-                        <Text style={styles.columnHeaderText}>Sugar</Text>
-                        <Text style={styles.columnHeaderText}>Saved</Text>
+                {foodItemArray.length === 0 && !visible ? (
+                    <View id="viewSavedFoodItemsViewNoItems">
+                        <Text id="viewSavedFoodItemsInfoTextNoItems" style={styles.infoText}>
+                            You have saved no food items
+                        </Text>
                     </View>
+                ) : null}
 
-                    <FlatList
-                        data={foodItemArray}
-                        scrollEnabled={true}
-                        renderItem={({ item }) => (
-                        <View style={styles.row}>
-                            <Text style={styles.rowCell}>{item["food_name"]}</Text>
-                            <Text style={styles.rowCell}>{item["dining_location"]}</Text>
-                            <Text style={styles.rowCell}>{processFoodItemCalories(item["calories"])}</Text>
-                            <Text style={styles.rowCell}>{processFoodItemCarbs(item["carbs_g"])} g</Text>
-                            <Text style={styles.rowCell}>{processFoodItemFat(item["fat_g"])} g</Text>
-                            <Text style={styles.rowCell}>{processFoodItemFiber(item["fiber_g"])} g</Text>
-                            <Text style={styles.rowCell}>{processFoodItemProteins(item["proteins_g"])} g</Text>
-                            <Text style={styles.rowCell}>{processFoodItemSugar(item["sugar_g"])} g</Text>
-                            <Text style={styles.rowCell}>{item["transaction_time"]}</Text>
-                        </View>
-                        )}
-                        keyExtractor={foodItem => foodItem["food_name"]}
-                    />
+                {foodItemArray && foodItemArray.length > 0 && !visible ? (
 
-                </View>
-            ) : null}
+                    <View style={styles.bodyContainer}>
+
+                        <FlatList
+                            data={foodItemArray}
+                            scrollEnabled={true}
+                            renderItem={({ item }) => (
+                                <View id="rowView" style={styles.row}>
+                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Name</Text> {item["food_name"]}</Text>
+                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Dining Locations</Text> {item["dining_location"]}</Text>
+                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Calories</Text> {processFoodItemCalories(item["calories"])}</Text>
+                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Carbs</Text> {processFoodItemCarbs(item["carbs_g"])} g</Text>
+                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Fat</Text> {processFoodItemFat(item["fat_g"])} g</Text>
+                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Fiber</Text> {processFoodItemFiber(item["fiber_g"])} g</Text>
+                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Proteins</Text> {processFoodItemProteins(item["proteins_g"])} g</Text>
+                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Sugar</Text> {processFoodItemSugar(item["sugar_g"])} g</Text>
+                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Saved</Text> {item["transaction_time"]}</Text>
+                                </View>
+                            )}
+                            keyExtractor={foodItem => foodItem["food_name"]}>
+                        </FlatList>
+
+                    </View>
+                ) : null}
 
             </ScrollView>
-            </View>
 
         </View>
     )
+
 }
