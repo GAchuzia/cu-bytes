@@ -6,7 +6,7 @@ const API_CONFIG = {
   // Android emulator: use 10.0.2.2 to reach host. Physical device: use your PC's LAN IP (e.g. 10.0.0.44).
   LOCAL_IP: typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_API_IP
     ? process.env.EXPO_PUBLIC_API_IP
-    : '10.0.0.44',
+    : 'YOUR_IP_HERE',
   PORT: 5000
 };
 

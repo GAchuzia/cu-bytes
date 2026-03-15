@@ -9,6 +9,7 @@ from backend.endpoints.authentication_endpoints import auth_bp
 from backend.endpoints.browsing_endpoints import browse_bp
 from backend.endpoints.locations_endpoints import locations_bp
 from backend.endpoints.food_entry_endpoints import logging_bp
+
 from backend.endpoints.ml_endpoints import ml_bp
 from backend.endpoints.profile_endpoints import profile_bp
 from backend.endpoints.recommendations_endpoints import recommendations_bp
@@ -70,10 +71,11 @@ def create_app(config_override=None):
 
 
 # Run the server
+# Top-level app for Gunicorn
+app = create_app()
+
+# optional: only run locally
 if __name__ == "__main__":
-    app = create_app()
     port = int(os.environ.get("PORT", 5000))
     debug = os.environ.get("FLASK_ENV") == "development"
-    print(f"Starting server on http://0.0.0.0:{port} (accepts LAN connections)")
-    print(f"Debug Mode is {debug}")
     app.run(host="0.0.0.0", port=port, debug=debug)

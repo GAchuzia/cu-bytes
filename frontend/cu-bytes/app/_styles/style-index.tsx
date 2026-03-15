@@ -8,10 +8,20 @@ export const styles = StyleSheet.create({
     backgroundColor: '#C5151A',
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
-    overflow: 'scroll',
+    justifyContent: 'flex-start',
     textAlign: 'center',
-    width: '100%',
+    width: w(100),
+  },
+
+  scrollContent: {
+    alignItems: 'center',
+    paddingBottom: h(6),
+    width: w(100),
+  },
+
+  scrollView: {
+    alignSelf: 'stretch',
+    flex: 1,
   },
 
   statusbar: {
@@ -22,7 +32,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: w(4),
     paddingVertical: h(1.5),
-    width: '100%',
+    width: w(100),
   },
 
   bodyButton: {
@@ -78,7 +88,7 @@ export const styles = StyleSheet.create({
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: '100%',
+    width: w(100),
   },
 
   infoText: {
@@ -94,7 +104,7 @@ export const styles = StyleSheet.create({
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: '100%',
+    width: w(100),
   },
 
 });

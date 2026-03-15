@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, Modal, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { useUser } from './_context';
 import { styles } from "./_styles/style-dining";
+import { API_BASE_URL } from '../services/api';
 
 export default function DiningScreen() {
 
@@ -249,7 +250,7 @@ export default function DiningScreen() {
     useEffect(() => {
         const getFoodItems = async () => {
             try {
-                const res = await fetch(`http://127.0.0.1:5000/browse/food-items`);
+                const res = await fetch(`${API_BASE_URL}/browse/food-items`);
                 const data = await res.json();
 
                 // Store the retrieved food items in the array
@@ -275,7 +276,7 @@ export default function DiningScreen() {
     */
     const getFoodItem = async (id: number) => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/browse//food-item/${id}`);
+            const res = await fetch(`${API_BASE_URL}/browse/food-item/${id}`);
             const data = await res.json();
 
             // Store the retrieved food item in the variable
@@ -298,7 +299,7 @@ export default function DiningScreen() {
     */
     const logFoodItemById = async (id: number) => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/logging/log-by-id`, {
+            const res = await fetch(`${API_BASE_URL}/logging/log-by-id`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify( { username: usernameGlobal, food_id: id } )
@@ -360,7 +361,7 @@ export default function DiningScreen() {
     useEffect(() => {
         const getDiningLocations = async () => {
             try {
-                const res = await fetch(`http://127.0.0.1:5000//locations/dining-locations`);
+                const res = await fetch(`${API_BASE_URL}/locations/dining-locations`);
                 const data = await res.json();
 
                 // Store the retrieved dining locations in the array
@@ -445,22 +446,19 @@ export default function DiningScreen() {
                     onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
 
                     <Text id="backButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         Back
                     </Text>
 
                 </TouchableOpacity>
 
-                <View style={styles.headerContainer}></View>
-
                 <Text id="browseDiningLocationsTitle"
                     style={styles.headerTitle}>
 
                     Dining Options
                 </Text>
-
-                <View style={styles.headerContainer}></View>
 
                 <Text id="loggedInUser"
                     style={styles.headerUsernameIcon}>
@@ -477,7 +475,8 @@ export default function DiningScreen() {
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
                     <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
@@ -486,6 +485,13 @@ export default function DiningScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
             <Text id="browseDiningLocationsInfo"
                 style={styles.infoText}>
 
@@ -667,6 +673,9 @@ export default function DiningScreen() {
                     </View>
                 </Modal>
             )}
+
+            </ScrollView>
+            </View>
 
         </View>
     )

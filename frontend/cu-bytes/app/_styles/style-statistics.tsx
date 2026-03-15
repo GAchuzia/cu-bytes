@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 import { w, h, font } from './dimensions';
 
 export const styles = StyleSheet.create({
@@ -29,8 +29,17 @@ export const styles = StyleSheet.create({
     width: w(10),
   },
 
-  bodyContainer: {
-    backgroundColor: '#FFFFFF',
+  bodyContainerDefault: {
+    alignItems: 'center',
+    backgroundColor: '#C5151A',
+    width: w(100),
+  },
+
+  bodyContainerAlt: {
+    alignItems: 'center',
+    backgroundColor: '#C5151A',
+    flexDirection: 'row',
+    justifyContent: 'center',
     width: w(100),
   },
 
@@ -64,50 +73,6 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontFamily: 'arial',
     fontSize: font(125),
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-
-  bodyButton: {
-    alignItems: 'center',
-    backgroundColor: '#131312',
-    borderRadius: 50,
-    borderWidth: 4,
-    borderColor: '#131312',
-    marginBottom: h(2.5),
-    padding: h(2.5),
-    width: w(80),
-  },
-
-  bodyButtonText: {
-    backgroundColor: '#131312',
-    color: '#FFFFFF',
-    fontFamily: 'arial',
-    fontSize: font(175),
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-
-  bodyButtonAlt: {
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 50,
-    borderWidth: 4,
-    borderColor: '#FFFFFF',
-    marginTop: h(2.5),
-    marginBottom: h(2.5),
-    padding: h(2.5),
-    shadowColor: '#131312',
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 10,
-    width: w(80),
-  },
-
-  bodyButtonTextAlt: {
-    backgroundColor: '#FFFFFF',
-    color: '#C5151A',
-    fontFamily: 'arial',
-    fontSize: font(175),
     fontWeight: '600',
     textAlign: 'center',
   },
@@ -152,67 +117,100 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
-  foodInfoText: {
+  statisticsInfoText: {
     backgroundColor: '#FFFFFF',
-    borderWidth: 5,
-    borderTopColor: '#666666',
-    borderBottomColor: '#666666',
     color: '#131312',
-    fontFamily: 'arial',
-    fontSize: font(175),
-    fontWeight: '600',
-    marginTop: h(1.5),
-    marginBottom: h(1.5),
-    paddingTop: h(5),
-    paddingBottom: h(5),
-    paddingLeft: w(5),
-    paddingRight: w(5),
-    textAlign: 'center',
-    shadowColor: '#131312',
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 10,
-    width: w(100),
-  },
-
-  diningInfoText: {
-    backgroundColor: '#FFFFFF',
-    borderWidth: 5,
-    borderTopColor: '#666666',
-    borderBottomColor: '#666666',
-    color: '#131312',
-    fontFamily: 'arial',
-    fontSize: font(175),
-    fontWeight: '600',
-    marginTop: h(1.5),
-    marginBottom: h(1.5),
-    paddingTop: h(5),
-    paddingBottom: h(5),
-    paddingLeft: w(5),
-    paddingRight: w(5),
-    textAlign: 'center',
-    shadowColor: '#131312',
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 10,
-    width: w(100),
-  },
-
-  diningLocationNameTextInput: {
-    backgroundColor: "#FFFFFF",
-    color: '#131312',
-    borderColor: '#131312',
-    borderRadius: 15,
-    borderWidth: 2,
     fontFamily: 'arial',
     fontSize: font(150),
-    marginBottom: h(5),
-    paddingTop: h(1.5),
-    paddingBottom: h(1.5),
-    paddingLeft: w(1.5),
-    paddingRight: w(1.5),
-    shadowColor: '#131312',
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 2,
+    fontWeight: '600',
+    marginTop: h(1.5),
+    marginBottom: h(1.5),
+    paddingTop: h(5),
+    paddingBottom: h(5),
+    paddingLeft: w(5),
+    width: w(40),
+  },
+
+  numberOfDaysText: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 25,
+    borderWidth: 4,
+    borderColor: '#131312',
+    color: '#131312',
+    fontFamily: 'arial',
+    fontSize: font(300),
+    fontWeight: '800',
+    marginTop: h(0.5),
+    marginLeft: w(5),
+    marginRight: w(5),
+    paddingTop: h(2.5),
+    paddingBottom: h(2.5),
+    paddingLeft: w(2.5),
+    paddingRight: w(2.5),
+    textAlign: 'center',
+    width: w(20),
+  },
+
+  bodyButtonDefault: {
+    alignItems: 'center',
+    backgroundColor: '#131312',
+    borderRadius: 50,
+    borderWidth: 4,
+    borderColor: '#131312',
+    marginTop: h(2.5),
+    padding: h(2.5),
     width: w(80),
+  },
+
+  bodyButtonTextDefault: {
+    backgroundColor: 'transparent',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: font(175),
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+
+  bodyButtonIncreaseNumberOfDays: {
+    alignItems: 'center',
+    backgroundColor: '#697A37',
+    borderRadius: 50,
+    borderWidth: 6,
+    borderColor: '#131312',
+    marginTop: h(2.5),
+    marginBottom: h(2.5),
+    padding: w(1.5),
+    width: w(25),
+  },
+
+  bodyButtonDecreaseNumberOfDays: {
+    alignItems: 'center',
+    backgroundColor: '#FFB4B4',
+    borderRadius: 50,
+    borderWidth: 6,
+    borderColor: '#131312',
+    marginTop: h(2.5),
+    marginBottom: h(2.5),
+    padding: w(1.5),
+    width: w(25),
+  },
+
+  bodyButtonTextIncreaseNumberOfDays: {
+    backgroundColor: 'transparent',
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: font(300),
+    fontWeight: '800',
+    textAlign: 'center',
+  },
+
+  bodyButtonTextDecreaseNumberOfDays: {
+    backgroundColor: 'transparent',
+    color: '#C5151A',
+    fontFamily: 'arial',
+    fontSize: font(300),
+    fontWeight: '800',
+    textAlign: 'center',
   },
 
 });

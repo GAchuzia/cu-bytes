@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './_styles/style-register';
 import { useUser } from './_context';
+import { API_BASE_URL } from '../services/api';
 
 export default function RegisterScreen() {
 
@@ -64,7 +65,7 @@ export default function RegisterScreen() {
     */
     const loadSettings = async () => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/profile/retreive/${username}`);
+            const res = await fetch(`${API_BASE_URL}/profile/retreive/${username}`);
             const data = await res.json();
 
             // Update the copy of the logged-in user's username and profile settings using the retrieved data
@@ -100,7 +101,7 @@ export default function RegisterScreen() {
     */
     const registerUser = async (name: string, psswrd: string) => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/auth/register`, {
+            const res = await fetch(`${API_BASE_URL}/auth/register`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify( { username: name, password: psswrd } )
@@ -162,14 +163,13 @@ export default function RegisterScreen() {
                     onPress={() => router.push('/login')}>
 
                     <Text id="backButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         Back
                     </Text>
 
                 </TouchableOpacity>
-
-                <View style={styles.headerContainer}></View>
 
                 <Text id="createAccountTitle"
                     style={styles.headerTitle}>
@@ -192,7 +192,8 @@ export default function RegisterScreen() {
                     onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
 
                     <Text id="loginLogoutButtonText"
-                        style={styles.headerButtonText}>
+                        style={styles.headerButtonText}
+                        numberOfLines={1}>
 
                         {usernameGlobal != '' ? 'Logout' : 'Login' }
                     </Text>
@@ -201,6 +202,13 @@ export default function RegisterScreen() {
 
             </View>
 
+            <View style={styles.scrollView}>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={true}
+                keyboardShouldPersistTaps="handled"
+            >
             <Text id="createAccountInfo"
                 style={styles.infoText}>
 
@@ -299,6 +307,9 @@ export default function RegisterScreen() {
                 </Text>
 
             </TouchableOpacity>
+
+            </ScrollView>
+            </View>
 
         </View>
     )
