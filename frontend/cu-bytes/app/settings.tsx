@@ -602,14 +602,14 @@ export default function SettingsScreen() {
                             </Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity id="submitNewPasswordButton"
+                        <TouchableOpacity id="returnToSettingsButton"
                             style={[styles.bodyButtonDefault, {backgroundColor: usernameGlobal === '' ? '#666666' : '#131312'}]}
                             onPress={() => {
                                 setIsChangePasswordPressed(false);
                                 setCurrentPassword('');
                                 setNewPassword('')}}>
 
-                            <Text id="submitNewPasswordButtonText" style={styles.bodyButtonTextDefault}>
+                            <Text id="returnToSettingsButtonText" style={styles.bodyButtonTextDefault}>
                                 Return to Settings
                             </Text>
                         </TouchableOpacity>
@@ -666,14 +666,14 @@ export default function SettingsScreen() {
                             </Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity id="submitNewPasswordButton"
+                        <TouchableOpacity id="returnToSettingsButton"
                             style={[styles.bodyButtonDefault, {backgroundColor: usernameGlobal === '' ? '#666666' : '#131312'}]}
                             onPress={() => {
                                 setIsDeleteAccountPressed(false);
                                 setCurrentPassword('');
                                 setNewPassword('')}}>
 
-                            <Text id="submitNewPasswordButtonText" style={styles.bodyButtonTextDefault}>
+                            <Text id="returnToSettingsButtonText" style={styles.bodyButtonTextDefault}>
                                 Return to Settings
                             </Text>
                         </TouchableOpacity>

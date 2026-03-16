@@ -13,6 +13,12 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
+  notConfiguredSettingsMessageContainer: {
+    alignItems: 'center',
+    backgroundColor: '#AB0006',
+    width: w(100),
+  },
+
   scrollView: {
     alignSelf: 'stretch',
     flex: 1,
@@ -97,6 +103,28 @@ export const styles = StyleSheet.create({
     fontSize: font(125),
     fontWeight: '700',
     textAlign: 'center',
+  },
+
+  notConfiguredSettingsText: {
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    color: '#FFFFFF',
+    flexDirection: 'row',
+    fontFamily: 'arial',
+    fontSize: font(250),
+    fontWeight: '600',
+    justifyContent: 'center',
+    marginTop: h(1.0),
+    marginBottom: h(1.0),
+    paddingTop: h(1.0),
+    paddingBottom: h(1.0),
+    paddingLeft: w(1.0),
+    paddingRight: w(1.0),
+    textAlign: 'center',
+    textShadowColor: '#131312',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 10,
+    width: w(100),
   },
 
   infoText: {
