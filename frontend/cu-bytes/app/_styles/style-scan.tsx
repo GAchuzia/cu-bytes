@@ -23,6 +23,36 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
+  lowConfidenceBanner: {
+    alignItems: 'center',
+    backgroundColor: '#AB0006',
+    borderColor: '#FFFFFF',
+    borderWidth: 2,
+    borderRadius: 12,
+    marginTop: h(1.5),
+    marginBottom: h(1.0),
+    paddingVertical: h(2.0),
+    paddingHorizontal: w(4.0),
+    width: w(80),
+  },
+
+  lowConfidenceTitle: {
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: font(175),
+    fontWeight: '700',
+    marginBottom: h(0.8),
+    textAlign: 'center',
+  },
+
+  lowConfidenceMessage: {
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: font(140),
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+
   savedFoodItemMessageContainer: {
     alignItems: 'center',
     backgroundColor: '#AB0006',

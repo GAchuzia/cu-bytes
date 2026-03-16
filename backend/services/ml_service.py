@@ -24,6 +24,9 @@ else:
 MODEL_PATH = MODEL_DIR / "best_model.pth"
 CLASS_NAMES_PATH = MODEL_DIR / "class_names.json"
 
+# Minimum confidence to accept a prediction (handles both unclear photos and non-food images).
+MIN_CONFIDENCE_THRESHOLD = 0.80
+
 # Global variables to cache the model
 _model = None
 _class_names = None
@@ -115,6 +118,16 @@ def predict_food(image_file):
 
         predicted_class = class_names[predicted_idx.item()]
         confidence_score = confidence.item()
+        confidence_pct = round(confidence_score * 100, 2)
+
+        # Reject low-confidence predictions: unclear photo or non-food (model is food-only).
+        if confidence_score < MIN_CONFIDENCE_THRESHOLD:
+            return {
+                "success": False,
+                "reason": "low_confidence",
+                "confidence": confidence_pct,
+                "message": "We couldn't identify the food with enough confidence. Please retake a clear photo of your food.",
+            }
 
         # Extract food name (remove dataset prefix like "food101:")
         food_name = predicted_class.split(":")[-1].replace("_", " ").title().strip()
@@ -125,8 +138,9 @@ def predict_food(image_file):
 
             # Return unknowns for everything besides the name
             return {
+                "success": True,
                 "food_name": food_name,
-                "confidence": round(confidence_score * 100, 2),
+                "confidence": confidence_pct,
                 "calories": -1,
                 "fat_g": -1,
                 "carbs_g": -1,
@@ -152,8 +166,9 @@ def predict_food(image_file):
 
         # Fill in the object attributes based on the generic category
         obj = {
+            "success": True,
             "food_name": food_name,
-            "confidence": round(confidence_score * 100, 2),
+            "confidence": confidence_pct,
             "calories": food_category.calories,
             "fat_g": food_category.fat_g,
             "carbs_g": food_category.carbs_g,

@@ -10,6 +10,7 @@ import { useUser } from './_context';
 import { apiService, API_BASE_URL } from '../services/api';
 
 interface PredictionResult {
+    success?: true;
     food_name: string;
     confidence: number;
     calories: number;
@@ -33,12 +34,21 @@ interface PredictionResult {
     has_wheat: boolean;
 }
 
+/** Returned when confidence is below threshold (e.g. unclear photo or non-food). */
+interface LowConfidenceResponse {
+    success: false;
+    reason: 'low_confidence';
+    confidence: number;
+    message: string;
+}
+
 export default function ScanScreen() {
 
     const [loading, setLoading] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [prediction, setPrediction] = useState<PredictionResult | null>(null);
+    const [lowConfidenceMessage, setLowConfidenceMessage] = useState<string | null>(null);
     const [isBackPressed, setIsBackPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isUploadPhotoPressed, setIsUploadPhotoPressed] = useState(false);
@@ -356,8 +366,9 @@ export default function ScanScreen() {
             if (!result.canceled && result.assets[0]) {
 
                 setSelectedImage(result.assets[0].uri);
-                // Clear previous prediction
+                // Clear previous prediction and low-confidence message
                 setPrediction(null);
+                setLowConfidenceMessage(null);
             }
         } catch (err) {
             console.error('Error picking image:', err);
@@ -387,6 +398,7 @@ export default function ScanScreen() {
             if (!result.canceled && result.assets[0]) {
                 setSelectedImage(result.assets[0].uri);
                 setPrediction(null);
+                setLowConfidenceMessage(null);
             }
         } catch (err) {
             console.error('Error taking photo:', err);
@@ -409,7 +421,17 @@ export default function ScanScreen() {
         try {
             const result = await apiService.predictFood(selectedImage);
             console.log('Prediction result received:', result);
-            setPrediction(result);
+
+            const lowConf = result as LowConfidenceResponse;
+            if (lowConf.success === false && lowConf.reason === 'low_confidence') {
+                setLowConfidenceMessage(lowConf.message);
+                setPrediction(null);
+                Alert.alert('Please retake the photo', lowConf.message, [{ text: 'OK' }]);
+                return;
+            }
+
+            setLowConfidenceMessage(null);
+            setPrediction(result as PredictionResult);
         } catch (err: any) {
             console.error('Prediction error:', err);
             Alert.alert('Error', err.response?.data?.error || 'Failed to predict food. Please try again.');
@@ -529,6 +551,16 @@ export default function ScanScreen() {
                     <Text id="foodItemPlaceholderText" style={styles.placeholderText}>
                         Uploaded photos will be displayed here
                     </Text>
+                )}
+
+                {/* Display message when confidence was too low (e.g. unclear or non-food image) */}
+                {lowConfidenceMessage && (
+                    <View id="lowConfidenceBanner" style={styles.lowConfidenceBanner}>
+                        <Text style={styles.lowConfidenceTitle}>No food detected</Text>
+                        <Text style={styles.lowConfidenceMessage}>
+                            We couldn&apos;t detect any food in this photo. Please take a clear photo of the food item.
+                        </Text>
+                    </View>
                 )}
 
                 {/* Display information about the selected food item */}
