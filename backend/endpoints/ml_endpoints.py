@@ -35,9 +35,10 @@ def predict_food_image():
     - Body: image file (form field name: 'image')
 
     Responses:
-    200 OK - Successfully predicted food
-        Response Body (JSON):
+    200 OK - Prediction result (either success or low confidence)
+        If confidence >=80%:
         {
+            "success": true,
             "food_name": string,
             "confidence": float,
             "calories": int
@@ -59,6 +60,13 @@ def predict_food_image():
             "has_soy": bool,
             "has_treenuts": bool,
             "has_wheat": bool,
+        }
+        If confidence < 80% (unclear or non-food image):
+        {
+            "success": false,
+            "reason": "low_confidence",
+            "confidence": float,
+            "message": string,
         }
 
     400 Bad Request - No file provided or invalid file
