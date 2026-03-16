@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, ScrollView, Text, TextInput, TouchableOpacity, Switch } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -224,8 +224,7 @@ export default function LoginScreen() {
                 </TextInput>
 
                 {/* Enter the password that corresponds to the account that the user wants to access */}
-                <TextInput id="loginPasswordTextInput"
-                    style={styles.passwordTextInput}
+                <TextInput id="loginPasswordTextInput" style={styles.passwordTextInput}
                     onChangeText={setPassword}
                     onChange={() => {
                         setError({ message: '', status: '' });
@@ -233,8 +232,20 @@ export default function LoginScreen() {
                     }}
                     placeholder={"Enter CU-Bytes password"}
                     value={password}
-                    secureTextEntry={true}>
+                    secureTextEntry={secureTextEntry}>
                 </TextInput>
+
+                {/* Toggle the switch to hide or unhide the password input by converting the characters to or from the * character */}
+                <View id="hideOrUnhidePasswordView" style={styles.row}>
+                    <Text id="hideOrUnhidePasswordInfoText" style={styles.passwordSwitchInfoText}>
+                        Hide or unhide the password
+                    </Text>
+
+                    <Switch id="hideOrUnhidePasswordSwitch" style={styles.switch}
+                        value={secureTextEntry}
+                        onValueChange={setSecureTextEntry}>
+                    </Switch>
+                </View> 
 
                 {/* Submit a request to the backend endpoint to authenticate the entered credentials and log in to an account */}
                 <TouchableOpacity id="loginButton"

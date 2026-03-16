@@ -1,15 +1,17 @@
-import { useState } from 'react';
-import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { useEffect, useState } from 'react';
+import { View, ScrollView, Text, TouchableOpacity, Modal } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { styles } from './_styles/style-home';
 import { useUser } from './_context';
+import { API_BASE_URL } from '../services/api';
 
 export default function HomeScreen() {
 
     const [loading, setLoading] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isScanFoodItemPressed, setIsScanFoodItemPressed] = useState(false);
     const [isBrowseFoodItemsPressed, setIsBrowseFoodItemsPressed] = useState(false);
@@ -25,8 +27,10 @@ export default function HomeScreen() {
     const
         {
             usernameGlobal,
+            hasConfiguredSettingsGlobal,
             setUsernameGlobal,
             setShowStatsGlobal,
+            setHasConfiguredSettingsGlobal,
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasDairyIntoleranceGlobal,
@@ -44,12 +48,41 @@ export default function HomeScreen() {
         } = useUser();
 
     /*
+        Send a request to the backend endpoint to get whether or not the logged-in user has configured their profile
+    */
+    useEffect(() => {
+        const getProfileConfigured = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/profile/configured/${usernameGlobal}`);
+                const data = await res.json();
+
+                // If the logged-in user has not configured their profile
+                // Enable a message to be briefly displayed every time the page renders
+                if (!data.has_configured_settings) {
+                    setModalVisible(true);
+                    setTimeout(() => {setModalVisible(false);}, 2000);            
+                }                
+
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+          
+        };
+
+        getProfileConfigured();
+
+    }, []);
+
+    /*
         Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
     */
     const logout = () => { 
         
         setUsernameGlobal('');
         setShowStatsGlobal(false);
+        setHasConfiguredSettingsGlobal(false);
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
         setHasDairyIntoleranceGlobal(false);
@@ -97,6 +130,26 @@ export default function HomeScreen() {
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={true}
                 keyboardShouldPersistTaps="handled">
+
+                {/* Display a message if the logged-in user has not configured their profile */}
+                {!hasConfiguredSettingsGlobal && modalVisible && (
+                    <Modal id="notConfiguredSettingsModal"
+                        animationType="fade"
+                        transparent={true}
+                        visible={modalVisible}>
+
+                        <View id="notConfiguredSettingsOuterView">
+
+                            <View id="notConfiguredSettingsInnerView" style={styles.notConfiguredSettingsMessageContainer}>
+
+                                <Text id="notConfiguredSettingsText" style={styles.notConfiguredSettingsText}>
+                                    You have not configured your profile
+                                </Text>
+                            </View>
+                        </View>
+
+                    </Modal>
+                )}
 
                 <Text id="homeTitle" style={styles.headerTitle}>
                     Home

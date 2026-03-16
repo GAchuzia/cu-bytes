@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, ScrollView, Text, TextInput, TouchableOpacity, Switch } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -15,6 +15,7 @@ export default function RegisterScreen() {
     const [isBackPressed, setIsBackPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isCreateAccountPressed, setIsCreateAccountPressed] = useState(false);
+    const [secureTextEntry, setSecureTextEntry] = useState(true);
 
     /*
         Variable and setter for storing and modifying the error returned from the backend endpoint
@@ -244,8 +245,20 @@ export default function RegisterScreen() {
                         setVisible(false);}}
                     placeholder={"Enter new CU-Bytes password"}
                     value={password}
-                    secureTextEntry={true}>
+                    secureTextEntry={secureTextEntry}>
                 </TextInput>
+
+                {/* Toggle the switch to hide or unhide the password input by converting the characters to or from the * character */}
+                <View id="hideOrUnhidePasswordView" style={styles.row}>
+                    <Text id="hideOrUnhidePasswordInfoText" style={styles.passwordSwitchInfoText}>
+                        Hide or unhide the password
+                    </Text>
+
+                    <Switch id="hideOrUnhidePasswordSwitch" style={styles.switch}
+                        value={secureTextEntry}
+                        onValueChange={setSecureTextEntry}>
+                    </Switch>
+                </View> 
 
                 {/* Submit a request to the backend endpoint to create a new account */}
                 <TouchableOpacity id="createAccountButton"
