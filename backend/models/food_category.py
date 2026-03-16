@@ -40,6 +40,7 @@ class FoodCategory(db.Model):
     has_soy = db.Column(db.Boolean, default=None, nullable=True)
     has_treenuts = db.Column(db.Boolean, default=None, nullable=True)
     has_wheat = db.Column(db.Boolean, default=None, nullable=True)
+    has_sulfites = db.Column(db.Boolean, default=None, nullable=True)
 
     def __repr__(self):
         return f"<FoodCategory {self.category_name}>"
@@ -71,6 +72,7 @@ class FoodCategory(db.Model):
         has_soy,
         has_treenuts,
         has_wheat,
+        has_sulfites,
     ):
         """Create a new food category and store it in the database"""
 
@@ -99,6 +101,7 @@ class FoodCategory(db.Model):
             has_soy=has_soy,
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,
+            has_sulfites=has_sulfites,
         )
 
         db.session.add(food_category)

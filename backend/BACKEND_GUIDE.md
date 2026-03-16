@@ -99,7 +99,8 @@ sqlite> PRAGMA table_info('food_items');
 17|has_soy|BOOLEAN|0||0
 18|has_treenuts|BOOLEAN|0||0
 19|has_wheat|BOOLEAN|0||0
-20|food_category|VARCHAR(80)|1||0
+20|has_sulfites|BOOLEAN|0||0
+21|food_category|VARCHAR(80)|1||0
 
 Database schema for dining locations:
 sqlite> PRAGMA table_info('dining_locations');
@@ -132,6 +133,7 @@ sqlite> PRAGMA table_info('food_categories');
 21|has_soy|BOOLEAN|0||0
 22|has_treenuts|BOOLEAN|0||0
 23|has_wheat|BOOLEAN|0||0
+24|has_sulfites|BOOLEAN|0||0
 
 #### logging.db
 This database contains a transactions that record which food item was consumed by which user.

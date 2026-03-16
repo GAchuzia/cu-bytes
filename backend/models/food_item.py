@@ -37,6 +37,7 @@ class FoodItem(db.Model):
     has_soy = db.Column(db.Boolean, default=None, nullable=True)
     has_treenuts = db.Column(db.Boolean, default=None, nullable=True)
     has_wheat = db.Column(db.Boolean, default=None, nullable=True)
+    has_sulfites = db.Column(db.Boolean, default=None, nullable=True)
 
     # Foreign key to the associated FoodCategory
     food_category = db.Column(db.String(80), nullable=False)
@@ -67,6 +68,7 @@ class FoodItem(db.Model):
         has_treenuts,
         has_wheat,
         food_category,
+        has_sulfites,
     ):
         """Create a new food item and store it in the database"""
 
@@ -91,6 +93,7 @@ class FoodItem(db.Model):
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,
             food_category=food_category,
+            has_sulfites=has_sulfites,
         )
 
         db.session.add(food_item)
@@ -129,6 +132,7 @@ class FoodItem(db.Model):
             "has_soy": self.has_soy,
             "has_treenuts": self.has_treenuts,
             "has_wheat": self.has_wheat,
+            "has_sulfites": self.has_sulfites,
             "food_category": self.food_category,
         }
 
