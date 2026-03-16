@@ -134,6 +134,7 @@ Summary of endpoints.
             "has_peanuts": false,
             "has_sesame": null,
             "has_soy": false,
+            "has_sulfites": false,
             "has_treenuts": null,
             "has_wheat": true,
             "id": 100,
@@ -478,6 +479,7 @@ The following endpoint should be used when food_name is determined through machi
             "has_peanuts": bool,
             "has_sesame": bool,
             "has_soy": bool,
+            "has_sulfites": bool,
             "has_treenuts": bool,
             "has_wheat": bool,
         }

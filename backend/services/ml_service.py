@@ -24,7 +24,8 @@ else:
 MODEL_PATH = MODEL_DIR / "best_model.pth"
 CLASS_NAMES_PATH = MODEL_DIR / "class_names.json"
 
-# Minimum confidence to accept a prediction (handles both unclear photos and non-food images).
+# Minimum confidence to accept a prediction
+# Handles both unclear photos and non-food images.
 MIN_CONFIDENCE_THRESHOLD = 0.80
 
 # Global variables to cache the model
@@ -120,13 +121,17 @@ def predict_food(image_file):
         confidence_score = confidence.item()
         confidence_pct = round(confidence_score * 100, 2)
 
-        # Reject low-confidence predictions: unclear photo or non-food (model is food-only).
+        # Reject low-confidence predictions: unclear photo or
+        # non-food (model is food-only).
         if confidence_score < MIN_CONFIDENCE_THRESHOLD:
             return {
                 "success": False,
                 "reason": "low_confidence",
                 "confidence": confidence_pct,
-                "message": "We couldn't identify the food with enough confidence. Please retake a clear photo of your food.",
+                "message": (
+                    "We couldn't identify the food with enough confidence. "
+                    "Please retake a clear photo of your food."
+                ),
             }
 
         # Extract food name (remove dataset prefix like "food101:")
@@ -158,6 +163,7 @@ def predict_food(image_file):
                 "has_peanuts": None,
                 "has_sesame": None,
                 "has_soy": None,
+                "has_sulfites": None,
                 "has_treenuts": None,
                 "has_wheat": None,
             }
@@ -186,6 +192,7 @@ def predict_food(image_file):
             "has_peanuts": food_category.has_peanuts,
             "has_sesame": food_category.has_sesame,
             "has_soy": food_category.has_soy,
+            "has_sulfites": food_category.has_sulfites,
             "has_treenuts": food_category.has_treenuts,
             "has_wheat": food_category.has_wheat,
         }

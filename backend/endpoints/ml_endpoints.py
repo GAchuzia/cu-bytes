@@ -58,6 +58,7 @@ def predict_food_image():
             "has_peanuts": bool,
             "has_sesame": bool,
             "has_soy": bool,
+            "has_sulfites": bool,
             "has_treenuts": bool,
             "has_wheat": bool,
         }

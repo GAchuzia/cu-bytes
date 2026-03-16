@@ -119,6 +119,7 @@ def create_food_table():
                 has_soy=parse_bool(row.get("Soy")),
                 has_treenuts=parse_bool(row.get("TreeNuts")),
                 has_wheat=parse_bool(row.get("Wheat")),
+                has_sulfites=parse_bool(row.get("Sulfites")),
                 food_category=row.get("Food Category"),
             )
 
@@ -231,6 +232,7 @@ def create_category_table():
                 has_soy=parse_bool(row.get("Soy")),
                 has_treenuts=parse_bool(row.get("Treenuts")),
                 has_wheat=parse_bool(row.get("Wheat")),
+                has_sulfites=parse_bool(row.get("Sulfites")),
             )
 
     csvfile.close()
