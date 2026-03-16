@@ -55,6 +55,7 @@ def test_get_first_food_item(client, seeded_food_data, seeded_food_categories):
     assert data["has_peanuts"] is False
     assert data["has_sesame"] is False
     assert data["has_soy"] is False
+    assert data["has_sulfites"] is False
     assert data["has_treenuts"] is False
     assert data["has_wheat"] is False
     assert data["food_category"] == "Green Salad"

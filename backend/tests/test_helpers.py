@@ -54,6 +54,7 @@ def add_test_food_item(
     has_peanuts=False,
     has_sesame=False,
     has_soy=False,
+    has_sulfites=False,
     has_treenuts=False,
     has_wheat=False,
 ):
@@ -77,6 +78,7 @@ def add_test_food_item(
             has_peanuts=has_peanuts,
             has_sesame=has_sesame,
             has_soy=has_soy,
+            has_sulfites=has_sulfites,
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,
             food_category=food_category,
@@ -122,6 +124,7 @@ def add_test_food_category(
     has_peanuts=False,
     has_sesame=False,
     has_soy=False,
+    has_sulfites=False,
     has_treenuts=False,
     has_wheat=False,
 ):
@@ -150,6 +153,7 @@ def add_test_food_category(
             has_peanuts=has_peanuts,
             has_sesame=has_sesame,
             has_soy=has_soy,
+            has_sulfites=has_sulfites,
             has_treenuts=has_treenuts,
             has_wheat=has_wheat,
         )

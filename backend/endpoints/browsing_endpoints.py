@@ -72,6 +72,7 @@ def get_food_item_by_id(id):
             "has_peanuts": false,
             "has_sesame": null,
             "has_soy": false,
+            "has_sulfites": false,
             "has_treenuts": null,
             "has_wheat": true,
             "id": 100,

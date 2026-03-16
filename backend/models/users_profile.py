@@ -23,6 +23,7 @@ class UsersProfile(db.Model):
     has_peanut_allergy = db.Column(db.Boolean, default=False)
     has_sesame_allergy = db.Column(db.Boolean, default=False)
     has_soy_allergy = db.Column(db.Boolean, default=False)
+    has_sulfite_allergy = db.Column(db.Boolean, default=False)
     has_treenut_allergy = db.Column(db.Boolean, default=False)
     has_wheat_allergy = db.Column(db.Boolean, default=False)
     has_gluten_allergy = db.Column(db.Boolean, default=False)
@@ -48,6 +49,7 @@ class UsersProfile(db.Model):
         has_peanut_allergy=False,
         has_sesame_allergy=False,
         has_soy_allergy=False,
+        has_sulfite_allergy=False,
         has_treenut_allergy=False,
         has_wheat_allergy=False,
         has_gluten_allergy=False,
@@ -68,6 +70,7 @@ class UsersProfile(db.Model):
             has_peanut_allergy=has_peanut_allergy,
             has_sesame_allergy=has_sesame_allergy,
             has_soy_allergy=has_soy_allergy,
+            has_sulfite_allergy=has_sulfite_allergy,
             has_treenut_allergy=has_treenut_allergy,
             has_wheat_allergy=has_wheat_allergy,
             has_gluten_allergy=has_gluten_allergy,
@@ -102,6 +105,7 @@ class UsersProfile(db.Model):
             "has_peanut_allergy": self.has_peanut_allergy,
             "has_sesame_allergy": self.has_sesame_allergy,
             "has_soy_allergy": self.has_soy_allergy,
+            "has_sulfite_allergy": self.has_sulfite_allergy,
             "has_treenut_allergy": self.has_treenut_allergy,
             "has_wheat_allergy": self.has_wheat_allergy,
             "has_gluten_allergy": self.has_gluten_allergy,

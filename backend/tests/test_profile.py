@@ -18,7 +18,7 @@ def test_retreive_default_user_profile(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 16
+    assert len(data) == 17
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is False
@@ -30,6 +30,7 @@ def test_retreive_default_user_profile(client, seeded_users):
     assert data["has_peanut_allergy"] is False
     assert data["has_sesame_allergy"] is False
     assert data["has_soy_allergy"] is False
+    assert data["has_sulfite_allergy"] is False
     assert data["has_treenut_allergy"] is False
     assert data["has_wheat_allergy"] is False
     assert data["has_gluten_allergy"] is False
@@ -129,7 +130,7 @@ def test_edit_partial_user_profile(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 16
+    assert len(data) == 17
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is True
@@ -141,6 +142,7 @@ def test_edit_partial_user_profile(client, seeded_users):
     assert data["has_peanut_allergy"] is False
     assert data["has_sesame_allergy"] is False
     assert data["has_soy_allergy"] is False
+    assert data["has_sulfite_allergy"] is False
     assert data["has_treenut_allergy"] is True
     assert data["has_wheat_allergy"] is False
     assert data["has_gluten_allergy"] is False
@@ -163,6 +165,7 @@ def test_edit_whole_user_profile(client, seeded_users):
             "has_peanut_allergy": True,
             "has_sesame_allergy": True,
             "has_soy_allergy": True,
+            "has_sulfite_allergy": True,
             "has_treenut_allergy": True,
             "has_wheat_allergy": True,
             "is_vegan": True,
@@ -183,7 +186,7 @@ def test_edit_whole_user_profile(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 16
+    assert len(data) == 17
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is True
@@ -195,6 +198,7 @@ def test_edit_whole_user_profile(client, seeded_users):
     assert data["has_peanut_allergy"] is True
     assert data["has_sesame_allergy"] is True
     assert data["has_soy_allergy"] is True
+    assert data["has_sulfite_allergy"] is True
     assert data["has_treenut_allergy"] is True
     assert data["has_wheat_allergy"] is True
     assert data["has_gluten_allergy"] is True
@@ -220,7 +224,7 @@ def test_edit_user_profile_invalid_type(client, seeded_users):
     data = response.get_json()
 
     assert response.status_code == 200
-    assert len(data) == 16
+    assert len(data) == 17
 
     assert data["username"] == "Alice"
     assert data["has_configured_settings"] is False
@@ -232,6 +236,7 @@ def test_edit_user_profile_invalid_type(client, seeded_users):
     assert data["has_peanut_allergy"] is False
     assert data["has_sesame_allergy"] is False
     assert data["has_soy_allergy"] is False
+    assert data["has_sulfite_allergy"] is False
     assert data["has_treenut_allergy"] is False
     assert data["has_wheat_allergy"] is False
     assert data["has_gluten_allergy"] is False

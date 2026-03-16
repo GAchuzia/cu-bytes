@@ -75,6 +75,7 @@ def edit_profile_json(data):
         "has_peanut_allergy",
         "has_sesame_allergy",
         "has_soy_allergy",
+        "has_sulfite_allergy",
         "has_treenut_allergy",
         "has_wheat_allergy",
         "has_gluten_allergy",
