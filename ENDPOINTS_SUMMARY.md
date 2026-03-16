@@ -354,6 +354,7 @@ The following endpoint should be used when food_name is determined through machi
         "has_peanut_allergy: "boolean",             # optional
         "has_sesame_allergy: "boolean",             # optional
         "has_soy_allergy: "boolean",                # optional
+        "has_sulfite_allergy": "boolean",           # optional
         "has_treenut_allergy: "boolean",            # optional
         "has_wheat_allergy: "boolean",              # optional
         "has_gluten_allergy: "boolean",             # optional
