@@ -82,7 +82,7 @@ def test_get_nonexistant_food_item(client, seeded_food_data):
 # ------------------------------------
 def test_get_by_name_invalid(client, seeded_food_data):
     # Try missing food_name in JSON
-    response = client.get("/browse/food-item-by-name", json={"username": "Alice"})
+    response = client.get("/browse/food-item-by-name?name")
     data = response.get_json()
 
     assert response.status_code == 400
@@ -91,7 +91,7 @@ def test_get_by_name_invalid(client, seeded_food_data):
 
 def test_get_by_name_invalid_category(client, seeded_food_data):
     # Try non existent category
-    response = client.get("/browse/food-item-by-name", json={"food_name": "Alice"})
+    response = client.get("/browse/food-item-by-name?name=Alice")
     data = response.get_json()
 
     assert response.status_code == 200
@@ -100,7 +100,7 @@ def test_get_by_name_invalid_category(client, seeded_food_data):
 
 def test_get_by_name_valid_category(client, seeded_food_data):
     # Try valid category
-    response = client.get("/browse/food-item-by-name", json={"food_name": "Loaf"})
+    response = client.get("/browse/food-item-by-name?name=Loaf")
     data = response.get_json()
 
     assert response.status_code == 200
@@ -110,3 +110,15 @@ def test_get_by_name_valid_category(client, seeded_food_data):
     assert loaf["dining_location"] == "Tim Hortons"
     assert loaf["id"] == 3
     assert loaf["name"] == "Banana Bread"
+
+    # Try valid category containing a space
+    response = client.get("/browse/food-item-by-name?name=Green%20Salad")
+    data = response.get_json()
+
+    assert response.status_code == 200
+    assert len(data["food_items"]) == 1
+
+    loaf = data["food_items"][0]
+    assert loaf["dining_location"] == "Tim Hortons"
+    assert loaf["id"] == 1
+    assert loaf["name"] == "Caesar Salad"

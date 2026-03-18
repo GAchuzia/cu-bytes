@@ -162,10 +162,11 @@ Summary of endpoints.
     If the food name does not match a generic category the list of food ids
     will be empty.
 
+    Query Parameters:
+    - name (mandatory): Food Name
+
     Request Body:
-    {
-        "food_name": "Bagel"
-    }
+    None
 
     Responses:
     200 OK - Successfully retrieved the specified food item
