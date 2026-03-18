@@ -60,11 +60,9 @@ export default function ScanScreen() {
     const [isBackPressed, setIsBackPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
 
-    const [isBrowseRelatedFoodItems, setIsBrowseRelatedFoodItems] = useState(false);
-
-    const [isUploadPhotoPressed, setIsUploadPhotoPressed] = useState(false);
-    const [isScanPressed, setIsScanPressed] = useState(false);
-
+    const [isBrowseSimilarPressed, setIsBrowseSimilarPressed] = useState(false);
+    const [isScanOtherPressed, setIsScanOtherPressed] = useState(false);
+ 
     /*
         Variables and setters used to store a copy of the logged-in user's username and profile settings
         (Frontend copy updated based on the backend data)
@@ -503,7 +501,7 @@ export default function ScanScreen() {
                 overScrollMode="always">
 
                 <Text id="scanFoodItemsInfoText" style={styles.infoText}>
-                    Take a photo or upload a photo of a food item to identify
+                    Take a photo or upload an image of a food item to identify
                 </Text>
 
                 {/* Display the uploaded photo of a food item, henceforth known as the selected food item */}
@@ -515,6 +513,7 @@ export default function ScanScreen() {
                 )}
 
                 {/* Display placeholder text if a photo of a food item has not been uploaded */}
+                {/* No selected image makes prediction and lowConfidenceMessage variable values irrelevant */}
                 {!selectedImage && (
                     <Text id="foodItemPlaceholderText" style={styles.placeholderText}>
                         Uploaded photos will be displayed here
@@ -522,7 +521,9 @@ export default function ScanScreen() {
                 )}
 
                 {/* Display message when confidence was too low (e.g. unclear or non-food image) */}
-                {lowConfidenceMessage && (
+                {/* Only display when a photo or image has been selected and there is a low confidence message to display */}
+                {/* If there's a low confidence message, then the prediction variable value is irrelevant */}
+                {selectedImage && lowConfidenceMessage && (
                     <View id="lowConfidenceBanner" style={styles.lowConfidenceBanner}>
                         <Text style={styles.lowConfidenceTitle}>No food detected</Text>
                         <Text style={styles.lowConfidenceMessage}>
@@ -532,7 +533,9 @@ export default function ScanScreen() {
                 )}
 
                 {/* Display information about the selected food item */}
-                {prediction && (
+                {/* Only display when a photo or image has been selected and there is a prediction */}
+                {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
+                {selectedImage && prediction && (
                     <View id="foodItemOuterView" style={styles.selectedFoodItemContainer}>
 
                         <FlatList id="foodItemFlatList"
@@ -550,7 +553,9 @@ export default function ScanScreen() {
                 )}
 
                 {/* Display the relevant warnings for the selected food item based on the logged-in user's settings */}
-                {prediction && (
+                {/* Only display when a photo or image has been selected and there is a prediction */}
+                {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
+                {selectedImage && prediction && (
                     <View id="warningOuterView" style={styles.selectedFoodItemContainer}>
 
                         <FlatList id="warningFlatList"
@@ -568,18 +573,104 @@ export default function ScanScreen() {
                     </View>
                 )}
 
-                {/* Display a button that enables the generic category of the food item to be used to retrieve related food items from the backend database */}
-                {prediction && (
-                    <View id="browseFoodItemByNameView" style={styles.selectedFoodItemContainer}>
+                {/* Display buttons that enable the user to take a photo, or upload an image of a food item to identify */}
+                {/* Only display when no photo or image has been selected */}
+                {/* No selected image makes prediction and lowConfidenceMessage variable values irrelevant */}
+                {!selectedImage && (
+                    <View id="takePhotoOrUploadPhotoView" style={styles.container}>
 
-                        <TouchableOpacity id="browseFoodItemByNameButton" style={[styles.bodyButtonDefault, {backgroundColor: isBrowseRelatedFoodItems ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsBrowseRelatedFoodItems(true)}
-                            onPressOut={() => setIsBrowseRelatedFoodItems(false)}
+                        <TouchableOpacity id="takePhotoButton" style={[styles.bodyButtonDefault, loading && styles.buttonDisabled]}
+                            onPress={takePhoto}
+                            disabled={loading}>
+
+                            <Text id="takePhotoButtonText" style={styles.bodyButtonTextDefault}>
+                                Take Photo
+                            </Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity id="uploadPhotoButton" style={[styles.bodyButtonDefault, loading && styles.buttonDisabled]}
+                            onPress={pickImage}
+                            disabled={loading}>
+
+                            <Text id="uploadPhotoButtonText" style={styles.bodyButtonTextDefault}>
+                                Upload Photo
+                            </Text>
+                        </TouchableOpacity>
+
+                    </View>
+                )}
+
+                {/* Display buttons that enable the ML component to scan the photo or image, or remove the uploaded photo or image */}
+                {/* Only display when a photo or image has been selected and there is no prediction */}
+                {/* The image has not been scanned so the lowConfidenceMessage variable value is irrelevant */}
+                {selectedImage && prediction === null && (
+                    <View id="scanFoodOrDeleteFoodView" style={styles.container}>
+
+                        <TouchableOpacity id="scanFoodButton"
+                            style={[styles.bodyButtonScanFood,
+                                loading && styles.buttonDisabled,
+                                !selectedImage && styles.buttonDisabled]}
+                            onPress={scanFood}
+                            disabled={loading || !selectedImage}>
+
+                            {loading ? (<ActivityIndicator color="white"/>) :
+                                
+                                (<Text id="scanFoodButtonText" style={styles.bodyButtonTextDefault}>
+                                    Scan Food
+                                </Text>)
+                            }
+                        </TouchableOpacity>
+
+                        <TouchableOpacity id="deleteFoodButton"
+                            style={[styles.bodyButtonDeleteFood,
+                                loading && styles.buttonDisabled,
+                                !selectedImage && styles.buttonDisabled]}
                             onPress={() => {
-                                getFoodItemByName("Chicken Wings");}}>
+                                setSelectedImage(null);
+                                setPrediction(null);
+                            }}
+                            disabled={loading || !selectedImage}>
 
-                            <Text id="browseFoodItemByNameButtonText" style={styles.bodyButtonTextDefault} numberOfLines={1}>
-                                Browse food items related to {prediction.food_name}
+                            {loading ? (<ActivityIndicator color="white"/>) :
+
+                                (<Text id="deleteFoodButtonText" style={styles.bodyButtonTextAlt}>
+                                    Delete Food
+                                </Text>)
+                            }
+                        </TouchableOpacity>
+
+                    </View>
+                )}
+
+                {/* Display buttons that enable the generic category of the food item to be used to retrieve related food items from the backend database,
+                    or clear the photo or image and prediction results and enable the user to submit a new photo or image */}
+                {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
+                {selectedImage && prediction && (
+                    <View id="browseSimilarOrScanOtherView" style={styles.container}>
+
+                        <TouchableOpacity id="browseSimilarFoodItemsButton" style={[styles.bodyButtonDefault, {backgroundColor: isBrowseSimilarPressed ? '#666666' : '#131312'}]}
+                            onPressIn={() => setIsBrowseSimilarPressed(true)}
+                            onPressOut={() => setIsBrowseSimilarPressed(false)}
+                            onPress={() => {
+                                getFoodItemByName(prediction.food_name);
+                            }}>
+
+                            <Text id="browseSimilarFoodItemsButtonText" style={styles.bodyButtonTextDefault} numberOfLines={1}>
+                                Browse Similar
+                            </Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity id="scanOtherFoodItemButton" style={[styles.bodyButtonDefault, {backgroundColor: isScanOtherPressed ? '#666666' : '#131312'}]}
+                            onPressIn={() => setIsScanOtherPressed(true)}
+                            onPressOut={() => setIsScanOtherPressed(false)}
+                            onPress={() => {
+                                setSelectedImage(null);
+                                setPrediction(null);
+                                setLowConfidenceMessage(null);
+                            }}>
+
+                            <Text id="scanOtherFoodItemButtonText" style={styles.bodyButtonTextDefault} numberOfLines={1}>
+                                Scan Other
                             </Text>
                         </TouchableOpacity>
 
@@ -620,65 +711,6 @@ export default function ScanScreen() {
                         </View>
 
                     </Modal>
-                )}
-
-                {/* Display a button that enables the user to take a photo of the food item to identify */}
-                <TouchableOpacity id="takePhotoButton" style={[styles.bodyButtonDefault, loading && styles.buttonDisabled]}
-                    onPress={takePhoto}
-                    disabled={loading}>
-
-                    <Text id="takePhotoButtonText" style={styles.bodyButtonTextDefault}>
-                        Take Photo
-                    </Text>
-                </TouchableOpacity>
-
-                {/* Display a button that enables the user to upload a photo or an image of the food item to identify */}
-                <TouchableOpacity id="uploadPhotoButton" style={[styles.bodyButtonDefault, loading && styles.buttonDisabled]}
-                    onPress={pickImage}
-                    disabled={loading}>
-
-                    <Text id="uploadPhotoButtonText" style={styles.bodyButtonTextDefault}>
-                        {selectedImage ?  'Upload Different Photo' : 'Upload Photo'}
-                    </Text>
-                </TouchableOpacity>
-
-                {/* Display a button that prompts the AI model to scan the photo or image to identify the food item */}
-                {selectedImage && (
-                    <TouchableOpacity id="scanFoodButton"
-                        style={[styles.bodyButtonScanFood,
-                            loading && styles.buttonDisabled,
-                            !selectedImage && styles.buttonDisabled]}
-                        onPress={scanFood}
-                        disabled={loading || !selectedImage}>
-
-                        {loading ? (<ActivityIndicator color="white"/>) :
-                            
-                            (<Text id="scanFoodButtonText" style={styles.bodyButtonTextDefault}>
-                                Scan Food
-                            </Text>)
-                        }
-                    </TouchableOpacity>
-                )}
-
-                {/* Display a button to remove the uploaded photo or image */}
-                {selectedImage && (
-                    <TouchableOpacity id="deleteFoodButton"
-                        style={[styles.bodyButtonDeleteFood,
-                            loading && styles.buttonDisabled,
-                            !selectedImage && styles.buttonDisabled]}
-                        onPress={() => {
-                            setSelectedImage(null);
-                            setPrediction(null);
-                        }}
-                        disabled={loading || !selectedImage}>
-
-                        {loading ? (<ActivityIndicator color="white"/>) :
-
-                            (<Text id="deleteFoodButtonText" style={styles.bodyButtonTextAlt}>
-                                Delete Food
-                            </Text>)
-                        }
-                    </TouchableOpacity>
                 )}
 
             </ScrollView>
