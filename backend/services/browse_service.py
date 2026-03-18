@@ -64,11 +64,9 @@ def get_food_item_by_id_json(food_id):
         return {"error": "Failed to retrieve food item information"}, 500
 
 
-def get_food_item_by_name_json(data):
-    food_name = data.get("food_name")
-
+def get_food_item_by_name_json(food_name):
     # Validate input
-    if not isinstance(food_name, str) or len(food_name) == 0:
+    if food_name is None or len(food_name) == 0:
         print("BrowsingService: food_name is required and must be a non-empty string")
         return (
             jsonify(

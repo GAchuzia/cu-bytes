@@ -103,10 +103,11 @@ def get_food_item_by_name():
     If the food name does not match a generic category the list of food ids
     will be empty.
 
+    Query Parameters:
+    - name (mandatory): Food Name
+
     Request Body:
-    {
-        "food_name": "Bagel"
-    }
+    None
 
     Responses:
     200 OK - Successfully retrieved the specified food item
@@ -127,5 +128,6 @@ def get_food_item_by_name():
     400 Bad Request - Missing food_name parameter
     500 Internal Server Error - Database retrieval failed or unexpected error occurred
     """
-    data = request.json
-    return get_food_item_by_name_json(data)
+    food_name = request.args.get("name", default=None)
+
+    return get_food_item_by_name_json(food_name)
