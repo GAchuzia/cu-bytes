@@ -175,7 +175,7 @@ def predict_food(image_file):
             "success": True,
             "food_name": food_name,
             "confidence": confidence_pct,
-            "calories": food_category.calories,
+            "calories": str(food_category.calories) + "*",
             "fat_g": food_category.fat_g,
             "carbs_g": food_category.carbs_g,
             "proteins_g": food_category.proteins_g,
