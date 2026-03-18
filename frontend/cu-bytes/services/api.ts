@@ -1,38 +1,48 @@
 import axios from 'axios';
 import { Platform } from 'react-native';
 
-// Simple configuration - change this IP when needed
-const API_CONFIG = {
-  // Android emulator: use 10.0.2.2 to reach host. Physical device: use your PC's LAN IP (e.g. 10.0.0.44).
-  LOCAL_IP: typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_API_IP
-    ? process.env.EXPO_PUBLIC_API_IP
-    : 'YOUR_IP_HERE',
-  PORT: 5000
-};
+// Whether or not to use the Azure backend (default is False)
+// You can configure this by setting EXPO_PUBLIC_USE_PROD_API in frontend/cu-bytes/.env
+const USE_PROD_API =
+  typeof process !== "undefined" &&
+  process.env?.EXPO_PUBLIC_USE_PROD_API === "true";
 
-// Determine the correct API URL based on platform
+const PROD_URL = "https://cu-bytes-e2cnaff9e2cgg5hk.eastus2-01.azurewebsites.net";
+
+// Set to the IP address of the backend, android emulator as fallback
+const LOCAL_IP = typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_API_IP
+    ? process.env.EXPO_PUBLIC_API_IP
+    : '10.0.2.2';
+
+const LOCAL_PORT = "5000";
+
 const getAPIBaseURL = () => {
+  if (USE_PROD_API) {
+    console.log("Using AZURE production backend");
+    return PROD_URL;
+  }
+
   if (__DEV__) {
-    if (Platform.OS === 'web') {
-      return `http://localhost:${API_CONFIG.PORT}`;
+    if (Platform.OS === "web") {
+      console.log("Using localhost backend (web)");
+      return `http://localhost:${LOCAL_PORT}`;
     }
-    if (Platform.OS === 'android') {
-      // Emulator: 10.0.2.2 is the host. Override with EXPO_PUBLIC_API_IP for physical device.
-      const host = typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_API_IP
-        ? process.env.EXPO_PUBLIC_API_IP
-        : '10.0.2.2';
-      return `http://${host}:${API_CONFIG.PORT}`;
+    if (Platform.OS === "android") {
+      console.log("Using Android backend");
+      return `http://${LOCAL_IP}:${LOCAL_PORT}`;
     }
     // iOS (simulator uses localhost; device uses LOCAL_IP)
-    return `http://${API_CONFIG.LOCAL_IP}:${API_CONFIG.PORT}`;
+    console.log("Using iOS backend");
+    return `http://${LOCAL_IP}:${LOCAL_PORT}`;
   }
-  return 'https://your-production-url.com';
+  console.log("Fallback to production backend");
+  return PROD_URL;
 };
 
 export const API_BASE_URL = getAPIBaseURL();
 console.log('Platform:', Platform.OS);
 console.log('API Base URL:', API_BASE_URL);
-console.log('Config LOCAL_IP:', API_CONFIG.LOCAL_IP);
+console.log('Config LOCAL_IP:', LOCAL_IP);
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -77,7 +87,7 @@ export const apiService = {
   async predictFood(imageUri: string) {
     // Convert image URI to FormData for upload
     const formData = new FormData();
-    
+
     // For web, we need to fetch the image and convert to blob
     if (Platform.OS === 'web') {
       const response = await fetch(imageUri);
@@ -89,7 +99,7 @@ export const apiService = {
       const filename = imageUri.split('/').pop() || 'image.jpg';
       const match = /\.(\w+)$/.exec(filename);
       const type = match ? `image/${match[1]}` : 'image/jpeg';
-      
+
       formData.append('image', {
         uri: imageUri,
         name: filename,

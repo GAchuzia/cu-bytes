@@ -121,6 +121,7 @@ Create `.env` file in `frontend/cu-bytes/` directory:
 
 ```env
 EXPO_PUBLIC_API_IP=YOUR_COMPUTER_IP_ADDRESS
+EXPO_PUBLIC_USE_PROD_API=true/false
 ```
 
 **Find your IP address:**
