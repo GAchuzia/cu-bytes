@@ -157,7 +157,6 @@ export const styles = StyleSheet.create({
     shadowRadius: 10,
     width: w(100),
   },
-
   
   numberOfItemsOrUsersText: {
     alignItems: 'center',
@@ -205,7 +204,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: font(175),
+    fontSize: font(150),
     fontWeight: 'bold',
     textAlign: 'center',
   },

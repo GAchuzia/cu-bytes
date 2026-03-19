@@ -521,7 +521,7 @@ export default function StatisticsScreen() {
                         disabled={usernameGlobal === '' ? true : false}>
 
                         <Text id="dailyStatsButtonText" style={styles.bodyButtonTextDefault}>
-                            Daily Stats
+                            Daily Statistics
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -539,7 +539,7 @@ export default function StatisticsScreen() {
                         disabled={usernameGlobal === '' ? true : false}>
 
                         <Text id="aggregateStatsButtonText" style={styles.bodyButtonTextDefault}>
-                            Aggregate Stats
+                            Aggregate Statistics
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -557,7 +557,7 @@ export default function StatisticsScreen() {
                         disabled={usernameGlobal === '' ? true : false}>
 
                         <Text id="globalStatsButtonText" style={styles.bodyButtonTextDefault}>
-                            Global Stats
+                            Global Statistics
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -575,7 +575,7 @@ export default function StatisticsScreen() {
                         disabled={usernameGlobal === '' ? true : false}>
 
                         <Text id="comparativeStatsButtonText" style={styles.bodyButtonTextDefault}>
-                            Comparative Stats
+                            Comparative Statistics
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -644,7 +644,7 @@ export default function StatisticsScreen() {
                             }}>
 
                             <Text id="viewOtherStatsButtonText" style={styles.bodyButtonTextDefault}>
-                                View Other Stats
+                                View Other Statistics
                             </Text>
                         </TouchableOpacity>
 
@@ -656,7 +656,7 @@ export default function StatisticsScreen() {
                     <View id="dailyStatisticsOuterView2" style={styles.fetchedStatisticsContainer}>
 
                         <Text id="dailyStatisticsInfoText" style={styles.infoText}>
-                            Daily statistics for {usernameGlobal} over the last {numberOfDays} days
+                            Here is a day-by-day nutrition and calorie breakdown for {usernameGlobal} across the last {numberOfDays} days
                         </Text>
 
                         <View id="dailyStatisticsOuterView1" style={styles.container}>
@@ -691,7 +691,7 @@ export default function StatisticsScreen() {
                     <View id="aggregateStatisticsOuterView" style={styles.fetchedStatisticsContainer}>
 
                         <Text id="aggregateStatisticsInfoText" style={styles.infoText}>
-                            Aggregate statistics for {usernameGlobal} over the last {numberOfDays} days
+                            Here is an aggregation of nutrition statistics for {usernameGlobal} across the last {numberOfDays} days
                         </Text>
 
                         <FlatList id="aggregateStatisticsFlatList"
@@ -713,7 +713,7 @@ export default function StatisticsScreen() {
                     <View id="globalStatisticsOuterView" style={styles.fetchedStatisticsContainer}>
 
                         <Text id="globalStatisticsInfoText" style={styles.infoText}>
-                            Global statistics for all users (who agreed to share their data) over the last {numberOfDays} days
+                            Here is a set of trending food items and trending dining locations across the last {numberOfDays} days
                         </Text>
 
                         <FlatList id="globalStatisticsFlatList"
@@ -735,7 +735,12 @@ export default function StatisticsScreen() {
                     <View id="comparativeStatisticsOuterView" style={styles.fetchedStatisticsContainer}>
 
                         <Text id="comparativeStatisticsInfoText" style={styles.infoText}>
-                            Comparative statistics for all users (who agreed to share their data) over the last {numberOfDays} days
+
+                            Here is a set of food group and macronutrient percentiles over the last {numberOfDays} days
+                            {'\n'}
+                            (Calculated on being closest to the recommended amounts)
+                            {'\n'}
+                            (Only users who have consented to share their data will be compared against)
                         </Text>
 
                         <FlatList id="comparativeStatisticsFlatList"
@@ -763,7 +768,7 @@ export default function StatisticsScreen() {
                         }}>
 
                         <Text id="viewOtherStatsAgainButtonText" style={styles.bodyButtonTextDefault}>
-                            View Other Stats
+                            View Other Statistics
                         </Text>
                     </TouchableOpacity>
                 )}

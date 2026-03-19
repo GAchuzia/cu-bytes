@@ -13,6 +13,12 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
+  foodItemContainer: {
+    alignItems: 'center',
+    backgroundColor: '#C5151A',
+    width: w(100),
+  },
+
   selectedFoodItemContainer: {
     alignItems: 'center',
     backgroundColor: '#C5151A',

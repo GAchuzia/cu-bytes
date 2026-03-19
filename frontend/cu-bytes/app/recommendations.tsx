@@ -526,7 +526,9 @@ export default function RecommendationsScreen() {
                             disabled={usernameGlobal === '' ? true: false}>
 
                             <Text id="trendingRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                Trending Recs
+                                Trending
+                                {'\n'}
+                                Recommendations
                             </Text>
                     </TouchableOpacity>
                 )}
@@ -544,7 +546,9 @@ export default function RecommendationsScreen() {
                             disabled={usernameGlobal === '' ? true: false}>
 
                             <Text id="randomRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                Random Recs
+                                Random
+                                {'\n'}
+                                Recommendations
                             </Text>
                     </TouchableOpacity>
                 )}
@@ -562,7 +566,9 @@ export default function RecommendationsScreen() {
                             disabled={usernameGlobal === '' ? true: false}>
 
                             <Text id="idealRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                Ideal Recs
+                                Ideal
+                                {'\n'}
+                                Recommendations
                             </Text>
                     </TouchableOpacity>
                 )}
@@ -580,7 +586,9 @@ export default function RecommendationsScreen() {
                             disabled={usernameGlobal === '' ? true: false}>
 
                             <Text id="nutrientRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                Nutrient Recs
+                                Nutritional
+                                {'\n'}
+                                Recommendations
                             </Text>
                     </TouchableOpacity>
                 )}
@@ -598,7 +606,9 @@ export default function RecommendationsScreen() {
                             disabled={usernameGlobal === '' ? true: false}>
 
                             <Text id="similarRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                Similar Recs
+                                Similar
+                                {'\n'}
+                                Recommendations
                             </Text>
                     </TouchableOpacity>
                 )}
@@ -687,11 +697,11 @@ export default function RecommendationsScreen() {
 
                             <Text id="getRecsButtonText" style={styles.bodyButtonTextDefault}>
                                 { 
-                                    selectedRecommendationMode === 'Trending' ? 'Get Trending Recs' :
-                                    selectedRecommendationMode === 'Random' ? 'Get Random Recs' :
-                                    selectedRecommendationMode === 'Ideal' ? 'Get Ideal Recs' :
-                                    selectedRecommendationMode === 'Nutrient' ? 'Get Nutrient Recs' :
-                                    selectedRecommendationMode === 'Similar' ? 'Get Similar Recs' :
+                                    selectedRecommendationMode === 'Trending' ? 'Get Trending Recommendations' :
+                                    selectedRecommendationMode === 'Random' ? 'Get Random Recommendations' :
+                                    selectedRecommendationMode === 'Ideal' ? 'Get Ideal Recommendations' :
+                                    selectedRecommendationMode === 'Nutrient' ? 'Get Nutritional Recommendations' :
+                                    selectedRecommendationMode === 'Similar' ? 'Get Similar Recommendations' :
                                     ''
                                 }
                             </Text>
@@ -708,7 +718,7 @@ export default function RecommendationsScreen() {
                             }}>
 
                             <Text id="viewOtherRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                View Other Recs
+                                View Other Recommendations
                             </Text>
                         </TouchableOpacity>
 
@@ -720,8 +730,7 @@ export default function RecommendationsScreen() {
                     <View id="trendingRecommendationsOuterView2" style={styles.fetchedRecommendationsContainer}>
 
                         <Text id="trendingRecommendationsInfoText" style={styles.infoText}>
-                            Trending recommendations for {usernameGlobal},
-                            with a maximum of {numberOfFoodItems} recommended food items
+                            Here are the top {numberOfFoodItems} food items that are trending in the last 7 days
                         </Text>
 
                         <View id="trendingRecommendationsOuterView1" style={styles.container}>
@@ -752,8 +761,7 @@ export default function RecommendationsScreen() {
                     <View id="randomRecommendationsOuterView2" style={styles.fetchedRecommendationsContainer}>
 
                         <Text id="randomRecommendationsInfoText" style={styles.infoText}>
-                            Random recommendations for {usernameGlobal},
-                            with a maximum of {numberOfFoodItems} recommended food items
+                            Here are {numberOfFoodItems} food items that {usernameGlobal} has not yet tried
                         </Text>
 
                         <View id="randomRecommendationsOuterView1" style={styles.container}>
@@ -784,8 +792,9 @@ export default function RecommendationsScreen() {
                     <View id="idealRecommendationsOuterView2" style={styles.fetchedRecommendationsContainer}>
 
                         <Text id="idealRecommendationsInfoText" style={styles.infoText}>
-                            Ideal recommendations for {usernameGlobal},
-                            with a maximum of {numberOfFoodItems} recommended food items
+                            Here are {numberOfFoodItems} food items that bring {usernameGlobal} closest to the ideal dietary proportions
+                            {'\n'}
+                            (Based on the USDA/AMDR 2000-cal adult)
                         </Text>
 
                         <View id="idealRecommendationsOuterView1" style={styles.container}>
@@ -816,8 +825,9 @@ export default function RecommendationsScreen() {
                     <View id="nutrientRecommendationsOuterView2" style={styles.fetchedRecommendationsContainer}>
 
                         <Text id="nutrientRecommendationsInfoText" style={styles.infoText}>
-                            Nutrient recommendations for {usernameGlobal},
-                            with a maximum of {numberOfFoodItems} recommended food items
+                            Here are {numberOfFoodItems} food items that are high in the nutrient that {usernameGlobal} is the most deficient in
+                            {'\n'}
+                            (The deficient nutrient refers to the nutrient whose value is lowest based on the USDA/AMDR 2000-cal adult)
                         </Text>
 
                         <View id="nutrientRecommendationsOuterView1" style={styles.container}>
@@ -852,9 +862,7 @@ export default function RecommendationsScreen() {
                     <View id="similarRecommendationsOuterView2" style={styles.fetchedRecommendationsContainer}>
 
                         <Text id="similarRecommendationsInfoText" style={styles.infoText}>
-                            Similar recommendations for {usernameGlobal}, 
-                            with a maximum of {numberOfFoodItems} recommended food items,
-                            and a maximum of {numberOfUsers} users to make comparisons with
+                            Here are {numberOfFoodItems} food items that are popular with other users that share similar tastes to {usernameGlobal}
                         </Text>
 
                         <View id="similarRecommendationsOuterView1" style={styles.container}>
@@ -896,7 +904,7 @@ export default function RecommendationsScreen() {
                         }}>
 
                         <Text id="viewOtherRecsAgainButtonText" style={styles.bodyButtonTextDefault}>
-                            View Other Recs
+                            View Other Recommendations
                         </Text>
                     </TouchableOpacity>
                 )}
