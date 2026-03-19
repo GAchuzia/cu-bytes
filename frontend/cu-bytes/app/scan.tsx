@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, ScrollView, Text, TouchableOpacity, FlatList, Image, Modal, Alert, ActivityIndicator } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -53,7 +53,11 @@ interface LowConfidenceResponse {
 export default function ScanScreen() {
 
     const [loading, setLoading] = useState(false);
-    const [modalVisible, setModalVisible] = useState(false);
+    
+    const [savedFoodItemMessage, setSavedFoodItemMessage] = useState(false);
+    const [similarFoodItems, setSimilarFoodItems] = useState(false);
+    const [selectedSimilarFoodItem, setSelectedSimilarFoodItem] = useState(false);
+
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [prediction, setPrediction] = useState<PredictionResult | null>(null);
     const [lowConfidenceMessage, setLowConfidenceMessage] = useState<string | null>(null);
@@ -103,6 +107,69 @@ export default function ScanScreen() {
         } = useUser();
 
     /*
+        Variable and setter for storing and modifying the selected food item
+        Initialize the default key values for the food item
+        This ensures that the key values can be accessed without raising errors
+    */
+    const [foodItem, setFoodItem] = useState(
+        {
+            calories: -1,
+            carbs_g: 0.00,
+            comments: "",
+            cost: 0.00,
+            dining_location: "",
+            fat_g: 0.00,
+            fiber_g: 0.00,
+            food_category: "",
+            has_eggs: null,
+            has_fish_or_shellfish: null,
+            has_milk: null,
+            has_peanuts: null,
+            has_sesame: null,
+            has_soy: null,
+            has_treenuts: null,
+            has_wheat: null,
+            id: -1, // Initial value of 1 to prevent errors
+            is_dairy_free: null,
+            is_gluten_free: null,
+            is_halal: null,
+            is_vegan: null,
+            is_vegetarian: null,
+            last_updated: "",
+            name: "",
+            proteins_g: 0.00,
+            sugar_g: 0.00
+        } as {
+            calories: number,
+            carbs_g: number,
+            comments: string,
+            cost: number,
+            dining_location: string,
+            fat_g: number,
+            fiber_g: number,
+            food_category: string,
+            has_eggs: null,
+            has_fish_or_shellfish: null,
+            has_milk: null,
+            has_peanuts: null,
+            has_sesame: null,
+            has_soy: null,
+            has_treenuts: null,
+            has_wheat: null,
+            id: number,
+            is_dairy_free: null,
+            is_gluten_free: null,
+            is_halal: null,
+            is_vegan: null,
+            is_vegetarian: null,
+            last_updated: string,
+            name: string,
+            proteins_g: number,
+            sugar_g: number
+        }
+    );
+
+    /*
         Variable and setter for storing food items retrieved from the backend database that match a generic category
     */
     const [genericCategoryFoodItems, setGenericCategoryFoodItems] = useState(
@@ -112,12 +179,7 @@ export default function ScanScreen() {
                     dining_location: "Unknown",
                     id: -1,
                     name: "Unknown"
-                },
-                {
-                    dining_location: "Unknown",
-                    id: -1,
-                    name: "Unknown"
-                },
+                }
             ]
         } as {
             food_items: [
@@ -125,26 +187,21 @@ export default function ScanScreen() {
                     dining_location: string,
                     id: number,
                     name: string
-                },
-                {
-                    dining_location: string,
-                    id: number,
-                    name: string
-                },
+                }
             ]    
         }
     );
 
     /*
-        Calculate how to display the selected attribute of the selected food item
+        Calculate how to display the attribute of the food item
         Used for processing the calories, carbs, fat, fiber, proteins, and sugar food item attributes
 
         param(s):
-            attribute - number : The value of an attribute of the selected food item
+            attribute - number : The value of an attribute of the food item
 
-        returns : The updated attribute value of the selected food item
+        returns : The updated attribute value of the food item
     */
-    function processSelectedFoodItemAttribute(attribute: number) {
+    function processFoodItemAttribute(attribute: number) {
 
         if (attribute == -1) {
             return "Unknown";
@@ -152,6 +209,28 @@ export default function ScanScreen() {
         else {
             return attribute;
         }
+    }
+
+    /*
+        Convert the scanned food item from a JSON object to an array of JSON objects
+
+        param(s):
+            foodItem - any : The scanned food item, a JSON object
+
+        returns : The scanned food item, an array of JSON objects
+    */
+    const processScannedFoodItem = (foodItem: any) => {
+
+        return [
+            { field_name: "Name", field_value: foodItem["food_name"]},
+            { field_name: "Confidence", field_value: foodItem["confidence"] + " %" },
+            { field_name: "Calories", field_value: processFoodItemAttribute(foodItem["calories"]) },
+            { field_name: "Carbs", field_value: processFoodItemAttribute(foodItem["carbs_g"]) + " grams" },
+            { field_name: "Fat", field_value: processFoodItemAttribute(foodItem["fat_g"]) + " grams" },
+            { field_name: "Fiber", field_value: processFoodItemAttribute(foodItem["fiber_g"]) + " grams" },
+            { field_name: "Proteins", field_value: processFoodItemAttribute(foodItem["proteins_g"]) + " grams" },
+            { field_name: "Sugar", field_value: processFoodItemAttribute(foodItem["sugar_g"]) + " grams" }
+        ]
     }
 
     /*
@@ -165,14 +244,15 @@ export default function ScanScreen() {
     const processSelectedFoodItem = (foodItem: any) => {
 
         return [
-            { field_name: "Name", field_value: foodItem["food_name"]},
-            { field_name: "Confidence", field_value: foodItem["confidence"] + " %" },
-            { field_name: "Calories", field_value: processSelectedFoodItemAttribute(foodItem["calories"]) },
-            { field_name: "Carbs", field_value: processSelectedFoodItemAttribute(foodItem["carbs_g"]) + " grams" },
-            { field_name: "Fat", field_value: processSelectedFoodItemAttribute(foodItem["fat_g"]) + " grams" },
-            { field_name: "Fiber", field_value: processSelectedFoodItemAttribute(foodItem["fiber_g"]) + " grams" },
-            { field_name: "Proteins", field_value: processSelectedFoodItemAttribute(foodItem["proteins_g"]) + " grams" },
-            { field_name: "Sugar", field_value: processSelectedFoodItemAttribute(foodItem["sugar_g"]) + " grams" }
+            { field_name: "Name", field_value: foodItem["name"]},
+            { field_name: "Calories", field_value: processFoodItemAttribute(foodItem["calories"]) },
+            { field_name: "Location", field_value: foodItem["dining_location"] },
+            { field_name: "Cost", field_value: "$ " + processFoodItemAttribute(foodItem["cost"]) },
+            { field_name: "Carbs", field_value: processFoodItemAttribute(foodItem["carbs_g"]) + " grams" },
+            { field_name: "Fat", field_value: processFoodItemAttribute(foodItem["fat_g"]) + " grams" },
+            { field_name: "Fiber", field_value: processFoodItemAttribute(foodItem["fiber_g"]) + " grams" },
+            { field_name: "Proteins", field_value: processFoodItemAttribute(foodItem["proteins_g"]) + " grams" },
+            { field_name: "Sugar", field_value: processFoodItemAttribute(foodItem["sugar_g"]) + " grams" }
         ]
     }
 
@@ -297,7 +377,7 @@ export default function ScanScreen() {
             console.error('Error picking image:', err);
             Alert.alert('Error', 'Failed to pick image. Please try again');
         }
-    };
+    }
 
     /*
         Enable the user to take a photo with the camera on the device that the CU-Bytes application is running on
@@ -333,7 +413,7 @@ export default function ScanScreen() {
             console.error('Error taking photo:', err);
             Alert.alert('Error', 'Failed to take photo. Please try again');
         }
-    };
+    }
 
     /*
         Send the selected photo or image to the machine learning component to be analyzed
@@ -375,7 +455,7 @@ export default function ScanScreen() {
         } finally {
             setLoading(false);
         }
-    };
+    }
 
     /*
         Send a request to the backend endpoint to log a username and food item name in the database
@@ -410,12 +490,7 @@ export default function ScanScreen() {
     */
     const getFoodItemByName = async (name: string) => {
         try {
-            const res = await fetch(`${API_BASE_URL}/browse/food-item-by-name`, {
-                    method: "GET",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify( { food_name: name } )
-                }
-            );
+            const res = await fetch(`${API_BASE_URL}/browse/food-item-by-name?name=${name}`);
             const data = await res.json();
 
             // Store the retrieved food items in the array
@@ -424,6 +499,28 @@ export default function ScanScreen() {
         
         } catch (err) {
             console.error('Error retrieving food items by name:', err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    /*
+        Send a request to the backend endpoint to get a food item from the database by id
+
+        param(s):
+            id - number : The id of the selected food item
+    */
+    const getFoodItem = async (id: number) => {
+        try {
+            const res = await fetch(`${API_BASE_URL}/browse/food-item/${id}`);
+            const data = await res.json();
+
+            // Store the retrieved food item in the variable
+            setFoodItem(data);
+            console.log(foodItem);
+
+        } catch (err) {
+            console.error(err);
         } finally {
             setLoading(false);
         }
@@ -501,11 +598,16 @@ export default function ScanScreen() {
                 overScrollMode="always">
 
                 <Text id="scanFoodItemsInfoText" style={styles.infoText}>
-                    Take a photo or upload an image of a food item to identify
+                    {
+                        !similarFoodItems && !selectedSimilarFoodItem ? 'Take a photo or upload an image of a food item to identify' :
+                        similarFoodItems && !selectedSimilarFoodItem ? 'Here are the food items similar to ' + prediction?.food_name : 
+                        similarFoodItems && selectedSimilarFoodItem ? 'Here is a food item similar to ' + prediction?.food_name : 
+                        ''
+                    }
                 </Text>
 
                 {/* Display the uploaded photo of a food item, henceforth known as the selected food item */}
-                {selectedImage && (
+                {selectedImage && !similarFoodItems && !selectedSimilarFoodItem && (
                     <Image id="foodItemImage" style={styles.foodImage}
                         source={{uri: selectedImage}}
                         resizeMode="contain">    
@@ -514,7 +616,7 @@ export default function ScanScreen() {
 
                 {/* Display placeholder text if a photo of a food item has not been uploaded */}
                 {/* No selected image makes prediction and lowConfidenceMessage variable values irrelevant */}
-                {!selectedImage && (
+                {!selectedImage && !similarFoodItems && !selectedSimilarFoodItem && (
                     <Text id="foodItemPlaceholderText" style={styles.placeholderText}>
                         Uploaded photos will be displayed here
                     </Text>
@@ -523,7 +625,7 @@ export default function ScanScreen() {
                 {/* Display message when confidence was too low (e.g. unclear or non-food image) */}
                 {/* Only display when a photo or image has been selected and there is a low confidence message to display */}
                 {/* If there's a low confidence message, then the prediction variable value is irrelevant */}
-                {selectedImage && lowConfidenceMessage && (
+                {selectedImage && lowConfidenceMessage && !similarFoodItems && !selectedSimilarFoodItem && (
                     <View id="lowConfidenceBanner" style={styles.lowConfidenceBanner}>
                         <Text style={styles.lowConfidenceTitle}>No food detected</Text>
                         <Text style={styles.lowConfidenceMessage}>
@@ -535,11 +637,11 @@ export default function ScanScreen() {
                 {/* Display information about the selected food item */}
                 {/* Only display when a photo or image has been selected and there is a prediction */}
                 {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
-                {selectedImage && prediction && (
+                {selectedImage && prediction && !similarFoodItems && !selectedSimilarFoodItem && (
                     <View id="foodItemOuterView" style={styles.selectedFoodItemContainer}>
 
                         <FlatList id="foodItemFlatList"
-                            data={processSelectedFoodItem(prediction)}
+                            data={processScannedFoodItem(prediction)}
                             scrollEnabled={false}
                             renderItem={({ item }) => (
                                 <View id="foodItemInnerView" style={styles.row}>
@@ -555,7 +657,7 @@ export default function ScanScreen() {
                 {/* Display the relevant warnings for the selected food item based on the logged-in user's settings */}
                 {/* Only display when a photo or image has been selected and there is a prediction */}
                 {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
-                {selectedImage && prediction && (
+                {selectedImage && prediction && !similarFoodItems && !selectedSimilarFoodItem && (
                     <View id="warningOuterView" style={styles.selectedFoodItemContainer}>
 
                         <FlatList id="warningFlatList"
@@ -567,7 +669,6 @@ export default function ScanScreen() {
                                     <Text id="warningFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
                                 </View>
                             )}>
-
                         </FlatList>
 
                     </View>
@@ -576,7 +677,7 @@ export default function ScanScreen() {
                 {/* Display buttons that enable the user to take a photo, or upload an image of a food item to identify */}
                 {/* Only display when no photo or image has been selected */}
                 {/* No selected image makes prediction and lowConfidenceMessage variable values irrelevant */}
-                {!selectedImage && (
+                {!selectedImage && !similarFoodItems && !selectedSimilarFoodItem && (
                     <View id="takePhotoOrUploadPhotoView" style={styles.container}>
 
                         <TouchableOpacity id="takePhotoButton" style={[styles.bodyButtonDefault, loading && styles.buttonDisabled]}
@@ -645,7 +746,7 @@ export default function ScanScreen() {
                 {/* Display buttons that enable the generic category of the food item to be used to retrieve related food items from the backend database,
                     or clear the photo or image and prediction results and enable the user to submit a new photo or image */}
                 {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
-                {selectedImage && prediction && (
+                {selectedImage && prediction && !similarFoodItems && !selectedSimilarFoodItem && (
                     <View id="browseSimilarOrScanOtherView" style={styles.container}>
 
                         <TouchableOpacity id="browseSimilarFoodItemsButton" style={[styles.bodyButtonDefault, {backgroundColor: isBrowseSimilarPressed ? '#666666' : '#131312'}]}
@@ -653,6 +754,7 @@ export default function ScanScreen() {
                             onPressOut={() => setIsBrowseSimilarPressed(false)}
                             onPress={() => {
                                 getFoodItemByName(prediction.food_name);
+                                setSimilarFoodItems(true);
                             }}>
 
                             <Text id="browseSimilarFoodItemsButtonText" style={styles.bodyButtonTextDefault} numberOfLines={1}>
@@ -674,31 +776,85 @@ export default function ScanScreen() {
                             </Text>
                         </TouchableOpacity>
 
+                        <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
+                            onPress={() => {
+                                logFoodItemByName(prediction.food_name);
+                                setSavedFoodItemMessage(true);
+                                setTimeout(() => {setSavedFoodItemMessage(false);}, 2000);
+                                router.push('/home');}}
+                            disabled={loading}>
+
+                            <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
+                                Save Food Item
+                            </Text>
+                        </TouchableOpacity>
+
+                    </View>
+                )}
+
+                {/* Display food items that match the selected generic category */}
+                {similarFoodItems && !selectedSimilarFoodItem && (
+                    <View id="browseSimilarFoodItemsSuccessView" style={styles.foodItemContainer}>
+
+                        {genericCategoryFoodItems.food_items.map((foodItem) => (
+
+                            <Text id="browseSimilarFoodItemsSuccessText" style={styles.foodItemTextDefault}
+                                key={foodItem["id"]}
+                                onPress={() => {
+                                    getFoodItem(foodItem["id"]);
+                                    setSelectedSimilarFoodItem(true);
+                                }}>
+                                {foodItem["name"]} - {foodItem["dining_location"]}
+                            </Text>
+                        ))}
+
+                    </View>
+                )}
+
+                {/* Display information about the selected food item */}
+                {selectedSimilarFoodItem && (
+                    <View id="selectedSimilarFoodItemOuterView" style={styles.selectedFoodItemContainer}>
+
+                        <FlatList id="selectedSimilarFoodItemFlatList"
+                            data={processSelectedFoodItem(foodItem)}
+                            scrollEnabled={false}
+                            renderItem={({ item }) => (
+                                <View id="selectedSimilarFoodItemInnerView" style={styles.row}>
+                                    <Text id="selectedSimilarFoodItemNameText" style={styles.rowCell}>{item["field_name"]}</Text>
+                                    <Text id="selectedSimilarFoodItemValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                </View>
+                            )}>
+                        </FlatList>
+
                     </View>
                 )}
 
                 {/* Display a button that enables the selected food item to be saved to the backend database */}
-                {usernameGlobal != "" && prediction && (
-                    <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
-                        onPress={() => {
-                            logFoodItemByName(prediction.food_name);
-                            setModalVisible(true);
-                            setTimeout(() => {setModalVisible(false);}, 8000);
-                            router.push('/home');}}
-                        disabled={loading}>
+                {similarFoodItems && selectedSimilarFoodItem && (
+                    <View id="saveFoodItemView" style={styles.container}>
 
-                        <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
-                            Save Food Item
-                        </Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
+                            onPress={() => {
+                                logFoodItemByName(foodItem.name);
+                                setSavedFoodItemMessage(true);
+                                setTimeout(() => {setSavedFoodItemMessage(false);}, 2000);
+                                router.push('/home');}}
+                            disabled={loading}>
+
+                            <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
+                                Save Food Item
+                            </Text>
+                        </TouchableOpacity>
+
+                    </View>
                 )}
 
                 {/* Display a message when the selected food item is saved */}
-                {usernameGlobal != "" && modalVisible && (
+                {usernameGlobal != "" && savedFoodItemMessage && (
                     <Modal id="savedFoodItemModal"
                         animationType="fade"
                         transparent={true}
-                        visible={modalVisible}>
+                        visible={savedFoodItemMessage}>
 
                         <View id="savedFoodItemOuterView">
 
