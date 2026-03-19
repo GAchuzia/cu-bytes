@@ -172,7 +172,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     color: '#FFFFFF',
     fontFamily: 'arial',
-    fontSize: font(175),
+    fontSize: font(150),
     fontWeight: 'bold',
     textAlign: 'center',
   },
