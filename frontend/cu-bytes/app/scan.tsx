@@ -458,6 +458,30 @@ export default function ScanScreen() {
     }
 
     /*
+        Send a request to the backend endpoint to log a username and food item id in the database
+        This records which user purchased what food item
+
+        param(s):
+            id - number : The id of the food item to be logged
+    */
+    const logFoodItemById = async (id: number) => {
+        try {
+            const res = await fetch(`${API_BASE_URL}/logging/log-by-id`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify( { username: usernameGlobal, food_id: id } )
+                }
+            );
+            const data = await res.json();
+
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    /*
         Send a request to the backend endpoint to log a username and food item name in the database
         This records which user purchased what food item
 
@@ -870,7 +894,7 @@ export default function ScanScreen() {
 
                         <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
                             onPress={() => {
-                                logFoodItemByName(foodItem.name);
+                                logFoodItemById(foodItem.id);
                                 setSavedFoodItemMessage(true);
                                 setTimeout(() => {setSavedFoodItemMessage(false);}, 2000);
                                 router.push('/home');}}
