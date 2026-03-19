@@ -44,7 +44,7 @@ def get_food_item_by_id_json(food_id):
         # Supplement calories if unknown
         calories = result.get("calories")
         if calories is None or calories == -1:
-            result["calories"] = category.calories
+            result["calories"] = str(category.calories) + "*"
 
         # Add nutrition fields from category
         result.update(
