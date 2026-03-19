@@ -2,6 +2,7 @@
 from pathlib import Path
 import argparse
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -9,8 +10,12 @@ def main():
         default=r"C:\Chukwudubanyi\Code\cu-bytes\machine-learning\data\test_data\hey_chef_carleton",
         help="Folder containing images to rename",
     )
-    parser.add_argument("--start", type=int, default=1, help="Starting image number (X)")
-    parser.add_argument("--dry-run", action="store_true", help="Print changes without renaming")
+    parser.add_argument(
+        "--start", type=int, default=1, help="Starting image number (X)"
+    )
+    parser.add_argument(
+        "--dry-run", action="store_true", help="Print changes without renaming"
+    )
     args = parser.parse_args()
 
     folder = Path(args.folder)
@@ -38,6 +43,7 @@ def main():
         else:
             path.rename(target)
             print(f"Renamed: {path.name} -> {new_name}")
+
 
 if __name__ == "__main__":
     main()
