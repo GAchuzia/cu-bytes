@@ -9,7 +9,8 @@ except ModuleNotFoundError:
 FOOD101_CLASSES_FILE = Path("data/food-101/meta/classes.txt")
 UEC_CLASSES_DIR = Path("data/UECFOOD256")
 
-THRESHOLD = 0.92
+# controls name matching between food-101 and UECFOOD256
+THRESHOLD = 1
 
 food_categories = load_food_categories(Path("food_categories.json"))
 
@@ -34,70 +35,41 @@ covered_categories_101 = set(mapping_101.values())
 covered_categories_uec = set(mapping_uec.values())
 
 overlap_categories = covered_categories_101 & covered_categories_uec
-uec_only_categories = covered_categories_uec - covered_categories_101
+covered_by_any_dataset = covered_categories_101 | covered_categories_uec
 
-missing_from_food101 = sorted(set(food_categories) - covered_categories_101)
+base_categories_not_added = sorted(set(food_categories) - covered_by_any_dataset)
 
-print(f"Base categories (food_categories.json): {len(food_categories)}")
+
+def print_section(title: str):
+    bar = "=" * 80
+    print()
+    print(bar)
+    print(title)
+    print(bar)
+
+print_section("SUMMARY")
+print(f"Base categories: {len(food_categories)}")
 print(f"Food-101 covered categories: {len(covered_categories_101)}")
 print(f"UEC-256 covered categories: {len(covered_categories_uec)}")
-print(f"Overlap (covered by both): {len(overlap_categories)}")
-print(f"UEC-only (not covered by Food-101): {len(uec_only_categories)}")
-print()
+print(f"Overlap between Food-101 and UEC-256: {len(overlap_categories)}")
+print(f"Base categories not added by either: {len(base_categories_not_added)}")
 
-print(f"Missing from Food-101 (for reference): {len(missing_from_food101)}")
-for c in missing_from_food101:
+print_section(f"BASE CATEGORIES ({len(food_categories)})")
+for c in sorted(food_categories):
     print(c)
 
-print()
-print("Overlap categories:")
+print_section(f"FOOD-101 COVERED CATEGORIES ({len(covered_categories_101)})")
+for c in sorted(covered_categories_101):
+    print(c)
+
+print_section(f"UEC-256 COVERED CATEGORIES ({len(covered_categories_uec)})")
+for c in sorted(covered_categories_uec):
+    print(c)
+
+print_section(f"OVERLAP BETWEEN FOOD-101 AND UEC-256 ({len(overlap_categories)})")
 for c in sorted(overlap_categories):
     print(c)
 
-print()
-print("UEC-only categories:")
-for c in sorted(uec_only_categories):
-    print(c)
-
-# Which UEC class folders to use when you want "UEC-only" add-on data.
-# Rule: include UEC class folders whose mapped base category is in uec_only_categories.
-uec_classes_include = sorted(
-    [
-        cls
-        for cls in uec_classes
-        if cls in mapping_uec and mapping_uec[cls] in uec_only_categories
-    ]
-)
-
-uec_classes_exclude = sorted(
-    [
-        cls
-        for cls in uec_classes
-        if cls in mapping_uec and mapping_uec[cls] in covered_categories_101
-    ]
-)
-
-uec_classes_unmapped = sorted(
-    [cls for cls in uec_classes if cls not in mapping_uec]
-)
-
-print()
-print(
-    f"UEC class folders to INCLUDE (mapped to UEC-only categories): {len(uec_classes_include)}"
-)
-for c in uec_classes_include:
-    print(c)
-
-print()
-print(
-    f"UEC class folders to EXCLUDE (mapped to categories already covered by Food-101): {len(uec_classes_exclude)}"
-)
-for c in uec_classes_exclude:
-    print(c)
-
-print()
-print(
-    f"UEC class folders UNMAPPED (no base-category match at threshold={THRESHOLD}): {len(uec_classes_unmapped)}"
-)
-for c in uec_classes_unmapped:
+print_section(f"BASE CATEGORIES NOT ADDED BY EITHER ({len(base_categories_not_added)})")
+for c in sorted(base_categories_not_added):
     print(c)
