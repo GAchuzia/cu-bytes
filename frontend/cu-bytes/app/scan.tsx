@@ -829,9 +829,44 @@ export default function ScanScreen() {
                     </View>
                 )}
 
+                {/* Display the relevant warnings for the selected food item based on the logged-in user's settings */}
+                {selectedSimilarFoodItem && (
+                    <View id="warningOuterView" style={styles.selectedFoodItemContainer}>
+
+                        <FlatList id="warningFlatList"
+                            data={processSelectedFoodItemWarnings(foodItem)}
+                            scrollEnabled={false}
+                            renderItem={({ item }) => (
+                                <View id="warningInnerView" style={styles.row}>
+                                    <Text id="warningFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
+                                    <Text id="warningFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                </View>
+                            )}>
+                        </FlatList>
+
+                    </View>
+                )}
+
                 {/* Display a button that enables the selected food item to be saved to the backend database */}
                 {similarFoodItems && selectedSimilarFoodItem && (
-                    <View id="saveFoodItemView" style={styles.container}>
+                    <View id="scanOtherOrsaveFoodItemView" style={styles.container}>
+
+                        <TouchableOpacity id="scanOtherFoodItemButton" style={[styles.bodyButtonDefault, {backgroundColor: isScanOtherPressed ? '#666666' : '#131312'}]}
+                            onPressIn={() => setIsScanOtherPressed(true)}
+                            onPressOut={() => setIsScanOtherPressed(false)}
+                            onPress={() => {
+                                setSelectedImage(null);
+                                setPrediction(null);
+                                setLowConfidenceMessage(null);
+                                
+                                setSimilarFoodItems(false);
+                                setSelectedSimilarFoodItem(false);
+                            }}>
+
+                            <Text id="scanOtherFoodItemButtonText" style={styles.bodyButtonTextDefault} numberOfLines={1}>
+                                Scan Other
+                            </Text>
+                        </TouchableOpacity>
 
                         <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
                             onPress={() => {
