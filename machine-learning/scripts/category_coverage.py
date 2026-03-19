@@ -1,5 +1,10 @@
 from pathlib import Path
-from scripts.food_category_matcher import create_class_mapping, load_food_categories
+try:
+    # When running from the machine-learning folder with `python -m scripts.category_coverage`
+    from scripts.food_category_matcher import create_class_mapping, load_food_categories
+except ModuleNotFoundError:
+    # When running the file directly with `python scripts/category_coverage.py`
+    from food_category_matcher import create_class_mapping, load_food_categories
 
 FOOD101_CLASSES_FILE = Path("data/food-101/meta/classes.txt")
 UEC_CLASSES_DIR = Path("data/UECFOOD256")
