@@ -12,14 +12,16 @@ export default function HomeScreen() {
 
     const [loading, setLoading] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
+    
+    const [isSettingsPressed, setIsSettingsPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
+
     const [isScanFoodItemPressed, setIsScanFoodItemPressed] = useState(false);
     const [isBrowseFoodItemsPressed, setIsBrowseFoodItemsPressed] = useState(false);
     const [isBrowseDiningLocationsPressed, setIsBrowseDiningLocationsPressed] = useState(false);
     const [isViewSavedFoodItemsPressed, setIsViewSavedFoodItemsPressed] = useState(false);
     const [isStatisticsPressed, setIsStatisticsPressed] = useState(false);
     const [isRecommendationsPressed, setIsRecommendationsPressed] = useState(false)
-    const [isSettingsPressed, setIsSettingsPressed] = useState(false);
 
     /*
         Variables used to store a copy of the logged-in user's username and profile settings
@@ -107,6 +109,18 @@ export default function HomeScreen() {
             <StatusBar style="auto" hidden={true}/>
 
             <View id="homeStatusbar" style={styles.statusbar}>
+
+                {/* Route the user to the 'settings' page */}
+                <TouchableOpacity id="settingsButton"
+                    style={[styles.headerButtonDefault, {backgroundColor: isSettingsPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsSettingsPressed(true)}
+                    onPressOut={() => setIsSettingsPressed(false)}
+                    onPress={() => router.push("/settings")}>
+                    
+                    <Text id="settingsButtonText" style={styles.headerButtonTextDefault}>
+                        Settings
+                    </Text>
+                </TouchableOpacity>
 
                 <Text id="loggedInUser" style={styles.headerUsernameIcon}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
@@ -234,19 +248,6 @@ export default function HomeScreen() {
 
                     <Text id="recommendationsButtonText" style={[styles.bodyButtonTextAlt, {color: usernameGlobal == '' ? '#FFFFFF' : '#C5151A'}]}>
                         View Recs
-                    </Text>
-                </TouchableOpacity>
-
-                {/* Route the user to the 'settings' page */}
-                <TouchableOpacity id="settingsButton"
-                    style={[styles.bodyButtonAlt, {backgroundColor: usernameGlobal == '' ? '#FFFFFF' : '#FFFFFF'}]}
-                    onPressIn={() => setIsSettingsPressed(true)}
-                    onPressOut={() => setIsSettingsPressed(false)}
-                    onPress={() => router.push("/settings")}
-                    disabled={usernameGlobal == '' ? true : false}>
-                    
-                    <Text id="settingsButtonText" style={[styles.bodyButtonTextAlt, {color: usernameGlobal == '' ? '#FFFFFF' : '#C5151A'}]}>
-                        Settings
                     </Text>
                 </TouchableOpacity>
 
