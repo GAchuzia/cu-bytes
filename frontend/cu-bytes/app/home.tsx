@@ -194,7 +194,7 @@ export default function HomeScreen() {
                             </Text>
                         </TouchableOpacity>
 
-                        {/* Route the user to the 'browse food items' page */}
+                        {/* Button that allows the browse food items and browse dining locations buttons to be displayed */}
                         <TouchableOpacity id="browseButton"
                             style={[styles.bodyButtonDefault, {backgroundColor: isBrowsePressed || usernameGlobal === '' ? '#666666' : '#131312'}]}
                             onPressIn={() => setIsBrowseFoodItemsPressed(true)}
@@ -277,11 +277,11 @@ export default function HomeScreen() {
                             disabled={usernameGlobal === '' ? true : false}>
 
                             <Text id="browseDiningLocationsButtonText" style={styles.bodyButtonTextDefault}>
-                                Browse Dining
+                                Browse Dining Locations
                             </Text>
                         </TouchableOpacity>
 
-                        {/* Route the user to the 'browse dining locations' page */}
+                        {/* Display the buttons that were previously displayed */}
                         <TouchableOpacity id="browseDiningLocationsButton"
                             style={[styles.bodyButtonDefault, {backgroundColor: isBrowseDiningLocationsPressed || usernameGlobal === '' ? '#666666' : '#131312'}]}
                             onPressIn={() => setIsBrowseDiningLocationsPressed(true)}
