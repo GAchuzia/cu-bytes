@@ -35,7 +35,7 @@ export default function StatisticsScreen() {
     */
     const [fetchedStatistics, setFetchedStatistics] = useState(false);
     
-    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isDailyPressed, setIsDailyPressed] = useState(false);
     const [isAggregatePressed, setIsAggregatePressed] = useState(false);
@@ -456,14 +456,14 @@ export default function StatisticsScreen() {
             <View id="viewStatisticsStatusbar" style={styles.statusbar}>
 
                 {/* Route the user to the 'home' page or the 'splash' page */}
-                <TouchableOpacity id="backButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsBackPressed(true)}
-                    onPressOut={() => setIsBackPressed(false)}
+                <TouchableOpacity id="homeOrSplashButton"
+                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsHomeOrSplashPressed(true)}
+                    onPressOut={() => setIsHomeOrSplashPressed(false)}
                     onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
 
-                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        Back
+                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        Home
                     </Text>
                 </TouchableOpacity>
 

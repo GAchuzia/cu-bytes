@@ -61,7 +61,7 @@ export default function ScanScreen() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [prediction, setPrediction] = useState<PredictionResult | null>(null);
     const [lowConfidenceMessage, setLowConfidenceMessage] = useState<string | null>(null);
-    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
 
     const [isBrowseSimilarPressed, setIsBrowseSimilarPressed] = useState(false);
@@ -583,13 +583,13 @@ export default function ScanScreen() {
             <View id="scanFoodItemsStatusbar" style={styles.statusbar}>
 
                 {/* Route the user to the 'home' page or the 'splash' page */}
-                <TouchableOpacity id="backButton" style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsBackPressed(true)}
-                    onPressOut={() => setIsBackPressed(false)}
+                <TouchableOpacity id="backButton" style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsHomeOrSplashPressed(true)}
+                    onPressOut={() => setIsHomeOrSplashPressed(false)}
                     onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
 
                     <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        Back
+                        Home
                     </Text>
                 </TouchableOpacity>
 
