@@ -12,7 +12,6 @@ export default function LoginScreen() {
 
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
-    const [isBackPressed, setIsBackPressed] = useState(false);
     const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isLoginPressed, setIsLoginPressed] = useState(false);
@@ -36,17 +35,19 @@ export default function LoginScreen() {
         {
             usernameGlobal,
             setUsernameGlobal,
+            setHasConfiguredSettingsGlobal,
             setShowStatsGlobal,
+            setHasDairyIntoleranceGlobal,            
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
-            setHasDairyIntoleranceGlobal,
+            setHasGlutenAllergyGlobal,
             setHasMilkAllergyGlobal,
             setHasPeanutAllergyGlobal,
             setHasSesameAllergyGlobal,
+            setHasSulfitesAllergyGlobal,
             setHasSoyAllergyGlobal,
             setHasTreenutAllergyGlobal,
             setHasWheatAllergyGlobal,
-            setHasGlutenAllergyGlobal,
             setIsVeganGlobal,
             setIsVegetarianGlobal,
             setPrefersHalalGlobal
@@ -73,7 +74,8 @@ export default function LoginScreen() {
             const data = await res.json();
 
             // Update the copy of the logged-in user's username and profile settings using the retrieved data
-            setUsernameGlobal(username)
+            setUsernameGlobal(username);
+            setHasConfiguredSettingsGlobal(data.has_configured_settings)
             setShowStatsGlobal(data.show_stats);
             setHasEggAllergyGlobal(data.has_egg_allergy);
             setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
@@ -82,6 +84,7 @@ export default function LoginScreen() {
             setHasPeanutAllergyGlobal(data.has_peanut_allergy);
             setHasSesameAllergyGlobal(data.has_sesame_allergy);
             setHasSoyAllergyGlobal(data.has_soy_allergy);
+            setHasSulfitesAllergyGlobal(data.has_sulfites);
             setHasTreenutAllergyGlobal(data.has_treenut_allergy);
             setHasWheatAllergyGlobal(data.has_wheat_allergy);
             setHasGlutenAllergyGlobal(data.has_gluten_allergy);
@@ -135,22 +138,24 @@ export default function LoginScreen() {
     }
 
     /*
-        Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
+        Log out the logged-in user by setting their profile settings to false, and routing to the splash page
     */
     const logout = () => { 
         
         setUsernameGlobal('');
+        setHasConfiguredSettingsGlobal(false);
         setShowStatsGlobal(false);
+        setHasDairyIntoleranceGlobal(false);        
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
+        setHasGlutenAllergyGlobal(false);
         setHasMilkAllergyGlobal(false);
         setHasPeanutAllergyGlobal(false);
         setHasSesameAllergyGlobal(false);
         setHasSoyAllergyGlobal(false);
+        setHasSulfitesAllergyGlobal(false);
         setHasTreenutAllergyGlobal(false);
         setHasWheatAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
         setIsVeganGlobal(false);
         setIsVegetarianGlobal(false);
         setPrefersHalalGlobal(false);

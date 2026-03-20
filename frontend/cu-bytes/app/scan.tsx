@@ -74,13 +74,14 @@ export default function ScanScreen() {
     const
         {
             usernameGlobal,
-            hasDairyIntoleranceGlobal,
+            hasDairyIntoleranceGlobal,            
             hasEggAllergyGlobal,
             hasFishOrShellfishAllergyGlobal,
             hasGlutenAllergyGlobal,            
             hasMilkAllergyGlobal,
             hasPeanutAllergyGlobal,
             hasSesameAllergyGlobal,
+            hasSulfitesAllergyGlobal,
             hasSoyAllergyGlobal,
             hasTreenutAllergyGlobal,
             hasWheatAllergyGlobal,
@@ -88,21 +89,20 @@ export default function ScanScreen() {
             isVegetarianGlobal,
             prefersHalalGlobal,
             setUsernameGlobal,
-            setHasConfiguredSettingsGlobal,
-            setShowStatsGlobal,
-            setHasDairyIntoleranceGlobal,
+            setHasDairyIntoleranceGlobal,            
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
             setHasGlutenAllergyGlobal,
             setHasMilkAllergyGlobal,
             setHasPeanutAllergyGlobal,
             setHasSesameAllergyGlobal,
+            setHasSulfitesAllergyGlobal,
             setHasSoyAllergyGlobal,
             setHasTreenutAllergyGlobal,
             setHasWheatAllergyGlobal,
             setIsVeganGlobal,
             setIsVegetarianGlobal,
-            setPrefersHalalGlobal,
+            setPrefersHalalGlobal
 
         } = useUser();
 
@@ -127,6 +127,7 @@ export default function ScanScreen() {
             has_peanuts: null,
             has_sesame: null,
             has_soy: null,
+            has_sulfites: null,
             has_treenuts: null,
             has_wheat: null,
             id: -1, // Initial value of 1 to prevent errors
@@ -154,6 +155,7 @@ export default function ScanScreen() {
             has_peanuts: null,
             has_sesame: null,
             has_soy: null,
+            has_sulfites: null,
             has_treenuts: null,
             has_wheat: null,
             id: number,
@@ -268,12 +270,6 @@ export default function ScanScreen() {
 
         let foodItemWarningsArray = Array();
 
-        if (foodItem["is_dairy_free"] === false && hasDairyIntoleranceGlobal) {
-            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains dairy" });
-        }
-        if (foodItem["is_dairy_free"] === null && hasDairyIntoleranceGlobal) {
-            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain dairy" });
-        }
         if (foodItem["has_eggs"] === true && hasEggAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains eggs" });
         }
@@ -285,6 +281,12 @@ export default function ScanScreen() {
         }
         if (foodItem["has_fish_or_shellfish"] === null && hasFishOrShellfishAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain fish or shellfish" });
+        }
+        if (foodItem["is_dairy_free"] === false && hasDairyIntoleranceGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains dairy" });
+        }
+        if (foodItem["is_dairy_free"] === null && hasDairyIntoleranceGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain dairy" });
         }
         if (foodItem["has_milk"] === true && hasMilkAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains milk" });
@@ -310,6 +312,12 @@ export default function ScanScreen() {
         if (foodItem["has_soy"] === null && hasSoyAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain soy" });
         }
+        if (foodItem["has_sulfites"] === true && hasSulfitesAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains sulfites" });
+        }
+        if (foodItem["has_sulfites"] === null && hasSulfitesAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain sulfites" });
+        }
         if (foodItem["has_treenuts"] === true && hasTreenutAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains treenuts" });
         }
@@ -321,6 +329,12 @@ export default function ScanScreen() {
         }
         if (foodItem["has_wheat"] === null && hasWheatAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain wheat" });
+        }
+        if (foodItem["is_gluten_free"] === false && hasGlutenAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains gluten" });
+        }
+        if (foodItem["is_gluten_free"] === null && hasGlutenAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain gluten" });
         }
         if (foodItem["is_vegan"] === false && isVeganGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not vegan" });
@@ -551,14 +565,12 @@ export default function ScanScreen() {
     }
 
     /*
-        Log out the logged-in user by setting their username and profile settings to their defaults, and routing to the splash page
+        Log out the logged-in user by setting their profile settings to false, and routing to the splash page
     */
     const logout = () => { 
-
+        
         setUsernameGlobal('');
-        setHasConfiguredSettingsGlobal(false);
-        setShowStatsGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
+        setHasDairyIntoleranceGlobal(false);        
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
         setHasGlutenAllergyGlobal(false);
@@ -566,6 +578,7 @@ export default function ScanScreen() {
         setHasPeanutAllergyGlobal(false);
         setHasSesameAllergyGlobal(false);
         setHasSoyAllergyGlobal(false);
+        setHasSulfitesAllergyGlobal(false);
         setHasTreenutAllergyGlobal(false);
         setHasWheatAllergyGlobal(false);
         setIsVeganGlobal(false);

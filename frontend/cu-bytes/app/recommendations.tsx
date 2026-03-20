@@ -53,17 +53,17 @@ export default function RecommendationsScreen() {
     const {
         usernameGlobal,
         setUsernameGlobal,
-        setShowStatsGlobal,
+        setHasDairyIntoleranceGlobal,            
         setHasEggAllergyGlobal,
         setHasFishOrShellfishAllergyGlobal,
-        setHasDairyIntoleranceGlobal,
+        setHasGlutenAllergyGlobal,
         setHasMilkAllergyGlobal,
         setHasPeanutAllergyGlobal,
         setHasSesameAllergyGlobal,
+        setHasSulfitesAllergyGlobal,
         setHasSoyAllergyGlobal,
         setHasTreenutAllergyGlobal,
         setHasWheatAllergyGlobal,
-        setHasGlutenAllergyGlobal,
         setIsVeganGlobal,
         setIsVegetarianGlobal,
         setPrefersHalalGlobal
@@ -307,22 +307,22 @@ export default function RecommendationsScreen() {
     }
 
     /*
-        Log out the logged-in user by setting their username and profile settings to null 
+        Log out the logged-in user by setting their profile settings to false, and routing to the splash page
     */
-    const logout = () => {
-
+    const logout = () => { 
+        
         setUsernameGlobal('');
-        setShowStatsGlobal(false);
+        setHasDairyIntoleranceGlobal(false);        
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
+        setHasGlutenAllergyGlobal(false);
         setHasMilkAllergyGlobal(false);
         setHasPeanutAllergyGlobal(false);
         setHasSesameAllergyGlobal(false);
         setHasSoyAllergyGlobal(false);
+        setHasSulfitesAllergyGlobal(false);
         setHasTreenutAllergyGlobal(false);
         setHasWheatAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
         setIsVeganGlobal(false);
         setIsVegetarianGlobal(false);
         setPrefersHalalGlobal(false);

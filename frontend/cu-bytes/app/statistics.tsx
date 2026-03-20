@@ -48,24 +48,23 @@ export default function StatisticsScreen() {
         Variables and setters used to store a copy of the logged-in user's username and profile settings
         (Frontend copy updated based on the backend data)
     */
-    const 
-        {
-            usernameGlobal,
-            setUsernameGlobal,
-            setShowStatsGlobal,
-            setHasEggAllergyGlobal,
-            setHasFishOrShellfishAllergyGlobal,
-            setHasDairyIntoleranceGlobal,
-            setHasMilkAllergyGlobal,
-            setHasPeanutAllergyGlobal,
-            setHasSesameAllergyGlobal,
-            setHasSoyAllergyGlobal,
-            setHasTreenutAllergyGlobal,
-            setHasWheatAllergyGlobal,
-            setHasGlutenAllergyGlobal,
-            setIsVeganGlobal,
-            setIsVegetarianGlobal,
-            setPrefersHalalGlobal
+    const {
+        usernameGlobal,
+        setUsernameGlobal,
+        setHasDairyIntoleranceGlobal,            
+        setHasEggAllergyGlobal,
+        setHasFishOrShellfishAllergyGlobal,
+        setHasGlutenAllergyGlobal,
+        setHasMilkAllergyGlobal,
+        setHasPeanutAllergyGlobal,
+        setHasSesameAllergyGlobal,
+        setHasSulfitesAllergyGlobal,
+        setHasSoyAllergyGlobal,
+        setHasTreenutAllergyGlobal,
+        setHasWheatAllergyGlobal,
+        setIsVeganGlobal,
+        setIsVegetarianGlobal,
+        setPrefersHalalGlobal
 
         } = useUser();
 
@@ -325,22 +324,22 @@ export default function StatisticsScreen() {
     }
 
     /*
-        Log out the logged-in user by setting their username and profile settings to null, 
+        Log out the logged-in user by setting their profile settings to false, and routing to the splash page
     */
-    const logout = () => {
-
+    const logout = () => { 
+        
         setUsernameGlobal('');
-        setShowStatsGlobal(false);
+        setHasDairyIntoleranceGlobal(false);        
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
+        setHasGlutenAllergyGlobal(false);
         setHasMilkAllergyGlobal(false);
         setHasPeanutAllergyGlobal(false);
         setHasSesameAllergyGlobal(false);
         setHasSoyAllergyGlobal(false);
+        setHasSulfitesAllergyGlobal(false);
         setHasTreenutAllergyGlobal(false);
         setHasWheatAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
         setIsVeganGlobal(false);
         setIsVegetarianGlobal(false);
         setPrefersHalalGlobal(false);
