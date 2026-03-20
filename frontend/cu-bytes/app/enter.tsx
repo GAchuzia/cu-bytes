@@ -402,6 +402,31 @@ export default function EnterScreen() {
     }
 
     /*
+        If the user is not logged-in, set the profile settings to true,
+        So that all allergy and intolerance warnings will be displayed by default
+    */
+    useEffect(() => {
+        
+        if (usernameGlobal === '') {
+            setHasDairyIntoleranceGlobal(true);
+            setHasEggAllergyGlobal(true);
+            setHasFishOrShellfishAllergyGlobal(true);
+            setHasGlutenAllergyGlobal(true);
+            setHasMilkAllergyGlobal(true);
+            setHasPeanutAllergyGlobal(true);
+            setHasSesameAllergyGlobal(true);
+            setHasSulfitesAllergyGlobal(true);
+            setHasSoyAllergyGlobal(true);
+            setHasTreenutAllergyGlobal(true);
+            setHasWheatAllergyGlobal(true);
+            setIsVeganGlobal(true);
+            setIsVegetarianGlobal(true);
+            setPrefersHalalGlobal(true);
+        }
+
+    }, []);
+
+    /*
         Send a request to the backend endpoint to get all food items from the database
     */
     useEffect(() => {

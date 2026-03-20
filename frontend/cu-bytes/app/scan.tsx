@@ -359,6 +359,31 @@ export default function ScanScreen() {
     }
 
     /*
+        If the user is not logged-in, set the profile settings to true,
+        So that all allergy and intolerance warnings will be displayed by default
+    */
+    useEffect(() => {
+        
+        if (usernameGlobal === '') {
+            setHasDairyIntoleranceGlobal(true);
+            setHasEggAllergyGlobal(true);
+            setHasFishOrShellfishAllergyGlobal(true);
+            setHasGlutenAllergyGlobal(true);
+            setHasMilkAllergyGlobal(true);
+            setHasPeanutAllergyGlobal(true);
+            setHasSesameAllergyGlobal(true);
+            setHasSulfitesAllergyGlobal(true);
+            setHasSoyAllergyGlobal(true);
+            setHasTreenutAllergyGlobal(true);
+            setHasWheatAllergyGlobal(true);
+            setIsVeganGlobal(true);
+            setIsVegetarianGlobal(true);
+            setPrefersHalalGlobal(true);
+        }
+
+    }, []);
+
+    /*
         Enable the user to select an image on the device that the CU-Bytes application is running on
         The selected image will be analyzed by the machine learning component
     */
@@ -813,18 +838,20 @@ export default function ScanScreen() {
                             </Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
-                            onPress={() => {
-                                logFoodItemByName(prediction.food_name);
-                                setSavedFoodItemMessage(true);
-                                setTimeout(() => {setSavedFoodItemMessage(false);}, 2000);
-                                router.push('/home');}}
-                            disabled={loading}>
+                        {usernameGlobal !== '' && (
+                            <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
+                                onPress={() => {
+                                    logFoodItemByName(prediction.food_name);
+                                    setSavedFoodItemMessage(true);
+                                    setTimeout(() => {setSavedFoodItemMessage(false);}, 2000);
+                                    router.push('/home');}}
+                                disabled={loading}>
 
-                            <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
-                                Save Food Item
-                            </Text>
-                        </TouchableOpacity>
+                                <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
+                                    Save Food Item
+                                </Text>
+                            </TouchableOpacity>
+                        )}
 
                     </View>
                 )}
@@ -904,19 +931,21 @@ export default function ScanScreen() {
                                 Scan Other
                             </Text>
                         </TouchableOpacity>
+                        
+                        {usernameGlobal !== '' && (
+                            <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
+                                onPress={() => {
+                                    logFoodItemById(foodItem.id);
+                                    setSavedFoodItemMessage(true);
+                                    setTimeout(() => {setSavedFoodItemMessage(false);}, 2000);
+                                    router.push('/home');}}
+                                disabled={loading}>
 
-                        <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
-                            onPress={() => {
-                                logFoodItemById(foodItem.id);
-                                setSavedFoodItemMessage(true);
-                                setTimeout(() => {setSavedFoodItemMessage(false);}, 2000);
-                                router.push('/home');}}
-                            disabled={loading}>
-
-                            <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
-                                Save Food Item
-                            </Text>
-                        </TouchableOpacity>
+                                <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
+                                    Save Food Item
+                                </Text>
+                            </TouchableOpacity>
+                        )}
 
                     </View>
                 )}
