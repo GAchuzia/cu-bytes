@@ -14,7 +14,7 @@ export default function DiningScreen() {
     const [diningLocationsVisible, setDiningLocationsVisible] = useState(true);
     const [foodItemsVisible, setFoodItemsVisible] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
-    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isSearchPressed, setIsSearchPressed] = useState(false);
 
@@ -24,31 +24,32 @@ export default function DiningScreen() {
     const
         {
             usernameGlobal,
+            hasDairyIntoleranceGlobal,            
             hasEggAllergyGlobal,
             hasFishOrShellfishAllergyGlobal,
-            hasDairyIntoleranceGlobal,
+            hasGlutenAllergyGlobal,            
             hasMilkAllergyGlobal,
             hasPeanutAllergyGlobal,
             hasSesameAllergyGlobal,
+            hasSulfitesAllergyGlobal,
             hasSoyAllergyGlobal,
             hasTreenutAllergyGlobal,
             hasWheatAllergyGlobal,
-            hasGlutenAllergyGlobal,
             isVeganGlobal,
             isVegetarianGlobal,
             prefersHalalGlobal,
             setUsernameGlobal,
-            setShowStatsGlobal,
+            setHasDairyIntoleranceGlobal,            
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
-            setHasDairyIntoleranceGlobal,
+            setHasGlutenAllergyGlobal,
             setHasMilkAllergyGlobal,
             setHasPeanutAllergyGlobal,
             setHasSesameAllergyGlobal,
+            setHasSulfitesAllergyGlobal,
             setHasSoyAllergyGlobal,
             setHasTreenutAllergyGlobal,
             setHasWheatAllergyGlobal,
-            setHasGlutenAllergyGlobal,
             setIsVeganGlobal,
             setIsVegetarianGlobal,
             setPrefersHalalGlobal
@@ -76,6 +77,7 @@ export default function DiningScreen() {
             has_peanuts: null,
             has_sesame: null,
             has_soy: null,
+            has_sulfites: null,
             has_treenuts: null,
             has_wheat: null,
             id: -1, // Initial value of 1 to prevent errors
@@ -103,6 +105,7 @@ export default function DiningScreen() {
             has_peanuts: null,
             has_sesame: null,
             has_soy: null,
+            has_sulfites: null,
             has_treenuts: null,
             has_wheat: null,
             id: number,
@@ -312,84 +315,78 @@ export default function DiningScreen() {
         if (foodItem["has_eggs"] === null && hasEggAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain eggs" });
         }
-
         if (foodItem["has_fish_or_shellfish"] === true && hasFishOrShellfishAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains fish or shellfish" });
         }
         if (foodItem["has_fish_or_shellfish"] === null && hasFishOrShellfishAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain fish or shellfish" });
         }
-
         if (foodItem["is_dairy_free"] === false && hasDairyIntoleranceGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains dairy" });
         }
         if (foodItem["is_dairy_free"] === null && hasDairyIntoleranceGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain dairy" });
         }
-
         if (foodItem["has_milk"] === true && hasMilkAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains milk" });
         }
         if (foodItem["has_milk"] === null && hasMilkAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain milk" });
         }
-
         if (foodItem["has_peanuts"] === true && hasPeanutAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains peanuts" });
         }
         if (foodItem["has_peanuts"] === null && hasPeanutAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain peanuts" });
         }
-
         if (foodItem["has_sesame"] === true && hasSesameAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains sesame" });
         }
         if (foodItem["has_sesame"] === null && hasSesameAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain sesame" });
         }
-        
         if (foodItem["has_soy"] === true && hasSoyAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains soy" });
         }
         if (foodItem["has_soy"] === null && hasSoyAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain soy" });
         }
-
+        if (foodItem["has_sulfites"] === true && hasSulfitesAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains sulfites" });
+        }
+        if (foodItem["has_sulfites"] === null && hasSulfitesAllergyGlobal) {
+            foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain sulfites" });
+        }
         if (foodItem["has_treenuts"] === true && hasTreenutAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains treenuts" });
         }
         if (foodItem["has_treenuts"] === null && hasTreenutAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain treenuts" });
         }
-
         if (foodItem["has_wheat"] === true && hasWheatAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains wheat" });
         }
         if (foodItem["has_wheat"] === null && hasWheatAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain wheat" });
         }
-
         if (foodItem["is_gluten_free"] === false && hasGlutenAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item contains gluten" });
         }
         if (foodItem["is_gluten_free"] === null && hasGlutenAllergyGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may contain gluten" });
         }
-
         if (foodItem["is_vegan"] === false && isVeganGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not vegan" });
         }
         if (foodItem["is_vegan"] === null && isVeganGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may not be vegan" });
         }
-
         if (foodItem["is_vegetarian"] === false && isVegetarianGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not vegetarian" });
         }
         if (foodItem["is_vegetarian"] === null && isVegetarianGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item may not be vegetarian" });
         }
-
         if (foodItem["is_halal"] === false && prefersHalalGlobal) {
             foodItemWarningsArray.push({ field_name: "Warning", field_value: "This item is not halal" });
         }
@@ -399,6 +396,31 @@ export default function DiningScreen() {
 
         return foodItemWarningsArray;
     }
+
+    /*
+        If the user is not logged-in, set the profile settings to true,
+        So that all allergy and intolerance warnings will be displayed by default
+    */
+    useEffect(() => {
+        
+        if (usernameGlobal === '') {
+            setHasDairyIntoleranceGlobal(true);
+            setHasEggAllergyGlobal(true);
+            setHasFishOrShellfishAllergyGlobal(true);
+            setHasGlutenAllergyGlobal(true);
+            setHasMilkAllergyGlobal(true);
+            setHasPeanutAllergyGlobal(true);
+            setHasSesameAllergyGlobal(true);
+            setHasSulfitesAllergyGlobal(true);
+            setHasSoyAllergyGlobal(true);
+            setHasTreenutAllergyGlobal(true);
+            setHasWheatAllergyGlobal(true);
+            setIsVeganGlobal(true);
+            setIsVegetarianGlobal(true);
+            setPrefersHalalGlobal(true);
+        }
+
+    }, []);
 
     /*
         Send a request to the backend endpoint to get all food items from the database
@@ -548,22 +570,22 @@ export default function DiningScreen() {
     }
 
     /*
-        Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
+        Log out the logged-in user by setting their profile settings to false, and routing to the splash page
     */
     const logout = () => { 
         
         setUsernameGlobal('');
-        setShowStatsGlobal(false);
+        setHasDairyIntoleranceGlobal(false);        
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
+        setHasGlutenAllergyGlobal(false);
         setHasMilkAllergyGlobal(false);
         setHasPeanutAllergyGlobal(false);
         setHasSesameAllergyGlobal(false);
         setHasSoyAllergyGlobal(false);
+        setHasSulfitesAllergyGlobal(false);
         setHasTreenutAllergyGlobal(false);
         setHasWheatAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
         setIsVeganGlobal(false);
         setIsVegetarianGlobal(false);
         setPrefersHalalGlobal(false);
@@ -591,14 +613,14 @@ export default function DiningScreen() {
             <View id="browseDiningLocationsStatusbar" style={styles.statusbar}>
 
                 {/* Route the user to the 'home' page or the 'splash' page */}
-                <TouchableOpacity id="backButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsBackPressed(true)}
-                    onPressOut={() => setIsBackPressed(false)}
+                <TouchableOpacity id="homeOrSplashButton"
+                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsHomeOrSplashPressed(true)}
+                    onPressOut={() => setIsHomeOrSplashPressed(false)}
                     onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
 
-                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        Back
+                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        Home
                     </Text>
                 </TouchableOpacity>
 

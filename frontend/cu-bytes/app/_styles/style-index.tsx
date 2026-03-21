@@ -106,34 +106,6 @@ export const styles = StyleSheet.create({
     fontSize: font(175),
     fontWeight: 'bold',
     textAlign: 'center',
-  },
-
-  bodyButtonAlt: {
-    alignItems: 'center',
-    backgroundColor: '#131312',
-    borderRadius: 20,
-    borderWidth: 4,
-    borderColor: '#666666',
-    height: h(15),
-    justifyContent: 'center',
-    marginTop: h(1.0),
-    marginBottom: h(1.0),
-    marginLeft: w(0.5),
-    marginRight: w(0.5),
-    paddingTop: h(2.0),
-    paddingBottom: h(2.0),
-    paddingLeft: w(2.0),
-    paddingRight: w(2.0),
-    width: w(80),
-  },
-
-  bodyButtonTextAlt: {
-    backgroundColor: 'transparent',
-    color: '#C5151A',
-    fontFamily: 'arial',
-    fontSize: font(175),
-    fontWeight: 'bold',
-    textAlign: 'center',
   }
 
 });

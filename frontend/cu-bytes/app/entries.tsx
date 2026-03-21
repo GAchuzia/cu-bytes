@@ -12,7 +12,7 @@ export default function EntriesScreen() {
 
     const [loading, setLoading] = useState(true);
     const [visible, setVisible] = useState(false);
-    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
 
     /*
@@ -22,17 +22,17 @@ export default function EntriesScreen() {
         {
             usernameGlobal,
             setUsernameGlobal,
-            setShowStatsGlobal,
+            setHasDairyIntoleranceGlobal,            
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
-            setHasDairyIntoleranceGlobal,
+            setHasGlutenAllergyGlobal,
             setHasMilkAllergyGlobal,
             setHasPeanutAllergyGlobal,
             setHasSesameAllergyGlobal,
+            setHasSulfitesAllergyGlobal,
             setHasSoyAllergyGlobal,
             setHasTreenutAllergyGlobal,
             setHasWheatAllergyGlobal,
-            setHasGlutenAllergyGlobal,
             setIsVeganGlobal,
             setIsVegetarianGlobal,
             setPrefersHalalGlobal
@@ -188,22 +188,22 @@ export default function EntriesScreen() {
    }
 
     /*
-        Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
+        Log out the logged-in user by setting their profile settings to false, and routing to the splash page
     */
     const logout = () => { 
         
         setUsernameGlobal('');
-        setShowStatsGlobal(false);
+        setHasDairyIntoleranceGlobal(false);        
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
+        setHasGlutenAllergyGlobal(false);
         setHasMilkAllergyGlobal(false);
         setHasPeanutAllergyGlobal(false);
         setHasSesameAllergyGlobal(false);
         setHasSoyAllergyGlobal(false);
+        setHasSulfitesAllergyGlobal(false);
         setHasTreenutAllergyGlobal(false);
         setHasWheatAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
         setIsVeganGlobal(false);
         setIsVegetarianGlobal(false);
         setPrefersHalalGlobal(false);
@@ -220,14 +220,14 @@ export default function EntriesScreen() {
             <View id="viewSavedFoodItemsStatusbar" style={styles.statusbar}>
 
                 {/* Route the user to the 'home' page */}
-                <TouchableOpacity id="backButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsBackPressed(true)}
-                    onPressOut={() => setIsBackPressed(false)}
+                <TouchableOpacity id="homeOrSplashButton"
+                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsHomeOrSplashPressed(true)}
+                    onPressOut={() => setIsHomeOrSplashPressed(false)}
                     onPress={() => router.push('/home')}>
 
-                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        Back
+                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        Home
                     </Text>
                 </TouchableOpacity>
 

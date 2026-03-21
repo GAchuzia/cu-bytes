@@ -12,7 +12,7 @@ export default function RegisterScreen() {
 
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
-    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isCreateAccountPressed, setIsCreateAccountPressed] = useState(false);
     const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -34,17 +34,19 @@ export default function RegisterScreen() {
         {
             usernameGlobal,
             setUsernameGlobal,
+            setHasConfiguredSettingsGlobal,
             setShowStatsGlobal,
+            setHasDairyIntoleranceGlobal,            
             setHasEggAllergyGlobal,
             setHasFishOrShellfishAllergyGlobal,
-            setHasDairyIntoleranceGlobal,
+            setHasGlutenAllergyGlobal,
             setHasMilkAllergyGlobal,
             setHasPeanutAllergyGlobal,
             setHasSesameAllergyGlobal,
+            setHasSulfitesAllergyGlobal,
             setHasSoyAllergyGlobal,
             setHasTreenutAllergyGlobal,
             setHasWheatAllergyGlobal,
-            setHasGlutenAllergyGlobal,
             setIsVeganGlobal,
             setIsVegetarianGlobal,
             setPrefersHalalGlobal
@@ -71,6 +73,7 @@ export default function RegisterScreen() {
 
             // Update the copy of the logged-in user's username and profile settings using the retrieved data
             setUsernameGlobal(username);
+            setHasConfiguredSettingsGlobal(data.has_configured_settings)
             setShowStatsGlobal(data.show_stats);
             setHasEggAllergyGlobal(data.has_egg_allergy);
             setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
@@ -79,6 +82,7 @@ export default function RegisterScreen() {
             setHasPeanutAllergyGlobal(data.has_peanut_allergy);
             setHasSesameAllergyGlobal(data.has_sesame_allergy);
             setHasSoyAllergyGlobal(data.has_soy_allergy);
+            setHasSulfitesAllergyGlobal(data.has_sulfites);
             setHasTreenutAllergyGlobal(data.has_treenut_allergy);
             setHasWheatAllergyGlobal(data.has_wheat_allergy);
             setHasGlutenAllergyGlobal(data.has_gluten_allergy);
@@ -136,11 +140,28 @@ export default function RegisterScreen() {
     }
 
     /*
-        Log out the logged-in user by setting their username and profile settings to null, and routing to the splash page
+        Log out the logged-in user by setting their profile settings to false, and routing to the splash page
     */
     const logout = () => { 
         
         setUsernameGlobal('');
+        setHasConfiguredSettingsGlobal(false);
+        setShowStatsGlobal(false);
+        setHasDairyIntoleranceGlobal(false);        
+        setHasEggAllergyGlobal(false);
+        setHasFishOrShellfishAllergyGlobal(false);
+        setHasGlutenAllergyGlobal(false);
+        setHasMilkAllergyGlobal(false);
+        setHasPeanutAllergyGlobal(false);
+        setHasSesameAllergyGlobal(false);
+        setHasSoyAllergyGlobal(false);
+        setHasSulfitesAllergyGlobal(false);
+        setHasTreenutAllergyGlobal(false);
+        setHasWheatAllergyGlobal(false);
+        setIsVeganGlobal(false);
+        setIsVegetarianGlobal(false);
+        setPrefersHalalGlobal(false);
+
         router.push('/');
     }
 
@@ -153,14 +174,14 @@ export default function RegisterScreen() {
             <View id="registerStatusbar" style={styles.statusbar}>
 
                 {/* Route the user to the 'splash' page */}
-                <TouchableOpacity id="backButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsBackPressed(true)}
-                    onPressOut={() => setIsBackPressed(false)}
+                <TouchableOpacity id="homeOrSplashButton"
+                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsHomeOrSplashPressed(true)}
+                    onPressOut={() => setIsHomeOrSplashPressed(false)}
                     onPress={() => router.push('/login')}>
 
-                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        Back
+                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        Home
                     </Text>
                 </TouchableOpacity>
 

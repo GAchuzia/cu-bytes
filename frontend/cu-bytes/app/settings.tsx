@@ -11,7 +11,7 @@ import { API_BASE_URL } from '../services/api';
 export default function SettingsScreen() {
 
     const [loading, setLoading] = useState(true);
-    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isConfirmPressed, setIsConfirmPressed] = useState(false);
     const [isChangePasswordPressed, setIsChangePasswordPressed] = useState(false);
@@ -29,6 +29,7 @@ export default function SettingsScreen() {
     const [hasPeanutAllergy, setHasPeanutAllergy] = useState(false);
     const [hasSesameAllergy, setHasSesameAllergy] = useState(false);
     const [hasSoyAllergy, setHasSoyAllergy] = useState(false);
+    const [hasSulfitesAllergy, setHasSulfitesAllergy] = useState(false);
     const [hasTreenutAllergy, setHasTreenutAllergy] = useState(false);
     const [hasWheatAllergy, setHasWheatAllergy] = useState(false);
     const [hasGlutenAllergy, setHasGlutenAllergy] = useState(false);
@@ -62,6 +63,7 @@ export default function SettingsScreen() {
             setHasPeanutAllergyGlobal,
             setHasSesameAllergyGlobal,
             setHasSoyAllergyGlobal,
+            setHasSulfitesAllergyGlobal,
             setHasTreenutAllergyGlobal,
             setHasWheatAllergyGlobal,
             setHasGlutenAllergyGlobal,
@@ -89,6 +91,7 @@ export default function SettingsScreen() {
                 setHasPeanutAllergyGlobal(data.has_peanut_allergy);
                 setHasSesameAllergyGlobal(data.has_sesame_allergy);
                 setHasSoyAllergyGlobal(data.has_soy_allergy);
+                setHasSulfitesAllergyGlobal(data.has_sulfites);
                 setHasTreenutAllergyGlobal(data.has_treenut_allergy);
                 setHasWheatAllergyGlobal(data.has_wheat_allergy);
                 setHasGlutenAllergyGlobal(data.has_gluten_allergy);
@@ -104,6 +107,7 @@ export default function SettingsScreen() {
                 setHasPeanutAllergy(data.has_peanut_allergy);
                 setHasSesameAllergy(data.has_sesame_allergy);
                 setHasSoyAllergy(data.has_soy_allergy);
+                setHasSulfitesAllergy(data.has_sulfites);
                 setHasTreenutAllergy(data.has_treenut_allergy);
                 setHasWheatAllergy(data.has_wheat_allergy);
                 setHasGlutenAllergy(data.has_gluten_allergy);
@@ -140,6 +144,7 @@ export default function SettingsScreen() {
                             has_peanut_allergy: hasPeanutAllergy,
                             has_sesame_allergy: hasSesameAllergy,
                             has_soy_allergy: hasSoyAllergy,
+                            has_sulfites_allergy: hasSulfitesAllergy,
                             has_treenut_allergy: hasTreenutAllergy,
                             has_wheat_allergy: hasWheatAllergy,
                             has_gluten_allergy: hasGlutenAllergy,
@@ -160,6 +165,7 @@ export default function SettingsScreen() {
             setHasPeanutAllergyGlobal(hasPeanutAllergy);
             setHasSesameAllergyGlobal(hasSesameAllergy);
             setHasSoyAllergyGlobal(hasSoyAllergy);
+            setHasSulfitesAllergyGlobal(hasSulfitesAllergy),
             setHasTreenutAllergyGlobal(hasTreenutAllergy);
             setHasWheatAllergyGlobal(hasWheatAllergy);
             setHasGlutenAllergyGlobal(hasGlutenAllergy);
@@ -267,6 +273,7 @@ export default function SettingsScreen() {
         setHasPeanutAllergyGlobal(false);
         setHasSesameAllergyGlobal(false);
         setHasSoyAllergyGlobal(false);
+        setHasSulfitesAllergy(false);
         setHasTreenutAllergyGlobal(false);
         setHasWheatAllergyGlobal(false);
         setHasGlutenAllergyGlobal(false);
@@ -294,14 +301,14 @@ export default function SettingsScreen() {
             <View id="settingsStatusbar" style={styles.statusbar}>
 
                 {/* Route the user to the 'home' page */}
-                <TouchableOpacity id="backButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsBackPressed(true)}
-                    onPressOut={() => setIsBackPressed(false)}
+                <TouchableOpacity id="homeOrSplashButton"
+                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsHomeOrSplashPressed(true)}
+                    onPressOut={() => setIsHomeOrSplashPressed(false)}
                     onPress={() => router.push('/home')}>
 
-                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        Back
+                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                        Home
                     </Text>
                 </TouchableOpacity>
 
@@ -430,6 +437,18 @@ export default function SettingsScreen() {
                             <Switch id="hasSoyAllergySwitch" style={styles.switch}
                                 value={hasSoyAllergy}
                                 onValueChange={setHasSoyAllergy}/>
+                        </View>
+                    </View>
+
+                    <View id="hasSulfitesAllergyOuterView" style={styles.settingsSwitchRow}>
+                        <Text id="hasSulfitesAllergyText" style={styles.label}>
+                            Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>sulfites</Text>?
+                        </Text>
+
+                        <View id="hasSulfitesAllergyInnerView" style={styles.switchContainer}>
+                            <Switch id="hasSulfitesAllergySwitch" style={styles.switch}
+                                value={hasSulfitesAllergy}
+                                onValueChange={setHasSulfitesAllergy}/>
                         </View>
                     </View>
 

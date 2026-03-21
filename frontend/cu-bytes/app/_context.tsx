@@ -12,12 +12,14 @@ type UserContextType = {
     setHasConfiguredSettingsGlobal: (hasConfiguredSettingsGlobal: boolean) => void;
     showStatsGlobal: boolean;
     setShowStatsGlobal: (showStatsGlobal: boolean) => void;
+    hasDairyIntoleranceGlobal: boolean;
+    setHasDairyIntoleranceGlobal: (hasDairyIntoleranceGlobal: boolean) => void;    
     hasEggAllergyGlobal: boolean;
     setHasEggAllergyGlobal: (hasEggAllergyGlobal: boolean) => void;
     hasFishOrShellfishAllergyGlobal: boolean; 
     setHasFishOrShellfishAllergyGlobal: (hasFishOrShellfishAllergyGlobal: boolean) => void;
-    hasDairyIntoleranceGlobal: boolean;
-    setHasDairyIntoleranceGlobal: (hasDairyIntoleranceGlobal: boolean) => void;
+    hasGlutenAllergyGlobal: boolean;
+    setHasGlutenAllergyGlobal: (hasGlutenAllergyGlobal: boolean) => void;        
     hasMilkAllergyGlobal: boolean;
     setHasMilkAllergyGlobal: (hasMilkAllergyGlobal: boolean) => void;
     hasPeanutAllergyGlobal: boolean;
@@ -26,12 +28,12 @@ type UserContextType = {
     setHasSesameAllergyGlobal: (HasSesameAllergyGlobal: boolean) => void;
     hasSoyAllergyGlobal: boolean;
     setHasSoyAllergyGlobal: (hasSoyAllergyGlobal: boolean) => void;
+    hasSulfitesAllergyGlobal: boolean;
+    setHasSulfitesAllergyGlobal: (hasSulfitesAllergyGlobal: boolean) => void;
     hasTreenutAllergyGlobal: boolean;
     setHasTreenutAllergyGlobal: (hasTreenutAllergyGlobal: boolean) => void;
     hasWheatAllergyGlobal: boolean;
     setHasWheatAllergyGlobal: (hasWheatAllergyGlobal: boolean) => void;
-    hasGlutenAllergyGlobal: boolean;
-    setHasGlutenAllergyGlobal: (hasGlutenAllergyGlobal: boolean) => void;
     isVeganGlobal: boolean;
     setIsVeganGlobal: (isVeganGlobal: boolean) => void;
     isVegetarianGlobal: boolean;
@@ -53,16 +55,17 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     const [usernameGlobal, setUsernameGlobal] = useState('');
     const [hasConfiguredSettingsGlobal, setHasConfiguredSettingsGlobal] = useState(false); 
     const [showStatsGlobal, setShowStatsGlobal] = useState(false);
+    const [hasDairyIntoleranceGlobal, setHasDairyIntoleranceGlobal] = useState(false);
     const [hasEggAllergyGlobal, setHasEggAllergyGlobal] = useState(false);
     const [hasFishOrShellfishAllergyGlobal, setHasFishOrShellfishAllergyGlobal] = useState(false);
-    const [hasDairyIntoleranceGlobal, setHasDairyIntoleranceGlobal] = useState(false);
+    const [hasGlutenAllergyGlobal, setHasGlutenAllergyGlobal] = useState(false);
     const [hasMilkAllergyGlobal, setHasMilkAllergyGlobal] = useState(false);
     const [hasPeanutAllergyGlobal, setHasPeanutAllergyGlobal] = useState(false);
     const [hasSesameAllergyGlobal, setHasSesameAllergyGlobal] = useState(false);
     const [hasSoyAllergyGlobal, setHasSoyAllergyGlobal] = useState(false);
+    const [hasSulfitesAllergyGlobal, setHasSulfitesAllergyGlobal] = useState(false);
     const [hasTreenutAllergyGlobal, setHasTreenutAllergyGlobal] = useState(false);
     const [hasWheatAllergyGlobal, setHasWheatAllergyGlobal] = useState(false);
-    const [hasGlutenAllergyGlobal, setHasGlutenAllergyGlobal] = useState(false);
     const [isVeganGlobal, setIsVeganGlobal] = useState(false);
     const [isVegetarianGlobal, setIsVegetarianGlobal] = useState(false);
     const [prefersHalalGlobal, setPrefersHalalGlobal] = useState(false);
@@ -77,12 +80,14 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
                     setHasConfiguredSettingsGlobal,
                     showStatsGlobal,
                     setShowStatsGlobal,
+                    hasDairyIntoleranceGlobal,
+                    setHasDairyIntoleranceGlobal,
                     hasEggAllergyGlobal,
                     setHasEggAllergyGlobal,
                     hasFishOrShellfishAllergyGlobal,
                     setHasFishOrShellfishAllergyGlobal,
-                    hasDairyIntoleranceGlobal,
-                    setHasDairyIntoleranceGlobal,
+                    hasGlutenAllergyGlobal,
+                    setHasGlutenAllergyGlobal,
                     hasMilkAllergyGlobal,
                     setHasMilkAllergyGlobal,
                     hasPeanutAllergyGlobal,
@@ -91,12 +96,12 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
                     setHasSesameAllergyGlobal,
                     hasSoyAllergyGlobal,
                     setHasSoyAllergyGlobal,
+                    hasSulfitesAllergyGlobal,
+                    setHasSulfitesAllergyGlobal,
                     hasTreenutAllergyGlobal,
                     setHasTreenutAllergyGlobal,
                     hasWheatAllergyGlobal,
                     setHasWheatAllergyGlobal,
-                    hasGlutenAllergyGlobal,
-                    setHasGlutenAllergyGlobal,
                     isVeganGlobal,
                     setIsVeganGlobal,
                     isVegetarianGlobal,

@@ -35,7 +35,7 @@ export default function RecommendationsScreen() {
     */
     const [fetchedRecommendations, setFetchedRecommendations] = useState(false);
 
-    const [isBackPressed, setIsBackPressed] = useState(false);
+    const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isTrendingPressed, setIsTrendingPressed] = useState(false);
     const [isRandomPressed, setIsRandomPressed] = useState(false);
@@ -53,17 +53,17 @@ export default function RecommendationsScreen() {
     const {
         usernameGlobal,
         setUsernameGlobal,
-        setShowStatsGlobal,
+        setHasDairyIntoleranceGlobal,            
         setHasEggAllergyGlobal,
         setHasFishOrShellfishAllergyGlobal,
-        setHasDairyIntoleranceGlobal,
+        setHasGlutenAllergyGlobal,
         setHasMilkAllergyGlobal,
         setHasPeanutAllergyGlobal,
         setHasSesameAllergyGlobal,
+        setHasSulfitesAllergyGlobal,
         setHasSoyAllergyGlobal,
         setHasTreenutAllergyGlobal,
         setHasWheatAllergyGlobal,
-        setHasGlutenAllergyGlobal,
         setIsVeganGlobal,
         setIsVegetarianGlobal,
         setPrefersHalalGlobal
@@ -307,22 +307,22 @@ export default function RecommendationsScreen() {
     }
 
     /*
-        Log out the logged-in user by setting their username and profile settings to null 
+        Log out the logged-in user by setting their profile settings to false, and routing to the splash page
     */
-    const logout = () => {
-
+    const logout = () => { 
+        
         setUsernameGlobal('');
-        setShowStatsGlobal(false);
+        setHasDairyIntoleranceGlobal(false);        
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
-        setHasDairyIntoleranceGlobal(false);
+        setHasGlutenAllergyGlobal(false);
         setHasMilkAllergyGlobal(false);
         setHasPeanutAllergyGlobal(false);
         setHasSesameAllergyGlobal(false);
         setHasSoyAllergyGlobal(false);
+        setHasSulfitesAllergyGlobal(false);
         setHasTreenutAllergyGlobal(false);
         setHasWheatAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
         setIsVeganGlobal(false);
         setIsVegetarianGlobal(false);
         setPrefersHalalGlobal(false);
@@ -461,14 +461,14 @@ export default function RecommendationsScreen() {
             <View id="viewRecommendationsStatusbar" style={styles.statusbar}>
 
                 {/* Route the user to the 'home' page or the 'splash' page */}
-                <TouchableOpacity id="backButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isBackPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsBackPressed(true)}
-                    onPressOut={() => setIsBackPressed(false)}
+                <TouchableOpacity id="homeOrSplashButton"
+                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    onPressIn={() => setIsHomeOrSplashPressed(true)}
+                    onPressOut={() => setIsHomeOrSplashPressed(false)}
                     onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
 
-                    <Text id="backButtonText" style={styles.headerButtonTextDefault}>
-                        Back
+                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault}>
+                        Home
                     </Text>
                 </TouchableOpacity>
 
