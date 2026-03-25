@@ -4,7 +4,9 @@ import * as ImagePicker from 'expo-image-picker';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { screenChrome as sc } from './_styles/screenChrome';
 import { styles } from './_styles/style-scan';
 import { useUser } from './_context';
 import { apiService, API_BASE_URL } from '../services/api';
@@ -614,52 +616,53 @@ export default function ScanScreen() {
     }
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={sc.safeRoot} edges={['top', 'left', 'right']}>
+        <View style={sc.container}>
             
-            <StatusBar style="auto" hidden={true}/>
+            <StatusBar style="dark" />
 
-            <View id="scanFoodItemsStatusbar" style={styles.statusbar}>
+            <View id="scanFoodItemsStatusbar" style={sc.topBar}>
 
-                {/* Route the user to the 'home' page or the 'splash' page */}
-                <TouchableOpacity id="backButton" style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                <TouchableOpacity id="backButton" style={[sc.headerButton, isHomeOrSplashPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsHomeOrSplashPressed(true)}
                     onPressOut={() => setIsHomeOrSplashPressed(false)}
-                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
+                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}
+                    activeOpacity={0.9}>
 
-                    <Text id="backButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                    <Text id="backButtonText" style={sc.headerButtonText} numberOfLines={1}>
                         Home
                     </Text>
                 </TouchableOpacity>
 
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
+                <Text id="loggedInUser" style={sc.userPill} numberOfLines={1}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
-                {/* Route the user to the 'splash' page or the 'login' page */}
-                <TouchableOpacity id="loginLogoutButton" style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                <TouchableOpacity id="loginLogoutButton" style={[sc.headerButton, isLoginLogoutPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}
+                    activeOpacity={0.9}>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Logout' : 'Login'}
+                    <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Log out' : 'Log in'}
                     </Text>
                 </TouchableOpacity>
 
             </View>
 
-            <Text id="scanFoodItemsTitle" style={styles.headerTitle}>
-                Scan Food
-            </Text>
-
-            <ScrollView id="scanFoodItemsScrollView" style={styles.scrollView}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={true}
+            <ScrollView id="scanFoodItemsScrollView" style={sc.scrollView}
+                contentContainerStyle={sc.scrollContent}
+                showsVerticalScrollIndicator={false}
                 keyboardShouldPersistTaps="handled"
                 bounces={true}
                 overScrollMode="always">
 
-                <Text id="scanFoodItemsInfoText" style={styles.infoText}>
+                <Text id="scanFoodItemsTitle" style={sc.pageTitle}>
+                    Scan food
+                </Text>
+
+                <Text id="scanFoodItemsInfoText" style={sc.pageSubtitle}>
                     {
                         !similarFoodItems && !selectedSimilarFoodItem ? 'Take a photo or upload an image of a food item to identify' :
                         similarFoodItems && !selectedSimilarFoodItem ? 'Here are the food items similar to ' + prediction?.food_name : 
@@ -691,7 +694,7 @@ export default function ScanScreen() {
                     <View id="lowConfidenceBanner" style={styles.lowConfidenceBanner}>
                         <Text style={styles.lowConfidenceTitle}>No food detected</Text>
                         <Text style={styles.lowConfidenceMessage}>
-                            We couldn&apos;t detect any food in this photo. Please take a clear photo of the food item.
+                            We couldn&apos;t detect food in this photo. Try a clearer shot of the dish.
                         </Text>
                     </View>
                 )}
@@ -700,15 +703,15 @@ export default function ScanScreen() {
                 {/* Only display when a photo or image has been selected and there is a prediction */}
                 {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
                 {selectedImage && prediction && !similarFoodItems && !selectedSimilarFoodItem && (
-                    <View id="foodItemOuterView" style={styles.selectedFoodItemContainer}>
+                    <View id="foodItemOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
                         <FlatList id="foodItemFlatList"
                             data={processScannedFoodItem(prediction)}
                             scrollEnabled={false}
-                            renderItem={({ item }) => (
-                                <View id="foodItemInnerView" style={styles.row}>
-                                    <Text id="foodItemFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                    <Text id="foodItemFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                            renderItem={({ item, index }) => (
+                                <View id="foodItemInnerView" style={[sc.row, index === processScannedFoodItem(prediction).length - 1 && sc.rowLast]}>
+                                    <Text id="foodItemFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                    <Text id="foodItemFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                 </View>
                             )}>
                         </FlatList>
@@ -720,15 +723,15 @@ export default function ScanScreen() {
                 {/* Only display when a photo or image has been selected and there is a prediction */}
                 {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
                 {selectedImage && prediction && !similarFoodItems && !selectedSimilarFoodItem && (
-                    <View id="warningOuterView" style={styles.selectedFoodItemContainer}>
+                    <View id="warningOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
                         <FlatList id="warningFlatList"
                             data={processSelectedFoodItemWarnings(prediction)}
                             scrollEnabled={false}
-                            renderItem={({ item }) => (
-                                <View id="warningInnerView" style={styles.row}>
-                                    <Text id="warningFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                    <Text id="warningFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                            renderItem={({ item, index }) => (
+                                <View id="warningInnerView" style={[sc.row, index === processSelectedFoodItemWarnings(prediction).length - 1 && sc.rowLast]}>
+                                    <Text id="warningFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                    <Text id="warningFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                 </View>
                             )}>
                         </FlatList>
@@ -740,23 +743,25 @@ export default function ScanScreen() {
                 {/* Only display when no photo or image has been selected */}
                 {/* No selected image makes prediction and lowConfidenceMessage variable values irrelevant */}
                 {!selectedImage && !similarFoodItems && !selectedSimilarFoodItem && (
-                    <View id="takePhotoOrUploadPhotoView" style={styles.container}>
+                    <View id="takePhotoOrUploadPhotoView" style={styles.innerStack}>
 
-                        <TouchableOpacity id="takePhotoButton" style={[styles.bodyButtonDefault, loading && styles.buttonDisabled]}
+                        <TouchableOpacity id="takePhotoButton" style={[sc.bodyButton, loading && styles.buttonDisabled]}
                             onPress={takePhoto}
-                            disabled={loading}>
+                            disabled={loading}
+                            activeOpacity={0.92}>
 
-                            <Text id="takePhotoButtonText" style={styles.bodyButtonTextDefault}>
-                                Take Photo
+                            <Text id="takePhotoButtonText" style={sc.bodyButtonText}>
+                                Take photo
                             </Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity id="uploadPhotoButton" style={[styles.bodyButtonDefault, loading && styles.buttonDisabled]}
+                        <TouchableOpacity id="uploadPhotoButton" style={[sc.bodyButtonOutline, loading && styles.buttonDisabled]}
                             onPress={pickImage}
-                            disabled={loading}>
+                            disabled={loading}
+                            activeOpacity={0.92}>
 
-                            <Text id="uploadPhotoButtonText" style={styles.bodyButtonTextDefault}>
-                                Upload Photo
+                            <Text id="uploadPhotoButtonText" style={sc.bodyButtonOutlineText}>
+                                Upload photo
                             </Text>
                         </TouchableOpacity>
 
@@ -767,19 +772,20 @@ export default function ScanScreen() {
                 {/* Only display when a photo or image has been selected and there is no prediction */}
                 {/* The image has not been scanned so the lowConfidenceMessage variable value is irrelevant */}
                 {selectedImage && prediction === null && (
-                    <View id="scanFoodOrDeleteFoodView" style={styles.container}>
+                    <View id="scanFoodOrDeleteFoodView" style={styles.innerStack}>
 
                         <TouchableOpacity id="scanFoodButton"
                             style={[styles.bodyButtonScanFood,
                                 loading && styles.buttonDisabled,
                                 !selectedImage && styles.buttonDisabled]}
                             onPress={scanFood}
-                            disabled={loading || !selectedImage}>
+                            disabled={loading || !selectedImage}
+                            activeOpacity={0.92}>
 
-                            {loading ? (<ActivityIndicator color="white"/>) :
+                            {loading ? (<ActivityIndicator color="#FFFFFF"/>) :
                                 
-                                (<Text id="scanFoodButtonText" style={styles.bodyButtonTextDefault}>
-                                    Scan Food
+                                (<Text id="scanFoodButtonText" style={sc.bodyButtonText}>
+                                    Scan food
                                 </Text>)
                             }
                         </TouchableOpacity>
@@ -792,12 +798,13 @@ export default function ScanScreen() {
                                 setSelectedImage(null);
                                 setPrediction(null);
                             }}
-                            disabled={loading || !selectedImage}>
+                            disabled={loading || !selectedImage}
+                            activeOpacity={0.92}>
 
-                            {loading ? (<ActivityIndicator color="white"/>) :
+                            {loading ? (<ActivityIndicator color="#9E1116"/>) :
 
-                                (<Text id="deleteFoodButtonText" style={styles.bodyButtonTextAlt}>
-                                    Delete Food
+                                (<Text id="deleteFoodButtonText" style={styles.bodyButtonDeleteFoodText}>
+                                    Remove photo
                                 </Text>)
                             }
                         </TouchableOpacity>
@@ -809,46 +816,49 @@ export default function ScanScreen() {
                     or clear the photo or image and prediction results and enable the user to submit a new photo or image */}
                 {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
                 {selectedImage && prediction && !similarFoodItems && !selectedSimilarFoodItem && (
-                    <View id="browseSimilarOrScanOtherView" style={styles.container}>
+                    <View id="browseSimilarOrScanOtherView" style={styles.innerStack}>
 
-                        <TouchableOpacity id="browseSimilarFoodItemsButton" style={[styles.bodyButtonDefault, {backgroundColor: isBrowseSimilarPressed ? '#666666' : '#131312'}]}
+                        <TouchableOpacity id="browseSimilarFoodItemsButton" style={[sc.bodyButton, isBrowseSimilarPressed && sc.bodyButtonPressed]}
                             onPressIn={() => setIsBrowseSimilarPressed(true)}
                             onPressOut={() => setIsBrowseSimilarPressed(false)}
                             onPress={() => {
                                 getFoodItemByName(prediction.food_name);
                                 setSimilarFoodItems(true);
-                            }}>
+                            }}
+                            activeOpacity={0.92}>
 
-                            <Text id="browseSimilarFoodItemsButtonText" style={styles.bodyButtonTextDefault} numberOfLines={1}>
-                                Browse Similar
+                            <Text id="browseSimilarFoodItemsButtonText" style={sc.bodyButtonText} numberOfLines={1}>
+                                Browse similar
                             </Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity id="scanOtherFoodItemButton" style={[styles.bodyButtonDefault, {backgroundColor: isScanOtherPressed ? '#666666' : '#131312'}]}
+                        <TouchableOpacity id="scanOtherFoodItemButton" style={[sc.bodyButtonOutline, isScanOtherPressed && { opacity: 0.88 }]}
                             onPressIn={() => setIsScanOtherPressed(true)}
                             onPressOut={() => setIsScanOtherPressed(false)}
                             onPress={() => {
                                 setSelectedImage(null);
                                 setPrediction(null);
                                 setLowConfidenceMessage(null);
-                            }}>
+                            }}
+                            activeOpacity={0.92}>
 
-                            <Text id="scanOtherFoodItemButtonText" style={styles.bodyButtonTextDefault} numberOfLines={1}>
-                                Scan Other
+                            <Text id="scanOtherFoodItemButtonText" style={sc.bodyButtonOutlineText} numberOfLines={1}>
+                                Scan another
                             </Text>
                         </TouchableOpacity>
 
                         {usernameGlobal !== '' && (
-                            <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
+                            <TouchableOpacity id="saveFoodItemButton" style={sc.bodyButtonOutline}
                                 onPress={() => {
                                     logFoodItemByName(prediction.food_name);
                                     setSavedFoodItemMessage(true);
                                     setTimeout(() => {setSavedFoodItemMessage(false);}, 2000);
                                     router.push('/home');}}
-                                disabled={loading}>
+                                disabled={loading}
+                                activeOpacity={0.92}>
 
-                                <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
-                                    Save Food Item
+                                <Text id="saveFoodItemButtonText" style={sc.bodyButtonOutlineText}>
+                                    Save food item
                                 </Text>
                             </TouchableOpacity>
                         )}
@@ -858,17 +868,17 @@ export default function ScanScreen() {
 
                 {/* Display food items that match the selected generic category */}
                 {similarFoodItems && !selectedSimilarFoodItem && (
-                    <View id="browseSimilarFoodItemsSuccessView" style={styles.foodItemContainer}>
+                    <View id="browseSimilarFoodItemsSuccessView" style={[sc.card, { marginBottom: 14, overflow: 'hidden' }]}>
 
                         {genericCategoryFoodItems.food_items.map((foodItem) => (
 
-                            <Text id="browseSimilarFoodItemsSuccessText" style={styles.foodItemTextDefault}
+                            <Text id="browseSimilarFoodItemsSuccessText" style={styles.listRowText}
                                 key={foodItem["id"]}
                                 onPress={() => {
                                     getFoodItem(foodItem["id"]);
                                     setSelectedSimilarFoodItem(true);
                                 }}>
-                                {foodItem["name"]} - {foodItem["dining_location"]}
+                                {foodItem["name"]} · {foodItem["dining_location"]}
                             </Text>
                         ))}
 
@@ -877,15 +887,15 @@ export default function ScanScreen() {
 
                 {/* Display information about the selected food item */}
                 {selectedSimilarFoodItem && (
-                    <View id="selectedSimilarFoodItemOuterView" style={styles.selectedFoodItemContainer}>
+                    <View id="selectedSimilarFoodItemOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
                         <FlatList id="selectedSimilarFoodItemFlatList"
                             data={processSelectedFoodItem(foodItem)}
                             scrollEnabled={false}
-                            renderItem={({ item }) => (
-                                <View id="selectedSimilarFoodItemInnerView" style={styles.row}>
-                                    <Text id="selectedSimilarFoodItemNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                    <Text id="selectedSimilarFoodItemValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                            renderItem={({ item, index }) => (
+                                <View id="selectedSimilarFoodItemInnerView" style={[sc.row, index === processSelectedFoodItem(foodItem).length - 1 && sc.rowLast]}>
+                                    <Text id="selectedSimilarFoodItemNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                    <Text id="selectedSimilarFoodItemValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                 </View>
                             )}>
                         </FlatList>
@@ -895,15 +905,15 @@ export default function ScanScreen() {
 
                 {/* Display the relevant warnings for the selected food item based on the logged-in user's settings */}
                 {selectedSimilarFoodItem && (
-                    <View id="warningOuterView" style={styles.selectedFoodItemContainer}>
+                    <View id="warningOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
                         <FlatList id="warningFlatList"
                             data={processSelectedFoodItemWarnings(foodItem)}
                             scrollEnabled={false}
-                            renderItem={({ item }) => (
-                                <View id="warningInnerView" style={styles.row}>
-                                    <Text id="warningFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                    <Text id="warningFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                            renderItem={({ item, index }) => (
+                                <View id="warningInnerView" style={[sc.row, index === processSelectedFoodItemWarnings(foodItem).length - 1 && sc.rowLast]}>
+                                    <Text id="warningFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                    <Text id="warningFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                 </View>
                             )}>
                         </FlatList>
@@ -913,9 +923,9 @@ export default function ScanScreen() {
 
                 {/* Display a button that enables the selected food item to be saved to the backend database */}
                 {similarFoodItems && selectedSimilarFoodItem && (
-                    <View id="scanOtherOrsaveFoodItemView" style={styles.container}>
+                    <View id="scanOtherOrsaveFoodItemView" style={styles.innerStack}>
 
-                        <TouchableOpacity id="scanOtherFoodItemButton" style={[styles.bodyButtonDefault, {backgroundColor: isScanOtherPressed ? '#666666' : '#131312'}]}
+                        <TouchableOpacity id="scanOtherFoodItemButton" style={[sc.bodyButtonOutline, isScanOtherPressed && { opacity: 0.88 }]}
                             onPressIn={() => setIsScanOtherPressed(true)}
                             onPressOut={() => setIsScanOtherPressed(false)}
                             onPress={() => {
@@ -925,24 +935,26 @@ export default function ScanScreen() {
                                 
                                 setSimilarFoodItems(false);
                                 setSelectedSimilarFoodItem(false);
-                            }}>
+                            }}
+                            activeOpacity={0.92}>
 
-                            <Text id="scanOtherFoodItemButtonText" style={styles.bodyButtonTextDefault} numberOfLines={1}>
-                                Scan Other
+                            <Text id="scanOtherFoodItemButtonText" style={sc.bodyButtonOutlineText} numberOfLines={1}>
+                                Scan another
                             </Text>
                         </TouchableOpacity>
                         
                         {usernameGlobal !== '' && (
-                            <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
+                            <TouchableOpacity id="saveFoodItemButton" style={sc.bodyButton}
                                 onPress={() => {
                                     logFoodItemById(foodItem.id);
                                     setSavedFoodItemMessage(true);
                                     setTimeout(() => {setSavedFoodItemMessage(false);}, 2000);
                                     router.push('/home');}}
-                                disabled={loading}>
+                                disabled={loading}
+                                activeOpacity={0.92}>
 
-                                <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
-                                    Save Food Item
+                                <Text id="saveFoodItemButtonText" style={sc.bodyButtonText}>
+                                    Save food item
                                 </Text>
                             </TouchableOpacity>
                         )}
@@ -957,12 +969,12 @@ export default function ScanScreen() {
                         transparent={true}
                         visible={savedFoodItemMessage}>
 
-                        <View id="savedFoodItemOuterView">
+                        <View id="savedFoodItemOuterView" style={styles.savedFoodItemMessageContainer}>
 
-                            <View id="savedFoodItemInnerView" style={styles.savedFoodItemMessageContainer}>
+                            <View id="savedFoodItemInnerView" style={styles.savedFoodItemInner}>
 
                                 <Text id="savedFoodItemText" style={styles.savedFoodItemText}>
-                                    Food Item Saved!
+                                    Food item saved
                                 </Text>
                             </View>
                         </View>
@@ -973,6 +985,7 @@ export default function ScanScreen() {
             </ScrollView>
 
         </View>
+        </SafeAreaView>
     )
 
 }

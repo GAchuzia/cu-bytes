@@ -3,7 +3,9 @@ import { View, Text, TouchableOpacity, FlatList, ScrollView } from 'react-native
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { screenChrome as sc } from './_styles/screenChrome';
 import { styles } from './_styles/style-entries';
 import { useUser } from './_context';
 import { API_BASE_URL } from '../services/api';
@@ -211,95 +213,91 @@ export default function EntriesScreen() {
         router.push('/');
     }
 
+    const line = (label: string, value: string | number) => (
+        <>
+            <Text style={styles.rowLabel}>{label}</Text>
+            <Text style={styles.rowCell}>{value}</Text>
+        </>
+    );
+
     return (
+        <SafeAreaView style={sc.safeRoot} edges={['top', 'left', 'right']}>
+        <View style={sc.container}>
+            <StatusBar style="dark" />
 
-        <View style={styles.container}>
-            
-            <StatusBar style="auto" hidden={true}/>
-
-            <View id="viewSavedFoodItemsStatusbar" style={styles.statusbar}>
-
-                {/* Route the user to the 'home' page */}
+            <View id="viewSavedFoodItemsStatusbar" style={sc.topBar}>
                 <TouchableOpacity id="homeOrSplashButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    style={[sc.headerButton, isHomeOrSplashPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsHomeOrSplashPressed(true)}
                     onPressOut={() => setIsHomeOrSplashPressed(false)}
-                    onPress={() => router.push('/home')}>
+                    onPress={() => router.push('/home')}
+                    activeOpacity={0.9}>
 
-                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                    <Text id="homeOrSplashButtonText" style={sc.headerButtonText} numberOfLines={1}>
                         Home
                     </Text>
                 </TouchableOpacity>
 
-                <Text  id="loggedInUser" style={styles.headerUsernameIcon}>
+                <Text id="loggedInUser" style={sc.userPill} numberOfLines={1}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
-                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                    style={[sc.headerButton, isLoginLogoutPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}
+                    activeOpacity={0.9}>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Logout' : 'Login'}
+                    <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Log out' : 'Log in'}
                     </Text>
                 </TouchableOpacity>
-
             </View>
 
-            <Text id="savedFoodItemsTitle" style={styles.headerTitle}>
-                Saved Food Items
-            </Text>
-
-            <ScrollView id="viewSavedFoodItemsScrollView" style={styles.scrollView}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={true}
+            <ScrollView id="viewSavedFoodItemsScrollView" style={sc.scrollView}
+                contentContainerStyle={sc.scrollContent}
+                showsVerticalScrollIndicator={false}
                 keyboardShouldPersistTaps="handled"
                 nestedScrollEnabled>
 
-                <Text id="viewSavedFoodItemsInfoTextDefault" style={styles.infoText}>
-                    Here are the food items that you saved
+                <Text id="savedFoodItemsTitle" style={sc.pageTitle}>
+                    Saved Foods
+                </Text>
+                <Text id="viewSavedFoodItemsInfoTextDefault" style={sc.pageSubtitle}>
+                    Items you have logged to your account.
                 </Text>
 
                 {foodItemArray.length === 0 && !visible ? (
-                    <View id="viewSavedFoodItemsViewNoItems">
-                        <Text id="viewSavedFoodItemsInfoTextNoItems" style={styles.infoText}>
-                            You have saved no food items
-                        </Text>
-                    </View>
+                    <Text id="viewSavedFoodItemsInfoTextNoItems" style={styles.emptyHint}>
+                        You have no saved food items yet.
+                    </Text>
                 ) : null}
 
                 {foodItemArray && foodItemArray.length > 0 && !visible ? (
-
-                    <View style={styles.bodyContainer}>
-
-                        <FlatList
-                            data={foodItemArray}
-                            scrollEnabled={true}
-                            renderItem={({ item }) => (
-                                <View id="rowView" style={styles.row}>
-                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Name</Text> {item["food_name"]}</Text>
-                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Dining Locations</Text> {item["dining_location"]}</Text>
-                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Calories</Text> {processFoodItemCalories(item["calories"])}</Text>
-                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Carbs</Text> {processFoodItemCarbs(item["carbs_g"])} g</Text>
-                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Fat</Text> {processFoodItemFat(item["fat_g"])} g</Text>
-                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Fiber</Text> {processFoodItemFiber(item["fiber_g"])} g</Text>
-                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Proteins</Text> {processFoodItemProteins(item["proteins_g"])} g</Text>
-                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Sugar</Text> {processFoodItemSugar(item["sugar_g"])} g</Text>
-                                    <Text style={styles.rowCell}><Text style={{ fontWeight: 'bold' }}>Saved</Text> {item["transaction_time"]}</Text>
-                                </View>
-                            )}
-                            keyExtractor={foodItem => foodItem["food_name"]}>
-                        </FlatList>
-
-                    </View>
+                    <FlatList
+                        data={foodItemArray}
+                        scrollEnabled={true}
+                        renderItem={({ item }) => (
+                            <View id="rowView" style={styles.entryCard}>
+                                {line('Name', item["food_name"])}
+                                {line('Location', item["dining_location"])}
+                                {line('Calories', processFoodItemCalories(item["calories"]))}
+                                {line('Carbs', `${processFoodItemCarbs(item["carbs_g"])} g`)}
+                                {line('Fat', `${processFoodItemFat(item["fat_g"])} g`)}
+                                {line('Fiber', `${processFoodItemFiber(item["fiber_g"])} g`)}
+                                {line('Protein', `${processFoodItemProteins(item["proteins_g"])} g`)}
+                                {line('Sugar', `${processFoodItemSugar(item["sugar_g"])} g`)}
+                                {line('Saved', item["transaction_time"])}
+                            </View>
+                        )}
+                        keyExtractor={(foodItem, index) =>
+                            `${foodItem["food_name"]}-${foodItem["transaction_time"]}-${index}`}
+                    />
                 ) : null}
-
             </ScrollView>
-
         </View>
+        </SafeAreaView>
     )
 
 }

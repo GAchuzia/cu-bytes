@@ -3,304 +3,298 @@ import { View, ScrollView, Text, TextInput, TouchableOpacity, Switch } from 'rea
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { styles } from './_styles/style-login';
+import { screenChrome as sc } from './_styles/screenChrome';
 import { useUser } from './_context';
 import { API_BASE_URL } from '../services/api';
 
 export default function LoginScreen() {
+  const [visible, setVisible] = useState(false);
+  const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
+  const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
+  const [isLoginPressed, setIsLoginPressed] = useState(false);
+  const [isCreateAccountPressed, setIsCreateAccountPressed] = useState(false);
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
-    const [loading, setLoading] = useState(false);
-    const [visible, setVisible] = useState(false);
-    const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
-    const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
-    const [isLoginPressed, setIsLoginPressed] = useState(false);
-    const [isCreateAccountPressed, setIsCreateAccountPressed] = useState(false);
-    const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [error, setError] = useState({
+    message: '',
+    status: '',
+  });
 
-    /*
-        Variable and setter for storing and modifying the error returned from the backend endpoint
-    */
-    const [error, setError] = useState(
-        {
-            message: '',
-            status: ''
-        }
-    );
+  const {
+    usernameGlobal,
+    setUsernameGlobal,
+    setHasConfiguredSettingsGlobal,
+    setShowStatsGlobal,
+    setHasDairyIntoleranceGlobal,
+    setHasEggAllergyGlobal,
+    setHasFishOrShellfishAllergyGlobal,
+    setHasGlutenAllergyGlobal,
+    setHasMilkAllergyGlobal,
+    setHasPeanutAllergyGlobal,
+    setHasSesameAllergyGlobal,
+    setHasSulfitesAllergyGlobal,
+    setHasSoyAllergyGlobal,
+    setHasTreenutAllergyGlobal,
+    setHasWheatAllergyGlobal,
+    setIsVeganGlobal,
+    setIsVegetarianGlobal,
+    setPrefersHalalGlobal,
+  } = useUser();
 
-    /*
-        Variables and setters used to store a copy of the logged-in user's username and profile settings
-    */
-    const
-        {
-            usernameGlobal,
-            setUsernameGlobal,
-            setHasConfiguredSettingsGlobal,
-            setShowStatsGlobal,
-            setHasDairyIntoleranceGlobal,            
-            setHasEggAllergyGlobal,
-            setHasFishOrShellfishAllergyGlobal,
-            setHasGlutenAllergyGlobal,
-            setHasMilkAllergyGlobal,
-            setHasPeanutAllergyGlobal,
-            setHasSesameAllergyGlobal,
-            setHasSulfitesAllergyGlobal,
-            setHasSoyAllergyGlobal,
-            setHasTreenutAllergyGlobal,
-            setHasWheatAllergyGlobal,
-            setIsVeganGlobal,
-            setIsVegetarianGlobal,
-            setPrefersHalalGlobal
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-        } = useUser();
+  const loadSettings = async (loggedInAs: string) => {
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/profile/retreive/${encodeURIComponent(loggedInAs)}`
+      );
+      const data = await res.json();
 
-    /*
-        Variable and setter for storing and modifying the username entered by the user
-    */
-    const [username, setUsername] = useState('');
-
-    /*
-        Variable and setter for storing and modifying the password entered by the user
-    */
-    const [password, setPassword] = useState('');
-
-    /*
-        Send a request to the backend endpoint to get the logged-in user's username and profile settings
-    */
-    const loadSettings = async (loggedInAs: string) => {
-        try {
-            const res = await fetch(
-                `${API_BASE_URL}/profile/retreive/${encodeURIComponent(loggedInAs)}`
-            );
-            const data = await res.json();
-
-            setUsernameGlobal(loggedInAs);
-            setHasConfiguredSettingsGlobal(data.has_configured_settings)
-            setShowStatsGlobal(data.show_stats);
-            setHasEggAllergyGlobal(data.has_egg_allergy);
-            setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
-            setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
-            setHasMilkAllergyGlobal(data.has_milk_allergy);
-            setHasPeanutAllergyGlobal(data.has_peanut_allergy);
-            setHasSesameAllergyGlobal(data.has_sesame_allergy);
-            setHasSoyAllergyGlobal(data.has_soy_allergy);
-            setHasSulfitesAllergyGlobal(data.has_sulfites);
-            setHasTreenutAllergyGlobal(data.has_treenut_allergy);
-            setHasWheatAllergyGlobal(data.has_wheat_allergy);
-            setHasGlutenAllergyGlobal(data.has_gluten_allergy);
-            setIsVeganGlobal(data.is_vegan);
-            setIsVegetarianGlobal(data.is_vegetarian);
-            setPrefersHalalGlobal(data.prefers_halal);
-
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
+      setUsernameGlobal(loggedInAs);
+      setHasConfiguredSettingsGlobal(data.has_configured_settings);
+      setShowStatsGlobal(data.show_stats);
+      setHasEggAllergyGlobal(data.has_egg_allergy);
+      setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
+      setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
+      setHasMilkAllergyGlobal(data.has_milk_allergy);
+      setHasPeanutAllergyGlobal(data.has_peanut_allergy);
+      setHasSesameAllergyGlobal(data.has_sesame_allergy);
+      setHasSoyAllergyGlobal(data.has_soy_allergy);
+      setHasSulfitesAllergyGlobal(data.has_sulfites);
+      setHasTreenutAllergyGlobal(data.has_treenut_allergy);
+      setHasWheatAllergyGlobal(data.has_wheat_allergy);
+      setHasGlutenAllergyGlobal(data.has_gluten_allergy);
+      setIsVeganGlobal(data.is_vegan);
+      setIsVegetarianGlobal(data.is_vegetarian);
+      setPrefersHalalGlobal(data.prefers_halal);
+    } catch (err) {
+      console.error(err);
     }
+  };
 
-    /*
-        Send a request to the backend endpoint to login the user to an account
+  const loginUser = async (name: string, psswrd: string) => {
+    const trimmedUser = name.trim();
+    const trimmedPass = psswrd.trim();
+    setError({ message: '', status: '' });
 
-        param(s):
-            string - name: The username entered by the user to login into an account
-            string - psswrd: The password entered by the user to login into an account
-    */
-    const loginUser = async (name: string, psswrd: string) => {
-        const trimmedUser = name.trim();
-        const trimmedPass = psswrd.trim();
-        setError({ message: '', status: '' });
+    try {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: trimmedUser,
+          password: trimmedPass,
+        }),
+      });
 
-        try {
-            const res = await fetch(`${API_BASE_URL}/auth/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    username: trimmedUser,
-                    password: trimmedPass,
-                }),
-            });
+      let data: { status?: string; message?: string } = {};
+      try {
+        data = await res.json();
+      } catch {
+        setError({
+          message: 'Invalid response from server.',
+          status: 'error',
+        });
+        return;
+      }
 
-            let data: { status?: string; message?: string } = {};
-            try {
-                data = await res.json();
-            } catch {
-                setError({
-                    message: 'Invalid response from server.',
-                    status: 'error',
-                });
-                return;
-            }
+      if (data.status === 'error' || !res.ok) {
+        setError({
+          message: data.message || `Login failed (${res.status})`,
+          status: 'error',
+        });
+        return;
+      }
 
-            if (data.status === 'error' || !res.ok) {
-                setError({
-                    message: data.message || `Login failed (${res.status})`,
-                    status: 'error',
-                });
-                return;
-            }
-
-            if (data.status === 'success') {
-                setUsername(trimmedUser);
-                await loadSettings(trimmedUser);
-                router.push('/home');
-            }
-        } catch (err) {
-            console.error(err);
-            setError({
-                message: 'Network error. Check your connection and try again.',
-                status: 'error',
-            });
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    /*
-        Log out the logged-in user by setting their profile settings to false, and routing to the splash page
-    */
-    const logout = () => { 
-        
-        setUsernameGlobal('');
-        setHasConfiguredSettingsGlobal(false);
-        setShowStatsGlobal(false);
-        setHasDairyIntoleranceGlobal(false);        
-        setHasEggAllergyGlobal(false);
-        setHasFishOrShellfishAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
-        setHasMilkAllergyGlobal(false);
-        setHasPeanutAllergyGlobal(false);
-        setHasSesameAllergyGlobal(false);
-        setHasSoyAllergyGlobal(false);
-        setHasSulfitesAllergyGlobal(false);
-        setHasTreenutAllergyGlobal(false);
-        setHasWheatAllergyGlobal(false);
-        setIsVeganGlobal(false);
-        setIsVegetarianGlobal(false);
-        setPrefersHalalGlobal(false);
-
-        router.push('/');
+      if (data.status === 'success') {
+        setUsername(trimmedUser);
+        await loadSettings(trimmedUser);
+        router.push('/home');
+      }
+    } catch (err) {
+      console.error(err);
+      setError({
+        message: 'Network error. Check your connection and try again.',
+        status: 'error',
+      });
     }
+  };
 
-    return (
+  const logout = () => {
+    setUsernameGlobal('');
+    setHasConfiguredSettingsGlobal(false);
+    setShowStatsGlobal(false);
+    setHasDairyIntoleranceGlobal(false);
+    setHasEggAllergyGlobal(false);
+    setHasFishOrShellfishAllergyGlobal(false);
+    setHasGlutenAllergyGlobal(false);
+    setHasMilkAllergyGlobal(false);
+    setHasPeanutAllergyGlobal(false);
+    setHasSesameAllergyGlobal(false);
+    setHasSoyAllergyGlobal(false);
+    setHasSulfitesAllergyGlobal(false);
+    setHasTreenutAllergyGlobal(false);
+    setHasWheatAllergyGlobal(false);
+    setIsVeganGlobal(false);
+    setIsVegetarianGlobal(false);
+    setPrefersHalalGlobal(false);
 
-        <View style={styles.container}>
-            
-            <StatusBar style="auto" hidden={true}/>
+    router.push('/');
+  };
 
-            <View id="loginStatusbar" style={styles.statusbar}>
+  return (
+    <SafeAreaView style={sc.safeRoot} edges={['top', 'left', 'right']}>
+      <View style={sc.container}>
+        <StatusBar style="dark" />
 
-                {/* Route the user to the 'splash' page */}
-                <TouchableOpacity id="homeOrSplashButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsHomeOrSplashPressed(true)}
-                    onPressOut={() => setIsHomeOrSplashPressed(false)}
-                    onPress={() => router.push('/')}>
+        <View id="loginStatusbar" style={sc.topBar}>
+          <TouchableOpacity
+            id="homeOrSplashButton"
+            style={[
+              sc.headerButton,
+              isHomeOrSplashPressed && sc.headerButtonPressed,
+            ]}
+            onPressIn={() => setIsHomeOrSplashPressed(true)}
+            onPressOut={() => setIsHomeOrSplashPressed(false)}
+            onPress={() => router.push('/')}
+            activeOpacity={0.9}
+          >
+            <Text id="homeOrSplashButtonText" style={sc.headerButtonText}>
+              Home
+            </Text>
+          </TouchableOpacity>
 
-                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        Home
-                    </Text>
-                </TouchableOpacity>
+          <Text id="loggedInUser" style={sc.userPill} numberOfLines={1}>
+            {usernameGlobal !== '' ? usernameGlobal : 'Guest'}
+          </Text>
 
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
-                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
-                </Text>
+          <TouchableOpacity
+            id="loginLogoutButton"
+            style={[
+              sc.headerButton,
+              isLoginLogoutPressed && sc.headerButtonPressed,
+            ]}
+            onPressIn={() => setIsLoginLogoutPressed(true)}
+            onPressOut={() => setIsLoginLogoutPressed(false)}
+            onPress={() => (usernameGlobal !== '' ? logout() : null)}
+            activeOpacity={0.9}
+          >
+            <Text
+              id="loginLogoutButtonText"
+              style={sc.headerButtonText}
+              numberOfLines={1}
+            >
+              {usernameGlobal !== '' ? 'Log out' : 'Log in'}
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-                {/* Route the user to the 'splash' page or the 'login' page */}
-                <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsLoginLogoutPressed(true)}
-                    onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : null}>
+        <ScrollView
+          id="loginScrollView"
+          style={sc.scrollView}
+          contentContainerStyle={sc.scrollContent}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
+          <Text id="loginTitle" style={sc.pageTitle}>
+            Log in
+          </Text>
+          <Text id="loginInfoText" style={sc.pageSubtitle}>
+            Welcome back — or create a new account below.
+          </Text>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Logout' : 'Login'}
-                    </Text>
-                </TouchableOpacity>
-
-            </View>
-
-            <Text id="loginTitle" style={styles.headerTitle}>
-                Login
+          <View style={sc.formCard}>
+            <Text id="loginErrorMessage" style={sc.errorBanner}>
+              {visible ? error.message : 'Enter your username and password'}
             </Text>
 
-            <ScrollView id="loginScrollView" style={styles.scrollView}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={true}
-                keyboardShouldPersistTaps="handled">
+            <TextInput
+              id="loginUsernameTextInput"
+              style={sc.textInput}
+              onChangeText={setUsername}
+              onChange={() => {
+                setError({ message: '', status: '' });
+                setVisible(false);
+              }}
+              placeholder="CU-Bytes username"
+              placeholderTextColor="#8E95A1"
+              value={username}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
 
-                <Text id="loginInfoText" style={styles.infoText}>
-                    Or create a new account
-                </Text>
+            <TextInput
+              id="loginPasswordTextInput"
+              style={sc.textInput}
+              onChangeText={setPassword}
+              onChange={() => {
+                setError({ message: '', status: '' });
+                setVisible(false);
+              }}
+              placeholder="Password"
+              placeholderTextColor="#8E95A1"
+              value={password}
+              secureTextEntry={secureTextEntry}
+            />
 
-                <Text id="loginErrorMessage" style={styles.errorInfoText}>
-                    {visible ? error.message : 'Enter your username and password'}
-                </Text>
+            <View id="hideOrUnhidePasswordView" style={sc.switchRow}>
+              <Text
+                id="hideOrUnhidePasswordInfoText"
+                style={sc.switchLabel}
+              >
+                Hide password
+              </Text>
+              <Switch
+                id="hideOrUnhidePasswordSwitch"
+                style={sc.switchScale}
+                value={secureTextEntry}
+                onValueChange={setSecureTextEntry}
+              />
+            </View>
 
-                {/* Enter the username that corresponds to the account that the user wants to access */}
-                <TextInput id="loginUsernameTextInput" style={styles.usernameTextInput}
-                    onChangeText={setUsername}
-                    onChange={() => {
-                        setError({ message: '', status: '' });
-                        setVisible(false);
-                    }}
-                    placeholder={"Enter CU-Bytes username"}
-                    value={username}>
-                </TextInput>
+            <TouchableOpacity
+              id="loginButton"
+              style={[
+                sc.bodyButton,
+                isLoginPressed && sc.bodyButtonPressed,
+              ]}
+              onPressIn={() => setIsLoginPressed(true)}
+              onPressOut={() => setIsLoginPressed(false)}
+              onPress={() => {
+                loginUser(username, password);
+                setVisible(true);
+              }}
+              activeOpacity={0.92}
+            >
+              <Text id="loginButtonText" style={sc.bodyButtonText}>
+                Log in
+              </Text>
+            </TouchableOpacity>
 
-                {/* Enter the password that corresponds to the account that the user wants to access */}
-                <TextInput id="loginPasswordTextInput" style={styles.passwordTextInput}
-                    onChangeText={setPassword}
-                    onChange={() => {
-                        setError({ message: '', status: '' });
-                        setVisible(false);
-                    }}
-                    placeholder={"Enter CU-Bytes password"}
-                    value={password}
-                    secureTextEntry={secureTextEntry}>
-                </TextInput>
-
-                {/* Toggle the switch to hide or unhide the password input by converting the characters to or from the * character */}
-                <View id="hideOrUnhidePasswordView" style={styles.row}>
-                    <Text id="hideOrUnhidePasswordInfoText" style={styles.passwordSwitchInfoText}>
-                        Hide or unhide the password
-                    </Text>
-
-                    <Switch id="hideOrUnhidePasswordSwitch" style={styles.switch}
-                        value={secureTextEntry}
-                        onValueChange={setSecureTextEntry}>
-                    </Switch>
-                </View> 
-
-                {/* Submit a request to the backend endpoint to authenticate the entered credentials and log in to an account */}
-                <TouchableOpacity id="loginButton"
-                    style={[styles.bodyButtonDefault, {backgroundColor: isLoginPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsLoginPressed(true)}
-                    onPressOut={() => setIsLoginPressed(false)}
-                    onPress={() => {
-                        loginUser(username, password);
-                        setVisible(true);}}>
-
-                    <Text id="loginButtonText" style={styles.bodyButtonTextDefault}>
-                        Login
-                    </Text>
-                </TouchableOpacity>
-
-                {/* Route the user to the 'create account' page */}
-                <TouchableOpacity id="createAccountButton"
-                    style={[styles.bodyButtonAlt, {backgroundColor: isCreateAccountPressed ? '#DDDDDD' : '#FFFFFF'}]}
-                    onPressIn={() => setIsCreateAccountPressed(true)}
-                    onPressOut={() => setIsCreateAccountPressed(false)}
-                    onPress={() => router.push("/register")}>
-
-                    <Text id="createAccountButtonText" style={styles.bodyButtonTextAlt}>
-                        Create Account
-                    </Text>
-                </TouchableOpacity>
-
-            </ScrollView>
-
-        </View>
-    )
-
+            <TouchableOpacity
+              id="createAccountButton"
+              style={[
+                sc.bodyButtonOutline,
+                isCreateAccountPressed && { opacity: 0.88 },
+              ]}
+              onPressIn={() => setIsCreateAccountPressed(true)}
+              onPressOut={() => setIsCreateAccountPressed(false)}
+              onPress={() => router.push('/register')}
+              activeOpacity={0.92}
+            >
+              <Text
+                id="createAccountButtonText"
+                style={sc.bodyButtonOutlineText}
+              >
+                Create account
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </View>
+    </SafeAreaView>
+  );
 }

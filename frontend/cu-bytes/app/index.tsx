@@ -3,132 +3,151 @@ import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { screenChrome as sc } from './_styles/screenChrome';
 import { styles } from './_styles/style-index';
 
 export default function IndexScreen() {
+  const [browseButtons, setBrowseButtons] = useState(false);
+  const [isLoginPressed, setIsLoginPressed] = useState(false);
+  const [isScanFoodItemPressed, setIsScanFoodItemPressed] = useState(false);
+  const [isBrowsePressed, setIsBrowsePressed] = useState(false);
+  const [isBrowseFoodItemsPressed, setIsBrowseFoodItemsPressed] = useState(false);
+  const [isBrowseDiningLocationsPressed, setIsBrowseDiningLocationsPressed] =
+    useState(false);
+  const [isBackPressed, setIsBackPressed] = useState(false);
 
-    const [loading, setLoading] = useState(false);
-    const [browseButtons, setBrowseButtons] = useState(false);
-    const [isLoginPressed, setIsLoginPressed] = useState(false);
-    const [isScanFoodItemPressed, setIsScanFoodItemPressed] = useState(false);
-    const [isBrowsePressed, setIsBrowsePressed] = useState(false);
-    const [isBrowseFoodItemsPressed, setIsBrowseFoodItemsPressed] = useState(false);
-    const [isBrowseDiningLocationsPressed, setIsBrowseDiningLocationsPressed] = useState(false);
-    
-    return (
+  return (
+    <SafeAreaView style={sc.safeRoot} edges={['top', 'left', 'right', 'bottom']}>
+      <View id="splashView" style={sc.container}>
+        <StatusBar style="dark" />
 
-        <View id="splashView" style={styles.container}>
-            
-            <StatusBar style="auto" hidden={true}/>
+        <ScrollView
+          id="splashScrollView"
+          style={sc.scrollView}
+          contentContainerStyle={sc.scrollContent}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
+          <Text id="splashTitle" style={[sc.pageTitle, styles.brandTitle]}>
+            CU-Bytes
+          </Text>
+          <Text style={[sc.pageSubtitle, styles.subtitleCenter, styles.taglineTight]}>
+            Track your campus meals
+          </Text>
+          <Text style={[sc.pageSubtitle, styles.hintCenter]}>
+            {!browseButtons ? 'Choose an option' : 'Browse'}
+          </Text>
 
-            <View id="splashStatusBar" style={styles.statusbar}>
-                <View style={styles.headerTitleBox}>
-                    <Text id="splashTitle" style={styles.headerTitleText}>
-                        CU-Bytes
-                    </Text>
-                </View>
+          {!browseButtons && (
+            <View id="defaultButtonsView" style={styles.actionsStack}>
+              <TouchableOpacity
+                id="loginButton"
+                style={[
+                  sc.bodyButton,
+                  isLoginPressed && sc.bodyButtonPressed,
+                ]}
+                onPressIn={() => setIsLoginPressed(true)}
+                onPressOut={() => setIsLoginPressed(false)}
+                onPress={() => router.push('/login')}
+                activeOpacity={0.92}
+              >
+                <Text id="loginButtonText" style={sc.bodyButtonText}>
+                  Log in
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                id="scanFoodButton"
+                style={[
+                  sc.bodyButton,
+                  isScanFoodItemPressed && sc.bodyButtonPressed,
+                ]}
+                onPressIn={() => setIsScanFoodItemPressed(true)}
+                onPressOut={() => setIsScanFoodItemPressed(false)}
+                onPress={() => router.push('/scan')}
+                activeOpacity={0.92}
+              >
+                <Text id="scanFoodButtonText" style={sc.bodyButtonText}>
+                  Scan food
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                id="browseButton"
+                style={[
+                  sc.bodyButtonOutline,
+                  isBrowsePressed && { opacity: 0.88 },
+                ]}
+                onPressIn={() => setIsBrowsePressed(true)}
+                onPressOut={() => setIsBrowsePressed(false)}
+                onPress={() => setBrowseButtons(true)}
+                activeOpacity={0.92}
+              >
+                <Text id="browseButtonText" style={sc.bodyButtonOutlineText}>
+                  Browse menu &amp; locations
+                </Text>
+              </TouchableOpacity>
             </View>
+          )}
 
-            <ScrollView id="splashScrollView" style={styles.scrollView}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={true}
-                keyboardShouldPersistTaps="handled">
+          {browseButtons && (
+            <View id="browseButtonsView" style={styles.actionsStack}>
+              <TouchableOpacity
+                id="browseFoodButton"
+                style={[
+                  sc.bodyButton,
+                  isBrowseFoodItemsPressed && sc.bodyButtonPressed,
+                ]}
+                onPressIn={() => setIsBrowseFoodItemsPressed(true)}
+                onPressOut={() => setIsBrowseFoodItemsPressed(false)}
+                onPress={() => router.push('/enter')}
+                activeOpacity={0.92}
+              >
+                <Text id="browseFoodButtonText" style={sc.bodyButtonText}>
+                  Browse food
+                </Text>
+              </TouchableOpacity>
 
-                <View style={styles.infoTextBox}>
-                    <Text id="splashInfoText" style={styles.infoText}>
-                        Track Your Campus Meals!
-                    </Text>
-                </View>
+              <TouchableOpacity
+                id="browseDiningButton"
+                style={[
+                  sc.bodyButton,
+                  isBrowseDiningLocationsPressed && sc.bodyButtonPressed,
+                ]}
+                onPressIn={() => setIsBrowseDiningLocationsPressed(true)}
+                onPressOut={() => setIsBrowseDiningLocationsPressed(false)}
+                onPress={() => router.push('/dining')}
+                activeOpacity={0.92}
+              >
+                <Text id="browseDiningButtonText" style={sc.bodyButtonText}>
+                  Dining locations
+                </Text>
+              </TouchableOpacity>
 
-                {/* Display buttons that are not related to browsing food items or browsing dining locations */}
-                {!browseButtons && (
-                    <View id="defaultButtonsView" style={styles.container}>
-
-                        {/* Route the user to the 'login' page */}
-                        <TouchableOpacity id="loginButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isLoginPressed ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsLoginPressed(true)}
-                            onPressOut={() => setIsLoginPressed(false)}
-                            onPress={() => router.push("/login")}>
-
-                            <Text id="loginButtonText" style={styles.bodyButtonTextDefault}>
-                                Login
-                            </Text>
-                        </TouchableOpacity>
-
-                        {/* Route the user to the 'scan food item' page */}
-                        <TouchableOpacity id="scanFoodButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isScanFoodItemPressed ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsScanFoodItemPressed(true)}
-                            onPressOut={() => setIsScanFoodItemPressed(false)}
-                            onPress={() => router.push("/scan")}>
-
-                            <Text id="scanFoodButtonText" style={styles.bodyButtonTextDefault}>
-                                Scan Food
-                            </Text>
-                        </TouchableOpacity>
-
-                        {/* Button that allows the browse food items and browse dining locations buttons to be displayed */}
-                        <TouchableOpacity id="browseButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isBrowsePressed ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsBrowseFoodItemsPressed(true)}
-                            onPressOut={() => setIsBrowseFoodItemsPressed(false)}
-                            onPress={() => setBrowseButtons(true)}>
-
-                            <Text id="browseButtonText" style={styles.bodyButtonTextDefault}>
-                                Browse
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-                )}
-
-                {/* Display buttons that are related to browsing food items or browsing dining locations */}
-                {browseButtons && (
-                    <View id="browseButtonsView" style={styles.container}>
-
-                        {/* Route the user to the 'browse food items' page */}
-                        <TouchableOpacity id="browseFoodButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isBrowseFoodItemsPressed ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsBrowseFoodItemsPressed(true)}
-                            onPressOut={() => setIsBrowseFoodItemsPressed(false)}
-                            onPress={() => router.push("/enter")}>
-
-                            <Text id="browseFoodButtonText" style={styles.bodyButtonTextDefault}>
-                                Browse Food
-                            </Text>
-                        </TouchableOpacity>
-
-                        {/* Route the user to the 'browse dining locations' page */}
-                        <TouchableOpacity id="browseDiningButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isBrowseDiningLocationsPressed ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsBrowseDiningLocationsPressed(true)}
-                            onPressOut={() => setIsBrowseDiningLocationsPressed(false)}
-                            onPress={() => router.push("/dining")}>
-
-                            <Text id="browseDiningButtonText" style={styles.bodyButtonTextDefault}>
-                                Browse Dining Locations
-                            </Text>
-                        </TouchableOpacity>
-        
-                        {/* Display the buttons that were previously displayed */}
-                        <TouchableOpacity id="browseDiningLocationsButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isBrowseDiningLocationsPressed ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsBrowseDiningLocationsPressed(true)}
-                            onPressOut={() => setIsBrowseDiningLocationsPressed(false)}
-                            onPress={() => setBrowseButtons(false)}>
-
-                            <Text id="browseDiningLocationsButtonText" style={styles.bodyButtonTextDefault}>
-                                Back
-                            </Text>
-                        </TouchableOpacity>
-
-                    </View>
-                )}
-
-            </ScrollView>
-
-        </View>
-    )
-
+              <TouchableOpacity
+                id="browseDiningLocationsButton"
+                style={[
+                  sc.bodyButtonOutline,
+                  isBackPressed && { opacity: 0.88 },
+                ]}
+                onPressIn={() => setIsBackPressed(true)}
+                onPressOut={() => setIsBackPressed(false)}
+                onPress={() => setBrowseButtons(false)}
+                activeOpacity={0.92}
+              >
+                <Text
+                  id="browseDiningLocationsButtonText"
+                  style={sc.bodyButtonOutlineText}
+                >
+                  Back
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </ScrollView>
+      </View>
+    </SafeAreaView>
+  );
 }

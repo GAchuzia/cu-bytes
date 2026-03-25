@@ -3,7 +3,9 @@ import { View, ScrollView, Text, TouchableOpacity, TextInput, FlatList, Activity
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { screenChrome as sc } from './_styles/screenChrome';
 import { styles } from './_styles/style-enter';
 import { useUser } from './_context';
 import { API_BASE_URL } from '../services/api';
@@ -537,101 +539,93 @@ export default function EnterScreen() {
     */
     if (loading) {
         return (
-            <View>
-                <ActivityIndicator size="large" />
-            </View>
+            <SafeAreaView style={[sc.safeRoot, { justifyContent: 'center', alignItems: 'center' }]} edges={['top', 'left', 'right']}>
+                <ActivityIndicator size="large" color="#C5151A" />
+            </SafeAreaView>
         );
     }
 
     return (
+        <SafeAreaView style={sc.safeRoot} edges={['top', 'left', 'right']}>
+        <View style={sc.container}>
+            <StatusBar style="dark" />
 
-        <View style={styles.container}>
-            
-            <StatusBar style="auto" hidden={true}/>
-
-            <View id="browseFoodItemsStatusbar" style={styles.statusbar}>
-
-                {/* Route the user to the 'home' page or the 'splash' page */}
+            <View id="browseFoodItemsStatusbar" style={sc.topBar}>
                 <TouchableOpacity id="homeOrSplashButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    style={[sc.headerButton, isHomeOrSplashPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsHomeOrSplashPressed(true)}
                     onPressOut={() => setIsHomeOrSplashPressed(false)}
-                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
+                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}
+                    activeOpacity={0.9}>
 
-                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                    <Text id="homeOrSplashButtonText" style={sc.headerButtonText} numberOfLines={1}>
                         Home
-                    </Text>     
+                    </Text>
                 </TouchableOpacity>
 
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
+                <Text id="loggedInUser" style={sc.userPill} numberOfLines={1}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
-                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                    style={[sc.headerButton, isLoginLogoutPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}
+                    activeOpacity={0.9}>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Logout' : 'Login'}
+                    <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Log out' : 'Log in'}
                     </Text>
                 </TouchableOpacity>
-
             </View>
 
-            <Text id="browseFoodItemsTitle" style={styles.headerTitle}>
-                Browse Food
-            </Text>
-
-            <ScrollView id="browseFoodItemsScrollView" style={styles.scrollView}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={true}
+            <ScrollView id="browseFoodItemsScrollView" style={sc.scrollView}
+                contentContainerStyle={sc.scrollContent}
+                showsVerticalScrollIndicator={false}
                 keyboardShouldPersistTaps="handled">
 
-                <Text id="browseFoodItemsInfoText" style={styles.infoText}>
-                    Search for a food item by name
+                <Text id="browseFoodItemsTitle" style={sc.pageTitle}>
+                    Browse food
+                </Text>
+                <Text id="browseFoodItemsInfoText" style={sc.pageSubtitle}>
+                    Search by name, then tap a result for nutrition details.
                 </Text>
 
-                {/* Enter the name of a food item */}
-                <TextInput id="browseFoodItemsNameTextInput" style={styles.foodItemNameTextInput}
-                    onChangeText={setFoodItemName}
-                    placeholder={"Search for food items"}
-                    value={foodItemName}>
-                </TextInput>
+                <View style={sc.formCard}>
+                    <TextInput id="browseFoodItemsNameTextInput" style={sc.textInput}
+                        onChangeText={setFoodItemName}
+                        placeholder="Search food items"
+                        placeholderTextColor="#8E95A1"
+                        value={foodItemName}
+                    />
 
-                {/* Filter the food items in the array by the food item name and store in another array */}
-                <TouchableOpacity id="browseFoodItemsButton"
-                    style={[styles.bodyButtonDefault, {backgroundColor: isSearchPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsSearchPressed(true)}
-                    onPressOut={() => setIsSearchPressed(false)}
-                    onPress={() => {
-                        filterFoodItemArray(foodItemName);
-                        setVisible(false);}}>
+                    <TouchableOpacity id="browseFoodItemsButton"
+                        style={[sc.bodyButton, isSearchPressed && sc.bodyButtonPressed]}
+                        onPressIn={() => setIsSearchPressed(true)}
+                        onPressOut={() => setIsSearchPressed(false)}
+                        onPress={() => {
+                            filterFoodItemArray(foodItemName);
+                            setVisible(false);}}
+                        activeOpacity={0.92}>
 
-                    <Text id="browseFoodItemsButtonText" style={styles.bodyButtonTextDefault}>
-                        Search
-                    </Text>
-                </TouchableOpacity>
-
-                {/* If the entered string value does not return any food items, display the following message */}
-                {filteredFoodItemArray.length == 0 && !visible && (
-                    <View id="browseFoodItemsFailureView" style={styles.foodItemContainer}>
-
-                        <Text id="browseFoodItemsFailureText" style={styles.foodItemTextDefault}>
-                            No food items found
+                        <Text id="browseFoodItemsButtonText" style={sc.bodyButtonText}>
+                            Search
                         </Text>
-                    </View>
+                    </TouchableOpacity>
+                </View>
+
+                {filteredFoodItemArray.length == 0 && !visible && (
+                    <Text id="browseFoodItemsFailureText" style={styles.emptyState}>
+                        No food items found
+                    </Text>
                 )}
 
-                {/* If the entered string value returns food items, display the name of each food item */}
-                {filteredFoodItemArray && !visible && (
-                    <View id="browseFoodItemsSuccessView" style={styles.foodItemContainer}>
+                {filteredFoodItemArray && !visible && filteredFoodItemArray.length > 0 && (
+                    <View id="browseFoodItemsSuccessView" style={[sc.card, styles.listStack, { padding: 0, overflow: 'hidden' }]}>
 
                         {filteredFoodItemArray.map((foodItem) => (
-
-                            <Text id="browseFoodItemsSuccessText" style={styles.foodItemTextDefault}
+                            <Text id="browseFoodItemsSuccessText" style={styles.listRowText}
                                 key={foodItem["id"]}
                                 onPress={() => {
                                     getFoodItem(foodItem["id"]);
@@ -639,88 +633,74 @@ export default function EnterScreen() {
                                 {foodItem["name"]}
                             </Text>
                         ))}
-
                     </View>
                 )}
 
-                {/* Display information about the selected food item */}
                 {visible && (
-                    <View id="foodItemOuterView" style={styles.selectedFoodItemContainer}>
-
+                    <View id="foodItemOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
                         <FlatList id="foodItemFlatList"
                             data={processSelectedFoodItem(foodItem)}
                             scrollEnabled={false}
-                            renderItem={({ item }) => (
-                                <View id="foodItemInnerView" style={styles.row}>
-                                    <Text id="foodItemFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                    <Text id="foodItemFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                            renderItem={({ item, index }) => (
+                                <View id="foodItemInnerView" style={[sc.row, index === processSelectedFoodItem(foodItem).length - 1 && sc.rowLast]}>
+                                    <Text id="foodItemFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                    <Text id="foodItemFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                 </View>
                             )}>
                         </FlatList>
-
                     </View>
                 )}
 
-                <View style={styles.container}></View>
-
-                {/* Display the relevant warnings for the selected food item based on the logged-in user's settings */}
                 {visible && (
-                    <View id="warningOuterView" style={styles.selectedFoodItemContainer}>
-
+                    <View id="warningOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
                         <FlatList id="warningFlatList"
                             data={processSelectedFoodItemWarnings(foodItem)}
                             scrollEnabled={false}
-                            renderItem={({ item }) => (
-                                <View id="warningInnerView" style={styles.row}>
-                                    <Text id="warningFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                    <Text id="warningFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                            renderItem={({ item, index }) => (
+                                <View id="warningInnerView" style={[sc.row, index === processSelectedFoodItemWarnings(foodItem).length - 1 && sc.rowLast]}>
+                                    <Text id="warningFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                    <Text id="warningFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                 </View>
                             )}>
                         </FlatList>
-
                     </View>
                 )}
 
-                {/* Display a button that enables the selected food item to be saved to the backend database */}
                 {usernameGlobal != "" && visible && (
-                    <TouchableOpacity id="saveFoodItemButton" style={[styles.bodyButtonAlt]}
+                    <TouchableOpacity id="saveFoodItemButton" style={sc.bodyButton}
                         onPress={() => {
                             logFoodItemById(foodItem.id);
                             setVisible(false);
                             setModalVisible(true);
                             setTimeout(() => {setModalVisible(false);}, 8000);
                             router.push("/home");}}
-                        disabled={loading}>
+                        disabled={loading}
+                        activeOpacity={0.92}>
 
-                        <Text id="saveFoodItemButtonText" style={styles.bodyButtonTextAlt}>
-                            Save Food Item
+                        <Text id="saveFoodItemButtonText" style={sc.bodyButtonText}>
+                            Save food item
                         </Text>
-                    </TouchableOpacity>   
+                    </TouchableOpacity>
                 )}
 
-                {/* Display a message when the selected food item is saved */}
                 {usernameGlobal != "" && modalVisible && (
                     <Modal id="savedFoodItemModal"
                         animationType="fade"
                         transparent={true}
                         visible={modalVisible}>
 
-                        <View id="savedFoodItemOuterView">
-
-                            <View id="savedFoodItemInnerView" style={styles.savedFoodItemMessageContainer}>
-
+                        <View id="savedFoodItemOuterView" style={styles.savedFoodItemMessageContainer}>
+                            <View id="savedFoodItemInnerView" style={styles.savedFoodItemInner}>
                                 <Text id="savedFoodItemText" style={styles.savedFoodItemText}>
-                                    Food Item Saved!
+                                    Food item saved
                                 </Text>
                             </View>
                         </View>
-
                     </Modal>
                 )}
-
             </ScrollView>
-
         </View>
+        </SafeAreaView>
     )
 
 }
