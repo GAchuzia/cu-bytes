@@ -51,5 +51,5 @@ CU-Bytes is a comprehensive food tracking system consisting of:
 
 ## Documentation
 
-- **[docs/DEV_GUIDE.md](docs/DEV_GUIDE.md)**  
-- **[docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)**
+- [docs/DEV_GUIDE.md](docs/DEV_GUIDE.md) 
+- [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)
