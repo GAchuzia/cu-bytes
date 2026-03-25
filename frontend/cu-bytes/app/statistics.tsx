@@ -3,7 +3,9 @@ import { View, ScrollView, Text, TouchableOpacity, FlatList, ActivityIndicator }
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { screenChrome as sc } from './_styles/screenChrome';
 import { styles } from './_styles/style-statistics';
 import { useUser } from './_context';
 import { API_BASE_URL } from '../services/api';
@@ -440,69 +442,79 @@ export default function StatisticsScreen() {
     */
     if (loading) {
         return (
-            <View>
-                <ActivityIndicator size="large" />
-            </View>
+            <SafeAreaView style={[sc.safeRoot, { justifyContent: 'center', alignItems: 'center' }]} edges={['top', 'left', 'right']}>
+                <ActivityIndicator size="large" color="#C5151A" />
+            </SafeAreaView>
         );
     }
-    
+
+    const aggregateRows =
+        selectedStatisticMode === 'Aggregate' && fetchedStatistics
+            ? processAggregateStatistics(aggregateStatistics)
+            : [];
+    const globalRows =
+        selectedStatisticMode === 'Global' && fetchedStatistics
+            ? processGlobalStatistics(globalStatistics)
+            : [];
+    const comparativeRows =
+        selectedStatisticMode === 'Comparative' && fetchedStatistics
+            ? processComparativeStatistics(comparativeStatistics)
+            : [];
+
     return (
+        <SafeAreaView style={sc.safeRoot} edges={['top', 'left', 'right']}>
+        <View style={sc.container}>
+            <StatusBar style="dark" />
 
-        <View style={styles.container}>
-            
-            <StatusBar style="auto" hidden={true}/>
-
-            <View id="viewStatisticsStatusbar" style={styles.statusbar}>
-
-                {/* Route the user to the 'home' page or the 'splash' page */}
+            <View id="viewStatisticsStatusbar" style={sc.topBar}>
                 <TouchableOpacity id="homeOrSplashButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    style={[sc.headerButton, isHomeOrSplashPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsHomeOrSplashPressed(true)}
                     onPressOut={() => setIsHomeOrSplashPressed(false)}
-                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
+                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}
+                    activeOpacity={0.9}>
 
-                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                    <Text id="homeOrSplashButtonText" style={sc.headerButtonText} numberOfLines={1}>
                         Home
                     </Text>
                 </TouchableOpacity>
 
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
+                <Text id="loggedInUser" style={sc.userPill} numberOfLines={1}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
-                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                    style={[sc.headerButton, isLoginLogoutPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}
+                    activeOpacity={0.9}>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Logout' : 'Login' }
+                    <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Log out' : 'Log in' }
                     </Text>
                 </TouchableOpacity>
-
             </View>
 
-            <Text id="statisticsTitle" style={styles.headerTitle}>
-                Statistics
-            </Text>
-            
-            <ScrollView id="viewStatisticsScrollView" style={styles.scrollView}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={true}
+            <ScrollView id="viewStatisticsScrollView" style={sc.scrollView}
+                contentContainerStyle={sc.scrollContent}
+                showsVerticalScrollIndicator={false}
                 keyboardShouldPersistTaps="handled">
+
+                <Text id="statisticsTitle" style={sc.pageTitle}>
+                    Statistics
+                </Text>
 
                 {/* Display the following message when no statistics buttons have been pressed and no statistics have been fetched */}
                 {!statisticModeButtonPressed && !fetchedStatistics && (
-                    <Text id="viewStatisticsInfoTextDefault" style={styles.infoText}>
+                    <Text id="viewStatisticsInfoTextDefault" style={sc.pageSubtitle}>
                         What statistics would you like to view?
                     </Text>
                 )}
                 
                 {/* Display the following message when a statistics button has been pressed but no statistics have been fetched */}
                 {statisticModeButtonPressed && !fetchedStatistics && (
-                    <Text id="viewStatisticsInfoTextNumberOfDays" style={styles.infoText}>
+                    <Text id="viewStatisticsInfoTextNumberOfDays" style={sc.pageSubtitle}>
                         Enter the number of days to include in the retrieved statistics
                     </Text>
                 )}
@@ -510,16 +522,17 @@ export default function StatisticsScreen() {
                 {/* Display the button used to notify the frontend to retrieve daily statistics */}
                 {!statisticModeButtonPressed && (
                     <TouchableOpacity id="dailyStatsButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isDailyPressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                        style={[sc.bodyButton, usernameGlobal === '' && sc.bodyButtonDisabled, isDailyPressed && sc.bodyButtonPressed]}
                         onPressIn={() => setIsDailyPressed(true)}
                         onPressOut={() => setIsDailyPressed(false)}
                         onPress={() => {
                             setStatisticModeButtonPressed(true)
                             setSelectedStatisticMode("Daily")
                         }}
-                        disabled={usernameGlobal === '' ? true : false}>
+                        disabled={usernameGlobal === '' ? true : false}
+                        activeOpacity={0.92}>
 
-                        <Text id="dailyStatsButtonText" style={styles.bodyButtonTextDefault}>
+                        <Text id="dailyStatsButtonText" style={sc.bodyButtonText}>
                             Daily Statistics
                         </Text>
                     </TouchableOpacity>                
@@ -528,16 +541,17 @@ export default function StatisticsScreen() {
                 {/* Display the button used to notify the frontend to retrieve aggregate statistics */}
                 {!statisticModeButtonPressed && (
                     <TouchableOpacity id="aggregateStatsButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isAggregatePressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                        style={[sc.bodyButton, usernameGlobal === '' && sc.bodyButtonDisabled, isAggregatePressed && sc.bodyButtonPressed]}
                         onPressIn={() => setIsAggregatePressed(true)}
                         onPressOut={() => setIsAggregatePressed(false)}
                         onPress={() => {
                             setStatisticModeButtonPressed(true)    
                             setSelectedStatisticMode("Aggregate");
                         }}
-                        disabled={usernameGlobal === '' ? true : false}>
+                        disabled={usernameGlobal === '' ? true : false}
+                        activeOpacity={0.92}>
 
-                        <Text id="aggregateStatsButtonText" style={styles.bodyButtonTextDefault}>
+                        <Text id="aggregateStatsButtonText" style={sc.bodyButtonText}>
                             Aggregate Statistics
                         </Text>
                     </TouchableOpacity>                
@@ -546,16 +560,17 @@ export default function StatisticsScreen() {
                 {/* Display the button used to notify the frontend to retrieve global statistics */}
                 {!statisticModeButtonPressed && (
                     <TouchableOpacity id="globalStatsButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isGlobalPressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                        style={[sc.bodyButton, usernameGlobal === '' && sc.bodyButtonDisabled, isGlobalPressed && sc.bodyButtonPressed]}
                         onPressIn={() => setIsGlobalPressed(true)}
                         onPressOut={() => setIsGlobalPressed(false)}
                         onPress={() => {
                             setStatisticModeButtonPressed(true)
                             setSelectedStatisticMode("Global")
                         }}
-                        disabled={usernameGlobal === '' ? true : false}>
+                        disabled={usernameGlobal === '' ? true : false}
+                        activeOpacity={0.92}>
 
-                        <Text id="globalStatsButtonText" style={styles.bodyButtonTextDefault}>
+                        <Text id="globalStatsButtonText" style={sc.bodyButtonText}>
                             Global Statistics
                         </Text>
                     </TouchableOpacity>                
@@ -564,16 +579,17 @@ export default function StatisticsScreen() {
                 {/* Display the button used to notify the frontend to retrieve comparative statistics */}
                 {!statisticModeButtonPressed && (
                     <TouchableOpacity id="comparativeStatsButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isComparativePressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                        style={[sc.bodyButton, usernameGlobal === '' && sc.bodyButtonDisabled, isComparativePressed && sc.bodyButtonPressed]}
                         onPressIn={() => setIsComparativePressed(true)}
                         onPressOut={() => setIsComparativePressed(false)}
                         onPress={() => {
                             setStatisticModeButtonPressed(true)
                             setSelectedStatisticMode("Comparative")
                         }}
-                        disabled={usernameGlobal === '' ? true : false}>
+                        disabled={usernameGlobal === '' ? true : false}
+                        activeOpacity={0.92}>
 
-                        <Text id="comparativeStatsButtonText" style={styles.bodyButtonTextDefault}>
+                        <Text id="comparativeStatsButtonText" style={sc.bodyButtonText}>
                             Comparative Statistics
                         </Text>
                     </TouchableOpacity>                
@@ -581,7 +597,7 @@ export default function StatisticsScreen() {
 
                 {/* Display buttons to increase/decrease the number of days to include when retrieving the statistics */}
                 {statisticModeButtonPressed && !fetchedStatistics && (
-                    <View id="increaseDecreaseNumberOfDaysOuterView" style={styles.container}>
+                    <View id="increaseDecreaseNumberOfDaysOuterView" style={styles.innerStack}>
 
                         <View id="increaseDecreaseNumberOfDaysInnerView" style={styles.buttonContainer}>
 
@@ -610,7 +626,7 @@ export default function StatisticsScreen() {
                         </View>
                         
                         <TouchableOpacity id="getStatsButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                            style={sc.bodyButton}
                             onPress={() => {
                                 { 
                                     selectedStatisticMode === 'Daily' ? getDailyStats(numberOfDays) :
@@ -620,9 +636,10 @@ export default function StatisticsScreen() {
                                     null
                                 }
                                 setFetchedStatistics(true)
-                            }}>
+                            }}
+                            activeOpacity={0.92}>
 
-                            <Text id="getStatsButtonText" style={styles.bodyButtonTextDefault}>
+                            <Text id="getStatsButtonText" style={sc.bodyButtonText}>
                                 { 
                                     selectedStatisticMode === 'Daily' ? 'Get Daily Statistics' :
                                     selectedStatisticMode === 'Aggregate' ? 'Get Aggregate Statistics' :
@@ -634,16 +651,17 @@ export default function StatisticsScreen() {
                         </TouchableOpacity>
 
                         <TouchableOpacity id="viewOtherStatsButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                            style={sc.bodyButtonOutline}
                             onPress={() => {
                                 setStatisticModeButtonPressed(false)
                                 setSelectedStatisticMode("")
                                 setFetchedStatistics(false)
                                 setNumberOfDays(7)
-                            }}>
+                            }}
+                            activeOpacity={0.92}>
 
-                            <Text id="viewOtherStatsButtonText" style={styles.bodyButtonTextDefault}>
-                                View Other Statistics
+                            <Text id="viewOtherStatsButtonText" style={sc.bodyButtonOutlineText}>
+                                View other statistics
                             </Text>
                         </TouchableOpacity>
 
@@ -652,34 +670,37 @@ export default function StatisticsScreen() {
 
                 {/* Display the fetched daily statistics */}
                 {selectedStatisticMode === 'Daily' && fetchedStatistics && (
-                    <View id="dailyStatisticsOuterView2" style={styles.fetchedStatisticsContainer}>
+                    <View id="dailyStatisticsOuterView2" style={{ alignSelf: 'stretch' }}>
 
-                        <Text id="dailyStatisticsInfoText" style={styles.infoText}>
-                            Here is a day-by-day nutrition and calorie breakdown for {usernameGlobal} across the last {numberOfDays} days
+                        <Text id="dailyStatisticsInfoText" style={sc.pageSubtitle}>
+                            Day-by-day breakdown for {usernameGlobal} (last {numberOfDays} days).
                         </Text>
 
-                        <View id="dailyStatisticsOuterView1" style={styles.container}>
-                            {Object.entries(dailyStatistics).map(([date, stats]) => (
+                        <View id="dailyStatisticsOuterView1" style={styles.innerStack}>
+                            {Object.entries(dailyStatistics).map(([date, stats]) => {
 
-                                <View id="dailyStatisticsInnerView1" style={styles.fetchedStatisticsContainer} key={date} >
+                                const rows = processDailyStatistics(stats);
+                                return (
+                                <View id="dailyStatisticsInnerView1" style={[sc.card, { marginBottom: 14, padding: 0, overflow: 'hidden' }]} key={date} >
 
-                                    <Text id="dailyStatisticsDateInfoText" style={styles.infoText}>
+                                    <Text id="dailyStatisticsDateInfoText" style={[sc.pageSubtitle, { marginBottom: 0, paddingHorizontal: 14, paddingTop: 12 }]}>
                                         {date}
                                     </Text>
 
                                     <FlatList
-                                        data={processDailyStatistics(stats)}
+                                        data={rows}
                                         scrollEnabled={false}
-                                        renderItem={({ item }) => (
-                                            <View id="dailyStatisticsInnerView2" style={styles.row}>
-                                                <Text id="dailyStatisticsFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                                <Text id="dailyStatisticsFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                        renderItem={({ item, index }) => (
+                                            <View id="dailyStatisticsInnerView2" style={[sc.row, index === rows.length - 1 && sc.rowLast]}>
+                                                <Text id="dailyStatisticsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                                <Text id="dailyStatisticsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                             </View>
                                         )}>
                                     </FlatList>
 
                                 </View>
-                            ))}
+                                );
+                            })}
                         </View>
 
                     </View>
@@ -687,19 +708,19 @@ export default function StatisticsScreen() {
 
                 {/* Display the fetched aggregated statistics */}
                 {selectedStatisticMode === 'Aggregate' && fetchedStatistics && (
-                    <View id="aggregateStatisticsOuterView" style={styles.fetchedStatisticsContainer}>
+                    <View id="aggregateStatisticsOuterView" style={[sc.card, { alignSelf: 'stretch', marginBottom: 14, padding: 0, overflow: 'hidden' }]}>
 
-                        <Text id="aggregateStatisticsInfoText" style={styles.infoText}>
-                            Here is an aggregation of nutrition statistics for {usernameGlobal} across the last {numberOfDays} days
+                        <Text id="aggregateStatisticsInfoText" style={[sc.pageSubtitle, { paddingHorizontal: 14, paddingTop: 12 }]}>
+                            Aggregated totals for {usernameGlobal} (last {numberOfDays} days).
                         </Text>
 
                         <FlatList id="aggregateStatisticsFlatList"
-                            data={processAggregateStatistics(fetchedStatistics)}
+                            data={aggregateRows}
                             scrollEnabled={false}
-                            renderItem={({ item }) => (
-                                <View id="aggregateStatisticsInnerView" style={styles.row}>
-                                    <Text id="aggregateStatisticsFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                    <Text id="aggregateStatisticsFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                            renderItem={({ item, index }) => (
+                                <View id="aggregateStatisticsInnerView" style={[sc.row, index === aggregateRows.length - 1 && sc.rowLast]}>
+                                    <Text id="aggregateStatisticsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                    <Text id="aggregateStatisticsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                 </View>
                             )}>
                         </FlatList>
@@ -709,19 +730,19 @@ export default function StatisticsScreen() {
 
                 {/* Display the fetched global statistics */}
                 {selectedStatisticMode === 'Global' && fetchedStatistics && (
-                    <View id="globalStatisticsOuterView" style={styles.fetchedStatisticsContainer}>
+                    <View id="globalStatisticsOuterView" style={[sc.card, { alignSelf: 'stretch', marginBottom: 14, padding: 0, overflow: 'hidden' }]}>
 
-                        <Text id="globalStatisticsInfoText" style={styles.infoText}>
-                            Here is a set of trending food items and trending dining locations across the last {numberOfDays} days
+                        <Text id="globalStatisticsInfoText" style={[sc.pageSubtitle, { paddingHorizontal: 14, paddingTop: 12 }]}>
+                            Trending foods and dining locations (last {numberOfDays} days).
                         </Text>
 
                         <FlatList id="globalStatisticsFlatList"
-                            data={processGlobalStatistics(fetchedStatistics)}
+                            data={globalRows}
                             scrollEnabled={false}
-                            renderItem={({ item }) => (
-                                <View id="globalStatisticsInnerView" style={styles.row}>
-                                    <Text id="globalStatisticsFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                    <Text id="globalStatisticsFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                            renderItem={({ item, index }) => (
+                                <View id="globalStatisticsInnerView" style={[sc.row, index === globalRows.length - 1 && sc.rowLast]}>
+                                    <Text id="globalStatisticsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                    <Text id="globalStatisticsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                 </View>
                             )}>
                         </FlatList>
@@ -731,24 +752,20 @@ export default function StatisticsScreen() {
             
                 {/* Display the fetched comparative statistics */}
                 {selectedStatisticMode === 'Comparative' && fetchedStatistics && (
-                    <View id="comparativeStatisticsOuterView" style={styles.fetchedStatisticsContainer}>
+                    <View id="comparativeStatisticsOuterView" style={[sc.card, { alignSelf: 'stretch', marginBottom: 14, padding: 0, overflow: 'hidden' }]}>
 
-                        <Text id="comparativeStatisticsInfoText" style={styles.infoText}>
+                        <Text id="comparativeStatisticsInfoText" style={[sc.pageSubtitle, { paddingHorizontal: 14, paddingTop: 12 }]}>
 
-                            Here is a set of food group and macronutrient percentiles over the last {numberOfDays} days
-                            {'\n'}
-                            (Calculated on being closest to the recommended amounts)
-                            {'\n'}
-                            (Only users who have consented to share their data will be compared against)
+                            Percentiles vs other consenting users (last {numberOfDays} days). Based on proximity to recommended amounts.
                         </Text>
 
                         <FlatList id="comparativeStatisticsFlatList"
-                            data={processComparativeStatistics(fetchedStatistics)}
+                            data={comparativeRows}
                             scrollEnabled={false}
-                            renderItem={({ item }) => (
-                                <View id="comparativeStatisticsInnerView" style={styles.row}>
-                                    <Text id="comparativeStatisticsFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                    <Text id="comparativeStatisticsFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                            renderItem={({ item, index }) => (
+                                <View id="comparativeStatisticsInnerView" style={[sc.row, index === comparativeRows.length - 1 && sc.rowLast]}>
+                                    <Text id="comparativeStatisticsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                    <Text id="comparativeStatisticsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                 </View>
                             )}>
                         </FlatList>
@@ -758,23 +775,25 @@ export default function StatisticsScreen() {
 
                 {fetchedStatistics && (
                     <TouchableOpacity id="viewOtherStatsAgainButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                        style={sc.bodyButtonOutline}
                         onPress={() => {
                             setStatisticModeButtonPressed(false)
                             setSelectedStatisticMode("")
                             setFetchedStatistics(false)
                             setNumberOfDays(7)
-                        }}>
+                        }}
+                        activeOpacity={0.92}>
 
-                        <Text id="viewOtherStatsAgainButtonText" style={styles.bodyButtonTextDefault}>
-                            View Other Statistics
+                        <Text id="viewOtherStatsAgainButtonText" style={sc.bodyButtonOutlineText}>
+                            View other statistics
                         </Text>
                     </TouchableOpacity>
                 )}
-                
+
             </ScrollView>
-        
+
         </View>
+        </SafeAreaView>
     )
 
 }

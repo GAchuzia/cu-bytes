@@ -1,180 +1,34 @@
 import { StyleSheet } from 'react-native';
-import { w, h, font } from './dimensions';
 
+import { font, padH } from './dimensions';
+import { colors, fontSans, radii } from './theme';
+
+/** Home-only styles; common chrome lives in `screenChrome` */
 export const styles = StyleSheet.create({
-
-  container: {
+  notConfiguredSettingsOuter: {
     alignItems: 'center',
-    backgroundColor: '#C5151A',
+    backgroundColor: colors.overlayScrim,
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    textAlign: 'center',
-    width: w(100),
-  },
-
-  notConfiguredSettingsMessageContainer: {
-    alignItems: 'center',
-    backgroundColor: '#AB0006',
-    width: w(100),
-  },
-
-  scrollView: {
-    alignSelf: 'stretch',
-    flex: 1,
-  },
-
-  scrollContent: {
-    alignItems: 'center',
-    paddingBottom: h(6.0),
-    width: w(100),
-  },
-
-  statusbar: {
-    alignItems: 'center',
-    backgroundColor: '#AB0006',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: h(2.0),
-    paddingBottom: h(2.0),
-    paddingLeft: w(2.0),
-    paddingRight: w(2.0),
-    textAlign: 'center',
-    width: w(100),
-  },
-
-  headerTitle: {
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    color: '#FFFFFF',
-    fontFamily: 'arial',
-    fontSize: font(250),
-    fontWeight: '800',
     justifyContent: 'center',
-    marginTop: h(1.0),
-    marginBottom: h(1.0),
-    paddingTop: h(0.5),
-    paddingBottom: h(0.5),
-    paddingLeft: w(2.0),
-    paddingRight: w(2.0),
-    textAlign: 'center',
-    textShadowColor: '#131312',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 10,
-    width: w(60),
+    padding: padH,
   },
 
-  headerUsernameIcon: {
-    backgroundColor: 'transparent',
-    color: '#FFFFFF',
-    fontFamily: 'arial',
-    fontSize: font(125),
-    fontWeight: '700',
-    maxHeight: h(10),    
-    minWidth: w(25),
-    paddingTop: h(1.0),
-    paddingBottom: h(1.0),
-    paddingLeft: w(1.0),
-    paddingRight: w(1.0),
-    textAlign: 'center',
-  },
-
-  headerButtonDefault: {
-    alignSelf: 'center',
-    alignItems: 'center',
-    backgroundColor: '#131312',
-    borderColor: '#666666',    
-    borderRadius: 20,
-    borderWidth: 2,    
-    justifyContent: 'center',
-    maxHeight: h(10),    
-    minWidth: w(25),
-    paddingTop: h(1.0),
-    paddingBottom: h(1.0),
-    paddingLeft: w(1.0),
-    paddingRight: w(1.0),
-  },
-
-  headerButtonTextDefault: {
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    color: '#FFFFFF',
-    fontFamily: 'arial',
-    fontSize: font(125),
-    fontWeight: '700',
-    textAlign: 'center',
+  notConfiguredSettingsInner: {
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
+    borderRadius: radii.lg,
+    borderWidth: StyleSheet.hairlineWidth,
+    maxWidth: 340,
+    paddingHorizontal: padH,
+    paddingVertical: 18,
+    width: '100%',
   },
 
   notConfiguredSettingsText: {
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    color: '#FFFFFF',
-    flexDirection: 'row',
-    fontFamily: 'arial',
-    fontSize: font(250),
+    color: colors.text,
+    fontFamily: fontSans,
+    fontSize: font(100),
     fontWeight: '600',
-    justifyContent: 'center',
-    marginTop: h(1.0),
-    marginBottom: h(1.0),
-    paddingTop: h(1.0),
-    paddingBottom: h(1.0),
-    paddingLeft: w(1.0),
-    paddingRight: w(1.0),
     textAlign: 'center',
-    textShadowColor: '#131312',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 10,
-    width: w(100),
   },
-
-  infoText: {
-    alignItems: 'center',
-    backgroundColor: '#C5151A',
-    color: '#FFFFFF',
-    flexDirection: 'row',
-    fontFamily: 'arial',
-    fontSize: font(150),
-    fontWeight: '600',
-    justifyContent: 'center',
-    marginTop: h(1.0),
-    marginBottom: h(1.0),
-    paddingTop: h(1.0),
-    paddingBottom: h(1.0),
-    paddingLeft: w(1.0),
-    paddingRight: w(1.0),
-    textAlign: 'center',
-    textShadowColor: '#131312',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 10,
-    width: w(100),
-  },
-
-  bodyButtonDefault: {
-    alignItems: 'center',
-    backgroundColor: '#131312',
-    borderRadius: 20,
-    borderWidth: 4,
-    borderColor: '#666666',
-    height: h(15),
-    justifyContent: 'center',
-    marginTop: h(1.0),
-    marginBottom: h(1.0),
-    marginLeft: w(0.5),
-    marginRight: w(0.5),
-    paddingTop: h(2.0),
-    paddingBottom: h(2.0),
-    paddingLeft: w(2.0),
-    paddingRight: w(2.0),
-    width: w(80),
-  },
-
-  bodyButtonTextDefault: {
-    backgroundColor: 'transparent',
-    color: '#FFFFFF',
-    fontFamily: 'arial',
-    fontSize: font(150),
-    fontWeight: 'bold',
-    textAlign: 'center',
-  }
-
 });
