@@ -66,6 +66,6 @@ export const styles = StyleSheet.create({
   innerStack: {
     alignSelf: 'center',
     maxWidth: contentWidth as number,
-    width: w(100),
+    width: w(100) as number,
   },
-});
+}) as any;

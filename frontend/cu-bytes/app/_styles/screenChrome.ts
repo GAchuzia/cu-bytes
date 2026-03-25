@@ -1,21 +1,20 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, type TextStyle, type ViewStyle } from 'react-native';
 
 import { contentWidth, font, h, padH, w } from './dimensions';
 import { colors, fontSans, radii } from './theme';
 
-/** Shared layout tokens for logged-in style screens */
-export const screenChrome = StyleSheet.create({
+const viewChrome = StyleSheet.create({
   safeRoot: {
     backgroundColor: colors.bg,
     flex: 1,
-  },
+  } as ViewStyle,
 
   container: {
     alignItems: 'center',
     backgroundColor: colors.bg,
     flex: 1,
     width: w(100),
-  },
+  } as ViewStyle,
 
   topBar: {
     alignItems: 'center',
@@ -28,7 +27,7 @@ export const screenChrome = StyleSheet.create({
     paddingBottom: 8,
     paddingHorizontal: padH,
     paddingTop: 0,
-  },
+  } as ViewStyle,
 
   headerButton: {
     alignItems: 'center',
@@ -39,38 +38,21 @@ export const screenChrome = StyleSheet.create({
     minWidth: 68,
     paddingHorizontal: 10,
     paddingVertical: 6,
-  },
+  } as ViewStyle,
 
   headerButtonPressed: {
     backgroundColor: colors.headerBtnPressed,
-  },
+  } as ViewStyle,
 
   headerButtonDisabled: {
     opacity: 0.45,
-  },
-
-  headerButtonText: {
-    color: colors.text,
-    fontFamily: fontSans,
-    fontSize: font(87),
-    fontWeight: '600',
-  },
-
-  userPill: {
-    color: colors.textSecondary,
-    flex: 1,
-    fontFamily: fontSans,
-    fontSize: font(87),
-    fontWeight: '600',
-    marginHorizontal: 8,
-    textAlign: 'center',
-  },
+  } as ViewStyle,
 
   scrollView: {
     alignSelf: 'stretch',
     backgroundColor: colors.bg,
     flex: 1,
-  },
+  } as ViewStyle,
 
   scrollContent: {
     alignItems: 'stretch',
@@ -81,25 +63,7 @@ export const screenChrome = StyleSheet.create({
     paddingHorizontal: padH,
     paddingTop: 10,
     width: w(100),
-  },
-
-  pageTitle: {
-    color: colors.text,
-    fontFamily: fontSans,
-    fontSize: font(175),
-    fontWeight: '800',
-    letterSpacing: -0.3,
-    marginBottom: 6,
-  },
-
-  pageSubtitle: {
-    color: colors.textSecondary,
-    fontFamily: fontSans,
-    fontSize: font(100),
-    fontWeight: '500',
-    lineHeight: font(100) * 1.35,
-    marginBottom: h(2),
-  },
+  } as ViewStyle,
 
   card: {
     alignSelf: 'stretch',
@@ -109,7 +73,7 @@ export const screenChrome = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     marginBottom: 12,
     overflow: 'hidden',
-  },
+  } as ViewStyle,
 
   bodyButton: {
     alignItems: 'center',
@@ -121,23 +85,15 @@ export const screenChrome = StyleSheet.create({
     minHeight: 52,
     paddingHorizontal: padH,
     paddingVertical: 14,
-  },
+  } as ViewStyle,
 
   bodyButtonPressed: {
     backgroundColor: colors.buttonFillPressed,
-  },
+  } as ViewStyle,
 
   bodyButtonDisabled: {
     backgroundColor: colors.bodyBtnDisabled,
-  },
-
-  bodyButtonText: {
-    color: colors.surface,
-    fontFamily: fontSans,
-    fontSize: font(100),
-    fontWeight: '700',
-    textAlign: 'center',
-  },
+  } as ViewStyle,
 
   bodyButtonOutline: {
     alignItems: 'center',
@@ -151,47 +107,17 @@ export const screenChrome = StyleSheet.create({
     minHeight: 52,
     paddingHorizontal: padH,
     paddingVertical: 14,
-  },
-
-  bodyButtonOutlineText: {
-    color: colors.buttonOutlineLabel,
-    fontFamily: fontSans,
-    fontSize: font(100),
-    fontWeight: '700',
-    textAlign: 'center',
-  },
+  } as ViewStyle,
 
   row: {
     borderBottomColor: colors.border,
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
-  },
+  } as ViewStyle,
 
   rowLast: {
     borderBottomWidth: 0,
-  },
-
-  rowCellLabel: {
-    backgroundColor: colors.surface,
-    color: colors.textSecondary,
-    flex: 2,
-    fontFamily: fontSans,
-    fontSize: font(93),
-    fontWeight: '600',
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-  },
-
-  rowCellValue: {
-    backgroundColor: colors.surface,
-    color: colors.text,
-    flex: 3,
-    fontFamily: fontSans,
-    fontSize: font(93),
-    fontWeight: '500',
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-  },
+  } as ViewStyle,
 
   toastModalOuter: {
     alignItems: 'center',
@@ -199,7 +125,7 @@ export const screenChrome = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: padH,
-  },
+  } as ViewStyle,
 
   toastModalInner: {
     backgroundColor: colors.surface,
@@ -210,15 +136,7 @@ export const screenChrome = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 18,
     width: '100%',
-  },
-
-  toastModalText: {
-    color: colors.text,
-    fontFamily: fontSans,
-    fontSize: font(100),
-    fontWeight: '600',
-    textAlign: 'center',
-  },
+  } as ViewStyle,
 
   formCard: {
     alignSelf: 'stretch',
@@ -226,7 +144,120 @@ export const screenChrome = StyleSheet.create({
     marginTop: 0,
     paddingHorizontal: 0,
     paddingVertical: 0,
-  },
+  } as ViewStyle,
+
+  textInput: {
+    alignSelf: 'stretch',
+    backgroundColor: colors.surfaceMuted,
+    borderColor: colors.border,
+    borderRadius: radii.md,
+    borderWidth: StyleSheet.hairlineWidth,
+    // Note: TextInput styles are actually TextStyle-compatible, but `ViewStyle`
+    // is fine here because the actual used props are layout + colors.
+    color: colors.text,
+    fontFamily: fontSans,
+    fontSize: font(100),
+    marginBottom: 12,
+    minHeight: 48,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+  } as ViewStyle,
+
+  switchRow: {
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+    marginTop: 4,
+  } as ViewStyle,
+
+  switchScale: {
+    transform: [{ scale: 1.05 }],
+  } as ViewStyle,
+});
+
+const textChrome = StyleSheet.create({
+  headerButtonText: {
+    color: colors.text,
+    fontFamily: fontSans,
+    fontSize: font(87),
+    fontWeight: '600',
+  } as TextStyle,
+
+  userPill: {
+    color: colors.textSecondary,
+    flex: 1,
+    fontFamily: fontSans,
+    fontSize: font(87),
+    fontWeight: '600',
+    marginHorizontal: 8,
+    textAlign: 'center',
+  } as TextStyle,
+
+  pageTitle: {
+    color: colors.text,
+    fontFamily: fontSans,
+    fontSize: font(175),
+    fontWeight: '800',
+    letterSpacing: -0.3,
+    marginBottom: 6,
+  } as TextStyle,
+
+  pageSubtitle: {
+    color: colors.textSecondary,
+    fontFamily: fontSans,
+    fontSize: font(100),
+    fontWeight: '500',
+    lineHeight: font(100) * 1.35,
+    marginBottom: h(2),
+  } as TextStyle,
+
+  bodyButtonText: {
+    color: colors.surface,
+    fontFamily: fontSans,
+    fontSize: font(100),
+    fontWeight: '700',
+    textAlign: 'center',
+  } as TextStyle,
+
+  bodyButtonOutlineText: {
+    color: colors.buttonOutlineLabel,
+    fontFamily: fontSans,
+    fontSize: font(100),
+    fontWeight: '700',
+    textAlign: 'center',
+  } as TextStyle,
+
+  rowCellLabel: {
+    backgroundColor: colors.surface,
+    color: colors.textSecondary,
+    flex: 2,
+    fontFamily: fontSans,
+    fontSize: font(93),
+    fontWeight: '600',
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+  } as TextStyle,
+
+  rowCellValue: {
+    backgroundColor: colors.surface,
+    color: colors.text,
+    flex: 3,
+    fontFamily: fontSans,
+    fontSize: font(93),
+    fontWeight: '500',
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+  } as TextStyle,
+
+  toastModalText: {
+    color: colors.text,
+    fontFamily: fontSans,
+    fontSize: font(100),
+    fontWeight: '600',
+    textAlign: 'center',
+  } as TextStyle,
 
   textInput: {
     alignSelf: 'stretch',
@@ -241,16 +272,7 @@ export const screenChrome = StyleSheet.create({
     minHeight: 48,
     paddingHorizontal: 14,
     paddingVertical: 12,
-  },
-
-  switchRow: {
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 8,
-    marginTop: 4,
-  },
+  } as TextStyle,
 
   switchLabel: {
     color: colors.textSecondary,
@@ -259,7 +281,7 @@ export const screenChrome = StyleSheet.create({
     fontSize: font(93),
     fontWeight: '500',
     paddingRight: 12,
-  },
+  } as TextStyle,
 
   helperText: {
     alignSelf: 'stretch',
@@ -268,7 +290,7 @@ export const screenChrome = StyleSheet.create({
     fontSize: font(93),
     marginBottom: 12,
     textAlign: 'center',
-  },
+  } as TextStyle,
 
   errorBanner: {
     alignSelf: 'stretch',
@@ -283,9 +305,11 @@ export const screenChrome = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 10,
     textAlign: 'center',
-  },
-
-  switchScale: {
-    transform: [{ scale: 1.05 }],
-  },
+  } as TextStyle,
 });
+
+/** Single export for existing `sc.*` call sites. */
+export const screenChrome = {
+  ...viewChrome,
+  ...textChrome,
+};

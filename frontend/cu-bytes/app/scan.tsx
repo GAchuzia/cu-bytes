@@ -673,10 +673,12 @@ export default function ScanScreen() {
 
                 {/* Display the uploaded photo of a food item, henceforth known as the selected food item */}
                 {selectedImage && !similarFoodItems && !selectedSimilarFoodItem && (
-                    <Image id="foodItemImage" style={styles.foodImage}
-                        source={{uri: selectedImage}}
-                        resizeMode="contain">    
-                    </Image>
+                    <Image
+                        id="foodItemImage"
+                        style={styles.foodImage}
+                        source={{ uri: selectedImage }}
+                        resizeMode="contain"
+                    />
                 )}
 
                 {/* Display placeholder text if a photo of a food item has not been uploaded */}

@@ -146,4 +146,4 @@ export const styles = StyleSheet.create({
     maxWidth: contentWidth as number,
     width: w(100),
   },
-});
+} as any);
