@@ -889,7 +889,7 @@ export default function ScanScreen() {
 
                         {noSimilarMatches && (
                             <View id="noSimilarMatchesBanner" style={styles.lowConfidenceBanner}>
-                                <Text style={styles.lowConfidenceTitle}>No Carleton dining matches</Text>
+                                <Text style={styles.lowConfidenceTitle}>No Carleton Dining Matches</Text>
                                 <Text style={styles.lowConfidenceMessage}>
                                     {prediction?.food_name
                                         ? `"${prediction.food_name}" items are not available for purchase at any of Carleton's Dining locations.`
