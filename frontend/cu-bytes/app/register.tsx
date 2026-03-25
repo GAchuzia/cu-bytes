@@ -3,301 +3,282 @@ import { View, ScrollView, Text, TextInput, TouchableOpacity, Switch } from 'rea
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { styles } from './_styles/style-register';
+import { styles as regStyles } from './_styles/style-register';
+import { screenChrome as sc } from './_styles/screenChrome';
 import { useUser } from './_context';
 import { API_BASE_URL } from '../services/api';
 
 export default function RegisterScreen() {
+  const [visible, setVisible] = useState(false);
+  const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
+  const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
+  const [isCreateAccountPressed, setIsCreateAccountPressed] = useState(false);
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
-    const [loading, setLoading] = useState(false);
-    const [visible, setVisible] = useState(false);
-    const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
-    const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
-    const [isCreateAccountPressed, setIsCreateAccountPressed] = useState(false);
-    const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [error, setError] = useState({
+    message: '',
+    status: '',
+  });
 
-    /*
-        Variable and setter for storing and modifying the error returned from the backend endpoint
-    */
-    const [error, setError] = useState(
-        {
-            message: '',
-            status: ''
-        }
-    );
+  const {
+    usernameGlobal,
+    setUsernameGlobal,
+    setHasConfiguredSettingsGlobal,
+    setShowStatsGlobal,
+    setHasDairyIntoleranceGlobal,
+    setHasEggAllergyGlobal,
+    setHasFishOrShellfishAllergyGlobal,
+    setHasGlutenAllergyGlobal,
+    setHasMilkAllergyGlobal,
+    setHasPeanutAllergyGlobal,
+    setHasSesameAllergyGlobal,
+    setHasSulfitesAllergyGlobal,
+    setHasSoyAllergyGlobal,
+    setHasTreenutAllergyGlobal,
+    setHasWheatAllergyGlobal,
+    setIsVeganGlobal,
+    setIsVegetarianGlobal,
+    setPrefersHalalGlobal,
+  } = useUser();
 
-    /*
-        Variables and setters used to store a copy of the logged-in user's username and profile settings
-    */
-    const
-        {
-            usernameGlobal,
-            setUsernameGlobal,
-            setHasConfiguredSettingsGlobal,
-            setShowStatsGlobal,
-            setHasDairyIntoleranceGlobal,            
-            setHasEggAllergyGlobal,
-            setHasFishOrShellfishAllergyGlobal,
-            setHasGlutenAllergyGlobal,
-            setHasMilkAllergyGlobal,
-            setHasPeanutAllergyGlobal,
-            setHasSesameAllergyGlobal,
-            setHasSulfitesAllergyGlobal,
-            setHasSoyAllergyGlobal,
-            setHasTreenutAllergyGlobal,
-            setHasWheatAllergyGlobal,
-            setIsVeganGlobal,
-            setIsVegetarianGlobal,
-            setPrefersHalalGlobal
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-        } = useUser();
+  const loadSettings = async () => {
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/profile/retreive/${username}`
+      );
+      const data = await res.json();
 
-    /*
-        Variable and setter for storing and modifying the username entered by the user
-    */
-    const [username, setUsername] = useState('');
-
-    /*
-        Variable and setter for storing and modifying the password entered by the user
-    */
-    const [password, setPassword] = useState('');
-
-    /*
-        Send a request to the backend endpoint to get the logged-in user's username and profile settings
-    */
-    const loadSettings = async () => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/profile/retreive/${username}`);
-            const data = await res.json();
-
-            // Update the copy of the logged-in user's username and profile settings using the retrieved data
-            setUsernameGlobal(username);
-            setHasConfiguredSettingsGlobal(data.has_configured_settings)
-            setShowStatsGlobal(data.show_stats);
-            setHasEggAllergyGlobal(data.has_egg_allergy);
-            setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
-            setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
-            setHasMilkAllergyGlobal(data.has_milk_allergy);
-            setHasPeanutAllergyGlobal(data.has_peanut_allergy);
-            setHasSesameAllergyGlobal(data.has_sesame_allergy);
-            setHasSoyAllergyGlobal(data.has_soy_allergy);
-            setHasSulfitesAllergyGlobal(data.has_sulfites);
-            setHasTreenutAllergyGlobal(data.has_treenut_allergy);
-            setHasWheatAllergyGlobal(data.has_wheat_allergy);
-            setHasGlutenAllergyGlobal(data.has_gluten_allergy);
-            setIsVeganGlobal(data.is_vegan);
-            setIsVegetarianGlobal(data.is_vegetarian);
-            setPrefersHalalGlobal(data.prefers_halal);
-
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    /*
-        Send a request to the backend endpoint to create a new account
-
-        param(s):
-            string - name: The username entered by the user to create a new account
-            string - psswrd: The password entered by the user to create a new account
-    */
-    const registerUser = async (name: string, psswrd: string) => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/auth/register`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify( { username: name, password: psswrd } )
-                }
-            );
-            const data = await res.json();
-
-            // If the backend endpoint returns an error, store the error message
-            // (The user failed to create a new account with the entered username and password)
-            if (data.status === 'error') {
-                setError(data);
-                console.log(error);
-            }
-            // Else, update the copy of the user's username to the username they entered,
-            // load the user's profile settings from the backend endpoint, and route the user to the 'home' page
-
-            // (The user successfully created a new account with the entered username and password)
-
-            // The profile settings on the frontend reflect the default user account profile settings on the backend
-            // (For reference, see backend/models/users_profile.py)
-            else {
-                await loadSettings();
-                router.push("/home");
-            }
-
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
+      setUsernameGlobal(username);
+      setHasConfiguredSettingsGlobal(data.has_configured_settings);
+      setShowStatsGlobal(data.show_stats);
+      setHasEggAllergyGlobal(data.has_egg_allergy);
+      setHasFishOrShellfishAllergyGlobal(data.has_fish_or_shellfish_allergy);
+      setHasDairyIntoleranceGlobal(data.has_dairy_intolerance);
+      setHasMilkAllergyGlobal(data.has_milk_allergy);
+      setHasPeanutAllergyGlobal(data.has_peanut_allergy);
+      setHasSesameAllergyGlobal(data.has_sesame_allergy);
+      setHasSoyAllergyGlobal(data.has_soy_allergy);
+      setHasSulfitesAllergyGlobal(data.has_sulfites);
+      setHasTreenutAllergyGlobal(data.has_treenut_allergy);
+      setHasWheatAllergyGlobal(data.has_wheat_allergy);
+      setHasGlutenAllergyGlobal(data.has_gluten_allergy);
+      setIsVeganGlobal(data.is_vegan);
+      setIsVegetarianGlobal(data.is_vegetarian);
+      setPrefersHalalGlobal(data.prefers_halal);
+    } catch (err) {
+      console.error(err);
     }
+  };
 
-    /*
-        Log out the logged-in user by setting their profile settings to false, and routing to the splash page
-    */
-    const logout = () => { 
-        
-        setUsernameGlobal('');
-        setHasConfiguredSettingsGlobal(false);
-        setShowStatsGlobal(false);
-        setHasDairyIntoleranceGlobal(false);        
-        setHasEggAllergyGlobal(false);
-        setHasFishOrShellfishAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
-        setHasMilkAllergyGlobal(false);
-        setHasPeanutAllergyGlobal(false);
-        setHasSesameAllergyGlobal(false);
-        setHasSoyAllergyGlobal(false);
-        setHasSulfitesAllergyGlobal(false);
-        setHasTreenutAllergyGlobal(false);
-        setHasWheatAllergyGlobal(false);
-        setIsVeganGlobal(false);
-        setIsVegetarianGlobal(false);
-        setPrefersHalalGlobal(false);
+  const registerUser = async (name: string, psswrd: string) => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: name, password: psswrd }),
+      });
+      const data = await res.json();
 
-        router.push('/');
+      if (data.status === 'error') {
+        setError(data);
+        console.log(error);
+      } else {
+        await loadSettings();
+        router.push('/home');
+      }
+    } catch (err) {
+      console.error(err);
     }
+  };
 
-    return (
+  const logout = () => {
+    setUsernameGlobal('');
+    setHasConfiguredSettingsGlobal(false);
+    setShowStatsGlobal(false);
+    setHasDairyIntoleranceGlobal(false);
+    setHasEggAllergyGlobal(false);
+    setHasFishOrShellfishAllergyGlobal(false);
+    setHasGlutenAllergyGlobal(false);
+    setHasMilkAllergyGlobal(false);
+    setHasPeanutAllergyGlobal(false);
+    setHasSesameAllergyGlobal(false);
+    setHasSoyAllergyGlobal(false);
+    setHasSulfitesAllergyGlobal(false);
+    setHasTreenutAllergyGlobal(false);
+    setHasWheatAllergyGlobal(false);
+    setIsVeganGlobal(false);
+    setIsVegetarianGlobal(false);
+    setPrefersHalalGlobal(false);
 
-        <View style={styles.container}>
-            
-            <StatusBar style="auto" hidden={true}/>
+    router.push('/');
+  };
 
-            <View id="registerStatusbar" style={styles.statusbar}>
+  return (
+    <SafeAreaView style={sc.safeRoot} edges={['top', 'left', 'right']}>
+      <View style={sc.container}>
+        <StatusBar style="dark" />
 
-                {/* Route the user to the 'splash' page */}
-                <TouchableOpacity id="homeOrSplashButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsHomeOrSplashPressed(true)}
-                    onPressOut={() => setIsHomeOrSplashPressed(false)}
-                    onPress={() => router.push('/login')}>
+        <View id="registerStatusbar" style={sc.topBar}>
+          <TouchableOpacity
+            id="homeOrSplashButton"
+            style={[
+              sc.headerButton,
+              isHomeOrSplashPressed && sc.headerButtonPressed,
+            ]}
+            onPressIn={() => setIsHomeOrSplashPressed(true)}
+            onPressOut={() => setIsHomeOrSplashPressed(false)}
+            onPress={() => router.push('/login')}
+            activeOpacity={0.9}
+          >
+            <Text id="homeOrSplashButtonText" style={sc.headerButtonText}>
+              Back
+            </Text>
+          </TouchableOpacity>
 
-                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        Home
-                    </Text>
-                </TouchableOpacity>
+          <Text id="loggedInUser" style={sc.userPill} numberOfLines={1}>
+            {usernameGlobal !== '' ? usernameGlobal : 'Guest'}
+          </Text>
 
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
-                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
-                </Text>
+          <TouchableOpacity
+            id="loginLogoutButton"
+            style={[
+              sc.headerButton,
+              isLoginLogoutPressed && sc.headerButtonPressed,
+            ]}
+            onPressIn={() => setIsLoginLogoutPressed(true)}
+            onPressOut={() => setIsLoginLogoutPressed(false)}
+            onPress={() =>
+              usernameGlobal !== '' ? logout() : router.push('/login')
+            }
+            activeOpacity={0.9}
+          >
+            <Text
+              id="loginLogoutButtonText"
+              style={sc.headerButtonText}
+              numberOfLines={1}
+            >
+              {usernameGlobal !== '' ? 'Log out' : 'Log in'}
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-                {/* Route the user to the 'splash' page or the 'login' page */}
-                <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsLoginLogoutPressed(true)}
-                    onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+        <ScrollView
+          id="registerScrollView"
+          style={sc.scrollView}
+          contentContainerStyle={sc.scrollContent}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
+          <Text id="registerTitle" style={sc.pageTitle}>
+            Create Account
+          </Text>
+          <Text id="createAccountInfo" style={sc.pageSubtitle}>
+            Choose a username and password. Requirements apply.
+          </Text>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Logout' : 'Login'}
-                    </Text>
-                </TouchableOpacity>
-
-            </View>
-
-            <Text id="registerTitle" style={styles.headerTitle}>
-                Register
+          <View style={regStyles.requirementsBlock}>
+            <Text
+              id="usernameReqsTitle"
+              style={[
+                regStyles.requirementsSectionTitle,
+                regStyles.requirementsSectionTitleFirst,
+              ]}
+            >
+              Username
+            </Text>
+            <Text id="usernameUniqueReq" style={regStyles.requirementsLine}>
+              Unique, 1–80 characters
+            </Text>
+            <Text id="usernameLengthReq" style={regStyles.requirementsLine}>
+              Letters, numbers, and underscores only
             </Text>
 
-            <ScrollView id="registerScrollView" style={styles.scrollView}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={true}
-                keyboardShouldPersistTaps="handled">
+            <Text id="passwordReqsTitle" style={regStyles.requirementsSectionTitle}>
+              Password
+            </Text>
+            <Text id="passwordLengthReq" style={regStyles.requirementsLine}>
+              10–120 characters
+            </Text>
+            <Text id="passwordCharReq" style={regStyles.requirementsLine}>
+              At least one lowercase, uppercase, number, and special character
+            </Text>
+          </View>
 
-                <Text id="createAccountInfo" style={styles.infoText}>
-                    Create a new account
-                </Text>
+          <View style={sc.formCard}>
+            <Text id="createAccountErrorMessage" style={sc.errorBanner}>
+              {visible ? error.message : 'Enter a valid username and password'}
+            </Text>
 
-                <Text id="usernameReqsTitle" style={styles.usernameReqTitle}>
-                    Username Requirements
-                </Text>
+            <TextInput
+              id="createAccountUsernameTextInput"
+              style={sc.textInput}
+              onChangeText={setUsername}
+              onChange={() => {
+                setError({ message: '', status: '' });
+                setVisible(false);
+              }}
+              placeholder="New username"
+              placeholderTextColor="#8E95A1"
+              value={username}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
 
-                <Text id="usernameUniqueReq" style={styles.usernameReqInfoText}>
-                    Must be unique
-                </Text>
+            <TextInput
+              id="createAccountPasswordTextInput"
+              style={sc.textInput}
+              onChangeText={setPassword}
+              onChange={() => {
+                setError({ message: '', status: '' });
+                setVisible(false);
+              }}
+              placeholder="New password"
+              placeholderTextColor="#8E95A1"
+              value={password}
+              secureTextEntry={secureTextEntry}
+            />
 
-                <Text id="usernameLengthReq" style={styles.usernameReqInfoText}>
-                    Must be between 1 and 80 characters long
-                </Text>
+            <View id="hideOrUnhidePasswordView" style={sc.switchRow}>
+              <Text
+                id="hideOrUnhidePasswordInfoText"
+                style={sc.switchLabel}
+              >
+                Hide Password
+              </Text>
+              <Switch
+                id="hideOrUnhidePasswordSwitch"
+                style={sc.switchScale}
+                value={secureTextEntry}
+                onValueChange={setSecureTextEntry}
+              />
+            </View>
 
-                <Text id="usernameCharReq" style={styles.usernameReqInfoText}>
-                    Must contain only letters, numbers, or underscores
-                </Text>
-    
-                <Text id="passwordReqsTitle" style={styles.passwordReqTitle}>
-                    Password Requirements
-                </Text>
-
-                <Text id="passwordLengthReq" style={styles.passwordReqInfoText}>
-                    Must be between 10 and 120 characters long
-                </Text>
-
-                <Text id="passwordCharReq" style={styles.passwordReqInfoText}>
-                    Must contain at least one lowercase letter, uppercase letter, number, and special character
-                </Text>
-
-                <Text id="createAccountErrorMessage" style={styles.errorInfoText}>
-                    {visible ? error.message : 'Enter a valid username and password'}
-                </Text>
-
-                {/* Enter the username that corresponds to the new account that the user wants to create */}
-                <TextInput id="createAccountUsernameTextInput" style={styles.usernameTextInput}
-                    onChangeText={setUsername}
-                    onChange={ () => {
-                        setError({ message: '', status: '' });
-                        setVisible(false); }}
-                    placeholder={"Enter new CU-Bytes username"}
-                    value={username}>
-                </TextInput>
-
-                {/* Enter the password that corresponds to the new account that the user wants to create */}
-                <TextInput id="createAccountPasswordTextInput" style={styles.passwordTextInput}
-                    onChangeText={setPassword}
-                    onChange={() => {
-                        setError({ message: '', status: '' });
-                        setVisible(false);}}
-                    placeholder={"Enter new CU-Bytes password"}
-                    value={password}
-                    secureTextEntry={secureTextEntry}>
-                </TextInput>
-
-                {/* Toggle the switch to hide or unhide the password input by converting the characters to or from the * character */}
-                <View id="hideOrUnhidePasswordView" style={styles.row}>
-                    <Text id="hideOrUnhidePasswordInfoText" style={styles.passwordSwitchInfoText}>
-                        Hide or unhide the password
-                    </Text>
-
-                    <Switch id="hideOrUnhidePasswordSwitch" style={styles.switch}
-                        value={secureTextEntry}
-                        onValueChange={setSecureTextEntry}>
-                    </Switch>
-                </View> 
-
-                {/* Submit a request to the backend endpoint to create a new account */}
-                <TouchableOpacity id="createAccountButton"
-                    style={[styles.bodyButtonDefault, {backgroundColor: isCreateAccountPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsCreateAccountPressed(true)}
-                    onPressOut={() => setIsCreateAccountPressed(false)}
-                    onPress={() => {
-                        registerUser(username, password);
-                        setVisible(true);}}>
-
-                    <Text id="createAccountButtonText" style={styles.bodyButtonTextDefault}>
-                        Create Account
-                    </Text>
-                </TouchableOpacity>
-
-            </ScrollView>
-
-        </View>
-    )
-
+            <TouchableOpacity
+              id="createAccountButton"
+              style={[
+                sc.bodyButton,
+                isCreateAccountPressed && sc.bodyButtonPressed,
+              ]}
+              onPressIn={() => setIsCreateAccountPressed(true)}
+              onPressOut={() => setIsCreateAccountPressed(false)}
+              onPress={() => {
+                registerUser(username, password);
+                setVisible(true);
+              }}
+              activeOpacity={0.92}
+            >
+              <Text id="createAccountButtonText" style={sc.bodyButtonText}>
+                Create Account
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </View>
+    </SafeAreaView>
+  );
 }

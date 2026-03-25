@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, FlatList, ActivityIndicator, TouchableWithoutFeedbackComponent } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { screenChrome as sc } from './_styles/screenChrome';
 import { styles } from './_styles/style-recommendations';
 import { useUser } from './_context';
 import { API_BASE_URL } from '@/services/api';
@@ -446,69 +448,66 @@ export default function RecommendationsScreen() {
     */
     if (loading) {
         return (
-            <View>
-                <ActivityIndicator size="large" />
-            </View>
+            <SafeAreaView style={[sc.safeRoot, { justifyContent: 'center', alignItems: 'center' }]} edges={['top', 'left', 'right']}>
+                <ActivityIndicator size="large" color="#C5151A" />
+            </SafeAreaView>
         );
     }
 
     return (
+        <SafeAreaView style={sc.safeRoot} edges={['top', 'left', 'right']}>
+        <View style={sc.container}>
+            <StatusBar style="dark" />
 
-        <View style={styles.container}>
-           
-            <StatusBar style="auto" hidden={true}/>
-
-            <View id="viewRecommendationsStatusbar" style={styles.statusbar}>
-
-                {/* Route the user to the 'home' page or the 'splash' page */}
+            <View id="viewRecommendationsStatusbar" style={sc.topBar}>
                 <TouchableOpacity id="homeOrSplashButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    style={[sc.headerButton, isHomeOrSplashPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsHomeOrSplashPressed(true)}
                     onPressOut={() => setIsHomeOrSplashPressed(false)}
-                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}>
+                    onPress={() => usernameGlobal != '' ? router.push('/home') : router.push('/')}
+                    activeOpacity={0.9}>
 
-                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault}>
+                    <Text id="homeOrSplashButtonText" style={sc.headerButtonText}>
                         Home
                     </Text>
                 </TouchableOpacity>
 
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
+                <Text id="loggedInUser" style={sc.userPill} numberOfLines={1}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
-                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButtonDefault, {backgroundColor : isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                    style={[sc.headerButton, isLoginLogoutPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}
+                    activeOpacity={0.9}>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Logout' : 'Login'}
+                    <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Log out' : 'Log in'}
                     </Text>
                 </TouchableOpacity>
-                
             </View>
 
-            <Text id="recommendationsTitle" style={styles.headerTitle}>
-                Recommendations
-            </Text>
-
-            <ScrollView id="viewRecommendationsScrollView" style={styles.scrollView}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={true}
+            <ScrollView id="viewRecommendationsScrollView" style={sc.scrollView}
+                contentContainerStyle={sc.scrollContent}
+                showsVerticalScrollIndicator={false}
                 keyboardShouldPersistTaps="handled">
+
+                <Text id="recommendationsTitle" style={sc.pageTitle}>
+                    Recommendations
+                </Text>
 
                 {/* Display the following message when no recommendations buttons have been pressed and no recommendations have been fetched */}
                 {!recommendationModeButtonPressed && !fetchedRecommendations && (
-                    <Text id="viewRecommendationsInfoTextDefault" style={styles.infoText}>
+                    <Text id="viewRecommendationsInfoTextDefault" style={sc.pageSubtitle}>
                         What recommendations would you like to view?
                     </Text>
                 )}
 
                 {/* Display the following message when a recommendations button has been pressed but no recommendations have been fetched */}
                 {recommendationModeButtonPressed && !fetchedRecommendations && (
-                    <Text id="viewRecommendationsInfoTextNumberOfFoodItems" style={styles.infoText}>
+                    <Text id="viewRecommendationsInfoTextNumberOfFoodItems" style={sc.pageSubtitle}>
                         Enter the number of food items to include in the retrieved recommendations
                     </Text>
                 )}
@@ -516,106 +515,97 @@ export default function RecommendationsScreen() {
                 {/* Display the button used to notify the frontend to retrieve trending recommendations */}
                 {!recommendationModeButtonPressed && (
                     <TouchableOpacity id="trendingRecsButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isTrendingPressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                        style={[sc.bodyButton, usernameGlobal === '' && sc.bodyButtonDisabled, isTrendingPressed && sc.bodyButtonPressed]}
                             onPressIn={() => setIsTrendingPressed(true)}
                             onPressOut={() => setIsTrendingPressed(false)}
                             onPress={() => {
                                 setRecommendationModeButtonPressed(true);
                                 setSelectedRecommendationMode("Trending");
                             }}
-                            disabled={usernameGlobal === '' ? true: false}>
+                            disabled={usernameGlobal === '' ? true: false}
+                            activeOpacity={0.92}>
 
-                            <Text id="trendingRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                Trending
-                                {'\n'}
-                                Recommendations
+                            <Text id="trendingRecsButtonText" style={sc.bodyButtonText}>
+                                Trending Picks
                             </Text>
                     </TouchableOpacity>
                 )}
 
-                {/* Display the button used to notify the frontend to retrieve random recommendations */}
                 {!recommendationModeButtonPressed && (
                     <TouchableOpacity id="randomRecsButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isRandomPressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                        style={[sc.bodyButton, usernameGlobal === '' && sc.bodyButtonDisabled, isRandomPressed && sc.bodyButtonPressed]}
                             onPressIn={() => setIsRandomPressed(true)}
                             onPressOut={() => setIsRandomPressed(false)}
                             onPress={() => {
                                 setRecommendationModeButtonPressed(true);
                                 setSelectedRecommendationMode("Random");
                             }}
-                            disabled={usernameGlobal === '' ? true: false}>
+                            disabled={usernameGlobal === '' ? true: false}
+                            activeOpacity={0.92}>
 
-                            <Text id="randomRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                Random
-                                {'\n'}
-                                Recommendations
+                            <Text id="randomRecsButtonText" style={sc.bodyButtonText}>
+                                Random Suggestions
                             </Text>
                     </TouchableOpacity>
                 )}
 
-                {/* Display the button used to notify the frontend to retrieve ideal recommendations */}
                 {!recommendationModeButtonPressed && (
                     <TouchableOpacity id="idealRecsButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isIdealPressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                        style={[sc.bodyButton, usernameGlobal === '' && sc.bodyButtonDisabled, isIdealPressed && sc.bodyButtonPressed]}
                             onPressIn={() => setIsIdealPressed(true)}
                             onPressOut={() => setIsIdealPressed(false)}
                             onPress={() => {
                                 setRecommendationModeButtonPressed(true);
                                 setSelectedRecommendationMode("Ideal");
                             }}
-                            disabled={usernameGlobal === '' ? true: false}>
+                            disabled={usernameGlobal === '' ? true: false}
+                            activeOpacity={0.92}>
 
-                            <Text id="idealRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                Ideal
-                                {'\n'}
-                                Recommendations
+                            <Text id="idealRecsButtonText" style={sc.bodyButtonText}>
+                                Ideal Balance (USDA / AMDR)
                             </Text>
                     </TouchableOpacity>
                 )}
 
-                {/* Display the button used to notify the frontend to retrieve nutrient recommendations */}
                 {!recommendationModeButtonPressed && (
                     <TouchableOpacity id="nutrientRecsButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isNutrientPressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                        style={[sc.bodyButton, usernameGlobal === '' && sc.bodyButtonDisabled, isNutrientPressed && sc.bodyButtonPressed]}
                             onPressIn={() => setIsNutrientPressed(true)}
                             onPressOut={() => setIsNutrientPressed(false)}
                             onPress={() => {
                                 setRecommendationModeButtonPressed(true);
                                 setSelectedRecommendationMode("Nutrient");
                             }}
-                            disabled={usernameGlobal === '' ? true: false}>
+                            disabled={usernameGlobal === '' ? true: false}
+                            activeOpacity={0.92}>
 
-                            <Text id="nutrientRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                Nutritional
-                                {'\n'}
-                                Recommendations
+                            <Text id="nutrientRecsButtonText" style={sc.bodyButtonText}>
+                                Fill Nutrient Gaps
                             </Text>
                     </TouchableOpacity>
                 )}
 
-                {/* Display the button used to notify the frontend to retrieve similar recommendations */}
                 {!recommendationModeButtonPressed && (
                     <TouchableOpacity id="similarRecsButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isSimilarPressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                        style={[sc.bodyButton, usernameGlobal === '' && sc.bodyButtonDisabled, isSimilarPressed && sc.bodyButtonPressed]}
                             onPressIn={() => setIsSimilarPressed(true)}
                             onPressOut={() => setIsSimilarPressed(false)}
                             onPress={() => {
                                 setRecommendationModeButtonPressed(true);
                                 setSelectedRecommendationMode("Similar");
                             }}
-                            disabled={usernameGlobal === '' ? true: false}>
+                            disabled={usernameGlobal === '' ? true: false}
+                            activeOpacity={0.92}>
 
-                            <Text id="similarRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                Similar
-                                {'\n'}
-                                Recommendations
+                            <Text id="similarRecsButtonText" style={sc.bodyButtonText}>
+                                Similar Tastes
                             </Text>
                     </TouchableOpacity>
                 )}
 
                 {/* Display buttons to increase/decrease the number of food items to include when retrieving the recommendations */}
                 {recommendationModeButtonPressed && !fetchedRecommendations && (
-                    <View id="increaseDecreaseNumberOfItemsOrUsersOuterView" style={styles.container}>
+                    <View id="increaseDecreaseNumberOfItemsOrUsersOuterView" style={styles.innerStack}>
 
                         <View id="increaseDecreaseNumberOfItemsInnerView" style={styles.buttonContainer}>
 
@@ -645,11 +635,11 @@ export default function RecommendationsScreen() {
                         
                         {/* Display buttons to increase/decrease the number users to include when retrieving the recommendations */}
                         {selectedRecommendationMode === 'Similar' && (
-                            <View id="increaseDecreaseNumberOfItemsOrUsersOuterView" style={styles.container}>
+                            <View id="increaseDecreaseNumberOfItemsOrUsersOuterView" style={styles.innerStack}>
 
                                 {selectedRecommendationMode === 'Similar' && (
-                                    <Text id="viewRecommendationsInfoTextNumberOfFoodItems" style={styles.infoText}>
-                                        Also enter the number of user to include in the retrieved recommendations
+                                    <Text id="viewRecommendationsInfoTextNumberOfFoodItems" style={sc.pageSubtitle}>
+                                        Peer count for similar-taste matching (optional tuning).
                                     </Text>
                                 )}
 
@@ -682,7 +672,7 @@ export default function RecommendationsScreen() {
                         )}
 
                         <TouchableOpacity id="getRecsButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                            style={sc.bodyButton}
                             onPress={() => {
                                 { 
                                     selectedRecommendationMode === 'Trending' ? getTrendingRecs(numberOfFoodItems) :
@@ -693,9 +683,10 @@ export default function RecommendationsScreen() {
                                     null
                                 }
                                 setFetchedRecommendations(true)
-                            }}>
+                            }}
+                            activeOpacity={0.92}>
 
-                            <Text id="getRecsButtonText" style={styles.bodyButtonTextDefault}>
+                            <Text id="getRecsButtonText" style={sc.bodyButtonText}>
                                 { 
                                     selectedRecommendationMode === 'Trending' ? 'Get Trending Recommendations' :
                                     selectedRecommendationMode === 'Random' ? 'Get Random Recommendations' :
@@ -708,17 +699,18 @@ export default function RecommendationsScreen() {
                         </TouchableOpacity>
 
                         <TouchableOpacity id="viewOtherRecsButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                            style={sc.bodyButtonOutline}
                             onPress={() => {
                                 setRecommendationModeButtonPressed(false);
                                 setSelectedRecommendationMode("");
                                 setFetchedRecommendations(false);
                                 setNumberOfFoodItems(3);
                                 setNumberOfUsers(10);
-                            }}>
+                            }}
+                            activeOpacity={0.92}>
 
-                            <Text id="viewOtherRecsButtonText" style={styles.bodyButtonTextDefault}>
-                                View Other Recommendations
+                            <Text id="viewOtherRecsButtonText" style={sc.bodyButtonOutlineText}>
+                                Choose another type
                             </Text>
                         </TouchableOpacity>
 
@@ -727,30 +719,33 @@ export default function RecommendationsScreen() {
 
                 {/* Display the fetched trending recommendations */}
                 {selectedRecommendationMode === 'Trending' && fetchedRecommendations && (
-                    <View id="trendingRecommendationsOuterView2" style={styles.fetchedRecommendationsContainer}>
+                    <View id="trendingRecommendationsOuterView2" style={{ alignSelf: 'stretch', marginBottom: 14 }}>
 
-                        <Text id="trendingRecommendationsInfoText" style={styles.infoText}>
-                            Here are the top {numberOfFoodItems} food items that are trending in the last 7 days
+                        <Text id="trendingRecommendationsInfoText" style={sc.pageSubtitle}>
+                            Top {numberOfFoodItems} trending items (last 7 days).
                         </Text>
 
-                        <View id="trendingRecommendationsOuterView1" style={styles.container}>
+                        <View id="trendingRecommendationsOuterView1" style={styles.innerStack}>
 
-                            {trendingRecommendations.food_items.map((foodItem, index) => (
-                                <View id="trendingRecommendationsInnerView1" style={styles.fetchedRecommendationsContainer} key={index}>
+                            {trendingRecommendations.food_items.map((foodItem, index) => {
+                                const recRows = processRecommendations(foodItem);
+                                return (
+                                <View id="trendingRecommendationsInnerView1" style={[sc.card, { marginBottom: 12, padding: 0, overflow: 'hidden' }]} key={index}>
 
                                     <FlatList
-                                        data={processRecommendations(foodItem)}
+                                        data={recRows}
                                         scrollEnabled={false}
-                                        renderItem={({ item }) => (
-                                            <View id="trendingRecommendationsInnerView2" style={styles.row}>
-                                                <Text id="trendingRecommendationsFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                                <Text id="trendingRecommendationsFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                        renderItem={({ item, index: ri }) => (
+                                            <View id="trendingRecommendationsInnerView2" style={[sc.row, ri === recRows.length - 1 && sc.rowLast]}>
+                                                <Text id="trendingRecommendationsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                                <Text id="trendingRecommendationsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                             </View>
                                         )}>
                                     </FlatList>
 
-                                </View>                                
-                            ))}
+                                </View>
+                                );
+                            })}
                         </View>
 
                     </View>
@@ -758,30 +753,33 @@ export default function RecommendationsScreen() {
 
                 {/* Display the fetched random recommendations */}
                 {selectedRecommendationMode === 'Random' && fetchedRecommendations && (
-                    <View id="randomRecommendationsOuterView2" style={styles.fetchedRecommendationsContainer}>
+                    <View id="randomRecommendationsOuterView2" style={{ alignSelf: 'stretch', marginBottom: 14 }}>
 
-                        <Text id="randomRecommendationsInfoText" style={styles.infoText}>
-                            Here are {numberOfFoodItems} food items that {usernameGlobal} has not yet tried
+                        <Text id="randomRecommendationsInfoText" style={sc.pageSubtitle}>
+                            {numberOfFoodItems} items you have not tried yet.
                         </Text>
 
-                        <View id="randomRecommendationsOuterView1" style={styles.container}>
+                        <View id="randomRecommendationsOuterView1" style={styles.innerStack}>
 
-                            {randomRecommendations.food_items.map((foodItem, index) => (
-                                <View id="randomRecommendationsInnerView1" style={styles.fetchedRecommendationsContainer} key={index}>
+                            {randomRecommendations.food_items.map((foodItem, index) => {
+                                const recRows = processRecommendations(foodItem);
+                                return (
+                                <View id="randomRecommendationsInnerView1" style={[sc.card, { marginBottom: 12, padding: 0, overflow: 'hidden' }]} key={index}>
 
                                     <FlatList
-                                        data={processRecommendations(foodItem)}
+                                        data={recRows}
                                         scrollEnabled={false}
-                                        renderItem={({ item }) => (
-                                            <View id="randomRecommendationsInnerView2" style={styles.row}>
-                                                <Text id="randomRecommendationsFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                                <Text id="randomRecommendationsFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                        renderItem={({ item, index: ri }) => (
+                                            <View id="randomRecommendationsInnerView2" style={[sc.row, ri === recRows.length - 1 && sc.rowLast]}>
+                                                <Text id="randomRecommendationsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                                <Text id="randomRecommendationsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                             </View>
                                         )}>
                                     </FlatList>
 
-                                </View>                                
-                            ))}
+                                </View>
+                                );
+                            })}
                         </View>
 
                     </View>
@@ -789,32 +787,33 @@ export default function RecommendationsScreen() {
 
                 {/* Display the fetched ideal recommendations */}
                 {selectedRecommendationMode === 'Ideal' && fetchedRecommendations && (
-                    <View id="idealRecommendationsOuterView2" style={styles.fetchedRecommendationsContainer}>
+                    <View id="idealRecommendationsOuterView2" style={{ alignSelf: 'stretch', marginBottom: 14 }}>
 
-                        <Text id="idealRecommendationsInfoText" style={styles.infoText}>
-                            Here are {numberOfFoodItems} food items that bring {usernameGlobal} closest to the ideal dietary proportions
-                            {'\n'}
-                            (Based on the USDA/AMDR 2000-cal adult)
+                        <Text id="idealRecommendationsInfoText" style={sc.pageSubtitle}>
+                            {numberOfFoodItems} picks closest to ideal macros (USDA / AMDR, 2000 kcal reference).
                         </Text>
 
-                        <View id="idealRecommendationsOuterView1" style={styles.container}>
+                        <View id="idealRecommendationsOuterView1" style={styles.innerStack}>
 
-                            {idealRecommendations.food_items.map((foodItem, index) => (
-                                <View id="idealRecommendationsInnerView1" style={styles.fetchedRecommendationsContainer} key={index}>
+                            {idealRecommendations.food_items.map((foodItem, index) => {
+                                const recRows = processRecommendations(foodItem);
+                                return (
+                                <View id="idealRecommendationsInnerView1" style={[sc.card, { marginBottom: 12, padding: 0, overflow: 'hidden' }]} key={index}>
 
                                     <FlatList
-                                        data={processRecommendations(foodItem)}
+                                        data={recRows}
                                         scrollEnabled={false}
-                                        renderItem={({ item }) => (
-                                            <View id="idealRecommendationsInnerView2" style={styles.row}>
-                                                <Text id="idealRecommendationsFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                                <Text id="idealRecommendationsFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                        renderItem={({ item, index: ri }) => (
+                                            <View id="idealRecommendationsInnerView2" style={[sc.row, ri === recRows.length - 1 && sc.rowLast]}>
+                                                <Text id="idealRecommendationsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                                <Text id="idealRecommendationsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                             </View>
                                         )}>
                                     </FlatList>
 
-                                </View>                                
-                            ))}
+                                </View>
+                                );
+                            })}
                         </View>
 
                     </View>
@@ -822,36 +821,37 @@ export default function RecommendationsScreen() {
 
                 {/* Display the fetched nutrient recommendations */}
                 {selectedRecommendationMode === 'Nutrient' && fetchedRecommendations && (
-                    <View id="nutrientRecommendationsOuterView2" style={styles.fetchedRecommendationsContainer}>
+                    <View id="nutrientRecommendationsOuterView2" style={{ alignSelf: 'stretch', marginBottom: 14 }}>
 
-                        <Text id="nutrientRecommendationsInfoText" style={styles.infoText}>
-                            Here are {numberOfFoodItems} food items that are high in the nutrient that {usernameGlobal} is the most deficient in
-                            {'\n'}
-                            (The deficient nutrient refers to the nutrient whose value is lowest based on the USDA/AMDR 2000-cal adult)
+                        <Text id="nutrientRecommendationsInfoText" style={sc.pageSubtitle}>
+                            {numberOfFoodItems} items rich in your most under-served nutrient (USDA / AMDR reference).
                         </Text>
 
-                        <View id="nutrientRecommendationsOuterView1" style={styles.container}>
+                        <View id="nutrientRecommendationsOuterView1" style={styles.innerStack}>
 
-                            <Text id="deficientNutrientInfoText" style={styles.infoText}>
-                                    Deficient Nutrient: {nutrientRecommendations.deficient_nutrient}
+                            <Text id="deficientNutrientInfoText" style={[sc.pageSubtitle, { fontWeight: '700' as const }]}>
+                                Focus nutrient: {nutrientRecommendations.deficient_nutrient}
                             </Text>
 
-                            {nutrientRecommendations.food_items.map((foodItem, index) => (
-                                <View id="nutrientRecommendationsInnerView1" style={styles.fetchedRecommendationsContainer} key={index}>
+                            {nutrientRecommendations.food_items.map((foodItem, index) => {
+                                const recRows = processRecommendations(foodItem);
+                                return (
+                                <View id="nutrientRecommendationsInnerView1" style={[sc.card, { marginBottom: 12, padding: 0, overflow: 'hidden' }]} key={index}>
 
                                     <FlatList
-                                        data={processRecommendations(foodItem)}
+                                        data={recRows}
                                         scrollEnabled={false}
-                                        renderItem={({ item }) => (
-                                            <View id="nutrientRecommendationsInnerView2" style={styles.row}>
-                                                <Text id="nutrientRecommendationsFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                                <Text id="nutrientRecommendationsFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                        renderItem={({ item, index: ri }) => (
+                                            <View id="nutrientRecommendationsInnerView2" style={[sc.row, ri === recRows.length - 1 && sc.rowLast]}>
+                                                <Text id="nutrientRecommendationsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                                <Text id="nutrientRecommendationsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                             </View>
                                         )}>
                                     </FlatList>
 
-                                </View>                                
-                            ))}
+                                </View>
+                                );
+                            })}
                         </View>
 
                     </View>
@@ -859,34 +859,37 @@ export default function RecommendationsScreen() {
 
                 {/* Display the fetched similar recommendations */}
                 {selectedRecommendationMode === 'Similar' && fetchedRecommendations && (
-                    <View id="similarRecommendationsOuterView2" style={styles.fetchedRecommendationsContainer}>
+                    <View id="similarRecommendationsOuterView2" style={{ alignSelf: 'stretch', marginBottom: 14 }}>
 
-                        <Text id="similarRecommendationsInfoText" style={styles.infoText}>
-                            Here are {numberOfFoodItems} food items that are popular with other users that share similar tastes to {usernameGlobal}
+                        <Text id="similarRecommendationsInfoText" style={sc.pageSubtitle}>
+                            {numberOfFoodItems} picks popular with users who eat like you.
                         </Text>
 
-                        <View id="similarRecommendationsOuterView1" style={styles.container}>
+                        <View id="similarRecommendationsOuterView1" style={styles.innerStack}>
 
-                            <Text id="deficientNutrientInfoText" style={styles.infoText}>
-                                    Deficient Nutrient: {similarRecommendations.deficient_nutrient}
+                            <Text id="deficientNutrientInfoText" style={[sc.pageSubtitle, { fontWeight: '700' as const }]}>
+                                Related nutrient signal: {similarRecommendations.deficient_nutrient}
                             </Text>
 
-                            {similarRecommendations.food_items.map((foodItem, index) => (
-                                <View id="similarRecommendationsInnerView1" style={styles.fetchedRecommendationsContainer} key={index}>
-                                
+                            {similarRecommendations.food_items.map((foodItem, index) => {
+                                const recRows = processRecommendations(foodItem);
+                                return (
+                                <View id="similarRecommendationsInnerView1" style={[sc.card, { marginBottom: 12, padding: 0, overflow: 'hidden' }]} key={index}>
+
                                     <FlatList
-                                        data={processRecommendations(foodItem)}
+                                        data={recRows}
                                         scrollEnabled={false}
-                                        renderItem={({ item }) => (
-                                            <View id="similarRecommendationsInnerView2" style={styles.row}>
-                                                <Text id="similarRecommendationsFieldNameText" style={styles.rowCell}>{item["field_name"]}</Text>
-                                                <Text id="similarRecommendationsFieldValueText" style={styles.rowCell}>{item["field_value"]}</Text>
+                                        renderItem={({ item, index: ri }) => (
+                                            <View id="similarRecommendationsInnerView2" style={[sc.row, ri === recRows.length - 1 && sc.rowLast]}>
+                                                <Text id="similarRecommendationsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
+                                                <Text id="similarRecommendationsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
                                             </View>
                                         )}>
                                     </FlatList>
 
-                                </View>                                
-                            ))}
+                                </View>
+                                );
+                            })}
                         </View>
 
                     </View>
@@ -894,17 +897,18 @@ export default function RecommendationsScreen() {
 
                 {fetchedRecommendations && (
                     <TouchableOpacity id="viewOtherRecsAgainButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                        style={sc.bodyButtonOutline}
                         onPress={() => {
                             setRecommendationModeButtonPressed(false);
                             setSelectedRecommendationMode("");
                             setFetchedRecommendations(false);
                             setNumberOfFoodItems(3);
                             setNumberOfUsers(10);
-                        }}>
+                        }}
+                        activeOpacity={0.92}>
 
-                        <Text id="viewOtherRecsAgainButtonText" style={styles.bodyButtonTextDefault}>
-                            View Other Recommendations
+                        <Text id="viewOtherRecsAgainButtonText" style={sc.bodyButtonOutlineText}>
+                            Choose another type
                         </Text>
                     </TouchableOpacity>
                 )}
@@ -912,6 +916,7 @@ export default function RecommendationsScreen() {
             </ScrollView>
 
         </View>
+        </SafeAreaView>
     )
-     
+
 }

@@ -18,7 +18,44 @@ from config import Config
 from datasets import create_data_loaders
 from setup import test_gpu_setup
 import torchvision.models as models
-from torchvision.models import ResNet50_Weights, EfficientNet_B0_Weights
+from torchvision.models import (
+    ResNet50_Weights,
+    ResNet101_Weights,
+    EfficientNet_B0_Weights,
+)
+
+
+def _strip_dataparallel_prefix(state_dict):
+    """Map module.backbone.* -> backbone.* when weights were saved under DataParallel."""
+    keys = list(state_dict.keys())
+    if not any(str(k).startswith("module.") for k in keys):
+        return state_dict
+    return {str(k)[7:]: v for k, v in state_dict.items() if str(k).startswith("module.")}
+
+
+def infer_resnet_model_name(state_dict) -> str:
+    """
+    Choose resnet50 vs resnet101 from checkpoint keys.
+    ResNet-50 layer3 uses block indices 0..5 only; deeper checkpoints need ResNet-101.
+    """
+    max_l3 = -1
+    for k in state_dict:
+        if not isinstance(k, str):
+            continue
+        parts = k.split(".")
+        if "layer3" not in parts:
+            continue
+        try:
+            i = parts.index("layer3")
+            if i + 1 < len(parts) and parts[i + 1].isdigit():
+                max_l3 = max(max_l3, int(parts[i + 1]))
+        except ValueError:
+            continue
+    if max_l3 < 0:
+        return "resnet50"
+    if max_l3 <= 5:
+        return "resnet50"
+    return "resnet101"
 
 
 class FoodClassifier(nn.Module):
@@ -41,6 +78,11 @@ class FoodClassifier(nn.Module):
             self.backbone = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V2)
             self.backbone.fc = nn.Linear(self.backbone.fc.in_features, num_classes)
 
+        elif model_name == "resnet101":
+            w = ResNet101_Weights.IMAGENET1K_V2 if pretrained else None
+            self.backbone = models.resnet101(weights=w)
+            self.backbone.fc = nn.Linear(self.backbone.fc.in_features, num_classes)
+
         elif model_name == "efficientnet_b0":
             self.backbone = models.efficientnet_b0(
                 weights=EfficientNet_B0_Weights.IMAGENET1K_V1
@@ -59,7 +101,8 @@ class FoodClassifier(nn.Module):
 
         else:
             raise ValueError(
-                f"Unsupported model: {model_name}. Choose from: resnet50, efficientnet_b0, mobilenet_v3_small"
+                f"Unsupported model: {model_name}. Choose from: "
+                f"resnet50, resnet101, efficientnet_b0, mobilenet_v3_small"
             )
 
         if freeze_backbone:
@@ -74,7 +117,7 @@ class FoodClassifier(nn.Module):
             param.requires_grad = False
 
         # Unfreeze classifier/head
-        if self.model_name == "resnet50":
+        if self.model_name in ("resnet50", "resnet101"):
             for param in self.backbone.fc.parameters():
                 param.requires_grad = True
         elif self.model_name == "efficientnet_b0":
@@ -126,11 +169,15 @@ def create_model(
 
 def load_model(
     model_path: str,
-    model_name: str = "resnet50",
+    model_name: Optional[str] = None,
     num_classes: Optional[int] = None,
     device: torch.device = None,
 ):
-    """Load a trained model from checkpoint"""
+    """Load a trained model from checkpoint.
+
+    If ``model_name`` is None, uses ``checkpoint['model_name']`` or infers ResNet depth
+    from ``layer3`` indices (handles older checkpoints trained as ResNet-101).
+    """
 
     # Set device first
     if device is None:
@@ -151,16 +198,32 @@ def load_model(
                 f"Please provide num_classes parameter or retrain model."
             )
 
+    if "model_state_dict" in checkpoint:
+        state_dict = _strip_dataparallel_prefix(checkpoint["model_state_dict"])
+    else:
+        state_dict = _strip_dataparallel_prefix(checkpoint)
+
+    resolved_name = model_name or checkpoint.get("model_name")
+    if resolved_name is None:
+        resolved_name = infer_resnet_model_name(state_dict)
+        print(f"Inferred backbone from weights: {resolved_name}")
+
     # Create model with correct number of classes
     model = create_model(
-        model_name=model_name, num_classes=num_classes, pretrained=False, device=device
+        model_name=resolved_name,
+        num_classes=num_classes,
+        pretrained=False,
+        device=device,
     )
 
-    # Load model weights
-    if "model_state_dict" in checkpoint:
-        model.load_state_dict(checkpoint["model_state_dict"])
-    else:
-        model.load_state_dict(checkpoint)
+    try:
+        model.load_state_dict(state_dict, strict=True)
+    except RuntimeError as e:
+        print(
+            "Warning: strict state_dict load failed; loading with strict=False "
+            f"(accuracy may suffer). Reason: {e}"
+        )
+        model.load_state_dict(state_dict, strict=False)
 
     model.eval()
     return model

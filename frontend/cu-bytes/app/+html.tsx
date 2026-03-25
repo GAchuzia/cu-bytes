@@ -16,15 +16,26 @@ export default function Root({ children }: PropsWithChildren) {
         <style
           dangerouslySetInnerHTML={{
             __html: `
-html, body, #root {
+html, body {
   width: 100%;
   margin: 0;
+  background-color: #ffffff;
+  min-height: 100%;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 #root {
+  width: 100%;
+  flex: 1;
+  display: flex;
   flex-direction: column !important;
   align-items: stretch !important;
-  flex: 1;
   min-height: 100vh !important;
+  min-height: 100dvh !important;
+  background-color: #ffffff;
 }
 `,
           }}

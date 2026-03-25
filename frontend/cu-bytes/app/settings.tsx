@@ -3,7 +3,9 @@ import { View, ScrollView, Text, TextInput, TouchableOpacity, Switch, ActivityIn
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { screenChrome as sc } from './_styles/screenChrome';
 import { styles } from './_styles/style-settings';
 import { useUser } from './_context';
 import { API_BASE_URL } from '../services/api';
@@ -287,232 +289,231 @@ export default function SettingsScreen() {
     // Display loading symbol while the profiles are being fetched
     if (loading) {
         return (
-            <View>
-                <ActivityIndicator size="large" />
-            </View>
+            <SafeAreaView style={[sc.safeRoot, { justifyContent: 'center', alignItems: 'center' }]} edges={['top', 'left', 'right']}>
+                <ActivityIndicator size="large" color="#C5151A" />
+            </SafeAreaView>
         );
     }
 
     return (
-        <View style={styles.container}>
-            
-            <StatusBar style="auto" hidden={true}/>
+        <SafeAreaView style={sc.safeRoot} edges={['top', 'left', 'right']}>
+        <View style={sc.container}>
+            <StatusBar style="dark" />
 
-            <View id="settingsStatusbar" style={styles.statusbar}>
-
-                {/* Route the user to the 'home' page */}
+            <View id="settingsStatusbar" style={sc.topBar}>
                 <TouchableOpacity id="homeOrSplashButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isHomeOrSplashPressed ? '#666666' : '#131312'}]}
+                    style={[sc.headerButton, isHomeOrSplashPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsHomeOrSplashPressed(true)}
                     onPressOut={() => setIsHomeOrSplashPressed(false)}
-                    onPress={() => router.push('/home')}>
+                    onPress={() => router.push('/home')}
+                    activeOpacity={0.9}>
 
-                    <Text id="homeOrSplashButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
+                    <Text id="homeOrSplashButtonText" style={sc.headerButtonText} numberOfLines={1}>
                         Home
                     </Text>
                 </TouchableOpacity>
 
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
+                <Text id="loggedInUser" style={sc.userPill} numberOfLines={1}>
                     {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
                 </Text>
 
-                {/* Route the user to the 'splash' page or the 'login' page */}
                 <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
+                    style={[sc.headerButton, isLoginLogoutPressed && sc.headerButtonPressed]}
                     onPressIn={() => setIsLoginLogoutPressed(true)}
                     onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
+                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}
+                    activeOpacity={0.9}>
 
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Logout' : 'Login'}
+                    <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
+                        {usernameGlobal != '' ? 'Log out' : 'Log in'}
                     </Text>
                 </TouchableOpacity>
-
             </View>
 
-            <Text id="settingsTitle" style={styles.headerTitle}>
+            <Text id="settingsTitle" style={[sc.pageTitle, { paddingHorizontal: 20, alignSelf: 'stretch' }]}>
                 Settings
-            </Text>          
+            </Text>
 
             {!isChangePasswordPressed && !isDeleteAccountPressed && (
-                <ScrollView id="settingsScrollView" style={styles.scrollView}
-                    contentContainerStyle={styles.scrollContent}
-                    showsVerticalScrollIndicator={true}
+                <ScrollView id="settingsScrollView" style={sc.scrollView}
+                    contentContainerStyle={sc.scrollContent}
+                    showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps="handled">
 
-                    <Text id="settingsInfoText" style={styles.infoText}>
-                        What allergies, intolerances, or preferences do you have?
+                    <Text id="settingsInfoText" style={sc.pageSubtitle}>
+                        Allergies, intolerances, and dining preferences (used for warnings and recommendations).
                     </Text>
 
-                    <View id="hasDairyIntoleranceOuterView" style={styles.settingsSwitchRow}>
+                    <View style={sc.formCard}>
+                    <View id="hasDairyIntoleranceOuterView" style={styles.settingsRow}>
                         <Text id="hasDairyIntoleranceText" style={styles.label}>
                             Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>dairy</Text> products?
                         </Text>
 
                         <View id="hasDairyIntoleranceInnerView" style={styles.switchContainer}>
-                            <Switch id="hasDairyIntoleranceSwitch" style={styles.switch}
+                            <Switch id="hasDairyIntoleranceSwitch" style={styles.switchScale}
                                 value={hasDairyIntolerance}
                                 onValueChange={setHasDairyIntolerance}/>
                         </View>
                     </View>
 
-                    <View id="hasEggAllergyOuterView" style={styles.settingsSwitchRow}>
+                    <View id="hasEggAllergyOuterView" style={styles.settingsRow}>
                         <Text id="hasEggAllergyText" style={styles.label}>
                             Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>eggs</Text>?
                         </Text>
 
                         <View id="hasEggAllergyInnerView" style={styles.switchContainer}>
-                            <Switch id="hasEggAllergySwitch" style={styles.switch}
+                            <Switch id="hasEggAllergySwitch" style={styles.switchScale}
                                 value={hasEggAllergy}
                                 onValueChange={setHasEggAllergy}/>
                         </View>
                     </View>
 
-                    <View id="hasFishOrShellfishAllergyOuterView" style={styles.settingsSwitchRow}>
+                    <View id="hasFishOrShellfishAllergyOuterView" style={styles.settingsRow}>
                         <Text id="hasFishOrShellfishAllergyText" style={styles.label}>
                             Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>fish</Text> or <Text style={{ fontWeight: 'bold' }}>shellfish</Text>?
                         </Text>
 
                         <View id="hasFishOrShellfishAllergyInnerView" style={styles.switchContainer}>
-                            <Switch id="hasFishOrShellfishAllergySwitch" style={styles.switch}
+                            <Switch id="hasFishOrShellfishAllergySwitch" style={styles.switchScale}
                                 value={hasFishOrShellfishAllergy}
                                 onValueChange={setHasFishOrShellfishAllergy}/>
                         </View>
                     </View>
 
-                    <View id="hasGlutenAllergyOuterView" style={styles.settingsSwitchRow}>
+                    <View id="hasGlutenAllergyOuterView" style={styles.settingsRow}>
                         <Text id="hasGlutenAllergyText" style={styles.label}>
                             Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>gluten</Text>?
                         </Text>
 
                         <View id="hasGlutenAllergyInnerView" style={styles.switchContainer}>
-                            <Switch id="hasGlutenAllergySwitch" style={styles.switch}
+                            <Switch id="hasGlutenAllergySwitch" style={styles.switchScale}
                                 value={hasGlutenAllergy}
                                 onValueChange={setHasGlutenAllergy}/>
                         </View>
                     </View>
 
-                    <View id="hasMilkAllergyOuterView" style={styles.settingsSwitchRow}>
+                    <View id="hasMilkAllergyOuterView" style={styles.settingsRow}>
                         <Text id="hasMilkAllergyText" style={styles.label}>
                             Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>milk</Text>?
                         </Text>
 
                         <View id="hasMilkAllergyInnerView" style={styles.switchContainer}>
-                            <Switch id="hasMilkAllergySwitch" style={styles.switch}
+                            <Switch id="hasMilkAllergySwitch" style={styles.switchScale}
                                 value={hasMilkAllergy}
                                 onValueChange={setHasMilkAllergy}/>
                         </View>
                     </View>
 
-                    <View id="hasPeanutAllergyOuterView" style={styles.settingsSwitchRow}>
+                    <View id="hasPeanutAllergyOuterView" style={styles.settingsRow}>
                         <Text id="hasPeanutAllergyText" style={styles.label}>
                             Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>peanuts</Text>?
                         </Text>
 
                         <View id="hasPeanutAllergyInnerView" style={styles.switchContainer}>
-                            <Switch id="hasPeanutAllergySwitch" style={styles.switch}
+                            <Switch id="hasPeanutAllergySwitch" style={styles.switchScale}
                                 value={hasPeanutAllergy}
                                 onValueChange={setHasPeanutAllergy}/>
                         </View>
                     </View>
 
-                    <View id="hasSesameAllergyOuterView" style={styles.settingsSwitchRow}>
+                    <View id="hasSesameAllergyOuterView" style={styles.settingsRow}>
                         <Text id="hasSesameAllergyText" style={styles.label}>
                             Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>sesame</Text>?
                         </Text>
 
                         <View id="hasSesameAllergyInnerView" style={styles.switchContainer}>
-                            <Switch id="hasSesameAllergySwitch" style={styles.switch}
+                            <Switch id="hasSesameAllergySwitch" style={styles.switchScale}
                                 value={hasSesameAllergy}
                                 onValueChange={setHasSesameAllergy}/>
                         </View>
                     </View>
 
-                    <View id="hasSoyAllergyOuterView" style={styles.settingsSwitchRow}>
+                    <View id="hasSoyAllergyOuterView" style={styles.settingsRow}>
                         <Text id="hasSoyAllergyText" style={styles.label}>
                             Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>soy</Text>?
                         </Text>
                         
                         <View id="hasSoyAllergyInnerView" style={styles.switchContainer}>
-                            <Switch id="hasSoyAllergySwitch" style={styles.switch}
+                            <Switch id="hasSoyAllergySwitch" style={styles.switchScale}
                                 value={hasSoyAllergy}
                                 onValueChange={setHasSoyAllergy}/>
                         </View>
                     </View>
 
-                    <View id="hasSulfitesAllergyOuterView" style={styles.settingsSwitchRow}>
+                    <View id="hasSulfitesAllergyOuterView" style={styles.settingsRow}>
                         <Text id="hasSulfitesAllergyText" style={styles.label}>
                             Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>sulfites</Text>?
                         </Text>
 
                         <View id="hasSulfitesAllergyInnerView" style={styles.switchContainer}>
-                            <Switch id="hasSulfitesAllergySwitch" style={styles.switch}
+                            <Switch id="hasSulfitesAllergySwitch" style={styles.switchScale}
                                 value={hasSulfitesAllergy}
                                 onValueChange={setHasSulfitesAllergy}/>
                         </View>
                     </View>
 
-                    <View id="hasTreenutAllergyOuterView" style={styles.settingsSwitchRow}>
+                    <View id="hasTreenutAllergyOuterView" style={styles.settingsRow}>
                         <Text id="hasTreenutAllergyText" style={styles.label}>
                             Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>treenuts</Text>?
                         </Text>
 
                         <View id="hasTreenutAllergyInnerView" style={styles.switchContainer}>
-                            <Switch id="hasTreenutAllergySwitch" style={styles.switch}
+                            <Switch id="hasTreenutAllergySwitch" style={styles.switchScale}
                                 value={hasTreenutAllergy}
                                 onValueChange={setHasTreenutAllergy}/>
                         </View>
                     </View>
 
-                    <View id="hasWheatAllergyOuterView" style={styles.settingsSwitchRow}>
+                    <View id="hasWheatAllergyOuterView" style={styles.settingsRow}>
                         <Text id="hasWheatAllergyText" style={styles.label}>
                             Do you have an allergy or intolerance to <Text style={{ fontWeight: 'bold' }}>wheat</Text>?
                         </Text>
 
                         <View id="hasWheatAllergyInnerView" style={styles.switchContainer}>
-                            <Switch id="hasWheatAllergySwitch" style={styles.switch}
+                            <Switch id="hasWheatAllergySwitch" style={styles.switchScale}
                                 value={hasWheatAllergy}
                                 onValueChange={setHasWheatAllergy}/>
                         </View>
                     </View>
 
-                    <View id="isVeganOuterView" style={styles.settingsSwitchRow}>
+                    <View id="isVeganOuterView" style={styles.settingsRow}>
                         <Text id="isVeganText" style={styles.label}>
                             Are you <Text style={{ fontWeight: 'bold' }}>vegan</Text>?
                         </Text>
 
                         <View id="isVeganInnerView" style={styles.switchContainer}>
-                            <Switch id="isVeganSwitch" style={styles.switch}
+                            <Switch id="isVeganSwitch" style={styles.switchScale}
                                 value={isVegan}
                                 onValueChange={setIsVegan}/>
                         </View>
                     </View>
 
-                    <View id="isVegetarianOuterView" style={styles.settingsSwitchRow}>
+                    <View id="isVegetarianOuterView" style={styles.settingsRow}>
                         <Text id="isVegetarianText" style={styles.label}>
                             Are you <Text style={{ fontWeight: 'bold' }}>vegetarian</Text>?
                         </Text>
 
                         <View id="isVegetarianInnerView" style={styles.switchContainer}>
-                            <Switch id="isVegetarianSwitch" style={styles.switch}
+                            <Switch id="isVegetarianSwitch" style={styles.switchScale}
                                 value={isVegetarian}
                                 onValueChange={setIsVegetarian}/>
                         </View>
                     </View>
 
-                    <View id="prefersHalalOuterView" style={styles.settingsSwitchRow}>
+                    <View id="prefersHalalOuterView" style={styles.settingsRow}>
                         <Text id="prefersHalalText" style={styles.label}>
                             Do you prefer <Text style={{ fontWeight: 'bold' }}>halal</Text> products?
                         </Text>
 
                         <View id="prefersHalalInnerView" style={styles.switchContainer}>
-                            <Switch id="prefersHalalSwitch" style={styles.switch}
+                            <Switch id="prefersHalalSwitch" style={styles.switchScale}
                                 value={prefersHalal}
                                 onValueChange={setPrefersHalal}/>
                         </View>
                     </View>
 
-                    <View id="showStatsOuterView" style={styles.settingsSwitchRow}>
+                    <View id="showStatsOuterView" style={[styles.settingsRow, styles.settingsRowLast]}>
                         <Text id="showStatsText" style={styles.label}>
                             Enable <Text style={{ fontWeight: 'bold' }}>comparisons & recommendations</Text>. Your food logs are always saved
                             to your account. If enabled, we will use your data to generate aggregated
@@ -520,116 +521,120 @@ export default function SettingsScreen() {
                         </Text>
 
                         <View id="showStatsInnerView" style={styles.switchContainer}>
-                            <Switch id="showStatsSwitch" style={styles.switch}
+                            <Switch id="showStatsSwitch" style={styles.switchScale}
                                 value={showStats}
                                 onValueChange={setShowStats}/>
                         </View>
                     </View>
+                    </View>
 
                     <TouchableOpacity id="settingsButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: isConfirmPressed || usernameGlobal == '' ? '#666666' : '#131312'}]}
+                        style={[sc.bodyButton, usernameGlobal === '' && sc.bodyButtonDisabled, isConfirmPressed && sc.bodyButtonPressed]}
                         onPressIn={() => setIsConfirmPressed(true)}
                         onPressOut={() => setIsConfirmPressed(false)}
                         onPress={() => handlePressConfirmSettings()}
-                        disabled={usernameGlobal == '' ? true : false}>
+                        disabled={usernameGlobal == '' ? true : false}
+                        activeOpacity={0.92}>
 
-                        <Text id="settingsButtonText" style={styles.bodyButtonTextDefault}>
-                            Confirm
+                        <Text id="settingsButtonText" style={sc.bodyButtonText}>
+                            Save preferences
                         </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity id="changePasswordButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: usernameGlobal === '' ? '#666666' : '#131312'}]}
+                        style={[sc.bodyButtonOutline, usernameGlobal === '' && { opacity: 0.45 }]}
                         onPress={() => {
                             setIsChangePasswordPressed(true)
                         }}
-                        disabled={usernameGlobal === '' ? true : false}>
+                        disabled={usernameGlobal === '' ? true : false}
+                        activeOpacity={0.92}>
 
-                        <Text id="changePasswordButtonText" style={styles.bodyButtonTextDefault}>
-                            Change Password
+                        <Text id="changePasswordButtonText" style={sc.bodyButtonOutlineText}>
+                            Change password
                         </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity id="deleteAccountButton"
-                        style={[styles.bodyButtonDefault, {backgroundColor: usernameGlobal === '' ? '#666666' : '#131312'}]}
+                        style={[styles.dangerButton, usernameGlobal === '' && { opacity: 0.45 }]}
                         onPress={() => {
                             setIsDeleteAccountPressed(true)
                         }}
-                        disabled={usernameGlobal === '' ? true : false}>
+                        disabled={usernameGlobal === '' ? true : false}
+                        activeOpacity={0.92}>
 
-                        <Text id="deleteAccountButtonText" style={styles.bodyButtonTextDefault}>
-                            Delete Account
+                        <Text id="deleteAccountButtonText" style={styles.dangerButtonText}>
+                            Delete account
                         </Text>
-                    </TouchableOpacity>      
+                    </TouchableOpacity>
 
                 </ScrollView>
             )}
 
             {/* Display text inputs and the button used to notify the frontend to update the logged-in user's password in the backend database */}
             {isChangePasswordPressed && !isDeleteAccountPressed && (
-                <ScrollView id="changePasswordScrollView" style={styles.scrollView}
-                    contentContainerStyle={styles.scrollContent}
-                    showsVerticalScrollIndicator={true}
+                <ScrollView id="changePasswordScrollView" style={sc.scrollView}
+                    contentContainerStyle={sc.scrollContent}
+                    showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps="handled">
-                    
-                    <View id="changePasswordView" style={styles.container}>
-                        
-                        <Text id="changePasswordInfoText" style={styles.infoText}>
+
+                    <View id="changePasswordView" style={sc.formCard}>
+
+                        <Text id="changePasswordInfoText" style={sc.pageSubtitle}>
                             Change your account password
                         </Text>
 
-                        <Text id="changePasswordErrorMessage" style={styles.errorInfoText}>
-                            {error.status === 'error' ? error.message : 'To change your account password, enter your current password and your new password'}
+                        <Text id="changePasswordErrorMessage" style={sc.errorBanner}>
+                            {error.status === 'error' ? error.message : 'Enter your current password and a new password.'}
                         </Text>
 
-                        {/* Enter the current password for the logged-in user account */}
-                        <TextInput id="currentPasswordTextInput" style={styles.passwordTextInput}
+                        <TextInput id="currentPasswordTextInput" style={sc.textInput}
                             onChangeText={setCurrentPassword}
-                            placeholder={'Enter current password'}
+                            placeholder="Current password"
+                            placeholderTextColor="#8E95A1"
                             value={currentPassword}
-                            secureTextEntry={secureTextEntry}>
-                        </TextInput>
+                            secureTextEntry={secureTextEntry}
+                        />
 
-                        {/* Enter the new password for the logged-in user account */}
-                        <TextInput id="newPasswordTextInput" style={styles.passwordTextInput}
+                        <TextInput id="newPasswordTextInput" style={sc.textInput}
                             onChangeText={setNewPassword}
-                            placeholder={'Enter new password'}
+                            placeholder="New password"
+                            placeholderTextColor="#8E95A1"
                             value={newPassword}
-                            secureTextEntry={secureTextEntry}>
-                        </TextInput>
+                            secureTextEntry={secureTextEntry}
+                        />
 
-                        {/* Toggle the switch to hide or unhide the password inputs by converting the characters to or from the * character */}
-                        <View id="hideOrUnhidePasswordView" style={styles.passwordSwitchRow}>
-                            <Text id="hideOrUnhidePasswordInfoText" style={styles.passwordSwitchInfoText}>
-                                Hide or unhide the passwords
+                        <View id="hideOrUnhidePasswordView" style={sc.switchRow}>
+                            <Text id="hideOrUnhidePasswordInfoText" style={sc.switchLabel}>
+                                Hide Passwords
                             </Text>
 
-                            <Switch id="hideOrUnhidePasswordSwitch" style={styles.switch}
+                            <Switch id="hideOrUnhidePasswordSwitch" style={styles.switchScale}
                                 value={secureTextEntry}
-                                onValueChange={setSecureTextEntry}>
-                            </Switch>
+                                onValueChange={setSecureTextEntry}
+                            />
                         </View>
 
-                        {/* Display a button to change the password */}
                         <TouchableOpacity id="submitNewPasswordButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: usernameGlobal === '' ? '#666666' : '#131312'}]}
+                            style={[sc.bodyButton, usernameGlobal === '' && sc.bodyButtonDisabled]}
                             onPress={() => {
-                                handlePressSubmitNewPassword()}}>
+                                handlePressSubmitNewPassword()}}
+                            activeOpacity={0.92}>
 
-                            <Text id="submitNewPasswordButtonText" style={styles.bodyButtonTextDefault}>
-                                Change Password
+                            <Text id="submitNewPasswordButtonText" style={sc.bodyButtonText}>
+                                Update password
                             </Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity id="returnToSettingsButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: usernameGlobal === '' ? '#666666' : '#131312'}]}
+                            style={sc.bodyButtonOutline}
                             onPress={() => {
                                 setIsChangePasswordPressed(false);
                                 setCurrentPassword('');
-                                setNewPassword('')}}>
+                                setNewPassword('')}}
+                            activeOpacity={0.92}>
 
-                            <Text id="returnToSettingsButtonText" style={styles.bodyButtonTextDefault}>
-                                Return to Settings
+                            <Text id="returnToSettingsButtonText" style={sc.bodyButtonOutlineText}>
+                                Back to settings
                             </Text>
                         </TouchableOpacity>
 
@@ -639,61 +644,61 @@ export default function SettingsScreen() {
 
             {/* Display text input and the button used to notify the frontend to delete the logged-in user's account from the backend database */}
             {!isChangePasswordPressed && isDeleteAccountPressed && (
-                <ScrollView id="deleteAccountScrollView" style={styles.scrollView}
-                    contentContainerStyle={styles.scrollContent}
-                    showsVerticalScrollIndicator={true}
+                <ScrollView id="deleteAccountScrollView" style={sc.scrollView}
+                    contentContainerStyle={sc.scrollContent}
+                    showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps="handled">
 
-                    <View id="deleteAccountView" style={styles.container}>
-                        
-                        <Text id="deleteAccountInfoText" style={styles.infoText}>
-                            Delete your account
+                    <View id="deleteAccountView" style={sc.formCard}>
+
+                        <Text id="deleteAccountInfoText" style={sc.pageSubtitle}>
+                            Permanently delete your account
                         </Text>
 
-                        <Text id="deleteAccountErrorMessage" style={styles.errorInfoText}>
-                            {error.status === 'error' ? error.message : 'To delete your account, enter your current password'}
+                        <Text id="deleteAccountErrorMessage" style={sc.errorBanner}>
+                            {error.status === 'error' ? error.message : 'Enter your password to confirm deletion.'}
                         </Text>
 
-                        {/* Enter the current password for the logged-in user account */}
-                        <TextInput id="currentPasswordTextInput" style={styles.passwordTextInput}
+                        <TextInput id="currentPasswordTextInput" style={sc.textInput}
                             onChangeText={setCurrentPassword}
-                            placeholder={'Enter current password'}
+                            placeholder="Current password"
+                            placeholderTextColor="#8E95A1"
                             value={currentPassword}
-                            secureTextEntry={secureTextEntry}>
-                        </TextInput>
+                            secureTextEntry={secureTextEntry}
+                        />
 
-                        {/* Toggle the switch to hide or unhide the password input by converting the characters to or from the * character */}
-                        <View id="hideOrUnhidePasswordView" style={styles.passwordSwitchRow}>
-                            <Text id="hideOrUnhidePasswordInfoText" style={styles.passwordSwitchInfoText}>
-                                Hide or unhide the password
+                        <View id="hideOrUnhidePasswordView" style={sc.switchRow}>
+                            <Text id="hideOrUnhidePasswordInfoText" style={sc.switchLabel}>
+                                Hide Passwords
                             </Text>
 
-                            <Switch id="hideOrUnhidePasswordSwitch" style={styles.switch}
+                            <Switch id="hideOrUnhidePasswordSwitch" style={styles.switchScale}
                                 value={secureTextEntry}
-                                onValueChange={setSecureTextEntry}>
-                            </Switch>
-                        </View> 
+                                onValueChange={setSecureTextEntry}
+                            />
+                        </View>
 
-                        {/* Display a button to delete the account */}
                         <TouchableOpacity id="deleteAccountButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: usernameGlobal === '' ? '#666666' : '#131312'}]}
+                            style={[styles.dangerButton, usernameGlobal === '' && { opacity: 0.45 }]}
                             onPress={() => {
-                                handlePressDeleteAccount();}}>
+                                handlePressDeleteAccount();}}
+                            activeOpacity={0.92}>
 
-                            <Text id="deleteAccountButtonText" style={styles.bodyButtonTextDefault}>
-                                Delete Account
+                            <Text id="deleteAccountButtonText" style={styles.dangerButtonText}>
+                                Delete account permanently
                             </Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity id="returnToSettingsButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: usernameGlobal === '' ? '#666666' : '#131312'}]}
+                            style={sc.bodyButtonOutline}
                             onPress={() => {
                                 setIsDeleteAccountPressed(false);
                                 setCurrentPassword('');
-                                setNewPassword('')}}>
+                                setNewPassword('')}}
+                            activeOpacity={0.92}>
 
-                            <Text id="returnToSettingsButtonText" style={styles.bodyButtonTextDefault}>
-                                Return to Settings
+                            <Text id="returnToSettingsButtonText" style={sc.bodyButtonOutlineText}>
+                                Back to settings
                             </Text>
                         </TouchableOpacity>
 
@@ -702,6 +707,7 @@ export default function SettingsScreen() {
             )}
 
         </View>
+        </SafeAreaView>
     )
 
 }

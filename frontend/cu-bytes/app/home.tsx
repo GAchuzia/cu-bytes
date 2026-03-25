@@ -3,302 +3,369 @@ import { View, ScrollView, Text, TouchableOpacity, Modal } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { styles } from './_styles/style-home';
+import { screenChrome as sc } from './_styles/screenChrome';
 import { useUser } from './_context';
 import { API_BASE_URL } from '../services/api';
 
 export default function HomeScreen() {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [browseButtons, setBrowseButtons] = useState(false);
 
-    const [loading, setLoading] = useState(false);
-    const [modalVisible, setModalVisible] = useState(false);
-    const [browseButtons, setBrowseButtons] = useState(false);
-    
-    const [isSettingsPressed, setIsSettingsPressed] = useState(false);
-    const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
+  const [isSettingsPressed, setIsSettingsPressed] = useState(false);
+  const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
 
-    const [isScanFoodItemPressed, setIsScanFoodItemPressed] = useState(false);
-    const [isBrowsePressed, setIsBrowsePressed] = useState(false);
-    const [isBrowseFoodItemsPressed, setIsBrowseFoodItemsPressed] = useState(false);
-    const [isBrowseDiningLocationsPressed, setIsBrowseDiningLocationsPressed] = useState(false);
-    
-    const [isViewSavedFoodItemsPressed, setIsViewSavedFoodItemsPressed] = useState(false);
-    const [isStatisticsPressed, setIsStatisticsPressed] = useState(false);
-    const [isRecommendationsPressed, setIsRecommendationsPressed] = useState(false)
+  const [isScanFoodItemPressed, setIsScanFoodItemPressed] = useState(false);
+  const [isBrowsePressed, setIsBrowsePressed] = useState(false);
+  const [isBrowseFoodItemsPressed, setIsBrowseFoodItemsPressed] =
+    useState(false);
+  const [isBrowseDiningLocationsPressed, setIsBrowseDiningLocationsPressed] =
+    useState(false);
 
-    /*
-        Variables used to store a copy of the logged-in user's username and profile settings
-    */
-    const
-        {
-            usernameGlobal,
-            hasConfiguredSettingsGlobal,
-            setUsernameGlobal,
-            setHasConfiguredSettingsGlobal,
-            setHasDairyIntoleranceGlobal,            
-            setHasEggAllergyGlobal,
-            setHasFishOrShellfishAllergyGlobal,
-            setHasGlutenAllergyGlobal,
-            setHasMilkAllergyGlobal,
-            setHasPeanutAllergyGlobal,
-            setHasSesameAllergyGlobal,
-            setHasSulfitesAllergyGlobal,
-            setHasSoyAllergyGlobal,
-            setHasTreenutAllergyGlobal,
-            setHasWheatAllergyGlobal,
-            setIsVeganGlobal,
-            setIsVegetarianGlobal,
-            setPrefersHalalGlobal
+  const [isViewSavedFoodItemsPressed, setIsViewSavedFoodItemsPressed] =
+    useState(false);
+  const [isStatisticsPressed, setIsStatisticsPressed] = useState(false);
+  const [isRecommendationsPressed, setIsRecommendationsPressed] =
+    useState(false);
 
-        } = useUser();
+  const {
+    usernameGlobal,
+    hasConfiguredSettingsGlobal,
+    setUsernameGlobal,
+    setHasConfiguredSettingsGlobal,
+    setHasDairyIntoleranceGlobal,
+    setHasEggAllergyGlobal,
+    setHasFishOrShellfishAllergyGlobal,
+    setHasGlutenAllergyGlobal,
+    setHasMilkAllergyGlobal,
+    setHasPeanutAllergyGlobal,
+    setHasSesameAllergyGlobal,
+    setHasSulfitesAllergyGlobal,
+    setHasSoyAllergyGlobal,
+    setHasTreenutAllergyGlobal,
+    setHasWheatAllergyGlobal,
+    setIsVeganGlobal,
+    setIsVegetarianGlobal,
+    setPrefersHalalGlobal,
+  } = useUser();
 
-    /*
-        Send a request to the backend endpoint to get whether or not the logged-in user has configured their profile
-    */
-    useEffect(() => {
-        const getProfileConfigured = async () => {
-            try {
-                const res = await fetch(`${API_BASE_URL}/profile/configured/${usernameGlobal}`);
-                const data = await res.json();
+  useEffect(() => {
+    const getProfileConfigured = async () => {
+      try {
+        const res = await fetch(
+          `${API_BASE_URL}/profile/configured/${usernameGlobal}`
+        );
+        const data = await res.json();
 
-                // If the logged-in user has not configured their profile
-                // Enable a message to be briefly displayed every time the page renders
-                if (!data.has_configured_settings) {
-                    setModalVisible(true);
-                    setTimeout(() => {setModalVisible(false);}, 2000);            
-                }                
+        if (!data.has_configured_settings) {
+          setModalVisible(true);
+          setTimeout(() => {
+            setModalVisible(false);
+          }, 2000);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
+    getProfileConfigured();
+  }, []);
+
+  const logout = () => {
+    setUsernameGlobal('');
+    setHasConfiguredSettingsGlobal(false);
+    setHasDairyIntoleranceGlobal(false);
+    setHasEggAllergyGlobal(false);
+    setHasFishOrShellfishAllergyGlobal(false);
+    setHasGlutenAllergyGlobal(false);
+    setHasMilkAllergyGlobal(false);
+    setHasPeanutAllergyGlobal(false);
+    setHasSesameAllergyGlobal(false);
+    setHasSoyAllergyGlobal(false);
+    setHasSulfitesAllergyGlobal(false);
+    setHasTreenutAllergyGlobal(false);
+    setHasWheatAllergyGlobal(false);
+    setIsVeganGlobal(false);
+    setIsVegetarianGlobal(false);
+    setPrefersHalalGlobal(false);
+
+    router.push('/');
+  };
+
+  const guest = usernameGlobal === '';
+
+  return (
+    <SafeAreaView style={sc.safeRoot} edges={['top', 'left', 'right']}>
+      <View style={sc.container}>
+        <StatusBar style="dark" />
+
+        <View id="homeStatusbar" style={sc.topBar}>
+          <TouchableOpacity
+            id="settingsButton"
+            style={[
+              sc.headerButton,
+              isSettingsPressed && sc.headerButtonPressed,
+              guest && sc.headerButtonDisabled,
+            ]}
+            onPressIn={() => setIsSettingsPressed(true)}
+            onPressOut={() => setIsSettingsPressed(false)}
+            onPress={() => router.push('/settings')}
+            disabled={guest}
+            activeOpacity={0.9}
+          >
+            <Text id="settingsButtonText" style={sc.headerButtonText}>
+              Settings
+            </Text>
+          </TouchableOpacity>
+
+          <Text id="loggedInUser" style={sc.userPill} numberOfLines={1}>
+            {usernameGlobal !== '' ? usernameGlobal : 'Guest'}
+          </Text>
+
+          <TouchableOpacity
+            id="loginLogoutButton"
+            style={[
+              sc.headerButton,
+              isLoginLogoutPressed && sc.headerButtonPressed,
+            ]}
+            onPressIn={() => setIsLoginLogoutPressed(true)}
+            onPressOut={() => setIsLoginLogoutPressed(false)}
+            onPress={() =>
+              usernameGlobal !== '' ? logout() : router.push('/login')
             }
-          
-        };
-
-        getProfileConfigured();
-
-    }, []);
-
-    /*
-        Log out the logged-in user by setting their profile settings to false, and routing to the splash page
-    */
-    const logout = () => { 
-        
-        setUsernameGlobal('');
-        setHasConfiguredSettingsGlobal(false);
-        setHasDairyIntoleranceGlobal(false);        
-        setHasEggAllergyGlobal(false);
-        setHasFishOrShellfishAllergyGlobal(false);
-        setHasGlutenAllergyGlobal(false);
-        setHasMilkAllergyGlobal(false);
-        setHasPeanutAllergyGlobal(false);
-        setHasSesameAllergyGlobal(false);
-        setHasSoyAllergyGlobal(false);
-        setHasSulfitesAllergyGlobal(false);
-        setHasTreenutAllergyGlobal(false);
-        setHasWheatAllergyGlobal(false);
-        setIsVeganGlobal(false);
-        setIsVegetarianGlobal(false);
-        setPrefersHalalGlobal(false);
-
-        router.push('/');
-    }
-
-    return (
-
-        <View style={styles.container}>
-            
-            <StatusBar style="auto" hidden={true}/>
-
-            <View id="homeStatusbar" style={styles.statusbar}>
-
-                {/* Route the user to the 'settings' page */}
-                <TouchableOpacity id="settingsButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isSettingsPressed || usernameGlobal === '' ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsSettingsPressed(true)}
-                    onPressOut={() => setIsSettingsPressed(false)}
-                    onPress={() => router.push("/settings")}
-                    disabled={usernameGlobal === '' ? true : false}>
-                    
-                    <Text id="settingsButtonText" style={styles.headerButtonTextDefault}>
-                        Settings
-                    </Text>
-                </TouchableOpacity>
-
-                <Text id="loggedInUser" style={styles.headerUsernameIcon}>
-                    {usernameGlobal != '' ? `${usernameGlobal}` : 'Guest'}
-                </Text>            
-
-                {/* Route the user to the 'splash' page or the 'login' page */}
-                <TouchableOpacity id="loginLogoutButton"
-                    style={[styles.headerButtonDefault, {backgroundColor: isLoginLogoutPressed ? '#666666' : '#131312'}]}
-                    onPressIn={() => setIsLoginLogoutPressed(true)}
-                    onPressOut={() => setIsLoginLogoutPressed(false)}
-                    onPress={() => usernameGlobal != '' ? logout() : router.push('/login')}>
-
-                    <Text id="loginLogoutButtonText" style={styles.headerButtonTextDefault} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Logout' : 'Login'}
-                    </Text>
-                </TouchableOpacity>
-
-            </View>
-
-            <ScrollView id="homeScrollView" style={styles.scrollView}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={true}
-                keyboardShouldPersistTaps="handled">
-
-                {/* Display a message if the logged-in user has not configured their profile */}
-                {!hasConfiguredSettingsGlobal && modalVisible && (
-                    <Modal id="notConfiguredSettingsModal"
-                        animationType="fade"
-                        transparent={true}
-                        visible={modalVisible}>
-
-                        <View id="notConfiguredSettingsOuterView">
-
-                            <View id="notConfiguredSettingsInnerView" style={styles.notConfiguredSettingsMessageContainer}>
-
-                                <Text id="notConfiguredSettingsText" style={styles.notConfiguredSettingsText}>
-                                    You have not configured your profile
-                                </Text>
-                            </View>
-                        </View>
-
-                    </Modal>
-                )}
-
-                <Text id="homeTitle" style={styles.headerTitle}>
-                    Home
-                </Text>
-
-                <Text id="homeInfoText" style={styles.infoText}>
-                    What would you like to do?
-                </Text>
-
-                {/* Display buttons that are not related to browsing food items or browsing dining locations */}
-                {!browseButtons && (
-                    <View id="defaultButtonsView" style={styles.container}>
-
-                        {/* Route the user to the 'scan food item' page */}
-                        <TouchableOpacity id="scanFoodItemButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isScanFoodItemPressed || usernameGlobal === '' ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsScanFoodItemPressed(true)}
-                            onPressOut={() => setIsScanFoodItemPressed(false)}
-                            onPress={() => router.push("/scan")}
-                            disabled={usernameGlobal === '' ? true : false}>
-
-                            <Text id="scanFoodItemButtonText" style={styles.bodyButtonTextDefault}>
-                                Scan Food
-                            </Text>
-                        </TouchableOpacity>
-
-                        {/* Button that allows the browse food items and browse dining locations buttons to be displayed */}
-                        <TouchableOpacity id="browseButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isBrowsePressed || usernameGlobal === '' ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsBrowseFoodItemsPressed(true)}
-                            onPressOut={() => setIsBrowseFoodItemsPressed(false)}
-                            onPress={() => setBrowseButtons(true)}
-                            disabled={usernameGlobal === '' ? true : false}>
-
-                            <Text id="browseButtonText" style={styles.bodyButtonTextDefault}>
-                                Browse
-                            </Text>
-                        </TouchableOpacity>
-
-                        {/* Route the user to the 'view saved food items' page */}
-                        <TouchableOpacity id="viewSavedFoodItemsButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isViewSavedFoodItemsPressed || usernameGlobal === '' ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsViewSavedFoodItemsPressed(true)}
-                            onPressOut={() => setIsViewSavedFoodItemsPressed(false)}
-                            onPress={() => router.push("/entries")}
-                            disabled={usernameGlobal === '' ? true : false}>
-
-                            <Text id="viewSavedFoodItemsButtonText"
-                                style={[styles.bodyButtonTextDefault, {backgroundColor: usernameGlobal === '' ? '#666666' : '#131312'}]}>
-                                View Saved Foods
-                            </Text>
-                        </TouchableOpacity>
-
-                        {/* Route the user to the 'statistics' page */}
-                        <TouchableOpacity id="statisticsButton"
-                            style={[styles.bodyButtonDefault,  {backgroundColor: isStatisticsPressed || usernameGlobal === '' ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsStatisticsPressed(true)}
-                            onPressOut={() => setIsStatisticsPressed(false)}
-                            onPress={() => router.push("/statistics")}
-                            disabled={usernameGlobal === '' ? true : false}>
-                                
-                            <Text id="statisticsButtonText"
-                                style={[styles.bodyButtonTextDefault, {backgroundColor: usernameGlobal === '' ? '#666666' : '#131312'}]}>
-                                View Statistics
-                            </Text>
-                        </TouchableOpacity>
-
-                        {/* Route the user to the 'recommendations' page */}
-                        <TouchableOpacity id="recommendationsButton"
-                            style={[styles.bodyButtonDefault,  {backgroundColor: isRecommendationsPressed || usernameGlobal === '' ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsRecommendationsPressed(true)}
-                            onPressOut={() => setIsRecommendationsPressed(false)}
-                            onPress={() => router.push("/recommendations")}
-                            disabled={usernameGlobal === '' ? true : false}>
-
-                            <Text id="recommendationsButtonText"
-                                style={[styles.bodyButtonTextDefault, {backgroundColor: usernameGlobal === '' ? '#666666' : '#131312'}]}>
-                                View Food and Dining Recommendations
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-                )}
-
-                {/* Display buttons that are related to browsing food items or browsing dining locations */}
-                {browseButtons && (
-                    <View id="browseButtonsView" style={styles.container}>
-
-                        {/* Route the user to the 'browse food items' page */}
-                        <TouchableOpacity id="browseFoodItemsButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isBrowseFoodItemsPressed || usernameGlobal === '' ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsBrowseFoodItemsPressed(true)}
-                            onPressOut={() => setIsBrowseFoodItemsPressed(false)}
-                            onPress={() => router.push("/enter")}
-                            disabled={usernameGlobal === '' ? true : false}>
-
-                            <Text id="browseFoodItemsButtonText" style={styles.bodyButtonTextDefault}>
-                                Browse Food
-                            </Text>
-                        </TouchableOpacity>
-
-                        {/* Route the user to the 'browse dining locations' page */}
-                        <TouchableOpacity id="browseDiningLocationsButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isBrowseDiningLocationsPressed || usernameGlobal === '' ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsBrowseDiningLocationsPressed(true)}
-                            onPressOut={() => setIsBrowseDiningLocationsPressed(false)}
-                            onPress={() => router.push("/dining")}
-                            disabled={usernameGlobal === '' ? true : false}>
-
-                            <Text id="browseDiningLocationsButtonText" style={styles.bodyButtonTextDefault}>
-                                Browse Dining Locations
-                            </Text>
-                        </TouchableOpacity>
-
-                        {/* Display the buttons that were previously displayed */}
-                        <TouchableOpacity id="browseDiningLocationsButton"
-                            style={[styles.bodyButtonDefault, {backgroundColor: isBrowseDiningLocationsPressed || usernameGlobal === '' ? '#666666' : '#131312'}]}
-                            onPressIn={() => setIsBrowseDiningLocationsPressed(true)}
-                            onPressOut={() => setIsBrowseDiningLocationsPressed(false)}
-                            onPress={() => setBrowseButtons(false)}
-                            disabled={usernameGlobal === '' ? true : false}>
-
-                            <Text id="browseDiningLocationsButtonText" style={styles.bodyButtonTextDefault}>
-                                Back
-                            </Text>
-                        </TouchableOpacity>
-
-                    </View>
-                )}
-
-            </ScrollView>
-
+            activeOpacity={0.9}
+          >
+            <Text
+              id="loginLogoutButtonText"
+              style={sc.headerButtonText}
+              numberOfLines={1}
+            >
+              {usernameGlobal !== '' ? 'Log out' : 'Log in'}
+            </Text>
+          </TouchableOpacity>
         </View>
-    )
+
+        <ScrollView
+          id="homeScrollView"
+          style={sc.scrollView}
+          contentContainerStyle={sc.scrollContent}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
+          {!hasConfiguredSettingsGlobal && modalVisible && (
+            <Modal
+              id="notConfiguredSettingsModal"
+              animationType="fade"
+              transparent
+              visible={modalVisible}
+            >
+              <View
+                id="notConfiguredSettingsOuterView"
+                style={styles.notConfiguredSettingsOuter}
+              >
+                <View
+                  id="notConfiguredSettingsInnerView"
+                  style={styles.notConfiguredSettingsInner}
+                >
+                  <Text
+                    id="notConfiguredSettingsText"
+                    style={styles.notConfiguredSettingsText}
+                  >
+                    You have not configured your profile
+                  </Text>
+                </View>
+              </View>
+            </Modal>
+          )}
+
+          <Text id="homeTitle" style={sc.pageTitle}>
+            Home
+          </Text>
+          <Text id="homeInfoText" style={sc.pageSubtitle}>
+            What would you like to do?
+          </Text>
+
+          {!browseButtons && (
+            <View id="defaultButtonsView">
+              <TouchableOpacity
+                id="scanFoodItemButton"
+                style={[
+                  sc.bodyButton,
+                  guest && sc.bodyButtonDisabled,
+                  !guest &&
+                    isScanFoodItemPressed &&
+                    sc.bodyButtonPressed,
+                ]}
+                onPressIn={() => setIsScanFoodItemPressed(true)}
+                onPressOut={() => setIsScanFoodItemPressed(false)}
+                onPress={() => router.push('/scan')}
+                disabled={guest}
+                activeOpacity={0.92}
+              >
+                <Text id="scanFoodItemButtonText" style={sc.bodyButtonText}>
+                  Scan food
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                id="browseButton"
+                style={[
+                  sc.bodyButtonOutline,
+                  guest && sc.bodyButtonDisabled,
+                  !guest && isBrowsePressed && { opacity: 0.85 },
+                ]}
+                onPressIn={() => setIsBrowsePressed(true)}
+                onPressOut={() => setIsBrowsePressed(false)}
+                onPress={() => setBrowseButtons(true)}
+                disabled={guest}
+                activeOpacity={0.92}
+              >
+                <Text id="browseButtonText" style={sc.bodyButtonOutlineText}>
+                  Browse
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                id="viewSavedFoodItemsButton"
+                style={[
+                  sc.bodyButton,
+                  guest && sc.bodyButtonDisabled,
+                  !guest &&
+                    isViewSavedFoodItemsPressed &&
+                    sc.bodyButtonPressed,
+                ]}
+                onPressIn={() => setIsViewSavedFoodItemsPressed(true)}
+                onPressOut={() => setIsViewSavedFoodItemsPressed(false)}
+                onPress={() => router.push('/entries')}
+                disabled={guest}
+                activeOpacity={0.92}
+              >
+                <Text
+                  id="viewSavedFoodItemsButtonText"
+                  style={sc.bodyButtonText}
+                >
+                  Saved Foods
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                id="statisticsButton"
+                style={[
+                  sc.bodyButton,
+                  guest && sc.bodyButtonDisabled,
+                  !guest &&
+                    isStatisticsPressed &&
+                    sc.bodyButtonPressed,
+                ]}
+                onPressIn={() => setIsStatisticsPressed(true)}
+                onPressOut={() => setIsStatisticsPressed(false)}
+                onPress={() => router.push('/statistics')}
+                disabled={guest}
+                activeOpacity={0.92}
+              >
+                <Text id="statisticsButtonText" style={sc.bodyButtonText}>
+                  Statistics
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                id="recommendationsButton"
+                style={[
+                  sc.bodyButton,
+                  guest && sc.bodyButtonDisabled,
+                  !guest &&
+                    isRecommendationsPressed &&
+                    sc.bodyButtonPressed,
+                ]}
+                onPressIn={() => setIsRecommendationsPressed(true)}
+                onPressOut={() => setIsRecommendationsPressed(false)}
+                onPress={() => router.push('/recommendations')}
+                disabled={guest}
+                activeOpacity={0.92}
+              >
+                <Text
+                  id="recommendationsButtonText"
+                  style={sc.bodyButtonText}
+                >
+                  Food & Dining Recommendations
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+
+          {browseButtons && (
+            <View id="browseButtonsView">
+              <TouchableOpacity
+                id="browseFoodItemsButton"
+                style={[
+                  sc.bodyButton,
+                  guest && sc.bodyButtonDisabled,
+                  !guest &&
+                    isBrowseFoodItemsPressed &&
+                    sc.bodyButtonPressed,
+                ]}
+                onPressIn={() => setIsBrowseFoodItemsPressed(true)}
+                onPressOut={() => setIsBrowseFoodItemsPressed(false)}
+                onPress={() => router.push('/enter')}
+                disabled={guest}
+                activeOpacity={0.92}
+              >
+                <Text
+                  id="browseFoodItemsButtonText"
+                  style={sc.bodyButtonText}
+                >
+                  Browse food
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                id="browseDiningLocationsButton"
+                style={[
+                  sc.bodyButton,
+                  guest && sc.bodyButtonDisabled,
+                  !guest &&
+                    isBrowseDiningLocationsPressed &&
+                    sc.bodyButtonPressed,
+                ]}
+                onPressIn={() => setIsBrowseDiningLocationsPressed(true)}
+                onPressOut={() => setIsBrowseDiningLocationsPressed(false)}
+                onPress={() => router.push('/dining')}
+                disabled={guest}
+                activeOpacity={0.92}
+              >
+                <Text
+                  id="browseDiningLocationsButtonText"
+                  style={sc.bodyButtonText}
+                >
+                  Dining locations
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                id="browseDiningLocationsButton"
+                style={[
+                  sc.bodyButtonOutline,
+                  guest && sc.bodyButtonDisabled,
+                ]}
+                onPressIn={() => setIsBrowseDiningLocationsPressed(true)}
+                onPressOut={() => setIsBrowseDiningLocationsPressed(false)}
+                onPress={() => setBrowseButtons(false)}
+                disabled={guest}
+                activeOpacity={0.92}
+              >
+                <Text
+                  id="browseDiningLocationsButtonText"
+                  style={sc.bodyButtonOutlineText}
+                >
+                  Back
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </ScrollView>
+      </View>
+    </SafeAreaView>
+  );
 }

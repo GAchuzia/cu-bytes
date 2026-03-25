@@ -1,48 +1,100 @@
 import axios from 'axios';
-import { Platform } from 'react-native';
+import Constants from 'expo-constants';
+
+/** Avoid referencing `Platform` at module scope before RN is ready (web static export / odd init order). */
+function rnPlatformOS(): string {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { Platform } = require('react-native') as typeof import('react-native');
+    return Platform?.OS ?? 'web';
+  } catch {
+    return typeof document !== 'undefined' ? 'web' : 'ios';
+  }
+}
 
 // Whether or not to use the Azure backend (default is False)
 // You can configure this by setting EXPO_PUBLIC_USE_PROD_API in frontend/cu-bytes/.env
 const USE_PROD_API =
-  typeof process !== "undefined" &&
-  process.env?.EXPO_PUBLIC_USE_PROD_API === "true";
+  typeof process !== 'undefined' &&
+  process.env?.EXPO_PUBLIC_USE_PROD_API === 'true';
 
-const PROD_URL = "https://cu-bytes-e2cnaff9e2cgg5hk.eastus2-01.azurewebsites.net";
+const PROD_URL = 'https://cu-bytes-e2cnaff9e2cgg5hk.eastus2-01.azurewebsites.net';
 
-// Set to the IP address of the backend, android emulator as fallback
-const LOCAL_IP = typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_API_IP
-    ? process.env.EXPO_PUBLIC_API_IP
-    : '10.0.2.2';
+/** LAN IP of the machine running Flask (physical phone / iOS device). Ignored on Android emulator. */
+function getConfiguredLanIp(): string | undefined {
+  const raw =
+    typeof process !== 'undefined' ? process.env?.EXPO_PUBLIC_API_IP?.trim() : '';
+  return raw && raw.length > 0 ? raw : undefined;
+}
 
-const LOCAL_PORT = "5000";
+const LOCAL_PORT = '5000';
 
+/**
+ * Dev API URL:
+ * - Web: localhost
+ * - Android emulator: 10.0.2.2 (host machine; do not use your LAN IP here)
+ * - Android/iOS physical device: EXPO_PUBLIC_API_IP (same Wi‑Fi as your PC)
+ * - iOS simulator: localhost
+ */
 const getAPIBaseURL = () => {
   if (USE_PROD_API) {
-    console.log("Using AZURE production backend");
+    console.log('Using AZURE production backend');
     return PROD_URL;
   }
 
   if (__DEV__) {
-    if (Platform.OS === "web") {
-      console.log("Using localhost backend (web)");
+    const os = rnPlatformOS();
+    if (os === 'web') {
+      console.log('Using localhost backend (web)');
       return `http://localhost:${LOCAL_PORT}`;
     }
-    if (Platform.OS === "android") {
-      console.log("Using Android backend");
-      return `http://${LOCAL_IP}:${LOCAL_PORT}`;
+
+    const lan = getConfiguredLanIp();
+    const isPhysicalDevice = Constants.isDevice === true;
+
+    if (os === 'android') {
+      if (!isPhysicalDevice) {
+        const url = `http://10.0.2.2:${LOCAL_PORT}`;
+        console.log('Using Android emulator host loopback:', url);
+        return url;
+      }
+      if (lan) {
+        const url = `http://${lan}:${LOCAL_PORT}`;
+        console.log('Using Android device LAN backend:', url);
+        return url;
+      }
+      console.warn(
+        'EXPO_PUBLIC_API_IP is not set; physical Android may fail to reach your PC. Set it to your computer LAN IP.'
+      );
+      return `http://10.0.2.2:${LOCAL_PORT}`;
     }
-    // iOS (simulator uses localhost; device uses LOCAL_IP)
-    console.log("Using iOS backend");
-    return `http://${LOCAL_IP}:${LOCAL_PORT}`;
+
+    if (os === 'ios') {
+      if (!isPhysicalDevice) {
+        const url = `http://localhost:${LOCAL_PORT}`;
+        console.log('Using iOS Simulator backend:', url);
+        return url;
+      }
+      if (lan) {
+        const url = `http://${lan}:${LOCAL_PORT}`;
+        console.log('Using iOS device LAN backend:', url);
+        return url;
+      }
+      console.warn(
+        'EXPO_PUBLIC_API_IP is not set; physical iPhone needs your Mac/PC LAN IP in .env'
+      );
+      return `http://localhost:${LOCAL_PORT}`;
+    }
+
+    console.log('Using fallback LAN backend');
+    return lan ? `http://${lan}:${LOCAL_PORT}` : `http://localhost:${LOCAL_PORT}`;
   }
-  console.log("Fallback to production backend");
+  console.log('Fallback to production backend');
   return PROD_URL;
 };
 
 export const API_BASE_URL = getAPIBaseURL();
-console.log('Platform:', Platform.OS);
 console.log('API Base URL:', API_BASE_URL);
-console.log('Config LOCAL_IP:', LOCAL_IP);
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -78,7 +130,7 @@ api.interceptors.response.use(
       status: error.response?.status,
       data: error.response?.data,
       url: error.config?.url,
-      platform: Platform.OS
+      platform: rnPlatformOS(),
     });
     return Promise.reject(error);
   }
@@ -94,7 +146,7 @@ export const apiService = {
   async predictFood(imageUri: string) {
     const formData = new FormData();
 
-    if (Platform.OS === 'web') {
+    if (rnPlatformOS() === 'web') {
       const response = await fetch(imageUri);
       const blob = await response.blob();
       const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });

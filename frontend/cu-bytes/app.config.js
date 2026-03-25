@@ -14,6 +14,12 @@ export default {
     newArchEnabled: true,
     ios: {
       supportsTablet: true,
+      infoPlist: {
+        NSAppTransportSecurity: {
+          // Dev: allow http://<LAN-IP>:5000 from a physical iPhone
+          NSAllowsLocalNetworking: true,
+        },
+      },
     },
     android: {
       adaptiveIcon: {
@@ -23,6 +29,7 @@ export default {
       edgeToEdgeEnabled: true,
       predictiveBackGestureEnabled: false,
       package: "com.gachuzia.cubytes",
+      usesCleartextTraffic: true,
     },
     web: {
       bundler: "metro",
