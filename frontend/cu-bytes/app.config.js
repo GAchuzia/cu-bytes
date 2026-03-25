@@ -1,3 +1,7 @@
+// GitHub Pages (this repo): https://gachuzia.github.io/cu-bytes/ → EXPO_PUBLIC_BASE_URL="/cu-bytes"
+// CI sets it from the repo name; for local static tests: EXPO_PUBLIC_BASE_URL=/cu-bytes npx expo export -p web
+const pagesBaseUrl = (process.env.EXPO_PUBLIC_BASE_URL || "").trim();
+
 export default {
   expo: {
     name: "cu-bytes",
@@ -44,6 +48,7 @@ export default {
     experiments: {
       typedRoutes: true,
       reactCompiler: true,
+      ...(pagesBaseUrl ? { baseUrl: pagesBaseUrl } : {}),
     },
     extra: {
       // This will be overridden by environment variables
