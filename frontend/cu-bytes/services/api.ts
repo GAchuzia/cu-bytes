@@ -46,11 +46,14 @@ console.log('Config LOCAL_IP:', LOCAL_IP);
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 15000,
+  timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+/** ML upload timeout (cold start + inference on Azure can exceed 15s). */
+const ML_PREDICT_TIMEOUT_MS = 120000;
 
 // Request interceptor
 api.interceptors.request.use(
@@ -83,19 +86,20 @@ api.interceptors.response.use(
 
 // API functions
 export const apiService = {
-  // ML Prediction
+  /**
+   * POST multipart image to /ml/predict.
+   * Uses fetch (not the JSON-configured axios instance) so the browser/RN sets
+   * multipart boundaries; axios defaults would send application/json and break uploads.
+   */
   async predictFood(imageUri: string) {
-    // Convert image URI to FormData for upload
     const formData = new FormData();
 
-    // For web, we need to fetch the image and convert to blob
     if (Platform.OS === 'web') {
       const response = await fetch(imageUri);
       const blob = await response.blob();
       const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
       formData.append('image', file);
     } else {
-      // For mobile (React Native)
       const filename = imageUri.split('/').pop() || 'image.jpg';
       const match = /\.(\w+)$/.exec(filename);
       const type = match ? `image/${match[1]}` : 'image/jpeg';
@@ -107,12 +111,27 @@ export const apiService = {
       } as any);
     }
 
-    const response = await api.post('/ml/predict', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    return response.data;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), ML_PREDICT_TIMEOUT_MS);
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/ml/predict`, {
+        method: 'POST',
+        body: formData,
+        signal: controller.signal,
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const msg =
+          typeof data === 'object' && data && 'error' in data
+            ? String((data as { error?: string }).error)
+            : res.statusText;
+        throw new Error(msg || `Predict failed (${res.status})`);
+      }
+      return data;
+    } finally {
+      clearTimeout(timeoutId);
+    }
   },
 };
 

@@ -43,7 +43,7 @@ def create_app(config_override=None):
         app,
         origins="*",
         methods=["GET", "POST", "PUT", "DELETE"],
-        allow_headers=["Content-Type"],
+        allow_headers=["Content-Type", "Accept", "Authorization"],
     )
 
     # Homepage Endpoints to Delete Later

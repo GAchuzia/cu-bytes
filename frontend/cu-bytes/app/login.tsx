@@ -67,14 +67,14 @@ export default function LoginScreen() {
     /*
         Send a request to the backend endpoint to get the logged-in user's username and profile settings
     */
-    const loadSettings = async () => {
-
+    const loadSettings = async (loggedInAs: string) => {
         try {
-            const res = await fetch(`${API_BASE_URL}/profile/retreive/${username}`);
+            const res = await fetch(
+                `${API_BASE_URL}/profile/retreive/${encodeURIComponent(loggedInAs)}`
+            );
             const data = await res.json();
 
-            // Update the copy of the logged-in user's username and profile settings using the retrieved data
-            setUsernameGlobal(username);
+            setUsernameGlobal(loggedInAs);
             setHasConfiguredSettingsGlobal(data.has_configured_settings)
             setShowStatsGlobal(data.show_stats);
             setHasEggAllergyGlobal(data.has_egg_allergy);
@@ -107,35 +107,54 @@ export default function LoginScreen() {
             string - psswrd: The password entered by the user to login into an account
     */
     const loginUser = async (name: string, psswrd: string) => {
+        const trimmedUser = name.trim();
+        const trimmedPass = psswrd.trim();
+        setError({ message: '', status: '' });
+
         try {
             const res = await fetch(`${API_BASE_URL}/auth/login`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify( { username: name, password: psswrd} )
-                }
-            );
-            const data = await res.json();
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: trimmedUser,
+                    password: trimmedPass,
+                }),
+            });
 
-            // If the backend endpoint returns an error, store the error message
-            // (The user failed to log in to an account with the entered username and password)
-            if (data.status === 'error') {
-                setError(data);
-                console.log(error);
-            }
-            // Else, update the copy of the user's username to the username they entered,
-            // load the user's profile settings from the backend endpoint, and route the user to the 'home' page
-            // (The user successfully logged in to an account with the entered username and password)
-            else if (data.status === 'success') {
-                await loadSettings();
-                router.push("/home");
+            let data: { status?: string; message?: string } = {};
+            try {
+                data = await res.json();
+            } catch {
+                setError({
+                    message: 'Invalid response from server.',
+                    status: 'error',
+                });
+                return;
             }
 
+            if (data.status === 'error' || !res.ok) {
+                setError({
+                    message: data.message || `Login failed (${res.status})`,
+                    status: 'error',
+                });
+                return;
+            }
+
+            if (data.status === 'success') {
+                setUsername(trimmedUser);
+                await loadSettings(trimmedUser);
+                router.push('/home');
+            }
         } catch (err) {
             console.error(err);
+            setError({
+                message: 'Network error. Check your connection and try again.',
+                status: 'error',
+            });
         } finally {
             setLoading(false);
         }
-    }
+    };
 
     /*
         Log out the logged-in user by setting their profile settings to false, and routing to the splash page

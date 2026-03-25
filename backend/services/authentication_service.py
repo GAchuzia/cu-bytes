@@ -14,8 +14,13 @@ These methods return a JSON object and should end in _json
 
 def login_user_json(data):
     """Attempt to login a user"""
-    username = data.get("username")
-    password = data.get("password")
+    if not data:
+        return (
+            jsonify({"status": "error", "message": "Invalid password or username."}),
+            400,
+        )
+    username = (data.get("username") or "").strip()
+    password = (data.get("password") or "").strip()
 
     # Err on the side of caution for error messages to give no hints to
     # attackers
