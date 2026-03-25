@@ -45,9 +45,14 @@ jobs:
       - name: Export static web (GitHub Pages base path)
         working-directory: frontend/cu-bytes
         env:
-          # Project Pages path: https://gachuzia.github.io/cu-bytes/ → base "/cu-bytes"
-          EXPO_PUBLIC_BASE_URL: /${{ github.event.repository.name }}
+          # Must match project URL: https://gachuzia.github.io/cu-bytes/
+          EXPO_PUBLIC_BASE_URL: /cu-bytes
         run: npx expo export -p web
+
+      - name: Verify base path in HTML (catch wrong asset URLs)
+        run: |
+          grep -q '/cu-bytes/_expo/static/js/web/entry-' frontend/cu-bytes/dist/index.html || \
+            (echo "::error::index.html is missing /cu-bytes/ script path — check EXPO_PUBLIC_BASE_URL"; exit 1)
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

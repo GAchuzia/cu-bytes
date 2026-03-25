@@ -37,13 +37,10 @@ export const styles = StyleSheet.create({
     width: w(100),
   },
 
-  headerTitle: {
+  /** Layout wrapper — flex on RN Web <Text> can stack one glyph per line in Firefox. */
+  headerTitleBox: {
     alignItems: 'center',
     backgroundColor: '#AB0006',
-    color: '#FFFFFF',
-    fontFamily: 'arial',
-    fontSize: font(250),
-    fontWeight: '800',
     justifyContent: 'center',
     marginTop: h(1.0),
     marginBottom: h(1.0),
@@ -51,21 +48,23 @@ export const styles = StyleSheet.create({
     paddingBottom: h(0.5),
     paddingLeft: w(2.0),
     paddingRight: w(2.0),
+    width: w(60),
+  },
+
+  headerTitleText: {
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: font(250),
+    fontWeight: '800',
     textAlign: 'center',
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: w(60),
   },
 
-  infoText: {
+  infoTextBox: {
     alignItems: 'center',
     backgroundColor: '#C5151A',
-    color: '#FFFFFF',
-    flexDirection: 'row',
-    fontFamily: 'arial',
-    fontSize: font(150),
-    fontWeight: '600',
     justifyContent: 'center',
     marginTop: h(1.0),
     marginBottom: h(1.0),
@@ -73,11 +72,18 @@ export const styles = StyleSheet.create({
     paddingBottom: h(1.0),
     paddingLeft: w(1.0),
     paddingRight: w(1.0),
+    width: w(100),
+  },
+
+  infoText: {
+    color: '#FFFFFF',
+    fontFamily: 'arial',
+    fontSize: font(150),
+    fontWeight: '600',
     textAlign: 'center',
     textShadowColor: '#131312',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 10,
-    width: w(100),
   },
 
   bodyButtonDefault: {

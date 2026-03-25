@@ -23,9 +23,11 @@ export default function IndexScreen() {
             <StatusBar style="auto" hidden={true}/>
 
             <View id="splashStatusBar" style={styles.statusbar}>
-                <Text id="splashTitle" style={styles.headerTitle}>
-                    CU-Bytes
-                </Text>
+                <View style={styles.headerTitleBox}>
+                    <Text id="splashTitle" style={styles.headerTitleText}>
+                        CU-Bytes
+                    </Text>
+                </View>
             </View>
 
             <ScrollView id="splashScrollView" style={styles.scrollView}
@@ -33,9 +35,11 @@ export default function IndexScreen() {
                 showsVerticalScrollIndicator={true}
                 keyboardShouldPersistTaps="handled">
 
-                <Text id="splashInfoText" style={styles.infoText}>
-                    Track Your Campus Meals!
-                </Text>
+                <View style={styles.infoTextBox}>
+                    <Text id="splashInfoText" style={styles.infoText}>
+                        Track Your Campus Meals!
+                    </Text>
+                </View>
 
                 {/* Display buttons that are not related to browsing food items or browsing dining locations */}
                 {!browseButtons && (
