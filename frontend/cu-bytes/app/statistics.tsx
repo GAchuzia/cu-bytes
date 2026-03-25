@@ -491,7 +491,7 @@ export default function StatisticsScreen() {
                     activeOpacity={0.9}>
 
                     <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Log out' : 'Log in' }
+                        {usernameGlobal != '' ? 'Log Out' : 'Log In' }
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -661,7 +661,7 @@ export default function StatisticsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="viewOtherStatsButtonText" style={sc.bodyButtonOutlineText}>
-                                View other statistics
+                                View Other Statistics
                             </Text>
                         </TouchableOpacity>
 
@@ -785,7 +785,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="viewOtherStatsAgainButtonText" style={sc.bodyButtonOutlineText}>
-                            View other statistics
+                            View Other Statistics
                         </Text>
                     </TouchableOpacity>
                 )}

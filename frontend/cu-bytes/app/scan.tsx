@@ -660,7 +660,7 @@ export default function ScanScreen() {
                     activeOpacity={0.9}>
 
                     <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Log out' : 'Log in'}
+                        {usernameGlobal != '' ? 'Log Out' : 'Log In'}
                     </Text>
                 </TouchableOpacity>
 
@@ -821,7 +821,7 @@ export default function ScanScreen() {
                             {loading ? (<ActivityIndicator color="#9E1116"/>) :
 
                                 (<Text id="deleteFoodButtonText" style={styles.bodyButtonDeleteFoodText}>
-                                    Remove photo
+                                    Remove Photo
                                 </Text>)
                             }
                         </TouchableOpacity>
@@ -845,7 +845,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="browseSimilarFoodItemsButtonText" style={sc.bodyButtonText} numberOfLines={1}>
-                                Browse similar
+                                Browse Similar
                             </Text>
                         </TouchableOpacity>
 
@@ -860,7 +860,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="scanOtherFoodItemButtonText" style={sc.bodyButtonOutlineText} numberOfLines={1}>
-                                Scan another
+                                Scan Another
                             </Text>
                         </TouchableOpacity>
 
@@ -875,7 +875,7 @@ export default function ScanScreen() {
                                 activeOpacity={0.92}>
 
                                 <Text id="saveFoodItemButtonText" style={sc.bodyButtonOutlineText}>
-                                    Save food item
+                                    Save Food Item
                                 </Text>
                             </TouchableOpacity>
                         )}
@@ -967,7 +967,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="scanOtherFoodItemButtonText" style={sc.bodyButtonOutlineText} numberOfLines={1}>
-                                Scan another
+                                Scan Another
                             </Text>
                         </TouchableOpacity>
                         
@@ -982,7 +982,7 @@ export default function ScanScreen() {
                                 activeOpacity={0.92}>
 
                                 <Text id="saveFoodItemButtonText" style={sc.bodyButtonText}>
-                                    Save food item
+                                    Save Food Item
                                 </Text>
                             </TouchableOpacity>
                         )}
@@ -1002,7 +1002,7 @@ export default function ScanScreen() {
                             <View id="savedFoodItemInnerView" style={styles.savedFoodItemInner}>
 
                                 <Text id="savedFoodItemText" style={styles.savedFoodItemText}>
-                                    Food item saved
+                                    Food Item Saved
                                 </Text>
                             </View>
                         </View>

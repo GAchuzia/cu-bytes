@@ -636,7 +636,7 @@ export default function DiningScreen() {
                     activeOpacity={0.9}>
 
                     <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Log out' : 'Log in'}
+                        {usernameGlobal != '' ? 'Log Out' : 'Log In'}
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -756,7 +756,7 @@ export default function DiningScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="saveFoodItemButtonText" style={sc.bodyButtonText}>
-                            Save food item
+                            Save Food Item
                         </Text>
                     </TouchableOpacity>
                 )}
@@ -770,7 +770,7 @@ export default function DiningScreen() {
                         <View id="savedFoodItemOuterView" style={styles.savedFoodItemMessageContainer}>
                             <View id="savedFoodItemInnerView" style={styles.savedFoodItemInner}>
                                 <Text id="savedFoodItemText" style={styles.savedFoodItemText}>
-                                    Food item saved
+                                    Food Item Saved
                                 </Text>
                             </View>
                         </View>

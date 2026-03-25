@@ -484,7 +484,7 @@ export default function RecommendationsScreen() {
                     activeOpacity={0.9}>
 
                     <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Log out' : 'Log in'}
+                        {usernameGlobal != '' ? 'Log Out' : 'Log In'}
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -710,7 +710,7 @@ export default function RecommendationsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="viewOtherRecsButtonText" style={sc.bodyButtonOutlineText}>
-                                Choose another type
+                                Choose Another Type
                             </Text>
                         </TouchableOpacity>
 
@@ -908,7 +908,7 @@ export default function RecommendationsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="viewOtherRecsAgainButtonText" style={sc.bodyButtonOutlineText}>
-                            Choose another type
+                            Choose Another Type
                         </Text>
                     </TouchableOpacity>
                 )}
