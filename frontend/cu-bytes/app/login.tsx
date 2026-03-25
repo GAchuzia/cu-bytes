@@ -207,8 +207,13 @@ export default function LoginScreen() {
           </Text>
 
           <View style={sc.formCard}>
-            <Text id="loginErrorMessage" style={sc.errorBanner}>
-              {visible ? error.message : 'Enter your username and password'}
+            <Text
+              id="loginErrorMessage"
+              style={visible && error.status === 'error' ? sc.errorBanner : sc.infoBanner}
+            >
+              {visible && error.status === 'error'
+                ? error.message
+                : 'Enter your username and password'}
             </Text>
 
             <TextInput
