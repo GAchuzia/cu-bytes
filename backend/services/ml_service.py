@@ -61,11 +61,11 @@ def load_ml_model():
     # Set device
     _device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # Load model - use num_classes from checkpoint so model matches saved weights
+    # Load model: model_name + depth come from checkpoint (or inferred for ResNet-101 weights)
     _model = load_model(
         model_path=str(MODEL_PATH),
-        model_name="resnet50",
-        num_classes=None,  # Get from checkpoint
+        model_name=None,
+        num_classes=None,  # from checkpoint
         device=_device,
     )
 
