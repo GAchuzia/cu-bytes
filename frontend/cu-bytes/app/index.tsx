@@ -54,7 +54,7 @@ export default function IndexScreen() {
                 activeOpacity={0.92}
               >
                 <Text id="loginButtonText" style={sc.bodyButtonText}>
-                  Log in
+                  Log In
                 </Text>
               </TouchableOpacity>
 
@@ -70,7 +70,7 @@ export default function IndexScreen() {
                 activeOpacity={0.92}
               >
                 <Text id="scanFoodButtonText" style={sc.bodyButtonText}>
-                  Scan food
+                  Scan Food
                 </Text>
               </TouchableOpacity>
 
@@ -86,7 +86,7 @@ export default function IndexScreen() {
                 activeOpacity={0.92}
               >
                 <Text id="browseButtonText" style={sc.bodyButtonOutlineText}>
-                  Browse menu &amp; locations
+                  Browse Menu &amp; Locations
                 </Text>
               </TouchableOpacity>
             </View>

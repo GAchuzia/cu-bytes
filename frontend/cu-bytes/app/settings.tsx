@@ -605,7 +605,7 @@ export default function SettingsScreen() {
 
                         <View id="hideOrUnhidePasswordView" style={sc.switchRow}>
                             <Text id="hideOrUnhidePasswordInfoText" style={sc.switchLabel}>
-                                Hide passwords
+                                Hide Passwords
                             </Text>
 
                             <Switch id="hideOrUnhidePasswordSwitch" style={styles.switchScale}
@@ -669,7 +669,7 @@ export default function SettingsScreen() {
 
                         <View id="hideOrUnhidePasswordView" style={sc.switchRow}>
                             <Text id="hideOrUnhidePasswordInfoText" style={sc.switchLabel}>
-                                Hide password
+                                Hide Passwords
                             </Text>
 
                             <Switch id="hideOrUnhidePasswordSwitch" style={styles.switchScale}

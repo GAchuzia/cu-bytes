@@ -200,7 +200,7 @@ export default function LoginScreen() {
           keyboardShouldPersistTaps="handled"
         >
           <Text id="loginTitle" style={sc.pageTitle}>
-            Log in
+            Log In
           </Text>
           <Text id="loginInfoText" style={sc.pageSubtitle}>
             Welcome back — or create a new account below.
@@ -245,7 +245,7 @@ export default function LoginScreen() {
                 id="hideOrUnhidePasswordInfoText"
                 style={sc.switchLabel}
               >
-                Hide password
+                Hide Password
               </Text>
               <Switch
                 id="hideOrUnhidePasswordSwitch"
@@ -270,7 +270,7 @@ export default function LoginScreen() {
               activeOpacity={0.92}
             >
               <Text id="loginButtonText" style={sc.bodyButtonText}>
-                Log in
+                Log In
               </Text>
             </TouchableOpacity>
 
@@ -289,7 +289,7 @@ export default function LoginScreen() {
                 id="createAccountButtonText"
                 style={sc.bodyButtonOutlineText}
               >
-                Create account
+                Create Account
               </Text>
             </TouchableOpacity>
           </View>

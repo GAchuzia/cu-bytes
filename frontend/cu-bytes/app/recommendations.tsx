@@ -526,7 +526,7 @@ export default function RecommendationsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="trendingRecsButtonText" style={sc.bodyButtonText}>
-                                Trending picks
+                                Trending Picks
                             </Text>
                     </TouchableOpacity>
                 )}
@@ -544,7 +544,7 @@ export default function RecommendationsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="randomRecsButtonText" style={sc.bodyButtonText}>
-                                Random suggestions
+                                Random Suggestions
                             </Text>
                     </TouchableOpacity>
                 )}
@@ -562,7 +562,7 @@ export default function RecommendationsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="idealRecsButtonText" style={sc.bodyButtonText}>
-                                Ideal balance (USDA / AMDR)
+                                Ideal Balance (USDA / AMDR)
                             </Text>
                     </TouchableOpacity>
                 )}
@@ -580,7 +580,7 @@ export default function RecommendationsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="nutrientRecsButtonText" style={sc.bodyButtonText}>
-                                Fill nutrient gaps
+                                Fill Nutrient Gaps
                             </Text>
                     </TouchableOpacity>
                 )}
@@ -598,7 +598,7 @@ export default function RecommendationsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="similarRecsButtonText" style={sc.bodyButtonText}>
-                                Similar tastes
+                                Similar Tastes
                             </Text>
                     </TouchableOpacity>
                 )}

@@ -175,7 +175,7 @@ export default function RegisterScreen() {
           keyboardShouldPersistTaps="handled"
         >
           <Text id="registerTitle" style={sc.pageTitle}>
-            Create account
+            Create Account
           </Text>
           <Text id="createAccountInfo" style={sc.pageSubtitle}>
             Choose a username and password. Requirements apply.
@@ -248,7 +248,7 @@ export default function RegisterScreen() {
                 id="hideOrUnhidePasswordInfoText"
                 style={sc.switchLabel}
               >
-                Hide password
+                Hide Password
               </Text>
               <Switch
                 id="hideOrUnhidePasswordSwitch"
@@ -273,7 +273,7 @@ export default function RegisterScreen() {
               activeOpacity={0.92}
             >
               <Text id="createAccountButtonText" style={sc.bodyButtonText}>
-                Create account
+                Create Account
               </Text>
             </TouchableOpacity>
           </View>

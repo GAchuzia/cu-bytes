@@ -659,7 +659,7 @@ export default function ScanScreen() {
                 overScrollMode="always">
 
                 <Text id="scanFoodItemsTitle" style={sc.pageTitle}>
-                    Scan food
+                    Scan Food
                 </Text>
 
                 <Text id="scanFoodItemsInfoText" style={sc.pageSubtitle}>
@@ -751,7 +751,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="takePhotoButtonText" style={sc.bodyButtonText}>
-                                Take photo
+                                Take Photo
                             </Text>
                         </TouchableOpacity>
 
@@ -761,7 +761,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="uploadPhotoButtonText" style={sc.bodyButtonOutlineText}>
-                                Upload photo
+                                Upload Photo
                             </Text>
                         </TouchableOpacity>
 
@@ -785,7 +785,7 @@ export default function ScanScreen() {
                             {loading ? (<ActivityIndicator color="#FFFFFF"/>) :
                                 
                                 (<Text id="scanFoodButtonText" style={sc.bodyButtonText}>
-                                    Scan food
+                                    Scan Food
                                 </Text>)
                             }
                         </TouchableOpacity>
