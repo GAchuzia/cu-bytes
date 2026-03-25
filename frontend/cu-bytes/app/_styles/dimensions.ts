@@ -33,7 +33,8 @@ export const h = (pct: number): number | string =>
 export const font = (pct: number) => Math.round(16 * (pct / 100));
 
 /** Horizontal inset for mobile-first content; full width on phone, capped on web */
-export const contentWidth: number | string =
-  maxContentWidth != null ? Math.min(W, maxContentWidth) : w(92);
+export const contentWidth: number | string = isWeb()
+  ? (maxContentWidth ?? '100%')
+  : (maxContentWidth != null ? Math.min(W, maxContentWidth) : w(92));
 
 export const padH = 20;
