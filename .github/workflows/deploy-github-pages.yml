@@ -1,0 +1,66 @@
+# Builds the Expo web app and deploys via GitHub Actions (not the gh-pages git branch).
+# Repository: https://github.com/GAchuzia/cu-bytes
+#
+# One-time setup: Repo → Settings → Pages → Build and deployment → Source: GitHub Actions.
+# First deploy may ask you to approve the "github-pages" environment.
+#
+# Live site (use this URL in QR codes): https://gachuzia.github.io/cu-bytes/
+
+name: Deploy web to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "frontend/cu-bytes/**"
+      - ".github/workflows/deploy-github-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/cu-bytes/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend/cu-bytes
+        run: npm ci
+
+      - name: Export static web (GitHub Pages base path)
+        working-directory: frontend/cu-bytes
+        env:
+          # Project Pages path: https://gachuzia.github.io/cu-bytes/ → base "/cu-bytes"
+          EXPO_PUBLIC_BASE_URL: /${{ github.event.repository.name }}
+        run: npx expo export -p web
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/cu-bytes/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
