@@ -647,7 +647,7 @@ export default function DiningScreen() {
                 keyboardShouldPersistTaps="handled">
 
                 <Text id="browseDiningLocationsTitle" style={sc.pageTitle}>
-                    Dining locations
+                    Dining Locations
                 </Text>
                 <Text id="browseDiningLocationsInfoText" style={sc.pageSubtitle}>
                     Find a spot, browse its menu, then review item details.

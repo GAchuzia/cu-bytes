@@ -586,7 +586,7 @@ export default function EnterScreen() {
                 keyboardShouldPersistTaps="handled">
 
                 <Text id="browseFoodItemsTitle" style={sc.pageTitle}>
-                    Browse food
+                    Browse Food
                 </Text>
                 <Text id="browseFoodItemsInfoText" style={sc.pageSubtitle}>
                     Search by name, then tap a result for nutrition details.

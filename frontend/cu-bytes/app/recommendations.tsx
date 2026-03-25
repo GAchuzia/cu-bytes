@@ -580,7 +580,7 @@ export default function RecommendationsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="nutrientRecsButtonText" style={sc.bodyButtonText}>
-                                Fill Nutrient Gaps
+                                Deficient Nutrient
                             </Text>
                     </TouchableOpacity>
                 )}
