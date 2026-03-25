@@ -142,7 +142,7 @@ export default function HomeScreen() {
               style={sc.headerButtonText}
               numberOfLines={1}
             >
-              {usernameGlobal !== '' ? 'Log out' : 'Log in'}
+              {usernameGlobal !== '' ? 'Log Out' : 'Log In'}
             </Text>
           </TouchableOpacity>
         </View>
@@ -205,16 +205,16 @@ export default function HomeScreen() {
                 activeOpacity={0.92}
               >
                 <Text id="scanFoodItemButtonText" style={sc.bodyButtonText}>
-                  Scan food
+                  Scan Food
                 </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 id="browseButton"
                 style={[
-                  sc.bodyButtonOutline,
+                  sc.bodyButton,
                   guest && sc.bodyButtonDisabled,
-                  !guest && isBrowsePressed && { opacity: 0.85 },
+                  !guest && isBrowsePressed && sc.bodyButtonPressed,
                 ]}
                 onPressIn={() => setIsBrowsePressed(true)}
                 onPressOut={() => setIsBrowsePressed(false)}
@@ -222,7 +222,7 @@ export default function HomeScreen() {
                 disabled={guest}
                 activeOpacity={0.92}
               >
-                <Text id="browseButtonText" style={sc.bodyButtonOutlineText}>
+                <Text id="browseButtonText" style={sc.bodyButtonText}>
                   Browse
                 </Text>
               </TouchableOpacity>
@@ -289,7 +289,7 @@ export default function HomeScreen() {
                   id="recommendationsButtonText"
                   style={sc.bodyButtonText}
                 >
-                  Food & Dining Recommendations
+                  Recommendations
                 </Text>
               </TouchableOpacity>
             </View>
@@ -316,7 +316,7 @@ export default function HomeScreen() {
                   id="browseFoodItemsButtonText"
                   style={sc.bodyButtonText}
                 >
-                  Browse food
+                  Browse Food
                 </Text>
               </TouchableOpacity>
 
@@ -339,7 +339,7 @@ export default function HomeScreen() {
                   id="browseDiningLocationsButtonText"
                   style={sc.bodyButtonText}
                 >
-                  Dining locations
+                  Dining Locations
                 </Text>
               </TouchableOpacity>
 

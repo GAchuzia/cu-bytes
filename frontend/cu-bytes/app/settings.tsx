@@ -325,7 +325,7 @@ export default function SettingsScreen() {
                     activeOpacity={0.9}>
 
                     <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Log out' : 'Log in'}
+                        {usernameGlobal != '' ? 'Log Out' : 'Log In'}
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -537,7 +537,7 @@ export default function SettingsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="settingsButtonText" style={sc.bodyButtonText}>
-                            Save preferences
+                            Save Preferences
                         </Text>
                     </TouchableOpacity>
 
@@ -550,7 +550,7 @@ export default function SettingsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="changePasswordButtonText" style={sc.bodyButtonOutlineText}>
-                            Change password
+                            Change Password
                         </Text>
                     </TouchableOpacity>
 
@@ -563,7 +563,7 @@ export default function SettingsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="deleteAccountButtonText" style={styles.dangerButtonText}>
-                            Delete account
+                            Delete Account
                         </Text>
                     </TouchableOpacity>
 
@@ -634,7 +634,7 @@ export default function SettingsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="returnToSettingsButtonText" style={sc.bodyButtonOutlineText}>
-                                Back to settings
+                                Back To Settings
                             </Text>
                         </TouchableOpacity>
 
@@ -685,7 +685,7 @@ export default function SettingsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="deleteAccountButtonText" style={styles.dangerButtonText}>
-                                Delete account permanently
+                                Delete Account Permanently
                             </Text>
                         </TouchableOpacity>
 
@@ -698,7 +698,7 @@ export default function SettingsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="returnToSettingsButtonText" style={sc.bodyButtonOutlineText}>
-                                Back to settings
+                                Back To Settings
                             </Text>
                         </TouchableOpacity>
 

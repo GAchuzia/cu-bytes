@@ -77,16 +77,16 @@ export default function IndexScreen() {
               <TouchableOpacity
                 id="browseButton"
                 style={[
-                  sc.bodyButtonOutline,
-                  isBrowsePressed && { opacity: 0.88 },
+                  sc.bodyButton,
+                  isBrowsePressed && sc.bodyButtonPressed,
                 ]}
                 onPressIn={() => setIsBrowsePressed(true)}
                 onPressOut={() => setIsBrowsePressed(false)}
                 onPress={() => setBrowseButtons(true)}
                 activeOpacity={0.92}
               >
-                <Text id="browseButtonText" style={sc.bodyButtonOutlineText}>
-                  Browse Menu &amp; Locations
+                <Text id="browseButtonText" style={sc.bodyButtonText}>
+                  Browse
                 </Text>
               </TouchableOpacity>
             </View>
@@ -106,7 +106,7 @@ export default function IndexScreen() {
                 activeOpacity={0.92}
               >
                 <Text id="browseFoodButtonText" style={sc.bodyButtonText}>
-                  Browse food
+                  Browse Food
                 </Text>
               </TouchableOpacity>
 
@@ -122,7 +122,7 @@ export default function IndexScreen() {
                 activeOpacity={0.92}
               >
                 <Text id="browseDiningButtonText" style={sc.bodyButtonText}>
-                  Dining locations
+                  Dining Locations
                 </Text>
               </TouchableOpacity>
 
