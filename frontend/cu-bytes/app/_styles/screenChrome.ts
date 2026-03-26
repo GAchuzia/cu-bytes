@@ -26,7 +26,7 @@ const viewChrome = StyleSheet.create({
     justifyContent: 'space-between',
     paddingBottom: 8,
     paddingHorizontal: padH,
-    paddingTop: 0,
+    paddingTop: 8,
   } as ViewStyle,
 
   headerButton: {
@@ -297,6 +297,23 @@ const textChrome = StyleSheet.create({
     backgroundColor: colors.primaryMuted,
     borderRadius: radii.sm,
     color: colors.primaryPressed,
+    fontFamily: fontSans,
+    fontSize: font(93),
+    fontWeight: '600',
+    marginBottom: 12,
+    overflow: 'hidden',
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    textAlign: 'center',
+  } as TextStyle,
+
+  infoBanner: {
+    alignSelf: 'stretch',
+    backgroundColor: colors.surfaceMuted,
+    borderColor: colors.border,
+    borderRadius: radii.sm,
+    borderWidth: StyleSheet.hairlineWidth,
+    color: colors.textSecondary,
     fontFamily: fontSans,
     fontSize: font(93),
     fontWeight: '600',

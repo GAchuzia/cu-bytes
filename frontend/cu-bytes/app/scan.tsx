@@ -196,6 +196,19 @@ export default function ScanScreen() {
         }
     );
 
+    const similarFoodItemsList =
+        Array.isArray(genericCategoryFoodItems?.food_items)
+            ? genericCategoryFoodItems.food_items.filter(
+                  (fi) => fi && typeof fi.id === 'number' && fi.id !== -1
+              )
+            : [];
+
+    const noSimilarMatches =
+        similarFoodItems &&
+        !selectedSimilarFoodItem &&
+        !!prediction &&
+        similarFoodItemsList.length === 0;
+
     /*
         Calculate how to display the attribute of the food item
         Used for processing the calories, carbs, fat, fiber, proteins, and sugar food item attributes
@@ -555,7 +568,9 @@ export default function ScanScreen() {
     */
     const getFoodItemByName = async (name: string) => {
         try {
-            const res = await fetch(`${API_BASE_URL}/browse/food-item-by-name?name=${name}`);
+            const res = await fetch(
+                `${API_BASE_URL}/browse/food-item-by-name?name=${encodeURIComponent(name)}`
+            );
             const data = await res.json();
 
             // Store the retrieved food items in the array
@@ -645,7 +660,7 @@ export default function ScanScreen() {
                     activeOpacity={0.9}>
 
                     <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Log out' : 'Log in'}
+                        {usernameGlobal != '' ? 'Log Out' : 'Log In'}
                     </Text>
                 </TouchableOpacity>
 
@@ -806,7 +821,7 @@ export default function ScanScreen() {
                             {loading ? (<ActivityIndicator color="#9E1116"/>) :
 
                                 (<Text id="deleteFoodButtonText" style={styles.bodyButtonDeleteFoodText}>
-                                    Remove photo
+                                    Remove Photo
                                 </Text>)
                             }
                         </TouchableOpacity>
@@ -830,7 +845,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="browseSimilarFoodItemsButtonText" style={sc.bodyButtonText} numberOfLines={1}>
-                                Browse similar
+                                Browse Similar
                             </Text>
                         </TouchableOpacity>
 
@@ -845,7 +860,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="scanOtherFoodItemButtonText" style={sc.bodyButtonOutlineText} numberOfLines={1}>
-                                Scan another
+                                Scan Another
                             </Text>
                         </TouchableOpacity>
 
@@ -860,7 +875,7 @@ export default function ScanScreen() {
                                 activeOpacity={0.92}>
 
                                 <Text id="saveFoodItemButtonText" style={sc.bodyButtonOutlineText}>
-                                    Save food item
+                                    Save Food Item
                                 </Text>
                             </TouchableOpacity>
                         )}
@@ -872,7 +887,18 @@ export default function ScanScreen() {
                 {similarFoodItems && !selectedSimilarFoodItem && (
                     <View id="browseSimilarFoodItemsSuccessView" style={[sc.card, { marginBottom: 14, overflow: 'hidden' }]}>
 
-                        {genericCategoryFoodItems.food_items.map((foodItem) => (
+                        {noSimilarMatches && (
+                            <View id="noSimilarMatchesBanner" style={styles.lowConfidenceBanner}>
+                                <Text style={styles.lowConfidenceTitle}>No Carleton Dining Matches</Text>
+                                <Text style={styles.lowConfidenceMessage}>
+                                    {prediction?.food_name
+                                        ? `"${prediction.food_name}" items are not available for purchase at any of Carleton's Dining locations.`
+                                        : `These items are not available for purchase at any of Carleton's Dining locations.`}
+                                </Text>
+                            </View>
+                        )}
+
+                        {similarFoodItemsList.map((foodItem) => (
 
                             <Text id="browseSimilarFoodItemsSuccessText" style={styles.listRowText}
                                 key={foodItem["id"]}
@@ -941,7 +967,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="scanOtherFoodItemButtonText" style={sc.bodyButtonOutlineText} numberOfLines={1}>
-                                Scan another
+                                Scan Another
                             </Text>
                         </TouchableOpacity>
                         
@@ -956,7 +982,7 @@ export default function ScanScreen() {
                                 activeOpacity={0.92}>
 
                                 <Text id="saveFoodItemButtonText" style={sc.bodyButtonText}>
-                                    Save food item
+                                    Save Food Item
                                 </Text>
                             </TouchableOpacity>
                         )}
@@ -976,7 +1002,7 @@ export default function ScanScreen() {
                             <View id="savedFoodItemInnerView" style={styles.savedFoodItemInner}>
 
                                 <Text id="savedFoodItemText" style={styles.savedFoodItemText}>
-                                    Food item saved
+                                    Food Item Saved
                                 </Text>
                             </View>
                         </View>

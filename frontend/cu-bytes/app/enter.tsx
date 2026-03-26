@@ -575,7 +575,7 @@ export default function EnterScreen() {
                     activeOpacity={0.9}>
 
                     <Text id="loginLogoutButtonText" style={sc.headerButtonText} numberOfLines={1}>
-                        {usernameGlobal != '' ? 'Log out' : 'Log in'}
+                        {usernameGlobal != '' ? 'Log Out' : 'Log In'}
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -586,7 +586,7 @@ export default function EnterScreen() {
                 keyboardShouldPersistTaps="handled">
 
                 <Text id="browseFoodItemsTitle" style={sc.pageTitle}>
-                    Browse food
+                    Browse Food
                 </Text>
                 <Text id="browseFoodItemsInfoText" style={sc.pageSubtitle}>
                     Search by name, then tap a result for nutrition details.
@@ -678,7 +678,7 @@ export default function EnterScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="saveFoodItemButtonText" style={sc.bodyButtonText}>
-                            Save food item
+                            Save Food Item
                         </Text>
                     </TouchableOpacity>
                 )}
@@ -692,7 +692,7 @@ export default function EnterScreen() {
                         <View id="savedFoodItemOuterView" style={styles.savedFoodItemMessageContainer}>
                             <View id="savedFoodItemInnerView" style={styles.savedFoodItemInner}>
                                 <Text id="savedFoodItemText" style={styles.savedFoodItemText}>
-                                    Food item saved
+                                    Food Item Saved
                                 </Text>
                             </View>
                         </View>

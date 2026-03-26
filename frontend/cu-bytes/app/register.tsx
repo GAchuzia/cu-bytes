@@ -162,7 +162,7 @@ export default function RegisterScreen() {
               style={sc.headerButtonText}
               numberOfLines={1}
             >
-              {usernameGlobal !== '' ? 'Log out' : 'Log in'}
+              {usernameGlobal !== '' ? 'Log Out' : 'Log In'}
             </Text>
           </TouchableOpacity>
         </View>
