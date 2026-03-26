@@ -7,146 +7,75 @@ from backend.services.logging_service import create_transaction
 
 app = create_app()
 
+
+def load_dummy_transactions_from_file(path: str):
+    """
+    Load and create dummy transactions from a file.
+
+    Each non-empty, non-comment line in the file represents a single transaction.
+    Columns must be separated by "|" and appear in the following order:
+        username
+        food_name
+        dining_location (int)
+        calories (int)
+        percent_fruit_veg (int)
+        percent_grain (int)
+        percent_dairy (int)
+        percent_protein (int)
+        fat_g (float)
+        carbs_g (float)
+        proteins_g (float)
+        fiber_g (float)
+        sugar_g (float)
+        days_ago (int)
+    """
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue  # skip empty or commented lines
+
+            (
+                username,
+                food_name,
+                dining_location,
+                calories,
+                percent_fruit_veg,
+                percent_grain,
+                percent_dairy,
+                percent_protein,
+                fat_g,
+                carbs_g,
+                proteins_g,
+                fiber_g,
+                sugar_g,
+                days_ago,
+            ) = line.split("|")
+
+            create_transaction(
+                username=username,
+                food_name=food_name,
+                dining_location=int(dining_location),
+                calories=int(calories),
+                percent_fruit_veg=int(percent_fruit_veg),
+                percent_grain=int(percent_grain),
+                percent_dairy=int(percent_dairy),
+                percent_protein=int(percent_protein),
+                fat_g=float(fat_g),
+                carbs_g=float(carbs_g),
+                proteins_g=float(proteins_g),
+                fiber_g=float(fiber_g),
+                sugar_g=float(sugar_g),
+                transaction_time=datetime.now() - timedelta(days=int(days_ago)),
+            )
+
+
 if __name__ == "__main__":
     with app.app_context():
         db.drop_all(bind_key="logging")
         db.create_all(bind_key="logging")
 
         # Create dummy transactions
-        create_transaction(
-            username="Alice",
-            food_name="Yogurt Parfait",
-            dining_location=1,
-            calories=320,
-            percent_fruit_veg=40,
-            percent_grain=30,
-            percent_dairy=30,
-            percent_protein=0,
-            fat_g=6.5,
-            carbs_g=45.2,
-            proteins_g=12.8,
-            fiber_g=5.4,
-            sugar_g=22.0,
-            transaction_time=datetime.now() - timedelta(days=1),  # One day ago
-        )
-
-        create_transaction(
-            username="Alice",
-            food_name="Chicken Salad",
-            dining_location=2,
-            calories=420,
-            percent_fruit_veg=50,
-            percent_grain=10,
-            percent_dairy=0,
-            percent_protein=40,
-            fat_g=14.3,
-            carbs_g=18.7,
-            proteins_g=32.5,
-            fiber_g=6.1,
-            sugar_g=4.2,
-            transaction_time=datetime.now() - timedelta(days=2),  # Two days ago
-        )
-
-        create_transaction(
-            username="Alice",
-            food_name="Oatmeal",
-            dining_location=1,
-            calories=250,
-            percent_fruit_veg=20,
-            percent_grain=70,
-            percent_dairy=10,
-            percent_protein=0,
-            fat_g=4.2,
-            carbs_g=42.0,
-            proteins_g=9.5,
-            fiber_g=6.8,
-            sugar_g=7.1,
-            transaction_time=datetime.now() - timedelta(days=2),  # Two days ago
-        )
-
-        create_transaction(
-            username="Bob",
-            food_name="Cheeseburger",
-            dining_location=3,
-            calories=650,
-            percent_fruit_veg=10,
-            percent_grain=30,
-            percent_dairy=20,
-            percent_protein=40,
-            fat_g=34.6,
-            carbs_g=45.8,
-            proteins_g=32.1,
-            fiber_g=3.2,
-            sugar_g=6.5,
-            transaction_time=datetime.now() - timedelta(days=1),  # One day ago
-        )
-
-        create_transaction(
-            username="Bob",
-            food_name="Pepperoni Pizza",
-            dining_location=3,
-            calories=720,
-            percent_fruit_veg=5,
-            percent_grain=45,
-            percent_dairy=25,
-            percent_protein=25,
-            fat_g=38.9,
-            carbs_g=68.3,
-            proteins_g=28.4,
-            fiber_g=4.1,
-            sugar_g=8.7,
-            transaction_time=datetime.now() - timedelta(days=3),  # Three days ago
-        )
-
-        create_transaction(
-            username="Bob",
-            food_name="Apple",
-            dining_location=2,
-            calories=95,
-            percent_fruit_veg=100,
-            percent_grain=0,
-            percent_dairy=0,
-            percent_protein=0,
-            fat_g=0.3,
-            carbs_g=25.1,
-            proteins_g=0.5,
-            fiber_g=4.4,
-            sugar_g=18.9,
-            transaction_time=datetime.now() - timedelta(days=3),  # Three days ago
-        )
-
-        create_transaction(
-            username="Charlie",
-            food_name="Yogurt Parfait",
-            dining_location=1,
-            calories=320,
-            percent_fruit_veg=40,
-            percent_grain=30,
-            percent_dairy=30,
-            percent_protein=0,
-            fat_g=6.5,
-            carbs_g=45.2,
-            proteins_g=12.8,
-            fiber_g=5.4,
-            sugar_g=22.0,
-            transaction_time=datetime.now() - timedelta(days=1),  # One day ago
-        )
-
-        create_transaction(
-            username="Dave",
-            food_name="Apple",
-            dining_location=3,
-            calories=320,
-            percent_fruit_veg=100,
-            percent_grain=0,
-            percent_dairy=0,
-            percent_protein=0,
-            fat_g=6.5,
-            carbs_g=45.2,
-            proteins_g=12.8,
-            fiber_g=5.4,
-            sugar_g=22.0,
-            transaction_time=datetime.now() - timedelta(days=1),  # One day ago
-        )
+        load_dummy_transactions_from_file("backend/database/dummy_transactions.txt")
 
         print("Created logging.db and added dummy transactions.")

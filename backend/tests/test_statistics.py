@@ -204,7 +204,7 @@ def test_get_aggregate_statistics_success(
     assert abs(total_percent - 100.0) < 0.1
 
     assert data["top_food"] == "Hamburger"
-    assert data["top_dining_location"] == "Tim Hortons"
+    assert data["top_dining_location"] == "Basil Box"
 
     # Test default days (should match because Alice consumed no new items)
     response2 = client.get("/statistics/aggregate/Alice")
@@ -246,7 +246,7 @@ def test_get_aggregate_statistics_small_window(
     assert abs(total_percent - 100.0) < 0.1
 
     assert data["top_food"] == "Banana Bread"
-    assert data["top_dining_location"] == "Colonel by Chicken"
+    assert data["top_dining_location"] == "Bridgehead"
 
 
 def test_get_global_statistics_success(
@@ -269,8 +269,8 @@ def test_get_global_statistics_success(
     assert data["trending_item_3"] == "Unknown"
     assert data["trending_item_4"] == "Unknown"
     assert data["trending_item_5"] == "Unknown"
-    assert data["trending_location_1"] == "Tim Hortons"
-    assert data["trending_location_2"] == "Subway"
+    assert data["trending_location_1"] == "Basil Box"
+    assert data["trending_location_2"] == "Bento Boxes"
     assert data["trending_location_3"] == "Unknown"
 
     # Test default days (should match because Alice consumed no new items)
@@ -301,8 +301,8 @@ def test_get_global_statistics_success(
     assert data3["trending_item_3"] == "Banana Bread"
     assert data3["trending_item_4"] == "Unknown"
     assert data3["trending_item_5"] == "Unknown"
-    assert data["trending_location_1"] == "Tim Hortons"
-    assert data["trending_location_2"] == "Subway"
+    assert data["trending_location_1"] == "Basil Box"
+    assert data["trending_location_2"] == "Bento Boxes"
     assert data["trending_location_3"] == "Unknown"
 
 

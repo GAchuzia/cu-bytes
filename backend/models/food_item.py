@@ -1,5 +1,6 @@
 # Project imports
 from backend.extensions import db
+from backend.models.locations import get_dining_location_name
 
 
 class FoodItem(db.Model):
@@ -135,52 +136,3 @@ class FoodItem(db.Model):
             "has_sulfites": self.has_sulfites,
             "food_category": self.food_category,
         }
-
-
-def get_dining_location_name(dining_location_id):
-    if dining_location_id == 1:
-        return "Tim Hortons"
-    elif dining_location_id == 2:
-        return "Subway"
-    elif dining_location_id == 3:
-        return "Colonel by Chicken"
-    elif dining_location_id == 4:
-        return "La Cocina"
-    elif dining_location_id == 5:
-        return "Mike's Place"
-    elif dining_location_id == 6:
-        return "Starbucks"
-    elif dining_location_id == 7:
-        return "Rodney's Kitchen"
-    elif dining_location_id == 8:
-        return "Leo's Lounge"
-    elif dining_location_id == 9:
-        return "Teraanga Commons Dining Hall"
-    elif dining_location_id == 10:
-        return "Tunnel Junction"
-    elif dining_location_id == 11:
-        return "Bridgehead"
-    elif dining_location_id == 12:
-        return "Rooster's"
-    elif dining_location_id == 13:
-        return "Riverbank Social"
-    elif dining_location_id == 14:
-        return "Oasis"
-    elif dining_location_id == 15:
-        return "Urban Deli"
-    elif dining_location_id == 16:
-        return "Shawarma Palace"
-    elif dining_location_id == 17:
-        return "Ollies"
-    elif dining_location_id == 18:
-        return "Burger 101"
-    elif dining_location_id == 19:
-        return "Bento Boxes"
-    elif dining_location_id == 20:
-        return "CT-Pastry"
-    elif dining_location_id == 21:
-        return "The Market Pizzeria"
-    elif dining_location_id == 22:
-        return "Thai Kitchen"
-    else:
-        return "Unknown"

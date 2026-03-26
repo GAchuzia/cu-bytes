@@ -9,7 +9,7 @@ import requests
 #   Note: Sometimes item_id 1 will timeout. Do not worry about it.
 
 BASE_URL = "http://127.0.0.1:5000/browse/food-item"
-MAX_ITEMS = 660  # Change this to match the total number of food items
+MAX_ITEMS = 688  # Change this to match the total number of food items
 
 
 def main():

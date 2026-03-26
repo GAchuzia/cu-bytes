@@ -229,7 +229,7 @@ def test_retreival(
     first_log_entry = data[0]
     assert first_log_entry["calories"] == 350
     assert first_log_entry["food_name"] == "Caesar Salad"
-    assert first_log_entry["dining_location"] == "Tim Hortons"
+    assert first_log_entry["dining_location"] == "Basil Box"
     assert first_log_entry["transaction_time"]
 
     # Add a second item via the other transaction endpoint
@@ -250,7 +250,7 @@ def test_retreival(
     first_log_entry = data[1]
     assert first_log_entry["calories"] == 350
     assert first_log_entry["food_name"] == "Caesar Salad"
-    assert first_log_entry["dining_location"] == "Tim Hortons"
+    assert first_log_entry["dining_location"] == "Basil Box"
     assert first_log_entry["transaction_time"]
 
     # The second entry is using the generic category

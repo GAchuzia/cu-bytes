@@ -185,3 +185,18 @@ if ($USE_PROD_API) {
 Write-Host "Expo frontend: Check the Expo window for connection details" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Setup complete! Your development environment is ready." -ForegroundColor Green
+
+# Step 7: Start Azure Keep-Alive Script
+if ($USE_PROD_API) {
+    Write-Host ""
+    Write-Host "[7/7] Starting keep-alive script..." -ForegroundColor Yellow
+
+    $keepAliveScript = @"
+cd '$projectRoot'
+powershell -ExecutionPolicy Bypass -File keep-alive.ps1
+pause
+"@
+
+    $keepAliveScript | Out-File -FilePath "$env:TEMP\start_keep_alive.ps1" -Encoding UTF8
+    Start-Process powershell -ArgumentList "-NoExit", "-File", "$env:TEMP\start_keep_alive.ps1"
+}

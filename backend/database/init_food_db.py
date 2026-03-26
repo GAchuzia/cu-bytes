@@ -8,6 +8,7 @@ from backend.app import create_app
 from backend.extensions import db
 from backend.models.food_category import FoodCategory
 from backend.models.food_item import FoodItem
+from backend.models.locations import DINING_LOCATIONS
 from backend.models.locations import DiningLocation
 
 """
@@ -18,6 +19,8 @@ Fish | Milk | Peanuts | Sesame | Soy | TreeNuts
 Wheat | Last Updated | Food Category
 """
 
+# Create Dining Location to ID dictionary
+_NAME_TO_ID = {name: id_ for id_, name in DINING_LOCATIONS.items()}
 
 app = create_app()
 
@@ -127,72 +130,14 @@ def create_food_table():
 
 
 def get_dining_location_id(dining_location_name):
-    if dining_location_name == "Tim Hortons":
-        return 1
-    elif dining_location_name == "Subway":
-        return 2
-    elif dining_location_name == "Colonel by Chicken":
-        return 3
-    elif dining_location_name == "La Cocina":
-        return 4
-    elif dining_location_name == "Mike's Place":
-        return 5
-    elif dining_location_name == "Starbucks":
-        return 6
-    elif dining_location_name == "Rodney's Kitchen":
-        return 7
-    elif dining_location_name == "Leo's Lounge":
-        return 8
-    elif dining_location_name == "Teraanga Commons Dining Hall":
-        return 9
-    elif dining_location_name == "Tunnel Junction":
-        return 10
-    elif dining_location_name == "Bridgehead":
-        return 11
-    elif dining_location_name == "Rooster's":
-        return 12
-    elif dining_location_name == "Riverbank Social":
-        return 13
-    elif dining_location_name == "Oasis":
-        return 14
-    elif dining_location_name == "Urban Deli":
-        return 15
-    elif dining_location_name == "Shawarma Palace":
-        return 16
-    elif dining_location_name == "Ollies":
-        return 17
-    elif dining_location_name == "Burger 101":
-        return 18
-    elif dining_location_name == "Bento Boxes":
-        return 19
-    elif dining_location_name == "CT-Pastry":
-        return 20
-    elif dining_location_name == "The Market Pizzeria":
-        return 21
-    elif dining_location_name == "Thai Kitchen":
-        return 22
-    else:
-        return 0
+    return _NAME_TO_ID.get(dining_location_name, 0)
 
 
 def create_dining_location_table():
-    # Open csv
-    csvfile = open(
-        "backend/automated_data_collection/FoodInfo.csv", newline="", encoding="utf-8"
-    )
-    reader = csv.DictReader(csvfile)
-
-    dining_location_names = list()
-
     with app.app_context():
         # Add each row to the database as a DiningLocation
-        for row in reader:
-            if row.get("Dining Location") not in dining_location_names:
-                DiningLocation.create(dining_location_name=row.get("Dining Location"))
-
-                dining_location_names.append(row.get("Dining Location"))
-
-    csvfile.close()
+        for locationName in _NAME_TO_ID.keys():
+            DiningLocation.create(locationName)
 
 
 def create_category_table():
