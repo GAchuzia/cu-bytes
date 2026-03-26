@@ -56,16 +56,18 @@ export default function ScanScreen() {
 
     const [loading, setLoading] = useState(false);
     
-    const [savedFoodItemMessage, setSavedFoodItemMessage] = useState(false);
+    const [foodItemSaved, setFoodItemSaved] = useState(false);
     const [similarFoodItems, setSimilarFoodItems] = useState(false);
-    const [selectedSimilarFoodItem, setSelectedSimilarFoodItem] = useState(false);
+    const [similarFoodItemSelected, setSimilarFoodItemSelected] = useState(false);
+    const [foodItemInfoVisible, setFoodItemInfoVisible] = useState(false);
+    const [foodItemWarningVisible, setFoodItemWarningVisible] = useState(false);
 
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [prediction, setPrediction] = useState<PredictionResult | null>(null);
     const [lowConfidenceMessage, setLowConfidenceMessage] = useState<string | null>(null);
+    
     const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
-
     const [isBrowseSimilarPressed, setIsBrowseSimilarPressed] = useState(false);
     const [isScanOtherPressed, setIsScanOtherPressed] = useState(false);
  
@@ -205,7 +207,7 @@ export default function ScanScreen() {
 
     const noSimilarMatches =
         similarFoodItems &&
-        !selectedSimilarFoodItem &&
+        !similarFoodItemSelected &&
         !!prediction &&
         similarFoodItemsList.length === 0;
 
@@ -679,15 +681,15 @@ export default function ScanScreen() {
 
                 <Text id="scanFoodItemsInfoText" style={sc.pageSubtitle}>
                     {
-                        !similarFoodItems && !selectedSimilarFoodItem ? 'Take a photo or upload an image of a food item to identify' :
-                        similarFoodItems && !selectedSimilarFoodItem ? 'Here are the food items similar to ' + prediction?.food_name : 
-                        similarFoodItems && selectedSimilarFoodItem ? 'Here is a food item similar to ' + prediction?.food_name : 
+                        !similarFoodItems && !similarFoodItemSelected ? 'Take a photo or upload an image of a food item to identify' :
+                        similarFoodItems && !similarFoodItemSelected ? 'Here are the food items similar to ' + prediction?.food_name : 
+                        similarFoodItems && similarFoodItemSelected ? 'Here is a food item similar to ' + prediction?.food_name : 
                         ''
                     }
                 </Text>
 
                 {/* Display the uploaded photo of a food item, henceforth known as the selected food item */}
-                {selectedImage && !similarFoodItems && !selectedSimilarFoodItem && (
+                {selectedImage && !similarFoodItems && !similarFoodItemSelected && (
                     <Image
                         id="foodItemImage"
                         style={styles.foodImage}
@@ -698,7 +700,7 @@ export default function ScanScreen() {
 
                 {/* Display placeholder text if a photo of a food item has not been uploaded */}
                 {/* No selected image makes prediction and lowConfidenceMessage variable values irrelevant */}
-                {!selectedImage && !similarFoodItems && !selectedSimilarFoodItem && (
+                {!selectedImage && !similarFoodItems && !similarFoodItemSelected && (
                     <Text id="foodItemPlaceholderText" style={styles.placeholderText}>
                         Uploaded photos will be displayed here
                     </Text>
@@ -707,7 +709,7 @@ export default function ScanScreen() {
                 {/* Display message when confidence was too low (e.g. unclear or non-food image) */}
                 {/* Only display when a photo or image has been selected and there is a low confidence message to display */}
                 {/* If there's a low confidence message, then the prediction variable value is irrelevant */}
-                {selectedImage && lowConfidenceMessage && !similarFoodItems && !selectedSimilarFoodItem && (
+                {selectedImage && lowConfidenceMessage && !similarFoodItems && !similarFoodItemSelected && (
                     <View id="lowConfidenceBanner" style={styles.lowConfidenceBanner}>
                         <Text style={styles.lowConfidenceTitle}>No food detected</Text>
                         <Text style={styles.lowConfidenceMessage}>
@@ -719,7 +721,7 @@ export default function ScanScreen() {
                 {/* Display information about the selected food item */}
                 {/* Only display when a photo or image has been selected and there is a prediction */}
                 {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
-                {selectedImage && prediction && !similarFoodItems && !selectedSimilarFoodItem && (
+                {selectedImage && prediction && !similarFoodItems && !similarFoodItemSelected && (
                     <View id="foodItemOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
                         <FlatList id="foodItemFlatList"
@@ -739,7 +741,7 @@ export default function ScanScreen() {
                 {/* Display the relevant warnings for the selected food item based on the logged-in user's settings */}
                 {/* Only display when a photo or image has been selected and there is a prediction */}
                 {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
-                {selectedImage && prediction && !similarFoodItems && !selectedSimilarFoodItem && (
+                {selectedImage && prediction && !similarFoodItems && !similarFoodItemSelected && (
                     <View id="warningOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
                         <FlatList id="warningFlatList"
@@ -759,7 +761,7 @@ export default function ScanScreen() {
                 {/* Display buttons that enable the user to take a photo, or upload an image of a food item to identify */}
                 {/* Only display when no photo or image has been selected */}
                 {/* No selected image makes prediction and lowConfidenceMessage variable values irrelevant */}
-                {!selectedImage && !similarFoodItems && !selectedSimilarFoodItem && (
+                {!selectedImage && !similarFoodItems && !similarFoodItemSelected && (
                     <View id="takePhotoOrUploadPhotoView" style={styles.innerStack}>
 
                         <TouchableOpacity id="takePhotoButton" style={[sc.bodyButton, loading && styles.buttonDisabled]}
@@ -832,7 +834,7 @@ export default function ScanScreen() {
                 {/* Display buttons that enable the generic category of the food item to be used to retrieve related food items from the backend database,
                     or clear the photo or image and prediction results and enable the user to submit a new photo or image */}
                 {/* If there's a prediction, then the lowConfidenceMessage variable value is irrelevant */}
-                {selectedImage && prediction && !similarFoodItems && !selectedSimilarFoodItem && (
+                {selectedImage && prediction && !similarFoodItems && !similarFoodItemSelected && (
                     <View id="browseSimilarOrScanOtherView" style={styles.innerStack}>
 
                         <TouchableOpacity id="browseSimilarFoodItemsButton" style={[sc.bodyButton, isBrowseSimilarPressed && sc.bodyButtonPressed]}
@@ -868,8 +870,15 @@ export default function ScanScreen() {
                             <TouchableOpacity id="saveFoodItemButton" style={sc.bodyButtonOutline}
                                 onPress={() => {
                                     logFoodItemByName(prediction.food_name);
-                                    setSavedFoodItemMessage(true);
-                                    setTimeout(() => {setSavedFoodItemMessage(false);}, 2000);
+                                    setSelectedImage(null);
+                                    setPrediction(null);
+                                    setLowConfidenceMessage(null);
+                                    setSimilarFoodItems(false);
+                                    setSimilarFoodItemSelected(false);
+                                    setFoodItemInfoVisible(false);
+                                    setFoodItemWarningVisible(false);
+                                    setFoodItemSaved(true);
+                                    setTimeout(() => {setFoodItemSaved(false);}, 2000);
                                     router.push('/home');}}
                                 disabled={loading}
                                 activeOpacity={0.92}>
@@ -884,7 +893,7 @@ export default function ScanScreen() {
                 )}
 
                 {/* Display food items that match the selected generic category */}
-                {similarFoodItems && !selectedSimilarFoodItem && (
+                {similarFoodItems && !similarFoodItemSelected && (
                     <View id="browseSimilarFoodItemsSuccessView" style={[sc.card, { marginBottom: 14, overflow: 'hidden' }]}>
 
                         {noSimilarMatches && (
@@ -904,7 +913,9 @@ export default function ScanScreen() {
                                 key={foodItem["id"]}
                                 onPress={() => {
                                     getFoodItem(foodItem["id"]);
-                                    setSelectedSimilarFoodItem(true);
+                                    setSimilarFoodItemSelected(true);
+                                    setFoodItemInfoVisible(true);
+                                    setFoodItemWarningVisible(true);
                                 }}>
                                 {foodItem["name"]} · {foodItem["dining_location"]}
                             </Text>
@@ -914,7 +925,7 @@ export default function ScanScreen() {
                 )}
 
                 {/* Display information about the selected food item */}
-                {selectedSimilarFoodItem && (
+                {similarFoodItemSelected && foodItemInfoVisible && (
                     <View id="selectedSimilarFoodItemOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
                         <FlatList id="selectedSimilarFoodItemFlatList"
@@ -932,7 +943,7 @@ export default function ScanScreen() {
                 )}
 
                 {/* Display the relevant warnings for the selected food item based on the logged-in user's settings */}
-                {selectedSimilarFoodItem && (
+                {similarFoodItemSelected && foodItemWarningVisible && (
                     <View id="warningOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
                         <FlatList id="warningFlatList"
@@ -950,7 +961,7 @@ export default function ScanScreen() {
                 )}
 
                 {/* Display a button that enables the selected food item to be saved to the backend database */}
-                {similarFoodItems && selectedSimilarFoodItem && (
+                {similarFoodItems && similarFoodItemSelected && (
                     <View id="scanOtherOrsaveFoodItemView" style={styles.innerStack}>
 
                         <TouchableOpacity id="scanOtherFoodItemButton" style={[sc.bodyButtonOutline, isScanOtherPressed && { opacity: 0.88 }]}
@@ -962,7 +973,9 @@ export default function ScanScreen() {
                                 setLowConfidenceMessage(null);
                                 
                                 setSimilarFoodItems(false);
-                                setSelectedSimilarFoodItem(false);
+                                setSimilarFoodItemSelected(false);
+                                setFoodItemInfoVisible(false);
+                                setFoodItemWarningVisible(false);
                             }}
                             activeOpacity={0.92}>
 
@@ -975,8 +988,15 @@ export default function ScanScreen() {
                             <TouchableOpacity id="saveFoodItemButton" style={sc.bodyButton}
                                 onPress={() => {
                                     logFoodItemById(foodItem.id);
-                                    setSavedFoodItemMessage(true);
-                                    setTimeout(() => {setSavedFoodItemMessage(false);}, 2000);
+                                    setSelectedImage(null);
+                                    setPrediction(null);
+                                    setLowConfidenceMessage(null);
+                                    setSimilarFoodItems(false);
+                                    setSimilarFoodItemSelected(false);
+                                    setFoodItemInfoVisible(false);
+                                    setFoodItemWarningVisible(false);
+                                    setFoodItemSaved(true);
+                                    setTimeout(() => {setFoodItemSaved(false);}, 2000);
                                     router.push('/home');}}
                                 disabled={loading}
                                 activeOpacity={0.92}>
@@ -991,11 +1011,11 @@ export default function ScanScreen() {
                 )}
 
                 {/* Display a message when the selected food item is saved */}
-                {usernameGlobal != "" && savedFoodItemMessage && (
+                {usernameGlobal != "" && foodItemSaved && (
                     <Modal id="savedFoodItemModal"
                         animationType="fade"
                         transparent={true}
-                        visible={savedFoodItemMessage}>
+                        visible={foodItemSaved}>
 
                         <View id="savedFoodItemOuterView" style={styles.savedFoodItemMessageContainer}>
 

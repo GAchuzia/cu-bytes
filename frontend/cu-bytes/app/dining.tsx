@@ -13,9 +13,15 @@ import { API_BASE_URL } from '../services/api';
 export default function DiningScreen() {
 
     const [loading, setLoading] = useState(true);
+
+    const [foodItemSaved, setFoodItemSaved] = useState(false);    
     const [diningLocationsVisible, setDiningLocationsVisible] = useState(true);
     const [foodItemsVisible, setFoodItemsVisible] = useState(true);
-    const [modalVisible, setModalVisible] = useState(false);
+    const [foodItemSelected, setFoodItemSelected] = useState(false);
+    const [foodItemInfoVisible, setFoodItemInfoVisible] = useState(false);
+    const [foodItemWarningVisible, setFoodItemWarningVisible] = useState(false);
+
+
     const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isSearchPressed, setIsSearchPressed] = useState(false);
@@ -667,8 +673,11 @@ export default function DiningScreen() {
                         onPressOut={() => setIsSearchPressed(false)}
                         onPress={() => {
                             filterDiningLocationArray(diningLocationName);
+                            setDiningLocationsVisible(true);
                             setFoodItemsVisible(false);
-                            setDiningLocationsVisible(true);}}
+                            setFoodItemSelected(false);
+                            setFoodItemInfoVisible(false);
+                            setFoodItemWarningVisible(false);}}
                         activeOpacity={0.92}>
 
                         <Text id="browseDiningLocationsButtonText" style={sc.bodyButtonText}>
@@ -691,8 +700,11 @@ export default function DiningScreen() {
                                 key={diningLocation["id"]}
                                 onPress={() => {
                                     filterFoodItemArray(diningLocation["id"]);
+                                    setDiningLocationsVisible(false);
                                     setFoodItemsVisible(true);
-                                    setDiningLocationsVisible(false);}}>
+                                    setFoodItemSelected(false);
+                                    setFoodItemInfoVisible(false);
+                                    setFoodItemWarningVisible(false);}}>
                                 {diningLocation["name"]}
                             </Text>
                         ))}
@@ -707,14 +719,18 @@ export default function DiningScreen() {
                                 key={foodItem["id"]}
                                 onPress={() => {
                                     getFoodItem(foodItem["id"]);
-                                    setFoodItemsVisible(false);}}>
+                                    setDiningLocationsVisible(false);
+                                    setFoodItemsVisible(false);
+                                    setFoodItemSelected(true);
+                                    setFoodItemInfoVisible(true);
+                                    setFoodItemWarningVisible(true);}}>
                                 {foodItem["name"]}
                             </Text>
                         ))}
                     </View>
                 )}
 
-                {!foodItemsVisible && foodItem.name != "" && (
+                {usernameGlobal != "" && foodItemSelected && foodItemInfoVisible && (
                     <View id="foodItemOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
                         <FlatList id="foodItemFlatList"
                             data={processSelectedFoodItem(foodItem)}
@@ -729,7 +745,7 @@ export default function DiningScreen() {
                     </View>
                 )}
 
-                {!foodItemsVisible && foodItem.name != "" && (
+                {usernameGlobal != "" && foodItemSelected && foodItemWarningVisible && (
                     <View id="warningOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
                         <FlatList id="warningFlatList"
                             data={processSelectedFoodItemWarnings(foodItem)}
@@ -744,13 +760,15 @@ export default function DiningScreen() {
                     </View>
                 )}
 
-                {usernameGlobal != "" && !foodItemsVisible && foodItem.name != "" && (
+                {usernameGlobal != "" && foodItemSelected && (
                     <TouchableOpacity id="saveFoodItemButton" style={sc.bodyButton}
                         onPress={() => {
                             logFoodItemById(foodItem.id);
-                            setFoodItemsVisible(true);
-                            setModalVisible(true);
-                            setTimeout(() => {setModalVisible(false);}, 8000);
+                            setFoodItemSelected(false);
+                            setFoodItemInfoVisible(false);
+                            setFoodItemWarningVisible(false);
+                            setFoodItemSaved(true);
+                            setTimeout(() => {setFoodItemSaved(false);}, 2000);
                             router.push("/home");}}
                         disabled={loading}
                         activeOpacity={0.92}>
@@ -761,11 +779,11 @@ export default function DiningScreen() {
                     </TouchableOpacity>
                 )}
 
-                {modalVisible && usernameGlobal != "" && (
+                {usernameGlobal != "" && foodItemSaved && (
                     <Modal id="savedFoodItemModal"
                         animationType="fade"
                         transparent={true}
-                        visible={modalVisible}>
+                        visible={foodItemSaved}>
 
                         <View id="savedFoodItemOuterView" style={styles.savedFoodItemMessageContainer}>
                             <View id="savedFoodItemInnerView" style={styles.savedFoodItemInner}>
