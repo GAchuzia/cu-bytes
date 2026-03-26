@@ -523,7 +523,7 @@ export default function EnterScreen() {
                     </View>
                 )}
 
-                {usernameGlobal != "" && foodItemSelected && foodItemInfoVisible && (
+                {foodItemSelected && foodItemInfoVisible && (
                     <View id="foodItemOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
                         <FlatList id="foodItemFlatList"
                             data={processSelectedFoodItem(foodItem)}
@@ -538,7 +538,7 @@ export default function EnterScreen() {
                     </View>
                 )}
 
-                {usernameGlobal != "" && foodItemSelected && foodItemWarningVisible && (
+                {foodItemSelected && foodItemWarningVisible && (
                     <View id="warningOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
                         <FlatList id="warningFlatList"
                             data={processSelectedFoodItemWarnings(foodItem)}
