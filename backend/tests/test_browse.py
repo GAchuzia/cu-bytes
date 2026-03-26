@@ -39,7 +39,7 @@ def test_get_first_food_item(client, seeded_food_data, seeded_food_categories):
     # Check that each field is present and set to the correct value
     assert data["id"] == 1
     assert data["name"] == "Caesar Salad"
-    assert data["dining_location"] == "Tim Hortons"
+    assert data["dining_location"] == "Basil Box"
     assert data["cost"] == 12.99
     assert data["calories"] == 350
     assert data["comments"] == "Default Comment"
@@ -107,7 +107,7 @@ def test_get_by_name_valid_category(client, seeded_food_data):
     assert len(data["food_items"]) == 1
 
     loaf = data["food_items"][0]
-    assert loaf["dining_location"] == "Tim Hortons"
+    assert loaf["dining_location"] == "Basil Box"
     assert loaf["id"] == 3
     assert loaf["name"] == "Banana Bread"
 
@@ -119,6 +119,6 @@ def test_get_by_name_valid_category(client, seeded_food_data):
     assert len(data["food_items"]) == 1
 
     loaf = data["food_items"][0]
-    assert loaf["dining_location"] == "Tim Hortons"
+    assert loaf["dining_location"] == "Basil Box"
     assert loaf["id"] == 1
     assert loaf["name"] == "Caesar Salad"

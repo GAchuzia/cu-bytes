@@ -102,7 +102,7 @@ def test_trending_recommendations_by_name(
     assert len(data["food_items"]) == 1
 
     recommended_item = data["food_items"][0]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 1
     assert recommended_item["name"] == "Caesar Salad"
 
@@ -145,7 +145,7 @@ def test_trending_recommendations_by_category(
     assert len(data["food_items"]) == 1
 
     recommended_item = data["food_items"][0]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 1
     assert recommended_item["name"] == "Caesar Salad"
 
@@ -219,7 +219,7 @@ def test_trending_recommendations_multi_user(
     assert len(data["food_items"]) == 1
 
     recommended_item = data["food_items"][0]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 1
     assert recommended_item["name"] == "Caesar Salad"
 
@@ -237,12 +237,12 @@ def test_trending_recommendations_multi_user(
     assert len(data["food_items"]) == 2
 
     recommended_item_1 = data["food_items"][0]
-    assert recommended_item_1["dining_location"] == "Tim Hortons"
+    assert recommended_item_1["dining_location"] == "Basil Box"
     assert recommended_item_1["id"] == 2
     assert recommended_item_1["name"] == "Hamburger"
 
     recommended_item_2 = data["food_items"][1]
-    assert recommended_item_2["dining_location"] == "Tim Hortons"
+    assert recommended_item_2["dining_location"] == "Basil Box"
     assert recommended_item_2["id"] == 1
     assert recommended_item_2["name"] == "Caesar Salad"
 
@@ -254,7 +254,7 @@ def test_trending_recommendations_multi_user(
     assert len(data["food_items"]) == 1
 
     recommended_item = data["food_items"][0]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 2
     assert recommended_item["name"] == "Hamburger"
 
@@ -273,7 +273,7 @@ def test_random_recommendation_no_overlap(
     assert len(data["food_items"]) == 1
 
     recommended_item = data["food_items"][0]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 3
     assert recommended_item["name"] == "Banana Bread"
 
@@ -286,7 +286,7 @@ def test_random_recommendation_no_overlap(
 
     # Check that the item is not Ceasar Salad
     recommended_item = data["food_items"][0]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] != 1
     assert recommended_item["name"] != "Caesar Salad"
 
@@ -316,7 +316,7 @@ def test_random_recommendation_overlap(
 
     # Top recommendation should be the uneaten item
     recommended_item1 = data["food_items"][0]
-    assert recommended_item1["dining_location"] == "Tim Hortons"
+    assert recommended_item1["dining_location"] == "Basil Box"
     assert recommended_item1["id"] == 3
     assert recommended_item1["name"] == "Banana Bread"
 
@@ -339,7 +339,7 @@ def test_random_recommendation_overlap(
 
     # Check that the last of the recommended items is the Salad
     recommended_item3 = data["food_items"][2]
-    assert recommended_item3["dining_location"] == "Tim Hortons"
+    assert recommended_item3["dining_location"] == "Basil Box"
     assert recommended_item3["id"] == 1
     assert recommended_item3["name"] == "Caesar Salad"
 
@@ -357,12 +357,12 @@ def test_ideal_recommendation_old_user(
 
     # Based on Alice's consumption patterns, a Hamburger is prefered over Salad
     recommended_item = data["food_items"][0]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 2
     assert recommended_item["name"] == "Hamburger"
 
     recommended_item = data["food_items"][1]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 1
     assert recommended_item["name"] == "Caesar Salad"
 
@@ -392,12 +392,12 @@ def test_ideal_recommendation_new_user(client, seeded_extended_food_data):
 
     # At a baseline (no history), a Caesar salad is recommended over a burger
     recommended_item = data["food_items"][0]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 1
     assert recommended_item["name"] == "Caesar Salad"
 
     recommended_item = data["food_items"][1]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 2
     assert recommended_item["name"] == "Hamburger"
 
@@ -428,12 +428,12 @@ def test_nutrient_recommendation(
 
     # Hamburgers are higher in fat than salads
     recommended_item = data["food_items"][0]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 2
     assert recommended_item["name"] == "Hamburger"
 
     recommended_item = data["food_items"][1]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 1
     assert recommended_item["name"] == "Caesar Salad"
 
@@ -525,7 +525,7 @@ def test_similar_recommendations_some_overlap(
 
     # Check that the item is Banana bread
     recommended_item = data["food_items"][0]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 3
     assert recommended_item["name"] == "Banana Bread"
 
@@ -544,7 +544,7 @@ def test_similar_recommendations_some_overlap(
 
     # Check that the item is Hamburger
     recommended_item = data["food_items"][0]
-    assert recommended_item["dining_location"] == "Tim Hortons"
+    assert recommended_item["dining_location"] == "Basil Box"
     assert recommended_item["id"] == 2
     assert recommended_item["name"] == "Hamburger"
 
