@@ -1,0 +1,208 @@
+# username|food_name|dining_location|calories|percent_fruit_veg|percent_grain|percent_dairy|percent_protein|fat_g|carbs_g|proteins_g|fiber_g|sugar_g|days_ago
+
+# Alice – fan of sweets
+Alice|Blueberry Muffin|17|350|0|80|0|20|15.45|50.858|4.305|1.053|30.226|1
+Alice|Fruit Explosion Muffin|22|360|0|80|0|20|15.45|50.858|4.305|1.053|30.226|1
+Alice|Pumpkin Cream Cheese Muffin|17|350|0|80|0|20|15.45|50.858|4.305|1.053|30.226|2
+Alice|Carrot Cake|6|450|0|70|10|20|15.9|60.3|3.63|3.2|37.3|2
+Alice|Blueberry Muffin|17|350|0|80|0|20|15.45|50.858|4.305|1.053|30.226|2
+Alice|Strawberry Cake Pop|17|160|0|90|0|10|6.37|24.18|1.46|1.28|14.96|3
+Alice|Chocolate Chunk Cookie|17|320|0|90|0|10|4.47|25.74|1.95|0.349|6.14|4
+Alice|Blueberry Muffin|17|350|0|80|0|20|15.45|50.858|4.305|1.053|30.226|4
+Alice|Fruit Explosion Muffin|22|360|0|80|0|20|15.45|50.858|4.305|1.053|30.226|5
+Alice|Reese's Minis Dream Cookies|22|380|0|90|0|10|4.47|25.74|1.95|0.349|6.14|6
+Alice|Fruit Explosion Muffin|22|360|0|80|0|20|15.45|50.858|4.305|1.053|30.226|6
+Alice|Vanilla Dip Donut|22|250|0|85|0|15|7.5|24.4|1.27|0.492|14.4|7
+Alice|Carrot Cake|6|450|0|70|10|20|15.9|60.3|3.63|3.2|37.3|8
+Alice|Key Lime Cheesecake|6|450|0|60|20|20|15.9|60.3|3.63|3.2|37.3|9
+Alice|Fruit Explosion Muffin|22|360|0|80|0|20|15.45|50.858|4.305|1.053|30.226|9
+Alice|Rocky Road Brownie|6|260|0|70|0|30|11.27|44.18|3.32|1.45|25.3|10
+
+# Bob – loves hamburgers and pizza
+Bob|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|1
+Bob|Pepperoni Pizza Slice|21|570|0|50|0|50|13.6|29.3|11.5|1.73|3.07|1
+Bob|Bacon Cheeseburger|11|570|0|40|0|60|29.07|40.57|26.5|3.51|5.6|2
+Bob|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|2
+Bob|Pepperoni Pizza Slice|21|570|0|50|0|50|13.6|29.3|11.5|1.73|3.07|3
+Bob|Veggie Pizza Slice|21|470|10|40|10|40|11|31.1|19|3.98|7.01|3
+Bob|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|4
+Bob|Pepperoni Pizza Slice|21|570|0|50|0|50|13.6|29.3|11.5|1.73|3.07|4
+Bob|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|5
+Bob|Veggie Pizza Slice|21|470|10|40|10|40|11|31.1|19|3.98|7.01|5
+Bob|Bacon Cheeseburger|11|570|0|40|0|60|29.07|40.57|26.5|3.51|5.6|6
+Bob|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|6
+Bob|Pepperoni Pizza Slice|21|570|0|50|0|50|13.6|29.3|11.5|1.73|3.07|7
+Bob|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|8
+Bob|Pepperoni Pizza Slice|21|570|0|50|0|50|13.6|29.3|11.5|1.73|3.07|9
+Bob|Veggie Pizza Slice|21|470|10|40|10|40|11|31.1|19|3.98|7.01|10
+
+# Charlie – vegetarian
+Charlie|Veggie Pizza Slice|21|470|15|45|10|30|11|31.1|19|3.98|7.01|1
+Charlie|Leafy Greens Salad|13|80|80|10|0|10|2.97|11.68|1.826|1.349|6.651|1
+Charlie|Classic Grilled Cheese|15|360|0|40|40|20|23|33|14|0|3|2
+Charlie|Veggie Sandwich|15|360|20|50|10|20|23|33|14|0|3|2
+Charlie|Super Roots Bowl|24|625|40|40|0|20|7.739|111.71|28.037|3.475|20.152|3
+Charlie|Leafy Greens Salad|13|80|80|10|0|10|2.97|11.68|1.826|1.349|6.651|3
+Charlie|Perogies|12|350|0|70|0|30|2.059|61.765|10.294|2.1|0|4
+Charlie|Falafel Plate|16|330|20|40|0|40|17.67|31.54|13.177|0|0|4
+Charlie|Greek Yogurt & Chia Bowl|13|310|20|50|20|10|3.78|60.05|7.935|2.91|37.238|5
+Charlie|Leafy Greens Salad|13|80|80|10|0|10|2.97|11.68|1.826|1.349|6.651|5
+Charlie|Caesar Salad|13|80|60|20|10|10|2.97|11.68|1.826|1.349|6.651|6
+Charlie|Leafy Greens Salad|13|80|80|10|0|10|2.97|11.68|1.826|1.349|6.651|7
+Charlie|Veggie Sandwich|15|360|20|50|10|20|23|33|14|0|3|8
+Charlie|Super Roots Bowl|24|625|40|40|0|20|7.739|111.71|28.037|3.475|20.152|9
+Charlie|Leafy Greens Salad|13|80|80|10|0|10|2.97|11.68|1.826|1.349|6.651|10
+
+# Carol – only hamburgers
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|1
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|1
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|2
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|3
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|3
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|4
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|5
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|6
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|7
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|8
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|9
+Carol|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|10
+
+# Eve – only poutine
+Eve|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|1
+Eve|Chipotle Pulled Pork Poutine|4|900|0|40|40|20|54.9|53.713|76.264|0|2.563|1
+Eve|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|2
+Eve|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|3
+Eve|Chipotle Pulled Pork Poutine|4|900|0|40|40|20|54.9|53.713|76.264|0|2.563|3
+Eve|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|4
+Eve|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|5
+Eve|Chipotle Pulled Pork Poutine|4|900|0|40|40|20|54.9|53.713|76.264|0|2.563|6
+Eve|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|7
+Eve|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|8
+Eve|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|9
+Eve|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|10
+
+# Grace – loves Starbucks
+Grace|Blueberry Muffin|17|350|0|80|0|20|15.45|50.858|4.305|1.053|30.226|1
+Grace|Strawberry Cake Pop|17|160|0|90|0|10|6.37|24.18|1.46|1.28|14.96|1
+Grace|Pumpkin Cream Cheese Muffin|17|350|0|80|0|20|15.45|50.858|4.305|1.053|30.226|2
+Grace|Chocolate Chunk Cookie|17|320|0|90|0|10|4.47|25.74|1.95|0.349|6.14|2
+Grace|Bacon-Style Turkey, Cheddar & Egg Sandwich|17|230|0|40|30|30|9.788|82.44|43.18|5.666|12.894|3
+Grace|Strawberry Cake Pop|17|160|0|90|0|10|6.37|24.18|1.46|1.28|14.96|3
+Grace|Pumpkin & Pepita Loaf|17|380|5|55|0|40|4.762|76.51|14.19|4.286|8.349|4
+Grace|Chocolate Chunk Cookie|17|320|0|90|0|10|4.47|25.74|1.95|0.349|6.14|4
+Grace|Blueberry Muffin|17|350|0|80|0|20|15.45|50.858|4.305|1.053|30.226|5
+Grace|Strawberry Cake Pop|17|160|0|90|0|10|6.37|24.18|1.46|1.28|14.96|5
+Grace|Pumpkin Cream Cheese Muffin|17|350|0|80|0|20|15.45|50.858|4.305|1.053|30.226|6
+Grace|Bacon-Style Turkey, Cheddar & Egg Sandwich|17|230|0|40|30|30|9.788|82.44|43.18|5.666|12.894|6
+Grace|Blueberry Muffin|17|350|0|80|0|20|15.45|50.858|4.305|1.053|30.226|7
+Grace|Chocolate Chunk Cookie|17|320|0|90|0|10|4.47|25.74|1.95|0.349|6.14|7
+Grace|Strawberry Cake Pop|17|160|0|90|0|10|6.37|24.18|1.46|1.28|14.96|8
+Grace|Pumpkin & Pepita Loaf|17|380|5|55|0|40|4.762|76.51|14.19|4.286|8.349|9
+Grace|Blueberry Muffin|17|350|0|80|0|20|15.45|50.858|4.305|1.053|30.226|10
+
+# Judy – enjoys sandwiches
+Judy|Bacon-Style Turkey, Cheddar & Egg Sandwich|17|230|0|40|30|30|9.788|82.44|43.18|5.666|12.894|1
+Judy|Ham & Swiss Sandwich|25|530|0|40|30|30|9.788|82.44|43.18|5.666|12.894|1
+Judy|Chicken Salad Wrap|3|501|10|40|0|50|20|50.1|32.9|0|3.99|2
+Judy|Veggie Sandwich|15|360|25|45|10|20|23|33|14|0|3|2
+Judy|Chicken Club Pita|15|500|10|40|0|50|22.656|33.9|28.344|2.358|7.948|3
+Judy|Veggie Sandwich|15|360|25|45|10|20|23|33|14|0|3|3
+Judy|Ham & Swiss Sandwich|25|530|0|40|30|30|9.788|82.44|43.18|5.666|12.894|4
+Judy|Beef Brie Sandwich|25|490|0|40|30|30|9.788|82.44|43.18|5.666|12.894|4
+Judy|Chicken Salad Wrap|16|501|10|40|0|50|20|50.1|32.9|0|3.99|5
+Judy|Bacon Breakfast Sandwich|22|330|0|40|30|30|9.788|82.44|43.18|5.666|12.894|6
+Judy|Veggie Sandwich|15|360|25|45|10|20|23|33|14|0|3|7
+Judy|Chicken Club Pita|15|500|10|40|0|50|22.656|33.9|28.344|2.358|7.948|8
+Judy|Ham & Swiss Sandwich|25|530|0|40|30|30|9.788|82.44|43.18|5.666|12.894|9
+Judy|Beef Brie Sandwich|25|490|0|40|30|30|9.788|82.44|43.18|5.666|12.894|10
+
+# Mallory – tries everythin
+Mallory|Blueberry Muffin|17|350|0|80|0|20|15.45|50.858|4.305|1.053|30.226|1
+Mallory|Chicken Salad Wrap|3|501|10|40|0|50|20|50.1|32.9|0|3.99|1
+Mallory|Smoked Salmon Bagel|3|295|0|40|30|30|17|22.6|13|0.2|2.98|2
+Mallory|Chicken Club Pita|15|500|10|40|0|50|22.656|33.9|28.344|2.358|7.948|2
+Mallory|Pepperoni Pizza Slice|21|570|0|50|0|50|13.6|29.3|11.5|1.73|3.07|3
+Mallory|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|3
+Mallory|Pad Thai|20|760|20|50|0|30|6|165.8|12|4.1|40|4
+Mallory|Green Chicken Curry with Jasmine Rice|20|450|10|30|0|60|27.32|27.49|27.32|5.88|10.75|4
+Mallory|Beef Shawarma Combo|16|882|10|40|0|50|46|71.1|55|5.73|9|5
+Mallory|Super Roots Bowl|24|625|40|40|0|20|7.739|111.71|28.037|3.475|20.152|5
+Mallory|6" Steak and Bacon Sub|18|600|0|40|0|60|9.788|82.44|43.18|5.666|12.894|6
+Mallory|12" Steak and Bacon Sub|18|1200|0|40|0|60|9.788|82.44|43.18|5.666|12.894|6
+Mallory|Falafel Plate|16|330|20|40|0|40|17.67|31.54|13.177|0|0|7
+Mallory|Fried Chicken Sandwich|12|590|0|40|0|60|9.788|82.44|43.18|5.666|12.894|8
+Mallory|Rocky Road Brownie|6|260|0|70|0|30|11.27|44.18|3.32|1.45|25.3|8
+Mallory|Ice Cream|8|250|0|60|20|20|10.968|36.036|4.189|1.176|33.108|9
+Mallory|Pizza Pops|8|286|0|60|0|40|13.6|29.3|11.5|1.73|3.07|9
+Mallory|Kimchi Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|10
+Mallory|Chicken Samosa|10|310|0|50|0|50|17.5|33.2|5.14|1.8|1.28|10
+
+# Olivia – enjoys poutine and fries
+Olivia|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|1
+Olivia|Sweet Potato Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|1
+Olivia|Kimchi Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|2
+Olivia|Perogies|12|350|0|70|0|30|2.059|61.765|10.294|2.1|0|2
+Olivia|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|3
+Olivia|Sweet Potato Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|3
+Olivia|Perogies|12|350|0|70|0|30|2.059|61.765|10.294|2.1|0|4
+Olivia|Kimchi Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|4
+Olivia|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|5
+Olivia|Sweet Potato Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|6
+Olivia|Perogies|12|350|0|70|0|30|2.059|61.765|10.294|2.1|0|7
+Olivia|Kimchi Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|8
+Olivia|Poutine|4|1400|0|50|40|10|43.077|56.43|21.538|0|2.69|9
+Olivia|Sweet Potato Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|10
+
+# Peggy – prefers raw fish & poke
+Peggy|California Roll|2|290|0|70|0|30|7.99|63.1|8.99|0|7.99|1
+Peggy|Spicy Salmon Roll|2|360|0|70|0|30|7.99|63.1|8.99|0|7.99|1
+Peggy|Salmon Avocado Roll|2|340|0|70|0|30|7.99|63.1|8.99|0|7.99|2
+Peggy|Spicy California Crunch Roll|2|450|0|70|0|30|7.99|63.1|8.99|0|7.99|2
+Peggy|Tuna Poke Bowl|2|660|10|40|0|50|18.534|67.383|45.01|0|0|3
+Peggy|Tofu Poke Bowl|2|660|10|40|0|50|18.534|67.383|45.01|0|0|3
+Peggy|Donburi Inari Tofu|2|580|10|30|0|60|20.2|8.86|18.8|3.9|2.72|4
+Peggy|California Roll|2|290|0|70|0|30|7.99|63.1|8.99|0|7.99|5
+Peggy|Spicy Salmon Roll|2|360|0|70|0|30|7.99|63.1|8.99|0|7.99|5
+Peggy|Salmon Avocado Roll|2|340|0|70|0|30|7.99|63.1|8.99|0|7.99|6
+Peggy|Spicy California Crunch Roll|2|450|0|70|0|30|7.99|63.1|8.99|0|7.99|6
+Peggy|California Roll|2|290|0|70|0|30|7.99|63.1|8.99|0|7.99|7
+Peggy|Spicy Salmon Roll|2|360|0|70|0|30|7.99|63.1|8.99|0|7.99|8
+Peggy|Salmon Avocado Roll|2|340|0|70|0|30|7.99|63.1|8.99|0|7.99|9
+Peggy|California Roll|2|290|0|70|0|30|7.99|63.1|8.99|0|7.99|10
+
+# Trent – cheap
+Trent|Coconut Date Bite|3|180|0|60|0|40|8|26|3|0|16|1
+Trent|Ginger Cookie|3|150|0|90|0|10|4.47|25.74|1.95|0.349|6.14|1
+Trent|Strawberry Cake Pop|17|160|0|90|0|10|6.37|24.18|1.46|1.28|14.96|2
+Trent|Chocolate Dip Donut|22|220|0|85|0|15|7.5|24.4|1.27|0.492|14.4|2
+Trent|Chicken Samosa|10|310|0|50|0|50|17.5|33.2|5.14|1.8|1.28|3
+Trent|Vanilla Dip Donut|22|250|0|85|0|15|7.5|24.4|1.27|0.492|14.4|3
+Trent|Ice Cream|8|250|0|60|20|20|10.968|36.036|4.189|1.176|33.108|4
+Trent|Pizza Pops|8|286|0|60|0|40|13.6|29.3|11.5|1.73|3.07|4
+Trent|Rocky Road Brownie|6|260|0|70|0|30|11.27|44.18|3.32|1.45|25.3|5
+Trent|Coconut Date Bite|3|180|0|60|0|40|8|26|3|0|16|5
+Trent|Ginger Cookie|3|150|0|90|0|10|4.47|25.74|1.95|0.349|6.14|6
+Trent|Chocolate Dip Donut|22|220|0|85|0|15|7.5|24.4|1.27|0.492|14.4|7
+Trent|Vanilla Dip Donut|22|250|0|85|0|15|7.5|24.4|1.27|0.492|14.4|8
+Trent|Coconut Date Bite|3|180|0|60|0|40|8|26|3|0|16|9
+Trent|Ginger Cookie|3|150|0|90|0|10|4.47|25.74|1.95|0.349|6.14|10
+
+# Victor – fried-food fan
+Victor|5 Piece Chicken Wings|5|280|0|0|0|100|17.16|0|29.78|0|0|1
+Victor|Crispy Chicken Sandwich|5|620|0|40|0|60|9.788|82.44|43.18|5.666|12.894|1
+Victor|Fried Chicken Sandwich|12|590|0|40|0|60|9.788|82.44|43.18|5.666|12.894|2
+Victor|Popcorn Shrimp|10|320|0|40|0|60|19|27|11|0|9.09|2
+Victor|Kimchi Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|3
+Victor|Sweet Potato Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|3
+Victor|Pizza Pops|8|286|0|60|0|40|13.6|29.3|11.5|1.73|3.07|4
+Victor|Backed Mac & Cheese|5|422|0|50|20|30|18.1|49|15.8|3.11|4.33|4
+Victor|Chicken Samosa|10|310|0|50|0|50|17.5|33.2|5.14|1.8|1.28|5
+Victor|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|5
+Victor|Fried Chicken Sandwich|12|590|0|40|0|60|9.788|82.44|43.18|5.666|12.894|6
+Victor|Popcorn Shrimp|10|320|0|40|0|60|19|27|11|0|9.09|6
+Victor|Kimchi Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|7
+Victor|Sweet Potato Fries|12|380|10|50|0|40|15.2|58.27|5.067|5.117|0|7
+Victor|Pizza Pops|8|286|0|60|0|40|13.6|29.3|11.5|1.73|3.07|8
+Victor|Backed Mac & Cheese|5|422|0|50|20|30|18.1|49|15.8|3.11|4.33|8
+Victor|Hamburger|4|470|0|40|0|60|29.07|40.57|26.5|3.51|5.6|9
+Victor|5 Piece Chicken Wings|5|280|0|0|0|100|17.16|0|29.78|0|0|10
