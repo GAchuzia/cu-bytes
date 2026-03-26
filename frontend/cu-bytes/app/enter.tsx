@@ -13,8 +13,12 @@ import { API_BASE_URL } from '../services/api';
 export default function EnterScreen() {
 
     const [loading, setLoading] = useState(true);
-    const [visible, setVisible] = useState(false);
-    const [modalVisible, setModalVisible] = useState(false);
+
+    const [foodItemSaved, setFoodItemSaved] = useState(false);    
+    const [foodItemSelected, setFoodItemSelected] = useState(false);
+    const [foodItemInfoVisible, setFoodItemInfoVisible] = useState(false);
+    const [foodItemWarningVisible, setFoodItemWarningVisible] = useState(false);
+
     const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isSearchPressed, setIsSearchPressed] = useState(false);
@@ -141,142 +145,33 @@ export default function EnterScreen() {
     const [filteredFoodItemArray, setFilteredFoodItemArray] = useState([]);
 
     /*
-        Calculate how to display the calories of the selected food item
-        If the value of the calories key is -1, then there is an "Unknown" number of calories
-        If the value of the calories key is not -1, then the displayed calorie amount is equal to that of the calories key value
+        Filter the array of food items by the entered string value
+        If the name of the food item includes the entered string, store the food item in the filtered array
 
         param(s):
-            calories - number : The number of calories of the selected food item, as per the calorie key value
-        
-        returns : The calories value of the selected food item
+            name - string : The entered string, representing a possible food item name
     */
-    function processFoodItemCalories(calories: number) {
-
-        if (calories == -1) {
-            return "Unknown" 
-        }
-        else { 
-            return calories;
-        }
+    const filterFoodItemArray = (name: string) => {
+        const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"].toLowerCase() as string).includes(name.toLowerCase()));
+        setFilteredFoodItemArray(filteredFoodItemArray);
     }
 
     /*
-        Calculate how to display the cost of the selected food item
-        If the value of the cost key is -1, then there is an "Unknown" cost for the food item
-        If the value of the cost key is not -1, then the displayed cost is equal to that of the cost key value
+        Calculate how to display the attribute of the food item
+        Used for processing the calories, carbs, fat, fiber, proteins, and sugar food item attributes
 
         param(s):
-            cost - number : The cost of the selected food item, as per the cost key value
+            attribute - number : The value of an attribute of the food item
 
-        returns : The cost of the selected food item
+        returns : The updated attribute value of the food item
     */
-    function processFoodItemCost(cost: number) {
+    function processFoodItemAttribute(attribute: number) {
 
-        if (cost == -1) {
-            return "Unknown"
+        if (attribute == -1) {
+            return "Unknown";
         }
         else {
-            return cost
-        }
-    }
-
-    /*
-        Calculate how to display the amount of carbs for the selected food item
-        If the value of the carbs_g key is -1, then there is an "Unknown" amount of carbs for the food item
-        If the value of the carbs_g key is not -1, then the displayed amount of carbs is equal to that of the carbs_g key value
-
-        param(s):
-            carbs - number : The amount of carbs in grams for the selected food item, as per the carbs_g key value
-
-        returns : The amount of carbs for the selected food item
-    */
-    function processFoodItemCarbs(carbs: number) {
-
-        if (carbs == -1) {
-            return "Unknown"
-        }
-        else {
-            return carbs
-        }
-    }
-
-    /*
-        Calculate how to display the amount of fat for the selected food item
-        If the value of the fat_g key is -1, then there is an "Unknown" amount of fat for the food item
-        If the value of the fat_g key is not -1, then the displayed amount of fat is equal to that of the fat_g key value
-
-        param(s):
-            fat - number : The amount of fat in grams for the selected food item, as per the fat key value
-
-        returns : The amount of fat for the selected food item
-    */
-    function processFoodItemFat(fat: number) {
-
-        if (fat == -1) {
-            return "Unknown"
-        }
-        else {
-            return fat
-        }
-    }
-
-    /*
-        Calculate how to display the amount of fiber for the selected food item
-        If the value of the fiber_g key is -1, then there is an "Unknown" amount of fiber for the food item
-        If the value of the fiber_g key is not -1, then the displayed amount of fiber is equal to that of the fiber_g key value
-
-        param(s):
-            fiber - number : The amount of fiber in grams for the selected food item, as per the fiber key value
-
-        returns : The amount of fiber for the selected food item
-    */
-    function processFoodItemFiber(fiber: number) {
-
-        if (fiber == -1) {
-            return "Unknown"
-        }
-        else {
-            return fiber
-        }
-    }
-
-    /*
-        Calculate how to display the amount of proteins for the selected food item
-        If the value of the proteins_g key is -1, then there is an "Unknown" amount of proteins for the food item
-        If the value of the proteins_g key is not -1, then the displayed amount of proteins is equal to that of the proteins_g key value
-
-        param(s):
-            proteins - number : The amount of proteins in grams for the selected food item, as per the proteins key value
-
-        returns : The amount of proteins for the selected food item
-    */
-    function processFoodItemProteins(proteins: number) {
-
-        if (proteins == -1) {
-            return "Unknown"
-        }
-        else {
-            return proteins
-        }
-    }
-
-    /*
-        Calculate how to display the amount of sugar for the selected food item
-        If the value of the sugar_g key is -1, then there is an "Unknown" amount of sugar for the food item
-        If the value of the sugar_g key is not -1, then the displayed amount of sugar is equal to that of the sugar_g key value
-
-        param(s):
-            sugar - number : The amount of sugar in grams for the selected food item, as per the sugar key value
-
-        returns : The amount of sugar for the selected food item
-    */
-    function processFoodItemSugar(sugar: number) {
-
-        if (sugar == -1) {
-            return "Unknown"
-        }
-        else {
-            return sugar
+            return attribute;
         }
     }
 
@@ -292,14 +187,14 @@ export default function EnterScreen() {
 
         return [
             { field_name: "Name", field_value: foodItem["name"]},
-            { field_name: "Calories", field_value: processFoodItemCalories(foodItem["calories"]) },
+            { field_name: "Calories", field_value: processFoodItemAttribute(foodItem["calories"]) },
             { field_name: "Location", field_value: foodItem["dining_location"] },
-            { field_name: "Cost", field_value: "$ " + processFoodItemCost(foodItem["cost"]) },
-            { field_name: "Carbs", field_value: processFoodItemCarbs(foodItem["carbs_g"]) + " grams" },
-            { field_name: "Fat", field_value: processFoodItemFat(foodItem["fat_g"]) + " grams" },
-            { field_name: "Fiber", field_value: processFoodItemFiber(foodItem["fiber_g"]) + " grams" },
-            { field_name: "Proteins", field_value: processFoodItemProteins(foodItem["proteins_g"]) + " grams" },
-            { field_name: "Sugar", field_value: processFoodItemSugar(foodItem["sugar_g"]) + " grams" }
+            { field_name: "Cost", field_value: "$ " + processFoodItemAttribute(foodItem["cost"]) },
+            { field_name: "Carbs", field_value: processFoodItemAttribute(foodItem["carbs_g"]) + " grams" },
+            { field_name: "Fat", field_value: processFoodItemAttribute(foodItem["fat_g"]) + " grams" },
+            { field_name: "Fiber", field_value: processFoodItemAttribute(foodItem["fiber_g"]) + " grams" },
+            { field_name: "Proteins", field_value: processFoodItemAttribute(foodItem["proteins_g"]) + " grams" },
+            { field_name: "Sugar", field_value: processFoodItemAttribute(foodItem["sugar_g"]) + " grams" }
         ]
     }
 
@@ -497,18 +392,6 @@ export default function EnterScreen() {
             setLoading(false);
         }
     }
-    
-    /*
-        Filter the array of food items by the entered string value
-        If the name of the food item includes the entered string, store the food item in the filtered array
-
-        param(s):
-            name - string : The entered string, representing a possible food item name
-    */
-    const filterFoodItemArray = (name: string) => {
-        const filteredFoodItemArray = foodItemArray.filter(foodItem => (foodItem["name"].toLowerCase() as string).includes(name.toLowerCase()));
-        setFilteredFoodItemArray(filteredFoodItemArray);
-    }
 
     /*
         Log out the logged-in user by setting their profile settings to false, and routing to the splash page
@@ -606,7 +489,9 @@ export default function EnterScreen() {
                         onPressOut={() => setIsSearchPressed(false)}
                         onPress={() => {
                             filterFoodItemArray(foodItemName);
-                            setVisible(false);}}
+                            setFoodItemSelected(false);
+                            setFoodItemInfoVisible(false);
+                            setFoodItemWarningVisible(false);}}
                         activeOpacity={0.92}>
 
                         <Text id="browseFoodItemsButtonText" style={sc.bodyButtonText}>
@@ -615,13 +500,13 @@ export default function EnterScreen() {
                     </TouchableOpacity>
                 </View>
 
-                {filteredFoodItemArray.length == 0 && !visible && (
+                {filteredFoodItemArray.length === 0 && !foodItemSelected && (
                     <Text id="browseFoodItemsFailureText" style={styles.emptyState}>
                         No food items found
                     </Text>
                 )}
 
-                {filteredFoodItemArray && !visible && filteredFoodItemArray.length > 0 && (
+                {filteredFoodItemArray.length >= 0 && !foodItemSelected && (
                     <View id="browseFoodItemsSuccessView" style={[sc.card, styles.listStack, { padding: 0, overflow: 'hidden' }]}>
 
                         {filteredFoodItemArray.map((foodItem) => (
@@ -629,14 +514,16 @@ export default function EnterScreen() {
                                 key={foodItem["id"]}
                                 onPress={() => {
                                     getFoodItem(foodItem["id"]);
-                                    setVisible(true);}}>
+                                    setFoodItemSelected(true);
+                                    setFoodItemInfoVisible(true);
+                                    setFoodItemWarningVisible(true);}}>
                                 {foodItem["name"]}
                             </Text>
                         ))}
                     </View>
                 )}
 
-                {visible && (
+                {foodItemSelected && foodItemInfoVisible && (
                     <View id="foodItemOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
                         <FlatList id="foodItemFlatList"
                             data={processSelectedFoodItem(foodItem)}
@@ -651,7 +538,7 @@ export default function EnterScreen() {
                     </View>
                 )}
 
-                {visible && (
+                {foodItemSelected && foodItemWarningVisible && (
                     <View id="warningOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
                         <FlatList id="warningFlatList"
                             data={processSelectedFoodItemWarnings(foodItem)}
@@ -666,13 +553,15 @@ export default function EnterScreen() {
                     </View>
                 )}
 
-                {usernameGlobal != "" && visible && (
+                {usernameGlobal != "" && foodItemSelected && (
                     <TouchableOpacity id="saveFoodItemButton" style={sc.bodyButton}
                         onPress={() => {
                             logFoodItemById(foodItem.id);
-                            setVisible(false);
-                            setModalVisible(true);
-                            setTimeout(() => {setModalVisible(false);}, 8000);
+                            setFoodItemSelected(false);
+                            setFoodItemInfoVisible(false);
+                            setFoodItemWarningVisible(false);
+                            setFoodItemSaved(true);
+                            setTimeout(() => {setFoodItemSaved(false);}, 2000);
                             router.push("/home");}}
                         disabled={loading}
                         activeOpacity={0.92}>
@@ -683,11 +572,11 @@ export default function EnterScreen() {
                     </TouchableOpacity>
                 )}
 
-                {usernameGlobal != "" && modalVisible && (
+                {usernameGlobal != "" && foodItemSaved && (
                     <Modal id="savedFoodItemModal"
                         animationType="fade"
                         transparent={true}
-                        visible={modalVisible}>
+                        visible={foodItemSaved}>
 
                         <View id="savedFoodItemOuterView" style={styles.savedFoodItemMessageContainer}>
                             <View id="savedFoodItemInnerView" style={styles.savedFoodItemInner}>
