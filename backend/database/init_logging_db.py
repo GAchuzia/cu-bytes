@@ -10,9 +10,10 @@ app = create_app()
 
 def load_dummy_transactions_from_file(path: str):
     """
-    Creates users based on transaction transactions information whose expected
-    format where each row represents one transaction.
-    Columns, which should be separated by "|"s should be ordered as follows:
+    Load and create dummy transactions from a file.
+
+    Each non-empty, non-comment line in the file represents a single transaction.
+    Columns must be separated by "|" and appear in the following order:
         username
         food_name
         dining_location (int)
