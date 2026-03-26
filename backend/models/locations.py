@@ -1,6 +1,40 @@
 # Project imports
 from backend.extensions import db
 
+# List of dining locations
+DINING_LOCATIONS = {
+    1: "Basil Box",
+    2: "Bento Boxes",
+    3: "Bridgehead",
+    4: "Burger 101",
+    5: "Colonel by Chicken",
+    6: "CT-Pastry",
+    7: "La Cocina",
+    8: "Leo's Lounge",
+    9: "Medi Eats",
+    10: "Mike's Place",
+    11: "Oasis",
+    12: "Ollies",
+    13: "Riverbank Social",
+    14: "Rodney's Kitchen",
+    15: "Rooster's",
+    16: "Shawarma Palace",
+    17: "Starbucks",
+    18: "Subway",
+    19: "Teraanga Commons Dining Hall",
+    20: "Thai Kitchen",
+    21: "The Market Pizzeria",
+    22: "Tim Hortons",
+    23: "Tunnel Junction",
+    24: "Twisted Beet",
+    25: "Urban Deli",
+}
+
+
+# ID to name lookup
+def get_dining_location_name(dining_location_id):
+    return DINING_LOCATIONS.get(dining_location_id, "Unknown")
+
 
 class DiningLocation(db.Model):
     # Specify the database, the table and primary key

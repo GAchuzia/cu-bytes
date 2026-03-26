@@ -11,30 +11,29 @@ if __name__ == "__main__":
         db.drop_all(bind_key="auth")
         db.create_all(bind_key="auth")
 
-        # Create dummy users
-        create_user("Alice", "Password123!")
-        create_user("Bob", "Secret456!")
-        create_user("Charlie", "IamAdmin789!")
-        create_user("Dave", "UniquePass222!")
+        usernames = [
+            "Alice",
+            "Bob",
+            "Charlie",
+            "Carol",
+            "Eve",
+            "Grace",
+            "Judy",
+            "Mallory",
+            "Olivia",
+            "Peggy",
+            "Trent",
+            "Victor",
+        ]
 
-        # Allows stats sharing for some users
-        edit_profile_json(
-            {
-                "username": "Alice",
-                "show_stats": True,
-            }
-        )
-        edit_profile_json(
-            {
-                "username": "Bob",
-                "show_stats": True,
-            }
-        )
-        edit_profile_json(
-            {
-                "username": "Dave",
-                "show_stats": True,
-            }
-        )
+        # Create dummy users with stats sharing enabled
+        for name in usernames:
+            create_user(name, "Password123!")
+            edit_profile_json(
+                {
+                    "username": name,
+                    "show_stats": True,
+                }
+            )
 
         print("Created auth.db and added dummy users.")

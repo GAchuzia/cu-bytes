@@ -659,3 +659,31 @@ Vegetable Market Wrap,Tunnel Junction,7.6,460,N,N,Y,Y,N,,N,N,Y,N,N,N,N,Y,,9/26/2
 Vegetable Provolone Wrap,Teraanga Commons Dining Hall,,260,F,F,F,F,N,"carrot, red onion, zucchini, bell pepper, lettuce, tomato, provolone cheese, basil pesto mayo, tortilla",N,N,Y,N,,,N,Y,,10/6/2025,Wrap (No protein)
 Sauteed Zucchini,Teraanga Commons Dining Hall,,40,T,T,T,T,Y,,N,N,N,N,N,N,N,N,,10/6/2025,Zucchini
 Zucchini,Teraanga Commons Dining Hall,,,T,T,T,T,Y,,N,N,N,N,N,N,N,N,N,10/6/2025,Zucchini
+Piri'd Up Bowl,Twisted Beet,6.5,,Y,Y,Y,Y,Y,,N,N,N,N,,,N,N,,3/23/2026,Rice Bowl
+Build Your Own Bowl,Twisted Beet,10.4,,,Y,Y,Y,Y,"Build your own delicious creation by choosing your base, a variety of vegetables, protein and dressing!",N,,,N,N,,N,,Y,3/23/2026,Rice Bowl
+Go for the Greek Bowl,Twisted Beet,10,,Y,Y,Y,Y,Y,"Quinoa with chickpease, cucumber, roasted red peppers, pickled red onion, tomato, olives on mixed greens and kalamata vinaigrette",N,N,N,N,N,N,N,N,Y,3/23/2026,Rice Bowl
+My Moji Bowl,Twisted Beet,10,,Y,Y,Y,Y,Y,"Brown rice, chickpease, beets, roasted cauliflower, sweet potato, and green onion on kale mixed greens, spicy harissa vinaigrette",N,N,N,N,N,N,N,N,Y,3/23/2026,Rice Bowl
+Lemongrass Lover Bowl,Twisted Beet,10,,Y,Y,Y,Y,Y,"Rice noodles, cucumber, pickled carrot, roasted broccoli, red cabbage, green onion on mixed greens, Thai green curry vinaigrette",N,Y,,N,N,,N,,Y,3/23/2026,Rice Bowl
+Piri Piri Bowl,Twisted Beet,10,,Y,Y,Y,Y,Y,"Brown rice, white beans, roasted corn, pickled carrots, red cabbage, green onion, mixed greens, spicy piri piri vinaigrette",N,N,N,N,N,N,N,N,Y,3/23/2026,Rice Bowl
+Super Roots Bowl,Twisted Beet,10,,Y,Y,Y,Y,Y,"Qunoa, lentils, beets, roasted broccoli, sweet potato, kale mixed greens, zesty ginger tumeric vinaigrette",N,N,N,N,N,,N,,Y,3/23/2026,Rice Bowl
+BYO Box,Basil Box,14.75,,,,,,,"Choose your base, your veggies, your protein, your sauce and your box toppings",,,,,,,,,,3/24/2026,Rice Bowl
+Budget Friendly Box,Basil Box,10,,,,,,,,,,,,,,,,,3/24/2026,Rice Bowl
+Nutty Chicken,Basil Box,14.75,,N,N,,N,Y,"A vibrant bowl of brown rice with lemongrass chicken, sweet potatoes, edamame, peanut sauce, picked veggies and crispy onions",N,N,N,Y,Y,Y,,N,,3/24/2026,Rice Bowl
+Tofu Delight,Basil Box,14.75,,,N,Y,Y,Y,"Fresh spring mix with coconut curry tofu, sauteed peppers, lemongrass corn, tangy tamarind, pickled veggies and crispy onions",N,N,N,,Y,,,N,,3/24/2026,Rice Bowl
+Zesty Steak,Basil Box,14.75,,N,N,,N,Y,"Fresh spring mix topped with satay steak, sauteed peppers, roasted edamame, tangy tamarind, pickled veggies, and crispy onions",N,N,N,Y,Y,Y,,N,,3/24/2026,Rice Bowl
+Signature Chicken,Basil Box,14.75,,N,N,,N,Y,"Jasmine rice with lemongrass chicken, roasted eggplant, lemongrass corn, tamarind, yuzu mayo, picked veggies, cirspy onions",Y,N,N,,Y,Y,,N,,3/24/2026,Rice Bowl
+Yuzu Tofu,Basil Box,14.75,,,N,Y,Y,Y,"Fresh spring mix with coconut curry tofu, charred sweet potatoes, lemongrass corn, yuzu, pickled veggies, crispy onions",N,N,N,,Y,Y,,N,,3/24/2026,Rice Bowl
+Hearty Steak,Basil Box,14.75,,N,N,,N,Y,"Jasmine rice with satay steak, charred sweet potato, roast edamame, yellow curry, sweet chilli mayo, picked veggies, crispy onions",Y,,N,Y,Y,Y,,N,,3/24/2026,Rice Bowl
+Basil Chicken on Rice,Basil Box,14.95,,N,N,,N,Y,"Classic Thai dish Pad Kaprao - Lemongrass chcicken pan fried with fish sauce, garlic, Thai basil, served with Jasmine rice",N,Y,N,,Y,Y,,N,,3/24/2026,Rice Bowl
+Chicken Souvlaki Combo,Medi Eats,10,,N,Y,N,N,N,,N,N,Y,N,N,N,N,Y,,3/24/2026,Shwarma
+Beef Gyros Combo,Medi Eats,10,,N,N,N,N,N,,N,N,Y,N,N,,N,Y,,3/24/2026,Shwarma
+Chickpea and Spinach Combo,Medi Eats,10,,N,Y,N,N,N,,N,N,Y,N,,N,N,Y,,3/24/2026,Shwarma
+Greek Roasted Potatoes,Medi Eats,4,340,Y,Y,Y,Y,N,,N,N,Y,N,N,N,N,N,,3/24/2026,Potato
+Greek Salad,Medi Eats,4,220,N,Y,Y,Y,N,,N,N,Y,N,N,N,N,N,,3/24/2026,Green Salad
+Chicken Souvlaki Pita with Potatoes,Medi Eats,9.1,500,N,N,Y,N,N,,N,N,Y,N,N,N,N,Y,,3/24/2026,Shwarma
+Mediterranean Chicken Salad,Medi Eats,5.8,,N,N,N,N,N,,N,N,Y,N,N,N,N,N,,3/24/2026,Salad With Protein
+Beef Gyros Pita with Potatoes,Medi Eats,9.1,900,N,N,N,N,N,,N,N,Y,N,N,,N,Y,,3/24/2026,Shwarma
+Loaded Greek Potatoes,Medi Eats,4.85,480,N,N,Y,Y,N,,N,N,Y,N,N,N,N,N,,3/24/2026,Potato
+Chicken Souvlaki Salad,Medi Eats,9.1,,N,N,N,N,N,,N,N,Y,N,N,N,N,N,,3/24/2026,Salad With Protein
+Chickpea & Spinach Pita with Potatoes,Medi Eats,9.1,,N,N,Y,Y,N,,N,N,Y,N,,N,N,Y,,3/24/2026,Shawarma
+Mediterranean Salad,Medi Eats,5.8,,N,N,Y,Y,N,,N,N,Y,N,N,N,N,N,,3/24/2026,Green Salad

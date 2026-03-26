@@ -187,7 +187,7 @@ def seeded_dining_location_data(app):
     add_test_food_item(app, "Hamburger", "Burger")
     add_test_food_item(app, "Banana Bread", "Loaf")
 
-    add_test_dining_location(app, "Tim Hortons")
+    add_test_dining_location(app, "Basil Box")
 
     yield  # test runs here
 
@@ -201,9 +201,9 @@ def seeded_dining_location_data(app):
 @pytest.fixture
 def seeded_dining_locations(app):
     """Setup a small dining_locations DB for each test in this file."""
-    add_test_dining_location(app, "Tim Hortons")
-    add_test_dining_location(app, "Subway")
-    add_test_dining_location(app, "Colonel by Chicken")
+    add_test_dining_location(app, "Basil Box")
+    add_test_dining_location(app, "Bento Boxes")
+    add_test_dining_location(app, "Bridgehead")
 
     yield  # test runs here
 
