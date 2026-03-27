@@ -312,16 +312,16 @@ export default function StatisticsScreen() {
         return [
             { field_name: "Balanced Food Groups Percentile", field_value: stats["balanced_food_groups_percentile"] },
             { field_name: "Balanced Macronutrients Percentile", field_value: stats["balanced_macronutrients_percentile"] },
-            { field_name: "Food Logging Percentile", field_value: stats["food_logging_percentile"] },
+            { field_name: "Number of Days Active", field_value: stats["checkin_percentile"] + ' day(s)' },            
+            { field_name: "Number of Items Logged", field_value: stats["food_logging_percentile"] + ' item(s)' },
             { field_name: "Carbs Percentile", field_value: stats["carbs_percentile"] },
-            { field_name: "Chicken Percentile", field_value: stats["checkin_percentile"] },
-            { field_name: "Dairy Percentile", field_value: stats["dairy_percentile"] },
             { field_name: "Fat Percentile", field_value: stats["fat_percentile"] },
             { field_name: "Fiber Percentile", field_value: stats["fiber_percentile"] },
+            { field_name: "Protein Percentile", field_value: stats["protein_fg_percentile"] },
+            { field_name: "Sugar Percentile", field_value: stats["sugar_percentile"] },
+            { field_name: "Dairy Percentile", field_value: stats["dairy_percentile"] },
             { field_name: "Fruits / Vegs Percentile", field_value: stats["fruits_veg_percentile"] },
             { field_name: "Grain Percentile", field_value: stats["grain_percentile"] },
-            { field_name: "Protein Percentile", field_value: stats["protein_fg_percentile"] },
-            { field_name: "Sugar Percentile", field_value: stats["sugar_percentile"] }
         ]
     }
 
