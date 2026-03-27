@@ -244,11 +244,11 @@ export default function ScanScreen() {
             { field_name: "Name", field_value: foodItem["food_name"]},
             { field_name: "Confidence", field_value: foodItem["confidence"] + " %" },
             { field_name: "Calories", field_value: processFoodItemAttribute(foodItem["calories"]) },
-            { field_name: "Carbs", field_value: processFoodItemAttribute(foodItem["carbs_g"]) + " grams" },
-            { field_name: "Fat", field_value: processFoodItemAttribute(foodItem["fat_g"]) + " grams" },
-            { field_name: "Fiber", field_value: processFoodItemAttribute(foodItem["fiber_g"]) + " grams" },
-            { field_name: "Proteins", field_value: processFoodItemAttribute(foodItem["proteins_g"]) + " grams" },
-            { field_name: "Sugar", field_value: processFoodItemAttribute(foodItem["sugar_g"]) + " grams" }
+            { field_name: "Carbs", field_value: processFoodItemAttribute(foodItem["carbs_g"]) + " grams*" },
+            { field_name: "Fat", field_value: processFoodItemAttribute(foodItem["fat_g"]) + " grams*" },
+            { field_name: "Fiber", field_value: processFoodItemAttribute(foodItem["fiber_g"]) + " grams*" },
+            { field_name: "Proteins", field_value: processFoodItemAttribute(foodItem["proteins_g"]) + " grams*" },
+            { field_name: "Sugar", field_value: processFoodItemAttribute(foodItem["sugar_g"]) + " grams*" }
         ]
     }
 
@@ -267,11 +267,11 @@ export default function ScanScreen() {
             { field_name: "Calories", field_value: processFoodItemAttribute(foodItem["calories"]) },
             { field_name: "Location", field_value: foodItem["dining_location"] },
             { field_name: "Cost", field_value: "$ " + processFoodItemAttribute(foodItem["cost"]) },
-            { field_name: "Carbs", field_value: processFoodItemAttribute(foodItem["carbs_g"]) + " grams" },
-            { field_name: "Fat", field_value: processFoodItemAttribute(foodItem["fat_g"]) + " grams" },
-            { field_name: "Fiber", field_value: processFoodItemAttribute(foodItem["fiber_g"]) + " grams" },
-            { field_name: "Proteins", field_value: processFoodItemAttribute(foodItem["proteins_g"]) + " grams" },
-            { field_name: "Sugar", field_value: processFoodItemAttribute(foodItem["sugar_g"]) + " grams" }
+            { field_name: "Carbs", field_value: processFoodItemAttribute(foodItem["carbs_g"]) + " grams*" },
+            { field_name: "Fat", field_value: processFoodItemAttribute(foodItem["fat_g"]) + " grams*" },
+            { field_name: "Fiber", field_value: processFoodItemAttribute(foodItem["fiber_g"]) + " grams*" },
+            { field_name: "Proteins", field_value: processFoodItemAttribute(foodItem["proteins_g"]) + " grams*" },
+            { field_name: "Sugar", field_value: processFoodItemAttribute(foodItem["sugar_g"]) + " grams*" }
         ]
     }
 
@@ -735,6 +735,9 @@ export default function ScanScreen() {
                             )}>
                         </FlatList>
 
+                        <Text id="noteInfoText" style={styles.listRowText}>
+                            * = estimate from USDA food database 
+                        </Text>
                     </View>
                 )}
 
@@ -754,7 +757,10 @@ export default function ScanScreen() {
                                 </View>
                             )}>
                         </FlatList>
-
+                        
+                        <Text id="noteInfoText" style={styles.listRowText}>
+                            Allergy information on this page is derived from an aggregation of Carleton data, and may not be entirely accurate
+                        </Text>
                     </View>
                 )}
 
@@ -939,6 +945,9 @@ export default function ScanScreen() {
                             )}>
                         </FlatList>
 
+                        <Text id="noteInfoText" style={styles.listRowText}>
+                            * = estimate from USDA food database 
+                        </Text>
                     </View>
                 )}
 
@@ -956,7 +965,6 @@ export default function ScanScreen() {
                                 </View>
                             )}>
                         </FlatList>
-
                     </View>
                 )}
 

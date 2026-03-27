@@ -310,10 +310,10 @@ export default function StatisticsScreen() {
     const processComparativeStatistics = (stats: any) => {
 
         return [
-            { field_name: "Balanced Food Groups Percentile", field_value: stats["balanced_food_groups_percentile"] },
-            { field_name: "Balanced Macronutrients Percentile", field_value: stats["balanced_macronutrients_percentile"] },
             { field_name: "Number of Days Active", field_value: stats["checkin_percentile"] + ' day(s)' },            
-            { field_name: "Number of Items Logged", field_value: stats["food_logging_percentile"] + ' item(s)' },
+            { field_name: "Number of Items Logged", field_value: stats["food_logging_percentile"] + ' item(s)' },   
+            { field_name: "Balanced Macronutrients Percentile", field_value: stats["balanced_macronutrients_percentile"] },                     
+            { field_name: "Balanced Food Groups Percentile", field_value: stats["balanced_food_groups_percentile"] },
             { field_name: "Carbs Percentile", field_value: stats["carbs_percentile"] },
             { field_name: "Fat Percentile", field_value: stats["fat_percentile"] },
             { field_name: "Fiber Percentile", field_value: stats["fiber_percentile"] },
