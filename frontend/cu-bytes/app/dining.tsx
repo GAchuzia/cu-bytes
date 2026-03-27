@@ -297,11 +297,11 @@ export default function DiningScreen() {
             { field_name: "Calories", field_value: processFoodItemCalories(foodItem["calories"]) },
             { field_name: "Location", field_value: foodItem["dining_location"] },
             { field_name: "Cost", field_value: "$ " + processFoodItemCost(foodItem["cost"]) },
-            { field_name: "Carbs", field_value: processFoodItemCarbs(foodItem["carbs_g"]) + " grams" },
-            { field_name: "Fat", field_value: processFoodItemFat(foodItem["fat_g"]) + " grams" },
-            { field_name: "Fiber", field_value: processFoodItemFiber(foodItem["fiber_g"]) + " grams" },
-            { field_name: "Proteins", field_value: processFoodItemProteins(foodItem["proteins_g"]) + " grams" },
-            { field_name: "Sugar", field_value: processFoodItemSugar(foodItem["sugar_g"]) + " grams" }
+            { field_name: "Carbs", field_value: processFoodItemCarbs(foodItem["carbs_g"]) + " grams*" },
+            { field_name: "Fat", field_value: processFoodItemFat(foodItem["fat_g"]) + " grams*" },
+            { field_name: "Fiber", field_value: processFoodItemFiber(foodItem["fiber_g"]) + " grams*" },
+            { field_name: "Proteins", field_value: processFoodItemProteins(foodItem["proteins_g"]) + " grams*" },
+            { field_name: "Sugar", field_value: processFoodItemSugar(foodItem["sugar_g"]) + " grams*" }
         ]
     }
 
@@ -757,6 +757,10 @@ export default function DiningScreen() {
                                 </View>
                             )}>
                         </FlatList>
+
+                        <Text id="noteInfoText" style={styles.listRowText}>
+                            * = estimate from USDA food database 
+                        </Text>
                     </View>
                 )}
 
