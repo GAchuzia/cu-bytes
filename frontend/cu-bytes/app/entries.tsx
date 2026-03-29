@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, FlatList, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -275,25 +275,23 @@ export default function EntriesScreen() {
                 ) : null}
 
                 {foodItemArray && foodItemArray.length > 0 && !visible ? (
-                    <FlatList
-                        data={foodItemArray}
-                        scrollEnabled={true}
-                        renderItem={({ item }) => (
-                            <View id="rowView" style={styles.entryCard}>
-                                {line('Name', item["food_name"])}
-                                {line('Location', item["dining_location"])}
-                                {line('Calories', processFoodItemCalories(item["calories"]))}
-                                {line('Carbs', `${processFoodItemCarbs(item["carbs_g"])} g`)}
-                                {line('Fat', `${processFoodItemFat(item["fat_g"])} g`)}
-                                {line('Fiber', `${processFoodItemFiber(item["fiber_g"])} g`)}
-                                {line('Protein', `${processFoodItemProteins(item["proteins_g"])} g`)}
-                                {line('Sugar', `${processFoodItemSugar(item["sugar_g"])} g`)}
-                                {line('Saved', item["transaction_time"])}
-                            </View>
-                        )}
-                        keyExtractor={(foodItem, index) =>
-                            `${foodItem["food_name"]}-${foodItem["transaction_time"]}-${index}`}
-                    />
+                    foodItemArray.map((item, index) => (
+                        <View
+                            id="rowView"
+                            style={styles.entryCard}
+                            key={`${item["food_name"]}-${item["transaction_time"]}-${index}`}
+                        >
+                            {line('Name', item["food_name"])}
+                            {line('Location', item["dining_location"])}
+                            {line('Calories', processFoodItemCalories(item["calories"]))}
+                            {line('Carbs', `${processFoodItemCarbs(item["carbs_g"])} g`)}
+                            {line('Fat', `${processFoodItemFat(item["fat_g"])} g`)}
+                            {line('Fiber', `${processFoodItemFiber(item["fiber_g"])} g`)}
+                            {line('Protein', `${processFoodItemProteins(item["proteins_g"])} g`)}
+                            {line('Sugar', `${processFoodItemSugar(item["sugar_g"])} g`)}
+                            {line('Saved', item["transaction_time"])}
+                        </View>
+                    ))
                 ) : null}
             </ScrollView>
         </View>

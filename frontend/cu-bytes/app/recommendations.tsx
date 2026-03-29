@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { KeyValueRows } from './_components/KeyValueRows';
 import { screenChrome as sc } from './_styles/screenChrome';
 import { styles } from './_styles/style-recommendations';
 import { useUser } from './_context';
@@ -492,7 +493,8 @@ export default function RecommendationsScreen() {
             <ScrollView id="viewRecommendationsScrollView" style={sc.scrollView}
                 contentContainerStyle={sc.scrollContent}
                 showsVerticalScrollIndicator={false}
-                keyboardShouldPersistTaps="handled">
+                keyboardShouldPersistTaps="handled"
+                nestedScrollEnabled>
 
                 <Text id="recommendationsTitle" style={sc.pageTitle}>
                     Recommendations
@@ -732,16 +734,15 @@ export default function RecommendationsScreen() {
                                 return (
                                 <View id="trendingRecommendationsInnerView1" style={[sc.card, { marginBottom: 12, padding: 0, overflow: 'hidden' }]} key={index}>
 
-                                    <FlatList
-                                        data={recRows}
-                                        scrollEnabled={false}
-                                        renderItem={({ item, index: ri }) => (
-                                            <View id="trendingRecommendationsInnerView2" style={[sc.row, ri === recRows.length - 1 && sc.rowLast]}>
-                                                <Text id="trendingRecommendationsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                                <Text id="trendingRecommendationsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                            </View>
-                                        )}>
-                                    </FlatList>
+                                    <KeyValueRows
+                                        rows={recRows}
+                                        styles={{
+                                            row: sc.row,
+                                            rowLast: sc.rowLast,
+                                            rowCellLabel: sc.rowCellLabel,
+                                            rowCellValue: sc.rowCellValue,
+                                        }}
+                                    />
 
                                 </View>
                                 );
@@ -766,16 +767,15 @@ export default function RecommendationsScreen() {
                                 return (
                                 <View id="randomRecommendationsInnerView1" style={[sc.card, { marginBottom: 12, padding: 0, overflow: 'hidden' }]} key={index}>
 
-                                    <FlatList
-                                        data={recRows}
-                                        scrollEnabled={false}
-                                        renderItem={({ item, index: ri }) => (
-                                            <View id="randomRecommendationsInnerView2" style={[sc.row, ri === recRows.length - 1 && sc.rowLast]}>
-                                                <Text id="randomRecommendationsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                                <Text id="randomRecommendationsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                            </View>
-                                        )}>
-                                    </FlatList>
+                                    <KeyValueRows
+                                        rows={recRows}
+                                        styles={{
+                                            row: sc.row,
+                                            rowLast: sc.rowLast,
+                                            rowCellLabel: sc.rowCellLabel,
+                                            rowCellValue: sc.rowCellValue,
+                                        }}
+                                    />
 
                                 </View>
                                 );
@@ -800,16 +800,15 @@ export default function RecommendationsScreen() {
                                 return (
                                 <View id="idealRecommendationsInnerView1" style={[sc.card, { marginBottom: 12, padding: 0, overflow: 'hidden' }]} key={index}>
 
-                                    <FlatList
-                                        data={recRows}
-                                        scrollEnabled={false}
-                                        renderItem={({ item, index: ri }) => (
-                                            <View id="idealRecommendationsInnerView2" style={[sc.row, ri === recRows.length - 1 && sc.rowLast]}>
-                                                <Text id="idealRecommendationsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                                <Text id="idealRecommendationsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                            </View>
-                                        )}>
-                                    </FlatList>
+                                    <KeyValueRows
+                                        rows={recRows}
+                                        styles={{
+                                            row: sc.row,
+                                            rowLast: sc.rowLast,
+                                            rowCellLabel: sc.rowCellLabel,
+                                            rowCellValue: sc.rowCellValue,
+                                        }}
+                                    />
 
                                 </View>
                                 );
@@ -838,16 +837,15 @@ export default function RecommendationsScreen() {
                                 return (
                                 <View id="nutrientRecommendationsInnerView1" style={[sc.card, { marginBottom: 12, padding: 0, overflow: 'hidden' }]} key={index}>
 
-                                    <FlatList
-                                        data={recRows}
-                                        scrollEnabled={false}
-                                        renderItem={({ item, index: ri }) => (
-                                            <View id="nutrientRecommendationsInnerView2" style={[sc.row, ri === recRows.length - 1 && sc.rowLast]}>
-                                                <Text id="nutrientRecommendationsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                                <Text id="nutrientRecommendationsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                            </View>
-                                        )}>
-                                    </FlatList>
+                                    <KeyValueRows
+                                        rows={recRows}
+                                        styles={{
+                                            row: sc.row,
+                                            rowLast: sc.rowLast,
+                                            rowCellLabel: sc.rowCellLabel,
+                                            rowCellValue: sc.rowCellValue,
+                                        }}
+                                    />
 
                                 </View>
                                 );
@@ -876,16 +874,15 @@ export default function RecommendationsScreen() {
                                 return (
                                 <View id="similarRecommendationsInnerView1" style={[sc.card, { marginBottom: 12, padding: 0, overflow: 'hidden' }]} key={index}>
 
-                                    <FlatList
-                                        data={recRows}
-                                        scrollEnabled={false}
-                                        renderItem={({ item, index: ri }) => (
-                                            <View id="similarRecommendationsInnerView2" style={[sc.row, ri === recRows.length - 1 && sc.rowLast]}>
-                                                <Text id="similarRecommendationsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                                <Text id="similarRecommendationsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                            </View>
-                                        )}>
-                                    </FlatList>
+                                    <KeyValueRows
+                                        rows={recRows}
+                                        styles={{
+                                            row: sc.row,
+                                            rowLast: sc.rowLast,
+                                            rowCellLabel: sc.rowCellLabel,
+                                            rowCellValue: sc.rowCellValue,
+                                        }}
+                                    />
 
                                 </View>
                                 );

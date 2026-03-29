@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { View, ScrollView, Text, TouchableOpacity, TextInput, FlatList, ActivityIndicator, Modal } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, TextInput, ActivityIndicator, Modal } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { KeyValueRows } from './_components/KeyValueRows';
 import { screenChrome as sc } from './_styles/screenChrome';
 import { styles } from "./_styles/style-dining";
 import { useUser } from './_context';
@@ -650,7 +651,8 @@ export default function DiningScreen() {
             <ScrollView id="browseDiningLocationsScrollView" style={sc.scrollView}
                 contentContainerStyle={sc.scrollContent}
                 showsVerticalScrollIndicator={false}
-                keyboardShouldPersistTaps="handled">
+                keyboardShouldPersistTaps="handled"
+                nestedScrollEnabled>
 
                 <Text id="browseDiningLocationsTitle" style={sc.pageTitle}>
                     Dining Locations
@@ -732,31 +734,29 @@ export default function DiningScreen() {
 
                 {foodItemSelected && foodItemInfoVisible && (
                     <View id="foodItemOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
-                        <FlatList id="foodItemFlatList"
-                            data={processSelectedFoodItem(foodItem)}
-                            scrollEnabled={false}
-                            renderItem={({ item, index }) => (
-                                <View id="foodItemInnerView" style={[sc.row, index === processSelectedFoodItem(foodItem).length - 1 && sc.rowLast]}>
-                                    <Text id="foodItemFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                    <Text id="foodItemFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                </View>
-                            )}>
-                        </FlatList>
+                        <KeyValueRows
+                            rows={processSelectedFoodItem(foodItem)}
+                            styles={{
+                                row: sc.row,
+                                rowLast: sc.rowLast,
+                                rowCellLabel: sc.rowCellLabel,
+                                rowCellValue: sc.rowCellValue,
+                            }}
+                        />
                     </View>
                 )}
 
                 {foodItemSelected && foodItemWarningVisible && (
                     <View id="warningOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
-                        <FlatList id="warningFlatList"
-                            data={processSelectedFoodItemWarnings(foodItem)}
-                            scrollEnabled={false}
-                            renderItem={({ item, index }) => (
-                                <View id="warningInnerView" style={[sc.row, index === processSelectedFoodItemWarnings(foodItem).length - 1 && sc.rowLast]}>
-                                    <Text id="warningFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                    <Text id="warningFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                </View>
-                            )}>
-                        </FlatList>
+                        <KeyValueRows
+                            rows={processSelectedFoodItemWarnings(foodItem)}
+                            styles={{
+                                row: sc.row,
+                                rowLast: sc.rowLast,
+                                rowCellLabel: sc.rowCellLabel,
+                                rowCellValue: sc.rowCellValue,
+                            }}
+                        />
 
                         <Text id="noteInfoText" style={styles.listRowText}>
                             * = estimate from USDA food database 
