@@ -18,9 +18,7 @@ type Props = {
 };
 
 /**
- * Renders key/value rows inside a parent ScrollView. Prefer this over nested
- * FlatList (scrollEnabled={false}), which steals touch gestures on mobile and
- * blocks scrolling when the user drags on the "table" area.
+ * Renders key/value rows inside a parent ScrollView.
  */
 export function KeyValueRows({ rows, styles: s }: Props) {
   return (
