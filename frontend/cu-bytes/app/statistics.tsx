@@ -535,7 +535,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="dailyStatsButtonText" style={sc.bodyButtonText}>
-                            Daily Statistics
+                            Daily
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -554,7 +554,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="aggregateStatsButtonText" style={sc.bodyButtonText}>
-                            Aggregate Statistics
+                            My Percentiles
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -573,7 +573,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="globalStatsButtonText" style={sc.bodyButtonText}>
-                            Global Statistics
+                            Campus Trends
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -592,7 +592,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="comparativeStatsButtonText" style={sc.bodyButtonText}>
-                            Comparative Statistics
+                            Peer Comparison
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -643,10 +643,10 @@ export default function StatisticsScreen() {
 
                             <Text id="getStatsButtonText" style={sc.bodyButtonText}>
                                 { 
-                                    selectedStatisticMode === 'Daily' ? 'Get Daily Statistics' :
-                                    selectedStatisticMode === 'Aggregate' ? 'Get Aggregate Statistics' :
-                                    selectedStatisticMode === 'Global' ? 'Get Global Statistics' :
-                                    selectedStatisticMode === 'Comparative' ? 'Get Comparative Statistics' :
+                                    selectedStatisticMode === 'Daily' ? 'View Daily Breakdown' :
+                                    selectedStatisticMode === 'Aggregate' ? 'View My Totals' :
+                                    selectedStatisticMode === 'Global' ? 'View Campus Trends' :
+                                    selectedStatisticMode === 'Comparative' ? 'View Comparison' :
                                     ''
                                 }
                             </Text>
@@ -663,7 +663,7 @@ export default function StatisticsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="viewOtherStatsButtonText" style={sc.bodyButtonOutlineText}>
-                                View Other Statistics
+                                Choose Another View
                             </Text>
                         </TouchableOpacity>
 
@@ -783,7 +783,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="viewOtherStatsAgainButtonText" style={sc.bodyButtonOutlineText}>
-                            View Other Statistics
+                            Choose Another View
                         </Text>
                     </TouchableOpacity>
                 )}

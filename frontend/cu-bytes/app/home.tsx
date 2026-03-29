@@ -316,7 +316,7 @@ export default function HomeScreen() {
                   id="browseFoodItemsButtonText"
                   style={sc.bodyButtonText}
                 >
-                  Browse Food
+                  Browse Foods
                 </Text>
               </TouchableOpacity>
 

@@ -713,9 +713,9 @@ export default function ScanScreen() {
                 {/* If there's a low confidence message, then the prediction variable value is irrelevant */}
                 {selectedImage && lowConfidenceMessage && !similarFoodItems && !similarFoodItemSelected && (
                     <View id="lowConfidenceBanner" style={styles.lowConfidenceBanner}>
-                        <Text style={styles.lowConfidenceTitle}>No food detected</Text>
+                        <Text style={styles.lowConfidenceTitle}>No Confident Match</Text>
                         <Text style={styles.lowConfidenceMessage}>
-                            We couldn&apos;t detect food in this photo. Try a clearer shot of the dish.
+                            We couldn&apos;t identify the food in this image. Try a clearer shot of the dish.
                         </Text>
                     </View>
                 )}
@@ -776,7 +776,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="takePhotoButtonText" style={sc.bodyButtonText}>
-                                Take Photo
+                                Open Camera
                             </Text>
                         </TouchableOpacity>
 
@@ -786,7 +786,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="uploadPhotoButtonText" style={sc.bodyButtonOutlineText}>
-                                Upload Photo
+                                Choose From Library
                             </Text>
                         </TouchableOpacity>
 
@@ -810,7 +810,7 @@ export default function ScanScreen() {
                             {loading ? (<ActivityIndicator color="#FFFFFF"/>) :
                                 
                                 (<Text id="scanFoodButtonText" style={sc.bodyButtonText}>
-                                    Scan Food
+                                    Analyze Photo
                                 </Text>)
                             }
                         </TouchableOpacity>
@@ -868,7 +868,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="scanOtherFoodItemButtonText" style={sc.bodyButtonOutlineText} numberOfLines={1}>
-                                Scan Another
+                                New Photo
                             </Text>
                         </TouchableOpacity>
 
@@ -986,7 +986,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="scanOtherFoodItemButtonText" style={sc.bodyButtonOutlineText} numberOfLines={1}>
-                                Scan Another
+                                New Photo
                             </Text>
                         </TouchableOpacity>
                         
