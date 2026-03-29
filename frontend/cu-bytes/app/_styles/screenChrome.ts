@@ -1,4 +1,4 @@
-import { StyleSheet, type TextStyle, type ViewStyle } from 'react-native';
+import { Platform, StyleSheet, type TextStyle, type ViewStyle } from 'react-native';
 
 import { contentWidth, font, h, padH, w } from './dimensions';
 import { colors, fontSans, radii } from './theme';
@@ -24,9 +24,11 @@ const viewChrome = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 8,
+    // Taller bar + padding: easier targets on phone web (iOS) and clearer separation from status area
+    paddingBottom: Platform.select({ web: 14, default: 12 }),
     paddingHorizontal: padH,
-    paddingTop: 8,
+    paddingTop: Platform.select({ web: 14, default: 12 }),
+    minHeight: Platform.select({ web: 58, default: 54 }),
   } as ViewStyle,
 
   headerButton: {
@@ -34,10 +36,11 @@ const viewChrome = StyleSheet.create({
     backgroundColor: colors.headerBtn,
     borderRadius: radii.sm,
     justifyContent: 'center',
-    minHeight: 36,
-    minWidth: 68,
-    paddingHorizontal: 10,
-    paddingVertical: 6,
+    // ~44pt minimum touch target (Apple HIG); wider pill for short labels on small screens
+    minHeight: 44,
+    minWidth: Platform.select({ web: 80, default: 76 }),
+    paddingHorizontal: Platform.select({ web: 14, default: 12 }),
+    paddingVertical: 10,
   } as ViewStyle,
 
   headerButtonPressed: {
@@ -61,7 +64,7 @@ const viewChrome = StyleSheet.create({
     maxWidth: contentWidth as number,
     paddingBottom: h(5),
     paddingHorizontal: padH,
-    paddingTop: 10,
+    paddingTop: Platform.select({ web: 16, default: 14 }),
     width: w(100),
   } as ViewStyle,
 
@@ -181,7 +184,7 @@ const textChrome = StyleSheet.create({
   headerButtonText: {
     color: colors.text,
     fontFamily: fontSans,
-    fontSize: font(87),
+    fontSize: Platform.select({ web: font(100), default: font(93) }),
     fontWeight: '600',
   } as TextStyle,
 
@@ -189,16 +192,16 @@ const textChrome = StyleSheet.create({
     color: colors.textSecondary,
     flex: 1,
     fontFamily: fontSans,
-    fontSize: font(87),
+    fontSize: Platform.select({ web: font(93), default: font(87) }),
     fontWeight: '600',
-    marginHorizontal: 8,
+    marginHorizontal: Platform.select({ web: 10, default: 8 }),
     textAlign: 'center',
   } as TextStyle,
 
   pageTitle: {
     color: colors.text,
     fontFamily: fontSans,
-    fontSize: font(175),
+    fontSize: Platform.select({ web: font(190), default: font(175) }),
     fontWeight: '800',
     letterSpacing: -0.3,
     marginBottom: 6,
@@ -207,9 +210,12 @@ const textChrome = StyleSheet.create({
   pageSubtitle: {
     color: colors.textSecondary,
     fontFamily: fontSans,
-    fontSize: font(100),
+    fontSize: Platform.select({ web: font(106), default: font(100) }),
     fontWeight: '500',
-    lineHeight: font(100) * 1.35,
+    lineHeight: Platform.select({
+      web: font(106) * 1.4,
+      default: font(100) * 1.35,
+    }),
     marginBottom: h(2),
   } as TextStyle,
 
