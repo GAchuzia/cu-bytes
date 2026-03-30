@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { KeyValueRows } from './_components/KeyValueRows';
 import { screenChrome as sc } from './_styles/screenChrome';
 import { styles } from './_styles/style-statistics';
 import { useUser } from './_context';
@@ -499,7 +500,8 @@ export default function StatisticsScreen() {
             <ScrollView id="viewStatisticsScrollView" style={sc.scrollView}
                 contentContainerStyle={sc.scrollContent}
                 showsVerticalScrollIndicator={false}
-                keyboardShouldPersistTaps="handled">
+                keyboardShouldPersistTaps="handled"
+                nestedScrollEnabled>
 
                 <Text id="statisticsTitle" style={sc.pageTitle}>
                     Statistics
@@ -533,7 +535,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="dailyStatsButtonText" style={sc.bodyButtonText}>
-                            Daily Statistics
+                            Daily
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -552,7 +554,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="aggregateStatsButtonText" style={sc.bodyButtonText}>
-                            Aggregate Statistics
+                            Personal Totals
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -571,7 +573,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="globalStatsButtonText" style={sc.bodyButtonText}>
-                            Global Statistics
+                            Campus Trends
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -590,7 +592,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="comparativeStatsButtonText" style={sc.bodyButtonText}>
-                            Comparative Statistics
+                            Peer Comparison
                         </Text>
                     </TouchableOpacity>                
                 )}
@@ -641,10 +643,10 @@ export default function StatisticsScreen() {
 
                             <Text id="getStatsButtonText" style={sc.bodyButtonText}>
                                 { 
-                                    selectedStatisticMode === 'Daily' ? 'Get Daily Statistics' :
-                                    selectedStatisticMode === 'Aggregate' ? 'Get Aggregate Statistics' :
-                                    selectedStatisticMode === 'Global' ? 'Get Global Statistics' :
-                                    selectedStatisticMode === 'Comparative' ? 'Get Comparative Statistics' :
+                                    selectedStatisticMode === 'Daily' ? 'View Daily Breakdown' :
+                                    selectedStatisticMode === 'Aggregate' ? 'View My Totals' :
+                                    selectedStatisticMode === 'Global' ? 'View Campus Trends' :
+                                    selectedStatisticMode === 'Comparative' ? 'View Comparison' :
                                     ''
                                 }
                             </Text>
@@ -661,7 +663,7 @@ export default function StatisticsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="viewOtherStatsButtonText" style={sc.bodyButtonOutlineText}>
-                                View Other Statistics
+                                Choose Another View
                             </Text>
                         </TouchableOpacity>
 
@@ -687,16 +689,15 @@ export default function StatisticsScreen() {
                                         {date}
                                     </Text>
 
-                                    <FlatList
-                                        data={rows}
-                                        scrollEnabled={false}
-                                        renderItem={({ item, index }) => (
-                                            <View id="dailyStatisticsInnerView2" style={[sc.row, index === rows.length - 1 && sc.rowLast]}>
-                                                <Text id="dailyStatisticsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                                <Text id="dailyStatisticsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                            </View>
-                                        )}>
-                                    </FlatList>
+                                    <KeyValueRows
+                                        rows={rows}
+                                        styles={{
+                                            row: sc.row,
+                                            rowLast: sc.rowLast,
+                                            rowCellLabel: sc.rowCellLabel,
+                                            rowCellValue: sc.rowCellValue,
+                                        }}
+                                    />
 
                                 </View>
                                 );
@@ -714,16 +715,15 @@ export default function StatisticsScreen() {
                             Aggregated totals for {usernameGlobal} (last {numberOfDays} days).
                         </Text>
 
-                        <FlatList id="aggregateStatisticsFlatList"
-                            data={aggregateRows}
-                            scrollEnabled={false}
-                            renderItem={({ item, index }) => (
-                                <View id="aggregateStatisticsInnerView" style={[sc.row, index === aggregateRows.length - 1 && sc.rowLast]}>
-                                    <Text id="aggregateStatisticsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                    <Text id="aggregateStatisticsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                </View>
-                            )}>
-                        </FlatList>
+                        <KeyValueRows
+                            rows={aggregateRows}
+                            styles={{
+                                row: sc.row,
+                                rowLast: sc.rowLast,
+                                rowCellLabel: sc.rowCellLabel,
+                                rowCellValue: sc.rowCellValue,
+                            }}
+                        />
 
                     </View>
                 )}
@@ -736,16 +736,15 @@ export default function StatisticsScreen() {
                             Trending foods and dining locations (last {numberOfDays} days).
                         </Text>
 
-                        <FlatList id="globalStatisticsFlatList"
-                            data={globalRows}
-                            scrollEnabled={false}
-                            renderItem={({ item, index }) => (
-                                <View id="globalStatisticsInnerView" style={[sc.row, index === globalRows.length - 1 && sc.rowLast]}>
-                                    <Text id="globalStatisticsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                    <Text id="globalStatisticsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                </View>
-                            )}>
-                        </FlatList>
+                        <KeyValueRows
+                            rows={globalRows}
+                            styles={{
+                                row: sc.row,
+                                rowLast: sc.rowLast,
+                                rowCellLabel: sc.rowCellLabel,
+                                rowCellValue: sc.rowCellValue,
+                            }}
+                        />
 
                     </View>
                 )}
@@ -759,16 +758,15 @@ export default function StatisticsScreen() {
                             Percentiles vs other consenting users (last {numberOfDays} days). Based on proximity to recommended amounts.
                         </Text>
 
-                        <FlatList id="comparativeStatisticsFlatList"
-                            data={comparativeRows}
-                            scrollEnabled={false}
-                            renderItem={({ item, index }) => (
-                                <View id="comparativeStatisticsInnerView" style={[sc.row, index === comparativeRows.length - 1 && sc.rowLast]}>
-                                    <Text id="comparativeStatisticsFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                    <Text id="comparativeStatisticsFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                </View>
-                            )}>
-                        </FlatList>
+                        <KeyValueRows
+                            rows={comparativeRows}
+                            styles={{
+                                row: sc.row,
+                                rowLast: sc.rowLast,
+                                rowCellLabel: sc.rowCellLabel,
+                                rowCellValue: sc.rowCellValue,
+                            }}
+                        />
 
                     </View>
                 )}
@@ -785,7 +783,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="viewOtherStatsAgainButtonText" style={sc.bodyButtonOutlineText}>
-                            View Other Statistics
+                            Choose Another View
                         </Text>
                     </TouchableOpacity>
                 )}

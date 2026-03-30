@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, FlatList, Image, Modal, Alert, ActivityIndicator } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, Image, Modal, Alert, ActivityIndicator } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { KeyValueRows } from './_components/KeyValueRows';
 import { screenChrome as sc } from './_styles/screenChrome';
 import { styles } from './_styles/style-scan';
 import { useUser } from './_context';
@@ -672,6 +673,7 @@ export default function ScanScreen() {
                 contentContainerStyle={sc.scrollContent}
                 showsVerticalScrollIndicator={false}
                 keyboardShouldPersistTaps="handled"
+                nestedScrollEnabled
                 bounces={true}
                 overScrollMode="always">
 
@@ -711,9 +713,9 @@ export default function ScanScreen() {
                 {/* If there's a low confidence message, then the prediction variable value is irrelevant */}
                 {selectedImage && lowConfidenceMessage && !similarFoodItems && !similarFoodItemSelected && (
                     <View id="lowConfidenceBanner" style={styles.lowConfidenceBanner}>
-                        <Text style={styles.lowConfidenceTitle}>No food detected</Text>
+                        <Text style={styles.lowConfidenceTitle}>No Confident Match</Text>
                         <Text style={styles.lowConfidenceMessage}>
-                            We couldn&apos;t detect food in this photo. Try a clearer shot of the dish.
+                            We couldn&apos;t identify the food in this image. Try a clearer shot of the dish.
                         </Text>
                     </View>
                 )}
@@ -724,16 +726,15 @@ export default function ScanScreen() {
                 {selectedImage && prediction && !similarFoodItems && !similarFoodItemSelected && (
                     <View id="foodItemOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
-                        <FlatList id="foodItemFlatList"
-                            data={processScannedFoodItem(prediction)}
-                            scrollEnabled={false}
-                            renderItem={({ item, index }) => (
-                                <View id="foodItemInnerView" style={[sc.row, index === processScannedFoodItem(prediction).length - 1 && sc.rowLast]}>
-                                    <Text id="foodItemFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                    <Text id="foodItemFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                </View>
-                            )}>
-                        </FlatList>
+                        <KeyValueRows
+                            rows={processScannedFoodItem(prediction)}
+                            styles={{
+                                row: sc.row,
+                                rowLast: sc.rowLast,
+                                rowCellLabel: sc.rowCellLabel,
+                                rowCellValue: sc.rowCellValue,
+                            }}
+                        />
 
                         <Text id="noteInfoText" style={styles.listRowText}>
                             * = estimate from USDA food database 
@@ -747,16 +748,15 @@ export default function ScanScreen() {
                 {selectedImage && prediction && !similarFoodItems && !similarFoodItemSelected && (
                     <View id="warningOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
-                        <FlatList id="warningFlatList"
-                            data={processSelectedFoodItemWarnings(prediction)}
-                            scrollEnabled={false}
-                            renderItem={({ item, index }) => (
-                                <View id="warningInnerView" style={[sc.row, index === processSelectedFoodItemWarnings(prediction).length - 1 && sc.rowLast]}>
-                                    <Text id="warningFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                    <Text id="warningFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                </View>
-                            )}>
-                        </FlatList>
+                        <KeyValueRows
+                            rows={processSelectedFoodItemWarnings(prediction)}
+                            styles={{
+                                row: sc.row,
+                                rowLast: sc.rowLast,
+                                rowCellLabel: sc.rowCellLabel,
+                                rowCellValue: sc.rowCellValue,
+                            }}
+                        />
                         
                         <Text id="noteInfoText" style={styles.listRowText}>
                             Allergy information on this page is derived from an aggregation of Carleton data, and may not be entirely accurate
@@ -776,7 +776,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="takePhotoButtonText" style={sc.bodyButtonText}>
-                                Take Photo
+                                Open Camera
                             </Text>
                         </TouchableOpacity>
 
@@ -786,7 +786,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="uploadPhotoButtonText" style={sc.bodyButtonOutlineText}>
-                                Upload Photo
+                                Choose From Library
                             </Text>
                         </TouchableOpacity>
 
@@ -810,7 +810,7 @@ export default function ScanScreen() {
                             {loading ? (<ActivityIndicator color="#FFFFFF"/>) :
                                 
                                 (<Text id="scanFoodButtonText" style={sc.bodyButtonText}>
-                                    Scan Food
+                                    Analyze Photo
                                 </Text>)
                             }
                         </TouchableOpacity>
@@ -868,7 +868,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="scanOtherFoodItemButtonText" style={sc.bodyButtonOutlineText} numberOfLines={1}>
-                                Scan Another
+                                New Photo
                             </Text>
                         </TouchableOpacity>
 
@@ -934,16 +934,15 @@ export default function ScanScreen() {
                 {similarFoodItemSelected && foodItemInfoVisible && (
                     <View id="selectedSimilarFoodItemOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
-                        <FlatList id="selectedSimilarFoodItemFlatList"
-                            data={processSelectedFoodItem(foodItem)}
-                            scrollEnabled={false}
-                            renderItem={({ item, index }) => (
-                                <View id="selectedSimilarFoodItemInnerView" style={[sc.row, index === processSelectedFoodItem(foodItem).length - 1 && sc.rowLast]}>
-                                    <Text id="selectedSimilarFoodItemNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                    <Text id="selectedSimilarFoodItemValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                </View>
-                            )}>
-                        </FlatList>
+                        <KeyValueRows
+                            rows={processSelectedFoodItem(foodItem)}
+                            styles={{
+                                row: sc.row,
+                                rowLast: sc.rowLast,
+                                rowCellLabel: sc.rowCellLabel,
+                                rowCellValue: sc.rowCellValue,
+                            }}
+                        />
 
                         <Text id="noteInfoText" style={styles.listRowText}>
                             * = estimate from USDA food database 
@@ -955,16 +954,15 @@ export default function ScanScreen() {
                 {similarFoodItemSelected && foodItemWarningVisible && (
                     <View id="warningOuterView" style={[sc.card, styles.selectedFoodItemContainer]}>
 
-                        <FlatList id="warningFlatList"
-                            data={processSelectedFoodItemWarnings(foodItem)}
-                            scrollEnabled={false}
-                            renderItem={({ item, index }) => (
-                                <View id="warningInnerView" style={[sc.row, index === processSelectedFoodItemWarnings(foodItem).length - 1 && sc.rowLast]}>
-                                    <Text id="warningFieldNameText" style={sc.rowCellLabel}>{item["field_name"]}</Text>
-                                    <Text id="warningFieldValueText" style={sc.rowCellValue}>{item["field_value"]}</Text>
-                                </View>
-                            )}>
-                        </FlatList>
+                        <KeyValueRows
+                            rows={processSelectedFoodItemWarnings(foodItem)}
+                            styles={{
+                                row: sc.row,
+                                rowLast: sc.rowLast,
+                                rowCellLabel: sc.rowCellLabel,
+                                rowCellValue: sc.rowCellValue,
+                            }}
+                        />
                     </View>
                 )}
 
@@ -988,7 +986,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="scanOtherFoodItemButtonText" style={sc.bodyButtonOutlineText} numberOfLines={1}>
-                                Scan Another
+                                New Photo
                             </Text>
                         </TouchableOpacity>
                         
