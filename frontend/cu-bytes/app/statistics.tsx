@@ -554,7 +554,7 @@ export default function StatisticsScreen() {
                         activeOpacity={0.92}>
 
                         <Text id="aggregateStatsButtonText" style={sc.bodyButtonText}>
-                            My Percentiles
+                            Personal Totals
                         </Text>
                     </TouchableOpacity>                
                 )}
