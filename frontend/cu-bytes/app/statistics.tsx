@@ -37,7 +37,7 @@ export default function StatisticsScreen() {
         Set to the value true everytime a statistics fetch button is pressed
     */
     const [fetchedStatistics, setFetchedStatistics] = useState(false);
-    
+
     const [isHomeOrSplashPressed, setIsHomeOrSplashPressed] = useState(false);
     const [isLoginLogoutPressed, setIsLoginLogoutPressed] = useState(false);
     const [isDailyPressed, setIsDailyPressed] = useState(false);
@@ -54,7 +54,7 @@ export default function StatisticsScreen() {
     const {
         usernameGlobal,
         setUsernameGlobal,
-        setHasDairyIntoleranceGlobal,            
+        setHasDairyIntoleranceGlobal,
         setHasEggAllergyGlobal,
         setHasFishOrShellfishAllergyGlobal,
         setHasGlutenAllergyGlobal,
@@ -130,7 +130,7 @@ export default function StatisticsScreen() {
                 items_logged: number,
                 proteins_g: number,
                 sugar_g: number
-            }    
+            }
         }
     );
 
@@ -225,7 +225,7 @@ export default function StatisticsScreen() {
             fruits_veg_percentile: number,
             grain_percentile: number,
             protein_fg_percentile: number,
-            sugar_percentile: number          
+            sugar_percentile: number
         }
     );
 
@@ -264,7 +264,7 @@ export default function StatisticsScreen() {
             { field_name: "Days Active", field_value: stats["days_active"] },
             { field_name: "Items Logged", field_value: stats["items_logged"] },
             { field_name: "Top Food Item", field_value: stats["top_food"] },
-            { field_name: "Top Dining Location", field_value: stats["top_dining_location"] },                     
+            { field_name: "Top Dining Location", field_value: stats["top_dining_location"] },
             { field_name: "Percent Dairy", field_value: stats["percent_dairy"] + " %" },
             { field_name: "Percent Fruits / Vegs", field_value: stats["percent_fruit_veg"] + " %" },
             { field_name: "Percent Grain", field_value: stats["percent_grain"] + " %" },
@@ -311,9 +311,9 @@ export default function StatisticsScreen() {
     const processComparativeStatistics = (stats: any) => {
 
         return [
-            { field_name: "Number of Days Active", field_value: stats["checkin_percentile"] + ' day(s)' },            
-            { field_name: "Number of Items Logged", field_value: stats["food_logging_percentile"] + ' item(s)' },   
-            { field_name: "Balanced Macronutrients Percentile", field_value: stats["balanced_macronutrients_percentile"] },                     
+            { field_name: "Days Active Percentile", field_value: stats["checkin_percentile"] },
+            { field_name: "Items Logged Percentile", field_value: stats["food_logging_percentile"] },
+            { field_name: "Balanced Macronutrients Percentile", field_value: stats["balanced_macronutrients_percentile"] },
             { field_name: "Balanced Food Groups Percentile", field_value: stats["balanced_food_groups_percentile"] },
             { field_name: "Carbs Percentile", field_value: stats["carbs_percentile"] },
             { field_name: "Fat Percentile", field_value: stats["fat_percentile"] },
@@ -321,7 +321,7 @@ export default function StatisticsScreen() {
             { field_name: "Protein Percentile", field_value: stats["protein_fg_percentile"] },
             { field_name: "Sugar Percentile", field_value: stats["sugar_percentile"] },
             { field_name: "Dairy Percentile", field_value: stats["dairy_percentile"] },
-            { field_name: "Fruits / Vegs Percentile", field_value: stats["fruits_veg_percentile"] },
+            { field_name: "Fruits & Veggies Percentile", field_value: stats["fruits_veg_percentile"] },
             { field_name: "Grain Percentile", field_value: stats["grain_percentile"] },
         ]
     }
@@ -329,10 +329,10 @@ export default function StatisticsScreen() {
     /*
         Log out the logged-in user by setting their profile settings to false, and routing to the splash page
     */
-    const logout = () => { 
-        
+    const logout = () => {
+
         setUsernameGlobal('');
-        setHasDairyIntoleranceGlobal(false);        
+        setHasDairyIntoleranceGlobal(false);
         setHasEggAllergyGlobal(false);
         setHasFishOrShellfishAllergyGlobal(false);
         setHasGlutenAllergyGlobal(false);
@@ -371,7 +371,7 @@ export default function StatisticsScreen() {
             setLoading(false);
         }
     }
-    
+
     /*
         Send a request to the backend endpoint to get the logged-in user's aggregate statistics
 
@@ -513,7 +513,7 @@ export default function StatisticsScreen() {
                         What statistics would you like to view?
                     </Text>
                 )}
-                
+
                 {/* Display the following message when a statistics button has been pressed but no statistics have been fetched */}
                 {statisticModeButtonPressed && !fetchedStatistics && (
                     <Text id="viewStatisticsInfoTextNumberOfDays" style={sc.pageSubtitle}>
@@ -537,7 +537,7 @@ export default function StatisticsScreen() {
                         <Text id="dailyStatsButtonText" style={sc.bodyButtonText}>
                             Daily
                         </Text>
-                    </TouchableOpacity>                
+                    </TouchableOpacity>
                 )}
 
                 {/* Display the button used to notify the frontend to retrieve aggregate statistics */}
@@ -547,7 +547,7 @@ export default function StatisticsScreen() {
                         onPressIn={() => setIsAggregatePressed(true)}
                         onPressOut={() => setIsAggregatePressed(false)}
                         onPress={() => {
-                            setStatisticModeButtonPressed(true)    
+                            setStatisticModeButtonPressed(true)
                             setSelectedStatisticMode("Aggregate");
                         }}
                         disabled={usernameGlobal === '' ? true : false}
@@ -556,7 +556,7 @@ export default function StatisticsScreen() {
                         <Text id="aggregateStatsButtonText" style={sc.bodyButtonText}>
                             Personal Totals
                         </Text>
-                    </TouchableOpacity>                
+                    </TouchableOpacity>
                 )}
 
                 {/* Display the button used to notify the frontend to retrieve global statistics */}
@@ -575,7 +575,7 @@ export default function StatisticsScreen() {
                         <Text id="globalStatsButtonText" style={sc.bodyButtonText}>
                             Campus Trends
                         </Text>
-                    </TouchableOpacity>                
+                    </TouchableOpacity>
                 )}
 
                 {/* Display the button used to notify the frontend to retrieve comparative statistics */}
@@ -594,7 +594,7 @@ export default function StatisticsScreen() {
                         <Text id="comparativeStatsButtonText" style={sc.bodyButtonText}>
                             Peer Comparison
                         </Text>
-                    </TouchableOpacity>                
+                    </TouchableOpacity>
                 )}
 
                 {/* Display buttons to increase/decrease the number of days to include when retrieving the statistics */}
@@ -614,8 +614,8 @@ export default function StatisticsScreen() {
 
                             <Text id="numberOfDaysText" style={styles.numberOfDaysText}>
                                 {numberOfDays}
-                            </Text>                        
-                            
+                            </Text>
+
                             <TouchableOpacity id="increaseNumberOfDaysButton"
                                 style={styles.bodyButtonIncreaseNumberOfDays}
                                 onPress={() => setNumberOfDays(numberOfDays+1)}>
@@ -626,11 +626,11 @@ export default function StatisticsScreen() {
                             </TouchableOpacity>
 
                         </View>
-                        
+
                         <TouchableOpacity id="getStatsButton"
                             style={sc.bodyButton}
                             onPress={() => {
-                                { 
+                                {
                                     selectedStatisticMode === 'Daily' ? getDailyStats(numberOfDays) :
                                     selectedStatisticMode === 'Aggregate' ? getAggregateStats(numberOfDays) :
                                     selectedStatisticMode === 'Global' ? getGlobalStats(numberOfDays) :
@@ -642,7 +642,7 @@ export default function StatisticsScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="getStatsButtonText" style={sc.bodyButtonText}>
-                                { 
+                                {
                                     selectedStatisticMode === 'Daily' ? 'View Daily Breakdown' :
                                     selectedStatisticMode === 'Aggregate' ? 'View My Totals' :
                                     selectedStatisticMode === 'Global' ? 'View Campus Trends' :
@@ -748,7 +748,7 @@ export default function StatisticsScreen() {
 
                     </View>
                 )}
-            
+
                 {/* Display the fetched comparative statistics */}
                 {selectedStatisticMode === 'Comparative' && fetchedStatistics && (
                     <View id="comparativeStatisticsOuterView" style={[sc.card, { alignSelf: 'stretch', marginBottom: 14, padding: 0, overflow: 'hidden' }]}>
