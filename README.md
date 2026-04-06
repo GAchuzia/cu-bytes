@@ -54,17 +54,4 @@ cd cu-bytes
 
 ---
 
-## 👨‍💻 The Team
-
-Built with ❤️ for **SYSC 4907A (Engineering Project)** at Carleton University.
-
-| Name | Role |
-|------|------|
-| Jake Siushansian | Frontend Lead |
-| Fiona Cheng | Backend Lead |
-| Grant Achuzia | Machine Learning Lead |
-
-> *Supervised by Prof. Dr. Safaa Bedawi*
-
----
 
