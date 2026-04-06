@@ -3,6 +3,8 @@
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
+- [Developer Setup](#developer-setup)
+  - [Manual Setup](#manual-setup)
 - [Backend Setup](#backend-setup)
   - [1. Create Virtual Environment](#1-create-virtual-environment)
   - [2. Activate Virtual Environment](#2-activate-virtual-environment)
@@ -48,6 +50,49 @@
 - Node.js 16+ and npm (for frontend)
 - Git
 - Windows/macOS/Linux
+
+## 🚀 Developer Setup
+
+### 🔧 Manual Setup
+
+**1️⃣ Clone the repo**
+
+```bash
+git clone https://github.com/GAchuzia/cu-bytes.git
+cd cu-bytes
+```
+
+**2️⃣ Set up the backend**
+
+```bash
+python -m venv backenv
+backenv\Scripts\activate        # Windows
+pip install -r requirements.txt
+
+python -m backend.database.init_user_settings_db
+python -m backend.database.init_auth_db
+python -m backend.database.init_food_db
+python -m backend.database.init_logging_db
+
+python -m backend.app
+```
+
+**3️⃣ Set up the frontend**
+
+```bash
+cd frontend/cu-bytes
+npm install
+npm start
+```
+
+**4️⃣ Set up the ML environment**
+
+```bash
+cd machine-learning
+python -m venv mlenv
+mlenv\Scripts\activate          # Windows
+pip install -r requirements.txt
+```
 
 ## Backend Setup
 
