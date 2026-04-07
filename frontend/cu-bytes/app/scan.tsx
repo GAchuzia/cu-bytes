@@ -786,7 +786,7 @@ export default function ScanScreen() {
                             activeOpacity={0.92}>
 
                             <Text id="uploadPhotoButtonText" style={sc.bodyButtonOutlineText}>
-                                Choose From Library
+                                Choose From Gallery
                             </Text>
                         </TouchableOpacity>
 
