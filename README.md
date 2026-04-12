@@ -5,7 +5,8 @@
 ---
 
 ## What is CU-Bytes?
-![CU-Bytes Pages](frontend\cu-bytes\assets\images\cu-bytes-pages.png)
+
+![CU-Bytes Pages](frontend/cu-bytes/assets/images/cu-bytes-pages.png)  
 CU-Bytes is an AI-powered food tracking app built specifically for **Carleton University** students and faculty. Snap a photo of your meal, get nutritional info, and make smarter dietary choices.
 
 - **Scan food** with your camera and let AI identify it
