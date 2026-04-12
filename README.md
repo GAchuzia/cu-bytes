@@ -5,7 +5,7 @@
 ---
 
 ## What is CU-Bytes?
-
+![CU-Bytes Pages](frontend\cu-bytes\assets\images\cu-bytes-pages.png)
 CU-Bytes is an AI-powered food tracking app built specifically for **Carleton University** students and faculty. Snap a photo of your meal, get nutritional info, and make smarter dietary choices.
 
 - **Scan food** with your camera and let AI identify it
@@ -29,19 +29,19 @@ CU-Bytes is an AI-powered food tracking app built specifically for **Carleton Un
 ## Developer Setup
 
 ### Clone the repo
+
 ```bash
 git clone https://github.com/GAchuzia/cu-bytes.git
 cd cu-bytes
 ```
 
 ### Run the app
+
 ```powershell
 .\start-dev.ps1
 ```
 
 > **Requirements:** PowerShell, Python 3.13, Node.js. Run from the project root directory.
-
-
 
 ## Documentation
 
@@ -51,5 +51,3 @@ cd cu-bytes
 | [CONTRIBUTING.md](docs/CONTRIBUTING.md) | Branch rules, PR process, and coding standards |
 
 ---
-
-
